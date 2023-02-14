@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hello World - OpenAI GPT</title>
+</head>
+<body onload="RefreshTable();">
+<a href="SelvbetjentUtredningMedAi.html">*</a>
+<!-- Content -->
+<table border="1"><tr><td valign="top">
+    <h4>Input...<br />prolog for all rows, the rows/columns and the epilog for all rows</h4>
+    Prolog:<input id="pro" type="text" value="Hvilken organisasjon i Norge er best egnet til å" onchange="RefreshTable();" style="width: 446px; left: 60px; position: absolute " /><br />
+    <textarea onchange="RefreshTable()" id="txt" style="height:100px;width:500px">bekjempe digitalt utenforskap
+sikre sikker identitet for innbyggerne
+utarbeide strategi for digitalisering
+ha virkemidler for finansiering av innovasjon</textarea><br />
+    Epilog:<input id="epi" type="text" value="? first answer with just the name of the organisation, then explain why in less than 20 words." onchange="RefreshTable();" style="width:446px;left:60px;position:absolute" /><br />
+    <br /><button onclick="t_details.style.display = t_details.style.display == `none` ? `inherit`: `none`;">Details</button>
+</td><td valign="top">
+    <h4>Output...<br />resulting rows/columns including content from GPT</h4>
+    Cells:<br />
+    <textarea id="txtDest" style="height:100px;width:500px">Output comes here...</textarea><br />
+    <h4>User action...<br />how to get the data using GPT</h4>
+    <button onclick="GptFillAll();">Add Texts<br />(Ctrl + B)</button>
+    <button>Copy to Clipboard<br />(Ctrl + C)</button><br />
+</td></tr><tr><td colspan="2" align="center">
+    <progress id="progressbar" value="1" max="1" style="width:50%"></progress>
+</td></tr><tr><td colspan="2" id="t_details" style="display:none;">
+    <h4>Processing text...<br />click on value to delete it, the dots to add NLP-result, but changing input resets all</h4>
+    Cells:<br />
+    <table id="t" border="1"><tr id="t_0"><td id="t_0_0" onclick="CellClick(t_0_0)">Hello World - text not parsed correctly!</td><td id="t_0_1">...</td></tr></table>
+    Dev ID:<input id="devid" type="text" value="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" style="width: 446px; left: 60px; position: absolute " /><br />
+</td></tr></table>
+
+<!-- Code -->
+    <script>
+        var lastText = lastProlog = lastEpilog = "";
+        var placeHolder = "...", inProgress = "...GPT in progress...";
+        function RefreshTable() {
+            let s = CreateTable(txt.value, pro.value, epi.value);
+            if (s != null) {
+                t.innerHTML = s;
+                RefreshDest();
+            }
+            progressbar.value = progressbar.max = 1;
+        }
+        function RefreshDest() {
+            let s = "";
+            let row = "";
+            for (let i = 0; i < t.rows.length; i++) {
+                for (let j = 0; j < t.rows[i].cells.length; j++) {
+                    let c = t.rows[i].cells[j].innerText.trim();
+                    if (c != pro.value.trim() && c != epi.value.trim() && c != placeHolder.trim() && c != inProgress.trim())
+                    {
+                        c = c.replace(/\r?\n|\r/g, '  ');
+                        if (c.length > 0)
+                            row = row.length == 0 ? c : row + "&#9;" + c.replace(/\r?\n|\r/g, '  ');
+                    }
+                }
+                row = row.trim();
+                if (row.length > 0)
+                    s = (s.length == 0) ? row : s + "&#13;&#10;" + row;
+                row = "";
+            }
+            if (s != null) {
+                txtDest.innerHTML = s;
+            }
+        }
+        function CreateTable(newText, prolog, epilog) {
+            if ((newText != null && prolog != null && epilog != null)
+                && (lastText != newText || lastProlog != prolog || lastEpilog != epilog)) {
+                lastText = newText, lastProlog = prolog, lastEpilog = epilog;
+                let s = "";
+
+                newText.split("\n").forEach((row, irow) => {
+                    row = prolog + "\t" + row + "\t" + epilog;
+                    icol = 0;
+                    sRow = "<tr id=\"t_" + irow + "\">";
+
+                    row.split("\t").forEach((col) => {
+                        if (col != "")
+                            sRow += CellHtm(irow, icol++, col);
+                    });
+                    if (icol > 0)
+                        s += sRow + CellHtm(irow, icol++) + "</tr>";
+                });
+                return s;
+            }
+        }
+        function CellHtm(irow, icol, col) {
+            let id = "t_" + irow + "_" + icol;
+            if (col == null)
+                col = placeHolder; // "...";
+            return "<td id=\"" + id + "\" onclick=\"CellClick(" + id + ");\">" + col + "</td>";
+        }
+        function CellClick(cell) {
+            let ids = cell.id.split("_");
+            let r = ids[1];
+            if (cell.innerText != placeHolder /*"..."*/) {// delete cell
+                document.getElementById(cell.id).outerHTML = "";
+                if (GetRowText(r) == placeHolder /*"..."*/) // delete row? (bug: two ... in a row, removed because of complicatedness)
+                    document.getElementById("t_" + r).outerHTML = "";
+            }
+            else // add cell with GPT-enriched
+                GptFill(cell)
+            RefreshDest();
+        }
+        function GetRowText(r, stopCol) { // Get row text back to start or last "..."
+            let s = "";
+            if (stopCol == null)
+                s += document.getElementById("t_" + r).innerText;
+            else
+                for (let i = 0; i < stopCol; i++) {
+                    let cell = document.getElementById("t_" + r + "_" + i);
+                    let cs = cell == null ? "" : cell.innerText;
+                    if (cs == placeHolder /*"..."*/)
+                        s = "";
+                    else
+                        s = (s + " " + cs).trim();
+                }
+            return s;
+        }
+
+        function GptFill(cell) {
+            let ids = cell.id.split("_"), r = ids[1], c = ids[2], s = GetRowText(r, c);
+            cell.innerText = inProgress; // "...GPT in progress...";
+            GptContent(s, cell);
+        }
+
+        function GptFillAll() {
+            for (let i = 0; i < t.rows.length; i++)
+                for (let j = 0; j < t.rows[i].cells.length; j++)
+                    if (t.rows[i].cells[j].innerText.trim() == placeHolder.trim())
+                        GptFill(t.rows[i].cells[j]);
+
+        }
+
+        async function GptContent(sSrc, cell) {
+            let sDest = "no content...";
+            progressbar.max = progressbar.max + 1;
+            try {
+                if (sSrc != null) {
+                    let xhr = new XMLHttpRequest();
+                    let data = `{ "model": "text-davinci-003",
+                        "prompt": ${JSON.stringify(sSrc)},
+                        "temperature": 0.7, "max_tokens": 256, "top_p": 1, "frequency_penalty": 0.75, "presence_penalty": 0 }`;
+
+                    xhr.open("POST", "https://api.openai.com/v1/completions");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.setRequestHeader("Authorization", "Bearer " + devid.value);
+
+                    if (cell != null) { // use callback... //alert("...GPT-call (GptContent)..." + (new Date()).toLocaleTimeString() + " " + data);
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4)
+                                if (xhr.status == 200) {
+                                    var json = JSON.parse(xhr.responseText);
+                                    cell.innerText = json.choices[0].text;
+                                    RefreshDest();
+                                    progressbar.value = progressbar.value + 1;
+                                }
+                                else if (xhr.status == 400)
+                                    cell.innerText = "GptContent response: " + xhr.responseText + "\nsrc:" + data;
+                                else
+                                    cell.innerText = "GptContent error " + xhr.status;
+                        }
+                        xhr.send(data);
+                    }
+                }
+            } catch (ex) {
+                sDest = "GptContent - " + ex;
+            }
+            return sDest;
+        }
+    </script>
+</body>
+</html>
