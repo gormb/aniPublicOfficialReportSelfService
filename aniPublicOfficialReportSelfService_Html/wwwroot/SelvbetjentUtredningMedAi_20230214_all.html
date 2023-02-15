@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Selvbetjent utredning med GPT-3 (Open AI GPT-3 text-davinci-03)</title>
+    <link rel="stylesheet" href="SelvbetjentUtredningMedAi.css" />
+</head>
+
+<body onload="l();">
+<a href="GptHelloWorld.html">*</a>
+<!-- Content -->
+<table><tr><td id="design">
+
+<button onclick="Toggle(btns);">Detaljer</button>
+<span id="btns" style="display:none;"> - <button onclick="ShowDefault();">Standard</button><button onclick="ShowCell(-1, -1, '');">Vis</button>
+     - kolonner (fra alle detaler) <button onclick="ShowCell(0, -1);">Tema</button><button onclick="ShowCell(1, -1);">Instruksjon</button><button onclick="ShowCell(2, -1);">Inn</button><button onclick="ShowCell(3, -1);">Kjør</button><button onclick="ShowCell(4, -1);">Ut</button><button onclick="ShowCell(5, -1);">Vis</button>
+     - rader (fra alle detaler) <button onclick="ShowCell(-1, 1);">Innhold</button>
+        <button onclick="ShowCell(-1, 2);">Kapittelstruktur</button>
+        <button onclick="ShowCell(-1, 3);">Innledning</button>
+        <button onclick="ShowCell(-1, 4);">Bilde</button>
+        <button onclick="ShowCell(-1, 5);">Brødtekst</button>
+        <span><br /><input type="radio" name="gptAlg" value="txt-ada-001">ada1
+        <input type="radio" name="gptAlg" value="text-curie-001">curie1
+        <input type="radio" name="gptAlg" value="text-davinci-003" checked>davinci3</span>
+        <input id="gptId" type="text" value="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" style="width: 446px; "/>
+</span>
+<hr />
+<!------------------------------------------------>
+<!-- Rader Innhold, Kapittelstruktur, Innledning, Bilde, Brødtekst -- for Kolonner Tema,Instruksjon,Inn,Kjør,Ut,Vis -->
+<table id="u"><tr>
+<th>Tema</th><th>Instruksjon</th><th>Inn</th><th>Kjør</th><th>Ut</th><th>Vis</th>
+<!-- Innhold -->
+</tr><tr>
+<td class="h">Innhold</td><td>
+En eller flere innholdstekster det skal lages utredning på grunnlag av</td><td>
+    <textarea class="h" onchange="chg(txtInnholdInn)" id="txtInnholdInn">Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.
+    </textarea></td><td class="k">
+    <button onclick="txtInnholdVis.innerHTML = 
+        txtInnholdUt.value = simplify(txtInnholdInn.value);">><br />Forenkle<br />></button></td><td>
+    <textarea class="h" onchange="chg(txtInnholdUt)" id="txtInnholdUt"></textarea></td><td class="v">
+    <div id="txtInnholdVis" class="h">Preview</div>
+</td><tr>
+<!-- Kapittelstruktur -->
+<td class="h">Kapittel<br />struktur</td><td>
+Kapitler og underkapitler basert på innholdet</td><td>
+    <textarea onchange="chg(txtKapittelstrukturInn)" id="txtKapittelstrukturInn">Kapittelstruktur med Kapittel 1 - 3 deretter Underkapittel 1a - 3g for:
+    </textarea></td><td class="k">
+    <button onclick="structureAsync(txtKapittelstrukturInn.value, txtInnholdUt.value, (ch, sub, gptOut) =>
+        { txtKapittelstrukturUt.value = gptOut; txtKapittelstrukturVis.value = structureAsHtml(gptOut);});">Strukturer</button></td><td>
+    <textarea onchange="chg(txtKapittelstrukturUt)" id="txtKapittelstrukturUt"></textarea></td><td class="v">
+    <div id="txtKapittelstrukturVis"></div>
+</td><tr>
+<!-- Innledning -->
+<td class="h">Kapittel<br />innledning</td><td>
+Innledende sammendrag for hvert hovedkapittel</td><td>
+    <textarea onchange="chg(txtInnledningInn)" id="txtInnledningInn">* Innledning:
+    </textarea><td class="k">
+    <button onclick="txtInnledningVis.innerHTML = 
+        txtInnledningUt.value = intro(txtKapittelstrukturUt.value, txtInnledningInn.value, txtInnholdUt.value);">Innled</button></td><td>
+    <textarea onchange="chg(txtInnledningUt)" id="txtInnledningUt"></textarea></td><td class="v">
+    <div id="txtInnledningVis"></div>
+</td><tr>
+<!-- Bilde -->
+<td class="h">Kapittel<br />bilde</td><td>
+Beskrivende tekst for hvert hovedkapittel (for bildegenereringstjeneste)</td><td>
+    <textarea onchange="chg(txtBildeInn)" id="txtBildeInn">[Bilde: * med bakgrunn
+    </textarea><td class="k">
+    <button onclick="txtBildeUt.value = picturedescriptionAndPictureAsync(txtKapittelstrukturUt.value, txtBildeInn.value, txtInnholdUt.value, imgBildeUt);">Visualiser</button></td><td>
+    <textarea onchange="chg(txtBildeUt)" id="txtBildeUt"></textarea></td><td class="v">
+    <img id="imgBildeUt" src="about:blank" />
+</td><tr>
+<!-- Brødtekst -->
+<td class="h">Underkapittel<br />tekst</td><td>
+Selve teksten for hvert underkapittel</td><td>
+    <textarea onchange="chg(txtBroedtekstInn)" id="txtBroedtekstInn">* Brødtekst:
+    </textarea><td class="k">
+    <button onclick="txtBroedtekstVis.innerHTML =
+        txtBroedtekstUt.value = text(txtKapittelstrukturUt.value, txtBroedtekstInn.value, txtInnholdUt.value);">Produser</button></td><td>
+    <textarea onchange="chg(txtBroedtekstUt)" id="txtBroedtekstUt"></textarea></td><td class="v">
+    <div id="txtBroedtekstVis"></div>
+</td></tr>
+</table>
+<hr /></td></tr><tr><td>
+<!------------------------------------------------>
+<!-- Ferdig! -->
+<button onclick="preview.innerHTML=generateAll(overviewTable, contentTable);">Generer</button>
+<button onclick="Toggle(design);">Ferdig!</button>
+</td></tr></table>
+<center>
+    <span id="progresssText" style="position:;top:1">status</span><br />
+    <progress id="progressBar" value="1" max="100" style="width:50%;height:35px;position:relative;top:-26px;z-index:-1"></progress>
+</center>
+<hr />
+<!------------------------------------------------>
+<hr />
+<!-- Preview -->
+<span id="preview" class="preview"></span>
+<table id="previewTable"><tr>
+    <td><table id="overviewTable"><tr><td>oversikt</td></tr></table> </td>
+    <td><table id="contentTable"><tr><td>innhold</td></tr></table> </td></tr>
+</table>
+
+<!-- Code -->
+<script id="_OpenAI_GPT_DALL_E_">document.write("<div class=\"debug\">Code for OpenAI GPT, DALL-E...</div>");
+// Functions that produces text or images with Open AI GPT/WALL-E
+// oaiVal gets a value, oaiHtml get HTML (both utilizing oaiReq and oaiJson which connects to and call Open AI webservices)
+function oaiJson(sSrc, isImage, maxTokens) {
+if (isImage==null) isImage=0;
+return (isImage == 1)
+? `{"prompt":${JSON.stringify(sSrc)},"n":1,"size":"256x256","response_format":"url"}`
+: `{"model":"${document.querySelector('input[name="gptAlg"]:checked').value}"
+,"prompt":${JSON.stringify(sSrc)},"temperature":0.7
+,"max_tokens":${maxTokens == null ? 2000 : maxTokens},"top_p":1,"frequency_penalty":0.75,"presence_penalty":0}`;
+}
+function oaiReq(url) {
+    let req = new XMLHttpRequest();
+    req.open("POST", url != null ? url : "https://api.openai.com/v1/completions");
+    req.setRequestHeader("Content-Type", "application/json");
+    req.setRequestHeader("Authorization", "Bearer " + gptId.value);
+    return req;
+}
+    
+function oaiReqDaE() { return oaiReq("https://api.openai.com/v1/images/generations");}
+function oaiReqGpt() { return oaiReq("https://api.openai.com/v1/completions");}
+
+async function oaiValAsync(sSrc, isImage, doneC, errC, maxTokens) {
+    if (isImage == null) isImage = 0;
+    let xhr = isImage == 1 ? oaiReqDaE() : oaiReqGpt();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4)
+            if (xhr.status == 200)
+                doneC((isImage != 0)
+                    ? JSON.parse(xhr.responseText).data[0].url
+                    : JSON.parse(xhr.responseText).choices[0].text);
+            else if (errC != null) errC(xhr);
+    }
+    xhr.send(oaiJson(sSrc, isImage, maxTokens));
+} //oaiValAsync("Hello World?", 0, function (v) { alert(v); });//oaiValAsync("Hello World", 1, function (v) { alert(v); });
+async function oaiHtmlItemAsync(scDest, sSrc, isImage, doneC, errC, maxTokens) {
+    if (isImage == null) isImage = 0;
+    let xhr = isImage == 1 ? oaiReqDaE() : oaiReqGpt();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4)
+            if (xhr.status == 200) {
+                let cDest = document.getElementById(scDest);
+                var json = JSON.parse(xhr.responseText);
+                if (isImage == 1) cDest.src=json.data[0].url; // url for image
+                try { cDest.value = json.choices[0].text; } // text returned onto textarea (or other with value)
+                catch (ex) { cDest.innerHTML = json.choices[0].text; } // text returned onto innerHTML 
+                if (doneC != null) doneC(cDest);
+            }
+            else if (errC != null) errC(xhr);
+            //else document.getElementById(cDest).innerHTML = "GptContent error, status " + xhr.status + " text=" + xhr.responseText==null?"":xhr.responseText;
+    }
+    xhr.send(oaiJson(sSrc, isImage, maxTokens));
+}
+async function oaiHtmlWriteAsync(sSrc, isImage, doneC, errC, maxTokens) {
+    if (isImage == null) isImage = 0;
+    let scDest = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 16);
+    document.write(isImage == 1 
+        ? '<img id="' + scDest + '"/>'
+        : '<span id="' + scDest + '"></span>');
+    return oaiHtmlItemAsync(scDest, sSrc, isImage, doneC, errC, maxTokens);
+} //oaiHtmlWriteAsync("Hello World?");//oaiHtmlWriteAsync("Hello World?", 1);
+
+document.write("<div class=\"debug\">End of Code for OpenAI GPT, DALL-E</div>");
+</script>
+<script id="_UI_load_and_visibility_">document.write("<div class=\"debug\">Code for UI, load and visibility...</div>");
+
+function l() {
+    //ShowDefault();;
+    btns.style.display = '';
+    chg(txtInnholdInn);
+}
+
+function Toggle(c) {try{c.style.display=(c.style.display=='none')?'':'none';} catch(e) {}}
+
+function Show(c, visible) {
+    if (visible==null) Toggle(c);
+    else if (visible===0) c.style.display='none';
+    else if (visible===1) c.style.display='';
+    else
+        c.style.display = visible;
+}
+
+function ShowCell(x, y, visible) {
+    if (y == -1) { for (let i = 0; i < u.rows.length; i++) ShowCell(x, i, visible); }
+    else if (x == -1) { for (let i = 0; i < u.rows[y].cells.length; i++) ShowCell(i, y, visible); }
+    else 
+        Show (u.rows[y].cells[x], visible)
+}
+
+function ShowDefault() { ShowCell(-1, -1, ''); ShowCell(3, -1); ShowCell(4, -1); ShowCell(5, -1);;ShowCell(-1, 2, 'none');}
+
+function chg(c)
+{
+    switch (c) {
+    case txtInnholdInn: 
+        txtInnholdUt.value = txtInnholdInn.value;
+        chg(txtInnholdUt);
+        break;
+    case txtKapittelstrukturInn: break;
+    case txtInnledningInn: break;
+    case txtBildeInn: break;
+    case txtBroedtekstInn: break;
+    case txtInnholdUt: break;
+    default:
+        alert(c.id);
+    }
+}
+
+document.write("<div class=\"debug\">End of Code for load and visibility...</div>");;
+</script>
+<script id="_simplify_">document.write("<div class=\"debug\">Code for simplify...</div>");
+// Innhold - En eller flere innholdstekster det skal lages utredning på grunnlag av
+// Eksempel: Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.
+function simplify(inTxt){ return "out=simplify(in) not implemented, shall use GPT to reduce texts if too long, and concatenate them so that other functions can be called";}
+
+document.write("<div class=\"debug\">End of Code for simplify.</div>");
+</script>
+<script id="_structure_">document.write("<div class=\"debug\">Code for structure...</div>");
+// Kapittelstruktur - Kapitler og underkapitler basert på innholdet
+// Eksempel: Kapittelstruktur med Kapittel 1 - 3 deretter Underkapittel 1a - 3g for:
+async function structureAsync(structuring, inTxt, callback, maxTokens) {
+    oaiValAsync(structuring + "\n" + inTxt, 0, (gptOut) =>
+    {
+        let ChSub = structureAsChSub(gptOut);
+        callback(ChSub[0], ChSub[1], gptOut);
+    }, maxTokens);
+}
+function structureVisChOrSub(s) { 
+    return s.replace(/.*:/, "").trim();
+}
+function structureAsChSub(gptOut){
+    let abcd = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+    let structureCh = []; 
+    let structureSub = [[]]; 
+    let ch = gptOut.split("\nKapittel ");
+    for (let i = 0; i < ch.length; i++) {
+        subp = ch[i].trim().split("\n"); // (remove until after first colon, ) split in lines
+        //if (subp.length < 2) continue; // Chapter without subchapters?
+        //res += subp[0];
+        structureCh.push(subp[0]);
+        structureSub.push([]);
+        for (let j = 1; j < subp.length; j++)
+            structureSub[i].push(subp[j].trim());
+    }
+    return [structureCh, structureSub];
+}
+function structureAsHtml(structure) {
+    let res = "<ul>";
+    let ChSub = structureAsChSub(structure);
+    let structureCh = ChSub[0]; 
+    let structureSub = ChSub[1]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
+    for (let i = 0; i < structureCh.length && i < structureSub.length; i++) {
+        res += "<li>" + (i < structureCh.length ? structureCh[i] : "?") + "<ul>";
+        if (i < structureSub.length)
+            for (let j = 0; j < structureSub[i].length; j++)
+                res += "<li>" + structureSub[i][j] + "</li>";
+        res += "</ul></li>";
+    }
+    res += "</ul>"
+    return res;
+} //alert(structureAsHtml('Kapittel 1: Hvilke arter kan fiskes om vinteren?' + '\nUnderkapittel 1a: Sjøørret' + '\nUnderkapittel 1b: Torsk' + '\nUnderkapittel 1c: Fjære' + '\nUnderkapittel 1d: Lyr' + '\nUnderkapittel 1e: Sei' + '\n' + '\nKapittel 2: Artsfiske' + '\nUnderkapittel 2a: Spesialisering' + '\nUnderkapittel 2b: Metoder' + '\nUnderkapittel 2c: Forsiktighet' + '\n' + '\nKapittel 3: Konklusjon' + '\nUnderkapittel 3a: Fordeler' + '\nUnderkapittel 3b: Ulemper' + '\nUnderkapittel 3c: Miljøhensyn' + '\nUnderkapittel 3d: Utstyr' + '\nUnderkapittel 3e: Regler og lover' + '\nUnderkapittel 3f: Tips og triks' + '\nUnderkapittel 3g: Oppsummering'));
+
+document.write("<div class=\"debug\">End of Code for structure.</div>");
+</script>
+<script id="_intro_">document.write("<div class=\"debug\">Code for intro...</div>");
+
+// Innledning - Kapittelinnledning - Innledende sammendrag for hvert hovedkapittel
+// Eksempel: Innledning:
+function intro(structure, introducing, inTxt, chapter)
+{
+    let res = "";
+    if (chapter==null)
+        res = "out=intro(structure, introducing, inTxt, [chapter]) not implemented, shall use GPT to reduce texts if too long, and concatenate them so that other functions can be called";
+    else
+    {
+        let gptIn = inTxt + "\n\n" + structure + "\n\n" + introducing.replace("*", chapter);
+        res = gptIn;
+    }
+    return res;
+}
+
+document.write("<div class=\"debug\">End of Code for intro.</div>");
+</script>
+<script id="_picturedescription_">document.write("<div class=\"debug\">Code for picturedescription...</div>");
+// Bilde  - Kapittelbilde - Beskrivende tekst for hvert hovedkapittel (for bildegenereringstjeneste)
+// Eksempel: [Bilde: * med bakgrunn
+function picturedescriptionAndPictureAsync(structure, picturing, inTxt, chapter, doneC, errC){ 
+    let gptIn = inTxt + "\n\n" + structure + "\n\n" + picturing.replace("*", chapter);
+    oaiHtmlWriteAsync(sSrc, isImage, (description) => { }, errC);
+    alert('fix this!; should return text ready to be used for WALL E');
+    return;
+}
+
+document.write("<div class=\"debug\">End of Code for picturedescription.</div>");
+</script>
+<script id="_text_">document.write("<div class=\"debug\">Code for text...</div>");
+
+// Brødtekst - Underkapitteltekst - Selve teksten for hvert underkapittel
+// Eksempel: * Brødtekst:
+function text(structure, texting, inTxt, subchapter)
+{    
+    let res = "";
+    if (subchapter==null)
+        res = "out=text(structure, texting, inTxt) not implemented, shall use GPT to reduce texts if too long, and concatenate them so that other functions can be called";
+    else
+    {
+        let gptIn = inTxt + "\n\n" + structure + "\n\n" + texting.replace("*", subchapter);
+        res = gptIn;
+    }
+    return res;
+}
+
+document.write("<div class=\"debug\">End of Code for text.</div>");
+</script> 
+<script id="_generate_">document.write("<div class=\"debug\">Code for generate...</div>");
+
+function s(comment, progress) {
+    progressBar.value = progress;
+    progresssText.innerHTML = comment;
+}
+
+let gStructure = "Kapittel 1: En tull\nUnderkapittel 1a: Tull for det første\nUnderkapittel 1b: Videre om tull\nKapittel 2: Tøys to\nUnderkapittel 2a: Hva vi mener med tøys\nUnderkapittel 2b: Tøys i historien\nUnderkapittel 2c: Hvordan komme i gang med tøys";
+let gStructureCh = ["Kapittel 1: En tull", "Kapittel 2: Tøys to"]; 
+let gStructureSub = [["Underkapittel 1a: Tull for det første", "Underkapittel 1b: Videre om tull"], ["Underkapittel 2a: Hva vi mener med tøys", "Underkapittel 2b: Tøys i historien", "Underkapittel 2c: Hvordan komme i gang med tøys"]]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
+let gIntroCh = ["Det handler i kap 1 om tull.", "Tøys er tema for kap 2 innholdet."];
+let gPictureTextCh = ["[Bilde: En tull med bakgrunn", "[Bilde: Tøys to  med bakgrunn"]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
+let gPictureUrlCh = ["file:///C:/data/HAL9000.png", "file:///C:/data/HAL9000.png"]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
+let gTextSub = [["Mange enes om at tull er best, og kanskje bedre enn tøys.", "Vi kan godt være enig om at dette er tull."], ["Vi skiller mellom tøys og tull i denne teksten, viktig at tøys får sin plass.", "Tøysete med historie kan man mene. Det kan man.", "Du er allerede i gang. Tøysete å lese dette. Lykke til videre."]]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
+
+function generateAll(overviewTable, contentTable){
+    let res = "!", resKapitler = "", resInnhold= "";
+    overviewTable.innerHTML = "<tr><td>generating overview/index...</td></tr>";
+    contentTable.innerHTML = "<tr><td>generating body/content...</td></tr>";
+    gStructureCh = gIntroCh = gPictureTextCh = gPictureUrlCh = []; 
+    gStructureSub = gTextSub = [[]];
+
+    s('Produserer kapitler og underkapitler med GPT-3...', 5);
+    let sKapittelStrukturer = txtKapittelstrukturInn.value;
+    let sInnhold = txtInnholdUt.value;
+    structureAsync(sKapittelStrukturer, sInnhold, (ch, sub, sStructure) => 
+    { // When structure done, show, get intro and image for each chapter, get text for each subchapter
+        gStructureCh = ch; gStructureSub = sub; gStructure = txtKapittelstrukturUt.value = sStructure; // save resulting chapters and subchapters
+        for (let i = 0; i < gStructureCh.length && i < gStructureSub.length; i++)
+        { // Get intro and image for chapter, get text for each subchapter
+            if (i < gStructureCh.length) { // for each chapter create intro, image and subchapters
+                resKapitler += "<tr><td colspan=\"2\">" + structureVisChOrSub(gStructureCh[i]) + "</td></tr>";
+                resInnhold += "<i id=\"kapittelBildeText" + i + "\">" + gStructureCh[i] + "...</i>";
+                s('Produser ' + gStructureCh[i] + ' innledning med GPT-3...', 10 + (i * 30) / gStructureCh.length); // 10-39
+                // Get chapter text description with GPT-3
+                //picturedescriptionAsync(txtKapittelstrukturUt.value, txtBildeInn.value, txtInnholdUt.value, gStructureCh[i]);
+                resInnhold += "<h2>" + gStructureCh[i] + "</h2>";
+                resInnhold += '<div id="kapittelIntro' + i + '">intro...</div>';
+                // Get chapter intro with GPT-3
+                //intro(txtKapittelstrukturUt.value, txtInnledningInn.value, txtInnholdUt.value, gStructureCh[i]);
+            }
+            // for each subchapter create text
+            if (i < gStructureSub.length)
+                for (let j = 0; j < gStructureSub[i].length; j++) {
+                    resKapitler += "<tr><td></td><td>" + structureVisChOrSub(gStructureSub[i][j]) + "</td></tr>";
+                    res += "<h4>" + gStructureSub[i][j] + "</h4>" + text(txtKapittelstrukturUt.value, txtBroedtekstInn.value, txtInnholdUt.value, gStructureSub[i][j]);
+                }
+            res += "<hr />";
+        }
+        overviewTable.innerHTML = resKapitler;
+        contentTable.innerHTML = resInnhold;
+    }, 3000); // 3000 items for structure
+    //}
+    //catch (ex) {
+    //    res += "<br/>" + ex.message
+    //}
+    return res.replace("\n", "<br/>");
+}
+
+document.write("<div class=\"debug\">End of Code for generate.</div>");
+</script>
+</body>
+</html>
