@@ -1,42 +1,56 @@
 ﻿document.write("<div class=\"debug\">Code for structure...</div>");
 // Kapittelstruktur - Kapitler og underkapitler basert på innholdet
 // Eksempel: Kapittelstruktur med Kapittel 1 - 3 deretter Underkapittel 1a - 3g for:
-async function structureAsync(structuring, inTxt, callback, maxTokens) {
+async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopArray) {
     oaiValAsync(structuring + "\n" + inTxt, 0, (gptOut) =>
     {
         let ChSub = structureAsChSub(gptOut);
-        callback(ChSub[0], ChSub[1], gptOut);
-    }, maxTokens);
+        doneC(ChSub[0], ChSub[1], gptOut);
+    }, errC, maxTokens, stopArray);
 }
-function structureVisChOrSub(s) { 
-    return s.replace(/.*:/, "").trim();
+function structureStopAfter(iC, iS) {
+    let res = [];
+    if (iS == null) { // chapter; next chapter or first subchapter
+        res = ['Kapittel ' + (iC + 2), 'Underkapittel ' + (iC + 1) + 'a'];
+    }
+    else { // subchapter; next subchapter or chapter
+        res = ['Kapittel ' + (iC + 2), 'Underkapittel ' + (iC + 1) + String.fromCharCode('b'.charCodeAt(0)+iS)];
+    }
+    return res;
 }
 function structureAsChSub(gptOut){
-    let abcd = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
-    let structureCh = []; 
+    let chSub = gptOut.replace('\t', '\n').split("\n");
+    let structureCh = [];
     let structureSub = [[]]; 
-    let ch = gptOut.split("\nKapittel ");
-    for (let i = 0; i < ch.length; i++) {
-        subp = ch[i].trim().split("\n"); // (remove until after first colon, ) split in lines
-        //if (subp.length < 2) continue; // Chapter without subchapters?
-        //res += subp[0];
-        structureCh.push(subp[0]);
-        structureSub.push([]);
-        for (let j = 1; j < subp.length; j++)
-            structureSub[i].push(subp[j].trim());
+    let nCh = 0;
+    for (let i = 0; i < chSub.length; i++) {
+        let chSubN = chSub[i].trim();
+        if (chSubN.length > 10)
+            if (chSubN.substring(0, "Kapittel".length) == "Kapittel") {
+                nCh = structureCh.push(chSubN);
+                structureSub.push([]);
+            }
+            else if (nCh > 0)
+                structureSub[nCh - 1].push(chSubN);
     }
     return [structureCh, structureSub];
+}
+function structureChaptId(iC, iS) { // chapt_x_y
+    return 'chapt' + (iC == null ? '' : '_' + iC) + (iS == null ? '' : '_' + iS);
+}
+function structureAsHtmlItem(ch, iC, iS) { // <a href="#chapt_x_y">Theme</a>
+    return res = '<a href="#' + structureChaptId(iC, iS) + '">'
+        + ch.replace(/.*:/, "").trim()
+        + '</a>';
 }
 function structureAsHtml(structure) {
     let res = "<ul>";
     let ChSub = structureAsChSub(structure);
-    let structureCh = ChSub[0]; 
-    let structureSub = ChSub[1]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
-    for (let i = 0; i < structureCh.length && i < structureSub.length; i++) {
-        res += "<li>" + (i < structureCh.length ? structureCh[i] : "?") + "<ul>";
-        if (i < structureSub.length)
-            for (let j = 0; j < structureSub[i].length; j++)
-                res += "<li>" + structureSub[i][j] + "</li>";
+    for (let i = 0; i < ChSub[0].length && i < ChSub[1].length; i++) {
+        res += "<li>" + (i < ChSub[0].length ? structureAsHtmlItem(ChSub[0][i], i) : "?") + "<ul>";
+        if (i < ChSub[1].length)
+            for (let j = 0; j < ChSub[1][i].length; j++)
+                res += "<li>" + structureAsHtmlItem(ChSub[1][i][j], i, j) + "</li>";
         res += "</ul></li>";
     }
     res += "</ul>"

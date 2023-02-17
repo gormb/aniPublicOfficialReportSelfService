@@ -10,7 +10,7 @@
     <Content Update="wwwroot\GptHelloWorld.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\SelvbetjentUtredningMedAi_old.html">
+    <Content Update="wwwroot\SelvbetjentUtredningMedAi_20230214_all.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\SelvbetjentUtredningMedAi.html">

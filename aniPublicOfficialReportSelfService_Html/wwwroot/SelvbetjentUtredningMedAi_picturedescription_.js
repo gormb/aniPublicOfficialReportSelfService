@@ -1,11 +1,14 @@
 ﻿document.write("<div class=\"debug\">Code for picturedescription...</div>");
 // Bilde  - Kapittelbilde - Beskrivende tekst for hvert hovedkapittel (for bildegenereringstjeneste)
 // Eksempel: [Bilde: * med bakgrunn
-function picturedescriptionAndPictureAsync(structure, picturing, inTxt, chapter, doneC, errC){ 
-    let gptIn = inTxt + "\n\n" + structure + "\n\n" + picturing.replace("*", chapter);
-    oaiHtmlWriteAsync(sSrc, isImage, (description) => { }, errC);
-    alert('fix this!; should return text ready to be used for WALL E');
-    return;
+async function picturedescriptionAsync(scDest, picturing, chapter, inTxt, doneC, errC, stopArray) {
+    let cDest = document.getElementById(scDest);
+    let gptIn = inTxt + "\n\n" + chapter + "\n\n" + inTxt + "\n\n" + picturing;
+    return oaiHtmlItemAsync(cDest, gptIn, 0, doneC, errC, 256, stopArray);
+}
+async function pictureAsync(scDest, inTxt, doneC, errC) {
+    let cDest = document.getElementById(scDest);
+    return oaiHtmlItemAsync(cDest, inTxt, 1, doneC, errC);
 }
 
 document.write("<div class=\"debug\">End of Code for picturedescription.</div>");

@@ -1,8 +1,7 @@
 ﻿document.write("<div class=\"debug\">Code for UI, load and visibility...</div>");
 
 function l() {
-    //ShowDefault();;
-    btns.style.display = '';
+    ShowDefault();
     chg(txtInnholdInn);
 }
 
@@ -23,7 +22,15 @@ function ShowCell(x, y, visible) {
         Show (u.rows[y].cells[x], visible)
 }
 
-function ShowDefault() { ShowCell(-1, -1, ''); ShowCell(3, -1); ShowCell(4, -1); ShowCell(5, -1);;ShowCell(-1, 2, 'none');}
+function ShowDefault() {
+    ShowCell(-1, -1, ''); // show all
+    ShowCell(3, -1); // Hide 
+    ShowCell(4, -1);
+    ShowCell(5, -1);
+    ShowCell(-1, 3, 'none');
+    ShowCell(-1, 4, 'none');
+    ShowCell(-1, 5, 'none');
+}
 
 function chg(c)
 {

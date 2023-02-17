@@ -2,17 +2,10 @@
 
 // Brødtekst - Underkapitteltekst - Selve teksten for hvert underkapittel
 // Eksempel: * Brødtekst:
-function text(structure, texting, inTxt, subchapter)
-{    
-    let res = "";
-    if (subchapter==null)
-        res = "out=text(structure, texting, inTxt) not implemented, shall use GPT to reduce texts if too long, and concatenate them so that other functions can be called";
-    else
-    {
-        let gptIn = inTxt + "\n\n" + structure + "\n\n" + texting.replace("*", subchapter);
-        res = gptIn;
-    }
-    return res;
+async function textAsync(scDest, texting, subchapter, structure, inTxt, doneC, errC, maxTokens, stopArray) {
+    let cDest = document.getElementById(scDest);
+    let gptIn = inTxt + "\n\n" + structure + "\n\n" + texting.replace("*", subchapter);
+    return oaiHtmlItemAsync(cDest, gptIn, 0, doneC, errC, maxTokens, stopArray);
 }
 
 document.write("<div class=\"debug\">End of Code for text.</div>");
