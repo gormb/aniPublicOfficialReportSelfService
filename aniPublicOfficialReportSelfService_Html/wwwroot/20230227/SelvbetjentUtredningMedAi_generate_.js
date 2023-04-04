@@ -7,7 +7,7 @@ function generate_progress(comment, progress, maxProgress) {
         progressBar.value = progress;
     if (maxProgress != null)
         progressBar.max = maxProgress;
-    progresssText.innerHTML = comment;
+    progressText.innerHTML = comment;
 }
 
 let gStructure = "Kapittel 1: En tull\nUnderkapittel 1a: Tull for det første\nUnderkapittel 1b: Videre om tull\nKapittel 2: Tøys to\nUnderkapittel 2a: Hva vi mener med tøys\nUnderkapittel 2b: Tøys i historien\nUnderkapittel 2c: Hvordan komme i gang med tøys";
@@ -41,6 +41,9 @@ function generateAll_ContentTableBlank() {
     }
     return res;
 }
+function generate_editText() {
+
+}
 function generateAll(overviewTable, contentTable, genType){
     overviewTable.innerHTML = "<tr><td>genererer oversikt...</td></tr>";
     contentTable.innerHTML = "<tr><td>innhold genereres basert på oversikten</td></tr>";
@@ -58,7 +61,7 @@ function generateAll(overviewTable, contentTable, genType){
         contentTable.innerHTML = generateAll_ContentTableBlank();
         generate_progress('Kapittelstruktur ferdigprodusert...', 2, generate_progressTotalWebserviceCalls()); /*10 struktur, */
         if (genType != null)
-            if (genType == 'struct') { progressBar.value = progressBar.max; progresssText.innerHTML = 'Do not click on images'; chapt_0_bildetekst.innerHTML = 'The Humans are dead, we used posionous gasses'; chapt_1_bildetekst.innerHTML = 'You are experiencing a historical simulation of the twenties'; return; }
+            if (genType == 'struct') { progressBar.value = progressBar.max; progressText.innerHTML = 'Do not click on images'; chapt_0_bildetekst.innerHTML = 'The Humans are dead, we used posionous gasses'; chapt_1_bildetekst.innerHTML = 'You are experiencing a historical simulation of the twenties'; return; }
         for (let i = 0; i < gStructureCh.length && i < gStructureSub.length; i++)
         { // Get intro, image text and image for chapter, get text for each subchapter
             // chapter intro and image
@@ -68,11 +71,14 @@ function generateAll(overviewTable, contentTable, genType){
                 generate_progress('Intro for ' + gStructureCh[i] + ' ferdigprodusert');
                 picturedescriptionAsync(structureChaptId(i) + '_bildetekst', txtBildeInn.value, gStructureCh[i], cId.innerHTML
                 , (cId) =>
-                {
+                { // bilde (DALL-E)
                     generate_progress('Bildetekst for ' + gStructureCh[i] + ' ferdigprodusert');
-                    pictureAsync(structureChaptId(i) + '_bilde', cId.innerHTML, () => generate_progress('Bilde for ' + gStructureCh[i] + ' ferdigprodusert')); // pictureAsync
+                    pictureAsync(structureChaptId(i) + '_bilde', cId.innerHTML, () =>
+                    { // bilde alt-text
+                        generate_progress('Bilde for ' + gStructureCh[i] + ' ferdigprodusert')
+                    }); // pictureAsync
                 }); // picturedescriptionAsync
-                }, null, 2000, structureStopAfter(i)); // introAsync
+            }, null, 2000, structureStopAfter(i)); // introAsync
             // for each subchapter create text
             for (let j = 0; j < gStructureSub[i].length; j++)
                 textAsync(structureChaptId(i, j) + '_tekst', txtBroedtekstInn.value, gStructureSub[i][j], sStructure, sInnhold, () => generate_progress('Text for ' + gStructureSub[i][j] + ' ferdigprodusert'), null, 2000, structureStopAfter(i, j));

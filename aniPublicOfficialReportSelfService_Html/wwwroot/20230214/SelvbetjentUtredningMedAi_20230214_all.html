@@ -87,7 +87,7 @@ Selve teksten for hvert underkapittel</td><td>
 <button onclick="Toggle(design);">Ferdig!</button>
 </td></tr></table>
 <center>
-    <span id="progresssText" style="position:;top:1">status</span><br />
+    <span id="progressText" style="position:;top:1">status</span><br />
     <progress id="progressBar" value="1" max="100" style="width:50%;height:35px;position:relative;top:-26px;z-index:-1"></progress>
 </center>
 <hr />
@@ -319,7 +319,7 @@ document.write("<div class=\"debug\">End of Code for text.</div>");
 
 function s(comment, progress) {
     progressBar.value = progress;
-    progresssText.innerHTML = comment;
+    progressText.innerHTML = comment;
 }
 
 let gStructure = "Kapittel 1: En tull\nUnderkapittel 1a: Tull for det første\nUnderkapittel 1b: Videre om tull\nKapittel 2: Tøys to\nUnderkapittel 2a: Hva vi mener med tøys\nUnderkapittel 2b: Tøys i historien\nUnderkapittel 2c: Hvordan komme i gang med tøys";
@@ -331,7 +331,7 @@ let gPictureUrlCh = ["file:///C:/data/HAL9000.png", "file:///C:/data/HAL9000.png
 let gTextSub = [["Mange enes om at tull er best, og kanskje bedre enn tøys.", "Vi kan godt være enig om at dette er tull."], ["Vi skiller mellom tøys og tull i denne teksten, viktig at tøys får sin plass.", "Tøysete med historie kan man mene. Det kan man.", "Du er allerede i gang. Tøysete å lese dette. Lykke til videre."]]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
 
 function generateAll(overviewTable, contentTable){
-    let res = "!", resKapitler = "", resInnhold= "";
+    let res = "", resKapitler = "", resInnhold= "";
     overviewTable.innerHTML = "<tr><td>generating overview/index...</td></tr>";
     contentTable.innerHTML = "<tr><td>generating body/content...</td></tr>";
     gStructureCh = gIntroCh = gPictureTextCh = gPictureUrlCh = []; 

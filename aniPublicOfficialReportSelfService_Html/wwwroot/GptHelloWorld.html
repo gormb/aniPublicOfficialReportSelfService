@@ -5,33 +5,47 @@
     <title>Hello World - OpenAI GPT</title>
 </head>
 <body onload="RefreshTable();">
-<a href="SelvbetjentUtredningMedAi.html">*</a>
-<!-- Content -->
-<table border="1"><tr><td valign="top">
-    <h4>Input...<br />prolog for all rows, the rows/columns and the epilog for all rows</h4>
-    Prolog:<input id="pro" type="text" value="Hvilken organisasjon i Norge er best egnet til å" onchange="RefreshTable();" style="width: 446px; left: 60px; position: absolute " /><br />
-    <textarea onchange="RefreshTable()" id="txt" style="height:100px;width:500px">bekjempe digitalt utenforskap
+    <a href="SelvbetjentUtredning.html">*</a>
+    <!-- Content -->
+    <table border="1">
+        <tr>
+            <td valign="top">
+                <h4>Input...<br />prolog for all rows, the rows/columns and the epilog for all rows</h4>
+                Prolog:<input id="pro" type="text" value="Hvilken organisasjon i Norge er best egnet til å" onchange="RefreshTable();" style="width: 446px; left: 60px; position: absolute " /><br />
+                <textarea onchange="RefreshTable()" id="txt" style="height:100px;width:500px">bekjempe digitalt utenforskap
 sikre sikker identitet for innbyggerne
 utarbeide strategi for digitalisering
 ha virkemidler for finansiering av innovasjon</textarea><br />
-    Epilog:<input id="epi" type="text" value="? first answer with just the name of the organisation, then explain why in less than 20 words." onchange="RefreshTable();" style="width:446px;left:60px;position:absolute" /><br />
-    <br /><button onclick="t_details.style.display = t_details.style.display == `none` ? `inherit`: `none`;">Details</button>
-</td><td valign="top">
-    <h4>Output...<br />resulting rows/columns including content from GPT</h4>
-    Cells:<br />
-    <textarea id="txtDest" style="height:100px;width:500px">Output comes here...</textarea><br />
-    <h4>User action...<br />how to get the data using GPT</h4>
-    <button onclick="GptFillAll();">Add Texts<br />(Ctrl + B)</button>
-</td></tr><tr><td colspan="2" align="center">
-    <progress id="progressbar" value="1" max="1" style="width:50%"></progress>
-</td></tr><tr><td colspan="2" id="t_details" style="display:none;">
-    <h4>Processing text...<br />click on value to delete it, the dots to add NLP-result, but changing input resets all</h4>
-    Cells:<br />
-    <table id="t" border="1"><tr id="t_0"><td id="t_0_0" onclick="CellClick(t_0_0)">Hello World - text not parsed correctly!</td><td id="t_0_1">...</td></tr></table>
-    Dev ID:<input id="devid" type="text" value="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" style="width: 446px; left: 60px; position: absolute " /><br />
-</td></tr></table>
+                Epilog:<input id="epi" type="text" value=", 
+et departement, KS, DFØ, digdir, e-helse, Miljødirektoratet eller andre? first answer with just the name of the organisation, then explain why in less than 20 words" onchange="RefreshTable();" style="width:446px;left:60px;position:absolute" /><br />
+                <br /><button onclick="t_details.style.display = t_details.style.display == `none` ? `inherit`: `none`;">Details</button>
+            </td>
+            <td valign="top">
+                <h4>Output...<br />resulting rows/columns including content from GPT</h4>
+                Cells:<br />
+                <textarea id="txtDest" style="height:100px;width:500px">Output comes here...</textarea><br />
+                <h4>User action...<br />how to get the data using GPT</h4>
+                <button onclick="GptFillAll();">Add Texts<br />(Ctrl + B)</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <progress id="progressbar" value="1" max="1" style="width:50%"></progress>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" id="t_details" style="display:none;">
+                <h4>Processing text...<br />click on value to delete it, the dots to add NLP-result, but changing input resets all</h4>
+                Cells:<br />
+                <table id="t" border="1"><tr id="t_0"><td id="t_0_0" onclick="CellClick(t_0_0)">Hello World - text not parsed correctly!</td><td id="t_0_1">...</td></tr></table>
+                Dev ID:<input id="devid" type="text" value="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" style="width: 446px; left: 60px; position: absolute " /><br />
+            </td>
+        </tr>
+    </table>
 
-<!-- Code -->
+    vurder editor for dette: https://studio.oneai.com
+
+    <!-- Code -->
     <script>
         var lastText = lastProlog = lastEpilog = "";
         var placeHolder = "...", inProgress = "...GPT in progress...";
@@ -49,8 +63,7 @@ ha virkemidler for finansiering av innovasjon</textarea><br />
             for (let i = 0; i < t.rows.length; i++) {
                 for (let j = 0; j < t.rows[i].cells.length; j++) {
                     let c = t.rows[i].cells[j].innerText.trim();
-                    if (c != pro.value.trim() && c != epi.value.trim() && c != placeHolder.trim() && c != inProgress.trim())
-                    {
+                    if (c != pro.value.trim() && c != epi.value.trim() && c != placeHolder.trim() && c != inProgress.trim()) {
                         c = c.replace(/\r?\n|\r/g, '  ');
                         if (c.length > 0)
                             row = row.length == 0 ? c : row + "&#9;" + c.replace(/\r?\n|\r/g, '  ');
@@ -141,8 +154,8 @@ ha virkemidler for finansiering av innovasjon</textarea><br />
                 if (sSrc != null) {
                     let xhr = new XMLHttpRequest();
                     let data = `{ "model": "text-davinci-003",
-                        "prompt": ${JSON.stringify(sSrc)},
-                        "temperature": 0.7, "max_tokens": 256, "top_p": 1, "frequency_penalty": 0.75, "presence_penalty": 0 }`;
+                            "prompt": ${JSON.stringify(sSrc)},
+                            "temperature": 0.7, "max_tokens": 256, "top_p": 1, "frequency_penalty": 0.75, "presence_penalty": 0 }`;
 
                     xhr.open("POST", "https://api.openai.com/v1/completions");
                     xhr.setRequestHeader("Content-Type", "application/json");

@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8" />
+    <title>Selvbetjent utredning med GPT-3 (Open AI GPT-3 text-davinci-03)</title>
+<!-- Style -->
+    <link rel="stylesheet" href="SelvbetjentUtredningMedAi.css" />
+    <style> /* Visual looks.... */
+        /* controls for editing (that can be hidden with ShowClass) */
+        .editControl { display:none; color: darkgreen;border-color: darkgreen}
+    </style><style>/* product_default (items that will be changes by style) */
+        th.product_active { background-image: url("file:///C:/data/HAL9000.png"); background-repeat: no-repeat;
+                            background-color:black; background-position: 10px 10px;height:70px; background-size: 65px 50px }
+        table.product_active { background-color:red; }
+    </style><style>/* standard visual */
+        th.product_noNorsk { background-image: url("file:///C:/data/HAL9000.png"); background-repeat: no-repeat;
+                            background-color:black; background-position: 10px 10px;height:70px; background-size: 65px 50px }
+        td.product_noNorsk { font-family:Arial }
+    </style><style>/* ehelse */
+        th.product_hveslashhelse { background-image: url("https://www.ehelse.no/_/asset/ehelse:00000186bcb935e0/images/ehelse_logo.png"); background-repeat: no-repeat;
+                            background-color:#0069e8; background-position: 50px 40px;height:160px; background-size: 120px 80px }
+        td.product_hveslashhelse { font-family:GrahikRegular, Arial;font-size:17px;font-weight:400 }
+        h2.product_hveslashhelse { font-size:36px; font-weight:400 }
+        h4.product_hveslashhelse { font-size:22px; font-weight:400 }
+        li.product_hveslashhelse { font-family:GrahikRegular, Arial;font-size:14px }
+    </style><style>/* standard visual */
+        th.product_seSvenska { display:none }
+        td.product_seSvenska { font-family:Arial }
+    </style><style>/* regjeringen (TODO) */
+        th.product_noRegjeringen { background-image: url("https://www.regjeringen.no/Frontend/dist-web/img/love.svg"); background-repeat: no-repeat;
+                            background-color: rgb(0, 46,94); background-position: 15px 15px;height:65px; background-size: 38px 38px }
+        td.product_noRegjeringen { font-family:"Open Sans",  sans-serif }
+        h2.product_noRegjeringen { font-size:32px; font-weight:400 }
+        h4.product_noRegjeringen { font-size:22px; color:rgb(56,103,200); font-weight:400 }
+        li.product_noRegjeringen { display:none }
+    </style><style>/* KS */
+        th.product_noKS { background-image: url("https://www.ks.no/Static/assets/images/logo.svg"); background-repeat: no-repeat;
+                            background-color:white; background-position: 5px -20px;height:115px; background-size: 145px 130px }
+        td.product_noKS { font-family:"Futura Medium",SourceSansProRegular; font-size:18px; color:rgb(68,68,68) }
+        h2.product_noKS { font-size:56px; font-weight:500 }
+        h4.product_noKS { font-size:24px; font-weight:500 }
+        li.product_noKS { font-family:FuturaMedium,SourceSansProRegular;color:rgb(30,58,110)}
+    </style><style>/* DFØ (TODO) */
+        th.product_noDFOE { background-image: url("https://dfo.no/themes/dfo-platform/drupal-platform-themes/dfo/assets/images/logo.svg"); background-repeat: no-repeat;
+                            background-color:rgb(247,247,247); background-position: 65px 30px;height:65px; background-size: 120px 30px }
+        td.product_noDFOE { font-family:"Source Serif Pro", serif, helvtica; font-size:18px; background-color:rgb(247,247,247); font-weight:400 }
+        h2.product_noDFOE { font-size: 48px;font-weight:600 }
+        h4.product_noDFOE { font-size: 32px;font-weight:600 }
+        li.product_noDFOE { display:none }
+    </style><style>/* digdir */
+        th.product_nodigdir { background-image: url("https://digdir.no/profiles/sogn/themes/sogn_theme/img/logo/logo_sogn.svg"); background-repeat: no-repeat;
+                            background-color:white; background-position: 65px 30px;height:65px; background-size: 120px 30px }
+        td.product_nodigdir { font-family:Arial; font-size:18px; line-height: 1.6em; letter-spacing: 0.1px; font-weight: 400; color:rgb(30,40,60) }
+        h2.product_nodigdir { font-size:2.75rem; font-weight:500 }
+        h4.product_nodigdir { margin-bottom: 24px; font-size:18px; font-weight:400 }
+        li.product_nodigdir { font-family:Arial; list-style-type: '> '; font-size:16px; font-weight: 600; color:rgb(0,81,190)}
+    </style><style>/* ehelse */
+        th.product_hvNHN { background-image: url("https://images.squarespace-cdn.com/content/v1/62f21ba10a1f503dee0f9154/d33f3602-e42d-48d8-a2d7-5410ea7aee45/NHN_Logo_M%C3%B8rk_gr%C3%B8nn.png"); background-repeat: no-repeat;
+                            background-color:#ffffff; background-position: 50px 50px;height:170px; background-size: 320px 30px }
+        td.product_hvNHN { font-family:Arial, sans-serif; font-size:17px;font-weight:400 }
+        h2.product_hvNHN { font-size:38px; font-weight:400 }
+        h4.product_hvNHN { font-size:29px; font-weight:400 }
+        li.product_hvNHN { font-family:Arial, sans-serif;font-size:17px }
+    </style><style>/* DIGG */
+        th.product_seDIGG { background-image: url("https://digg.se/images/18.184c570e17d2f9884034ee/1638887942702/DIGG-logo-color.svg"); background-repeat: no-repeat;
+                            background-color:white; background-position: 25px 0px;height:100px; background-size: 200px 100px }
+        td.product_seDIGG { font-family:Ubuntu, sans-serif; font-size:18px; font-weight: 400; color:rgb(41,42,43) }
+        h2.product_seDIGG { font-size:48px; font-weight:700 }
+        h4.product_seDIGG { font-size:24px; font-weight:400 }
+        li.product_seDIGG { list-style-type: ''; font-size:16px; font-weight: 400}
+    </style><style>/* Datatilsynet */
+        th.product_noDatatilsynet { background-image: url("https://www.datatilsynet.no/UI/datatilsynetLogo.png"); background-repeat: no-repeat;
+                            background-color:white; background-position: 25px 30px;height:100px; background-size: 200px 50px }
+        td.product_noDatatilsynet { font-family:"Work Sans", Arial; font-size:16px; font-weight: 400; color:rgb(44,44,44) }
+        h2.product_noDatatilsynet { font-size:24px; font-weight:600 }
+        h4.product_noDatatilsynet { font-size:19px; font-weight:400 }
+        li.product_noDatatilsynet { font-family:Arial; list-style-type: '> '; font-size:16px; font-weight: 600; color:rgb(0,81,190)}
+    </style><style>/* ehelse */
+        th.product_hveslashhelse { background-image: url("https://www.ehelse.no/_/asset/ehelse:00000186bcb935e0/images/ehelse_logo.png"); background-repeat: no-repeat;
+                            background-color:#0069e8; background-position: 50px 40px;height:160px; background-size: 120px 80px }
+        td.product_hveslashhelse { font-family:GrahikRegular, Arial;font-size:17px;font-weight:400 }
+        h2.product_hveslashhelse { font-size:36px; font-weight:400 }
+        h4.product_hveslashhelse { font-size:22px; font-weight:400 }
+        li.product_hveslashhelse { font-family:GrahikRegular, Arial;font-size:14px }
+    </style><style>/* Digital Norway */
+        th.product_noDigitalNorway { background-image: url("https://digitalnorway.com/content/uploads/2020/06/digital-norway-logo-positive.svg"); background-repeat: no-repeat;
+                            background-color:#ffffff; background-position: 30px 10px;height:100px; background-size: 200px 80px }
+        td.product_noDigitalNorway { font-family:"Work Sans", Arial; font-size:20px;font-weight:400; color:rgb(34,34,34) }
+        h2.product_noDigitalNorway { font-size:53px; font-weight:600 }
+        h4.product_noDigitalNorway { font-size:40px; font-weight:600 }
+        li.product_noDigitalNorway { cursor:pointer; font-size:16px; font-family:"Work Sans", Arial;  }
+    </style><style>/* Miljødirektoratet */
+        th.product_noMiljoedirektoratet { background-image: url("https://www.miljodirektoratet.no/assets/logo/new/logo-primary.svg"); background-repeat: no-repeat; back
+                            background-color:white; background-position: 50px -20px;height:100px; background-size: 200px 150px }
+        td.product_noMiljoedirektoratet { font-family:SofiaPro-Light,Arial; font-size:18px; color:rgb(34,34,34) }
+        h2.product_noMiljoedirektoratet { font-size:43px; font-weight:400 }
+        h4.product_noMiljoedirektoratet { font-size:37px; font-weight:400 }
+        li.product_noMiljoedirektoratet { display:none }
+    </style>
+<!-- Code -->
+    <script src="SelvbetjentUtredningMedAi_OpenAI_GPT_DALL_E_.js" type="text/javascript"></script><!--script id="_OpenAI_GPT_DALL_E_"></!--script-->
+    <script src="SelvbetjentUtredningMedAi_product_and_analysis_.js" type="text/javascript"></script><!--script id="SelvbetjentUtredningMedAi_product_and_analysis_"></!--script-->
+    <script src="SelvbetjentUtredningMedAi_UI_load_and_visibility_.js" type="text/javascript"></script><!--script id="_UI_load_and_visibility_"></!--script-->
+    <script src="SelvbetjentUtredningMedAi_simplify_.js" type="text/javascript"></script><!--script id="_simplify_"></!--script-->
+    <script src="SelvbetjentUtredningMedAi_structure_.js" type="text/javascript"></script><!--script id="_structure_"></!--script-->
+    <script src="SelvbetjentUtredningMedAi_intro_.js" type="text/javascript"></script><!--script id="_intro_"></!--script-->
+    <script src="SelvbetjentUtredningMedAi_picturedescription_.js" type="text/javascript"></script><!--script id="_picturedescription_"></!--script-->
+    <script src="SelvbetjentUtredningMedAi_text_.js" type="text/javascript"></script><!--script id="_text_"></!--script-->
+    <script src="SelvbetjentUtredningMedAi_generate_.js" type="text/javascript"></script><!--script id="_generate_"></!--script-->
+</head>
+
+<body onload="l();" style="background-color:#000">
+    <script>
+    // Alex Filippenko: Supernovae, Dark Energy, Aliens & the Expanding Universe | Lex Fridman Podcast #137
+    // Bret Weinstein: Truth, Science, and Censorship in the Time of a Pandemic | Lex Fridman Podcast #194
+    // Michio Kaku: Future of Humans, Aliens, Space Travel & Physics | Lex Fridman Podcast #45
+    </script>
+    <!-- Content -->
+    <center>
+        <span id="progressText">status</span>
+        <progress id="progressBar" value="0" max="20" style="display:none;width:100%;height:35px;position:relative;top:-26px;z-index:-1"></progress>
+        <a href="GptHelloWorld.html" style="position:absolute;left:0px;color:white">_*_</a>
+        <a href="https://digdir.sharepoint.com/:p:/r/sites/InnovationDigdir/_layouts/15/doc2.aspx?sourcedoc=%7B458DDA71-CCC8-4713-BED7-ED790EC092A5%7D&file=GPT%20og%20demo%20for%20Utredning%20vha%20AI%20.pptx&action=edit&mobileredirect=true&DefaultItemOpen=1&ct=1677230585566&wdOrigin=OFFICECOM-WEB.MAIN.REC&cid=53ed8c56-8678-420d-b9b3-12ee50384ad5" style="position:absolute;left:95%;color:blue">_*_</a>
+        
+        <table cellpadding="0">
+            <tr id="introtext"><td><h1>Utredning (forenklet)</h1><h2>Prosess fra ide til visuelt uttrykk. <br />Trykk på bilde!</h2></td></tr>
+            <tr id="specs">
+            <td style="padding:0px;background-color:#000"><center>
+            <span style="align-content:center">
+                <img src="idea.png" id="ideaImg" onclick="TheIdeaClick();" />
+                <img src="design.png" id="designImg" onclick="TheDesignClick();" />
+                <img src="production.png" id="productionImg" onclick="TheTextClick();" />
+                <img src="finish.png" id="finishImg" onclick="TheFinishClick();" />
+            </span></center>
+            <table width="100%"><tr>
+                <td id="ideaDesc" style="width:25%;background-color:#000" onmouseup="TheIdeaClick(); txtInnholdInn.focus(); txtInnholdInn.select();">
+                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10023; Idé</font></button> (trykk her)<br />
+                Utredningens tema og<br />
+                kilder angis i samme<br />
+                felt, og har foreløpig<br />
+                ikke ubegrenset lengde</td>
+                <td id="designDesc" style="width:25%;background-color:#000" onmouseup="TheDesignClick(); txtKapittelstrukturInn.focus(); txtKapittelstrukturInn.select();">
+                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10032; Oppsett</font></button>trykk her<br />
+                Utredningens innholds-<br />
+                fortegnelse angis som<br />
+                tekst, test den med<br /> 
+                "Kapitler"-knappen</td>
+                <td id="productionDesc" style="width:25%;background-color:#000" onmouseup="TheTextClick(); txtInnholdInn.focus(); txtInnholdInn.select();">
+                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10030; Tekst</font></button> (trykk her)<br />
+                For bestemt innhold<br /> 
+                blir tekst og tilhørende<br /> 
+                bilder generert av AI.<br />
+                Angi tekst, trykk "NLP"</td>
+                <td id="finishDesc" style="width:25%;background-color:#000" onmouseup="TheFinishClick(); window.location = '#contentTable'; txtBildeInn.focus(); txtBildeInn.select(); ">
+                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10037; Visuelt</font></button> (trykk her)<br />
+                Stil kompatibel med<br />
+                organisasjonen, fin-<br />
+                justering av tekst og<br />
+                det visuelle<br /> 
+                </td>
+            </tr></table>
+            </td>
+        </tr><tr>
+        <tr><td id="design" style="display:none">
+        <button onclick="Toggle(btns);Toggle(btns2);">Detaljer</button>
+        <span id="btns" style="display:none;"> - <button onclick="ShowDefault();btnsAll.style.display='none'">Standard</button>
+            <button onclick="ShowCell(-1, -1, '');btnsAll.style.display=''">Vis</button>
+             <span id="btnsAll" style="display:none;">- kolonner (fra alle detaljer) <button onclick="ShowCell(0, -1);">Tema</button><button onclick="ShowCell(1, -1);">Instruksjon</button><button onclick="ShowCell(2, -1);">Inn</button><button onclick="ShowCell(3, -1);">Kjør</button><button onclick="ShowCell(4, -1);">Ut</button><button onclick="ShowCell(5, -1);">Vis</button>
+             - rader (fra alle detaljer) <button onclick="ShowCell(-1, 1);">Innhold</button>
+                <button onclick="ShowCell(-1, 2);">Kapittelstruktur</button>
+                <button onclick="ShowCell(-1, 3);">Innledning</button>
+                <button onclick="ShowCell(-1, 4);">Bilde</button>
+                <button onclick="ShowCell(-1, 5);">Brødtekst</button>
+                <span><br /><input type="radio" name="gptAlg" value="txt-ada-001">ada1
+                <input type="radio" name="gptAlg" value="text-curie-001">curie1
+                <input type="radio" name="gptAlg" value="text-davinci-003" checked>davinci3</span>
+                <input id="gptId" type="text" value="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" style="width: 446px; "/>
+            </span>
+        </span>
+        - <button onclick="ShowNone();">Skjul</button>
+        <hr />
+    <!------------------------------------------------>
+    <!-- Rader Innhold, Kapittelstruktur, Innledning, Bilde, Brødtekst -- for Kolonner Tema,Instruksjon,Inn,Kjør,Ut,Vis -->
+        <table id="u"><tr>
+        <th>Tema</th><th>Instruksjon</th><th>Inn</th><th>Kjør</th><th>Ut</th><th>Vis</th>
+        <!-- Innhold -->
+        </tr><tr>
+        <td class="h" id="innholdLabel"><span onclick="ShowCell(-1, 1, 0)">
+            Innhold<br /><br /></span>
+            </td><td>
+            Legg inn en eller<br />
+            flere innholds-<br />
+            tekster som grunn-<br />
+            lag for utredning<br />
+            <button id="samleButton" style="display:none" onclick="txtInnholdVis.innerHTML = txtInnholdUt.value = simplify(txtInnholdInn.value, (txt)=> { txtInnholdVis.innerHTML = txtInnholdUt.value = txt})">
+            samle</button>
+             <button onclick="this.style.display = 'none'; ShowCell(0, 6, 1); ShowCell(1, 6, 1); ShowCell(2, 6, 1);">evne</button></td><td>
+            <textarea class="h" id="txtInnholdInn" onchange="UpdateOutOrShowSamleButton()">Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.</textarea></td><td class="k">
+            <button onclick="txtInnholdVis.innerHTML = txtInnholdUt.value = simplify(txtInnholdInn.value, (txt)=> { txtInnholdVis.innerHTML = txtInnholdUt.value = txt});">><br />Forenkle<br />></button></td><td>
+            <textarea class="h" id="txtInnholdUt"></textarea></td><td class="v">
+            <div id="txtInnholdVis" class="h">Preview</div>
+        </td><tr>
+        <!-- Kapittelstruktur -->
+        <td class="h" onclick="ShowCell(-1, 2, 0)">Kapittel<br />struktur</td><td>
+            Kapitler og<br/>
+            underkapitler</td><td>
+            <textarea id="txtKapittelstrukturInn">Kapittelstruktur med Kapittel 1-2 deretter Underkapittel 1a-2b for:</textarea></td><td class="k">
+            <button onclick="structureAsync(txtKapittelstrukturInn.value, txtInnholdUt.value, (ch, sub, gptOut) =>
+                { txtKapittelstrukturUt.value = gptOut; txtKapittelstrukturVis.value = structureAsHtml(gptOut);});">Strukturer</button></td><td>
+            <textarea id="txtKapittelstrukturUt"></textarea></td><td class="v">
+            <div id="txtKapittelstrukturVis"></div>
+        </td><tr>
+    <!-- Innledning -->
+        <td class="h" onclick="ShowCell(-1, 3, 0)">Kapittel<br />innledning</td><td>
+            Sammendrag<br /> 
+            for kapitler</td><td>
+            <textarea id="txtInnledningInn">* Innledning på 50 ord:</textarea><td class="k">
+            <button onclick="txtInnledningVis.innerHTML = 
+                txtInnledningUt.value = intro(txtKapittelstrukturUt.value, txtInnledningInn.value, txtInnholdUt.value, null, null, null, ['Underkapittel 1a', 'Kapittel 2']);">Innled</button></td><td>
+            <textarea id="txtInnledningUt"></textarea></td><td class="v">
+            <div id="txtInnledningVis"></div>
+        </td><tr>
+    <!-- Bilde -->
+        <td class="h" onclick="ShowCell(-1, 4, 0)">Kapittel<br />bilde</td><td>
+            Bildetekst<br />
+            for kapitler</td><td>
+            <textarea id="txtBildeInn">Bildebeskrivelse på 25 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet:</textarea><td class="k">
+            <button onclick="picturedescriptionAsync('txtBildeUt', txtKapittelstrukturUt.value, txtBildeInn.value, txtInnholdUt.value, (){ pictureAsync('imgBildeUt', txtBildeUt.value); });">Visualiser</button></td><td>
+            <textarea id="txtBildeUt"></textarea></td><td class="v">
+            <img id="imgBildeUt" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" />
+        </td><tr>
+    <!-- Brødtekst -->
+        <td class="h" onclick="ShowCell(-1, 5, 0)">Underkapittel<br />tekst</td><td>
+            Tekst for<br />
+            underkapitler</td><td>
+            <textarea id="txtBroedtekstInn">* Brødtekst på 1000 ord:&#13;</textarea><td class="k">
+            <button onclick="txtBroedtekstVis.innerHTML =
+                txtBroedtekstUt.value = text__random(txtKapittelstrukturUt.value, txtBroedtekstInn.value, txtInnholdUt.value);">Produser</button></td><td>
+            <textarea id="txtBroedtekstUt"></textarea></td><td class="v">
+            <div id="txtBroedtekstVis"></div>
+        </td><tr>
+    <!-- Kompetansebehov -->
+        <td class="h" onclick="ShowCell(-1, 6, 0)">Kompetanse<br />behov</td><td>
+            Tekst for å an-<br />
+            befale bidragsytere<br /><br />
+            <button onclick="tabLoadAsync(tabKompAkt, txtInnholdUt.value, txtKompetansebehovInn.value.split('**')[0], 2 /* Innsikt */
+                    , txtKompetansebehovInn.value.split('**')[1], 1 /* Vurdering */, 0 /* Aktør */, 3 /* Vekt */, ['Aktør', 'Vurdering', 'Innsikt', 'Vekt']
+                );">&nbsp;&nbsp;&nbsp;Innsikt&nbsp;&nbsp;&nbsp;<br />ønsket</button><br /><br />
+            <button onclick="tabAggAndGroup(tabKompAkt, 0 /* grupper på Aktør */, 3 /* sorter på Vekt */, 2 /* slett Innsikt*/);">Anbefal<br />aktør</button>
+                 </td><td>
+            <textarea id="txtKompetansebehovInn" class="h">*&#13;Kortfattet, de ti viktigste punktene som krever faglig og politisk innsikt er:&#13;1. **
+                &#13;"*"&#13;&#13;De to organisasjonene i Norge best egnet (1.), og nest best egnet (2.) til å skrive om temaet, Regjeringen (et departement), KS, DFØ, digdir, e-helse, Miljødirektoratet eller andre? first answer with just the name of the organisation, then explain why in less than 20 words:&#13;&#13;1.</textarea>
+                <table id="tabKompAkt" border="1" style="width:455px"></table>
+            <td class="k">
+            <button onclick="alert('Ikke implementert!');">Analyser</button></td><td>
+            <textarea id="txtKompetansebehovUt"></textarea></td><td class="v">
+            <div id="txtKompetansebehovVis"></div>
+        </td></tr>
+        </table>
+        <hr />
+            </td></tr><tr><td id="generate" style="display:none">
+    <script>w_skjulEditKnapper();</script>
+    <!------------------------------------------------>
+    <!-- Ferdig! -->
+       <center>
+        <table id="btnsDiv">
+            <tr><td>
+                <img id="nlpImg" src="NLP.png" onclick="preview.innerHTML = 'Full utfylling'; generateAll(overviewTable, contentTable);"/></td>
+            <td><table id="btns2">
+                <tr><td colspan="2"><button onclick="Show(btns2steps, 1); preview.innerHTML='Kapittelutfylling'; generateAll(overviewTable, contentTable, 'struct');">Kapitler</button></td></tr>
+                <tr><td></td>
+                    <td>
+                        <table id="btns2steps" style="display:none;"><tr>
+                            <td><button onclick="if (!document.getElementById('chapt_0_tekst')); contentTable.innerHTML = generateAll_ContentTableBlank(); introAsync('chapt_0_tekst', txtInnledningInn.value, gStructureCh[0], gStructure, txtInnholdUt.value,null,null,null,structureStopAfter(0))">En<br />intro</button></td>
+                            <td><button onclick="if (!document.getElementById('chapt_0_bildetekst')); contentTable.innerHTML = generateAll_ContentTableBlank(); picturedescriptionAsync('chapt_0_bildetekst', txtBildeInn.value, gStructureCh[0], chapt_0_tekst.innerHTML, (cId) => {/*alert(cId.innerHTML);*/ })">En<br />bildetekst</button></td>
+                            <td><button onclick="if (!document.getElementById('chapt_0_bilde')); contentTable.innerHTML = generateAll_ContentTableBlank(); pictureAsync('chapt_0_bilde', chapt_0_bildetekst.innerHTML)">Et<br />bilde</button></td>
+                            </tr>
+                        <tr><td></td>
+                            <td colspan="2"><button onclick="if (!document.getElementById('chapt_0_0_tekst')); contentTable.innerHTML = generateAll_ContentTableBlank(); textAsync('chapt_0_0_tekst', txtBroedtekstInn.value, gStructureSub[0][0], gStructure, txtInnholdUt.value, null, null, null, structureStopAfter(0,0))">En underkapitteltekst</button></td>
+                        </tr></table>
+                </td></tr>
+            </table></td><td>
+                <img id="thatsAllImg" src="thatsall.png" onclick="Toggle(btnsDiv); Toggle(specs);Toggle(btns);Toggle(design);Toggle(nlpImg);Toggle(thatsAllImg);Toggle(thatsAllButton);" />
+            </td></tr>
+        </table>
+        <button id="thatsAllButton" onclick="Toggle(btnsDiv); Toggle(specs);Toggle(btns);Toggle(design);Toggle(nlpImg);Toggle(thatsAllImg);Toggle(thatsAllButton);" style="display:none;">Mer!</button>
+        </center>
+        </td></tr>
+    </table> 
+
+    <span id="idStyleButtons" style="cursor:pointer; display:none; background-color: #eee">
+    <script>w_alleProduktknapper()</script></span>
+
+    <hr />
+    <!------------------------------------------------>
+    <!-- Preview -->
+    <span id="preview" class="preview"></span>
+    <table id="previewTable" style="display:none"><tr>
+        <th class="product_active" colspan="2">&nbsp;</th></tr><tr>
+        <td><table id="overviewTable"><tr><td><ul><li class="product_active">Kapittel<ul><li class="product_active">Underkapittel</li></ul></li></ul><script>w_kapittelStruktur()</script> </td></tr></table></td>
+        <td><table id="contentTable"><tr><td class="product_active"><h2 class="product_active">Kapittel</h2><h4 class="product_active">Underkapittel</h4>Innhold...<br />...innhold</td></tr></table> </td></tr>
+    </table>
+    </center>
+    <hr />
+    <script>w_skjulEditKnapper()</script>
+</body>
+
+</html>

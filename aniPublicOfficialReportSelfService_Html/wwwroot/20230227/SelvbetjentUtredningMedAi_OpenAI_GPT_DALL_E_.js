@@ -18,18 +18,15 @@ function oaiJson(sSrc, isImage, maxTokens, stopArray) {
         ,"prompt":${JSON.stringify(sSrc)},"temperature":0.7
         ,"max_tokens":${maxTokens == null ? 1000 : maxTokens},"top_p":1,"frequency_penalty":0.75,"presence_penalty":0`+stopTag+`}`;
 }
-
 function oaiReq(url) {
     let req = new XMLHttpRequest();
     req.open("POST", url != null ? url : "https://api.openai.com/v1/completions");
     req.setRequestHeader("Content-Type", "application/json");
     req.setRequestHeader("Authorization", "Bearer " + gptId.value);
     return req;
-}
-    
+}    
 function oaiReqDaE() { return oaiReq("https://api.openai.com/v1/images/generations");}
 function oaiReqGpt() { return oaiReq("https://api.openai.com/v1/completions");}
-
 async function oaiValAsync(sSrc, isImage, doneC, errC, maxTokens, stopArray) {
     if (isImage == null) isImage = 0;
     let xhr = isImage == 1 ? oaiReqDaE() : oaiReqGpt();
