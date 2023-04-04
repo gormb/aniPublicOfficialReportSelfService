@@ -6,11 +6,48 @@
     <link rel="stylesheet" href="SelvbetjentUtredningMedAi.css" />
 </head>
 
-<body onload="l();">
-<a href="GptHelloWorld.html">*</a>
+<body onload="l();" style="background-color:#000">
 <!-- Content -->
     <center>
-    <table><tr><td id="design">
+        <span id="progressText">status</span>
+        <progress id="progressBar" value="0" max="20" style="display:none;width:100%;height:35px;position:relative;top:-26px;z-index:-1"></progress>
+        <a href="GptHelloWorld.html" style="position:absolute;left:0px;color:white">_*_</a>
+        <table cellpadding="0">
+            <tr id="introtext"><td><h1>Utredning (forenklet)</h1><h2>Prosess fra ide til visuelt uttrykk. <br />Trykk på bilde!</h2></td></tr>
+            <tr id="specs">
+            <td style="padding:0px;background-color:#000"><center>
+            <span style="align-content:center">
+                <img src="idea.png" id="ideaImg" onclick="TheIdeaClick();" />
+                <img src="design.png" id="designImg" onclick="TheDesignClick();" />
+                <img src="production.png" id="productionImg" onclick="TheTextClick();" />
+                <img src="finish.png" id="finishImg" onclick="TheFinishClick();" />
+            </span></center>
+            <table width="100%"><tr>
+                <td id="ideaDesc" style="width:25%;background-color:#000" onmouseup="TheIdeaClick(); txtInnholdInn.focus(); txtInnholdInn.select();">
+                <button style="background-color:transparent"><font size="+1">&#10023; Idé</font></button> (trykk her)<br />
+                Utredningens tema og<br />
+                kilder angis i samme<br />
+                felt, og har foreløpig<br />
+                ikke ubegrenset lengde</td>
+                <td id="designDesc" style="width:25%;background-color:#000" onmouseup="TheDesignClick(); txtKapittelstrukturInn.focus(); txtKapittelstrukturInn.select();">
+                <button style="background-color:transparent"><font size="+1">&#10032; Oppsett</font></button>trykk her<br />
+                Utredningens innholds-<br />
+                fortegnelse angis som<br />
+                tekst, test den med<br /> 
+                "Kapitler"-knappen</td>
+                <td id="productionDesc" style="width:25%;background-color:#000" onmouseup="TheTextClick(); txtInnholdInn.focus(); txtInnholdInn.select();">
+                <button style="background-color:transparent"><font size="+1">&#10030; Tekst</font></button> (trykk her)<br />
+                For bestemt innhold<br /> 
+                blir tekst og tilhørende<br /> 
+                bilder generert av AI.<br />
+                Angi tekst, trykk "NLP"</td>
+                <td id="finishDesc" style="width:25%;background-color:#000" onmouseup="TheFinishClick(); window.location = '#contentTable'; txtBildeInn.focus(); txtBildeInn.select(); ">
+                <button style="background-color:transparent"><font size="+1">&#10037; Visuelt</font></button> (trykk her)<br />
+                Utredningens visuelle stil</td>
+            </tr></table>
+            </td>
+        </tr><tr>
+        <tr><td id="design" style="display:none">
         <button onclick="Toggle(btns);Toggle(btns2);">Detaljer</button>
         <span id="btns" style="display:none;"> - <button onclick="ShowDefault();btnsAll.style.display='none'">Standard</button>
             <button onclick="ShowCell(-1, -1, '');btnsAll.style.display=''">Vis</button>
@@ -26,6 +63,7 @@
                 <input id="gptId" type="text" value="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" style="width: 446px; "/>
             </span>
         </span>
+        - <button onclick="ShowNone();">Skjul</button>
         <hr />
     <!------------------------------------------------>
     <!-- Rader Innhold, Kapittelstruktur, Innledning, Bilde, Brødtekst -- for Kolonner Tema,Instruksjon,Inn,Kjør,Ut,Vis -->
@@ -33,17 +71,22 @@
         <th>Tema</th><th>Instruksjon</th><th>Inn</th><th>Kjør</th><th>Ut</th><th>Vis</th>
         <!-- Innhold -->
         </tr><tr>
-        <td class="h">Innhold</td><td>
-        En eller flere innholdstekster<br />det skal lages utredning<br />på grunnlag av</td><td>
+        <td class="h" onclick="ShowCell(0, 1, 0);ShowCell(1, 1, 0);ShowCell(2, 1, 0);ShowCell(3, 1, 0);ShowCell(4, 1, 0);ShowCell(5, 1, 0);">Innhold</td><td>
+            Legg inn en eller<br />
+            flere innholds-<br />
+            tekster som<br />
+            grunnlag for<br />
+             utredning</td><td>
             <textarea class="h" onchange="chg(txtInnholdInn)" id="txtInnholdInn">Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.</textarea></td><td class="k">
-            <button onclick="txtInnholdVis.innerHTML = 
+            <button onclick="txtInnholdVis.innerHTML=
                 txtInnholdUt.value = simplify(txtInnholdInn.value);">><br />Forenkle<br />></button></td><td>
             <textarea class="h" onchange="chg(txtInnholdUt)" id="txtInnholdUt"></textarea></td><td class="v">
             <div id="txtInnholdVis" class="h">Preview</div>
         </td><tr>
         <!-- Kapittelstruktur -->
-        <td class="h">Kapittel<br />struktur</td><td>
-        Kapitler og underkapitler<br/>basert på innholdet</td><td>
+        <td class="h" onclick="ShowCell(0, 2, 0);ShowCell(1, 2, 0);ShowCell(2, 2, 0);ShowCell(3, 2, 0);ShowCell(4, 2, 0);ShowCell(5, 2, 0);">Kapittel<br />struktur</td><td>
+            Kapitler og<br/>
+            underkapitler</td><td>
             <textarea onchange="chg(txtKapittelstrukturInn)" id="txtKapittelstrukturInn">Kapittelstruktur med Kapittel 1-2 deretter Underkapittel 1a-2b for:</textarea></td><td class="k">
             <button onclick="structureAsync(txtKapittelstrukturInn.value, txtInnholdUt.value, (ch, sub, gptOut) =>
                 { txtKapittelstrukturUt.value = gptOut; txtKapittelstrukturVis.value = structureAsHtml(gptOut);});">Strukturer</button></td><td>
@@ -51,8 +94,9 @@
             <div id="txtKapittelstrukturVis"></div>
         </td><tr>
     <!-- Innledning -->
-        <td class="h">Kapittel<br />innledning</td><td>
-        Innledende sammendrag for hvert hovedkapittel</td><td>
+        <td class="h" onclick="ShowCell(0, 3, 0);ShowCell(1, 3, 0);ShowCell(2, 3, 0);ShowCell(3, 3, 0);ShowCell(4, 3, 0);ShowCell(5, 3, 0);">Kapittel<br />innledning</td><td>
+            Sammendrag<br /> 
+            for kapitler</td><td>
             <textarea onchange="chg(txtInnledningInn)" id="txtInnledningInn">* Innledning:</textarea><td class="k">
             <button onclick="txtInnledningVis.innerHTML = 
                 txtInnledningUt.value = intro(txtKapittelstrukturUt.value, txtInnledningInn.value, txtInnholdUt.value, null, null, null, ['Underkapittel 1a', 'Kapittel 2']);">Innled</button></td><td>
@@ -60,16 +104,18 @@
             <div id="txtInnledningVis"></div>
         </td><tr>
     <!-- Bilde -->
-        <td class="h">Kapittel<br />bilde</td><td>
-        Beskrivende tekst for hvert hovedkapittel (for bildegenereringstjeneste)</td><td>
+        <td class="h" onclick="ShowCell(0, 4, 0);ShowCell(1, 4, 0);ShowCell(2, 4, 0);ShowCell(3, 4, 0);ShowCell(4, 4, 0);ShowCell(5, 4, 0);">Kapittel<br />bilde</td><td>
+            Bildetekst<br />
+            for kapitler</td><td>
             <textarea onchange="chg(txtBildeInn)" id="txtBildeInn">Lag bildebeskrivelse for passende bilde på mindre enn 40 ord: </textarea><td class="k">
             <button onclick="picturedescriptionAsync('txtBildeUt', txtKapittelstrukturUt.value, txtBildeInn.value, txtInnholdUt.value, (){ pictureAsync('imgBildeUt', txtBildeUt.value); });">Visualiser</button></td><td>
             <textarea onchange="chg(txtBildeUt)" id="txtBildeUt"></textarea></td><td class="v">
             <img id="imgBildeUt" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" />
         </td><tr>
     <!-- Brødtekst -->
-        <td class="h">Underkapittel<br />tekst</td><td>
-        Selve teksten for hvert underkapittel</td><td>
+        <td class="h" onclick="ShowCell(0, 5, 0);ShowCell(1, 5, 0);ShowCell(2, 5, 0);ShowCell(3, 5, 0);ShowCell(4, 5, 0);ShowCell(5, 5, 0);">Underkapittel<br />tekst</td><td>
+            Tekst for<br />
+            underkapitler</td><td>
             <textarea onchange="chg(txtBroedtekstInn)" id="txtBroedtekstInn">* Brødtekst:&#13;</textarea><td class="k">
             <button onclick="txtBroedtekstVis.innerHTML =
                 txtBroedtekstUt.value = text(txtKapittelstrukturUt.value, txtBroedtekstInn.value, txtInnholdUt.value);">Produser</button></td><td>
@@ -77,35 +123,45 @@
             <div id="txtBroedtekstVis"></div>
         </td></tr>
         </table>
-        <hr /></td></tr><tr><td>
+        <hr /></td></tr><tr><td id="generate" style="display:none">
     <!------------------------------------------------>
     <!-- Ferdig! -->
-        <button onclick="preview.innerHTML = 'Full utfylling'; generateAll(overviewTable, contentTable);">Generer</button>
-        <button onclick="Toggle(design);">Ferdig!</button>
-        <span id="btns2" style="display:none;">   
-            - <button onclick="Show(btns2steps); preview.innerHTML='Kapittelutfylling'; generateAll(overviewTable, contentTable, 'struct');">Kapitler</button>
-                <span id="btns2steps" style="display:none;">
-                <button onclick="introAsync('chapt_0_tekst', txtInnledningInn.value, gStructureCh[0], gStructure, txtInnholdUt.value,null,null,null,structureStopAfter(0))">En intro</button>
-                <button onclick="picturedescriptionAsync('chapt_0_bildetekst', txtBildeInn.value, gStructureCh[0], chapt_0_tekst.innerHTML, (cId) => alert(cId.innerHTML))">En bildetekst</button>
-                <button onclick="pictureAsync('chapt_0_bilde', chapt_0_bildetekst.innerHTML)">Et bilde</button>
-                <button onclick="textAsync('chapt_0_0_tekst', txtBroedtekstInn.value, gStructureSub[0][0], gStructure, txtInnholdUt.value, null, null, null, structureStopAfter(0,0))">En underkapitteltekst</button>
-            -
-            </span>
-        </span>
+       <center>
+        <table id="btnsDiv">
+            <tr><td>
+                <img id="nlpImg" src="NLP.png" onclick="preview.innerHTML = 'Full utfylling'; generateAll(overviewTable, contentTable);"/></td>
+            <td><table id="btns2">
+                <tr><td colspan="2"><button onclick="Show(btns2steps); preview.innerHTML='Kapittelutfylling'; generateAll(overviewTable, contentTable, 'struct');">Kapitler</button></td></tr>
+                <tr><td></td>
+                    <td>
+                        <table id="btns2steps" style="display:none;"><tr>
+                            <td><button onclick="introAsync('chapt_0_tekst', txtInnledningInn.value, gStructureCh[0], gStructure, txtInnholdUt.value,null,null,null,structureStopAfter(0))">En<br />intro</button></td>
+                            <td><button onclick="picturedescriptionAsync('chapt_0_bildetekst', txtBildeInn.value, gStructureCh[0], chapt_0_tekst.innerHTML, (cId) => /*alert(cId.innerHTML)*/;)">En<br />bildetekst</button></td>
+                            <td><button onclick="pictureAsync('chapt_0_bilde', chapt_0_bildetekst.innerHTML)">Et<br />bilde</button></td>
+                            </tr>
+                        <tr><td></td>
+                            <td colspan="2"><button onclick="textAsync('chapt_0_0_tekst', txtBroedtekstInn.value, gStructureSub[0][0], gStructure, txtInnholdUt.value, null, null, null, structureStopAfter(0,0))">En underkapitteltekst</button></td>
+                        </tr></table>
+                </td></tr>
+            </table></td><td>
+                <img id="thatsAllImg" src="thatsall.png" onclick="Toggle(btnsDiv); Toggle(specs);Toggle(btns);Toggle(design);Toggle(nlpImg);Toggle(thatsAllImg);Toggle(thatsAllButton);" />
+            </td></tr>
+        </table>
+        <button id="thatsAllButton" onclick="Toggle(btnsDiv); Toggle(specs);Toggle(btns);Toggle(design);Toggle(nlpImg);Toggle(thatsAllImg);Toggle(thatsAllButton);" style="display:none;">Mer!</button>
+        </center>
         </td></tr>
-    </table>
-    <span id="progresssText">status</span><br />
-    <progress id="progressBar" value="0" max="20" style="width:90%;height:35px;position:relative;top:-26px;z-index:-1"></progress>
-    </center>
+    </table> 
+        <br />
     <hr />
     <!------------------------------------------------>
     <hr />
     <!-- Preview -->
     <span id="preview" class="preview"></span>
-    <table id="previewTable"><tr>
+    <table id="previewTable" style="display:none"><tr>
         <td><table id="overviewTable"><tr><td>oversikt</td></tr></table> </td>
         <td><table id="contentTable"><tr><td>innhold</td></tr></table> </td></tr>
     </table>
+    </center>
 <!-- Code -->
 <script src="SelvbetjentUtredningMedAi_OpenAI_GPT_DALL_E_.js"></script><!--script id="_OpenAI_GPT_DALL_E_"></!--script-->
 <script src="SelvbetjentUtredningMedAi_UI_load_and_visibility_.js"></script><!--script id="_UI_load_and_visibility_"></!--script-->
