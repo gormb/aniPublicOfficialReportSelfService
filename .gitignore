@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/aniPublicOfficialReportSelfService_Html/wwwroot/SelvbetjentUtredningGorms.html
+/aniPublicOfficialReportSelfService_Html/wwwroot/SelvbetjentUtredningGorm.html
