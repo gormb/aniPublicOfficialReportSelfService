@@ -114,14 +114,15 @@
     <style>
         html { -webkit-text-size-adjust: none; /* Prevent font scaling in landscape */ }
         body { font-family:sans-serif; font-weight: 400; }
-        h1 { font-family:sans-serif; font-weight: 400; }
-        h2 { font-family:sans-serif; font-weight: 400; }
-        h3 { font-family:sans-serif; font-weight: 400; }
-        h4 { font-family:sans-serif; font-weight: 400; }
+        h1 { font-weight: 400; }
+        h2 { font-weight: 400; }
+        h3 { font-weight: 400; }
+        h4 { font-weight: 400; }
+        textarea {width:100%;}
         .top { position: fixed; z-index: 100; top: 0%; left:0%; width: 45%; height: 10%; 
                 background-color:#B9C8DC; font-size: 40px; text-align: center; }
         .meny { position: fixed; z-index: 1; top: 10%; left:0%; width: 100%; height: 80%; background-color:#B9C8DC; }
-            button.meny { font-size: 15px;}
+            button.meny { }
         .tech { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
         .tema { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
         .deltag { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
@@ -162,8 +163,8 @@
     <div class="top" style="left:0%;" onclick="Meny()">UTRED.</div>
     <div id="sectTitle" class="top" style="left:55%; background-color: inherit" onclick="Meny()">MENY</div>
     <a class="top" href="#" style="left: 39.9%; width: 20.2%;background: linear-gradient(90deg, #B9C8DC 0%, #fff 100%);" onclick="Meny()">&#128585;</a>
-    <a class="top" href="SelvbetjentUtredning.html" style="top:90%;left:5%;">&#128584;</a>
-    <a class="top" href="https://www.slideshare.net/slideshow/embed_code/key/DpuR2oSCMk8Frj" style="top:90%; left:50%;color:blue" onclick="ActivatePresentation()">&#128586;</a>
+    <a class="top" href="SelvbetjentUtredning.html" style="top:90%;left:0%;width:50%">&#128584;</a>
+    <a class="top" href="https://www.slideshare.net/slideshow/embed_code/key/DpuR2oSCMk8Frj" style="top:90%; left:50%;width:50%;" onclick="ActivatePresentation()">&#128586;</a>
     <!-- Meny -->
     <div class="meny" style="background-color:#fff">
         <button onclick="Tech()" class="meny" style="left:5%; top: 15%; width:40%; height:20%">
@@ -185,7 +186,9 @@
     <br /><textarea class="h" id="txtInnholdInn">Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.</textarea>
 </div><!-- Section DELTAG -->
     <div class="deltag">
-
+    <h3>Kompetansebehov</h3>Tekst for å anbefale bidragsytere. Anbefal aktør
+        <textarea id="txtKompetansebehovInn" class="h">*&#13;Kortfattet, de ti viktigste punktene som krever faglig og politisk innsikt er:&#13;1. **
+                &#13;"*"&#13;&#13;De to organisasjonene i Norge best egnet (1.), og nest best egnet (2.) til å skrive om temaet, Regjeringen (et departement), KS, DFØ, digdir, e-helse, Miljødirektoratet eller andre? first answer with just the name of the organisation, then explain why in less than 20 words:&#13;&#13;1.</textarea>
 </div><!-- Section DISPOS -->
     <div class="dispos">Kapittelstruktur. Utredningens innholdsfortegnelse angis som tekst, test den med "Kapitler"-knappen.
         Kapitler og underkapitler
@@ -198,23 +201,6 @@
 </div><!-- Section DISTRIB -->
     <div class="distrib">Stil kompatibel med organisasjonen, finjustering av tekst og det visuelle
 </div>
-    
-    <!-- Kompetansebehov -->
-    <td class="h" onclick="ShowCell(-1, 6, 0)">Kompetanse<br />behov</td>
-    Tekst for å an-<br />
-    befale bidragsytere<br /><br />
-    <button onclick="tabLoadAsync(tabKompAkt, txtInnholdUt.value, txtKompetansebehovInn.value.split('**')[0], 2 /* Innsikt */
-                    , txtKompetansebehovInn.value.split('**')[1], 1 /* Vurdering */, 0 /* Aktør */, 3 /* Vekt */, ['Aktør', 'Vurdering', 'Innsikt', 'Vekt']
-                );">
-        &nbsp;&nbsp;&nbsp;Innsikt&nbsp;&nbsp;&nbsp;<br />ønsket
-    </button><br /><br />
-    <button onclick="tabAggAndGroup(tabKompAkt, 0 /* grupper på Aktør */, 3 /* sorter på Vekt */, 2 /* slett Innsikt*/);">Anbefal<br />aktør</button>
-    </td>
-    <td>
-        <textarea id="txtKompetansebehovInn" class="h">*&#13;Kortfattet, de ti viktigste punktene som krever faglig og politisk innsikt er:&#13;1. **
-                &#13;"*"&#13;&#13;De to organisasjonene i Norge best egnet (1.), og nest best egnet (2.) til å skrive om temaet, Regjeringen (et departement), KS, DFØ, digdir, e-helse, Miljødirektoratet eller andre? first answer with just the name of the organisation, then explain why in less than 20 words:&#13;&#13;1.</textarea>
-        <button onclick="console.log('Ikke implementert!');">Analyser</button>
-        <!-- Produser og generer -->
 </body>
 
 </html>
