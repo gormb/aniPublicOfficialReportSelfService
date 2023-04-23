@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8" />
+    <title>Selvbetjent utredning med GPT-3 (Open AI GPT-3 text-davinci-03)</title>
+<!-- Style -->
+    <!-- link rel="stylesheet" href="SelvbetjentUtredningMedAi.css" /-->
+    <style id="progress_rotate">
+        .rotate { animation: rotate 4s linear infinite;}
+        @keyframes rotate { 0% { transform: rotate(360deg) } 100% { transform: rotate(0deg) } }
+    </style>
+    <style id="product">/* product_active (items that will be changes by style) */
+        th.product_active { background-image: url("file:///C:/data/HAL9000.png"); background-repeat: no-repeat;
+                            background-color:black; background-position: 10px 10px;height:70px; background-size: 65px 50px }
+        td.product_active { background-color:#fff }
+        table.product_active { background-color:red; }
+    </style>
+    <style>/* standard visual */
+        th.product_noNorsk { background-image: url("file:///C:/data/HAL9000.png"); background-repeat: no-repeat;
+                            background-color:black; background-position: 10px 10px;height:70px; background-size: 65px 50px }
+        td.product_noNorsk { font-family:Arial }
+    </style>
+    <style>/* ehelse */
+        th.product_hveslashhelse { background-image: url("https://www.ehelse.no/_/asset/ehelse:00000186bcb935e0/images/ehelse_logo.png"); background-repeat: no-repeat;
+                            background-color:#0069e8; background-position: 50px 40px;height:160px; background-size: 120px 80px }
+        td.product_hveslashhelse { font-family:GrahikRegular, Arial;font-size:17px;font-weight:400 }
+        h2.product_hveslashhelse { font-size:36px; font-weight:400 }
+        h4.product_hveslashhelse { font-size:22px; font-weight:400 }
+        li.product_hveslashhelse { font-family:GrahikRegular, Arial;font-size:14px }
+    </style>
+    <style>/* standard visual */
+        th.product_seSvenska { display:none }
+        td.product_seSvenska { font-family:Arial }
+    </style>
+    <style>/* regjeringen (TODO) */
+        th.product_noRegjeringen { background-image: url("https://www.regjeringen.no/Frontend/dist-web/img/love.svg"); background-repeat: no-repeat;
+                            background-color: rgb(0, 46,94); background-position: 15px 15px;height:65px; background-size: 38px 38px }
+        td.product_noRegjeringen { font-family:"Open Sans",  sans-serif }
+        h2.product_noRegjeringen { font-size:32px; font-weight:400 }
+        h4.product_noRegjeringen { font-size:22px; color:rgb(56,103,200); font-weight:400 }
+        li.product_noRegjeringen { display:none }
+    </style>
+    <style>/* KS */
+        th.product_noKS { background-image: url("https://www.ks.no/Static/assets/images/logo.svg"); background-repeat: no-repeat;
+                            background-color:white; background-position: 5px -20px;height:115px; background-size: 145px 130px }
+        td.product_noKS { font-family:"Futura Medium",SourceSansProRegular; font-size:18px; color:rgb(68,68,68) }
+        h2.product_noKS { font-size:56px; font-weight:500 }
+        h4.product_noKS { font-size:24px; font-weight:500 }
+        li.product_noKS { font-family:FuturaMedium,SourceSansProRegular;color:rgb(30,58,110)}
+    </style>
+    <style>/* DFØ (TODO) */
+        th.product_noDFOE { background-image: url("https://dfo.no/themes/dfo-platform/drupal-platform-themes/dfo/assets/images/logo.svg"); background-repeat: no-repeat;
+                            background-color:rgb(247,247,247); background-position: 65px 30px;height:65px; background-size: 120px 30px }
+        td.product_noDFOE { font-family:"Source Serif Pro", serif, helvtica; font-size:18px; background-color:rgb(247,247,247); font-weight:400 }
+        h2.product_noDFOE { font-size: 48px;font-weight:600 }
+        h4.product_noDFOE { font-size: 32px;font-weight:600 }
+        li.product_noDFOE { display:none }
+    </style>
+    <style>/* digdir */
+        th.product_nodigdir { background-image: url("https://digdir.no/profiles/sogn/themes/sogn_theme/img/logo/logo_sogn.svg"); background-repeat: no-repeat;
+                            background-color:white; background-position: 65px 30px;height:65px; background-size: 120px 30px }
+        td.product_nodigdir { font-family:Arial; font-size:18px; line-height: 1.6em; letter-spacing: 0.1px; font-weight: 400; color:rgb(30,40,60) }
+        h2.product_nodigdir { font-size:2.75rem; font-weight:500 }
+        h4.product_nodigdir { margin-bottom: 24px; font-size:18px; font-weight:400 }
+        li.product_nodigdir { font-family:Arial; list-style-type: '> '; font-size:16px; font-weight: 600; color:rgb(0,81,190)}
+    </style>
+    <style>/* ehelse */
+        th.product_hvNHN { background-image: url("https://images.squarespace-cdn.com/content/v1/62f21ba10a1f503dee0f9154/d33f3602-e42d-48d8-a2d7-5410ea7aee45/NHN_Logo_M%C3%B8rk_gr%C3%B8nn.png"); background-repeat: no-repeat;
+                            background-color:#ffffff; background-position: 50px 50px;height:170px; background-size: 320px 30px }
+        td.product_hvNHN { font-family:Arial, sans-serif; font-size:17px;font-weight:400 }
+        h2.product_hvNHN { font-size:38px; font-weight:400 }
+        h4.product_hvNHN { font-size:29px; font-weight:400 }
+        li.product_hvNHN { font-family:Arial, sans-serif;font-size:17px }
+    </style>
+    <style>/* DIGG */
+        th.product_seDIGG { background-image: url("https://digg.se/images/18.184c570e17d2f9884034ee/1638887942702/DIGG-logo-color.svg"); background-repeat: no-repeat;
+                            background-color:white; background-position: 25px 0px;height:100px; background-size: 200px 100px }
+        td.product_seDIGG { font-family:Ubuntu, sans-serif; font-size:18px; font-weight: 400; color:rgb(41,42,43) }
+        h2.product_seDIGG { font-size:48px; font-weight:700 }
+        h4.product_seDIGG { font-size:24px; font-weight:400 }
+        li.product_seDIGG { list-style-type: ''; font-size:16px; font-weight: 400}
+    </style>
+    <style>/* Datatilsynet */
+        th.product_noDatatilsynet { background-image: url("https://www.datatilsynet.no/UI/datatilsynetLogo.png"); background-repeat: no-repeat;
+                            background-color:white; background-position: 25px 30px;height:100px; background-size: 200px 50px }
+        td.product_noDatatilsynet { font-family:"Work Sans", Arial; font-size:16px; font-weight: 400; color:rgb(44,44,44) }
+        h2.product_noDatatilsynet { font-size:24px; font-weight:600 }
+        h4.product_noDatatilsynet { font-size:19px; font-weight:400 }
+        li.product_noDatatilsynet { font-family:Arial; list-style-type: '> '; font-size:16px; font-weight: 600; color:rgb(0,81,190)}
+    </style>
+    <style>/* ehelse */
+        th.product_hveslashhelse { background-image: url("https://www.ehelse.no/_/asset/ehelse:00000186bcb935e0/images/ehelse_logo.png"); background-repeat: no-repeat;
+                            background-color:#0069e8; background-position: 50px 40px;height:160px; background-size: 120px 80px }
+        td.product_hveslashhelse { font-family:GrahikRegular, Arial;font-size:17px;font-weight:400 }
+        h2.product_hveslashhelse { font-size:36px; font-weight:400 }
+        h4.product_hveslashhelse { font-size:22px; font-weight:400 }
+        li.product_hveslashhelse { font-family:GrahikRegular, Arial;font-size:14px }
+    </style>
+    <style>/* Digital Norway */
+        th.product_noDigitalNorway { background-image: url("https://digitalnorway.com/content/uploads/2020/06/digital-norway-logo-positive.svg"); background-repeat: no-repeat;
+                            background-color:#ffffff; background-position: 30px 10px;height:100px; background-size: 200px 80px }
+        td.product_noDigitalNorway { font-family:"Work Sans", Arial; font-size:20px;font-weight:400; color:rgb(34,34,34) }
+        h2.product_noDigitalNorway { font-size:53px; font-weight:600 }
+        h4.product_noDigitalNorway { font-size:40px; font-weight:600 }
+        li.product_noDigitalNorway { cursor:pointer; font-size:16px; font-family:"Work Sans", Arial;  }
+    </style>
+    <style>/* Miljødirektoratet */
+        th.product_noMiljoedirektoratet { background-image: url("https://www.miljodirektoratet.no/assets/logo/new/logo-primary.svg"); background-repeat: no-repeat; background-color:white; background-position: 50px -20px;height:100px; background-size: 200px 150px }
+        td.product_noMiljoedirektoratet { font-family:SofiaPro-Light,Arial; font-size:18px; color:rgb(34,34,34) }
+        h2.product_noMiljoedirektoratet { font-size:43px; font-weight:400 }
+        h4.product_noMiljoedirektoratet { font-size:37px; font-weight:400 }
+        li.product_noMiljoedirektoratet { display:none }
+    </style>
+    <style>
+        body { font-family:sans-serif; font-weight: 400; }
+        h1 { font-family:sans-serif; font-weight: 400; }
+        h2 { font-family:sans-serif; font-weight: 400; }
+        h3 { font-family:sans-serif; font-weight: 400; }
+        h4 { font-family:sans-serif; font-weight: 400; }
+        .top { position: fixed; z-index: 100; top: 0%; left:0%; width: 45%; height: 10%; 
+                background-color:#B9C8DC; font-size: 40px; text-align: center; }
+        .meny { position: fixed; z-index: 1; top: 10%; left:0%; width: 100%; height: 80%; background-color:#B9C8DC; }
+            button.meny { font-size: 15px;}
+        .tech { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
+        .tema { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
+        .deltag { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
+        .dispos { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
+        .innhol { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
+        .distrib { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
+    </style>
+<!-- Code -->
+<script>
+    let zIndexCurrent = 1, sClass = '.meny', sActive = sMeny = 0, sTech=1, sTema=2, sDeltag=3, sDispos=4, sInnhol=5, sDistrib=6;
+    function ActSect(sect, sTitle) {
+        if (sActive != sect) {
+            document.getElementById('sectTitle').innerText = sTitle;
+            zIndexCurrent++; // (100..2^31)
+            sActive = sect;
+            if (sect == sMeny) sClass = '.meny';
+            else if (sect == sTech) sClass = '.tech';
+            else if (sect == sTema) sClass = '.tema';
+            else if (sect == sDeltag) sClass = '.deltag';
+            else if (sect == sDispos) sClass = '.dispos';
+            else if (sect == sInnhol) sClass = '.innhol';
+            else if (sect == sDistrib) sClass = '.distrib';
+            document.querySelectorAll(sClass).forEach(function (el) { el.style.zIndex = zIndexCurrent; });
+        }
+    }
+    function Meny() { ActSect(sMeny, 'MENY'); }
+    function Tech() { ActSect(sTech, 'TECH'); }
+    function Tema() { ActSect(sTema, 'TEMA'); }
+    function Deltag() { ActSect(sDeltag, 'DELTAG'); }
+    function Dispos() { ActSect(sDispos, 'DISPOS'); }
+    function Innhol() { ActSect(sInnhol, 'INNHOL'); }
+    function Distrib() { ActSect(sDistrib, 'DISTRIB'); }
+</script>
+</head>
+
+<body>
+    <!-- Head and navigation z-index 100 -->
+    <div class="top" style="left:0%;" onclick="Meny()">UTRED</div>
+    <div id="sectTitle" class="top" style="left:55%; background-color: inherit" onclick="Meny()">MENY</div>
+    <a class="top" href="#" style="left: 39.9%; width: 20.2%;background: linear-gradient(90deg, #B9C8DC 0%, #fff 100%);" onclick="Meny()">&#128585;</a>
+    <a class="top" href="SelvbetjentUtredning.html" style="top:90%;left:5%;">&#128584;</a>
+    <a class="top" href="https://www.slideshare.net/slideshow/embed_code/key/DpuR2oSCMk8Frj" style="top:90%; left:50%;color:blue" onclick="ActivatePresentation()">&#128586;</a>
+    <!-- Meny -->
+    <div class="meny" style="background-color:#fff">
+        <button onclick="Tech()" class="meny" style="left:5%; top: 15%; width:40%; height:20%">
+            <b>TECH</b><br />Velg tjeneste, oppgi API-nøkkel</button>
+        <button onclick="Tema()" class="meny" style="left:55%; top: 15%; width:40%; height:20%">
+            <b>TEMA</b><br />Samle innholdet for utredningen</button>
+        <button onclick="Deltag()" class="meny" style="left:5%; top: 40%; width:40%; height:20%">
+            <b>DELTAG</b><br />Avdekk kom-petanse og deltagere viktig for bidrag</button>
+        <button onclick="Dispos()" class="meny" style="left:55%; top: 40%; width:40%; height:20%">
+            <b>DISPOS</b><br />Innholdsfortegnelse</button>
+        <button onclick="Innhol()" class="meny" style="left:5%; top: 65%; width:40%; height:20%">
+            <b>INNHOL</b><br />Tekst og tilhørende bilder blir generert av AI</button>
+        <button onclick="Distrib()" class="meny" style="left:55%; top: 65%; width:40%; height:20%">
+            <b>DISTRIB</b><br />Velg stil og distribuer resultatet</button>
+</div><!-- Section TECH -->
+    <div class="tech"><br /><h1>Velg tjeneste, oppgi API-nøkkel</h1>Prosess fra ide til publisering
+</div><!-- Section TEMA -->
+    <div class="tema"><br /><h1>Samle innholdet for utredningen</h1>Utredningens tema og kilder angis i samme felt, og har foreløpig ikke ubegrenset lengde. Legg inn en eller flere innholdstekster som grunnlag for utredning
+    <br /><textarea class="h" id="txtInnholdInn">Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.</textarea>
+</div><!-- Section DELTAG -->
+    <div class="deltag">
+
+</div><!-- Section DISPOS -->
+    <div class="dispos">Kapittelstruktur. Utredningens innholdsfortegnelse angis som tekst, test den med "Kapitler"-knappen.
+        Kapitler og underkapitler
+        <textarea id="txtKapittelstrukturInn">Kapittelstruktur med Kapittel 1-2 deretter Underkapittel 1a-2b for:</textarea>
+</div><!-- Section INNHOL -->
+    <div class="innhol">For bestemt innhold blir tekst og tilhørende bilder generert av AI.
+    <h3>Innledning/Kapittelsammendrag</h3><textarea id="txtInnledningInn">* Innledning på 50 ord:</textarea>
+    <h3>Kapittelbilde</h3>Bildetekst for kapitler<textarea id="txtBildeInn">Bildebeskrivelse på 25 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet:</textarea>
+    <h3>Underkapittel tekst</h3>Tekst for underkapitler<textarea id="txtBroedtekstInn">* Brødtekst på 1000 ord:&#13;</textarea>
+</div><!-- Section DISTRIB -->
+    <div class="distrib">Stil kompatibel med organisasjonen, finjustering av tekst og det visuelle
+</div>
+    
+    <!-- Kompetansebehov -->
+    <td class="h" onclick="ShowCell(-1, 6, 0)">Kompetanse<br />behov</td>
+    Tekst for å an-<br />
+    befale bidragsytere<br /><br />
+    <button onclick="tabLoadAsync(tabKompAkt, txtInnholdUt.value, txtKompetansebehovInn.value.split('**')[0], 2 /* Innsikt */
+                    , txtKompetansebehovInn.value.split('**')[1], 1 /* Vurdering */, 0 /* Aktør */, 3 /* Vekt */, ['Aktør', 'Vurdering', 'Innsikt', 'Vekt']
+                );">
+        &nbsp;&nbsp;&nbsp;Innsikt&nbsp;&nbsp;&nbsp;<br />ønsket
+    </button><br /><br />
+    <button onclick="tabAggAndGroup(tabKompAkt, 0 /* grupper på Aktør */, 3 /* sorter på Vekt */, 2 /* slett Innsikt*/);">Anbefal<br />aktør</button>
+    </td>
+    <td>
+        <textarea id="txtKompetansebehovInn" class="h">*&#13;Kortfattet, de ti viktigste punktene som krever faglig og politisk innsikt er:&#13;1. **
+                &#13;"*"&#13;&#13;De to organisasjonene i Norge best egnet (1.), og nest best egnet (2.) til å skrive om temaet, Regjeringen (et departement), KS, DFØ, digdir, e-helse, Miljødirektoratet eller andre? first answer with just the name of the organisation, then explain why in less than 20 words:&#13;&#13;1.</textarea>
+        <button onclick="console.log('Ikke implementert!');">Analyser</button>
+        <!-- Produser og generer -->
+</body>
+
+</html>
