@@ -159,47 +159,119 @@
 </script>
 </head>
 
-<body>
+<body onload="if (urlQ.get('openai_key') != null) gptId.value = urlQ.get('openai_key'); else Tech();">
     <!-- Head and navigation z-index 100 -->
     <div class="top" style="left:0%;" onclick="Meny()">UTRED.</div>
     <div id="sectTitle" class="top" style="left:55%; background-color: inherit" onclick="Meny()">MENY</div>
     <a class="top" href="#" style="left: 39.9%; width: 20.2%;background: linear-gradient(90deg, #B9C8DC 0%, #fff 100%);" onclick="Meny()">&#128585;</a>
     <a class="top" href="SelvbetjentUtredning.html" style="top:90%;left:0%;width:50%">&#128584;</a>
     <a class="top" href="https://www.slideshare.net/slideshow/embed_code/key/DpuR2oSCMk8Frj" style="top:90%; left:50%;width:50%;" onclick="ActivatePresentation()">&#128586;</a>
-    <!-- Meny -->
+<!-- Meny -->
     <div class="meny" style="background-color:#fff">
         <button onclick="Tech()" class="meny" style="left:5%; top: 15%; width:40%; height:20%">
-            <h2>TECH</h2><h3>Velg tjeneste, oppgi API-nøkkel</h3></button>
+            <h3>TECH</h3><h4>Velg tjeneste, oppgi API-nøkkel</h4></button>
         <button onclick="Tema()" class="meny" style="left:55%; top: 15%; width:40%; height:20%">
-            <h2>TEMA</h2><h3>Samle innholdet for utredningen</h3></button>
+            <h3>TEMA</h3><h4>Samle innholdet for utredningen</h4></button>
         <button onclick="Deltag()" class="meny" style="left:5%; top: 40%; width:40%; height:20%">
-            <h2>DELTAG</h2><h3>Avdekk kom-petanse og deltagere viktig for bidrag</h3></button>
+            <h3>DELTAG</h3><h4>Kompetanse og deltagere for bidrag</h4></button>
         <button onclick="Dispos()" class="meny" style="left:55%; top: 40%; width:40%; height:20%">
-            <h2>DISPOS</h2><h3>Innholdsfortegnelse</h3></button>
+            <h3>DISPOS</h3><h4>Innholdsfortegnelse</h4></button>
         <button onclick="Innhol()" class="meny" style="left:5%; top: 65%; width:40%; height:20%">
-            <h2>INNHOL</h2><h3>Tekst og tilhørende bilder blir generert av AI</h3></button>
+            <h3>INNHOL</h3><h4>Generering av tekst og bilder</h4></button>
         <button onclick="Distrib()" class="meny" style="left:55%; top: 65%; width:40%; height:20%">
-            <h2>DISTRIB</h2><h3>Velg stil og distribuer resultatet</h3></button>
-</div><!-- Section TECH -->
-    <div class="tech"><br /><h1>Velg tjeneste, oppgi API-nøkkel</h1>Prosess fra ide til publisering
-</div><!-- Section TEMA -->
+            <h3>DISTRIB</h3><h4>Velg stil og distribuer resultatet</h4></button></div>
+<!-- Section TECH -->
+<script id="_UI_load_and_visibility_">
+    let urlQ = new URLSearchParams(window.location.search);
+    let tRotate = "&#8634;";
+    let tRotating = "<div class='rotating' style='height: 18px; width: 10px; animation: rotate 2s linear infinite;'>&#8634<div>";
+</script>
+
+<script id="_OpenAI_GPT_DALL_E_">
+    function oaiJson(sSrc, isImage, maxTokens, stopArray) {
+            if (isImage==null) isImage=0;
+            let stopTag="";
+            if (stopArray != null)
+                if (stopArray.length > 0) { // ; // ,"stop": ["stopp her", "stopp ellers her"]
+                    stopTag = ',"stop": ["' + stopArray[0] + '"';
+                    for (let i = 1; i < stopArray.length; i++)
+                        stopTag += ',"' + stopArray[i] + '"';
+                    stopTag += ']';
+                }
+            return (isImage == 1)
+            ? `{"prompt":${JSON.stringify(sSrc)},"n":1,"size":"256x256","response_format":"url"}`
+            : `{"model":"${document.querySelector('input[name="gptAlg"]:checked').value}"
+                ,"prompt":${JSON.stringify(sSrc)},"temperature":0.7
+                ,"max_tokens":${maxTokens == null ? 1000 : maxTokens},"top_p":1,"frequency_penalty":0.75,"presence_penalty":0`+stopTag+`}`;
+        }
+        function oaiReq(url) {
+            let req = new XMLHttpRequest();
+            req.open("POST", url != null ? url : "https://api.openai.com/v1/completions");
+            req.setRequestHeader("Content-Type", "application/json");
+            req.setRequestHeader("Authorization", "Bearer " + gptId.value);
+            return req;
+        }    
+        function oaiReqDaE() { return oaiReq("https://api.openai.com/v1/images/generations");}
+        function oaiReqGpt() { return oaiReq("https://api.openai.com/v1/completions");}
+        async function oaiHtmlItemAsync(cDest, sSrc, isImage, doneC, errC, maxTokens, stopArray) {
+            if (isImage == null) isImage = 0;
+            let xhr = isImage == 1 ? oaiReqDaE() : oaiReqGpt();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4)
+                    if (xhr.status == 200) {
+                        var json = JSON.parse(xhr.responseText);
+                        if (isImage == 1) cDest.src=json.data[0].url; // url for image
+                        else if (cDest.value != null) cDest.value = json.choices[0].text;
+                        else cDest.innerHTML = json.choices[0].text; // text returned onto textarea (or other with value)
+                        if (doneC != null) doneC(cDest);
+                    }
+                    else {
+                        let errT = "error";
+                        try { errT = JSON.parse(xhr.responseText).error.message; } catch (e) { errT = xhr.status + " " + xhr.text }
+                        if (errC != null) errC(errT);
+                        else console.log(errT);
+                    }
+            }
+            xhr.send(oaiJson(sSrc, isImage, maxTokens, stopArray));
+        }
+</script>
+    <div class="tech"><br /><h1> Velg tjeneste, oppgi API-nøkkel, test</h1>
+        <h4>Tilbyder:<input type="radio" name="gptSup" value="OpenAI" checked>Open AI <input type="radio" name="gptSup" value="Microsoft" disabled>Microsoft</h4>
+        <h4>Algoritme: <input type="radio" name="gptAlg" value="text-davinci-003" checked>text-davinci-003</h4>
+        <h4><button onclick="window.open('https://platform.openai.com/account/api-keys');">lag nøkkel</button><input id="gptId" type="text" value="" style="width: 25%;" onchange="gptIdLink.href='?openai_key='+gptId.value" /><a id="gptIdLink" href="?" style="color:blue">bruk nøkkel</a></h4>
+        <h4><button onclick="TechTestOutTxt.innerHTML=tRotating;
+            oaiHtmlItemAsync(TechTestOutTxt, TechTestIn.value, 0
+            , (res)=> {oaiHtmlItemAsync(TechTestOutImg, res.innerText, 1)}
+            , (err)=> {TechTestOutTxt.innerHTML=err;}
+            , 20, ['.']);
+        "
+            >test</button>
+            <input id="TechTestIn" type="text" value="The Quick " style="width: 25%;">
+            <span id="TechTestOutTxt">?</span></h4><img id="TechTestOutImg" style="position: absolute; top:40%; left:40%; width:20%;height:20%;"/>
+
+    </div>
+<!-- Section TEMA -->
     <div class="tema"><br /><h1>Samle innholdet for utredningen</h1>Utredningens tema og kilder angis i samme felt, og har foreløpig ikke ubegrenset lengde. Legg inn en eller flere innholdstekster som grunnlag for utredning
     <br /><textarea class="h" id="txtInnholdInn">Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.</textarea>
-</div><!-- Section DELTAG -->
+    </div>
+<!-- Section DELTAG -->
     <div class="deltag">
     <h3>Kompetansebehov</h3>Tekst for å anbefale bidragsytere. Anbefal aktør
         <textarea id="txtKompetansebehovInn" class="h">*&#13;Kortfattet, de ti viktigste punktene som krever faglig og politisk innsikt er:&#13;1. **
                 &#13;"*"&#13;&#13;De to organisasjonene i Norge best egnet (1.), og nest best egnet (2.) til å skrive om temaet, Regjeringen (et departement), KS, DFØ, digdir, e-helse, Miljødirektoratet eller andre? first answer with just the name of the organisation, then explain why in less than 20 words:&#13;&#13;1.</textarea>
-</div><!-- Section DISPOS -->
+    </div>
+<!-- Section DISPOS -->
     <div class="dispos">Kapittelstruktur. Utredningens innholdsfortegnelse angis som tekst, test den med "Kapitler"-knappen.
         Kapitler og underkapitler
         <textarea id="txtKapittelstrukturInn">Kapittelstruktur med Kapittel 1-2 deretter Underkapittel 1a-2b for:</textarea>
-</div><!-- Section INNHOL -->
+    </div>
+<!-- Section INNHOL -->
     <div class="innhol">For bestemt innhold blir tekst og tilhørende bilder generert av AI.
     <h3>Innledning/Kapittelsammendrag</h3><textarea id="txtInnledningInn">* Innledning på 50 ord:</textarea>
     <h3>Kapittelbilde</h3>Bildetekst for kapitler<textarea id="txtBildeInn">Bildebeskrivelse på 25 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet:</textarea>
     <h3>Underkapittel tekst</h3>Tekst for underkapitler<textarea id="txtBroedtekstInn">* Brødtekst på 1000 ord:&#13;</textarea>
-</div><!-- Section DISTRIB -->
+    </div>
+<!-- Section DISTRIB -->
     <div class="distrib">Stil kompatibel med organisasjonen, finjustering av tekst og det visuelle
 </div>
 </body>
