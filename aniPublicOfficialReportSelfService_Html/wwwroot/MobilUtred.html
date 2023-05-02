@@ -1,15 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="no">
-<head>
+<head>  
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>Selvbetjent utredning med GPT-3 (Open AI GPT-3 text-davinci-03)</title>
-<!-- Style -->
-    <!-- link rel="stylesheet" href="SelvbetjentUtredningMedAi.css" /-->
-    <style id="progress_rotate">
-        .rotate { animation: rotate 4s linear infinite;}
-        @keyframes rotate { 0% { transform: rotate(360deg) } 100% { transform: rotate(0deg) } }
-    </style>
+    <script src="MobilUtred.js"></script>
+    <!-- Style -->
     <style id="product">/* product_active (items that will be changes by style) */
         th.product_active { background-image: url("file:///C:/data/HAL9000.png"); background-repeat: no-repeat;
                             background-color:black; background-position: 10px 10px;height:70px; background-size: 65px 50px }
@@ -112,7 +108,9 @@
         h4.product_noMiljoedirektoratet { font-size:37px; font-weight:400 }
         li.product_noMiljoedirektoratet { display:none }
     </style>
-    <style>
+    <style id="main_and_eg_progress_rotate">
+        .rotate { animation: rotate 4s linear infinite;}
+        @keyframes rotate { 0% { transform: rotate(360deg) } 100% { transform: rotate(0deg) } }
         html { -webkit-text-size-adjust: none; /* Prevent font scaling in landscape */ }
         body { font-family:sans-serif; font-weight: 400; }
         h1 { font-weight: 400; }
@@ -120,6 +118,7 @@
         h3 { font-weight: 400; }
         h4 { font-weight: 400; }
         textarea {width:95%;}
+        input {width:45%;}
         iframe {width:95%;}
         .top { position: fixed; z-index: 100; top: 0%; left:0%; width: 45%; height: 10%; 
                 background-color:#B9C8DC; font-size: 40px; text-align: center; }
@@ -132,18 +131,16 @@
         .innhol { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
         .distrib { position: fixed; z-index: 0; top: 10%; left:0%; width: 100%; height: 80%; background-color:#fff; }
     </style>
-
-<script src="MobilUtred.js"></script>
-
 </head>
 
 <body onload="l()">
-    <!-- Head and navigation z-index 100 -->
-    <div class="top" style="left:0%;" onclick="Meny()">UTRED.</div>
-    <div id="sectTitle" class="top" style="left:55%; background-color: inherit" onclick="Meny()">MENY</div>
-    <a class="top" href="#" style="left: 39.9%; width: 20.2%;background: linear-gradient(90deg, #B9C8DC 0%, #fff 100%);" onclick="Meny()">&#128585;</a>
-    <a id="suLink" class="top" href="SelvbetjentUtredning.html" style="top:90%;left:0%;width:50%">&#128584;</a>
-    <a class="top" href="https://www.slideshare.net/slideshow/embed_code/key/DpuR2oSCMk8Frj" style="top:90%; left:50%;width:50%;" onclick="ActivatePresentation()">&#128586;</a>
+<!-- Head and navigation z-index 100 -->
+    <div class="top" style="left:0%;" onclick="Meny()">.UTRED
+        <div id="sectTitle" class="top" style="left:55%; background-color: #fff" onclick="Meny()">.MENY</div>
+        <a class="top" href="#" style="left: 39.9%; width: 20.2%;background: linear-gradient(90deg, #B9C8DC 0%, #fff 100%);" onclick="Meny()">&#128585;</a>
+        <a id="suLink" class="top" href="SelvbetjentUtredning.html" style="top:90%;left:0%;width:50%">&#128584;</a>
+        <a class="top" href="https://www.slideshare.net/slideshow/embed_code/key/DpuR2oSCMk8Frj" style="top:90%; left:50%;width:50%;" onclick="ActivatePresentation()">&#128586;</a>
+    </div>
 <!-- Meny -->
     <div class="meny" style="background-color:#fff">
         <button onclick="Tech()" class="meny" style="left:5%; top: 15%; width:40%; height:20%"><h3>TECH</h3><h4>Velg tjeneste, sett API-nøkkel</h4></button>
@@ -151,11 +148,12 @@
         <button onclick="Deltag()" class="meny" style="left:5%; top: 40%; width:40%; height:20%"><h3>DELTAG</h3><h4>Kompetanse og deltagere for bidrag</h4></button>
         <button onclick="Dispos()" class="meny" style="left:55%; top: 40%; width:40%; height:20%"><h3>DISPOS</h3><h4>Innholdsfortegnelse</h4></button>
         <button onclick="Innhol()" class="meny" style="left:5%; top: 65%; width:40%; height:20%"><h3>INNHOL</h3><h4>Generering av tekst og bilder</h4></button>
-        <button onclick="Distrib()" class="meny" style="left:55%; top: 65%; width:40%; height:20%"><h3>DISTRIB</h3><h4>Velg stil og distribuer resultatet</h4></button></div>
+        <button onclick="Distrib()" class="meny" style="left:55%; top: 65%; width:40%; height:20%"><h3>DISTRIB</h3><h4>Velg stil og distribuer resultatet</h4></button>
+    </div>
 <!-- Section TECH -->
     <div class="tech"><br /><h1> Velg tjeneste, sett API-nøkkel, test</h1>
-        <h4>Tilbyder:<input type="radio" name="gptSup" value="OpenAI" checked>Open AI <input type="radio" name="gptSup" value="Microsoft" disabled>Microsoft</h4>
-        <h4>Algoritme: <input type="radio" name="gptAlg" value="text-davinci-003" checked>text-davinci-003</h4>
+        <h4>Tilbyder:<input type="radio" name="gptSup" value="OpenAI" checked style="width: 5%;">Open AI <input type="radio" name="gptSup" value="Microsoft" disabled style="width: 5%;">Microsoft</h4>
+        <h4>Algoritme: <input type="radio" name="gptAlg" value="text-davinci-003" checked style="width: 5%;">text-davinci-003</h4>
         <h4><button onclick="window.open('https://platform.openai.com/account/api-keys');">Lag nøkkel for gratis API-kall</button> <input id="gptId" type="text" value="" style="width: 25%;" onchange="gptIdLink.href='?openai_key='+gptId.value" /> <a id="gptIdLink" href="?" style="color:blue">bruk nøkkel</a></h4>
         <h4><button onclick="TechTestOutTxt.innerHTML=tRotating;
             oaiHtmlItemAsync(TechTestOutTxt, TechTestIn.value, 0, (res)=> {oaiHtmlItemAsync(TechTestOutImg, res.innerText, 1)}, (err)=> {TechTestOutTxt.innerHTML=err;}, 20, ['.']);">Test å generere tekst og bilde</button>
@@ -163,7 +161,9 @@
             <br /><span id="TechTestOutTxt">?</span></h4><img id="TechTestOutImg" style="position: absolute; top:70%; left:40%; width:20%;height:20%;"/>
     </div>
 <!-- Section TEMA -->
-    <div class="tema"><br /><h1>Samle innholdet for utredningen</h1>Utredningens tema og kilder angis i samme felt, og har foreløpig ikke ubegrenset lengde. Legg inn en eller flere innholdstekster som grunnlag for utredning
+    <div class="tema"><br /><h1>Samle innholdet for utredningen</h1>
+        Tittel: <input type="text"></input><br/>
+        Utredningens tema og kilder angis i samme felt, og har foreløpig ikke ubegrenset lengde. Legg inn en eller flere innholdstekster som grunnlag for utredning
         <textarea id="txtInnholdInn" style="position: absolute; left:0%; top:50%;height:40%">Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.</textarea>
         <button style="position: absolute; left: 0%; width: 5%; top: 45%;" onclick="TemaSurf.style.display=''">></button>
         <button style="position: absolute; left: 86%; width: 10%; top: 45%;" onclick="txtInnholdInn.select()">Sel</button>
@@ -192,7 +192,7 @@
     </div>
 <!-- Section DISTRIB -->
     <div class="distrib">Stil kompatibel med organisasjonen, finjustering av tekst og det visuelle
-</div>
+    </div>
 </body>
 
 </html>

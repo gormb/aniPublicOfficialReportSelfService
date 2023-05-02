@@ -409,6 +409,7 @@
 
         function l() {
             ShowCell(-1, -1, 'none'); // hide all
+            try { document.getElementById('suLink').href = 'MobilUtred.html' + window.location.search; } catch (e) { }
             try { navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; UpdateOutOrShowSamleButton(); }); } catch (e) { }
             UpdateOutOrShowSamleButton();
             if (uRLSearchParams.get('openai_key') != null)
@@ -889,7 +890,7 @@
     <center>
         <span id="progressText">status</span>
         <progress id="progressBar" value="0" max="20" style="display:none;width:100%;height:35px;position:relative;top:-26px;z-index:-1"></progress>
-        <a href="MobilUtred.html" style="position:absolute;left:0px;color:white">_*_</a>
+        <a id="suLink" href="MobilUtred.html" style="position:absolute;left:0px;color:white">_*_</a>
         <a href="#presentasjon" style="position:absolute;left:95%;color:blue" onclick="ActivatePresentation()">_*_</a>
 
         <table cellpadding="0">

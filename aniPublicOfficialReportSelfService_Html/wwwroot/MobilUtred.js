@@ -5,7 +5,7 @@ let tRotating = "<div class='rotating' style='height: 18px; width: 10px; animati
 function l() {
     if (urlQ.get('openai_key') != null) gptId.value = urlQ.get('openai_key'); else Tech();
     document.getElementById('suLink').href = 'SelvbetjentUtredning.html' + window.location.search;
-    //try { navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; }); } catch (e) { }
+    // try { navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; }); } catch (e) { }
 }
 let zIndexCurrent = 1, sClass = '.meny', sActive = sMeny = 0, sTech=1, sTema=2, sDeltag=3, sDispos=4, sInnhol=5, sDistrib=6;
 function ActSect(sect, sTitle) {
@@ -23,13 +23,13 @@ function ActSect(sect, sTitle) {
         document.querySelectorAll(sClass).forEach(function (el) { el.style.zIndex = zIndexCurrent; });
     }
 }
-function Meny() { ActSect(sMeny, 'MENY'); }
-function Tech() { ActSect(sTech, 'TECH'); }
-function Tema() { ActSect(sTema, 'TEMA'); }
-function Deltag() { ActSect(sDeltag, 'DELTAG'); }
-function Dispos() { ActSect(sDispos, 'DISPOS'); }
-function Innhol() { ActSect(sInnhol, 'INNHOL'); }
-function Distrib() { ActSect(sDistrib, 'DISTRIB'); }
+function Meny() { ActSect(sMeny, '.MENY'); }
+function Tech() { ActSect(sTech, '.TECH'); }
+function Tema() { ActSect(sTema, '.TEMA'); }
+function Deltag() { ActSect(sDeltag, '.DELTAG'); }
+function Dispos() { ActSect(sDispos, '.DISPOS'); }
+function Innhol() { ActSect(sInnhol, '.INNHOL'); }
+function Distrib() { ActSect(sDistrib, '.DISTRIB'); }
 
 
 function oaiJson(sSrc, isImage, maxTokens, stopArray) {
