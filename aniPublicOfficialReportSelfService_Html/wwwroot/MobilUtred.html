@@ -155,43 +155,68 @@
         <h4>Tilbyder:<input type="radio" name="gptSup" value="OpenAI" checked style="width: 5%;">Open AI <input type="radio" name="gptSup" value="Microsoft" disabled style="width: 5%;">Microsoft</h4>
         <h4>Algoritme: <input type="radio" name="gptAlg" value="text-davinci-003" checked style="width: 5%;">text-davinci-003</h4>
         <h4><button onclick="window.open('https://platform.openai.com/account/api-keys');">Lag nøkkel for gratis API-kall</button> <input id="gptId" type="text" value="" style="width: 25%;" onchange="gptIdLink.href='?openai_key='+gptId.value" /> <a id="gptIdLink" href="?" style="color:blue">bruk nøkkel</a></h4>
-        <h4><button onclick="TechTestOutTxt.innerHTML=tRotating;
-            oaiHtmlItemAsync(TechTestOutTxt, TechTestIn.value, 0, (res)=> {oaiHtmlItemAsync(TechTestOutImg, res.innerText, 1)}, (err)=> {TechTestOutTxt.innerHTML=err;}, 20, ['.']);">Test å generere tekst og bilde</button>
+        <h4><button onclick="TechTestOutTxt.innerHTML=tRotating; oaiHtmlItemAsync(TechTestOutTxt, TechTestIn.value, 0, (res)=> {oaiHtmlItemAsync(TechTestOutImg, res.innerText, 1)}, (err)=> {TechTestOutTxt.innerHTML=err;}, 20, ['.']);">Test å generere tekst og bilde</button>
             <input id="TechTestIn" type="text" value="The Quick " style="width: 25%;">
             <br /><span id="TechTestOutTxt">?</span></h4><img id="TechTestOutImg" style="position: absolute; top:70%; left:40%; width:20%;height:20%;"/>
+        <button onclick="Meny()" style="position:absolute; left:0%; top: 91%; width:10%; height:9%"><h3><</h3></button>
+        <button onclick="Tema()" style="position:absolute; left:90%; top: 91%; width:10%; height:9%"><h3>></h3></button>
     </div>
 <!-- Section TEMA -->
     <div class="tema"><br /><h1>Samle innholdet for utredningen</h1>
-        Tittel: <input type="text"></input><br/>
         Utredningens tema og kilder angis i samme felt, og har foreløpig ikke ubegrenset lengde. Legg inn en eller flere innholdstekster som grunnlag for utredning
-        <textarea id="txtInnholdInn" style="position: absolute; left:0%; top:50%;height:40%">Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.</textarea>
+        <textarea id="txtInnhold" style="position: absolute; left:0%; top:50%;height:40%">Vinterfiske handler ofte om å få mest mulig ut av de forskjellige artene som finnes langs svaberget. Sjøørret er den mest populære fisken, og den er enkel å få tak i i høykvalitet. Du finner den i fjorder, skjærgårder og langs kysten. Torsk er også vanlig, og den fiskes best i områder med hardbunn som skjær og viker. Den rikholdige fjære som finnes langs kysten kan også by på gode fiskemuligheter. Lyr og sei er også vanlige fiskearter og kan også fanges fra båt.Det er mange som driver med artsfiske og prøver å fange så mange forskjellige arter som mulig.Dette krever ofte at man spesialiserer seg på en bestemt type fisk og fiske metode.Dette bør man gjøre med stor forsiktighet, da man kan ødelegge sensitive økosystemer som fisker etter.</textarea>
         <button style="position: absolute; left: 0%; width: 5%; top: 45%;" onclick="TemaSurf.style.display=''">></button>
-        <button style="position: absolute; left: 86%; width: 10%; top: 45%;" onclick="txtInnholdInn.select()">Sel</button>
         <div id="TemaSurf" style="display:none ;position:absolute;left:1%; top:2%;height:96%;width:93%;background-color: bisque;">
             <button style="position: relative; left:1%;width:5.5%;" onclick="TemaSurf.style.display='none'"><</button>
             <input id="TemaNavU" type="text" style="position: relative; left:1%; width:70%" value="https://www.bing.com/search?q=vinterfiske"/>
             <button style="position: relative; left:1%;width:8%;" onclick="TemaNavB.src=TemaNavU.value">Nav</button>
             <iframe id="TemaNavB" style="top: 20%;height:80%;width:100%;" src=""></iframe>
         </div>
+        <button onclick="Meny()" style="position:absolute; left:0%; top: 91%; width:10%; height:9%"><h3><</h3></button>
+        <button style="position: absolute; left: 30%; width: 40%; top: 91%;" onclick="txtInnhold.select()"><h3>Rediger</h3></button>
+        <button onclick="Deltag()" style="position:absolute; left:90%; top: 91%; width:10%; height:9%"><h3>></h3></button>
     </div>
 <!-- Section DELTAG -->
-    <div class="deltag"><h1>Kompetansebehov</h1>Tekst for å anbefale bidragsytere. Anbefal aktør
-        <textarea id="txtKompetansebehovInn" style="height:20%">*&#13;Kortfattet, de ti viktigste punktene som krever faglig og politisk innsikt er:&#13;1. **
-                &#13;"*"&#13;&#13;De to organisasjonene i Norge best egnet (1.), og nest best egnet (2.) til å skrive om temaet, Regjeringen (et departement), KS, DFØ, digdir, e-helse, Miljødirektoratet eller andre? first answer with just the name of the organisation, then explain why in less than 20 words:&#13;&#13;1.</textarea>
+    <div class="deltag"><h3>Innsikt og aktører</h3>
+        <textarea id="txtKompetansebehov" style="height:5%">Kortfattet, de to viktigste punktene som krever faglig og politisk innsikt er:&#13</textarea>
+        <textarea id="txtOrg" style="height:15%">De to organisasjonene i Norge best egnet (1.), og nest best egnet (2.) til å skrive om temaet, Regjeringen (et departement), KS, DFØ, digdir, e-helse, Miljødirektoratet eller andre? first answer with just the name of the organisation, then explain why in less than 20 words:&#13;1.</textarea>
+        <div style=" overflow-wrap: normal; overflow-y: scroll; position: absolute; left: 5%; top: 40%; height: 50%; width: 90% ">
+            <table id="tabKompAkt" border="0" style="width:100%"></table>
+        </div>
+        <button style="position:absolute; left:15%; top: 91%; width:30%; height:9%" onclick="tabLoadAsync(tabKompAkt, txtInnhold.value, txtKompetansebehov.value, 2 /* Innsikt */, txtOrg.value, 1 /* Vurdering */, 0 /* Aktør */, 3 /* Vekt */, ['Aktør', 'Vurdering', 'Innsikt', 'Vekt']);">Innsikt</button>
+        <button style="position:absolute; left:55%; top: 91%; width:30%; height:9%" onclick="tabAggAndGroup(tabKompAkt, 0 /* grupper på Aktør */, 3 /* sorter på Vekt */, 2 /* slett Innsikt*/);">Aktør</button>
+        <button onclick="Tema()" style="position:absolute; left:0%; top: 91%; width:10%; height:9%"><h3><</h3></button>
+        <button onclick="Dispos()" style="position:absolute; left:90%; top: 91%; width:10%; height:9%"><h3>></h3></button>
     </div>
 <!-- Section DISPOS -->
     <div class="dispos">Kapittelstruktur. Utredningens innholdsfortegnelse angis som tekst, test den med "Kapitler"-knappen.
         Kapitler og underkapitler
-        <textarea id="txtKapittelstrukturInn">Kapittelstruktur med Kapittel 1-2 deretter Underkapittel 1a-2b for:</textarea>
+        <textarea id="txtKapittelstruktur">Kapittelstruktur med Kapittel 1-2 deretter Underkapittel 1a-2b for:</textarea>
+        <div style=" overflow-wrap: normal; overflow-y: scroll; position: absolute; left: 5%; top: 20%; height: 70%; width: 90% ">
+            <table id="tabChapt" border="0" style="width:100%"></table>
+        </div>
+        <button onclick="Deltag()" style="position:absolute; left:0%; top: 91%; width:10%; height:9%"><h3><</h3></button>
+        <button style="position: absolute; left: 30%; width: 40%; top: 91%;" onclick="/*oaiValAsync(txtKapittelstruktur.value + '\n' + txtInnhold.value, 0, (gptOut) => */; setChapters(1)/*(gptOut), (err) => setChaptersError(err))*/"
+        ><h3>Kapitler</h3></button>
+        <button onclick="Innhol()" style="position:absolute; left:90%; top: 91%; width:10%; height:9%"><h3>></h3></button>
     </div>
 <!-- Section INNHOL -->
     <div class="innhol">For bestemt innhold blir tekst og tilhørende bilder generert av AI.
-    <h3>Innledning/Kapittelsammendrag</h3><textarea id="txtInnledningInn">* Innledning på 50 ord:</textarea>
-    <h3>Kapittelbilde</h3>Bildetekst for kapitler<textarea id="txtBildeInn">Bildebeskrivelse på 25 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet:</textarea>
-    <h3>Underkapittel tekst</h3>Tekst for underkapitler<textarea id="txtBroedtekstInn">* Brødtekst på 1000 ord:&#13;</textarea>
+        <div style="overflow-wrap: normal; position: absolute; left: 2%; top: 5%; height: 85%; width: 47% ">
+            <h3>Innledning/<br />kapittelsammendrag</h3><textarea id="txtInnledning">* Innledning på 50 ord:</textarea>
+            <h3>Kapittelbilde</h3>Bildetekst for kapitler<textarea id="txtBilde">Bildebeskrivelse på 25 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet:</textarea>
+            <h3>Underkapittel tekst</h3>Tekst for underkapitler<textarea id="txtBroedtekst">* Brødtekst på 1000 ord:&#13;</textarea>
+        </div>
+        <div style="overflow-wrap: normal; overflow-y: scroll; position: absolute; left: 51%; top: 10%; height: 80%; width: 48% ">
+            <table id="tabContent" border="1" style="width:100%"></table>
+        </div>
+        <button onclick="Dispos()" style="position:absolute; left:0%; top: 91%; width:10%; height:9%"><h3><</h3></button>
+        <button onclick="Distrib()" style="position:absolute; left:90%; top: 91%; width:10%; height:9%"><h3>></h3></button>
     </div>
 <!-- Section DISTRIB -->
     <div class="distrib">Stil kompatibel med organisasjonen, finjustering av tekst og det visuelle
+        <button onclick="Innhol()" style="position:absolute; left:0%; top: 91%; width:10%; height:9%"><h3><</h3></button>
+        <button onclick="Meny()" style="position:absolute; left:90%; top: 91%; width:10%; height:9%"><h3>></h3></button>
     </div>
 </body>
 
