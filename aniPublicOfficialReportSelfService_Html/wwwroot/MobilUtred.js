@@ -244,7 +244,7 @@ function structureAsChSub(gptOut) {
 
 function structureChaptId(iC, iS) { return 'chapt' + (iC == null ? '' : '_' + iC) + (iS == null ? '' : '_' + iS);}
 
-function structureAsHtmlItem(ch, iC, iS) { return res = '<a href="#' + structureChaptId(iC, iS) + '">' + ch.replace(/.*:/, "").trim() + '</a>';}
+function structureAsHtmlItem(ch, iC, iS) { return res = '<x href="#' + structureChaptId(iC, iS) + '">' + ch.replace(/.*:/, "").trim() + '</x>';}
 
 function structureAsHtml(structure) {
     let res = "<ul>";
