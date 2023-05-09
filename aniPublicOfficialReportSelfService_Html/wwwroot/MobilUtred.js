@@ -1,18 +1,19 @@
-﻿let g_aktoerer = ["Regjeringen", "KS", "DFØ", "digdir", "Datatilsynet", "e-helse", "Miljødirektoratet", "DIGG"];
-let g_regjeringen = ["Barne- og familiedepartementet", "Finansdepartementet", "Justisdepartementet", "KDD", "Kommunal- og distriktsdepartementet", "Kommunal- og moderniseringsdepartementet", "Kulturdepartementet", "Landbruks- og matdepartementet", "Nærings- og fiskeridepartementet", "Olje- og energidepartementet", "Utenriksdepartementet", "Helse- og omsorgsdepartementet", "Kirkedepartementet", "Barne-, likestillings- og inkluderingsdepartementet", "Klima- og miljødepartementet", "Utdannings- og forskningsdepartementet"];
-let urlQ = new URLSearchParams(window.location.search);
+﻿let urlQ = new URLSearchParams(window.location.search);
+let srcBlankImg = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D"
 let tRotate = "&#8634;";
 let tRotating = "<div class='rotating' style='height: 18px; width: 10px; animation: rotate 2s linear infinite;'>&#8634<div>";
+let structure = "1. Chapt\n1a. Sub Chapt\n2.Another Chapt";
+let structureCh = [];
+let structureSub = [[]];
+let ChSub = [structureCh, structureSub];
 
 function l() {
     if (urlQ.get('openai_key') != null) gptId.value = urlQ.get('openai_key'); else Tech();
     document.getElementById('suLink').href = 'SelvbetjentUtredning.html' + window.location.search;
-    // try { navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; }); } catch (e) { }
+    // try { navigator.clipboard.readText().then((t) => {txtInnhold.value = t; }); } catch (e) { }
     try { tabReset(tabKompAkt, ['Aktør', 'Vurdering', 'Innsikt', 'Vekt'], 1); } catch (e) { }
     // Debug/dev
-    Dispos();
-    setChapters(1);
-    Innhol();
+    //Distrib();
 }
 let zIndexCurrent = 1, sClass = '.meny', sActive = sMeny = 0, sTech=1, sTema=2, sDeltag=3, sDispos=4, sInnhol=5, sDistrib=6;
 function ActSect(sect, sTitle) {
@@ -26,7 +27,7 @@ function ActSect(sect, sTitle) {
         else if (sect == sDeltag) sClass = '.deltag';
         else if (sect == sDispos) sClass = '.dispos';
         else if (sect == sInnhol) sClass = '.innhol';
-        else if (sect == sDistrib) sClass = '.distrib';
+        else if (sect == sDistrib) { sClass = '.distrib'; document.getElementById('tabPreview').innerHTML = document.getElementById('tabContent').innerHTML; }
         document.querySelectorAll(sClass).forEach(function (el) { el.style.zIndex = zIndexCurrent; });
     }
 }
@@ -213,6 +214,7 @@ async function tabLoadAsync(cTab, inTxt, kompetanseQ, colKompetanse, aktoerQ, co
 
 async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopArray) {
     oaiValAsync(structuring + "\n" + inTxt, 0, (gptOut) => {
+        structure = gptOut;
         let ChSub = structureAsChSub(gptOut);
         doneC(ChSub[0], ChSub[1], gptOut);
     }, errC, maxTokens, stopArray);
@@ -220,10 +222,6 @@ async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopAr
 
 //////////////////////////////////////////////////
 // chapter
-
-let structureCh = [];
-let structureSub = [[]];
-let ChSub = [structureCh, structureSub];
 
 function structureAsChSub(gptOut) {
     structureCh = [];
@@ -260,40 +258,41 @@ function structureAsHtml(structure) {
     }
     res += "</ul>"
     return res + "</ul>";
-} 
+}
 
-function setChapters(gpt) {
-    let gptOut = '\n\nKapittel 1: Fiskearter\nUnderkapittel 1a: Sjøørret\nUnderkapittel 1b: Torsk\nUnderkapittel 1c: Lyr og sei\n\nKapittel 2: Artsfiske og fiskemetoder \nUnderkapittel 2a: Spesialiserte fiskemetoder \nUnderkapittel 2b: Forsiktighet når man fisker';
-    tabChapt.innerHTML = '<tr><td  class="product_active">' + structureAsHtml(gptOut) + '</td></tr>';
+function refChapts() { tabChapt.innerHTML = tabContent.innerHTML = "<tr><td>" + tRotating + "</td></tr>";}
+function setChapters(gptOut) {
+    tabChapt.innerHTML = '<tr><td class="product_active">' + structureAsHtml(gptOut) + '</td></tr>';
     tabContent.innerHTML = generateAll_ContentTableBlank();
 }
-
-function setChaptersError(err) {
-    tabChapt.innerHTML = '<tr><td  class="product_active">' + err + '</td></tr>';
-}
+function setChaptersError(err) { setChapters("\n\nKapittel 1: Error\nUnderkapittel 1a: <" + err + "\n\nKapittel 2: For feilmeldinger relatert API-nøkkel\nUnderkapittel 2a: Prøv TECH-menyen"); /*tabChapt.innerHTML = '<tr><td class="product_active">' + err + '</td></tr>';*/ }
 
 //////////////////////////////////////////////////////////////////
 // Content
 
-//let structureCh = [];
-//let structureSub = [[]];
-//let ChSub = [structureCh, structureSub];
-
-let srcBlankImg = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D"
-
-function htmlChaptTxtRefresh(iC) { return '<button class="editControl" onclick="introAsync(\'chapt_' + iC + '_tekst\', txtInnledningInn.value, gStructureCh[' + iC + '], gStructure, txtInnholdUt.value,null,null,null,structureStopAfter(' + iC + '))">innledning ' + tRotate + '</button>'; }
-function htmlSubchaptTxtRefresh(iC, iS) { return '<button class="editControl" onclick="textAsync(\'chapt_' + iC + '_' + iS + '_tekst\', txtBroedtekstInn.value, gStructureSub[' + iC + '][' + iS + '], gStructure, txtInnholdUt.value, null, null, null, structureStopAfter(' + iC + ',' + iS + '))">innhold ' + tRotate + '</button>'; }
-function htmlImgTxtRefresh(iC, txt) { return '<button class="editControl" onclick="picturedescriptionAsync(\'chapt_' + iC + '_bildetekst\', txtBildeInn.value, gStructureCh[' + iC + '], chapt_' + iC + '_tekst.innerHTML, (cId) => {/*alert(cId.innerHTML);*/ })">utgangspunkt for bilde ' + tRotate + '</button>'; }
+function htmlChaptTxtRefresh(iC) { return '<button class="editControl" onclick="introAsync(\'chapt_' + iC + '_tekst\', txtInnledning.value, structureCh[' + iC + '], structure, txtInnhold.value,null,null,null,structureStopAfter(' + iC + '))">innledning ' + tRotate + '</button>'; }
+function htmlSubchaptTxtRefresh(iC, iS) { return '<button class="editControl" onclick="textAsync(\'chapt_' + iC + '_' + iS + '_tekst\', txtBroedtekst.value, structureSub[' + iC + '][' + iS + '], structure, txtInnhold.value, null, null, null, structureStopAfter(' + iC + ',' + iS + '))">innhold ' + tRotate + '</button>'; }
+function htmlImgTxtRefresh(iC, txt) { return '<button class="editControl" onclick="picturedescriptionAsync(\'chapt_' + iC + '_bildetekst\', txtBilde.value, structureCh[' + iC + '], chapt_' + iC + '_tekst.innerHTML, (cId) => {alert(cId.innerHTML); })">utgangspunkt for bilde ' + tRotate + '</button>'; }
 function htmlImgRefresh(iC) { return '<button class="editControl" onclick="pictureAsync(\'chapt_' + iC + '_bilde\', chapt_' + iC + '_bildetekst.innerHTML)">bilde ' + tRotate + '</button>'; }
 
-function generateAll_ContentTableBlank() {
-    let res = '';// '<tr><td id="' + structureChaptId() +'">genererer innhold...</td></tr>';
+function intros() {}
+function descrs() {}
+function imgs() {}
+function texts() {}
+
+function structureStopAfter(iC, iS) {
+    if (iS == null) return ['Kapittel ' + (iC + 2), 'Underkapittel ' + (iC + 1) + 'a']; // chapter; next chapter or first subchapter
+    else return ['Kapittel ' + (iC + 2), 'Underkapittel ' + (iC + 1) + String.fromCharCode('b'.charCodeAt(0)+iS)]; // subchapter; next subchapter or chapter
+}
+
+function generateAll_ContentTableBlank() { /*document.getElementById("bintros").style.display = document.getElementById("bdescrs").style.display = document.getElementById("bimgs").style.display = document.getElementById("btexts").style.display = 'display';*/
+    let res = '';
     for (let i = 0; i < structureCh.length && i < structureSub.length; i++) {
         res += '<tr><td id="' + structureChaptId(i) + '" class="product_active">'
             + '<center><img width="200" height="200" id="' + structureChaptId(i) + '_bilde" src="' + srcBlankImg +'" onclick="window.speechSynthesis.speak(new SpeechSynthesisUtterance(' + structureChaptId(i) + '_bildetekst.innerHTML));"/></center>'
+            + htmlImgTxtRefresh(i, structureChaptId(i) + '_bildetekst')
             + htmlImgRefresh(i)
             + '<div class="editControl" id="' + structureChaptId(i) + '_bildetekst" class="imagetext">' + structureAsHtmlItem(structureCh[i]) + '...</div>'
-            + htmlImgTxtRefresh(i, structureChaptId(i) + '_bildetekst')
             + '<h2 class="product_active">' + structureAsHtmlItem(structureCh[i]) + '</h2>'
             + '<span id="' + structureChaptId(i) + '_tekst">kapitteltekst...</span>'
             + htmlChaptTxtRefresh(i)
@@ -311,12 +310,74 @@ function generateAll_ContentTableBlank() {
 //////////////////////////////////////////
 // text, picturedesc, picture
 
-async function pictureAsync(scDest, inTxt, doneC, errC) {
+//introAsync(\'chapt_' + iC + '_tekst\', txtInnledning.value, gStructureCh[' + iC + '], gStructure, txtInnhold.value,null,null,null,structureStopAfter(' + iC + '))
+async function introAsync(scDest, introducing, chapter, structure, inTxt, doneC, errC, maxTokens, stopArray) {
+    let cDest = document.getElementById(scDest);
+    cDest.innerHTML = tRotating;
+    let gptIn = inTxt + "\n" + structure + "\n" + introducing.replace("*", chapter)
+    return oaiHtmlItemAsync(cDest, gptIn, 0, /*doneC*/ null, /*errC!=null ? errC :*/ (errT) => { cDest.innerHTML = errT; }, maxTokens, stopArray);
+}
+
+//textAsync(\'chapt_' + iC + '_' + iS + '_tekst\', txtBroedtekst.value, gStructureSub[' + iC + '][' + iS + '], gStructure, txtInnhold.value, null, null, null, structureStopAfter(' + iC + ',' + iS + '))
+async function textAsync(scDest, texting, subchapter, structure, inTxt, doneC, errC, maxTokens, stopArray) {
+    let cDest = document.getElementById(scDest);
+    cDest.innerHTML = tRotating;
+    let gptIn = inTxt + "\n\n" + structure + "\n\n" + texting.replace("*", subchapter);
+    return oaiHtmlItemAsync(cDest, gptIn, 0, doneC, /*errC != null ? errC :*/ (errT) => { cDest.innerHTML = errT; }, maxTokens, stopArray);
+}
+
+//picturedescriptionAsync(\'chapt_' + iC + '_bildetekst\', txtBilde.value, gStructureCh[' + iC + '], chapt_' + iC + '_tekst.innerHTML/*, (cId) => {alert(cId.innerHTML);}*/)
+async function picturedescriptionAsync(scDest, picturing, chapter, inTxt/*, doneC, errC, stopArray*/) {
+    let cDest = document.getElementById(scDest);
+    cDest.innerHTML = tRotating;
+    let gptIn = inTxt + "\n\n" + chapter + "\n\n" + inTxt + "\n\n" + picturing;
+    return oaiHtmlItemAsync(cDest, gptIn, 0, null/*doneC*/, (errT) => { cDest.innerHTML = errT; }, 256/*, stopArray*/);
+}
+
+//pictureAsync(\'chapt_' + iC + '_bilde\', chapt_' + iC + '_bildetekst.innerHTML)
+async function pictureAsync(scDest, inTxt/*, doneC, errC*/) {
     document.getElementById(scDest).src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D";
     return oaiHtmlItemAsync(document.getElementById(scDest), inTxt, 1, (imgId) => {
         imgId.alt = inTxt;
         imgId.title = inTxt;
-        if (doneC != null)
-            doneC(imgId);
-    }, errC);
+    //    if (doneC != null)
+    //        doneC(imgId);
+    }/*, errC*/);
+}
+
+/////////////////////////////////////////////////////////////
+// batch's
+function intros() { for (let i = 0; i < structureCh.length; i++) introAsync(structureChaptId(i) + '_tekst', txtInnledning.value, structureCh[i], structure, txtInnhold.value, null, null, 2000, structureStopAfter(i));}
+function descrs() { for (let i = 0; i < structureCh.length; i++) picturedescriptionAsync(structureChaptId(i) + '_bildetekst', txtBilde.value, structureCh[i], document.getElementById(structureChaptId(i) + '_tekst').innerHTML);}
+function imgs() { for (let i = 0; i < structureCh.length; i++) pictureAsync(structureChaptId(i) + '_bilde', document.getElementById(structureChaptId(i) + '_bildetekst').innerHTML); }
+function texts() {
+    for (let i = 0; i < structureCh.length && i < structureSub.length; i++)
+        for (let j = 0; j < structureSub[i].length; j++)
+            textAsync(structureChaptId(i, j) + '_tekst', txtBroedtekst.value, structureSub[i][j], structure, txtInnhold.value, null, null, 2000, structureStopAfter(i, j));
+}
+
+/////////////////////////////////////////////////////////////
+// produser
+
+function Produser(tit, print, close) {
+    let w = screen.width, h = screen.height;
+    var win = window.open("", tit, "location=no,toolbar=yes,left=" + w + ",top=0,width=" + w + ",height=" + h);
+    // "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable = yes
+    win.document.body.innerHTML = tabPreview.outerHTML;
+    try { win.document.getElementById('overviewTable').outerHTML = ""; } catch (e) { } // delete left hand index
+    try { win.document.querySelectorAll('button').forEach(button => { try { button.remove(); } catch (e) { } }); } catch (e) { } // delete buttons
+    try { win.document.querySelectorAll('.editControl').forEach(button => { try { button.remove(); } catch (e) { } }); } catch (e) { } // delete all edit controls
+
+    let stl = '<style>a{color:black;text-decoration:none;}'
+        + 'th{background-color:lightblue;text-align:left;padding-left:9px;}'
+        + 'td{vertical-align:top;padding:10px;}'
+        + 'div.editControl{}';
+    for (var i = 0; i < document.styleSheets[iStyleSheetSrc].cssRules.length; i++)
+        stl += document.styleSheets[iStyleSheetSrc].cssRules[i].cssText.replace('_' + lastProd, '_active');
+    stl += '</style>';
+
+    win.document.head.innerHTML = '<meta charset="utf-8" /><title>' + tit + '</title>' + stl;
+    if (print != null) win.print();
+    if (close != null) win.close();
+    return win.document.documentElement.outerHTML;
 }
