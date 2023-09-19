@@ -12,7 +12,7 @@
         h2 { font-size:2.75rem; font-weight:500;color: #333; }
         h4 { margin-bottom: 24px; font-size:18px; font-weight:400; color: #333; }
 
-        html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; transform: rotate(0deg); }
         #app { max-width: 400px; margin: 0 auto; background-color: #f0f0f0; border: 1px solid #ddd; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); border-radius: 10px; }
         header { background-color: #007bff; color: white; padding: 0px; text-align: center; }
         main { padding: 20px; }
@@ -29,9 +29,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <link rel="apple-touch-icon" href="path-to-icon.png">
+    <script>
+        
+    </script>
 </head>
 
-<body onload="/*medarbeider.scrollIntoView({ behavior: 'smooth' })*/">
+<body onload="screen.orientation.lock('portrait');">
      <div id="app">
          <header style="position:absolute; top:0vw;width:100vw" >
              <img style="position: absolute; left: 2vw; top:2vw; width: 70vw" src="https://digdir.no/profiles/sogn/themes/sogn_theme/img/logo/logo_sogn.svg" alt="App Logo">
