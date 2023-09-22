@@ -30,6 +30,22 @@
             <h2 style="position:absolute;top:14vw;left:5vw;">Fagsamling 2023</h2>
         </header>
         <main style="position:absolute; top:40vw" >
+            <script>
+                if (navigator.userAgent.includes("Mobile") && navigator.userAgent.includes("Safari")) {
+                    // Likely running as a PWA from the home screen
+                    document.write("Running as a PWA from the home screen.");
+                } else {
+                    // Running in a regular browser
+                    document.write("Running in a regular browser.");
+                }
+                if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+                    // Likely running as a PWA from the home screen
+                    document.write("Running as a PWA from the home screen.");
+                } else {
+                    // Running in a regular browser
+                    document.write("Running in a regular browser.");
+                }
+            </script>
             <table style="width:100%" border="0">
             <tr><td><h3>Velkommen til årets fagsamling!</h3></td></tr>
             <tr><td>
@@ -39,22 +55,22 @@
                         </button></td><td>
                             Hvordan er det å være medarbeider i digdir?
                         </td></tr>
-                    <tr><td><button style="width:40vw;" onclick="medarbeider.scrollIntoView({ behavior: 'smooth' });">
+                    <tr><td><button style="width:40vw;" onclick="velkommen.scrollIntoView({ behavior: 'smooth' });">
                         <h3>09:00<br />Velkommen til samling</h3>
                         </button></td><td>
                             Frode ønsker velkommen
                         </td></tr>
-                    <tr><td><button style="width:40vw;" onclick="medarbeider.scrollIntoView({ behavior: 'smooth' });">
+                    <tr><td><button style="width:40vw;" onclick="visjon.scrollIntoView({ behavior: 'smooth' });">
                         <h3>09:30<br />Digdirs<br />Visjon 2024</h3>
                         </button></td><td>
                             Panelsamtale med visjoner og mål for kommende år
                         </td></tr>
-                    <tr><td><button style="width:40vw;" onclick="medarbeider.scrollIntoView({ behavior: 'smooth' });">
+                    <tr><td><button style="width:40vw;" onclick="fordrag.scrollIntoView({ behavior: 'smooth' });">
                         <h3>11:00<br />Camilla Tepfers<br />Fremtidstrender</h3>
                         </button></td><td>
                             Teknologitrender;<br />AI tar over arbeidsoppgaver
                         </td></tr>
-                    <tr><td><button style="width:40vw;" onclick="medarbeider.scrollIntoView({ behavior: 'smooth' });">
+                    <tr><td><button style="width:40vw;" onclick="personlig.scrollIntoView({ behavior: 'smooth' });">
                         <h3>12:30<br />Personlig<br />oppgave</h3>
                         </button></td><td>
                             Hva er viktig for deg?
@@ -74,6 +90,7 @@
         </tr>
     </table>
     <hr />
+
     Lagre denne Appen på din mobiltelefon
     <ul>
         <li>IPhone<br />trykk "Share", scroll ned, "Add&nbsp;to&nbsp;Home&nbsp;Screen"</li>
@@ -89,19 +106,21 @@
         <iframe id="Slido1" height="80" style="display: display; height: 400px; width:90%" src="DigdirEventSlido1.html"></iframe>
         <hr />
 
-    <a id="rundtbordet"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
-    <h2>Rundt bordet</h2>
-        Gå sammen med gruppen og kom opp med tre relevante uttaleleser. Ekstrapoeng for overraskelsesmomenter
-        <br />
-        <iframe id="Slido2" height="80" style="display: display; height: 400px; width:90%" src="https://www.slido.com/"></iframe>
-        <br />
-        Latterlige påstander
-        <br />
+
     <a id="konkurranse"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
     <h2>Konkurranse vha AI</h2>
         Gå sammen med gruppen og adresser nettverking eller hersketeknikker. Ekstrapoeng for overraskelsesmomenter
         <br />
         <iframe height="80" style="display: display; height: 400px; width:90%" src="DigdirEventAiOppgave.html"></iframe>
+        <br />
+
+    <a id="rundtbordet"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
+    <h2>Rundt bordet (ubrukt)</h2>
+        Gå sammen med gruppen og kom opp med tre relevante uttaleleser. Ekstrapoeng for overraskelsesmomenter
+        <br />
+        <iframe id="Slido2" height="80" style="display: display; height: 400px; width:90%" src="https://www.slido.com/"></iframe>
+        <br />
+        Latterlige påstander
         <br />
 
     <br />
