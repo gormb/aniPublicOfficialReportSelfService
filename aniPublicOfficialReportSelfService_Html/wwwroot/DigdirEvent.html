@@ -10,35 +10,39 @@
     <title>Digdir Fagsamling 2023</title>
     <style>/* digdir */
         html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; transform: rotate(0deg); }
-        #app { max-width: 400px; margin: 0 auto; background-color: #f0f0f0; border: 1px solid #ddd; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); border-radius: 10px; }
+        #_app { max-width: 400px; margin: 0 auto; background-color: #f0f0f0; border: 1px solid #ddd; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); border-radius: 10px; }
         header { background-color: #007bff; color: white; padding: 0px; text-align: center; }
-        main { padding: 20px; }
+        main { padding: 5vw; }
         footer { background-color: #f0f0f0; padding: 10px; text-align: center; }
         h2 { font-size:2.75rem; font-weight:500;color: #333; }
         h4 { margin-bottom: 24px; font-size:18px; font-weight:400; color: #333; }
         a { color: #007bff; text-decoration: none; }
-        body.rotated {
-            transform: rotate(90deg);
-            transform-origin: left top;
-        }
     </style>
     <script>
-        function l() { screen.orientation.lock('portrait'); sz(); }
+        function l() {
+            try { screen.orientation.lock('portrait'); } catch (e) { ; }
+            sz();
+        }
         function sz() {
+            document.title = 'x - ' + window.innerWidth + ', ' + window.innerHeight;
             if (window.innerWidth > window.innerHeight) {// rotate
-                app.style.transform = 'rotate(90deg)'; 
-                app.style.width = '100vh'; 
-                app.style.height = '100vw'; 
-            } else {
-                app.style.transform = 'rotate(0deg)';
-                app.style.width = '100vh';
-                app.style.height = '100vw'; 
+                //app.style.display = 'none';
+                landscaped.style.display = 'block'; //    app.style.transform = 'rotate(90deg)'; //    app.style.width = '100vh'; //    app.style.height = '100vw'; 
+            } else {//    app.style.transform = 'rotate(0deg)';//    app.style.width = '100vh';//    app.style.height = '100vw';
+                //app.style.display = 'display';
+                landscaped.style.display = 'none';
             }
         }
     </script>
 </head>
 
 <body onload="l();" onresize="sz()">
+    <div id="landscaped" 
+         style="display: none; font-size: 18pt; vertical-align:middle; text-align:center; 
+            font-family: Cambria; z-index: 999; position: fixed; left: 0vw; top: 0vh; 
+            width: 100vw; height: 100vh; 
+            background-image: url('https://www.baltana.com/files/wallpapers-5/Blue-Background-Nice-Wallpaper-16272.jpg')">
+        <br />Roter meg;<br />Applikasjonen for "Digdir Fagsamling" er laget for "Portrett"-visning!</div>
      <div id="app">
         <header style="position:absolute; top:0vw;width:100vw;height:35vw">
             <a id="meny"></a>
@@ -119,7 +123,15 @@
                                         <h3>Medarbeiderløfte </h3>
                                     </button>
                                 </td>
-                                <td>Hva lover vi fremtidige og nåværende medarbeidere om det å jobbe i Digdir?</td>
+                                <td>Hva lover vi medarbeidere om det å jobbe i Digdir?</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button style="width:40vw;" onclick="samarbeid.scrollIntoView({ behavior: 'smooth' });">
+                                        <h3>Samarbeid</h3>
+                                    </button>
+                                </td>
+                                <td>Hvordan samarbeider vi på tvers av Digdir?</td>
                             </tr>
                         </table>
                     </td>
@@ -133,12 +145,14 @@
 
             <a id="velkommen"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
             <h2>Velkommen</h2>            <h3>Velkommen til fagsamling 30-31 oktober </h3>
+
             Hei Digdir!
             <br /> <br />Endelig skal vi samles alle sammen til fag og fest! Vi skal ha to fine dager sammen der dag en er felles for alle med fagprogram fra lunch og fest om kvelden.
             <br /> <br />Dag 2 møtes vi avdelingsvis. Det blir bra å være i samme rom, bli kjent på tvers av direktoratet, og ha det både interessant og gøy sammen med kjente og ukjente.
             <br /> <br />Jeg ser fram til å møte gode kollegaer fra Oslo, Brønnøysund og Leikanger, og håper du også gleder deg.
             <br /> <br />Vi sees 30 oktober!<hr />
-
+            Bilde av Frode!
+            Navnet hans
             <a id="praktisk"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
             <h2>Praktisk info</h2>
             <h3><a href="https://maps.app.goo.gl/VtS9a6ojvRqLGbUq7" target="Kart">Radisson Blu Plaza Hotel, Oslo</a></h3>
@@ -204,10 +218,19 @@
             <br /><br />Hva mener du? <hr />
             <iframe src="https://app.sli.do/event/2vJWuYW9Q9AMJCfeknzGDr/live/polls" style="display: display; height: 2000px; width:80%"></iframe>
 
+            <a id="samarbeid"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
+            <h2>Vårt samarbeidløfte </h2>            <h3>Hva lover vi våre fremtidige og nåværende medarbeidere hvordan det er å jobbe i Digdir?</h3>
+            Noe skal vi kjenne oss igjen i, og noe skal vi strekke oss etter
+            <br /><br />Hva mener du? <hr />
+            <iframe src="https://app.sli.do/event/2vJWuYW9Q9AMJCfeknzGDr/live/polls" style="display: display; height: 2000px; width:80%"></iframe>
+
+            
+
             <a href="#meny"><font size="+5">&#x1F3E0;</font></a>
 
         </main>
     </div>
+    <script>sz();</script>
 </body>
 
 </html>
