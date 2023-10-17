@@ -24,10 +24,11 @@
             sz();
         }
         function sz() {
-            document.title = 'x - ' + window.innerWidth + ', ' + window.innerHeight;
+            // document.title = 'x - ' + window.innerWidth + ', ' + window.innerHeight;
             if (window.innerWidth > window.innerHeight) {// rotate
                 //app.style.display = 'none';
                 landscaped.style.display = 'block'; //    app.style.transform = 'rotate(90deg)'; //    app.style.width = '100vh'; //    app.style.height = '100vw'; 
+                roterMeg.scrollIntoView({ behavior: 'smooth' });
             } else {//    app.style.transform = 'rotate(0deg)';//    app.style.width = '100vh';//    app.style.height = '100vw';
                 //app.style.display = 'display';
                 landscaped.style.display = 'none';
@@ -42,7 +43,7 @@
             font-family: Cambria; z-index: 999; position: fixed; left: 0vw; top: 0vh; 
             width: 100vw; height: 100vh; 
             background-image: url('https://www.baltana.com/files/wallpapers-5/Blue-Background-Nice-Wallpaper-16272.jpg')">
-        <br />Roter meg;<br />Applikasjonen for "Digdir Fagsamling" er laget for "Portrett"-visning!</div>
+        <a id="roterMeg"><br /></a>Roter meg;<br />Applikasjonen for "Digdir Fagsamling" er laget for "Portrett"-visning!</div>
      <div id="app">
         <header style="position:absolute; top:0vw;width:100vw;height:35vw">
             <a id="meny"></a>
@@ -114,7 +115,7 @@
                                     <button style="width:40vw;" onclick="visjon.scrollIntoView({ behavior: 'smooth' });">
                                         <h3>Visjon og retning </h3>
                                     </button>
-                                </td>
+                                </td>                               
                                 <td>Hvilke prioriteringer bør vi gjøre for felles retning?</td>
                             </tr>
                             <tr>
@@ -193,6 +194,7 @@
 
             <a id="retning"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
             <h2>Retning</h2>            <h3>Hvor er vi og hvor skal vi i Digdir </h3>
+            <br />
             Hvilke utfordringer og muligheter har vi framover, og hvor er vi i dag? Direktør Frode Danielsen deler sine tanker med oss<br />
             <hr />
             <iframe src="https://app.sli.do/event/egs5xLff1YbheorQUuFQcg/live/polls" style="display: display; height: 1100px; width:80%"></iframe>
@@ -205,22 +207,28 @@
             <hr />
             <iframe src="https://app.sli.do/event/m87HBPQgbfGqDQnEFKeNGA" style="display: display; height: 600px; width:80%"></iframe>
 
-
             <a id="visjon"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
-            <h2>Visjon, prioriteringer og felles retning </h2>            <h3>Hvilke prioriteringer bør vi gjøre framover for å skape felles retning?</h3>
+            <h2>Visjon, prioriteringer og felles retning </h2>            
+            <img src="panelsamtale_offentlig_org.png" style="width:70vw;" />
+            <h3>Hvilke prioriteringer bør vi gjøre framover for å skape felles retning?</h3>
             Spørsmål til panelet
             <hr /><iframe src="https://app.sli.do/event/gWTN23vLchMEzJ4gUaekn9/live/questions" style="display: display; height: 600px; width:80%"></iframe>
             <hr />
 
             <a id="medarbeider"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
-            <h2>Vårt medarbeiderløfte </h2>            <h3>Hva lover vi våre fremtidige og nåværende medarbeidere hvordan det er å jobbe i Digdir?</h3>
+            <h2>Vårt medarbeiderløfte </h2>            
+            <img src="diskusjon_fremtiden.png" style="width:70vw;" />
+            <h3>Hva lover vi våre fremtidige og nåværende medarbeidere hvordan det er å jobbe i Digdir?</h3>
             Noe skal vi kjenne oss igjen i, og noe skal vi strekke oss etter
             <br /><br />Hva mener du? <hr />
             <iframe src="https://app.sli.do/event/2vJWuYW9Q9AMJCfeknzGDr/live/polls" style="display: display; height: 2000px; width:80%"></iframe>
 
             <a id="samarbeid"></a><a href="#meny"><font size="+5">&#x1F3E0;</font></a>
-            <h2>Vårt samarbeidløfte </h2>            <h3>Hva lover vi våre fremtidige og nåværende medarbeidere hvordan det er å jobbe i Digdir?</h3>
-            Noe skal vi kjenne oss igjen i, og noe skal vi strekke oss etter
+            <h2>Samarbeider vi godt på tvers i dag?</h2>            
+            <img src="diskusjon_samarbeid.png" style="width:70vw;" /><br />
+            <h3>Eksempler på godt samarbeid</h3>
+            Hver gruppe legger inn et eksempel der vi har lykkes med samarbeid på tvers"
+
             <br /><br />Hva mener du? <hr />
             <iframe src="https://app.sli.do/event/2vJWuYW9Q9AMJCfeknzGDr/live/polls" style="display: display; height: 2000px; width:80%"></iframe>
 
