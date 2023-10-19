@@ -21,12 +21,15 @@
     <script>
         function l() {
             try { screen.orientation.lock('portrait'); } catch (e) { ; }
-            try {
+            try { // Code for fullscreen
                 const element = document.documentElement; // Get the root HTML element
                 if (element.requestFullscreen) element.requestFullscreen();
                 else if (element.mozRequestFullScreen) element.mozRequestFullScreen(); // For Firefox
                 else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen(); // For Chrome, Safari and Opera
                 else if (element.msRequestFullscreen) element.msRequestFullscreen(); // For Internet Explorer
+            } catch (e) { ; }
+            try { // code to scroll (and remove addressbar on most browsers)
+                 setTimeout(function () { window.scrollTo(0, 1); }, 100); // Scroll down by 1 pixel
             } catch (e) { ; }
             sz();
         }
