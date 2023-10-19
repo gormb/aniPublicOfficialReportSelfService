@@ -21,6 +21,13 @@
     <script>
         function l() {
             try { screen.orientation.lock('portrait'); } catch (e) { ; }
+            try {
+                const element = document.documentElement; // Get the root HTML element
+                if (element.requestFullscreen) element.requestFullscreen();
+                else if (element.mozRequestFullScreen) element.mozRequestFullScreen(); // For Firefox
+                else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen(); // For Chrome, Safari and Opera
+                else if (element.msRequestFullscreen) element.msRequestFullscreen(); // For Internet Explorer
+            } catch (e) { ; }
             sz();
         }
         function sz() {
@@ -43,7 +50,7 @@
             font-family: Cambria; z-index: 999; position: fixed; left: 0vw; top: 0vh; 
             width: 100vw; height: 100vh; background-color:deepskyblue; 
             background-image: url('https://www.baltana.com/files/wallpapers-5/Blue-Background-Nice-Wallpaper-16272.jpg')">
-        <a id="roterMeg"><br /></a>Roter meg;<br />Applikasjonen for "Digdir Fagsamling" er laget for "Portrett"-visning!</div>
+        <a id="roterMeg"><br /></a>Roter meg;<br />Applikasjonen for "Digdir Fagsamling" er laget for mobil i "Portrett"-visning!</div>
      <div id="app">
         <header style="position:absolute; top:0vw;width:100vw;height:35vw">
             <a id="meny"></a>
