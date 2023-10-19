@@ -29,7 +29,7 @@
                 else if (element.msRequestFullscreen) element.msRequestFullscreen(); // For Internet Explorer
             } catch (e) { ; }
             try { // code to scroll (and remove addressbar on most browsers)
-                 setTimeout(function () { window.scrollTo(0, 1); }, 100); // Scroll down by 1 pixel
+                 setTimeout(function () { window.scrollTo(0, 2); }, 1000); // Scroll down by 1 pixel
             } catch (e) { ; }
             sz();
         }
