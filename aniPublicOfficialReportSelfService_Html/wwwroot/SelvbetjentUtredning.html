@@ -2,7 +2,7 @@
 <html lang="no">
 <head>
     <meta charset="utf-8" />
-    <title>Selvbetjent utredning med GPT-3 (Open AI GPT-3 text-davinci-03)</title>
+    <title>Selvbetjent utredning med GPT-3 (Open AI GPT-3.5)</title>
 <!-- Style -->
     <!-- link rel="stylesheet" href="SelvbetjentUtredningMedAi.css" /-->
     <style id="default_css">
@@ -151,7 +151,8 @@
                     stopTag += ']';
                 }
             return (isImage == 1)
-            ? `{"prompt":${JSON.stringify(sSrc)},"n":1,"size":"256x256","response_format":"url"}`
+            //? `{"prompt":${JSON.stringify(sSrc)},"n":1,"size":"512x512","response_format":"url"}`
+            ? `{"model":"dall-e-3","prompt":${JSON.stringify(sSrc)},"n":1,"size":"1024x1024","response_format":"url"}`
             : `{"model":"${document.querySelector('input[name="gptAlg"]:checked').value}"
                 ,"prompt":${JSON.stringify(sSrc)},"temperature":0.7
                 ,"max_tokens":${maxTokens == null ? 1000 : maxTokens},"top_p":1,"frequency_penalty":0.75,"presence_penalty":0`+stopTag+`}`;

@@ -51,7 +51,8 @@ function oaiJson(sSrc, isImage, maxTokens, stopArray) {
                 stopTag += ',"' + stopArray[i] + '"';
             stopTag += ']';
         }
-    return (isImage == 1) ? `{"prompt":${JSON.stringify(sSrc)},"n":1,"size":"256x256","response_format":"url"}`
+   return (isImage == 1) ? `{"model":"dall-e-3","prompt":${JSON.stringify(sSrc)},"n":1,"size":"1024x1024","response_format":"url"}`
+    //return (isImage == 1) ? `{"prompt":${JSON.stringify(sSrc)},"n":1,"size":"512x512","response_format":"url"}`
         : `{"model":"${document.querySelector('input[name="gptAlg"]:checked').value}","prompt":${JSON.stringify(sSrc)},"temperature":0.7,"max_tokens":${maxTokens == null ? 1000 : maxTokens},"top_p":1,"frequency_penalty":0.75,"presence_penalty":0`+stopTag+`}`;
 }
 function oaiReq(url) {
