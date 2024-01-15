@@ -201,7 +201,7 @@
 <!-- Section TECH -->
     <div class="tech"><br /><h1> Velg tjeneste, sett API-nøkkel, test</h1>
         <h4>Tilbyder:<input type="radio" name="gptSup" value="OpenAI" checked style="width: 5%;">Open AI <input type="radio" name="gptSup" value="Microsoft" disabled style="width: 5%;">Microsoft</h4>
-        <h4>Algoritme: <input type="radio" name="gptAlg" value="text-davinci-003" checked style="width: 5%;">text-davinci-003</h4>
+        <h4>Algoritme: <input type="radio" name="gptAlg" value="gpt-3.5-turbo-instruct" checked style="width: 5%;">text-davinci-003</h4>
         <h4><button onclick="window.open('https://platform.openai.com/account/api-keys');">Lag nøkkel for gratis API-kall</button> <input id="gptId" type="text" value="" style="width: 25%;" onchange="gptIdLink.href='?openai_key='+gptId.value" /> <a id="gptIdLink" href="?" style="color:blue">bruk nøkkel</a></h4>
         <h4><button onclick="TechTestOutTxt.innerHTML=tRotating; oaiHtmlItemAsync(TechTestOutTxt, TechTestIn.value, 0, (res)=> {oaiHtmlItemAsync(TechTestOutImg, res.innerText, 1)}, (err)=> {TechTestOutTxt.innerHTML=err;}, 20, ['.']);">Test å generere tekst og bilde</button>
             <input id="TechTestIn" type="text" value="The Quick " style="width: 25%;">
