@@ -814,7 +814,7 @@
             let res = '';// '<tr><td id="' + structureChaptId() +'">genererer innhold...</td></tr>';
             for (let i = 0; i < gStructureCh.length && i < gStructureSub.length; i++) {
                 res += '<tr><td id="' + structureChaptId(i) + '" class="product_active">'
-                    + '<center><img width="400" height="400" id="' + structureChaptId(i) + '_bilde" src="file:///C:/data/HAL9000.png" onclick="window.speechSynthesis.speak(new SpeechSynthesisUtterance(' + structureChaptId(i) + '_bildetekst.innerHTML));"/></center>'
+                    + '<center><img width="1024" height="1024" id="' + structureChaptId(i) + '_bilde" src="file:///C:/data/HAL9000.png" onclick="window.speechSynthesis.speak(new SpeechSynthesisUtterance(' + structureChaptId(i) + '_bildetekst.innerHTML));"/></center>'
                         + htmlImgRefresh(i)
                     + '<div class="editControl" id="' + structureChaptId(i) + '_bildetekst" class="imagetext">' + structureAsHtmlItem(gStructureCh[i]) + '...</div>'
                         + htmlImgTxtRefresh(i, structureChaptId(i) + '_bildetekst')
