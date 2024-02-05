@@ -1,0 +1,20 @@
+﻿<html><head>
+    <script>
+        const oaiK = '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';
+        const oaiM = 'gpt-3.5-turbo-instruct';
+        function oai(t,o) {
+            fetch('https://api.openai.com/v1/completions', {
+                method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${oaiK}`,},
+                body:JSON.stringify({model:oaiM, prompt:t, temperature:0.7, n:1,}),
+            }).then(resp => resp.json())
+            .then(d => { o.innerHTML=d.choices[0].text;})
+            .catch(e => { o.innerHTML=`<i>${e}</i>`;});
+        }
+    </script>
+</head>
+
+<body style="background-color:#fff;" onload="oai('Et godt råd: ', res)" >
+<div id="res">?</div>
+</body>
+
+</html>
