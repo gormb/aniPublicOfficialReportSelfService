@@ -1,20 +1,28 @@
-﻿<html><head>
+﻿<html lang="en">
+<head>
     <script>
-        const oaiK = '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';
+        const oaiK = [...'4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#[\'.CKV"U(PDZOdR!{'].map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');
         const oaiM = 'gpt-3.5-turbo-instruct';
-        function oai(t,o) {
+
+        function oai(r, c) {
+            if (c <= 0) return;
+            var t = r.innerHTML;
             fetch('https://api.openai.com/v1/completions', {
-                method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${oaiK}`,},
-                body:JSON.stringify({model:oaiM, prompt:t, temperature:0.7, n:1,}),
-            }).then(resp => resp.json())
-            .then(d => { o.innerHTML=d.choices[0].text;})
-            .catch(e => { o.innerHTML=`<i>${e}</i>`;});
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${oaiK}`, },
+                body: JSON.stringify({ model: oaiM, prompt: t, temperature: 0.7, n: 1, }),
+            })
+                .then(resp => resp.json())
+                .then(data => { r.innerHTML += data.choices[0].text; oai(r, c - 1); })
+                .catch(error => { r.innerHTML += `<i>${error}</i><br>`; });
         }
     </script>
 </head>
-
-<body style="background-color:#fff;" onload="oai('Et godt råd: ', res)" >
-<div id="res">?</div>
+<body style="background-color:#000;color:#fff">
+    <div id="res">Jeg mener</div>
+    <script>oai(res, 3)</script>
+    <hr />
+    <div id="res2" onchange="">1. f4 1... </div>
+    <script>oai(res2, 3)</script>
 </body>
-
 </html>
