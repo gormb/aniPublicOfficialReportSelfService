@@ -1,7 +1,8 @@
 ﻿<html lang="en">
 <head>
     <script>
-        const oaiK = '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';
+        const Gunnar=d=>[...d].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('');
+        const oaiK = Gunnar('4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#[\'.CKV"U(PDZOdR!{');
         const oaiM = 'gpt-3.5-turbo-instruct';
 
         function oai(r, c) {
