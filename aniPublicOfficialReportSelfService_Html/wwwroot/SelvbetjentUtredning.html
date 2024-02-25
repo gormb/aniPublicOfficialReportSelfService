@@ -403,24 +403,50 @@
     </script>
     <script id="_UI_load_and_visibility_">
         document.write("<div class=\"debug\">Code for UI, load and visibility...</div>");
-
-        let uRLSearchParams = new URLSearchParams(window.location.search);
+        let uRLSearchParams = new URLSearchParams(location.search);
         let tRotate = "&#8634;";
         let tRotating = "<div class='rotating' style='height: 18px; width: 10px; animation: rotate 2s linear infinite;'>&#8634</div>";
+        let bGotValueFromUrl = false;
 
+        function pvalue(dest,p) {
+            v = new URLSearchParams(location.search).get(p);
+            if (p!=null) dest.value=v;
+            return p!=null;
+        }
         function l() {
             ShowCell(-1, -1, 'none'); // hide all
             try { document.getElementById('suLink').href = 'MobilUtred.html' + window.location.search; } catch (e) { }
-            try { navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; UpdateOutOrShowSamleButton(); }); } catch (e) { }
+            parseParameters();
+            try { if (!bGotValueFromUrl) navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; UpdateOutOrShowSamleButton(); }); } catch (e) { }
             UpdateOutOrShowSamleButton();
-            if (uRLSearchParams.get('openai_key') != null)
-                gptId.value = uRLSearchParams.get('openai_key');
-            else if (gptId.value.length < 1) {
+        }
+        function parseParameters() {
+            let u = new URLSearchParams(location.search);
+            let k = decodeURIComponent(u.get('hyggelig'));
+            p_k = Array.from(k).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');
+            bGotValueFromUrl = pvalue(txtInnholdInn, 'innhold');
+            pvalue(txtKapittelstrukturInn, 'kapittelstruktur');
+            pvalue(txtInnledningInn, 'kapittelinnledning');
+            pvalue(txtBildeInn, 'bildebeskrivelse');
+            pvalue(txtBroedtekstInn, 'underkapittel');
+            if (p_k != null) {
+                gptId.value = p_k;
+                if (u.get('produser') != null) setTimeout(function () { 
+                        generateAll(overviewTable, contentTable); 
+                        setTimeout(function () { 
+                                TheFinishClick();
+                            setTimeout(function () { preview.scrollIntoView();
+                                }, 1000); 
+                            }, 1000); 
+                    }, 1000); // produser=
+            }
+            else if (gptId.value.length < 1) { // no key. Enable it
                 TheIdeaClick();
                 Show(btns);
                 Show(btnsAll);
             }
         }
+
         function UpdateOutOrShowSamleButton() {
             if (txtInnholdInn.value.split(' ').length > DEFAULT_MAX_WORDS)
                 Show(samleButton, 1);
@@ -801,9 +827,8 @@
         let gStructureSub = [["Underkapittel 1a: Tull for det første", "Underkapittel 1b: Videre om tull"], ["Underkapittel 2a: Hva vi mener med tøys", "Underkapittel 2b: Tøys i historien", "Underkapittel 2c: Hvordan komme i gang med tøys"]]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
         let gIntroCh = ["Det handler i kap 1 om tull.", "Tøys er tema for kap 2 innholdet."];
         let gPictureTextCh = ["[Bilde: En tull med bakgrunn", "[Bilde: Tøys to  med bakgrunn"]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
-        let gPictureUrlCh = ["file:///C:/data/HAL9000.png", "file:///C:/data/HAL9000.png"]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
+        let gPictureUrlCh = ["data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D", "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D"]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
         let gTextSub = [["Mange enes om at tull er best, og kanskje bedre enn tøys.", "Vi kan godt være enig om at dette er tull."], ["Vi skiller mellom tøys og tull i denne teksten, viktig at tøys får sin plass.", "Tøysete med historie kan man mene. Det kan man.", "Du er allerede i gang. Tøysete å lese dette. Lykke til videre."]]; // [["todo;", "not implemented"], ["data", "on this format"], ["any"], ["text"]];
-
         function generate_progressTotalWebserviceCalls() {
             let iRes = 1; // structure
             for (let i = 0; i < gStructureSub.length - 1; i++)
@@ -814,7 +839,7 @@
             let res = '';// '<tr><td id="' + structureChaptId() +'">genererer innhold...</td></tr>';
             for (let i = 0; i < gStructureCh.length && i < gStructureSub.length; i++) {
                 res += '<tr><td id="' + structureChaptId(i) + '" class="product_active">'
-                    + '<center><img width="1024" height="1024" id="' + structureChaptId(i) + '_bilde" src="file:///C:/data/HAL9000.png" onclick="window.speechSynthesis.speak(new SpeechSynthesisUtterance(' + structureChaptId(i) + '_bildetekst.innerHTML));"/></center>'
+                    + '<center><img width="512" height="512" id="' + structureChaptId(i) + '_bilde" src="file:///C:/data/HAL9000.png" onclick="window.speechSynthesis.speak(new SpeechSynthesisUtterance(' + structureChaptId(i) + '_bildetekst.innerHTML));"/></center>'
                         + htmlImgRefresh(i)
                     + '<div class="editControl" id="' + structureChaptId(i) + '_bildetekst" class="imagetext">' + structureAsHtmlItem(gStructureCh[i]) + '...</div>'
                         + htmlImgTxtRefresh(i, structureChaptId(i) + '_bildetekst')
@@ -968,7 +993,7 @@
                             </span>
                             <br /><button onclick="window.open('https://platform.openai.com/account/api-keys');">lag nøkkel</button>
                             <input id="gptId" type="text" value="" style="width: 446px;"
-                                   onchange="gptIdLink.href='?openai_key='+gptId.value" />
+                                   onchange="gptIdLink.href='?openai_key='+encodeURIComponent(gptId.value).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('')" />
                             <a id="gptIdLink" href="?" style="color:blue">bruk nøkkel</a>
                         </span>
                     </span>
