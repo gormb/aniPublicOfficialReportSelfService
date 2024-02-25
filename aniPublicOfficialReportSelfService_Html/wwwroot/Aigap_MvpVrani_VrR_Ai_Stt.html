@@ -1,0 +1,28 @@
+﻿<html lang="en">
+<head>
+    <script>
+        const Gunnar=d=>[...d].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('');
+        const oaiK = Gunnar('4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#[\'.CKV"U(PDZOdR!{');
+        const oaiM = 'whisper-1';
+        
+        
+        function oai(r, c) {
+            if(c<=0) return;
+            var t = r.innerHTML;
+            fetch('https://api.openai.com/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${oaiK}`,},
+                body: JSON.stringify({model: oaiM, prompt: t, temperature: 0.7, n: 1,}),
+            })
+            .then(resp => resp.json())
+            .then(data => { r.innerHTML += data.choices[0].text; oai(r, c-1);})
+            .catch(error => { r.innerHTML += `<i>${error}</i><br>`;});
+        }
+    </script>
+</head>
+<body style="background-color:#000;color:#fff">
+    <div id="res">Jeg mener</div><script>oai(res, 3)</script>
+    <hr />
+    <div id="res2" onchange="">1. f4 1... </div><script>oai(res2, 3)</script>
+</body>
+</html>
