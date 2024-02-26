@@ -8,7 +8,8 @@
         function oai(r, c) {
             if(c<=0) return;
             var t = r.innerHTML;
-            fetch('https://api.openai.com/v1/completions', {
+            fetch('https://devgpu/v1/completions', {
+                //fetch('https://api.openai.com/v1/completions', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${oaiK}`,},
                 body: JSON.stringify({model: oaiM, prompt: t, temperature: 0.7, n: 1,}),
