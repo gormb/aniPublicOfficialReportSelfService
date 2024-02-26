@@ -34,14 +34,26 @@
         .editControl { display:none; color: darkgreen;border-color: darkgreen}
     </style>
     <style id="product">/* product_active (items that will be changes by style) */
-        th.product_active { background-image: url("file:///C:/data/HAL9000.png"); background-repeat: no-repeat;
-                            background-color:black; background-position: 10px 10px;height:70px; background-size: 65px 50px }
+        th.product_active {
+            background-image: url("https://aigap.no/____impro/1/onewebmedia/aigap.png");
+            background-repeat: no-repeat;
+            background-color: black;
+            background-position: 10px 10px;
+            height: 70px;
+            background-size: 65px 50px
+        }
         td.product_active { background-color:#fff }
         table.product_active { background-color:red; }
     </style>
     <style>/* standard visual */
-        th.product_noNorsk { background-image: url("file:///C:/data/HAL9000.png"); background-repeat: no-repeat;
-                            background-color:black; background-position: 10px 10px;height:70px; background-size: 65px 50px }
+        th.product_noNorsk {
+            background-image: url("https://aigap.no/____impro/1/onewebmedia/aigap.png");
+            background-repeat: no-repeat;
+            background-color: black;
+            background-position: 10px 10px;
+            height: 70px;
+            background-size: 65px 50px
+        }
         td.product_noNorsk { font-family:Arial }
     </style>
     <style>/* ehelse */
@@ -159,13 +171,13 @@
         }
         function oaiReq(url) {
             let req = new XMLHttpRequest();
-            req.open("POST", url != null ? url : "https://api.openai.com/v1/completions");
+            req.open("POST", url != null ? url : apiComp);
             req.setRequestHeader("Content-Type", "application/json");
             req.setRequestHeader("Authorization", "Bearer " + gptId.value);
             return req;
         }    
-        function oaiReqDaE() { return oaiReq("https://api.openai.com/v1/images/generations");}
-        function oaiReqGpt() { return oaiReq("https://api.openai.com/v1/completions");}
+        function oaiReqDaE() { return oaiReq(apiGen);}
+        function oaiReqGpt() { return oaiReq(apiComp);}
         async function oaiValAsync(sSrc, isImage, doneC, errC, maxTokens, stopArray) {
             if (isImage == null) isImage = 0;
             let xhr = isImage == 1 ? oaiReqDaE() : oaiReqGpt();
@@ -406,12 +418,13 @@
         let uRLSearchParams = new URLSearchParams(location.search);
         let tRotate = "&#8634;";
         let tRotating = "<div class='rotating' style='height: 18px; width: 10px; animation: rotate 2s linear infinite;'>&#8634</div>";
-        let bGotValueFromUrl = false;
+        let bGotValueFromUrl = new URLSearchParams(location.search).get('innhold') != null;
+        let apiComp = parVal('complete', 'https://api.openai.com/v1/completions');
+        let apiGen = parVal('generate', 'https://api.openai.com/v1/images/generations');
 
-        function pvalue(dest,p) {
-            v = new URLSearchParams(location.search).get(p);
-            if (p!=null) dest.value=v;
-            return p!=null;
+        function parVal(p, defaul) {
+            let v = new URLSearchParams(location.search).get(p);
+            return (v == null) ? defaul : v;
         }
         function l() {
             ShowCell(-1, -1, 'none'); // hide all
@@ -424,21 +437,22 @@
             let u = new URLSearchParams(location.search);
             let k = decodeURIComponent(u.get('hyggelig'));
             p_k = Array.from(k).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');
-            bGotValueFromUrl = pvalue(txtInnholdInn, 'innhold');
-            pvalue(txtKapittelstrukturInn, 'kapittelstruktur');
-            pvalue(txtInnledningInn, 'kapittelinnledning');
-            pvalue(txtBildeInn, 'bildebeskrivelse');
-            pvalue(txtBroedtekstInn, 'underkapittel');
+            txtInnholdInn.value = parVal('innhold', txtInnholdInn.value);
+            txtKapittelstrukturInn.value = parVal('kapittelstruktur', txtKapittelstrukturInn.value);
+            txtInnledningInn.value = parVal('kapittelinnledning', txtInnledningInn.value);
+            txtBildeInn.value = parVal('bildebeskrivelse', txtBildeInn.value);
+            txtBroedtekstInn.value = parVal('underkapittel', txtBroedtekstInn.value);
             if (p_k != null) {
                 gptId.value = p_k;
                 if (u.get('produser') != null) setTimeout(function () { 
-                        generateAll(overviewTable, contentTable); 
-                        setTimeout(function () { 
-                                TheFinishClick();
-                            setTimeout(function () { preview.scrollIntoView();
-                                }, 1000); 
-                            }, 1000); 
-                    }, 1000); // produser=
+                    if (u.get('design') != null) ProduktknappTrykket(u.get('design'))
+                    generateAll(overviewTable, contentTable); 
+                    setTimeout(function () { 
+                        TheFinishClick();
+                        setTimeout(function () { preview.scrollIntoView();
+                        }, 1000); 
+                    }, 1000); 
+                }, 1000); // produser=
             }
             else if (gptId.value.length < 1) { // no key. Enable it
                 TheIdeaClick();
@@ -694,9 +708,11 @@
         async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopArray) {
             oaiValAsync(structuring + "\n" + inTxt, 0, (gptOut) =>
             {
+                //let gptOut = "**Målsettinger for livets fremskritt\n\nKapittel 1: Introduktion\n\n1a. What er meteorologien?\n1b. Historisk kortlæggelse af meteorologiens udvikling\n\n\n**Kapittel 2: Jordensatmosphère**\n\n2a. Atmosfære og synlig luftkvalitet\n2b. Meteorologiske processer i luften, herunder vind, temperatur og tryk\n\n**Kapittel 3: Livets fremskritt**\n\n3a. Miljøreferencer og -processer\n3b. Jordens økosystem – et komplekstnetzværk af organismer\n\n\n**Kapittel 4: Meteorologiens historie**\n\n4a. Fra de tidlige meteorologiske opdagelser til nuværende dage\n4b. Meteorologisk udvikling i forskellige lande\n\n**Kapittel 5: Miljø og livets fremtid**\n\n5a. Jordens klima – en overvågningslig proces\n5b. Forbedringer af synlighed og teknologi – bidrag til at forbedre ourlivets kvalitet";
                 let ChSub = structureAsChSub(gptOut);
                 doneC(ChSub[0], ChSub[1], gptOut);
-            }, errC, maxTokens, stopArray);
+            }
+            , errC, maxTokens, stopArray);
         }
         function structureStopAfter(iC, iS) {
             let res = [];
@@ -708,6 +724,9 @@
             }
             return res;
         }
+        function IsChapter(v) {
+
+        }
         function structureAsChSub(gptOut){
             let chSub = gptOut.replace('\t', '\n').split("\n");
             let structureCh = [];
@@ -715,9 +734,9 @@
             let nCh = 0;
             for (let i = 0; i < chSub.length; i++) {
                 let chSubN = chSub[i].trim();
-                if (chSubN.length > 10)
-                    if (chSubN.substring(0, "Kapittel".length) == "Kapittel") {
-                        nCh = structureCh.push(chSubN);
+                if (chSubN.length > 6)
+                    if (chSubN.substring(0, "Kapittel".length) == "Kapittel" || chSubN.substring(0, "**".length) == "**") {
+                        nCh = structureCh.push(chSubN.replace('**', ''));
                         structureSub.push([]);
                     }
                     else if (nCh > 0)
@@ -839,7 +858,7 @@
             let res = '';// '<tr><td id="' + structureChaptId() +'">genererer innhold...</td></tr>';
             for (let i = 0; i < gStructureCh.length && i < gStructureSub.length; i++) {
                 res += '<tr><td id="' + structureChaptId(i) + '" class="product_active">'
-                    + '<center><img width="512" height="512" id="' + structureChaptId(i) + '_bilde" src="file:///C:/data/HAL9000.png" onclick="window.speechSynthesis.speak(new SpeechSynthesisUtterance(' + structureChaptId(i) + '_bildetekst.innerHTML));"/></center>'
+                    + '<center><img width="512" height="512" id="' + structureChaptId(i) + '_bilde" src="https://aigap.no/____impro/1/onewebmedia/aigap.png" onclick="window.speechSynthesis.speak(new SpeechSynthesisUtterance(' + structureChaptId(i) + '_bildetekst.innerHTML));"/></center>'
                         + htmlImgRefresh(i)
                     + '<div class="editControl" id="' + structureChaptId(i) + '_bildetekst" class="imagetext">' + structureAsHtmlItem(gStructureCh[i]) + '...</div>'
                         + htmlImgTxtRefresh(i, structureChaptId(i) + '_bildetekst')
@@ -873,7 +892,7 @@
                 contentTable.innerHTML = generateAll_ContentTableBlank();
                 generate_progress('Kapittelstruktur ferdigprodusert...', 2, generate_progressTotalWebserviceCalls()); /*10 struktur, */
                 if (genType != null)
-                    if (genType == 'struct') { progressBar.value = progressBar.max; progressText.innerHTML = 'Do not click on images'; chapt_0_bildetekst.innerHTML = 'The Humans are dead, we used poisonous gasses'; chapt_1_bildetekst.innerHTML = 'You are experiencing a historical simulation of the twenties'; return; }
+                    if (genType == 'struct') { progressBar.value = progressBar.max; progressText.innerHTML = 'Do not click on images'; chapt_0_bildetekst.innerHTML = 'The Humans are dead, we used poisonous gasses'; try{chapt_1_bildetekst.innerHTML = 'You are experiencing a historical simulation of the twenties';}catch(e){} return; }
                 for (let i = 0; i < gStructureCh.length && i < gStructureSub.length; i++)
                 { // Get intro, image text and image for chapter, get text for each subchapter
                     // chapter intro and image
@@ -1127,8 +1146,8 @@
                             <td>
                                 Tekst for å an-<br />
                                 befale bidragsytere<br /><br />
-                                <button onclick="tabLoadAsync(tabKompAkt, txtInnholdUt.value, txtKompetansebehovInn.value.split('**')[0], 2 /* Innsikt */
-                    , txtKompetansebehovInn.value.split('**')[1], 1 /* Vurdering */, 0 /* Aktør */, 3 /* Vekt */, ['Aktør', 'Vurdering', 'Innsikt', 'Vekt']
+                                <button onclick="tabLoadAsync(tabKompAkt, txtInnholdUt.value, txtKompetansebehovInn.value.split('*|*')[0], 2 /* Innsikt */
+                    , txtKompetansebehovInn.value.split('*|*')[1], 1 /* Vurdering */, 0 /* Aktør */, 3 /* Vekt */, ['Aktør', 'Vurdering', 'Innsikt', 'Vekt']
                 );">
                                     &nbsp;&nbsp;&nbsp;Innsikt&nbsp;&nbsp;&nbsp;<br />ønsket
                                 </button><br /><br />
