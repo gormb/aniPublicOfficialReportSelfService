@@ -1,8 +1,67 @@
 ﻿<!DOCTYPE html>
+<!-- (Ctrl+MS collapse, Ctrl+ML toggle) -->
 <html lang="no">
 <head>
     <meta charset="utf-8" />
     <title>Selvbetjent utredning med GPT-3 (Open AI GPT-3.5)</title>
+    <script id="_load_and_parameters_">
+        document.write("<div class=\"debug\">Code for load and parameters...</div>");
+        let uRLSearchParams = new URLSearchParams(location.search);
+        let tRotate = "&#8634;";
+        let tRotating = "<div class='rotating' style='height: 18px; width: 10px; animation: rotate 2s linear infinite;'>&#8634</div>";
+        let bGotValueFromUrl = new URLSearchParams(location.search).get('innhold') != null;
+        let parApi = parVal('api', 'complete');
+        let parApiAlgorithm = parVal('algorithm', null);
+        let parApiComp = parVal('complete', 'https://api.openai.com/v1/completions');
+        let parApiGen = parVal('generate', 'https://api.openai.com/v1/images/generations');
+
+        function parVal(p, defaul) {
+            let v = new URLSearchParams(location.search).get(p);
+            return (v == null) ? defaul : v;
+        }
+        function l() {
+            ShowCell(-1, -1, 'none'); // hide all
+            try { document.getElementById('suLink').href = 'MobilUtred.html' + window.location.search; } catch (e) { }
+            parseParameters();
+            try { if (!bGotValueFromUrl) navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; UpdateOutOrShowSamleButton(); }); } catch (e) { }
+            UpdateOutOrShowSamleButton();
+        }
+        function gunnar(g) { return Array.from(g).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');}
+        function gunnarE(g) { return encodeURIComponent(gunnar(g));}
+        function gunnarD(g) { return gunnar(decodeURIComponent(g));}
+        function gunnarHyggeligUrl(g) { return '?hyggelig='+gunnarE(g);}
+        function parseParameters() {
+            let u = new URLSearchParams(location.search);
+            let p_k = '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'; //gunnarD(u.get('hyggelig'));
+            txtInnholdInn.value = parVal('innhold', txtInnholdInn.value);
+            txtKapittelstrukturInn.value = parVal('kapittelstruktur', txtKapittelstrukturInn.value);
+            txtInnledningInn.value = parVal('kapittelinnledning', txtInnledningInn.value);
+            txtBildeInn.value = parVal('bildebeskrivelse', txtBildeInn.value);
+            txtBroedtekstInn.value = parVal('underkapittel', txtBroedtekstInn.value);
+            if (parApiAlgorithm != null) { // algorithm set in parameter; set gptAlg...
+                //let inp = document.getElementsByTagName("gptAlg");
+                radioGptAlgPar.checked = true;
+                radioGptAlgPar.value = parApiAlgorithm;
+            }
+            if (p_k != null) {
+                gptId.value = p_k;
+                if (u.get('produser') != null) setTimeout(function () { 
+                    if (u.get('design') != null) ProduktknappTrykket(u.get('design'))
+                    generateAll(overviewTable, contentTable); 
+                    setTimeout(function () { 
+                        TheFinishClick();
+                        setTimeout(function () { preview.scrollIntoView();
+                        }, 1000); 
+                    }, 1000); 
+                }, 1000); // produser=
+            }
+            else if (gptId.value.length < 1) { // no key. Enable it
+                TheIdeaClick();
+                Show(btns);
+                Show(btnsAll);
+            }
+        }
+    </script>
 <!-- Style -->
     <!-- link rel="stylesheet" href="SelvbetjentUtredningMedAi.css" /-->
     <style id="default_css">
@@ -162,22 +221,32 @@
                         stopTag += ',"' + stopArray[i] + '"';
                     stopTag += ']';
                 }
-            return (isImage == 1)
-            //? `{"prompt":${JSON.stringify(sSrc)},"n":1,"size":"512x512","response_format":"url"}`
-            ? `{"model":"dall-e-3","prompt":${JSON.stringify(sSrc)},"n":1,"size":"1024x1024","response_format":"url"}`
-            : `{"model":"${document.querySelector('input[name="gptAlg"]:checked').value}"
-                ,"prompt":${JSON.stringify(sSrc)},"temperature":0.7
-                ,"max_tokens":${maxTokens == null ? 1000 : maxTokens},"top_p":1,"frequency_penalty":0.75,"presence_penalty":0`+stopTag+`}`;
+            if (isImage == 1) // image
+                //? `{"prompt":${JSON.stringify(sSrc)},"n":1,"size":"512x512","response_format":"url"}`
+                return `{"model":"dall-e-3","prompt":${JSON.stringify(sSrc)},"n":1,"size":"1024x1024","response_format":"url"}`;
+            else if (parApi != 'chat') // !chat !image
+                return `{"model":"${document.querySelector('input[name="gptAlg"]:checked').value}"
+                    ,"prompt":${JSON.stringify(sSrc)},"temperature":0.7
+                    ,"max_tokens":${maxTokens == null ? 1000 : maxTokens},"top_p":1,"frequency_penalty":0.75,"presence_penalty":0`+stopTag+`}`;
+            else // chat, !image
+                return `{
+                    "model":"${document.querySelector('input[name="gptAlg"]:checked').value}"
+                    ,"messages": [
+                        { "role": "system", "content": "Create document chapters and then content." }
+                        ,{ "role": "user", "content": ${JSON.stringify(sSrc)} }
+                    ]
+                    ,"max_tokens":${maxTokens == null ? 1000 : maxTokens},"top_p":1,"frequency_penalty":0.75,"presence_penalty":0` + stopTag + `
+                    ,"stream": false}`;
         }
         function oaiReq(url) {
             let req = new XMLHttpRequest();
-            req.open("POST", url != null ? url : apiComp);
+            req.open("POST", url != null ? url : parApiComp);
             req.setRequestHeader("Content-Type", "application/json");
             req.setRequestHeader("Authorization", "Bearer " + gptId.value);
             return req;
         }    
-        function oaiReqDaE() { return oaiReq(apiGen);}
-        function oaiReqGpt() { return oaiReq(apiComp);}
+        function oaiReqDaE() { return oaiReq(parApiGen);}
+        function oaiReqGpt() { return oaiReq(parApiComp);}
         async function oaiValAsync(sSrc, isImage, doneC, errC, maxTokens, stopArray) {
             if (isImage == null) isImage = 0;
             let xhr = isImage == 1 ? oaiReqDaE() : oaiReqGpt();
@@ -186,7 +255,8 @@
                     if (xhr.status == 200)
                         doneC((isImage != 0)
                             ? JSON.parse(xhr.responseText).data[0].url
-                            : JSON.parse(xhr.responseText).choices[0].text);
+                            : JSON.parse(xhr.responseText).choices[0].message.content);
+                            //: JSON.parse(xhr.responseText).choices[0].text);
                     else {
                         let errT = "error";
                         try { errT = JSON.parse(xhr.responseText).error.message; } catch (e) { errT = xhr.status + " " + xhr.text }
@@ -230,7 +300,7 @@
         document.write("<div class=\"debug\">End of Code for OpenAI GPT, DALL-E</div>");
 
     </script>
-    <script id="SelvbetjentUtredningMedAi_product_and_analysis_">
+    <script id="_product_and_analysis_">
         document.write("<div class=\"debug\">Code for product and analysis...</div>");
 
         let g_aktoerer = ["Regjeringen", "KS", "DFØ", "digdir", "Datatilsynet", "e-helse", "Miljødirektoratet", "DIGG"];
@@ -413,53 +483,7 @@
         document.write("<div class=\"debug\">End of Code for product and analysis.</div>");
 
     </script>
-    <script id="_UI_load_and_visibility_">
-        document.write("<div class=\"debug\">Code for UI, load and visibility...</div>");
-        let uRLSearchParams = new URLSearchParams(location.search);
-        let tRotate = "&#8634;";
-        let tRotating = "<div class='rotating' style='height: 18px; width: 10px; animation: rotate 2s linear infinite;'>&#8634</div>";
-        let bGotValueFromUrl = new URLSearchParams(location.search).get('innhold') != null;
-        let apiComp = parVal('complete', 'https://api.openai.com/v1/completions');
-        let apiGen = parVal('generate', 'https://api.openai.com/v1/images/generations');
-
-        function parVal(p, defaul) {
-            let v = new URLSearchParams(location.search).get(p);
-            return (v == null) ? defaul : v;
-        }
-        function l() {
-            ShowCell(-1, -1, 'none'); // hide all
-            try { document.getElementById('suLink').href = 'MobilUtred.html' + window.location.search; } catch (e) { }
-            parseParameters();
-            try { if (!bGotValueFromUrl) navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; UpdateOutOrShowSamleButton(); }); } catch (e) { }
-            UpdateOutOrShowSamleButton();
-        }
-        function parseParameters() {
-            let u = new URLSearchParams(location.search);
-            let k = decodeURIComponent(u.get('hyggelig'));
-            p_k = Array.from(k).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');
-            txtInnholdInn.value = parVal('innhold', txtInnholdInn.value);
-            txtKapittelstrukturInn.value = parVal('kapittelstruktur', txtKapittelstrukturInn.value);
-            txtInnledningInn.value = parVal('kapittelinnledning', txtInnledningInn.value);
-            txtBildeInn.value = parVal('bildebeskrivelse', txtBildeInn.value);
-            txtBroedtekstInn.value = parVal('underkapittel', txtBroedtekstInn.value);
-            if (p_k != null) {
-                gptId.value = p_k;
-                if (u.get('produser') != null) setTimeout(function () { 
-                    if (u.get('design') != null) ProduktknappTrykket(u.get('design'))
-                    generateAll(overviewTable, contentTable); 
-                    setTimeout(function () { 
-                        TheFinishClick();
-                        setTimeout(function () { preview.scrollIntoView();
-                        }, 1000); 
-                    }, 1000); 
-                }, 1000); // produser=
-            }
-            else if (gptId.value.length < 1) { // no key. Enable it
-                TheIdeaClick();
-                Show(btns);
-                Show(btnsAll);
-            }
-        }
+    <script id="_UI_and_visibility_">
 
         function UpdateOutOrShowSamleButton() {
             if (txtInnholdInn.value.split(' ').length > DEFAULT_MAX_WORDS)
@@ -733,10 +757,10 @@
             let structureSub = [[]]; 
             let nCh = 0;
             for (let i = 0; i < chSub.length; i++) {
-                let chSubN = chSub[i].trim();
+                let chSubN = chSub[i].replace('#', '').replace('*', '').trim();
                 if (chSubN.length > 6)
                     if (chSubN.substring(0, "Kapittel".length) == "Kapittel" || chSubN.substring(0, "**".length) == "**") {
-                        nCh = structureCh.push(chSubN.replace('**', ''));
+                        nCh = structureCh.push(chSubN);
                         structureSub.push([]);
                     }
                     else if (nCh > 0)
@@ -1009,10 +1033,10 @@
                                 <input type="radio" name="gptAlg" value="text-curie-001">curie1
                                 <input type="radio" name="gptAlg" value="text-davinci-003">davinci3
                                 <input type="radio" name="gptAlg" value="gpt-3.5-turbo-instruct" checked>3.5-turbo
+                                <input type="radio" id="radioGptAlgPar" name="gptAlg" value="algorithm-parameter-value" checked>&algorithm=
                             </span>
                             <br /><button onclick="window.open('https://platform.openai.com/account/api-keys');">lag nøkkel</button>
-                            <input id="gptId" type="text" value="" style="width: 446px;"
-                                   onchange="gptIdLink.href='?openai_key='+encodeURIComponent(gptId.value).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('')" />
+                            <input id="gptId" type="text" value="" style="width: 446px;" onchange="gptIdLink.href=gunnarHyggeligUrl(gptId.value);" />
                             <a id="gptIdLink" href="?" style="color:blue">bruk nøkkel</a>
                         </span>
                     </span>
