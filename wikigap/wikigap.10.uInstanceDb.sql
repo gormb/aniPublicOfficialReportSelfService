@@ -6,9 +6,9 @@ go
 use wikigap_no
 if schema_id('u') is null exec('create schema u')
 go -- drop proc u.x
-create or alter proc u.x @c varchar(8000),@x varchar(max)=null,@x1 varchar(max)=null,@x2 varchar(max)=null,@x3 varchar(max)=null,@x4 varchar(max)=null,@x5 varchar(max)=null,@x6 varchar(max)=null,@x7 varchar(max)=null,@x8 varchar(max)=null,@x9 varchar(max)=null,@x10 varchar(max)=null,@x11 varchar(max)=null,@x12 varchar(max)=null,@x13 varchar(max)=null,@x14 varchar(max)=null,@x15 varchar(max)=null,@x16 varchar(max)=null,@x17 varchar(max)=null,@x18 varchar(max)=null,@x19 varchar(max)=null,@ignoreErr bit=0,@hideErr bit=1,@conc bit=0,@show bit=0 as set nocount on
+create or alter proc u.x @c varchar(8000),@x varchar(max)=null,@x1 varchar(max)=null,@x2 varchar(max)=null,@x3 varchar(max)=null,@x4 varchar(max)=null,@x5 varchar(max)=null,@x6 varchar(max)=null,@x7 varchar(max)=null,@x8 varchar(max)=null,@x9 varchar(max)=null,@x10 varchar(max)=null,@x11 varchar(max)=null,@x12 varchar(max)=null,@x13 varchar(max)=null,@x14 varchar(max)=null,@x15 varchar(max)=null,@x16 varchar(max)=null,@x17 varchar(max)=null,@x18 varchar(max)=null,@x19 varchar(max)=null,@ignoreErr bit=0,@hideErr bit=1,@conc bit=0,@show bit=0,@fk bigint=null as set nocount on
 	if @conc=1 begin set concat_null_yields_null off;set @x=concat_ws('',@x,@x1,@x2,@x3,@x4,@x5,@x6,@x7,@x8,@x9,@x10,@x11,@x12,@x13,@x14,@x15,@x16,@x17,@x18,@x19);set @x1=null;set @x2=null;set @x3=null;set @x4=null;set @x5=null;set @x6=null;set @x7=null;set @x8=null;set @x9=null;set @x10=null;set @x11=null;set @x12=null;set @x13=null;set @x14=null;set @x15=null;set @x16=null;set @x17=null;set @x18=null;set @x19=null; set concat_null_yields_null on; end
-	insert u.xlog(c,x)values(@c,@x);declare @pk int=scope_identity()
+	insert u.xlog(c,x,fk)values(@c,@x,@fk);declare @pk int=scope_identity()
 	if @x like 'cmd%' begin declare @m char=substring(@x,4,1)
 			set @x='declare @t table(pk int identity,o varchar(max));insert @t(o) exec xp_cmdshell '''+replace(ltrim(substring(@x,5,100000)),'''','''''')+''''
 			if @m='s' set @x+=';select o from @t where o is not null order by pk'
@@ -17,14 +17,15 @@ create or alter proc u.x @c varchar(8000),@x varchar(max)=null,@x1 varchar(max)=
 	if @c is null print @x else if len(@c)>0 begin print '-- '+@c;set @c='' end
 	set @x=isnull(@x,@c)
 	if @ignoreErr=0 
-		exec(@x)
+		exec(@x) 
 	else begin try exec(@x) 
 		end try begin catch if @hideErr=0 print '-- Failed ' + error_message(); 
 			update u.xlog set r=error_message() where @pk=pk
 		end catch
 	update u.xlog set dte=getdate() where @pk=pk
 	if @show=1 select * from u.xlog where @pk=pk
-	if @x1 is not null exec u.x @c, @x1,@x2,@x3,@x4,@x5,@x6,@x7,@x8,@x9,@x10,@x11,@x12,@x13,@x14,@x15,@x16,@x17,@x18,@x19,@ignoreErr=@ignoreErr,@hideErr=@hideErr,@conc=0
+	set @fk=isnull(@fk,@pk)
+	if @x1 is not null exec u.x @c, @x1,@x2,@x3,@x4,@x5,@x6,@x7,@x8,@x9,@x10,@x11,@x12,@x13,@x14,@x15,@x16,@x17,@x18,@x19,@ignoreErr=@ignoreErr,@hideErr=@hideErr,@conc=0,@fk=@fk
 	return @pk
 go
 create or alter proc u.Py @p varchar(8000)='' as set nocount on
@@ -45,7 +46,7 @@ print(web_content.decode("utf-8"))' -- print replace(@c,'\n',char(10))
 	exec xp_cmdshell @xc
 go
 create or alter proc u.install as set nocount on -- drop table u.xlog
-	if object_id('u.xlog') is null create table u.xlog(pk bigint identity(0,1) primary key clustered,c varchar(8000) null,x varchar(max) null,r varchar(max) default null,dt datetime default getdate(),dte datetime default null) -- drop table u.xlog
+	if object_id('u.xlog') is null create table u.xlog(pk bigint identity(0,1) primary key clustered,fk bigint,c varchar(8000) null,x varchar(max) null,r varchar(max) default null,dt datetime default getdate(),dte datetime default null,index ix_c(c)) -- drop table u.xlog
 	print '-- proc u.x: execute, log to u.xlog';set nocount on;insert u.xlog(c,dte)values('u.x: execute, log to u.xlog',getdate())
 	exec u.x 'u.j, u.js: job and jobstep for sql agent', 'create or alter proc u.js @id binary(16),@c nvarchar(max),@last bit=0 as set nocount on;declare @sa int=3-@last*2, @i int=isnull((select max(step_id) from msdb..sysjobsteps where job_id=@id),0)+1;exec msdb..sp_add_jobstep @id,null,@i,@i,''TSQL'',@c,@on_success_action=@sa'
 		,'create or alter proc u.j @s nvarchar(max),@r bit=0 as set nocount on;declare @id binary(16),@n sysname=''j''+cast(newid() as sysname);declare @d sysname=''exec msdb..sp_delete_job @job_name=''''''+@n+'''''''';exec msdb..sp_add_job @n,@job_id=@id OUTPUT;exec msdb..sp_add_jobserver @id,null,@@servername;exec u.js @id,@s;if @r=1 exec u.js @id,@d,1;exec msdb..sp_start_job @n'
