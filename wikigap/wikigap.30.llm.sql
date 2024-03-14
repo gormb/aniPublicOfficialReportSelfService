@@ -1,4 +1,4 @@
-use wikigap; print '-- needs u.*; '
+use wikigap; print '-- needs u.*; ' 
 if schema_id('llm') is null exec('create schema llm')
 go 
 if object_id('llm.log') is null 

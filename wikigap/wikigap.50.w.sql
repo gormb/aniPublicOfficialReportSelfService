@@ -1,6 +1,6 @@
-if db_id('wikigap_no') is null set noexec on
+if db_id('wikigap_no') is null set noexec on 
 go
-use wikigap_no 
+use wikigap_no
 if schema_id('w') is null exec('create schema w')
 go -- drop proc u.x
 create or alter proc w.t_c @recreate bit,@t sysname,@f varchar(max),@f1 varchar(max)=null,@f2 varchar(max)=null,@f3 varchar(max)=null,@f4 varchar(max)=null,@f5 varchar(max)=null,@f6 varchar(max)=null,@f7 varchar(max)=null,@f8 varchar(max)=null,@f9 varchar(max)=null as set nocount on
@@ -17,9 +17,7 @@ create or alter proc w.c @recreate bit=0 as set nocount on print '-- Create tabl
 	--	exec u.x '','create unique index ix_idup on w.src(srchash) with ignore_dup_key',@ignoreErr=1
 	exec w.t_c @recreate,title,'fksrc bigint,rowno bigint,FilePositionStart bigint,FilePosition bigint,title sysname,ns int,id bigint'
 	exec w.t_c @recreate,revision,'fktitle bigint,fksrc bigint,FilePosition bigint,id bigint,parentid bigint null,timestamp datetime,comment nvarchar(max) null,model sysname,format sysname,text nvarchar(max),sha1 sysname,range int'
-		,'index ix_idup unique(revisionhash)with(ignore_dup_key=on)'
-		,'index ix(fktitle,fksrc,FilePosition)'
-		,'index ixrange(range,fktitle,fksrc)'
+		,'index ix_idup unique(revisionhash)with(ignore_dup_key=on),index ix(fktitle,fksrc,FilePosition),index ixrange(range,fktitle,fksrc)'
 	--exec u.x 'w.w: ?','create or alter view w.w as select pkrevision=isnull(pkrevision,titlehash),pktitle,t.fksrc,src.dbname, t.ns, t.title, r.text, r.timestamp, r.comment from w.title t left join w.revision r on pktitle=r.fktitle and r.fksrc=t.fksrc left join w.src on pksrc=r.fksrc where isnull(r.range,1)=1'
 	exec w.t_c @recreate,language,'l sysname,ld datetime default getdate(),lurl as ''https://dumps.wikimedia.org/''+l+''wiki/latest/'''
 			/*html*/,'f as ''D:\data\wiki_no\html\wd_''+l+''.html'',fc varchar(max),ff varchar(max),fd datetime'
@@ -103,7 +101,6 @@ go
 create or alter proc w.h_dui_if @lang sysname,@ff varchar(8000),@x sysname as set nocount on
 	print concat_ws(',','----',@lang,@ff,@x)
 	--set nocount on;update w.language set xdend=null where l=@l;exec w.h_du @z, @x, @b
-
 		print '-- Import wiki into w.t(itle) and w.r(evision), from w.language, w.l(og) operations '
 	--print '---- Refill w.l - log '+cast(@sI as sysname)+' of '+cast(@sC as sysname)  -- truncate table w.l
 	--declare @fkl bigint=(select max(pklanguage) from w.language where slice=@sI and slices=@sC)
@@ -142,7 +139,6 @@ create or alter proc w.h_dui_if @lang sysname,@ff varchar(8000),@x sysname as se
 	--	;with w_rn AS (select range, row_number() over (partition by fkt, fkf order by timestamp DESC) AS new_range from w_r)
 	--		update w_rn set range = new_range;
 	--	--select * from w.r order by 1,2
-
 go
 create or alter proc w.h_dui @z sysname='D:\data\wiki_no\compressed\',@x sysname='D:\data\wiki_no\xml\',@b sysname='D:\data\wiki_no\compressed\processed\'
 		as set nocount on

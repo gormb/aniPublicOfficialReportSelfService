@@ -1,4 +1,4 @@
--- '_no' remove to get it all!
+-- '_no' remove to get it all! 
 -- todo python
 use master;--  use wikigap_no;alter database wikigap_no set single_user with rollback immediate;use master;drop database wikigap_no
 if db_id('wikigap_no') is null create database wikigap_no on(name='wikigap_no', filename='d:\data\wiki_no\db\wikigap_no.mdf',size=10mb,filegrowth=10%),(name='wikigap_no2', filename='d:\data\wiki_no\db\wikigap2.ndf',size=10mb,filegrowth=10%),(name='wikigap_no3', filename='d:\data\wiki_no\db\wikigap3.ndf',size=10mb,filegrowth=10%),(name='wikigap_no4', filename='d:\data\wiki_no\db\wikigap_no4.ndf',size=10mb,filegrowth=10%) log on(name='wikigap_no_log', filename='d:\data\wiki_no\db\wikigap_no_log.ldf',size=10mb,filegrowth=10%)
