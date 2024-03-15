@@ -22,8 +22,8 @@
         function l() {
             ShowCell(-1, -1, 'none'); // hide all
             try { document.getElementById('suLink').href = 'MobilUtred.html' + window.location.search; } catch (e) { }
-            parseParameters();
-            try { if (!bGotValueFromUrl) navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; UpdateOutOrShowSamleButton(); }); } catch (e) { }
+            if (!parseParameters())
+                try { if (!bGotValueFromUrl) navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; UpdateOutOrShowSamleButton(); }); } catch (e) { }
             UpdateOutOrShowSamleButton();
         }
         function gunnar(g) { return Array.from(g).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');}
@@ -33,11 +33,10 @@
             u.set(p, v);
             return '?' + u.toString(); }
         function gunnarHyggeligUrl(g) { return '?hyggelig='+gunnarE(g);}
-        function parseParameters() {
+        function parseParameters() { // return true if innhold=
             let u = new URLSearchParams(location.search);
             console.log(decodeURIComponent(u.get('hyggelig')));
-            let p_k = //'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'//;
-                gunnarD(u.get('hyggelig'));
+            let p_k = gunnarD(u.get('hyggelig'));
             txtInnholdInn.value = parVal('innhold', txtInnholdInn.value);
             txtKapittelstrukturInn.value = parVal('kapittelstruktur', txtKapittelstrukturInn.value);
             txtInnledningInn.value = parVal('kapittelinnledning', txtInnledningInn.value);
@@ -67,6 +66,7 @@
                 Show(btns);
                 Show(btnsAll);
             }
+            return (new URLSearchParams(location.search)).get('produser') == null ? false : true;
         }
     </script>
 <!-- Style -->
