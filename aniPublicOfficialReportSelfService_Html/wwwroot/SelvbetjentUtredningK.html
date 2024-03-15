@@ -1,21 +1,23 @@
 ﻿<script>
-    window.location.href = 'SelvbetjentUtredning.html'
-        + '?produser='
-        //+ '&design=noKS'
-        //+ '&innhold=Meningen med livet og meteorologiens historie'
-        //+ '&kapittelstruktur=Kapittelstruktur med Kapittel 1 til 5 deretter 3 underkapittel for hvert kapittel navngitt 1a, 1b helt til 5c):'
-        //+ '&kapittelinnledning=* Innledning på maksimalt 10 ord:'
-        //+ '&bildebeskrivelse=Bildebeskrivelse på 50 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet:'
-        //+ '&underkapittel=* Kort brødtekst på mindere enn 30 ord:%13%10'
-        + '&api=chat'
-        // OpenAI.com
-        //+ '&hyggelig=4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B'
-        //+ '&algorithm=gpt-3.5-turbo'
-        //+ '&complete=https://api.openai.com/v1/chat/completions'
-        //+ '&complete=https://api.openai.com/v1/completions'
+    window.location.href = 'SelvbetjentUtredning.html?produser='
+        + '&design=noKS'
+        + '&innhold=Meningen med livet og meteorologiens historie'
+        + '&kapittelstruktur=Kapittelstruktur med Kapittel 1 til 2 deretter 2 underkapittel for hvert kapittel navngitt 1a) til 2b):'
+        + '&kapittelinnledning=* Innledning på maksimalt 10 ord:'
+        + '&bildebeskrivelse=Bildebeskrivelse på 50 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet:'
+        + '&underkapittel=* Kort brødtekst på mindere enn 30 ord:%13%10'
+        // OpenAI.com instruct
+            + '&hyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
+            + '&complete=https://api.openai.com/v1/completions'
+            + '&algorithm=gpt-3.5-turbo-instruct'
+        // OpenAI.com chat
+            //+ '&api=chat'
+            //+ '&hyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
+            //+ '&algorithm=gpt-3.5-turbo'
+            //+ '&complete=https://api.openai.com/v1/chat/completions'
         // Groq.com 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
-        + '&hyggelig=%20%26%25Q%23(%23O%20%2FNf)X%5DT00"Rv7FDPR*7%23aAL%5D%7CRQWB%5D%40u*J%23%2BF5C)2%7BXx%27Eg'
-        + '&complete=https://api.groq.com/openai/v1/chat/completions'
+        //+ '&hyggelig=%20%26%25Q%23(%23O%20%2FNf)X%5DT00"  v7FDPR*7%23aAL%5D%7CRQWB%5D%40u*J%23%2BF5C)2%7BXx%27Eg'
+        //+ '&complete=https://api.groq.com/openai/v1/chat/completions'
         //// + '&algorithm=llama2-70b-4096'
         //+ '&algorithm=mixtral-8x7b-32768'
         // localhost

@@ -29,10 +29,15 @@
         function gunnar(g) { return Array.from(g).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');}
         function gunnarE(g) { return encodeURIComponent(gunnar(g));}
         function gunnarD(g) { return gunnar(decodeURIComponent(g));}
+        function parValSet(p,v) { let u = new URLSearchParams(window.location.search);
+            u.set(p, v);
+            return '?' + u.toString(); }
         function gunnarHyggeligUrl(g) { return '?hyggelig='+gunnarE(g);}
         function parseParameters() {
             let u = new URLSearchParams(location.search);
-            let p_k = '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'; //gunnarD(u.get('hyggelig'));
+            console.log(decodeURIComponent(u.get('hyggelig')));
+            let p_k = //'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'//;
+                gunnarD(u.get('hyggelig'));
             txtInnholdInn.value = parVal('innhold', txtInnholdInn.value);
             txtKapittelstrukturInn.value = parVal('kapittelstruktur', txtKapittelstrukturInn.value);
             txtInnledningInn.value = parVal('kapittelinnledning', txtInnledningInn.value);
@@ -42,6 +47,8 @@
                 //let inp = document.getElementsByTagName("gptAlg");
                 radioGptAlgPar.checked = true;
                 radioGptAlgPar.value = parApiAlgorithm;
+                radioGptAlgPar.innerHTML = parApiAlgorithm;
+                
             }
             if (p_k != null) {
                 gptId.value = p_k;
@@ -255,8 +262,8 @@
                     if (xhr.status == 200)
                         doneC((isImage != 0)
                             ? JSON.parse(xhr.responseText).data[0].url
-                            : JSON.parse(xhr.responseText).choices[0].message.content);
-                            //: JSON.parse(xhr.responseText).choices[0].text);
+                            //: JSON.parse(xhr.responseText).choices[0].message.content);
+                            : JSON.parse(xhr.responseText).choices[0].text);
                     else {
                         let errT = "error";
                         try { errT = JSON.parse(xhr.responseText).error.message; } catch (e) { errT = xhr.status + " " + xhr.text }
@@ -1033,7 +1040,7 @@
                                 <input type="radio" name="gptAlg" value="text-curie-001">curie1
                                 <input type="radio" name="gptAlg" value="text-davinci-003">davinci3
                                 <input type="radio" name="gptAlg" value="gpt-3.5-turbo-instruct" checked>3.5-turbo
-                                <input type="radio" id="radioGptAlgPar" name="gptAlg" value="algorithm-parameter-value" checked>&algorithm=
+                                <input type="radio" id="radioGptAlgPar" name="gptAlg" value="algorithmParameterValue" checked>&algorithm=
                             </span>
                             <br /><button onclick="window.open('https://platform.openai.com/account/api-keys');">lag nøkkel</button>
                             <input id="gptId" type="text" value="" style="width: 446px;" onchange="gptIdLink.href=gunnarHyggeligUrl(gptId.value);" />
