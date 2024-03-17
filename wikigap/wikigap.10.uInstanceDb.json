@@ -1,0 +1,439 @@
+{
+    "metadata": {
+        "kernelspec": {
+            "name": "SQL",
+            "display_name": "SQL",
+            "language": "sql"
+        },
+        "language_info": {
+            "name": "sql",
+            "version": ""
+        }
+    },
+    "nbformat_minor": 2,
+    "nbformat": 4,
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "source": [
+                "'_no' remove to get it all!"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "1277fb37-fccb-4f6f-960d-d215906b10f0"
+            }
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "Create database"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "5a101be6-9f4c-4fb4-8647-fd89c7f14786"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "use master;\n",
+                "exec xp_cmdshell 'md d:\\data'\n",
+                "exec xp_cmdshell 'md d:\\data\\wiki_en'\n",
+                "exec xp_cmdshell 'md d:\\data\\wiki_en\\db'\n",
+                "if db_id('wikigap_en') is null create database wikigap_en on(name='wikigap_en', filename='d:\\data\\wiki_en\\db\\wikigap_en.mdf',size=10mb,filegrowth=10%),(name='wikigap_en2', filename='d:\\data\\wiki_en\\db\\wikigap2.ndf',size=10mb,filegrowth=10%),(name='wikigap_en3', filename='d:\\data\\wiki_en\\db\\wikigap3.ndf',size=10mb,filegrowth=10%),(name='wikigap_en4', filename='d:\\data\\wiki_en\\db\\wikigap_en4.ndf',size=10mb,filegrowth=10%) log on(name='wikigap_en_log', filename='d:\\data\\wiki_en\\db\\wikigap_en_log.ldf',size=10mb,filegrowth=10%)\n",
+                "go\n",
+                "use wikigap_en\n",
+                "if schema_id('u') is null exec('create schema u')"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "b6b2cb6d-ba46-4157-b2f2-bb6942850587",
+                "language": "sql",
+                "tags": [
+                    "hide_input"
+                ]
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(2 rows affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(2 rows affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(2 rows affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Commands completed successfully."
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.114"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 63,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "output"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "output": "A subdirectory or file d:\\data already exists."
+                                },
+                                {
+                                    "output": "NULL"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>output</th></tr>",
+                            "<tr><td>A subdirectory or file d:\\data already exists.</td></tr>",
+                            "<tr><td>NULL</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 63,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "output"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "output": "A subdirectory or file d:\\data\\wiki_en already exists."
+                                },
+                                {
+                                    "output": "NULL"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>output</th></tr>",
+                            "<tr><td>A subdirectory or file d:\\data\\wiki_en already exists.</td></tr>",
+                            "<tr><td>NULL</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 63,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "output"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "output": "A subdirectory or file d:\\data\\wiki_en\\db already exists."
+                                },
+                                {
+                                    "output": "NULL"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>output</th></tr>",
+                            "<tr><td>A subdirectory or file d:\\data\\wiki_en\\db already exists.</td></tr>",
+                            "<tr><td>NULL</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 63
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "proc u.x - workhorse for all execution"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "aa424b9a-1adb-4585-8f8e-7c040ba681a8"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "use wikigap_en\n",
+                "go\n",
+                "if object_id('u.xlog') is null create table u.xlog(pk bigint identity(0,1) primary key clustered,fk bigint,c varchar(8000) null,x varchar(max) null,r varchar(max) default null,dt datetime default getdate(),dte datetime default null,index ix_c(c)) -- drop table u.xlog\n",
+                "go\n",
+                "create or alter proc u.x @c varchar(8000),@x varchar(max)=null,@x1 varchar(max)=null,@x2 varchar(max)=null,@x3 varchar(max)=null,@x4 varchar(max)=null,@x5 varchar(max)=null,@x6 varchar(max)=null,@x7 varchar(max)=null,@x8 varchar(max)=null,@x9 varchar(max)=null,@x10 varchar(max)=null,@x11 varchar(max)=null,@x12 varchar(max)=null,@x13 varchar(max)=null,@x14 varchar(max)=null,@x15 varchar(max)=null,@x16 varchar(max)=null,@x17 varchar(max)=null,@x18 varchar(max)=null,@x19 varchar(max)=null,@ignoreErr bit=0,@hideErr bit=1,@conc bit=0,@show bit=0,@fk bigint=null as set nocount on\n",
+                "\tif @conc=1 begin set concat_null_yields_null off;set @x=concat_ws('',@x,@x1,@x2,@x3,@x4,@x5,@x6,@x7,@x8,@x9,@x10,@x11,@x12,@x13,@x14,@x15,@x16,@x17,@x18,@x19);set @x1=null;set @x2=null;set @x3=null;set @x4=null;set @x5=null;set @x6=null;set @x7=null;set @x8=null;set @x9=null;set @x10=null;set @x11=null;set @x12=null;set @x13=null;set @x14=null;set @x15=null;set @x16=null;set @x17=null;set @x18=null;set @x19=null; set concat_null_yields_null on; end\n",
+                "\tinsert u.xlog(c,x,fk)values(@c,@x,@fk);declare @pk int=scope_identity()\n",
+                "\tif @x like 'cmd%' begin declare @m char=substring(@x,4,1)\n",
+                "\t\t\tset @x='declare @t table(pk int identity,o varchar(max));insert @t(o) exec xp_cmdshell '''+replace(ltrim(substring(@x,5,100000)),'''','''''')+''''\n",
+                "\t\t\tif @m='s' set @x+=';select o from @t where o is not null order by pk'\n",
+                "\t\t\tif @m='l' set @x+=';select string_agg(o,char(10)) from @t where o is not null order by pk'\n",
+                "\t\tend\n",
+                "\tif @c is null print @x else if len(@c)>0 begin print '-- '+@c;set @c='' end\n",
+                "\tset @x=isnull(@x,@c)\n",
+                "\tif @ignoreErr=0 \n",
+                "\t\texec(@x) \n",
+                "\telse begin try exec(@x) \n",
+                "\t\tend try begin catch if @hideErr=0 print '-- Failed ' + error_message(); \n",
+                "\t\t\tupdate u.xlog set r=error_message() where @pk=pk\n",
+                "\t\tend catch\n",
+                "\tupdate u.xlog set dte=getdate() where @pk=pk\n",
+                "\tif @show=1 select * from u.xlog where @pk=pk\n",
+                "\tset @fk=isnull(@fk,@pk)\n",
+                "\tif @x1 is not null exec u.x @c, @x1,@x2,@x3,@x4,@x5,@x6,@x7,@x8,@x9,@x10,@x11,@x12,@x13,@x14,@x15,@x16,@x17,@x18,@x19,@ignoreErr=@ignoreErr,@hideErr=@hideErr,@conc=0,@fk=@fk\n",
+                "\treturn @pk"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "849731d8-d583-4db0-a776-5abe3c1a5f53",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Commands completed successfully."
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Warning! The maximum key length for a nonclustered index is 1700 bytes. The index 'ix_c' has maximum length of 8000 bytes. For some combination of large values, the insert/update operation will fail."
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Commands completed successfully."
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.373"
+                    },
+                    "metadata": {}
+                }
+            ],
+            "execution_count": 64
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "use wikigap_en\n",
+                "go\n",
+                "create or alter proc u.install as set nocount on -- drop table u.xlog\n",
+                "\tprint '-- proc u.x: execute, log to u.xlog';set nocount on;insert u.xlog(c,dte)values('u.x: execute, log to u.xlog',getdate())\n",
+                "\texec u.x 'u.j, u.js: job and jobstep for sql agent', 'create or alter proc u.js @id binary(16),@c nvarchar(max),@last bit=0 as set nocount on;declare @sa int=3-@last*2, @i int=isnull((select max(step_id) from msdb..sysjobsteps where job_id=@id),0)+1;exec msdb..sp_add_jobstep @id,null,@i,@i,''TSQL'',@c,@on_success_action=@sa'\n",
+                "\t\t,'create or alter proc u.j @s nvarchar(max),@r bit=0 as set nocount on;declare @id binary(16),@n sysname=''j''+cast(newid() as sysname);declare @d sysname=''exec msdb..sp_delete_job @job_name=''''''+@n+'''''''';exec msdb..sp_add_job @n,@job_id=@id OUTPUT;exec msdb..sp_add_jobserver @id,null,@@servername;exec u.js @id,@s;if @r=1 exec u.js @id,@d,1;exec msdb..sp_start_job @n'\n",
+                "\texec u.x 'u.cs, cst; checksum and checksum type'\n",
+                "\t\t,'if type_id(''cst'') is null create type cst from bigint not null'\n",
+                "\t\t,'create or alter function u.cs(@v varchar(max)) returns cst as begin;declare @ret cst=cast(hashbytes(''sha1'',isnull(@v,''null)'')) as bigint);while len(@v)>8000 begin set @v=SUBSTRING(@v,8000,len(@v)-8000);set @ret^=cast(hashbytes(''sha1'',@v) as bigint);end;return @ret;end'\n",
+                "\t--exec u.x 'create or alter proc u.installasm as set nocount on print ''placeholder'''\n",
+                "\texec u.installasm"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "b482173a-6135-4e8e-93a8-85613c151610",
+                "language": "sql",
+                "tags": []
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Commands completed successfully."
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Commands completed successfully."
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.001"
+                    },
+                    "metadata": {}
+                }
+            ],
+            "execution_count": 65
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "use wikigap_en \n",
+                "go\n",
+                "create or alter proc u.installasm as set nocount on\n",
+                "\t--select count(*),max(done)-min(start) from w.d where done is not null\n",
+                "\t--select pkd,done,f,done-start from w.d order by done-start desc\n",
+                "\talter database wikigap_en set allow_snapshot_isolation on\n",
+                "\talter database wikigap_en set multi_user, trustworthy on\n",
+                "\texec sp_changedbowner 'sa'\n",
+                "\texec sp_configure 'show advanced options', 1;exec sp_configure 'clr enabled', 1;exec sp_configure 'xp_cmdshell', 1;exec sp_configure 'ad hoc distributed queries', 1;reconfigure;\n",
+                "\texec u.x 'aigap linked server','exec sp_addlinkedserver aigap,'''',msoledbsql,@@servername',@ignoreErr=1\n",
+                "\t--exec xp_cmdshell 'icacls \"d:\\data\\wiki_no\\*.*\" /grant \"%USERNAME%\":(F)'\n",
+                "\texec u.x 'create folders'\n",
+                "\t\t,'cmd md d:\\data\\wiki_en\\xml','cmd md d:\\data\\wiki_en\\html','cmd md d:\\data\\wiki_en\\compressed','cmd md d:\\data\\wiki_en\\compressed\\processed'\n",
+                "\tif not exists(select * from sys.assemblies where name='xmlastvf') \n",
+                "\tbegin\n",
+                "\t\tdeclare @code nvarchar(max)=(select convert(varchar(max), content, 2) from wikigap.sys.assembly_files where name='XmlAsRelationalTvf')\n",
+                "\t\texec u.x 'assembly xmlastvf','create assembly xmlastvf from 0x',@code,' with permission_set=unsafe',@conc=1\n",
+                "\t\texec u.x 'create function u.i_xml(@fn nvarchar(4000), @rowtag nvarchar(4000), @colmuntagsPiped nvarchar(4000), @iSlice int, @iSliceCount int, @iBufferSize int, @lBufferMapSize bigint)\n",
+                "\t\t\treturns table (pk bigint,fileName nvarchar(4000),fileNameHash bigint,FilePosition bigint,c00 nvarchar(max),c01 nvarchar(max),c02 nvarchar(max),c03 nvarchar(max),c04 nvarchar(max),c05 nvarchar(max),c06 nvarchar(max),c07 nvarchar(max),c08 nvarchar(max),c09 nvarchar(max),c10 nvarchar(max),c11 nvarchar(max),c12 nvarchar(max),c13 nvarchar(max),c14 nvarchar(max),c15 nvarchar(max),c16 nvarchar(max),c17 nvarchar(max),c18 nvarchar(max),c19 nvarchar(max),c20 nvarchar(max),c21 nvarchar(max),c22 nvarchar(max),c23 nvarchar(max),c24 nvarchar(max),c25 nvarchar(max),c26 nvarchar(max),c27 nvarchar(max),c28 nvarchar(max),c29 nvarchar(max),c30 nvarchar(max),c31 nvarchar(max))\n",
+                "\t\t\twith execute as caller as external name xmlastvf.gbr.GetXmlTags_Slice'\n",
+                "\t\texec u.x 'create function u.i_part(@fn nvarchar(4000), @tag nvarchar(4000))\n",
+                "\t\t\treturns table (pk bigint,s nvarchar(max))\n",
+                "\t\t\twith execute as caller as external name xmlastvf.gbr.GetFilePart_Embedded'\n",
+                "\tend"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "167e468c-1fda-490d-bb27-18c1aef39b40",
+                "language": "sql",
+                "tags": []
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Commands completed successfully."
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Commands completed successfully."
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.002"
+                    },
+                    "metadata": {}
+                }
+            ],
+            "execution_count": 66
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "exec wikigap_en.u.install"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "1c7493e4-2b17-4d5d-a32f-2de339f4538a",
+                "language": "sql"
+            },
+            "outputs": [
+{
+    "output_type": "display_data",
+    "data": {
+        "text/html": "-- proc u.x: execute, log to u.xlog"
+    },
+    "metadata": {}
+}, {
+    "output_type": "display_data",
+    "data": {
+        "text/html": "-- u.j, u.js: job and jobstep for sql agent"
+    },
+    "metadata": {}
+}, {
+    "output_type": "display_data",
+    "data": {
+        "text/html": "-- u.cs, cst; checksum and checksum type"
+    },
+    "metadata": {}
+}, {
+    "output_type": "display_data",
+    "data": {
+        "text/html": "Configuration option 'show advanced options' changed from 1 to 1. Run the RECONFIGURE statement to install."
+    },
+    "metadata": {}
+}, {
+    "output_type": "display_data",
+    "data": {
+        "text/html": "Configuration option 'clr enabled' changed from 1 to 1. Run the RECONFIGURE statement to install."
+    },
+    "metadata": {}
+}, {
+    "output_type": "display_data",
+    "data": {
+        "text/html": "Configuration option 'xp_cmdshell' changed from 1 to 1. Run the RECONFIGURE statement to install."
+    },
+    "metadata": {}
+}, {
+    "output_type": "display_data",
+    "data": {
+        "text/html": "Configuration option 'Ad Hoc Distributed Queries' changed from 1 to 1. Run the RECONFIGURE statement to install."
+    },
+    "metadata": {}
+}, {
+    "output_type": "display_data",
+    "data": {
+        "text/html": "-- aigap linked server"
+    },
+    "metadata": {}
+}, {
+    "output_type": "display_data",
+    "data": {
+        "text/html": "-- create folders"
+    },
+    "metadata": {}
+}, {
+    "output_type": "display_data",
+    "data": {
+        "text/html": "Total execution time: 00:00:00.160"
+    },
+    "metadata": {}
+}
+],
+            "execution_count": 67
+        }
+    ]
+}
