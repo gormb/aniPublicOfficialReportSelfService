@@ -29,10 +29,12 @@
         function gunnar(g) { return Array.from(g).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');}
         function gunnarE(g) { return encodeURIComponent(gunnar(g));}
         function gunnarD(g) { return gunnar(decodeURIComponent(g));}
-        function parValSet(p,v) { let u = new URLSearchParams(window.location.search);
+        function parValSet(p,v) { 
+            let u = new URLSearchParams(window.location.search);
             u.set(p, v);
+            console.log(u.toString());
             return '?' + u.toString(); }
-        function gunnarHyggeligUrl(g) { return '?hyggelig='+gunnarE(g);}
+        function gunnarHyggeligUrl(g) { return parValSet('hyggelig', gunnarE(g));/*'?hyggelig='+gunnarE(g);*/}
         function parseParameters() { // return true if innhold=
             let u = new URLSearchParams(location.search);
             console.log(decodeURIComponent(u.get('hyggelig')));
