@@ -9,16 +9,15 @@
         let uRLSearchParams = new URLSearchParams(location.search);
         let tRotate = "&#8634;";
         let tRotating = "<div class='rotating' style='height: 18px; width: 10px; animation: rotate 2s linear infinite;'>&#8634</div>";
-        let bGotValueFromUrl = new URLSearchParams(location.search).get('innhold') != null;
-        let parApi = parVal('api', 'complete');
-        let parApiAlgorithm = parVal('algorithm', null);
-        let parApiComp = parVal('complete', 'https://api.openai.com/v1/completions');
-        let parApiGen = parVal('generate', 'https://api.openai.com/v1/images/generations');
+        let bGotValueFromUrl = uRLSearchParams.get('innhold') != null;
+        let parApi = parValGet('api', 'complete');
+        let parApiTextModel = parValGet('textmodel', null);
+        let parApiTextJson = parValGet('complete', 'https://api.openai.com/v1/completions');
+        let parApiImgJson = parValGet('generate', 'https://api.openai.com/v1/images/generations');
+        let parApiKey = gunnarDec(uRLSearchParams.get('hyggelig'));
+        let parApiImgModel = parValGet('imagemodel','dall-e-2');
+        
 
-        function parVal(p, defaul) {
-            let v = new URLSearchParams(location.search).get(p);
-            return (v == null) ? defaul : v;
-        }
         function l() {
             ShowCell(-1, -1, 'none'); // hide all
             try { document.getElementById('suLink').href = 'MobilUtred.html' + window.location.search; } catch (e) { }
@@ -27,33 +26,33 @@
             UpdateOutOrShowSamleButton();
         }
         function gunnar(g) { return Array.from(g).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');}
-        function gunnarE(g) { return encodeURIComponent(gunnar(g));}
-        function gunnarD(g) { return gunnar(decodeURIComponent(g));}
+        function gunnarEnc(g) { return encodeURIComponent(gunnar(g));}
+        function gunnarDec(g) { return gunnar(decodeURIComponent(g));}
+        function parValGet(p, defaul) {
+            let v = uRLSearchParams.get(p);
+            return (v == null) ? defaul : v;
+        }
         function parValSet(p,v) { 
-            let u = new URLSearchParams(window.location.search);
-            u.set(p, v);
-            console.log(u.toString());
-            return '?' + u.toString(); }
-        function gunnarHyggeligUrl(g) { return parValSet('hyggelig', gunnarE(g));/*'?hyggelig='+gunnarE(g);*/}
+            uRLSearchParams.set(p, v);
+            console.log(uRLSearchParams.toString());
+            return '?' + uRLSearchParams.toString(); }
+        function gunnarHyggeligUrl(g) { return parValSet('hyggelig', gunnarEnc(g));/*'?hyggelig='+gunnarEnc(g);*/}
         function parseParameters() { // return true if innhold=
-            let u = new URLSearchParams(location.search);
-            console.log(decodeURIComponent(u.get('hyggelig')));
-            let p_k = gunnarD(u.get('hyggelig'));
-            txtInnholdInn.value = parVal('innhold', txtInnholdInn.value);
-            txtKapittelstrukturInn.value = parVal('kapittelstruktur', txtKapittelstrukturInn.value);
-            txtInnledningInn.value = parVal('kapittelinnledning', txtInnledningInn.value);
-            txtBildeInn.value = parVal('bildebeskrivelse', txtBildeInn.value);
-            txtBroedtekstInn.value = parVal('underkapittel', txtBroedtekstInn.value);
-            if (parApiAlgorithm != null) { // algorithm set in parameter; set gptAlg...
+            txtInnholdInn.value = parValGet('innhold', txtInnholdInn.value);
+            txtKapittelstrukturInn.value = parValGet('kapittelstruktur', txtKapittelstrukturInn.value);
+            txtInnledningInn.value = parValGet('kapittelinnledning', txtInnledningInn.value);
+            txtBildeInn.value = parValGet('bildebeskrivelse', txtBildeInn.value);
+            txtBroedtekstInn.value = parValGet('underkapittel', txtBroedtekstInn.value);
+            if (parApiTextModel != null) { // algorithm set in parameter; set gptAlg...
                 //let inp = document.getElementsByTagName("gptAlg");
                 radioGptAlgPar.checked = true;
-                radioGptAlgPar.value = parApiAlgorithm;
-                radioGptAlgPar.innerHTML = parApiAlgorithm;
+                radioGptAlgPar.value = parApiTextModel;
+                radioGptAlgPar.innerHTML = parApiTextModel;
             }
-            if (p_k != null) {
-                gptId.value = p_k;
-                if (u.get('produser') != null) setTimeout(function () { 
-                    if (u.get('design') != null) ProduktknappTrykket(u.get('design'))
+            if (parApiKey != null) {
+                gptId.value = parApiKey;
+                if (uRLSearchParams.get('produser') != null) setTimeout(function () { 
+                    if (uRLSearchParams.get('design') != null) ProduktknappTrykket(uRLSearchParams.get('design'))
                     generateAll(overviewTable, contentTable); 
                     setTimeout(function () { 
                         TheFinishClick();
@@ -67,7 +66,7 @@
                 Show(btns);
                 Show(btnsAll);
             }
-            return (new URLSearchParams(location.search)).get('produser') == null ? false : true;
+            return uRLSearchParams.get('produser') == null ? false : true;
         }
     </script>
 <!-- Style -->
@@ -231,7 +230,7 @@
                 }
             if (isImage == 1) // image
                 //? `{"prompt":${JSON.stringify(sSrc)},"n":1,"size":"512x512","response_format":"url"}`
-                return `{"model":"dall-e-3","prompt":${JSON.stringify(sSrc)},"n":1,"size":"1024x1024","response_format":"url"}`;
+                return `{"model":${JSON.stringify(parApiImgModel)},"prompt":${JSON.stringify(sSrc)},"n":1,"size":"1024x1024","response_format":"url"}`;
             else if (parApi != 'chat') // !chat !image
                 return `{"model":"${document.querySelector('input[name="gptAlg"]:checked').value}"
                     ,"prompt":${JSON.stringify(sSrc)},"temperature":0.7
@@ -248,13 +247,13 @@
         }
         function oaiReq(url) {
             let req = new XMLHttpRequest();
-            req.open("POST", url != null ? url : parApiComp);
+            req.open("POST", url != null ? url : parApiTextJson);
             req.setRequestHeader("Content-Type", "application/json");
             req.setRequestHeader("Authorization", "Bearer " + gptId.value);
             return req;
         }    
-        function oaiReqDaE() { return oaiReq(parApiGen);}
-        function oaiReqGpt() { return oaiReq(parApiComp);}
+        function oaiReqDaE() { return oaiReq(parApiImgJson);}
+        function oaiReqGpt() { return oaiReq(parApiTextJson);}
         async function oaiValAsync(sSrc, isImage, doneC, errC, maxTokens, stopArray) {
             if (isImage == null) isImage = 0;
             let xhr = isImage == 1 ? oaiReqDaE() : oaiReqGpt();
@@ -729,7 +728,6 @@
             //return splitIn.join("\n---------------------------------\n");
             return inTxt;// "⟳";
         }
-
         document.write("<div class=\"debug\">End of Code for simplify.</div>");
 
     </script>
@@ -749,10 +747,14 @@
         function structureStopAfter(iC, iS) {
             let res = [];
             if (iS == null) { // chapter; next chapter or first subchapter
-                res = ['Kapittel ' + (iC + 2), 'Underkapittel ' + (iC + 1) + 'a'];
+                res = ['Kapittel ' + (iC + 2)
+                    , 'Underkapittel ' + (iC + 1) + 'a'
+                    , '' + (iC + 1) + 'a) '];
             }
             else { // subchapter; next subchapter or chapter
-                res = ['Kapittel ' + (iC + 2), 'Underkapittel ' + (iC + 1) + String.fromCharCode('b'.charCodeAt(0)+iS)];
+                res = ['Kapittel ' + (iC + 2)
+                    , 'Underkapittel ' + (iC + 1) + String.fromCharCode('b'.charCodeAt(0)+iS)
+                    , '' + (iC + 1) + String.fromCharCode('b'.charCodeAt(0) + iS) +') '];
             }
             return res;
         }
@@ -958,11 +960,6 @@
 </head>
 
 <body onload="l();" style="background-color:#000">
-    <script>
-        // Alex Filippenko: Supernovae, Dark Energy, Aliens & the Expanding Universe | Lex Fridman Podcast #137
-        // Bret Weinstein: Truth, Science, and Censorship in the Time of a Pandemic | Lex Fridman Podcast #194
-        // Michio Kaku: Future of Humans, Aliens, Space Travel & Physics | Lex Fridman Podcast #45
-    </script>
     <!-- Content -->
     <center>
         <span id="progressText">status</span>
