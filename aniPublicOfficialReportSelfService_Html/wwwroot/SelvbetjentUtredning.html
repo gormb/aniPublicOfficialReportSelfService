@@ -12,11 +12,10 @@
         let bGotValueFromUrl = uRLSearchParams.get('innhold') != null;
         let parApi = parValGet('api', 'complete');
         let parApiTextModel = parValGet('textmodel', null);
-        let parApiTextJson = parValGet('complete', 'https://api.openai.com/v1/completions');
-        let parApiImgJson = parValGet('generate', 'https://api.openai.com/v1/images/generations');
-        let parApiKey = gunnarDec(uRLSearchParams.get('hyggelig'));
-        let parApiImgModel = parValGet('imagemodel','dall-e-2');
-        
+        let parApiTextJson = parValGet('textjson', 'https://api.openai.com/v1/completions');
+        let parApiTextKey = gunnarDec(uRLSearchParams.get('texthyggelig'));
+        let parApiImgJson = parValGet('imagejson', 'https://api.openai.com/v1/images/generations');
+        let parApiImgModel = parValGet('imagemodel','dall-e-2'); 
 
         function l() {
             ShowCell(-1, -1, 'none'); // hide all
@@ -36,7 +35,7 @@
             uRLSearchParams.set(p, v);
             console.log(uRLSearchParams.toString());
             return '?' + uRLSearchParams.toString(); }
-        function gunnarHyggeligUrl(g) { return parValSet('hyggelig', gunnarEnc(g));/*'?hyggelig='+gunnarEnc(g);*/}
+        function gunnarHyggeligUrl(g) { return parValSet('texthyggelig', gunnarEnc(g));/*'?texthyggelig='+gunnarEnc(g);*/}
         function parseParameters() { // return true if innhold=
             txtInnholdInn.value = parValGet('innhold', txtInnholdInn.value);
             txtKapittelstrukturInn.value = parValGet('kapittelstruktur', txtKapittelstrukturInn.value);
@@ -49,8 +48,8 @@
                 radioGptAlgPar.value = parApiTextModel;
                 radioGptAlgPar.innerHTML = parApiTextModel;
             }
-            if (parApiKey != null) {
-                gptId.value = parApiKey;
+            if (parApiTextKey != null) {
+                gptId.value = parApiTextKey;
                 if (uRLSearchParams.get('produser') != null) setTimeout(function () { 
                     if (uRLSearchParams.get('design') != null) ProduktknappTrykket(uRLSearchParams.get('design'))
                     generateAll(overviewTable, contentTable); 

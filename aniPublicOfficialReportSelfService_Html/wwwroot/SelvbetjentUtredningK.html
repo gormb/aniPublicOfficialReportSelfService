@@ -1,43 +1,85 @@
-﻿<script>
-    var tInnh = 'Meningen med livet og meteorologiens historie';
+﻿<html>
+<head>
+    <script>
+        function UtredIDE(tInnh, design = 'noKS', x='&produser=') {
+            window.location.href = 'SelvbetjentUtredning.html?a=b'
+                + extra + '&design=' + design
+                + xS()
+                // OpenAI.com instruct
+                + '&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
+                + '&textjson=https://api.openai.com/v1/completions'
+                + '&textmodel=gpt-3.5-turbo-instruct'
+                // OpenAI.com DALL-E
+                + '&imagemodel=dall-e-3'
+                + '&imagesize=512x512'
+                + '&innhold=' + tInnh;
+        }
+        function UtredIDE_() {
+            return UtredIDE('')
+        }
 
-    window.location.href = 'SelvbetjentUtredning.html?a=b'
-        //+ '&produser='
-        + '&design=noKS'
-        + '&kapittelstruktur=Kapittelstruktur med Kapittel 1 til 2 deretter 2 underkapittel for hvert kapittel navngitt 1a) til 2b):'
-        + '&kapittelinnledning=* Innledning på maksimalt 10 ord:'
-        + '&bildebeskrivelse=Bildebeskrivelse på 50 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet:'
-        + '&underkapittel=* Kort brødtekst på mindere enn 30 ord:%13%10'
-        // OpenAI.com instruct
-            + '&hyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
-            + '&complete=https://api.openai.com/v1/completions'
+        function xS(kapittelstruktur='Kapittelstruktur med Kapittel 1 til 2 deretter 2 underkapittel for hvert kapittel navngitt 1a) til 2b):'
+                , kapittelinnledning = '* Innledning på maksimalt 10 ord:'
+                , bildebeskrivelse = 'Bildebeskrivelse på 50 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet: '
+                , underkapittel = ' * Kort brødtekst på mindere enn 30 ord:%13%10') {
+            return '&kapittelstruktur=' + kapittelstruktur
+                + '&kapittelinnledning=' + kapittelinnledning
+                + '&bildebeskrivelse=' + bildebeskrivelse
+                + '&underkapittel=' + underkapittel
+
+            return UtredIDE(tInnh, design, extra)
+                window.location.href = 'SelvbetjentUtredning.html?a=b'
+
+                // OpenAI.com instruct
+                + '&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
+                + '&textjson=https://api.openai.com/v1/completions'
+                + '&textmodel=gpt-3.5-turbo-instruct'
+                // OpenAI.com DALL-E
+                + '&imagemodel=dall-e-3'
+                + '&imagesize=512x512'
+                + '&innhold=' + tInnh;
+        }
+
+        var tInnh = 'Meningen med livet og meteorologiens historie';
+
+        window.location.href = 'SelvbetjentUtredning.html?a=b'
+            //+ '&produser='
+            + '&design=noKS'
+            + '&kapittelstruktur=Kapittelstruktur med Kapittel 1 til 2 deretter 2 underkapittel for hvert kapittel navngitt 1a) til 2b):'
+            + '&kapittelinnledning=* Innledning på maksimalt 10 ord:'
+            + '&bildebeskrivelse=Bildebeskrivelse på 50 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet:'
+            + '&underkapittel=* Kort brødtekst på mindere enn 30 ord:%13%10'
+            // OpenAI.com instruct
+            + '&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
+            + '&textjson=https://api.openai.com/v1/completions'
             + '&textmodel=gpt-3.5-turbo-instruct'
-        // OpenAI.com chat
+            // OpenAI.com chat
             //+ '&api=chat'
-            //+ '&hyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
+            //+ '&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
             //+ '&textmodel=gpt-3.5-turbo'
-            //+ '&complete=https://api.openai.com/v1/chat/completions'
-        // OpenAI.com DALL-E
+            //+ '&textjson=https://api.openai.com/v1/chat/completions'
+            // OpenAI.com DALL-E
             + '&imagemodel=dall-e-3'
             + '&imagesize=512x512'
-        // Groq.com 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
+            // Groq.com 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
             //+ '&api=chat'
-            //+ '&complete=https://api.groq.com/openai/v1/chat/completions'
-            //+ '&hyggelig=%2520%2526%2525Q%2523%28%2523O%2520%252FNf%29X%255DT00%2522Rv7FDPR*7%2523aAL%255D%257CRQWB%255D%2540u*J%2523%252BF5C%292%257BXx%27Eg'
+            //+ '&textjson=https://api.groq.com/openai/v1/chat/completions'
+            //+ '&texthyggelig=%2520%2526%2525Q%2523%28%2523O%2520%252FNf%29X%255DT00%2522Rv7FDPR*7%2523aAL%255D%257CRQWB%255D%2540u*J%2523%252BF5C%292%257BXx%27Eg'
             //// + '&textmodel=llama2-70b-4096'
-        // local mixtral-8x7b-32768
+            // local mixtral-8x7b-32768
             //+ '&api=chat'
-            //+ '&complete=http://devgpu:1234/v1/chat/completions'
-            //+ '&generate=https://devgpu:1234/v1/images/generations'
+            //+ '&textjson=http://devgpu:1234/v1/chat/completions'
+            //+ '&imagejson=https://devgpu:1234/v1/images/generations'
             //+ '&textmodel=mixtral-8x7b-32768'
-        // local llama2-70b-4096
+            // local llama2-70b-4096
             //+ '&api=chat'
-            //+ '&complete=http://devgpu:1234/v1/chat/completions'
-            //+ '&generate=https://devgpu:1234/v1/images/generations'
-        + '&innhold='+tInnh
-        ;
-</script>
-
+            //+ '&textjson=http://devgpu:1234/v1/chat/completions'
+            //+ '&imagejson=https://devgpu:1234/v1/images/generations'
+            + '&innhold=' + tInnh
+            ;
+    </script>
+</head>
+</html>
 <!--
 C:/s/gormb/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/SelvbetjentUtredningK.html
 -->
