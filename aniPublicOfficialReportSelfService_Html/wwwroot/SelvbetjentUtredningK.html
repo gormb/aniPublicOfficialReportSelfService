@@ -1,47 +1,8 @@
 ﻿<html>
 <head>
     <script>
-        function UtredIDE(tInnh, design = 'noKS', x='&produser=') {
-            window.location.href = 'SelvbetjentUtredning.html?a=b'
-                + extra + '&design=' + design
-                + xS()
-                // OpenAI.com instruct
-                + '&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
-                + '&textjson=https://api.openai.com/v1/completions'
-                + '&textmodel=gpt-3.5-turbo-instruct'
-                // OpenAI.com DALL-E
-                + '&imagemodel=dall-e-3'
-                + '&imagesize=512x512'
-                + '&innhold=' + tInnh;
-        }
-        function UtredIDE_() {
-            return UtredIDE('')
-        }
-
-        function xS(kapittelstruktur='Kapittelstruktur med Kapittel 1 til 2 deretter 2 underkapittel for hvert kapittel navngitt 1a) til 2b):'
-                , kapittelinnledning = '* Innledning på maksimalt 10 ord:'
-                , bildebeskrivelse = 'Bildebeskrivelse på 50 ord som belyser hvorfor temaet er viktig, og fortjener ny oppmerksomhet: '
-                , underkapittel = ' * Kort brødtekst på mindere enn 30 ord:%13%10') {
-            return '&kapittelstruktur=' + kapittelstruktur
-                + '&kapittelinnledning=' + kapittelinnledning
-                + '&bildebeskrivelse=' + bildebeskrivelse
-                + '&underkapittel=' + underkapittel
-
-            return UtredIDE(tInnh, design, extra)
-                window.location.href = 'SelvbetjentUtredning.html?a=b'
-
-                // OpenAI.com instruct
-                + '&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKV"U(PDZOdR!%7B')
-                + '&textjson=https://api.openai.com/v1/completions'
-                + '&textmodel=gpt-3.5-turbo-instruct'
-                // OpenAI.com DALL-E
-                + '&imagemodel=dall-e-3'
-                + '&imagesize=512x512'
-                + '&innhold=' + tInnh;
-        }
 
         var tInnh = 'Meningen med livet og meteorologiens historie';
-
         window.location.href = 'SelvbetjentUtredning.html?a=b'
             //+ '&produser='
             + '&design=noKS'
