@@ -10,8 +10,8 @@ namespace aniServerBrokerServer
         {
             throw new NotImplementedException();
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
+        private void buttonInstall_Click(object sender, EventArgs e)
+        {   // $url = "https://ollama.com/download/OllamaSetup.exe"; $outputFile = "OllamaSetup.exe"; $installDir = "$env:ProgramFiles\Ollama"; if (-not (Test-Path $outputFile)) { Invoke-WebRequest -Uri $url -OutFile $outputFile }; if (-not (Test-Path $installDir)) { Start-Process -FilePath $outputFile -ArgumentList "/silent" -Wait }
             throw new NotImplementedException();
         }
     }

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\GptHelloWorld.html">
+    <Content Update="wwwroot\_unused\GptHelloWorld.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\SelvbetjentUtredningMedAi_20230214_all.html">
