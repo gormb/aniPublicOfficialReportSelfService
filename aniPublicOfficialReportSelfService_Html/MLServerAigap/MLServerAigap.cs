@@ -1,25 +1,32 @@
-
 using Microsoft.AspNetCore.Http.Features;
 
-public class MLServerAigap : IWebHost
-{
-    public class Server : ServerInfo
+public class MLServerAigap : IWebHost {
+    public MLServerAigap(): base()    
+    public class LocalServer : ServerInfo
     {
         public class Model
         {
+            public Model(string name, string endpoint) {this.name = name; this.endpoint = endpoint;}
+            public string name = "";
+            public string endpoint= "";
         }
-        public class Remote
+        public class RemoteServer
         {
-            public List<Model> models = new List<Model>();
-            public bool UpdateModels() { }
+            public List<Model> modelCollection = new List<Model>();
+            public bool UpdateModels() { return false; }
         }
-        public class RemoteOllama : Remote
+        public class RemoteOllama : RemoteServer
         {
+            RemoteOllama(){}
         }
-        #region Info about remote servers, their models, keys, etc.
-        public List<Remote> Remotes = new List<Remote>();
-        public List<Model> Models { get { return  } }
-        public Server()
+        public List<RemoteServer> remoteServerCollection = new List<RemoteServer>();
+        public List<Model> modelCollection { get {
+            List<Model> ret = new List<Model>();
+            remoteServerCollection.ForEach((s)=>{ret.AddRange(s.modelCollection);});
+            return ret;
+            } 
+        }
+        public LocalServer()
         {
             Init();
             ServerProc();
@@ -58,10 +65,8 @@ public class MLServerAigap : IWebHost
             // Redirect all post requests from http://localhost:2468 to http://api.mistral.com, map Bearer to mistral Bearer
         }
     }
-    List<Server> Servers = new List<Servers>();
-
+    List<LocalServer> LocalServerCollection = new List<LocalServers>();
     public IFeatureCollection ServerFeatures => throw new NotImplementedException();
-
     public IServiceProvider Services => throw new NotImplementedException();
 
     bool Install() { throw new NotImplementedException("Install"); }
