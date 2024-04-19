@@ -1,5 +1,5 @@
 ﻿document.write("<div class=\"debug\">Code for generate...</div>");
-
+ 
 function generate_progress(comment, progress, maxProgress) {
     if (progress == null) {
         if (progressBar.max < progressBar.value + 1)

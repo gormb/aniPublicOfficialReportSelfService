@@ -1,6 +1,8 @@
 ﻿document.write("<div class=\"debug\">Code for picturedescription...</div>");
+
 // Bilde  - Kapittelbilde - Beskrivende tekst for hvert hovedkapittel (for bildegenereringstjeneste)
 // Eksempel: [Bilde: * med bakgrunn
+
 async function picturedescriptionAsync(scDest, picturing, chapter, inTxt, doneC, errC, stopArray) {
     let cDest = document.getElementById(scDest);
     cDest.innerHTML = tRotating;

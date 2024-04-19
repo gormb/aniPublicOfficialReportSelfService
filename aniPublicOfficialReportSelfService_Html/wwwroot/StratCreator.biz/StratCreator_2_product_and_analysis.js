@@ -1,23 +1,9 @@
 ﻿document.write("<div class=\"debug\">Code for product and analysis...</div>");
-
+ 
 let g_aktoerer = ["Regjeringen", "KS", "DFØ", "digdir", "Datatilsynet", "e-helse", "Miljødirektoratet", "DIGG"];
 let g_regjeringen = ["Barne- og familiedepartementet", "Finansdepartementet", "Justisdepartementet", "KDD", "Kommunal- og distriktsdepartementet", "Kommunal- og moderniseringsdepartementet", "Kulturdepartementet", "Landbruks- og matdepartementet", "Nærings- og fiskeridepartementet", "Olje- og energidepartementet", "Utenriksdepartementet", "Helse- og omsorgsdepartementet", "Kirkedepartementet", "Barne-, likestillings- og inkluderingsdepartementet", "Klima- og miljødepartementet", "Utdannings- og forskningsdepartementet"];
 
-let iStyleSheetSrc = StylesheetForStyleIndex('.product_active');
-let iStyleSheetDest = StylesheetForStyleIndex('.product_active');
 let lastProd = 'default';
-function StylesheetForStyleIndex(p = '.product_ehelse') {
-    for (let i = 0; i < document.styleSheets.length; i++)
-        try { // Only works for styles within document!!
-            for (let j = 0; j < document.styleSheets[i].cssRules.length; j++)
-                if (document.styleSheets[i].cssRules[j].selectorText.includes(p))
-                    return i;
-        }
-        catch (ex) {
-            if (ex.name != 'SecurityError' && ex.name != 'TypeError') console.log(ex);
-        }
-    return null;
-}
 function ProduktknappTrykket(p = 'default') {
     lastProd = p; // for later print
     // sett styles med navn 'product_*' til 'product_' + p

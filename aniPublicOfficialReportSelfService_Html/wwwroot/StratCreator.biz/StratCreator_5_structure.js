@@ -1,15 +1,28 @@
 ﻿document.write("<div class=\"debug\">Code for structure...</div>");
+
 // Kapittelstruktur - Kapitler og underkapitler basert på innholdet
 // Eksempel: Kapittelstruktur med Kapittel 1 - 3 deretter Underkapittel 1a - 3g for:
+
+// Using class
 async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopArray) {
-    oaiValAsync(structuring + "\n" + inTxt, 0, (gptOut) =>
+    AI_Factory(0).valAsync(structuring + "\n" + inTxt, (gptOut) =>
     {
-        //let gptOut = "**Målsettinger for livets fremskritt\n\nKapittel 1: Introduktion\n\n1a. What er meteorologien?\n1b. Historisk kortlæggelse af meteorologiens udvikling\n\n\n**Kapittel 2: Jordensatmosphère**\n\n2a. Atmosfære og synlig luftkvalitet\n2b. Meteorologiske processer i luften, herunder vind, temperatur og tryk\n\n**Kapittel 3: Livets fremskritt**\n\n3a. Miljøreferencer og -processer\n3b. Jordens økosystem – et komplekstnetzværk af organismer\n\n\n**Kapittel 4: Meteorologiens historie**\n\n4a. Fra de tidlige meteorologiske opdagelser til nuværende dage\n4b. Meteorologisk udvikling i forskellige lande\n\n**Kapittel 5: Miljø og livets fremtid**\n\n5a. Jordens klima – en overvågningslig proces\n5b. Forbedringer af synlighed og teknologi – bidrag til at forbedre ourlivets kvalitet";
         let ChSub = structureAsChSub(gptOut);
         doneC(ChSub[0], ChSub[1], gptOut);
     }
     , errC, maxTokens, stopArray);
 }
+// Using func
+//async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopArray) {
+//    oaiValAsync(structuring + "\n" + inTxt, 0, (gptOut) =>
+//    {
+//        //let gptOut = "**Målsettinger for livets fremskritt\n\nKapittel 1: Introduktion\n\n1a. What er meteorologien?\n1b. Historisk kortlæggelse af meteorologiens udvikling\n\n\n**Kapittel 2: Jordensatmosphère**\n\n2a. Atmosfære og synlig luftkvalitet\n2b. Meteorologiske processer i luften, herunder vind, temperatur og tryk\n\n**Kapittel 3: Livets fremskritt**\n\n3a. Miljøreferencer og -processer\n3b. Jordens økosystem – et komplekstnetzværk af organismer\n\n\n**Kapittel 4: Meteorologiens historie**\n\n4a. Fra de tidlige meteorologiske opdagelser til nuværende dage\n4b. Meteorologisk udvikling i forskellige lande\n\n**Kapittel 5: Miljø og livets fremtid**\n\n5a. Jordens klima – en overvågningslig proces\n5b. Forbedringer af synlighed og teknologi – bidrag til at forbedre ourlivets kvalitet";
+//        let ChSub = structureAsChSub(gptOut);
+//        doneC(ChSub[0], ChSub[1], gptOut);
+//    , errC, maxTokens, stopArray);
+//}
+
+
 function structureStopAfter(iC, iS) {
     let res = [];
     if (iS == null) { // chapter; next chapter or first subchapter

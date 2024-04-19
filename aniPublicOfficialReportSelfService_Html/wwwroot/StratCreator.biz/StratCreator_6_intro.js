@@ -2,7 +2,7 @@
 
 // Innledning - Kapittelinnledning - Innledende sammendrag for hvert hovedkapittel
 // Eksempel: Innledning:
-
+ 
 async function introAsync(scDest, introducing, chapter, structure, inTxt, doneC, errC, maxTokens, stopArray) {
     let cDest = document.getElementById(scDest);
     cDest.innerHTML = tRotating;

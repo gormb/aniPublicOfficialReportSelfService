@@ -1,0 +1,95 @@
+﻿/* <link rel="stylesheet" href="StratCreator.css" /> */
+table { border-collapse: collapse;}
+th { background-color: lightblue; text-align: left; padding-left: 9px;}
+td {
+    background-color: #eee;
+    vertical-align: top;
+    padding: 10px
+}
+
+td.h {
+    font-weight: bold;
+}
+
+td.k {
+    background-color: #66a;
+    vertical-align: middle;
+    text-align: center
+}
+
+td.v {
+    background-color: #88f;
+    vertical-align: middle;
+}
+
+td.preview {
+    background-color: #fff;
+    vertical-align: top;
+    padding: 0px
+}
+
+textarea {
+width: 450px;
+}
+
+textarea.h {
+    height: 100px;
+}
+
+div {
+width: 300px;
+border: solid;
+}
+
+div.h {
+    height: 100px;
+}
+
+div.debug {
+    height: auto;
+    border: dotted;
+    display: none;
+}
+
+div.imagetext {
+    text-decoration-style: dotted;
+    border: none;
+}
+
+div.rotating {
+    border: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+li {
+    word-wrap: break-word;
+    white-space: pre-wrap
+}
+/* edit */
+button {
+    background-color: transparent;
+}
+.rotate {
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(360deg)
+    }
+
+    100% {
+        transform: rotate(0deg)
+    }
+}
+/* Visual looks.... */
+/* controls for editing (that can be hidden with ShowClass) */
+.editControl {
+    display: none;
+    color: darkgreen;
+    border-color: darkgreen
+}

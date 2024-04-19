@@ -2,6 +2,7 @@
 
 // Brødtekst - Underkapitteltekst - Selve teksten for hvert underkapittel
 // Eksempel: * Brødtekst:
+
 async function textAsync(scDest, texting, subchapter, structure, inTxt, doneC, errC, maxTokens, stopArray) {
     let cDest = document.getElementById(scDest);
     cDest.innerHTML = tRotating;

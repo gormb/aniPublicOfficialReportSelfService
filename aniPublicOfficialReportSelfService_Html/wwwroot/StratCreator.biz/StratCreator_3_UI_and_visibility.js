@@ -1,5 +1,8 @@
 ﻿document.write("<div class=\"debug\">Code for load and visibility...</div>");
 
+// HTML-events for utredern
+// 
+
 function UpdateOutOrShowSamleButton() {
     if (txtInnholdInn.value.split(' ').length > DEFAULT_MAX_WORDS)
         Show(samleButton, 1);

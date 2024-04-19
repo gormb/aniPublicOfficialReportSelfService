@@ -11,6 +11,8 @@ let parApiTextJson = parValGet('textjson', parApi == 'complete' ? 'https://api.o
 let parApiTextKey = gunnarDec(uRLSearchParams.get('texthyggelig'));
 let parApiImgJson = parValGet('imagejson', 'https://api.openai.com/v1/images/generations');
 let parApiImgModel = parValGet('imagemodel','dall-e-2');
+let parApiImgSize = parValGet('imagesize','1024x1024');
+
 
 function l() {
     ShowCell(-1, -1, 'none'); // hide all
