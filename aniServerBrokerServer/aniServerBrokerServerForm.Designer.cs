@@ -41,6 +41,11 @@ namespace aniServerBrokerServer
             helpToolStripMenuItem = new ToolStripMenuItem();
             commandToolStripTextBox = new ToolStripTextBox();
             commandToolStripComboBox = new ToolStripComboBox();
+            listView1 = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
@@ -49,7 +54,7 @@ namespace aniServerBrokerServer
             // 
             // button1
             // 
-            button1.Location = new Point(27, 29);
+            button1.Location = new Point(27, 16);
             button1.Name = "button1";
             button1.Size = new Size(204, 23);
             button1.TabIndex = 0;
@@ -59,13 +64,13 @@ namespace aniServerBrokerServer
             // 
             // buttonInstall
             // 
-            buttonInstall.Location = new Point(27, 95);
+            buttonInstall.Location = new Point(27, 59);
             buttonInstall.Name = "buttonInstall";
             buttonInstall.Size = new Size(204, 23);
             buttonInstall.TabIndex = 1;
             buttonInstall.Text = "Install";
             buttonInstall.UseVisualStyleBackColor = true;
-            buttonInstall.Click += this.buttonInstall_Click;
+            buttonInstall.Click += buttonInstall_Click;
             // 
             // splitContainer1
             // 
@@ -75,10 +80,11 @@ namespace aniServerBrokerServer
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(listView1);
             splitContainer1.Panel2.Controls.Add(button1);
             splitContainer1.Panel2.Controls.Add(buttonInstall);
-            splitContainer1.Size = new Size(800, 423);
-            splitContainer1.SplitterDistance = 265;
+            splitContainer1.Size = new Size(1064, 423);
+            splitContainer1.SplitterDistance = 216;
             splitContainer1.TabIndex = 2;
             // 
             // menuStrip1
@@ -86,7 +92,7 @@ namespace aniServerBrokerServer
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, helpToolStripMenuItem, commandToolStripTextBox, commandToolStripComboBox });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 27);
+            menuStrip1.Size = new Size(1064, 27);
             menuStrip1.TabIndex = 3;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -140,16 +146,47 @@ namespace aniServerBrokerServer
             commandToolStripComboBox.Size = new Size(121, 23);
             commandToolStripComboBox.Text = "PS";
             // 
+            // listView1
+            // 
+            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
+            listView1.Location = new Point(27, 135);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(730, 267);
+            listView1.TabIndex = 2;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Client Request";
+            columnHeader1.Width = 160;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Our Request";
+            columnHeader2.Width = 160;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Remote Response";
+            columnHeader3.Width = 160;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Our Response";
+            columnHeader4.Width = 160;
+            // 
             // aniServerBrokerServerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1064, 450);
             Controls.Add(splitContainer1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "aniServerBrokerServerForm";
             Text = "Form1";
+            this.Activated += this.formActivated;
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
@@ -174,5 +211,10 @@ namespace aniServerBrokerServer
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripTextBox commandToolStripTextBox;
         private ToolStripComboBox commandToolStripComboBox;
+        private ListView listView1;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
     }
 }

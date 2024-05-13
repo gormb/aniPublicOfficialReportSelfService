@@ -136,21 +136,21 @@ function w_kapittelStruktur() { w('<button class="editControl" onclick="preview.
 function w_skjulEditKnapper() { w('<button class="editControl" onclick="ShowEditControls(0);">Gjem edit-knapper</button>'); }
 function w_styleKnapper(aStyle) { w('<button class="editControl" onclick="SelectStyle(\'' + aStyle + '\',0);">' + aStyle + '</button>'); }
 function htmlChaptRefresh() { return '<button class="editControl" onclick="preview.innerHTML=\'Kapittelutfylling\'; generateAll(overviewTable, contentTable, \'struct\');">' + tRotate +'</button>'; }
-function htmlChaptTxtRefresh(iC) { return '<button class="editControl" onclick="introAsync(\'chapt_' + iC + '_tekst\', txtInnledningInn.value, gStructureCh[' + iC + '], gStructure, txtInnholdUt.value,null,null,null,structureStopAfter(' + iC + '))">innledning ' + tRotate +'</button>'; }
+function htmlChaptTxtRefresh(iC) { return '<button class="editControl" onclick="introAsync(\'chapt_' + iC + '_text\', txtInnledningInn.value, gStructureCh[' + iC + '], gStructure, txtInnholdUt.value,null,null,null,structureStopAfter(' + iC + '))">innledning ' + tRotate +'</button>'; }
 function htmlChaptTxtRefreshAll() { return '<button class="editControl" onclick="introAsyncAll()">innledninger ' + tRotate +'</button>'; }
-function htmlSubchaptTxtRefresh(iC, iS) { return '<button class="editControl" onclick="textAsync(\'chapt_' + iC + '_' + iS + '_tekst\', txtBroedtekstInn.value, gStructureSub[' + iC + '][' + iS + '], gStructure, txtInnholdUt.value, null, null, null, structureStopAfter(' + iC + ',' + iS + '))">innhold ' + tRotate +'</button>'; }
+function htmlSubchaptTxtRefresh(iC, iS) { return '<button class="editControl" onclick="textAsync(\'chapt_' + iC + '_' + iS + '_text\', txtBroedtekstInn.value, gStructureSub[' + iC + '][' + iS + '], gStructure, txtInnholdUt.value, null, null, null, structureStopAfter(' + iC + ',' + iS + '))">innhold ' + tRotate +'</button>'; }
 function htmlSubchaptTxtRefreshAll() { return '<button class="editControl" onclick="textAsyncAll()">brødtekst ' + tRotate +'</button>'; }
-function htmlImgTxtRefresh(iC, txt) { return '<button class="editControl" onclick="picturedescriptionAsync(\'chapt_' + iC + '_bildetekst\', txtBildeInn.value, gStructureCh[' + iC + '], chapt_' + iC + '_tekst.innerHTML, (cId) => {/*alert(cId.innerHTML);*/ })">utgangspunkt for bilde ' + tRotate +'</button>'; }
+function htmlImgTxtRefresh(iC, txt) { return '<button class="editControl" onclick="picturedescriptionAsync(\'chapt_' + iC + '_imagetext\', txtBildeInn.value, gStructureCh[' + iC + '], chapt_' + iC + '_text.innerHTML, (cId) => {/*alert(cId.innerHTML);*/ })">utgangspunkt for bilde ' + tRotate +'</button>'; }
 function htmlImgTxtRefreshAll() { return '<button class="editControl" onclick="picturedescriptionAsyncAll()">beskriv ' + tRotate +'</button>'; }
-function htmlImgRefresh(iC) { return '<button class="editControl" onclick="pictureAsync(\'chapt_' + iC + '_bilde\', chapt_' + iC + '_bildetekst.innerHTML)">bilde ' + tRotate +'</button>'; }
+function htmlImgRefresh(iC) { return '<button class="editControl" onclick="pictureAsync(\'chapt_' + iC + '_bilde\', chapt_' + iC + '_imagetext.innerHTML)">bilde ' + tRotate +'</button>'; }
 function htmlImgRefreshAll() { return '<button class="editControl" onclick="pictureAsyncAll()">bilder ' + tRotate +'</button>'; }
 
 function introAsyncAll() {
     generate_progress('Produserer kapitlintroduksjoner med GPT-3...', 1);
     for (let i = 0; i < gStructureCh.length; i++) // Get intro, image text and image for chapter, get text for each subchapter
         // chapter intro and image
-        introAsync(structureChaptId(i) + '_tekst', txtInnledningInn.value, gStructureCh[i], gStructure, txtInnholdUt.value
-            , (cId) => { // _bildetekst, _bilde
+        introAsync(structureChaptId(i) + '_text', txtInnledningInn.value, gStructureCh[i], gStructure, txtInnholdUt.value
+            , (cId) => { // _imagetext, _bilde
                 generate_progress('Intro for ' + gStructureCh[i] + ' ferdigprodusert');
             }, null, 2000, structureStopAfter(i)); // introAsync
 }
@@ -158,19 +158,19 @@ function textAsyncAll() {
     generate_progress('Produserer underkapitler med GPT-3...', 1);
     for (let i = 0; i < gStructureCh.length && i < gStructureSub.length; i++) // Get intro, image text and image for chapter, get text for each subchapter
         for (let j = 0; j < gStructureSub[i].length; j++)
-            textAsync(structureChaptId(i, j) + '_tekst', txtBroedtekstInn.value, gStructureSub[i][j], gStructure, txtInnholdUt.value
+            textAsync(structureChaptId(i, j) + '_text', txtBroedtekstInn.value, gStructureSub[i][j], gStructure, txtInnholdUt.value
                 , () => generate_progress('Text for ' + gStructureSub[i][j] + ' ferdigprodusert'), null, 2000, structureStopAfter(i, j));
 }
 function picturedescriptionAsyncAll() {
     generate_progress('Produserer bildebeskrivelser med GPT-3...', 1);
     for (let i = 0; i < gStructureCh.length; i++)
-        picturedescriptionAsync(structureChaptId(i) + '_bildetekst', txtBildeInn.value, gStructureCh[i], document.getElementById(structureChaptId(i) + '_tekst').innerHTML,
+        picturedescriptionAsync(structureChaptId(i) + '_imagetext', txtBildeInn.value, gStructureCh[i], document.getElementById(structureChaptId(i) + '_text').innerHTML,
             (cId) => { generate_progress('Bildetekst for ' + gStructureCh[i] + ' ferdigprodusert'); }); // picturedescriptionAsync
 }
 function pictureAsyncAll() {
     generate_progress('Produserer bilder med GPT-3...', 1);
     for (let i = 0; i < gStructureCh.length; i++)
-        pictureAsync(structureChaptId(i) + '_bilde', document.getElementById(structureChaptId(i) + '_bildetekst').innerHTML, () => { // bilde alt-text
+        pictureAsync(structureChaptId(i) + '_bilde', document.getElementById(structureChaptId(i) + '_imagetext').innerHTML, () => { // bilde alt-text
             generate_progress('Bilde for ' + gStructureCh[i] + ' ferdigprodusert')
         }); // pictureAsync
 }

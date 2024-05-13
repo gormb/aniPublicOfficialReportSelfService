@@ -428,7 +428,6 @@
         let iStyleSheetSrc = StylesheetForStyleIndex('.product_active');
         let iStyleSheetDest = StylesheetForStyleIndex('.product_active');
     </script>
-
 </head>
 
 <body onload="l();" style="background-color:#000">
@@ -436,11 +435,8 @@
     <center>
         <span id="progressText">status</span>
         <progress id="progressBar" value="0" max="20" style="display:none;width:100%;height:35px;position:relative;top:-26px;z-index:-1"></progress>
-        <a id="suLink" href="MobilUtred.html" style="position:absolute;left:0px;color:white">_*_</a>
-        <a href="#presentasjon" style="position:absolute;left:95%;color:blue" onclick="ActivatePresentation()">_*_</a>
-
         <table cellpadding="0">
-            <tr id="introtext"><td><h1>Utredning (forenklet)</h1><h2>Prosess fra ide til publisering.<br />Trykk på bilde!</h2>
+            <tr id="introtext"><td><h1>StratCreator</h1><h2>Creation of Strategy from plan to Final Product.<br />Click Image!</h2>
                 </td></tr>
             <tr id="specs">
                 <td style="padding:0px;background-color:#000">
@@ -460,21 +456,23 @@
                     <table width="100%">
                         <tr>
                             <td id="ideaDesc" style="width:25%;background-color:#000" onmouseup="TheIdeaClick(); txtInnholdInn.focus(); txtInnholdInn.select();">
-                                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10023; Idé</font></button> (trykk her)<br />
-                                Utredningens tema og<br />
-                                kilder angis i samme<br />
-                                felt, og har foreløpig<br />
-                                ikke ubegrenset lengde
+                                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10023; Idea</font></button> (click here)<br />
+                                Strategy Theme and<br />
+                                sources are entered in<br />
+                                the same field, andhave <br />
+                                not yet unlimited length<br />
+
                             </td>
                             <td id="designDesc" style="width:25%;background-color:#000" onmouseup="TheDesignClick(); txtKapittelstrukturInn.focus(); txtKapittelstrukturInn.select();">
-                                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10032; Oppsett</font></button>trykk her<br />
-                                Utredningens innholds-<br />
-                                fortegnelse angis som<br />
-                                tekst, test den med<br />
-                                "Kapitler"-knappen
+                                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10032; Structure</font></button>(click here)<br />
+                                Strategy Structure<br />
+                                is specified as text,<br />
+                                test it by clicking<br />
+                                "Chapters".
+
                             </td>
                             <td id="productionDesc" style="width:25%;background-color:#000" onmouseup="TheTextClick(); txtInnholdInn.focus(); txtInnholdInn.select();">
-                                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10030; Tekst</font></button> (trykk her)<br />
+                                <button style="background-color: transparent; border-style: solid; "><font size="+1">&#10030; Text</font></button> (click herw)<br />
                                 For bestemt innhold<br />
                                 blir tekst og tilhørende<br />
                                 bilder generert av AI.<br />
@@ -693,13 +691,13 @@
                                             <td>
                                                 <table id="btns2steps" style="display:none;">
                                                     <tr>
-                                                        <td><button onclick="if (!document.getElementById('chapt_0_tekst')); contentTable.innerHTML = generateAll_ContentTableBlank(); introAsync('chapt_0_tekst', txtInnledningInn.value, gStructureCh[0], gStructure, txtInnholdUt.value,null,null,null,structureStopAfter(0))">En<br />intro</button></td>
-                                                        <td><button onclick="if (!document.getElementById('chapt_0_bildetekst')); contentTable.innerHTML = generateAll_ContentTableBlank(); picturedescriptionAsync('chapt_0_bildetekst', txtBildeInn.value, gStructureCh[0], chapt_0_tekst.innerHTML, (cId) => {/*alert(cId.innerHTML);*/ })">En<br />bildetekst</button></td>
-                                                        <td><button onclick="if (!document.getElementById('chapt_0_bilde')); contentTable.innerHTML = generateAll_ContentTableBlank(); pictureAsync('chapt_0_bilde', chapt_0_bildetekst.innerHTML)">Et<br />bilde</button></td>
+                                                        <td><button onclick="if (!document.getElementById('chapt_0_text')); contentTable.innerHTML = generateAll_ContentTableBlank(); introAsync('chapt_0_text', txtInnledningInn.value, gStructureCh[0], gStructure, txtInnholdUt.value,null,null,null,structureStopAfter(0))">En<br />intro</button></td>
+                                                        <td><button onclick="if (!document.getElementById('chapt_0_imagetext')); contentTable.innerHTML = generateAll_ContentTableBlank(); picturedescriptionAsync('chapt_0_imagetext', txtBildeInn.value, gStructureCh[0], chapt_0_text.innerHTML, (cId) => {/*alert(cId.innerHTML);*/ })">En<br />bildetekst</button></td>
+                                                        <td><button onclick="if (!document.getElementById('chapt_0_bilde')); contentTable.innerHTML = generateAll_ContentTableBlank(); pictureAsync('chapt_0_bilde', chapt_0_imagetext.innerHTML)">Et<br />bilde</button></td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>
-                                                        <td colspan="2"><button onclick="if (!document.getElementById('chapt_0_0_tekst')); contentTable.innerHTML = generateAll_ContentTableBlank(); textAsync('chapt_0_0_tekst', txtBroedtekstInn.value, gStructureSub[0][0], gStructure, txtInnholdUt.value, null, null, null, structureStopAfter(0,0))">En underkapitteltekst</button></td>
+                                                        <td colspan="2"><button onclick="if (!document.getElementById('chapt_0_0_text')); contentTable.innerHTML = generateAll_ContentTableBlank(); textAsync('chapt_0_0_text', txtBroedtekstInn.value, gStructureSub[0][0], gStructure, txtInnholdUt.value, null, null, null, structureStopAfter(0,0))">En subchaptertext</button></td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -718,10 +716,7 @@
                 </td>
             </tr>
         </table>
-
-        <span id="idStyleButtons" style="cursor:pointer; display:none; background-color: #eee">
-            <script>w_alleProduktknapper()</script>
-        </span>
+        <span id="idStyleButtons" style="cursor:pointer; display:none; background-color: #eee"><script>w_alleProduktknapper()</script></span>
 
         <hr />
         <!------------------------------------------------>

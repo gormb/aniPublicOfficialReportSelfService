@@ -1,10 +1,9 @@
 ﻿document.write("<div class=\"debug\">Code for load and parameters...</div>");
 
-
 let uRLSearchParams = new URLSearchParams(location.search);
 let tRotate = "&#8634;";
 let tRotating = "<div class='rotating' style='height: 18px; width: 10px; animation: rotate 2s linear infinite;'>&#8634</div>";
-let bGotValueFromUrl = uRLSearchParams.get('innhold') != null;
+let bGotValueFromUrl = uRLSearchParams.get('content') != null || uRLSearchParams.get('innhold') != null;
 let parApi = parValGet('api', 'complete');
 let parApiTextModel = parValGet('textmodel', parValGet('model', null));
 let parApiTextJson = parValGet('textjson', parApi == 'complete' ? 'https://api.openai.com/v1/completions' : 'https://api.openai.com/v1/chat/completions');
@@ -12,7 +11,6 @@ let parApiTextKey = gunnarDec(uRLSearchParams.get('texthyggelig'));
 let parApiImgJson = parValGet('imagejson', 'https://api.openai.com/v1/images/generations');
 let parApiImgModel = parValGet('imagemodel','dall-e-2');
 let parApiImgSize = parValGet('imagesize','1024x1024');
-
 
 function l() {
     ShowCell(-1, -1, 'none'); // hide all
@@ -34,11 +32,11 @@ function parValSet(p,v) {
     return '?' + uRLSearchParams.toString(); }
 function gunnarHyggeligUrl(g) { return parValSet('texthyggelig', gunnarEnc(g));/*'?texthyggelig='+gunnarEnc(g);*/}
 function parseParameters() { // return true if innhold=
-    txtInnholdInn.value = parValGet('innhold', txtInnholdInn.value);
-    txtKapittelstrukturInn.value = parValGet('kapittelstruktur', txtKapittelstrukturInn.value);
-    txtInnledningInn.value = parValGet('kapittelinnledning', txtInnledningInn.value);
-    txtBildeInn.value = parValGet('bildebeskrivelse', txtBildeInn.value);
-    txtBroedtekstInn.value = parValGet('underkapittel', txtBroedtekstInn.value);
+    txtInnholdInn.value = parValGet('content', parValGet('innhold', txtInnholdInn.value));
+    txtKapittelstrukturInn.value = parValGet('chapterstructure', parValGet('kapittelstruktur', txtKapittelstrukturInn.value));
+    txtInnledningInn.value = parValGet('chapterintroduction', parValGet('kapittelinnledning', txtInnledningInn.value));
+    txtBildeInn.value = parValGet('imagedescription', parValGet('bildebeskrivelse', txtBildeInn.value));
+    txtBroedtekstInn.value = parValGet('subchapter', parValGet('underkapittel', txtBroedtekstInn.value));
     if (parApiTextModel != null) { // algorithm set in parameter; set gptAlg...
         //let inp = document.getElementsByTagName("gptAlg");
         radioGptAlgPar.checked = true;

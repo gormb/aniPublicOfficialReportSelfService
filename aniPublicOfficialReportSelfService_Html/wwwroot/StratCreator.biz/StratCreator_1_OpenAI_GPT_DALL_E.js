@@ -13,7 +13,7 @@ class AI extends Logged {
         this.stopTag = stopArray && stopArray.length > 0 ? ',"stop": ["' + stopArray.join('","') + '"]' : "";
         return this.logreq(`{"model":${JSON.stringify(this.model)},"messages":[{"role":"user","content":${sSrc}}],"max_tokens":${maxTokens||this.maxTokens},"top_p":1,"frequency_penalty":0.75,"presence_penalty":0${this.stopTag},"stream":false}`);
     }
-    req(url) {
+    req_Xhr(url) {
         let r = new XMLHttpRequest();
         r.open("POST", this.logurl(url||this.url));
         this.idUrl=Logged_currentID; // update so that next request will have this url as parent
@@ -21,6 +21,10 @@ class AI extends Logged {
         r.setRequestHeader("Authorization", "Bearer " + this.bearer);
         return r;
     }
+    req_Axios(url) {
+        return axios.create({baseURL: url||this.url, headers: {"Content-Type": "application/json", "Authorization": "Bearer " + this.bearer}});
+    }
+    req(url) { return req_Xhr(url); }
     valRespData(resp) {
         this.logresp(resp,idReq);
         let r = JSON.parse(resp);
