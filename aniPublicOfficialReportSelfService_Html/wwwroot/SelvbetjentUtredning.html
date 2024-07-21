@@ -810,7 +810,7 @@
                 res += '<li class="product_active">' + (i < ChSub[0].length ? structureAsHtmlItem(ChSub[0][i], i) : "?") + "<ul>";
                 if (i < ChSub[1].length)
                     for (let j = 0; j < ChSub[1][i].length; j++)
-                        res += '<li class="product_active">' + structureAsHtmlItem(ChSub[1][i][j], i, j) + "</li>";
+                        res += '<li class="product_active">' + '<nobr>' + structureAsHtmlItem(ChSub[1][i][j], i, j) + '</nobr>' + "</li>";
                 res += "</ul></li>";
             }
             res += "</ul>"
