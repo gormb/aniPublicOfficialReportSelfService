@@ -6,7 +6,7 @@
             return 'StratCreator.html?a=b'
                 //+ '&produser='
                 + '&design=noKS'
-                + '&chapterstructure=Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
+                + '&textstructure=Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
                 + '&chapterintroduction=* Introduction in maximum 10 words:'
                 + '&imagedescription=Image description in 50 words highlighting why the topic is important and deserves new attention:'
                 + '&subchapter=* Brief text in less than 30 words:%13%10'
@@ -19,7 +19,7 @@
             var tInnh = 'The meaning of life and the history of meteorology';
             return 'StratCreator.html?a=b'
                 + '&design=noKS'
-                + '&chapterstructure=Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
+                + '&textstructure=Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
                 + '&chapterintroduction=* Introduction in maximum 10 words:'
                 + '&imagedescription=Image description in 50 words that illuminates why the theme is important, and deserves new attention:'
                 + '&subchapter=* Short body text in less than 30 words:%13%10'
@@ -45,7 +45,7 @@
         function hrefMinEn() {
             // Keeping all parameters coming in from the URL, replacing if not there
             return uM(null, 'design', 'noKS'
-                , 'chapterstructure', 'Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
+                , 'textstructure', 'Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
                 , 'chapterintroduction', '* Introduction in maximum 10 words:'
                 , 'imagedescription', 'Image description in 50 words that illuminates why the theme is important, and deserv1es new attention:'
                 , 'subchapter', '* Short body text in less than 30 words:%13%10'
@@ -61,7 +61,7 @@
         function hrefMinEnX() {
             // Keeping all parameters coming in from the URL, replacing if not there
             return uS('design', 'noKS'
-                , uS('chapterstructure', 'Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
+                , uS('textstructure', 'Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
                 , uS('chapterintroduction', '* Introduction in maximum 10 words:'
                 , uS('imagedescription', 'Image description in 50 words that illuminates why the theme is important, and deserv1es new attention:'
                 , uS('subchapter', '* Short body text in less than 30 words:%13%10'
@@ -80,9 +80,9 @@
             return 'StratCreator.html?a=b'
             //+ '&produser='
             + '&design=noKS'
-            + '&kapittelstruktur=Kapittelstruktur med Kapittel 1 til 2 deretter 2 underkapittel for hv1ert kapittel nav1ngitt 1a) til 2b):'
+            + '&kapittelstruktur=Textstructure med Kapittel 1 til 2 deretter 2 underkapittel for hv1ert kapittel nav1ngitt 1a) til 2b):'
             + '&kapittelinnledning=* Innledning på maksimalt 10 ord:'
-            + '&bildebeskriv1else=Bildebeskriv1else på 50 ord som belyser hv1orfor temaet er v1iktig, og fortjener ny oppmerksomhet:'
+            + '&bildebeskriv1else=Imagebeskriv1else på 50 ord som belyser hv1orfor temaet er v1iktig, og fortjener ny oppmerksomhet:'
             + '&underkapittel=* Kort brødtekst på mindere enn 30 ord:%13%10'
             // OpenAI.com instruct      //+ '&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKv1"U(PDZOdR!%7B') + '&textjson=https://api.openai.com/v11/completions&textmodel=gpt-3.5-turbo-instruct'
             // OpenAI.com chat-complete //+ '&api=chatcomplete&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKv1"U(PDZOdR!%7B')+ '&textmodel=gpt-3.5-turbo&textjson=https://api.openai.com/v11/chat/completions'

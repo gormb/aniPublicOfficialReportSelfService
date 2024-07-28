@@ -16,7 +16,7 @@ class AI extends Logged {
     req_Xhr(url) {
         let r = new XMLHttpRequest();
         r.open("POST", this.logurl(url||this.url));
-        this.idUrl=Logged_currentID; // update so that next request will have this url as parent
+        this.idUrl=logged_currentID; // update so that next request will have this url as parent
         r.setRequestHeader("Content-Type", "application/json");
         r.setRequestHeader("Authorization", "Bearer " + this.bearer);
         return r;
@@ -24,9 +24,9 @@ class AI extends Logged {
     req_Axios(url) {
         return axios.create({baseURL: url||this.url, headers: {"Content-Type": "application/json", "Authorization": "Bearer " + this.bearer}});
     }
-    req(url) { return req_Xhr(url); }
+    req(url) { return this.req_Xhr(url); }
     valRespData(resp) {
-        this.logresp(resp,idReq);
+        this.logresp(resp,this.idReq);
         let r = JSON.parse(resp);
         try { return r.choices[0].message.content; } catch (e) {
             try { return r.choices[0].text; } catch (e) {

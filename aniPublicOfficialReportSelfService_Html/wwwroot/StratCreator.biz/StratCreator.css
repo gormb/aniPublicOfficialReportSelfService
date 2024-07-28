@@ -49,6 +49,7 @@ div.debug {
     height: auto;
     border: dotted;
     display: none;
+    background-color: #fff;
 }
 
 div.imagetext {

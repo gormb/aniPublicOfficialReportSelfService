@@ -1,11 +1,12 @@
 ﻿document.write("<div class=\"debug\">Code for log...</div>");
 
-let Logged_currentID = 0;
+let logged_currentID = 0;
+
 class Logged {
     messages=[];
     constructor(name) {this.name=name}
     log(m,t,prefix,idParent){
-        this.messages.push({id:++Logged_currentID,type:t,msg:m,dt:new Date(),idParent:idParent}); 
+        this.messages.push({id:++logged_currentID,type:t,msg:m,dt:new Date(),idParent:idParent}); 
         if(t!=null) console.log("/*"+t+"*/");
         if(prefix!=null) m=prefix+m;
         console.log(m);

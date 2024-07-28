@@ -1,7 +1,7 @@
 ﻿document.write("<div class=\"debug\">Code for structure...</div>");
 
-// Kapittelstruktur - Kapitler og underkapitler basert på innholdet
-// Eksempel: Kapittelstruktur med Kapittel 1 - 3 deretter Underkapittel 1a - 3g for:
+// Structure - Chapters and subchapters for the Contents
+// Example: Chapter strucure with Chapters 1-3, and Subchapters 1a-3g for:
 
 // Using class
 async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopArray) {
@@ -12,27 +12,28 @@ async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopAr
     }
     , errC, maxTokens, stopArray);
 }
-// Using func
-//async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopArray) {
-//    oaiValAsync(structuring + "\n" + inTxt, 0, (gptOut) =>
-//    {
-//        //let gptOut = "**Målsettinger for livets fremskritt\n\nKapittel 1: Introduktion\n\n1a. What er meteorologien?\n1b. Historisk kortlæggelse af meteorologiens udvikling\n\n\n**Kapittel 2: Jordensatmosphère**\n\n2a. Atmosfære og synlig luftkvalitet\n2b. Meteorologiske processer i luften, herunder vind, temperatur og tryk\n\n**Kapittel 3: Livets fremskritt**\n\n3a. Miljøreferencer og -processer\n3b. Jordens økosystem – et komplekstnetzværk af organismer\n\n\n**Kapittel 4: Meteorologiens historie**\n\n4a. Fra de tidlige meteorologiske opdagelser til nuværende dage\n4b. Meteorologisk udvikling i forskellige lande\n\n**Kapittel 5: Miljø og livets fremtid**\n\n5a. Jordens klima – en overvågningslig proces\n5b. Forbedringer af synlighed og teknologi – bidrag til at forbedre ourlivets kvalitet";
-//        let ChSub = structureAsChSub(gptOut);
-//        doneC(ChSub[0], ChSub[1], gptOut);
-//    , errC, maxTokens, stopArray);
-//}
 
+/*         "content": "
+Chapter 1: Introduktion til kunsthistorien
 
+- Subchapter 1a: Definition af kunsthistorie
+- Subchapter 1b: Vigtigheden af kunsthistorie
+
+Chapter 2: Den historiske udvikling af kunsthistorien
+
+- Subchapter 2a: Antikkens betydning for kunsthistorien
+- Subchapter 2b: Renæssancen og den moderne tilgang til kunst"
+*/
 function structureStopAfter(iC, iS) {
     let res = [];
     if (iS == null) { // chapter; next chapter or first subchapter
-        res = ['Kapittel ' + (iC + 2)
-            , 'Underkapittel ' + (iC + 1) + 'a'
+        res = ['Chapter ' + (iC + 2)
+            , 'Subchapter ' + (iC + 1) + 'a'
             , '' + (iC + 1) + 'a) '];
     }
     else { // subchapter; next subchapter or chapter
-        res = ['Kapittel ' + (iC + 2)
-            , 'Underkapittel ' + (iC + 1) + String.fromCharCode('b'.charCodeAt(0)+iS)
+        res = ['Chapter ' + (iC + 2)
+            , 'Subchapter ' + (iC + 1) + String.fromCharCode('b'.charCodeAt(0)+iS)
             , '' + (iC + 1) + String.fromCharCode('b'.charCodeAt(0) + iS) +') '];
     }
     return res;
@@ -48,7 +49,7 @@ function structureAsChSub(gptOut){
     for (let i = 0; i < chSub.length; i++) {
         let chSubN = chSub[i].replace('#', '').replace('*', '').trim();
         if (chSubN.length > 6)
-            if (chSubN.substring(0, "Kapittel".length) == "Kapittel" || chSubN.substring(0, "**".length) == "**") {
+            if (chSubN.substring(0, "Chapter".length) == "Chapter" || chSubN.substring(0, "**".length) == "**") {
                 nCh = structureCh.push(chSubN);
                 structureSub.push([]);
             }
@@ -77,6 +78,6 @@ function structureAsHtml(structure) {
     }
     res += "</ul>"
     return res;
-} //alert(structureAsHtml('Kapittel 1: Hvilke arter kan fiskes om vinteren?' + '\nUnderkapittel 1a: Sjøørret' + '\nUnderkapittel 1b: Torsk' + '\nUnderkapittel 1c: Fjære' + '\nUnderkapittel 1d: Lyr' + '\nUnderkapittel 1e: Sei' + '\n' + '\nKapittel 2: Artsfiske' + '\nUnderkapittel 2a: Spesialisering' + '\nUnderkapittel 2b: Metoder' + '\nUnderkapittel 2c: Forsiktighet' + '\n' + '\nKapittel 3: Konklusjon' + '\nUnderkapittel 3a: Fordeler' + '\nUnderkapittel 3b: Ulemper' + '\nUnderkapittel 3c: Miljøhensyn' + '\nUnderkapittel 3d: Utstyr' + '\nUnderkapittel 3e: Regler og lover' + '\nUnderkapittel 3f: Tips og triks' + '\nUnderkapittel 3g: Oppsummering'));
+} //alert(structureAsHtml('Chapter 1: What is it all about' + '\nSubchapter 1a: Life' + '\nSubchapter 1b: The Univers' + '\nSubchapter 1c: Everything'));
 
 document.write("<div class=\"debug\">End of Code for structure.</div>");
