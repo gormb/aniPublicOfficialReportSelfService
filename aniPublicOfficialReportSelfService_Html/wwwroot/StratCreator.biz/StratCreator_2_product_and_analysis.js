@@ -22,7 +22,7 @@ function ProductbuttonPushed(p = 'default') {
 function LigatureExp(s) {
     return s.replace('oe', 'ø').replace('OE', 'Ø').replace('slash', '-');
 }
-function w_alleProductbuttoner() {
+function w_allProductbuttons() {
     let done = [];
     let lang = [];
     let prod = [[]];
