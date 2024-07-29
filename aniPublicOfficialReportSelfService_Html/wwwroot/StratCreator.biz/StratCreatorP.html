@@ -1,8 +1,7 @@
 ﻿<html>
 <head>
     <script>
-        function hrefMin(){
-            var tInnh = 'Meaning of life ';
+        function hrefMin(tContent = 'Meaning of Life, the Universe and Everything'){
             return 'StratCreator.html?a=b'
                 //+ '&produser='
                 + '&design=noKS'
@@ -15,8 +14,7 @@
                 + '&imagemodel=dall-e-2&imagesize=512x512'
                 + '&content=' + tContent;
         }
-        function hrefMinEn() {
-            var tInnh = 'The meaning of life and the history of meteorology';
+        function hrefMinEn(tContent = 'The meaning of life and the history of meteorology') {
             return 'StratCreator.html?a=b'
                 + '&design=noKS'
                 + '&textstructure=Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
@@ -29,21 +27,20 @@
                 + '&content=' + tContent;
                 + '&textmodel=gpt-3.5-turbo&textjson=https://api.openai.com/v11/chat/completions'
                 + '&imagemodel=dall-e-2&imagesize=512x512'
-                + '&innhold=' + tInnh;
+                + '&innhold=' + tContent;
         }
         function uS(p, v1, u = new URL(window.location.href)) {
             u.searchParams.set(p, u.searchParams.get(p) || v1);
             return u;
         }
         function uM(u, p1, v1, p2, v2, p3, v3, p4, v4, p5, v5, p6, v6, p7, v7, p8, v8, p9, v9, p10, v10, p11, v11, p12, v12, p13, v13, p14, v14, p15, v15, p16, v16, p17, v17, p18, v18, p19, v19, p20, v20) {
-            u = u||new URL(window.location.href)
-            u.searchParams.set(p1, u.searchParams.get(p1) || v1);
-            if (p2)
-                u = uM(u, p2, v2, p3, v3, p4, v4, p5, v5, p6, v6, p7, v7, p8, v8, p9, v9, p10, v10, p11, v11, p12, v12, p13, v13, p14, v14, p15, v15, p16, v16, p17, v17, p18, v18, p19, v19, p20, v20);
+            // Keeping all parameters coming in from the URL, add p=v if p not set
+            if (!u) u = new URL(window.location.href);
+            if (!u.searchParams.get(p1)) u.searchParams.set(p1, v1);
+            if (p2) u = uM(u, p2, v2, p3, v3, p4, v4, p5, v5, p6, v6, p7, v7, p8, v8, p9, v9, p10, v10, p11, v11, p12, v12, p13, v13, p14, v14, p15, v15, p16, v16, p17, v17, p18, v18, p19, v19, p20, v20);
             return u;
         }
         function hrefMinEn() {
-            // Keeping all parameters coming in from the URL, replacing if not there
             return uM(null, 'design', 'noKS'
                 , 'textstructure', 'Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
                 , 'chapterintroduction', '* Introduction in maximum 10 words:'
@@ -61,7 +58,7 @@
         function hrefMinEnX() {
             // Keeping all parameters coming in from the URL, replacing if not there
             return uS('design', 'noKS'
-                , uS('textstructure', 'Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
+                , uS('chapterstructure', 'Chapter structure with Chapter 1 to 2 then 2 sub-chapters for each chapter named 1a) to 2b):'
                 , uS('chapterintroduction', '* Introduction in maximum 10 words:'
                 , uS('imagedescription', 'Image description in 50 words that illuminates why the theme is important, and deserv1es new attention:'
                 , uS('subchapter', '* Short body text in less than 30 words:%13%10'
@@ -75,14 +72,13 @@
                 , uS('content', 'The meaning of life and the history of meteorology'
             )))))))))))));
         }
-        function hrefPlay() {
-            var tInnh = 'Meningen med liv1et og meteorologiens historie';
+        function hrefPlay(tContent = 'Meningen med liv1et og meteorologiens historie') {
             return 'StratCreator.html?a=b'
             //+ '&produser='
             + '&design=noKS'
-            + '&kapittelstruktur=Textstructure med Kapittel 1 til 2 deretter 2 underkapittel for hv1ert kapittel nav1ngitt 1a) til 2b):'
+            + '&kapittelstruktur=Kapittelstruktur med Kapittel 1 til 2 deretter 2 underkapittel for hv1ert kapittel nav1ngitt 1a) til 2b):'
             + '&kapittelinnledning=* Innledning på maksimalt 10 ord:'
-            + '&bildebeskriv1else=Imagebeskriv1else på 50 ord som belyser hv1orfor temaet er v1iktig, og fortjener ny oppmerksomhet:'
+            + '&bildebeskriv1else=Bildebeskriv1else på 50 ord som belyser hv1orfor temaet er v1iktig, og fortjener ny oppmerksomhet:'
             + '&underkapittel=* Kort brødtekst på mindere enn 30 ord:%13%10'
             // OpenAI.com instruct      //+ '&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKv1"U(PDZOdR!%7B') + '&textjson=https://api.openai.com/v11/completions&textmodel=gpt-3.5-turbo-instruct'
             // OpenAI.com chat-complete //+ '&api=chatcomplete&texthyggelig=' + encodeURIComponent('4>c%2FP0p%3A%3BX0>%5D%5E"4sa1ML)*FtW"%2C*TM%5DZ%23%5B%27.CKv1"U(PDZOdR!%7B')+ '&textmodel=gpt-3.5-turbo&textjson=https://api.openai.com/v11/chat/completions'
@@ -114,7 +110,7 @@
             //+ '&texthyggelig='
         //+ '&texthyggelig=4%253Ec%252F%252F%2526j4%253E%27qaj%2520Oy%2525%255DL%255C%252C%21Dg%25402Fc2%253DDL%253C8CfU%2522%252F_OBB%253F%257Cw%2540%27%29%2523XHxB%28mE%2523%255E%253B_x%257CMH%253D%255E%255B%253Bx*f2RZ%255D%2524%25603%2524%257Cz%28SJ%27%253DQsJBA%27JDS%2522AOcH%253CA%2560KO%2540S
             //
-            + '&innhold=' + tInnh;
+            + '&innhold=' + tContent;
         }
         window.location.href = hrefMin();
     </script>
