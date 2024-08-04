@@ -4,7 +4,7 @@ let g_aktoerer = ["Regjeringen", "KS", "DFØ", "digdir", "Datatilsynet", "e-hels
 let g_regjeringen = ["Barne- og familiedepartementet", "Finansdepartementet", "Justisdepartementet", "KDD", "Kommunal- og distriktsdepartementet", "Kommunal- og moderniseringsdepartementet", "Kulturdepartementet", "Landbruks- og matdepartementet", "Nærings- og fiskeridepartementet", "Olje- og energidepartementet", "Utenriksdepartementet", "Helse- og omsorgsdepartementet", "Kirkedepartementet", "Barne-, likestillings- og inkluderingsdepartementet", "Klima- og miljødepartementet", "Utdannings- og forskningsdepartementet"];
 
 let lastProd = 'default';
-function ProduktknappTrykket(p = 'default') {
+function ProductbuttonPushed(p = 'default') {
     lastProd = p; // for later print
     // sett styles med navn 'product_*' til 'product_' + p
     iStyleSheetSrc = StylesheetForStyleIndex('.product_active'.replace('_active', '_' + p));
@@ -22,7 +22,7 @@ function ProduktknappTrykket(p = 'default') {
 function LigatureExp(s) {
     return s.replace('oe', 'ø').replace('OE', 'Ø').replace('slash', '-');
 }
-function w_alleProduktknapper() {
+function w_allProductbuttons() {
     let done = [];
     let lang = [];
     let prod = [[]];
@@ -54,7 +54,7 @@ function w_alleProduktknapper() {
     for (let iLang = 0; iLang < lang.length; iLang++) {
         w('<tr>');
         for (let iProd = 0; iProd < prod[iLang].length; iProd++)
-            w('<td onclick="ProduktknappTrykket(\'' + lang[iLang] + prod[iLang][iProd] + '\')" style="text-decoration:underline">' + LigatureExp(prod[iLang][iProd]) + '</td>');
+            w('<td onclick="ProductbuttonPushed(\'' + lang[iLang] + prod[iLang][iProd] + '\')" style="text-decoration:underline">' + LigatureExp(prod[iLang][iProd]) + '</td>');
         w('</tr>');
     }
     w('</table>');

@@ -16,8 +16,8 @@ function l() {
     ShowCell(-1, -1, 'none'); // hide all
     try { document.getElementById('suLink').href = 'MobilUtred.html' + window.location.search; } catch (e) { }
     if (!parseParameters())
-        try { if (!bGotValueFromUrl) navigator.clipboard.readText().then((t) => {txtInnholdInn.value = t; UpdateOutOrShowSamleButton(); }); } catch (e) { }
-    UpdateOutOrShowSamleButton();
+        try { if (!bGotValueFromUrl) navigator.clipboard.readText().then((t) => {txtContentsIn.value = t; UpdateOutOrShowreduceButton(); }); } catch (e) { }
+    UpdateOutOrShowreduceButton();
 }
 function gunnar(g) { return Array.from(g).map((c, i) => String.fromCharCode((c.charCodeAt() ^ 'gunnar'.charCodeAt(i % 6)) + 32)).join('');}
 function gunnarEnc(g) { return encodeURIComponent(gunnar(g));}
@@ -32,11 +32,11 @@ function parValSet(p,v) {
     return '?' + uRLSearchParams.toString(); }
 function gunnarHyggeligUrl(g) { return parValSet('texthyggelig', gunnarEnc(g));/*'?texthyggelig='+gunnarEnc(g);*/}
 function parseParameters() { // return true if innhold=
-    txtInnholdInn.value = parValGet('content', parValGet('innhold', txtInnholdInn.value));
-    txtKapittelstrukturInn.value = parValGet('chapterstructure', parValGet('kapittelstruktur', txtKapittelstrukturInn.value));
-    txtInnledningInn.value = parValGet('chapterintroduction', parValGet('kapittelinnledning', txtInnledningInn.value));
-    txtBildeInn.value = parValGet('imagedescription', parValGet('bildebeskrivelse', txtBildeInn.value));
-    txtBroedtekstInn.value = parValGet('subchapter', parValGet('underkapittel', txtBroedtekstInn.value));
+    txtContentsIn.value = parValGet('content', parValGet('innhold', txtContentsIn.value));
+    txtTextstructureIn.value = parValGet('textstructure', parValGet('kapittelstruktur', txtTextstructureIn.value));
+    txtIntroIn.value = parValGet('chapterintroduction', parValGet('kapittelinnledning', txtIntroIn.value));
+    txtImageIn.value = parValGet('imagedescription', parValGet('bildebeskrivelse', txtImageIn.value));
+    txtBodytextIn.value = parValGet('subchapter', parValGet('underkapittel', txtBodytextIn.value));
     if (parApiTextModel != null) { // algorithm set in parameter; set gptAlg...
         //let inp = document.getElementsByTagName("gptAlg");
         radioGptAlgPar.checked = true;
@@ -46,7 +46,7 @@ function parseParameters() { // return true if innhold=
     if (parApiTextKey != null) {
         gptId.value = parApiTextKey;
         if (uRLSearchParams.get('produser') != null) setTimeout(function () { 
-            if (uRLSearchParams.get('design') != null) ProduktknappTrykket(uRLSearchParams.get('design'))
+            if (uRLSearchParams.get('design') != null) ProductbuttonPushed(uRLSearchParams.get('design'))
             generateAll(overviewTable, contentTable); 
             setTimeout(function () { 
                 TheFinishClick();

@@ -1,7 +1,7 @@
 ﻿document.write("<div class=\"debug\">Code for picturedescription...</div>");
 
-// Bilde  - Kapittelbilde - Beskrivende tekst for hvert hovedkapittel (for bildegenereringstjeneste)
-// Eksempel: [Bilde: * med bakgrunn
+// Picture - Chapter image - Prompt to describe the image for any given Main Chapter
+// Example: Image: * med bakgrunn
 
 async function picturedescriptionAsync(scDest, picturing, chapter, inTxt, doneC, errC, stopArray) {
     let cDest = document.getElementById(scDest);

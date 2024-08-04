@@ -1,7 +1,7 @@
 ﻿document.write("<div class=\"debug\">Code for intro...</div>");
 
-// Innledning - Kapittelinnledning - Innledende sammendrag for hvert hovedkapittel
-// Eksempel: Innledning:
+// Introduction - Chapter introduction - summary for a given chapter
+// Example: Summary:
  
 async function introAsync(scDest, introducing, chapter, structure, inTxt, doneC, errC, maxTokens, stopArray) {
     let cDest = document.getElementById(scDest);

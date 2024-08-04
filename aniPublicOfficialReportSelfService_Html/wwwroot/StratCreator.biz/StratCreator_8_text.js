@@ -1,7 +1,7 @@
 ﻿document.write("<div class=\"debug\">Code for text...</div>");
 
-// Brødtekst - subchaptertext - Selve teksten for hvert underkapittel
-// Eksempel: * Brødtekst:
+// Body text - subchaptertext - The actual body of the document
+// Eksempel: * Body text:
 
 async function textAsync(scDest, texting, subchapter, structure, inTxt, doneC, errC, maxTokens, stopArray) {
     let cDest = document.getElementById(scDest);

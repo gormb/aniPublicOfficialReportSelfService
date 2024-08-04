@@ -31,7 +31,7 @@ function generateAll_ContentTableBlank() {
     let res = '';// '<tr><td id="' + structureChaptId() +'">generating content...</td></tr>';
     for (let i = 0; i < gStructureCh.length && i < gStructureSub.length; i++) {
         res += '<tr><td id="' + structureChaptId(i) + '" class="product_active">'
-            + '<center><img width="512" height="512" id="' + structureChaptId(i) + '_bilde" src="https://aigap.no/____impro/1/onewebmedia/aigap.png" onclick="window.speechSynthesis.speak(new SpeechSynthesisUtterance(' + structureChaptId(i) + '_imagetext.innerHTML));"/></center>'
+            + '<center><img width="512" height="512" id="' + structureChaptId(i) + '_image" src="https://aigap.no/____impro/1/onewebmedia/aigap.png" onclick="window.speechSynthesis.speak(new SpeechSynthesisUtterance(' + structureChaptId(i) + '_imagetext.innerHTML));"/></center>'
                 + htmlImgRefresh(i)
             + '<div class="editControl" id="' + structureChaptId(i) + '_imagetext" class="imagetext">' + structureAsHtmlItem(gStructureCh[i]) + '...</div>'
                 + htmlImgTxtRefresh(i, structureChaptId(i) + '_imagetext')
@@ -55,13 +55,13 @@ function generateAll(overviewTable, contentTable, genType){
     gStructureSub = gTextSub = [[]];
 
     generate_progress('Producing chapter and subchapter with LLM...', 1);
-    let sKapittelStrukturer = txtKapittelstrukturInn.value;
-    let sInnhold = txtInnholdUt.value;
+    let sKapittelStrukturer = txtTextstructureIn.value;
+    let sInnhold = txtContentsOut.value;
     structureAsync(sKapittelStrukturer, sInnhold, (ch, sub, sStructure) => 
     { // When structure done, show, get intro and image for each chapter, get text for each subchapter
         gStructure = sStructure;
         overviewTable.innerHTML = '<tr><td  class="product_active">' + structureAsHtml(sStructure) + htmlChaptRefresh() + htmlChaptTxtRefreshAll() + "<br />" + htmlImgTxtRefreshAll() + htmlImgRefreshAll() + "<br />" + htmlSubchaptTxtRefreshAll() + '</td></tr>';
-        gStructureCh = ch; gStructureSub = sub; gStructure = txtKapittelstrukturUt.value = sStructure; // save resulting chapters and subchapters
+        gStructureCh = ch; gStructureSub = sub; gStructure = txtTextstructureOut.value = sStructure; // save resulting chapters and subchapters
         contentTable.innerHTML = generateAll_ContentTableBlank();
         generate_progress('Chapter structure completed...', 2, generate_progressTotalWebserviceCalls()); /*10 struktur, */
         if (genType != null)
@@ -69,26 +69,26 @@ function generateAll(overviewTable, contentTable, genType){
         for (let i = 0; i < gStructureCh.length && i < gStructureSub.length; i++)
         { // Get intro, image text and image for chapter, get text for each subchapter
             // chapter intro and image
-            introAsync(structureChaptId(i) + '_text', txtInnledningInn.value, gStructureCh[i], sStructure, sInnhold
-                , (cId) => { // _imagetext, _bilde
+            introAsync(structureChaptId(i) + '_text', txtIntroIn.value, gStructureCh[i], sStructure, sInnhold
+                , (cId) => { // _imagetext, _image
                     generate_progress('Intro for ' + gStructureCh[i] + ' ferdigprodusert');
-                    picturedescriptionAsync(structureChaptId(i) + '_imagetext', txtBildeInn.value, gStructureCh[i], cId.innerHTML
+                    picturedescriptionAsync(structureChaptId(i) + '_imagetext', txtImageIn.value, gStructureCh[i], cId.innerHTML
                         , (cId) => { // bilde (DALL-E)
-                            generate_progress('Bildetekst for ' + gStructureCh[i] + ' ferdigprodusert');
-                            pictureAsync(structureChaptId(i) + '_bilde', cId.innerHTML, () => { // bilde alt-text
-                                generate_progress('Bilde for ' + gStructureCh[i] + ' ferdigprodusert')
+                            generate_progress('Imagetext for ' + gStructureCh[i] + ' ferdigprodusert');
+                            pictureAsync(structureChaptId(i) + '_image', cId.innerHTML, () => { // bilde alt-text
+                                generate_progress('Image for ' + gStructureCh[i] + ' ferdigprodusert')
                             }); // pictureAsync
                         }); // picturedescriptionAsync
                 }
                 , null, 2000, structureStopAfter(i)); // introAsync
             // for each subchapter create text
             for (let j = 0; j < gStructureSub[i].length; j++)
-                textAsync(structureChaptId(i, j) + '_text', txtBroedtekstInn.value, gStructureSub[i][j], sStructure, sInnhold, () => generate_progress('Text for ' + gStructureSub[i][j] + ' produced'), null, 2000, structureStopAfter(i, j));
+                textAsync(structureChaptId(i, j) + '_text', txtBodytextIn.value, gStructureSub[i][j], sStructure, sInnhold, () => generate_progress('Text for ' + gStructureSub[i][j] + ' produced'), null, 2000, structureStopAfter(i, j));
         }
     }, (errT) => {
         overviewTable.innerHTML = '<tr><td  class="product_active">' + errT + '</td></tr>';
         contentTable.innerHTML = generateAll_ContentTableBlank();
-        generate_progress('Kapittelstruktur feilet...', 1, 1);
+        generate_progress('Textstructure feilet...', 1, 1);
     }, 3000); // 3000 items for structure
     return "Genererer...";
 }
