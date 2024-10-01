@@ -1,12 +1,12 @@
 ﻿document.write("<div class=\"debug\">Code for product and analysis...</div>");
  
-let g_aktoerer = ["Regjeringen", "KS", "DFØ", "digdir", "Datatilsynet", "e-helse", "Miljødirektoratet", "DIGG"];
+let g_actorer = ["Regjeringen", "KS", "DFØ", "digdir", "Datatilsynet", "e-helse", "Miljødirektoratet", "DIGG"];
 let g_regjeringen = ["Barne- og familiedepartementet", "Finansdepartementet", "Justisdepartementet", "KDD", "Kommunal- og distriktsdepartementet", "Kommunal- og moderniseringsdepartementet", "Kulturdepartementet", "Landbruks- og matdepartementet", "Nærings- og fiskeridepartementet", "Olje- og energidepartementet", "Utenriksdepartementet", "Helse- og omsorgsdepartementet", "Kirkedepartementet", "Barne-, likestillings- og inkluderingsdepartementet", "Klima- og miljødepartementet", "Utdannings- og forskningsdepartementet"];
 
 let lastProd = 'default';
 function ProductbuttonPushed(p = 'default') {
     lastProd = p; // for later print
-    // sett styles med navn 'product_*' til 'product_' + p
+    // set styles with name 'product_*' til 'product_' + p
     iStyleSheetSrc = StylesheetForStyleIndex('.product_active'.replace('_active', '_' + p));
     if (iStyleSheetDest == null)
         console.log('styleSheet with class .product_active ikke funnet!');
@@ -62,7 +62,7 @@ function w_allProductbuttons() {
 }
 
 // Table...
-// Eksempel: "*\n\nListe over 10 viktigste momenter:\n 1. "
+// Eksempel: "*\n\nList of the 10 most important themes:\n 1. "
 function tabSet(cTab, cells) {
     let colTitles = new Array();
     for (let iCol = 0; iCol < cTab.rows[0].cells.length; iCol++)
@@ -87,21 +87,21 @@ function tabSetCol(cTab, colTitles, colIndex, values) {
     }
     cTab.innerHTML = rows;
 }
-function AktoerFraVurdering(vurdering) {
-    let iAktoerer = g_aktoerer.findIndex(i => vurdering.toLowerCase().startsWith(i.toLowerCase()));
-    if (iAktoerer != -1)
-        return g_aktoerer[iAktoerer]; // starter med aktør
-    if (g_regjeringen.findIndex(i => vurdering.toLowerCase().startsWith(i.toLowerCase())))
-        return g_aktoerer[0]; // starter med del av g_regjeringen
-    iAktoerer = g_aktoerer.findIndex(i => vurdering.toLowerCase().contains(i.toLowerCase()));
-    if (iAktoerer != -1) // inneholder aktør
-        return g_aktoerer[iAktoerer];
-    if (g_regjeringen.findIndex(i => vurdering.toLowerCase().contains(i.toLowerCase())))
-        return g_aktoerer[0]; // inneholder del av g_regjeringen
+function ActorFromEvaluation(vurdering) {
+    let iAktors = g_actorer.findIndex(i => evaluation.toLowerCase().startsWith(i.toLowerCase()));
+    if (iAktors != -1)
+        return g_actorer[iAktors]; // starts with actor
+    if (g_regjeringen.findIndex(i => evaluation.toLowerCase().startsWith(i.toLowerCase())))
+        return g_actorer[0]; // starts with part of g_regjeringen
+    iAktors = g_actorer.findIndex(i => evaluation.toLowerCase().contains(i.toLowerCase()));
+    if (iAktors != -1) // contains actor
+        return g_actorer[iAktors];
+    if (g_regjeringen.findIndex(i => evaluation.toLowerCase().contains(i.toLowerCase())))
+        return g_actorer[0]; // contains part of g_regjeringen
 
-    let iPos = vurdering.search(/[^a-zA-ZÆØÅæøå -]/)
+    let iPos = evaluation.search(/[^a-zA-ZÆØÅæøå -]/)
     if (iPos != -1)
-        return vurdering.substring(0, iPos - 1);    
+        return evaluation.substring(0, iPos - 1);    
     return "";
 }
 function tabAggAndGroup(cTab, colGroup, colSort, colDrop) {
@@ -135,32 +135,32 @@ function tabAggAndGroup(cTab, colGroup, colSort, colDrop) {
     tabSet(cTab, valWork);
     if (colDrop != null) for (let row of cTab.rows) row.deleteCell(colDrop);
 }
-async function tabLoadAsync(cTab, inTxt, kompetanseQ, colKompetanse, aktoerQ, colVurdering, colAktoer, colVekt, cols, doneC, errC, maxTokens, stopArray) {
+async function tabLoadAsync(cTab, inTxt, competencyQ, colCompetency, actorQ, colEvaluation, colActor, colWeight, cols, doneC, errC, maxTokens, stopArray) {
     tabReset(cTab, cols, 1);
-    cTab.rows[1].cells[colKompetanse].innerHTML = tRotating;
-    let gptIn = kompetanseQ.replace('*', inTxt);
+    cTab.rows[1].cells[colCompetency].innerHTML = tRotating;
+    let gptIn = competencyQ.replace('*', inTxt);
     oaiValAsync(gptIn, 0, (resp) => { // we got text
         let respLines = resp.split("\n").map((item) => item.replace(/^[^a-zæøåA-ZÆØÅ]+/, '')); // remove inital numbers, punctation and space from items
-        tabSetCol(cTab, cols, colKompetanse, respLines); // Create rows, populate col with results
+        tabSetCol(cTab, cols, colCompetency, respLines); // Create rows, populate col with results
         for (let iRow = 1; iRow < cTab.rows.length - 1; iRow+=2) {
-            let kompetanse = cTab.rows[iRow].cells[colKompetanse].innerHTML;
-            let gptIn = aktoerQ.replace('*', kompetanse);
-            cTab.rows[iRow].cells[colVurdering].innerHTML = tRotating;
-            oaiValAsync(gptIn, 0, (aktoerResp) =>
+            let competency = cTab.rows[iRow].cells[colCompetency].innerHTML;
+            let gptIn = actorQ.replace('*', competency);
+            cTab.rows[iRow].cells[colEvaluation].innerHTML = tRotating;
+            oaiValAsync(gptIn, 0, (actorResp) =>
             {
-                let aktoerRA = aktoerResp.split("2.");
-                cTab.rows[iRow].cells[colVurdering].innerHTML = aktoerRA[0];
-                if (colVekt != null) cTab.rows[iRow].cells[colVekt].innerHTML = "7";
-                if (colAktoer != null) cTab.rows[iRow].cells[colAktoer].innerHTML = AktoerFraVurdering(aktoerRA[0].trim());
-                if (aktoerRA.length > 1) {
-                    cTab.rows[iRow + 1].cells[colVurdering].innerHTML = aktoerRA[1];
-                    if (colVekt != null) cTab.rows[iRow + 1].cells[colVekt].innerHTML = "3";
-                    if (colAktoer != null) cTab.rows[iRow + 1].cells[colAktoer].innerHTML = AktoerFraVurdering(aktoerRA[1].trim());
+                let actorRA = actorResp.split("2.");
+                cTab.rows[iRow].cells[colEvaluation].innerHTML = actorRA[0];
+                if (colWeight != null) cTab.rows[iRow].cells[colWeight].innerHTML = "7";
+                if (colActor != null) cTab.rows[iRow].cells[colActor].innerHTML = ActorFromEvaluation(actorRA[0].trim());
+                if (actorRA.length > 1) {
+                    cTab.rows[iRow + 1].cells[colEvaluation].innerHTML = actorRA[1];
+                    if (colWeight != null) cTab.rows[iRow + 1].cells[colWeight].innerHTML = "3";
+                    if (colActor != null) cTab.rows[iRow + 1].cells[colActor].innerHTML = ActorFromEvaluation(actorRA[1].trim());
                 }
-            }, (aktoerRespErr) => { cTab.rows[iRow].cells[colVurdering].innerHTML = aktoerRespErr; }, maxTokens, stopArray);
+            }, (actorRespErr) => { cTab.rows[iRow].cells[colEvaluation].innerHTML = actorRespErr; }, maxTokens, stopArray);
         }
         if (doneC != null) doneC(respLines);
-    }, (repError) => { cTab.rows[1].cells[colKompetanse].innerHTML = repError; }, maxTokens, stopArray);
+    }, (repError) => { cTab.rows[1].cells[colCompetency].innerHTML = repError; }, maxTokens, stopArray);
 }
 
 document.write("<div class=\"debug\">End of Code for product and analysis.</div>");

@@ -13,17 +13,6 @@ async function structureAsync(structuring, inTxt, doneC, errC, maxTokens, stopAr
     , errC, maxTokens, stopArray);
 }
 
-/*         "content": "
-Chapter 1: Introduktion til kunsthistorien
-
-- Subchapter 1a: Definition af kunsthistorie
-- Subchapter 1b: Vigtigheden af kunsthistorie
-
-Chapter 2: Den historiske udvikling af kunsthistorien
-
-- Subchapter 2a: Antikkens betydning for kunsthistorien
-- Subchapter 2b: Renæssancen og den moderne tilgang til kunst"
-*/
 function structureStopAfter(iC, iS) {
     let res = [];
     if (iS == null) { // chapter; next chapter or first subchapter
@@ -38,24 +27,87 @@ function structureStopAfter(iC, iS) {
     }
     return res;
 }
-function IsChapter(v) {
 
+function ChapterText(v) {
+    let res = null;
+    if (v.length > 3) {
+            let iC = v.indexOf("Chapter ");
+        if (iC != -1)
+            res = v.substring(iC + "Chapter ".length,1000).replace('#','').replace('*','').trim(); //b ** Chapter 1 chapt ** / Chapter 1
+        else if (v.substring(0,3).replace('#','*')=='** ')
+            res = v.replace('*','').replace('#','').trim(); //b ** chapt ** / ##  chapt ##
+    }
+    return res;
 }
-function structureAsChSub(gptOut){
+function SubchapterText(v) {
+    let res = null;
+    if (v.length > 3)
+    {
+        let iC = v.indexOf("Subchapter ");
+        if (iC != -1)
+            res = v.substring(iC + "Subchapter ".length,1000).replace('#','').replace('*','').trim(); //b ** Chapter 1 chapt ** / Chapter 1
+        else if (v.substring(0,3).replace('#','*')=='*** ')
+            res = v.replace('*','').replace('#','').trim(); //b ** chapt ** / ##  chapt ##
+    }
+    return res;
+}
+
+//function ChapterText(v) {
+//    let res = null;
+//    if (v.length > 3) {
+//        let iC = v.indexOf("Chapter ");
+//        if (iC != -1) {
+
+//            res = v.substring(iC + "Chapter ".length).replace(/#/g, '').replace(/\*/g, '').trim();
+//        } else if (v.substring(0, 3).replace(/#/g, '*') === '** ') {
+//            res = v.replace(/#/g, '').replace(/\*/g, '').trim();
+//        }
+//    }
+//    return res;
+//}
+
+//function SubchapterText(v) {
+//    let res = null;
+//    if (v.length > 3) {
+//        let iC = v.indexOf("Subchapter ");
+//        if (iC != -1) {
+//            res = v.substring(iC + "Subchapter ".length).replace(/#/g, '').replace(/\*/g, '').trim();
+//        } else if (v.substring(0, 3).replace(/#/g, '*') === '*** ') {
+//            res = v.replace(/#/g, '').replace(/\*/g, '').trim();
+//        } else {
+//            res = v.replace(/#/g, '').replace(/\*/g, '').trim();
+//        }
+//    }
+//    return res;
+//}
+
+function structureAsChSub(gptOut) {
     let chSub = gptOut.replace('\t', '\n').split("\n");
     let structureCh = [];
     let structureSub = [[]]; 
     let nCh = 0;
     for (let i = 0; i < chSub.length; i++) {
-        let chSubN = chSub[i].replace('#', '').replace('*', '').trim();
-        if (chSubN.length > 6)
-            if (chSubN.substring(0, "Chapter".length) == "Chapter" || chSubN.substring(0, "**".length) == "**") {
-                nCh = structureCh.push(chSubN);
-                structureSub.push([]);
-            }
-            else if (nCh > 0)
+        let chSubN = ChapterText(chSub[i]);
+        if (chSubN != null) {
+            nCh = structureCh.push(chSubN);
+            structureSub.push([]);
+        }
+        else if (nCh > 0) { // we have at least one chapter already, so presume subchapter
+            let chSubN = SubchapterText(chSub[i]);
+            if (chSubN != null)
                 structureSub[nCh - 1].push(chSubN);
+        }
     }
+    //for (let i = 0; i < chSub.length; i++) {
+    //    let chSubN = chSub[i].replace('#', '').replace('*', '').trim();
+    //    if (chSubN.length > 6)
+    //        if (chSubN.substring(0, "Chapter".length) == "Chapter" || chSubN.substring(0, "**".length) == "**") {
+    //            nCh = structureCh.push(chSubN);
+    //            structureSub.push([]);
+    //        }
+    //        else if (nCh > 0)
+    //            structureSub[nCh - 1].push(chSubN);
+    //
     return [structureCh, structureSub];
 }
 function structureChaptId(iC, iS) { // chapt_x_y
