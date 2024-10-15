@@ -2,8 +2,8 @@
 
 class Wc {
     constructor(canv=null, head=null, textarea=null, textareaUsual=null, textareaIgnore=null, waitUpd=1000, waitIgn=2000) {
-        const i = Math.floor(Math.random() * 1000);
-        const j = Math.floor(Math.random() * 1000); 
+        const i = Math.floor(1000 + Math.random() * 1000);
+        const j = Math.floor(1000 + Math.random() * 1000); 
         this.head = Wc.c(head, `wc_h${i}${j}`, `<h3 id="wc_h${i}${j}">...</h3>`);
         this.canv = Wc.c(canv, `wc_canv${i}${j}`, `<canvas id="wc_canv${i}${j}">...</canvas>`);
         this.textarea = Wc.c(textarea, `wc_inputtext${i}${j}`, `<textarea id="wc_inputtext${i}${j}">...</textarea>`);
@@ -70,6 +70,7 @@ class Wc {
             .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g," ")
             .split(/\s+/) // Split the text into words
             .filter(w => w && !this.wordsIgnore.includes(w)); // Filter out empty strings and words in the ignore list
+        //alert(words.length);
 
         const wordsUsual = !this.textareaUsual?[]: this.textareaUsual.value.trim().toLowerCase()
             .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g," ")
