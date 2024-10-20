@@ -8,16 +8,25 @@ class Wc {
         this.canv = Wc.c(canv, `wc_canv${i}${j}`, `<canvas id="wc_canv${i}${j}">...</canvas>`);
         this.textarea = Wc.c(textarea, `wc_inputtext${i}${j}`, `<textarea id="wc_inputtext${i}${j}">...</textarea>`);
         this.textareaUsual = textareaUsual;
-        this.wordsIgnore = !textareaIgnore?[]:textareaIgnore.value.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(/\s+/).filter(w => w);;
+        this.wordsIgnore = (!textareaIgnore?this.textareaIgnoreDefault():textareaIgnore.value).trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(/\s+/).filter(w => w);;
         this.waitUpd = waitUpd;
         this.waitIgn = waitIgn;
         this.ctx = canv.getContext('2d');
         this.prevFreq = {};
         this.debounceTimer = null;
         this.debounceTimerIgnore = null;
-        this.threshold = 0.2; // 20% change threshold
+        this.settings();
         this.bindEvents();
         this.update();
+    }
+    settings() {
+        this.threshold = 0.2; // 20% change threshold
+        this.fontSzMin = 12;
+        this.fontSzMax = 36;        
+    }
+    textareaIgnoreDefault() {
+        return `norsk, og, i, jeg, det, at, en, et, den, til, er, som, på, de, med, han, av, ikke, vi, om, men, her, var, da, hva, der, så, kan, vil, ha, for, du, deg, sin, blir, ved, skulle, nå, denne, disse, etter, ut, opp, inn, har, hadde, noen, også, bare, eller, fra, alt, ingen, alle, over, være, kom, hvordan, hvor, ble, skal, sier, sa, igjen, enn, nei, mitt, deres, dem, seg, selv, man, hvem, henne, ham, mine, dine, hans, hennes, sitt, sine, ditt, vår, våre, hvert, hvilken, hvilket, hvorfor, uten, veldig, hele, del, delvis, mellom, blant, alltid, snart, annet, andre, gjennom, både, kun, slik, likevel, derfor, dermed, hvis, bli, blitt, gjorde, ja, hans, hver, dette, sin, sitt, selv, våre, vårt, ingen, mer, større, mindre, flere, minst, mest, hele, annen, noe, hvor, derfor, siden, ettersom, etterpå, slik, der, dit, foran, bak, ved, under, over, snart, allerede, da, ikke, nå, senere, kanskje, ofte, av, sjelden, enda, altså, faktisk, eller, fordi, jo, selv om, nettopp, så, slik, altså, vel, både, selv, nok, faktisk, vanligvis, helst, tydeligvis, sannsynligvis, åpenbart, iblant, lenge, eksempelvis, derfor, kanskje, vel, nemlig, nødvendigvis, virkelig, helt, svært, veldig, mye, nok, ganske, tilstrekkelig, betydelig, hovedsakelig, enkelt, nødvendigvis, virkelig, sikkert, sannsynligvis, åpenbart, selv, gjerne, snart, sammen, omtrent, eventuelt, virkelig, allerede, dermed, egentlig, både, mest, flest, omtrent, selv, delvis, derfor, igjen, mest, alltid, likevel, snart, lenge, ofte, nok, kanskje, virkelig, dessuten, mesteparten, hovedsakelig, stadig, plutselig, absolutt, enda, nettopp, nødvendigvis, faktisk, akkurat, riktig, helt, å, må, når, ligger'
+            , english, a, about, above, after, again, against, all, am, an, and, any, are, aren't, as, at, be, because, been, before, being, below, between, both, but, by, can, can't, cannot, could, couldn't, did, didn't, do, does, doesn't, doing, don't, down, during, each, few, for, from, further, had, hadn't, has, hasn't, have, haven't, having, he, he'd, he'll, he's, her, here, here's, hers, herself, him, himself, his, how, how's, i, i'd, i'll, i'm, i've, if, in, into, is, isn't, it, it's, its, itself, let's, me, more, most, mustn't, my, myself, no, nor, not, of, off, on, once, only, or, other, ought, our, ours, ourselves, out, over, own, same, shan't, she, she'd, she'll, she's, should, shouldn't, so, some, such, than, that, that's, the, their, theirs, them, themselves, then, there, there's, these, they, they'd, they'll, they're, they've, this, those, through, to, too, under, until, up, very, was, wasn't, we, we'd, we'll, we're, we've, were, weren't, what, what's, when, when's, where, where's, which, while, who, who's, whom, why, why's, with, won't, would, wouldn't, you, you'd, you'll, you're, you've, your, yours, yourself, yourselves`;
     }
     static c(asis, id, htm) { // if asis is element, return it, if text replace '...' in htm with the text, else insert htm.
         if (asis instanceof Element) return asis;
@@ -40,19 +49,6 @@ class Wc {
         ret.canv.style.border = '1px black solid';
         return ret;
     }
-    static setpos(hd, ta, c, i, j) {
-        // const w = c.parentElement.clientWidth / 4;
-        // const h = w / 1.618;
-        // hd.style.position = ta.style.position = c.style.position = 'absolute';
-        // hd.style.left = ta.style.left = c.style.left = (i +.5) * w + 'px';
-        // hd.style.width = ta.style.width = c.style.width = w + 'px';
-        // hd.style.top = (j + .5) * w + 'px';
-        // ta.style.top = c.style.top = (j + .8) * w + 'px';
-        // hd.style.height = h * .2 + 'px';
-        // ta.style.height = h + 'px';
-        // c.style.height = h + 'px';
-        // c.style.border = '1px black solid';
-    }
     bindEvents() {
         this.textarea.addEventListener('input', () => {
             clearTimeout(this.debounceTimer);
@@ -66,11 +62,11 @@ class Wc {
             });
     }
     update() { // Update word cloud based on textarea reducing based upon words in textareaUsual so that we get what is different is special for textarea. Ignore textIgnore
-        const words = this.textarea.value.trim().toLowerCase()
-            .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g," ")
+        let text = this.textarea.value.trim().toLowerCase();
+        text += ' ' + this.head.innerText.trim().toLowerCase() + ' ' + this.head.innerText.trim().toLowerCase();
+        const words = text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g," ")
             .split(/\s+/) // Split the text into words
             .filter(w => w && !this.wordsIgnore.includes(w)); // Filter out empty strings and words in the ignore list
-        //alert(words.length);
 
         const wordsUsual = !this.textareaUsual?[]: this.textareaUsual.value.trim().toLowerCase()
             .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g," ")
@@ -104,11 +100,11 @@ class Wc {
 
     renderOverlap(freq) {
         this.ctx.clearRect(0, 0, this.canv.width, this.canv.height);
-        const words = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0, 100);
+        const words = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0, 200); // Sort words by frequency (descending order) slice to top 200
         const max = words[0] ? words[0][1] : 1;
 
         words.forEach(([word, count]) => {
-            if (count < 1) return; // 
+            if (count < 0) return; // Skip words with negative count; words that are morenprev in the ignore list 
             const size = 10 + (count / max) * 50;
             this.ctx.font = `${size}px Arial`;
             this.ctx.fillStyle = this.randomColor();
@@ -129,7 +125,7 @@ class Wc {
         words.forEach(([word, count]) => {
             if (count < 1) return;
 
-            const size = 10 + (count / max) * 50; // Calculate font size based on count
+            const size = this.fontSzMin + (count / max) * (this.fontSzMax - this.fontSzMin); // Calculate font size based on count
             this.ctx.font = `${size}px Arial`;
             this.ctx.fillStyle = this.randomColor();
 
