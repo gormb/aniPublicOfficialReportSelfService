@@ -1,16 +1,16 @@
 ﻿document.write("<div class=\"debug\">Code for dev...</div>");
 
 class Wc {
-    constructor(canv=null, head=null, textarea=null, textareaUsual=null, textareaIgnore=null, waitUpd=1000, waitIgn=2000) {
+    constructor(canv=null, head=null, textarea=null, textareaUsual=null, textareaIgnore=null, waitUpdMs=1000, waitIgnMs=2000) {
         const i = Math.floor(1000 + Math.random() * 1000);
         const j = Math.floor(1000 + Math.random() * 1000); 
         this.head = Wc.c(head, `wc_h${i}${j}`, `<h3 id="wc_h${i}${j}">...</h3>`);
         this.canv = Wc.c(canv, `wc_canv${i}${j}`, `<canvas id="wc_canv${i}${j}">...</canvas>`);
         this.textarea = Wc.c(textarea, `wc_inputtext${i}${j}`, `<textarea id="wc_inputtext${i}${j}">...</textarea>`);
-        this.textareaUsual = textareaUsual;
+        this.textareaUsual = Wc.c(textareaUsual, `wc_inputtextusual${i}${j}`, `<textarea id="wc_inputtextusual${i}${j}">...</textarea>`);
         this.wordsIgnore = (!textareaIgnore?this.textareaIgnoreDefault():textareaIgnore.value).trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(/\s+/).filter(w => w);;
-        this.waitUpd = waitUpd;
-        this.waitIgn = waitIgn;
+        this.waitUpdMs = waitUpdMs;
+        this.waitIgnMs = waitIgnMs;
         this.ctx = canv.getContext('2d');
         this.prevFreq = {};
         this.debounceTimer = null;
@@ -33,8 +33,8 @@ class Wc {
         document.body.insertAdjacentHTML('beforeend', htm.replace('...', asis?asis:'....'));
         return document.getElementById(id);
     }
-    static n(textareaUsual=null, textareaIgnore=null, i=0, j=0, canv=null, head=null, textarea=null, waitUpd=1000, waitIgn=2000) {
-        const ret = new Wc(canv, head, textarea, textareaUsual, textareaIgnore, waitUpd, waitIgn);
+    static n(textareaUsual=null, textareaIgnore=null, i=0, j=0, canv=null, head=null, textarea=null, waitUpdMs=1000, waitIgnMs=2000) {
+        const ret = new Wc(canv, head, textarea, textareaUsual, textareaIgnore, waitUpdMs, waitIgnMs);
         //Wc.setpos(ret.head, ret.textarea, ret.canv, i, j);
         const w = ret.canv.parentElement.clientWidth / 4;
         const h = w / 1.618;
@@ -52,13 +52,13 @@ class Wc {
     bindEvents() {
         this.textarea.addEventListener('input', () => {
             clearTimeout(this.debounceTimer);
-            this.debounceTimer = setTimeout(() => this.update(), this.waitUpd);
+            this.debounceTimer = setTimeout(() => this.update(), this.waitUpdMs);
         });
 
         if (this.textareaUsual)
             this.textareaUsual.addEventListener('input', () => {
                 clearTimeout(this.debounceTimerIgnore);
-                this.debounceTimerIgnore = setTimeout(() => this.update(), this.waitIgn);
+                this.debounceTimerIgnore = setTimeout(() => this.update(), this.waitIgnMs);
             });
     }
     update() { // Update word cloud based on textarea reducing based upon words in textareaUsual so that we get what is different is special for textarea. Ignore textIgnore
