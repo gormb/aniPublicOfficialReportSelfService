@@ -2,8 +2,8 @@
 
 class Wc {
     constructor(canv=null, head=null, textarea=null, textareaUsual=null, textareaIgnore=null, waitUpdMs=1000, waitIgnMs=2000) {
-        const i = Math.floor(1000 + Math.random() * 1000);
-        const j = Math.floor(1000 + Math.random() * 1000); 
+        const i = Math.floor(1000 + Math.random() * 1000)-1000;
+        const j = Math.floor(1000 + Math.random() * 1000)-1000;
         this.head = Wc.c(head, `wc_h${i}${j}`, `<h3 id="wc_h${i}${j}">...</h3>`);
         this.canv = Wc.c(canv, `wc_canv${i}${j}`, `<canvas id="wc_canv${i}${j}">...</canvas>`);
         this.textarea = Wc.c(textarea, `wc_inputtext${i}${j}`, `<textarea id="wc_inputtext${i}${j}">...</textarea>`);
@@ -40,12 +40,14 @@ class Wc {
         const h = w / 1.618;
         ret.head.style.position = ret.textarea.style.position = ret.canv.style.position = 'absolute';
         ret.head.style.left = ret.textarea.style.left = ret.canv.style.left = (i +.5) * w + 'px';
-        ret.head.style.width = ret.textarea.style.width = ret.canv.style.width = w + 'px';
+        ret.head.style.width = ret.textarea.style.width = w + 'px';
+        ret.canv.style.width = w*2 + 'px';
         ret.head.style.top = (j + .5) * w + 'px';
-        ret.textarea.style.top = ret.canv.style.top = (j + .8) * w + 'px';
+        ret.textarea.style.top = (j + .8) * w + 'px';
+            ret.canv.style.top = (j + 1.8) * w + 'px';
         ret.head.style.height = h * .2 + 'px';
         ret.textarea.style.height = h + 'px';
-        ret.canv.style.height = h + 'px';
+        ret.canv.style.height = h*2 + 'px';
         ret.canv.style.border = '1px black solid';
         return ret;
     }
