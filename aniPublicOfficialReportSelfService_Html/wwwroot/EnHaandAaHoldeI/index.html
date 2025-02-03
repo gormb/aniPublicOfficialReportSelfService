@@ -1,0 +1,39 @@
+Her er et eksempel som legger JSON-snippen i en variabel `j` og sender den med som system-rolle til OpenAI, slik at du kan referere til innholdet i chattesvarene:
+
+```html
+<html><body>
+<input id=q>
+<button id=b>Send</button>
+<pre id=r></pre>
+<script>
+var k="sk-SETT_INN_DIN_API_NØKKEL";
+var j={"responses":[
+{"question":"Hvordan reiser jeg til CatoSenteret?","answer":"Du kan reise..."},
+{"question":"Dekkes reiseutgiftene mine?","answer":"Reiseutgiftene dine kan..."},
+{"question":"Egenandel på rehabiliteringsopphold","answer":"Egenandelen for..."},
+{"question":"Hva skal jeg ha med?","answer":"Ta med komfortable klær..."},
+{"question":"Hvordan kan jeg forberede meg til oppholdet?","answer":"God forberedelse kan..."},
+{"question":"Hva er 2+2","answer":"Jeg ønsker ikke..."},
+{"question":"Hva skjer den første dagen?","answer":"Den første dagen får..."},
+{"question":"Kan jeg få besøk av pårørende under oppholdet?","answer":"Ja, vi oppfordrer..."},
+{"question":"Hvordan håndteres allergier eller spesielle kostbehov?","answer":"Gi oss beskjed om..."},
+{"question":"Hva skjer hvis jeg trenger oppfølging etter oppholdet?","answer":"Vi legger vekt på god..."}
+]};
+
+async function c(m){
+  return(await fetch("https://api.openai.com/v1/chat/completions",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Authorization":"Bearer "+k},
+    body:JSON.stringify({
+      model:"gpt-3.5-turbo",
+      messages:[
+        {role:"system",content:JSON.stringify(j)},
+        {role:"user",content:m}
+      ]
+    })
+  })).json();
+}
+b.onclick=async()=>r.innerText=(await c(q.value)).choices[0].message.content
+</script>
+</body></html>
+```
