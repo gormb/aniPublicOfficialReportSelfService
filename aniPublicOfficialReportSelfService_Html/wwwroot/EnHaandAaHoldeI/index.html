@@ -53,6 +53,7 @@ cP(`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og m�
 
 let toHtm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , his = r.innerHTML
+, sD=(d,iHis)=>{ if (iHis==0) { q.value=''; b.style.background='black';}}
 , s=(d,iHis=0)=> {
     his += bT + q.value + "<br>";
     iHis||c.push({role:"user", content: q.value});
@@ -68,11 +69,15 @@ let toHtm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace
     });
     d.innerHTML = toHtm(his + hT + a);
     };
-    x.onreadystatechange=()=>{ if(x.readyState==4) d.innerHTML = toHtm(his += hT + (x.status==200 ? ((b.style.background='black')(iHis||c.push({role:"assistant",content:a})), q.value="", a) : x.status==401 ? "<i>Feil ved kall til KI-tjenesten</i>" : x.status==0 ? "<i>Manglende internet?</i>" : "<i>Feil " + x.status + ": " + x.statusText + "</i>") + "<br>"); };
+    x.onreadystatechange=()=>{ if(x.readyState==4) {
+        d.innerHTML = toHtm(his += hT + (x.status==200 ? a : x.status==401 ? "<i>Feil ved kall til KI-tjenesten</i>" : x.status==0 ? "<i>Manglende internet?</i>" : "<i>Feil " + x.status + ": " + x.statusText + "</i>") + "<br>"); }
+        sD(d, iHis);
+    };
     x.send(JSON.stringify({model: aim.value, messages: c, stream: true}));
 }
 , sr=()=>{b.style.background='grey'; s(r);};
 b.onclick = sr;
-q.addEventListener("keydown", e => { if(e.key==="Enter"){ sr(); e.preventDefault();}});
-q.addEventListener("keydown", e => { if(e.key==="Tab"){ r.innerHTML='<h2>History</h2>'+JSON.stringify(c);}});
+q.addEventListener("keydown", e => { 
+    if(e.key==="Enter"){ sr(); e.preventDefault();}
+    else if(e.key==="Tab"){ r.innerHTML='<h2>History</h2>'+JSON.stringify(c);}});
 </script></body></html>
