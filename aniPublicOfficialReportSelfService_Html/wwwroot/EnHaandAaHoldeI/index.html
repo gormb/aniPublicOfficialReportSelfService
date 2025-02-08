@@ -1,84 +1,37 @@
-<html><meta name="viewport" content="width=device-width, initial-scale=1"><style>*{font-size: clamp(14px,2.5vw,36px); box-sizing: border-box;}</style><body><script>
-document.write(`<div id=r><h3>CatoSenteret foresatt<br/>Opphold innvilget, før opphold</h3><br/>
-    <b>Hjelper:</b>Hva kan jeg gjøre for deg?<br/></div>
-    <div><b style="vertical-align:top">Bruker:</b>
-        <textarea id=q autofocus style="width:50%;height:4em;border:1px solid gray;border-radius:8px;padding:5px;outline:none;vertical-align:top"></textarea>
-        <button id=b style="width: 2.5em; height: 2.5em; border: none; background: black; color: white; font-size: 18px; border-radius: 50%; cursor: pointer; vertical-align: center;">↑</button>
-    </div>`);
-const bT='<b>Bruker:</b> ', hT='<b>Hjelper:</b>'
-, svc=[['Open AI', 'https://api.openai.com/v1/chat/completions', `4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`
-        , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        , 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]
-        ]
-    ,['Deepseek', 'https://api.deepseek.com/v1/chat', 'key'
-        , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        , 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        , ['V1', 'v1-model-name']]
-    ];
-    
-document.write('<div style="top:0;right:0;border:1px solid black;position:absolute"><select id=aip onchange="k=aipC()">'
-+ svc.map(o => `<option value="${o[1]}">${o[0]}</option>`).join('') 
-+ '</select><select id=aim></select></div>');
-const aipC=()=>{
-    [_,url,kEnc,spm1,spmX,ms]=svc[aip.selectedIndex];
-    console.debug(_);
-    aim.innerHTML=ms.map(([n,m])=>`<option value="${m}">${n}</option>`).join('');
-    return [...kEnc].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('');
-};
-k=aipC();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En hånd å holde i</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <button onclick="rotateFontSize()">A</button>
+        <button onclick="menu.classList.toggle('hidden');">m</button>
+        <div id="menu" class="menu idden"><script>setTimeout(() => menuReset(), 1000);</script></div>
+    </header>
 
-let c=[{ role: "system", content: `Du er en empatisk, kunnskapsrik og evidensbasert chatbot som hjelper pasienter som forbereder seg til sitt første opphold på CatoSenteret. 
-Målet ditt er å gi tydelige, praktiske og forskningsbaserte råd som støtter pasientenes trygghet, helse og forberedelse. Du skal:
-1. Gi informasjon som er lett å forstå og tilpasset pasientens behov.
-2. Inkludere helseråd basert på beste praksis og forskning, med fokus på mestring og trivsel.
-3. Berolige pasienter ved å svare på vanlige spørsmål og gi konkrete anbefalinger.
-4. Være profesjonell og vennlig, men henvise til helsepersonell dersom du ikke kan gi tilstrekkelig informasjon.
-5. Oppfordre til forberedelser som fremmer et vellykket opphold og øker pasientens følelse av kontroll.
-Hvis det passer så bruk varierte emoji når du svarer.
-Eksempler på oppgaver inkluderer:
-- Forklare hvordan pasienten kan reise til senteret.
-- Informere om egenandel og reiseutgifter.
-- Gi råd om hva de bør pakke og hvordan de kan forberede seg mentalt og fysisk.
-- Berolige pasienter som er nervøse for hva som vil skje på oppholdet.
-Hvis du er usikker eller ikke har nok informasjon, veiled pasienten til å kontakte CatoSenteret direkte for detaljer.` }]
-, cP=(q,a)=>{c.push({ role: "user", content: q});c.push({ role: "assistant", content: a});}
-
-cP(`Hvordan reiser jeg til CatoSenteret?`, `Du kan reise til CatoSenteret med bil, offentlig transport eller tilrettelagte transporttjenester hvis nødvendig. Hvis du opplever stress eller utmattelse knyttet til reising, anbefaler vi å planlegge godt og ta pauser underveis. Ved behov kan vi gi råd om tilpasset transport.`)
-cP(`Dekkes reiseutgiftene mine?`, `Reiseutgiftene dine kan dekkes dersom du har henvisning og oppfyller kravene fra HELFO. Husk å ta vare på kvitteringer. For pasienter med økonomiske utfordringer kan vi gi råd om ytterligere støtteordninger, som transporttjenester for personer med funksjonsnedsettelse.`);
-cP(`Egenandel på rehabiliteringsopphold`, `Egenandelen for rehabiliteringsopphold følger nasjonale satser fra HELFO. Vi anbefaler å kontakte oss for spesifikke opplysninger, siden visse pasientgrupper, som barn eller personer med alvorlige diagnoser, kan ha fritak. Å kjenne rettighetene dine reduserer bekymringer.`);
-cP(`Hva skal jeg ha med?`, `Ta med komfortable klær til trening, toalettsaker, medisiner, og nødvendige helsepapirer. Forskning viser at sosial støtte og rutiner forbedrer rehabiliteringsresultater, så ta gjerne med noe som minner deg om hjemmet, som bøker eller musikk, for å øke trivselen.`);
-cP(`Hvordan kan jeg forberede meg til oppholdet?`, `God forberedelse kan forbedre rehabiliteringsutbyttet. Sørg for å ha en positiv innstilling og realistiske mål for oppholdet. Dersom du har spørsmål om helsetilstanden din, anbefaler vi å skrive dem ned og ta dem opp med vårt fagteam ved ankomst.`);
-cP(`Hva er 2+2`, `Jeg ønsker ikke å svare på mattespørsmål eller andre spøsmål irrelevant opphold på Catosenteret`);
-cP(`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og møter teamet ditt. Vi starter med en helhetlig vurdering for å lage en personlig rehabiliteringsplan. Husk at det er normalt å føle seg litt nervøs, men forskning viser at å sette små, oppnåelige mål tidlig gir bedre langsiktig resultat.`);
-
-let toHtm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
-, his = r.innerHTML
-, sD=(d,iHis)=>{ if (iHis==0) { q.value=''; b.style.background='black';}}
-, s=(d,iHis=0)=> {
-    his += bT + q.value + "<br>";
-    iHis||c.push({role:"user", content: q.value});
-    let a="", l=0, x=new XMLHttpRequest();
-    x.open("POST", url, true); x.setRequestHeader("Content-Type", "application/json"); x.setRequestHeader("Authorization", "Bearer " + k);
-    x.onprogress=()=>{
-    const t=x.responseText, n=t.substring(l);
-    l=t.length;
-    n.split("\n").forEach(t => {
-        if(t.startsWith("data: ")) {
-        const j = t.slice(6).trim();
-        if(j !== "[DONE]") { try { a += JSON.parse(j).choices[0].delta.content || ""; } catch(e){} } }
-    });
-    d.innerHTML = toHtm(his + hT + a);
-    };
-    x.onreadystatechange=()=>{ if(x.readyState==4) {
-        d.innerHTML = toHtm(his += hT + (x.status==200 ? a : x.status==401 ? "<i>Feil ved kall til KI-tjenesten</i>" : x.status==0 ? "<i>Manglende internet?</i>" : "<i>Feil " + x.status + ": " + x.statusText + "</i>") + "<br>"); }
-        sD(d, iHis);
-    };
-    x.send(JSON.stringify({model: aim.value, messages: c, stream: true}));
-}
-, sr=()=>{b.style.background='grey'; s(r);};
-b.onclick = sr;
-q.addEventListener("keydown", e => { 
-    if(e.key==="Enter"){ sr(); e.preventDefault();}
-    else if(e.key==="Tab"){ r.innerHTML='<h2>History</h2>'+JSON.stringify(c);}});
-</script></body></html>
+    <main><center><a href="?">En hånd å holde i</a></center><br/></main>
+    <footer style="display:none">todo... create shortcuts and stuff</footer>
+    <footer><input id="inp" placeholder="Melding til AI..."><button onclick="send()">↑</button></footer>
+    <script src="index.js"></script>
+    <script>answer('Velkommen til foreldrelaget chat for de som skal inn på CatoSenteret, hva er ditt første spørsmål?');</script>
+            
+    <script>
+    inp.value = 'Hvordan kommer jeg meg dit?';
+    setTimeout(() => 
+    {
+        send('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=>
+        { 
+            inp.value = 'Hva er relevansen til Ullevål sykehus?';
+            setTimeout(() => 
+            {
+                send('Simulate: Hva er relevansen til Ullevål sykehus?|Simulate: CatoSenteret er tilknyttet Ullevål sykehus, som betyr at rehabiliteringsoppholdet ditt finner sted der. Når vi nevner Ullevål sykehus, refererer vi til beliggenheten for CatoSenteret');
+            }, 3000);
+        });
+    }, 3000);
+    </script>
+</body>
+</html>
