@@ -14,7 +14,7 @@ let rotateFontSizeI=1
 };
 
 const menuText = // menu text with hierarchy specified with pipes
-`App >>§-||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
+`App >>§ -||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
     ||Hånd å holde i >>§-|||Kontakt|||Utvikling|||Simuler
 |AI med >>§-||Open AI (USA) >>|||GPT 3.5|||GPT 4§*|||GPT o3
     ||Deepseek >>|||V3|||R1
