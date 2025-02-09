@@ -3,7 +3,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: var(--font-size); }
 .hidden { display: none; }
 .bold { font-weight: 700; }
-body { display: flex; flex-direction: column; height: 100vh; background-color: var(--light-msg); color: #000; }
+body { display: flex; flex-direction: column; height: 100dvh; background-color: var(--light-msg); color: #000; }
     body.dark-mode { background-color: var(--dark-bg); color: #fff; }
 a { color: var(--primary-color); }
     body.dark-mode a { color: #4a90e2; }
@@ -17,7 +17,7 @@ header button:hover { background: #e0e0e0; }
 
 /**/
 
-.menu { position: absolute; top: 50px; right: 2vw; background: var(--light-msg); color: #000; border: 1px solid #ccc; padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000; width: 80vw; }
+.menu { position: absolute; top: 50px; right: 2dvw; background: var(--light-msg); color: #000; border: 1px solid #ccc; padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000; width: 80dvw; }
     body.dark-mode .menu { background: var(--dark-msg); color: #fff; border: 1px solid #444; }
 .menu-item { cursor: pointer; padding: 10px; border-bottom: 1px solid --secondary-color }
     body.dark-mode .menu-item { border-bottom: 1px solid #444; }
