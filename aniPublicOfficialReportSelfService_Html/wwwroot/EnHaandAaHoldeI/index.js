@@ -176,3 +176,4 @@ function receive_Placeholder(msgQ, divR, onDone) {
 input.focus();
 menuReset();
 document.addEventListener('click', e => { if (!document.getElementById('menu').contains(e.target) && !document.getElementById('header').contains(e.target)) menu.classList.add('hidden'); });
+input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
