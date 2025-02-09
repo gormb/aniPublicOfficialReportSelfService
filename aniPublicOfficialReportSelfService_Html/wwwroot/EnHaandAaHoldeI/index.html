@@ -7,31 +7,16 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <header>
+    <header id="header">
         <button onclick="rotateFontSize()">A</button>
         <button onclick="menu.classList.toggle('hidden');">m</button>
-        <div id="menu" class="menu idden"><script>setTimeout(() => menuReset(), 1000);</script></div>
+        <div id="menu" class="menu hidden"><!--script>setTimeout(() => menuReset(), 100);</script--></div>
     </header>
 
-    <main><center><a href="?">En hånd å holde i</a></center><br/></main>
-    <footer style="display:none">todo... create shortcuts and stuff</footer>
+    <main></main>
+    <footer id="suggestions" class="hid den">todo... create shortcuts to suggested questions</footer>
     <footer><input id="inp" placeholder="Melding til AI..."><button onclick="send()">↑</button></footer>
     <script src="index.js"></script>
-    <script>answer('Velkommen til foreldrelaget chat for de som skal inn på CatoSenteret, hva er ditt første spørsmål?');</script>
-            
-    <script>
-    inp.value = 'Hvordan kommer jeg meg dit?';
-    setTimeout(() => 
-    {
-        send('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=>
-        { 
-            inp.value = 'Hva er relevansen til Ullevål sykehus?';
-            setTimeout(() => 
-            {
-                send('Simulate: Hva er relevansen til Ullevål sykehus?|Simulate: CatoSenteret er tilknyttet Ullevål sykehus, som betyr at rehabiliteringsoppholdet ditt finner sted der. Når vi nevner Ullevål sykehus, refererer vi til beliggenheten for CatoSenteret');
-            }, 3000);
-        });
-    }, 3000);
-    </script>
+    <script>answer('Velkommen til foreldrelaget chat for de som skal inn på CatoSenteret, hva er ditt første spørsmål?');</script>            
 </body>
 </html>

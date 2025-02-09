@@ -2,6 +2,7 @@
 :root { --font-size: x-large; --primary-color: #007bff; --secondary-color: #e9f5ff; --dark-bg: #121212; --dark-msg: #1e1e1e; --light-msg: #ffffff; }
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: var(--font-size); }
 .hidden { display: none; }
+.bold { font-weight: 700; }
 body { display: flex; flex-direction: column; height: 100vh; background-color: var(--light-msg); color: #000; }
     body.dark-mode { background-color: var(--dark-bg); color: #fff; }
 a { color: var(--primary-color); }
@@ -16,7 +17,7 @@ header button:hover { background: #e0e0e0; }
 
 /**/
 
-.menu { position: absolute; top: 50px; right: 2vw; background: var(--light-msg); color: #000; border: 1px solid #ccc; padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000; width: 50vw; }
+.menu { position: absolute; top: 50px; right: 2vw; background: var(--light-msg); color: #000; border: 1px solid #ccc; padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000; width: 80vw; }
     body.dark-mode .menu { background: var(--dark-msg); color: #fff; border: 1px solid #444; }
 .menu-item { cursor: pointer; padding: 10px; border-bottom: 1px solid --secondary-color }
     body.dark-mode .menu-item { border-bottom: 1px solid #444; }
@@ -32,7 +33,7 @@ body.dark-mode main { background: var(--dark-bg); }
 .icon { height: 60px; }
     body.dark-mode .icon { filter: brightness(0) invert(1); }
 .msg { max-width: 70%; padding: 10px; border-radius: 10px; }
-.sent .msg { background: var(--secondary-color); color: var(--primary-color); border-top-right-radius: 0; }
+.sent .msg { background: var(--secondary-color); color: var(--primary-color); border-top-right-radius: 0;}
     body.dark-mode .sent .msg { background: var(--dark-msg); color: var(--primary-color); }
 .received .msg { background: var(--primary-color); color: white; border-top-left-radius: 0; }
     body.dark-mode .received .msg { background: #4a90e2; color: #fff; }
@@ -44,3 +45,5 @@ button { padding: 10px 20px; border: none; border-radius: 50%; background: var(-
 button:hover { background: #0056b3; }
 @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 .rotating { display: inline-block; animation: rotate 10s linear infinite; }
+@keyframes rotateC { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
+.rotatingC { display: inline-block; animation: rotateC 2s linear infinite; }
