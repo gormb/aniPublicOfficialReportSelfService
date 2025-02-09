@@ -9,16 +9,16 @@ const chat = document.querySelector('main')
 
 let rotateFontSizeI=1
 , rotateFontSize = () => {
-    document.documentElement.style.setProperty('--font-size', ['medium', 'x-large', 'xx-large', 'xx-large'][++rotateFontSizeI % 4]);
-    document.body.classList.toggle('dark-mode', rotateFontSizeI%4 == 3);
+    document.documentElement.style.setProperty('--font-size', ['medium', 'x-large', 'xx-large', 'xx-large', 'medium'][++rotateFontSizeI % 5]);
+    document.body.classList.toggle('dark-mode', rotateFontSizeI%5 > 2);
 };
 
 const menuText = // menu text with hierarchy specified with pipes
-`App...§-||CatoSenteret...|||Før opphold§*|||Under opphold|||Etter opphold
-    ||Hånd å holde i...|||Kontakt|||Utvikling|||Simuler
-|AI med...§-||Open AI (USA)...|||GPT 3.5|||GPT 4§*|||GPT o3
-    ||Deepseek...|||V3|||R1
-|Funksjonalitet...§-||Spørsmålsforslag aktivert§
+`App >>§-||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
+    ||Hånd å holde i >>§-|||Kontakt|||Utvikling|||Simuler
+|AI med >>§-||Open AI (USA) >>|||GPT 3.5|||GPT 4§*|||GPT o3
+    ||Deepseek >>|||V3|||R1
+|Funksjonalitet >>§-||Spørsmålsforslag aktivert§
     ||Dypanalyse aktivert`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
 , menuAsArray = mStr => { // create hierarchy from | || ||| string
     m=[], p=[0,0,0,0,0];
@@ -43,7 +43,7 @@ const menuText = // menu text with hierarchy specified with pipes
     menuEBold(mt, true);
 }
 , menuHtmlAddItem= (m, i) =>{ // create html for menu item and children
-    let mi=m[i], mt=mi.t.split('§')[0].trim(), b='&nbsp;'.repeat(mi.l*4), mo=mi.t.split('§')[1];
+    let mi=m[i], mt=mi.t.split('§')[0].trim(), b='&nbsp;'.repeat(mi.l*6), mo=mi.t.split('§')[1];
     if (!mi.c.length) // no children
         return `<div id='${menuId(mt)}' class='menu-item${mo=='*'?' bold':''}' onclick="menuClickLeaf(event)">${b+mt}</div>`;
     let h=`${mi.i && !mi.l?'<hr/>':''}<div class='menu-item' onclick='mc${mi.i}.classList.toggle("hidden")'>${b+mt}</div>`;
@@ -67,7 +67,7 @@ function menuClick_m_Hndholdei(e,sm){
     }
 };
 
-function menuClick_m_CatoSenteret(e,sm){ menu.classList.toggle('hidden'); message(`<i>${sm=='Før opphold'?'Før opphold er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
+function menuClick_m_CatoSenteret(e,sm){ menu.classList.toggle('hidden'); message(`<i>${sm=='Før opphold'?sm+' er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
 
 function menuClick_m_OpenAIUSA(e,sm){ //menu.classList.toggle('hidden'); 
     menuEBoldOnly(e.target.innerText, ['GPT 4', 'GPT 3.5', 'GPT o3', 'R1', 'V3']);
