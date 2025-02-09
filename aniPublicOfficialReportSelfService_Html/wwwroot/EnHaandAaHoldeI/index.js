@@ -7,7 +7,7 @@ const chat = document.querySelector('main')
 , imgA = 'https://upload.wikimedia.org/wikipedia/commons/2/26/Noun-artificial-intelligence-884535.svg'
 , tRotating = "<div class='rotatingC'>&#8634</div>";
 
-let rotateFontSizeI=1
+let rotateFontSizeI=0
 , rotateFontSize = () => {
     document.documentElement.style.setProperty('--font-size', ['medium', 'x-large', 'xx-large', 'xx-large', 'medium'][++rotateFontSizeI % 5]);
     document.body.classList.toggle('dark-mode', rotateFontSizeI%5 > 2);
