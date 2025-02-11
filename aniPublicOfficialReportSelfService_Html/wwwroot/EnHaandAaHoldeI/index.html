@@ -8,15 +8,14 @@
 </head>
 <body>
     <header id="header">
-        <button onclick="rotateFontSize()">A</button>
+        <button onclick="uiChangeFontSize()">A</button>
         <button onclick="menu.classList.toggle('hidden');">m</button>
-        <div id="menu" class="menu hidden"><!--script>setTimeout(() => menuReset(), 100);</script--></div>
+        <div id="menu" class="menu hidden"></div>
     </header>
 
     <main></main>
     <footer id="suggestions" class="hidden">todo... create shortcuts to suggested questions</footer>
-    <footer><input id="inp" placeholder="Melding til AI..."><button onclick="send()">↑</button></footer>
+    <footer><input id="inp" placeholder="Melding til AI..."><button onclick="msgSend()">↑</button></footer>
     <script src="index.js"></script>
-    <script>answer('Velkommen til foreldrelaget chat for de som skal inn på CatoSenteret, hva er ditt første spørsmål?');</script>            
 </body>
 </html>
