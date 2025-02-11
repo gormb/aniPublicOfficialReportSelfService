@@ -98,12 +98,12 @@ function menuClick_m_Begynnpnytt(e){
 }
 function menuClick_m_Hndholdei(e,sm){ 
     switch (sm) {
+        case 'Hånd å holde i': // stemmestyrt
         case 'Kontakt': return window.open('https://www.aigap.no/snakk-med-oss', '_blank');
         case 'Utvikling': return window.open('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=B3', '_blank');
         case 'Simuler': 
             inp.value = 'Hvordan kommer jeg meg dit?';
             setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { inp.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 3000); });}, 3000);
-            //setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { inp.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Simulate: Hva er relevansen til Ullevål sykehus?|Simulate: CatoSenteret er tilknyttet Ullevål sykehus, som betyr at rehabiliteringsoppholdet ditt finner sted der. Når vi nevner Ullevål sykehus, refererer vi til beliggenheten for CatoSenteret');}, 3000); });}, 3000);
             menu.classList.toggle('hidden');
             break;
     }
@@ -183,18 +183,16 @@ function msgInfo(msg) {
     return el;
 }
 function msgSend(msgQ, onDone) {
-    msgQ = msgQ?.trim() || input.value.trim();
+    let msgQUse = msgQ?.trim() || input.value.trim();
     let r=null;
-    if (!msgQ)
-        r=msgInfo('Blank');
+    if (!msgQUse) r=msgInfo('Blank');
+    else if (typeof window['menuClick_'+menuId(msgQUse)] === 'function') window['menuClick_'+menuId(msgQUse)](null);
     else
     {
-        input.value = '';
-        r = msgAsk(msgQ.split(/\|/)[0]);
-        if (msgIsSimulate(msgQ))
-            msgStartReceive(msgQ, msgAnswer(), onDone);
-        else
-            aiRequest(msgQ);
+        if (!msgQ) input.value = '';
+        r = msgAsk(msgQUse.split(/\|/)[0]);
+        if (msgIsSimulate(msgQUse)) msgStartReceive(msgQUse, msgAnswer(), onDone);
+        else aiRequest(msgQUse, msgAnswer(), 0, onDone);
     }
     return r;
 }
@@ -212,12 +210,28 @@ function msgReceive_Placeholder(msgQ, divR, onDone) {
     chat.scrollTop = chat.scrollHeight;
     onDone?.(divR, msgA);
 }
-const msgSpeak = () => {
+function msgSendSpeak() {
     let r = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     r.lang = 'no-NO'; // Set language to Norwegian
     r.start();
-    r.onresult = e => inp.value += e.results[0][0].transcript;
-};
+    r.onresult = e => {
+        inp.value += e.results[0][0].transcript;
+        if (inp.value.length) 
+            msgSend(null, msgRecieveTalkAndSend);
+    };
+}
+function msgRecieveTalkAndSend(t) {
+    let u = new SpeechSynthesisUtterance(t);
+    u.lang = 'no-NO'; 
+    let voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('no'));
+    if (!voices.length) {
+        setTimeout(() => msgRecieveTalk(t), 100); // Ensure voices are loaded
+        return;
+    }
+    speechSynthesis.speak(u);
+    msgSendSpeak();
+}
+
 /////////////// AI ///////////////
 const aiRaw2Htm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , ai2Prompt = a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
@@ -245,7 +259,7 @@ const aiRequestProgress = (d, t, l, iThread) => {
     return t.length;
 };
 
-const aiRequestComplete = (x, img, d, iThread) => {
+const aiRequestComplete = (x, img, d, iThread, onDone) => {
     img.classList.remove('rotating');
     if (x.status == 200)
         aiHistory[iThread].push({ role: 'assistant', content: aiReply[iThread] });
@@ -254,10 +268,11 @@ const aiRequestComplete = (x, img, d, iThread) => {
             try { return JSON.parse(x.responseText)?.error?.message || x.statusText; } catch { return x.statusText; }
             })()}</i>`;
     d.innerHTML = aiRaw2Htm(aiReply[iThread]);
-    chat.scrollTop = chat.scrollHeight;
+    if (!iThread) chat.scrollTop = chat.scrollHeight;
+    onDone?.(aiReply[iThread]);
 };
 
-const aiRequest = (q, row = msgAnswer(), iThread = 0) => {
+const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null) => {
     let img = row.querySelector('img'), d = row.querySelector('.msg'), l = 0;
     aiHistory[iThread] ??= [...(aiHistory[aiHistory.length - 1] || [])];
     aiReply[iThread] ??= [...(aiReply[aiReply.length - 1] || [])];
@@ -269,7 +284,7 @@ const aiRequest = (q, row = msgAnswer(), iThread = 0) => {
     x.setRequestHeader("Content-Type", "application/json");
     x.setRequestHeader("Authorization", "Bearer " + aiGunn());
     x.onprogress = e => l = aiRequestProgress(d, x.responseText, l, iThread);
-    x.onreadystatechange = () => x.readyState == 4 && aiRequestComplete(x, img, d, iThread);
+    x.onreadystatechange = () => x.readyState == 4 && aiRequestComplete(x, img, d, iThread, onDone);
     x.send(JSON.stringify({ model: aiModel, messages: aiHistory[iThread], stream: true }));
 };
 
