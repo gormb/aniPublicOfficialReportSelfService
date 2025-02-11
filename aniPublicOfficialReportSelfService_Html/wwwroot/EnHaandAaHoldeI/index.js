@@ -212,6 +212,12 @@ function msgReceive_Placeholder(msgQ, divR, onDone) {
     chat.scrollTop = chat.scrollHeight;
     onDone?.(divR, msgA);
 }
+const msgSpeak = () => {
+    let r = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    r.lang = 'no-NO'; // Set language to Norwegian
+    r.start();
+    r.onresult = e => inp.value = e.results[0][0].transcript;
+};
 /////////////// AI ///////////////
 const aiRaw2Htm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , ai2Prompt = a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
