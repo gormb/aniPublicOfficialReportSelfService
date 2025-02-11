@@ -200,7 +200,9 @@ function msgReceive_Placeholder(msgQ, divR, onDone) {
 /////////////// AI ///////////////
 const aiRaw2Htm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , ai2Prompt = a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
-, aiUrl='https://api.openai.com/v1/chat/completions', aiModel='gpt-3.5-turbo', aiGunnar=`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`
+, aiUrl='https://api.openai.com/v1/chat/completions'
+, aiModel='o3-mini'//'gpt-3.5-turbo'
+, aiGunnar=`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`
 //, aiUrl='https://api.deepseek.com/v1/chat/completions'//, aiModel='V3'// , aiGunnar=`4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s` 
 , aiGunn=()=> [...aiGunnar].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
 
