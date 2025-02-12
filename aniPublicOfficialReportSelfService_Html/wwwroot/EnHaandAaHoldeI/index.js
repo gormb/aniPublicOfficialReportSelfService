@@ -305,7 +305,8 @@ const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null) => {
     x.send(JSON.stringify({ model: aiModel, messages: aiHistory[iThread], stream: true }));
 };
 
-// aiRequest('Hei på deg!');
+// aiRequest('Hei på deg!'); 
+
 function aiParse(s){
     s.replace(/\?\?/,'?').split('\?').forEach(p=>{
         let m = decodeURIComponent(p), fn='menuClick_'+menuId(m);
