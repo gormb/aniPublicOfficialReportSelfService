@@ -29,13 +29,11 @@ const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på
 , aiConfig = [ //todo: hent algoritme fra ekstrafelter på menyen
  // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
     ['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', `4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4', 'gpt-4o-mini'], ['GPT o3§*', 'o3-mini']]]
+        , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4§*', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
     ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat', '4>c-ueq0~'+aiConfigPipeReplace+'ye%f}zscw4+wrf%1/zp1tl}/s', 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
         , [['R1', 'R1-model-name'], ['V3', 'v3-model-name']]]
 ]
-
-const menuText = // menu text with hierarchy specified with pipes
-`App >>§ -
+const menuText = `App >>§ -
     ||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
     ||Hånd å holde i >>§-|||Kommer...
 |AI med >>§-${ aiConfig.map(ai => `||${ai[0]} >>§!${ai[1]}${ai[2]}${ai[3]}${ai[5].map(aiM=>`|||${aiM[0]}`).join('') }`).join('') }
@@ -44,8 +42,7 @@ const menuText = // menu text with hierarchy specified with pipes
     ||Begynn på nytt
     ||Spørsmålsforslag§ *
     ||Dypanalyse
-|Om >>§-||Kontakt||Personvernerklæring||Barkode||Utvikling >>§-|||Prompt|||Simuler|||Debug
-`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
+|Om >>§-||Kontakt||Personvernerklæring||Barkode||Utvikling >>§-|||Prompt|||Simuler|||Debug`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
 /////////////// Shortcuts //////////////
 const chat = document.querySelector('main')
 , menu = document.querySelector('#menu')
@@ -55,7 +52,6 @@ const chat = document.querySelector('main')
 , imgQ = 'https://upload.wikimedia.org/wikipedia/commons/2/29/Human_balance.png'
 , imgA = 'https://upload.wikimedia.org/wikipedia/commons/2/26/Noun-artificial-intelligence-884535.svg'
 , tRotating = `<div class='rotatingC'>&#8634</div>`;
-
 let uiChangeFontSizeI=0, uiChangeFontSize = () => {
     document.documentElement.style.setProperty('--font-size', ['medium', 'x-large', 'xx-large', 'xx-large', 'medium'][++uiChangeFontSizeI % 5]);
     document.body.classList.toggle('dark-mode', uiChangeFontSizeI%5 > 2);
@@ -98,7 +94,6 @@ const menuAsArray = mStr => { // create hierarchy from | || ||| string
 , menuReset = () => menu.innerHTML = menuAsArray(menuText).map((_, i) => menuHtmlAddItem(menuAsArray(menuText), i)).join('')
 , eShow = (e, b) => (e.classList.toggle('hidden', !(b ?? e.classList.contains('hidden'))), !!b)
 , menuShow = b => eShow(menu, b);
-
 /////////////// menuClick_m_ - Menu handlers ///////////////
 const menuClick_OpenUrl=u=>window.open(u, '_blank');
 function menuClick_m_Begynnpnytt(e){
@@ -107,12 +102,6 @@ function menuClick_m_Begynnpnytt(e){
     msgReset();
     menuShow(false);
 }
-function menuClick_m_Hndholdei(e,sm){ 
-    switch (sm) {
-        case 'Hånd å holde i': // stemmestyrt
-            return menuClick_OpenUrl('https://www.aigap.no/snakk-med-oss');
-    }
-};
 function menuClick_m_CatoSenteret(e,sm){ menuShow(); msgInfo(`<i>${sm=='Før opphold'?sm+' er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
 
 function menuClick_m_OpenAIUSA(e,sm){ //menuShow() 
@@ -149,11 +138,9 @@ window.menuClick_m_Personvernerklring=e=>menuClick_OpenUrl('https://www.aigap.no
 window.menuClick_m_Barkode=e=>menuClick_OpenUrl('barcode.jpg');
 window.menuClick_m_Prompt=e=>menuClick_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
 window.menuClick_m_Bokml=e=> menuShow(false)|msgRedoLast('Gjenta siste melding på bokmål og kortere. Fra nå av skal du kun svare kortfattet på bokmål');
-window.menuClick_m_Nynorsk=e=> menuShow(false)|msgRedoLast('Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk');
+window.menuClick_m_Nynorsk=e=>menuShow(false)|msgRedoLast('Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk');
 window.menuClick_m_English=e=> menuShow(false)|msgRedoLast('Repeat last message in English. From now on only answer briefly in English');
-window.menuClick_m_Ungdomssprk=e=> menuShow(false)|msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom');
-//,['Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk', 'Velkomen til CatoSenteret! Eg svarar gjerne på spørsmål om opphaldet ditt. Kva vil du vite?']
-
+window.menuClick_m_Ungdomssprk=e=> menuShow(false)|msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av.');
 function menuClick_m_Simuler(e){
     inp.value = 'Hvordan kommer jeg meg dit?';
     setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { inp.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
@@ -177,19 +164,14 @@ function msgReset() {
     msgAnswer(aiPrompt[aiPrompt.length-1][1], true);
     input.focus();
 }
-
 function msgAsk(msgQ) {
-    const el = ((b) => (b.className = "row sent", 
-                         b.innerHTML = `&nbsp;<img class="icon" src="${imgQ}"><div class="msg">${msgQ}</div>`, 
-                         b))(document.createElement("div"));
+    const el = ((b) => (b.className = "row sent", b.innerHTML = `&nbsp;<img class="icon" src="${imgQ}"><div class="msg">${msgQ}</div>`, b))(document.createElement("div"));
     chat.append(el);
     chat.scrollTop = chat.scrollHeight;
     return el;
 }
 function msgAnswer(msgA=tRotating, isDone=false) {
-    const el = ((b) => (b.className = "row received", 
-                         b.innerHTML = `<div class="msg">${msgA}</div><img class="icon${isDone?'':' rotating'}" src="${imgA}">&nbsp;`, 
-                         b))(document.createElement("div"));
+    const el = ((b) => (b.className = "row received", b.innerHTML = `<div class="msg">${msgA}</div><img class="icon${isDone?'':' rotating'}" src="${imgA}">&nbsp;`, b))(document.createElement("div"));
     chat.append(el);
     chat.scrollTop = chat.scrollHeight;
     return el;
@@ -203,10 +185,9 @@ function msgInfo(msg) {
 function msgSend(msgQ, onDone) {
     let msgQUse = msgQ?.trim() || input.value.trim();
     let r=null;
-    if (!msgQUse) r=msgInfo('Blank');
+    if (!msgQUse) msgRedoLast()
     else if (typeof window['menuClick_'+menuId(msgQUse)] === 'function') window['menuClick_'+menuId(msgQUse)](null);
-    else
-    {
+    else {
         if (!msgQ) input.value = '';
         r = msgAsk(msgQUse.split(/\|/)[0]);
         if (msgIsSimulate(msgQUse)) setTimeout(() => msgReceive_Placeholder(msgQUse, msgAnswer(), onDone), 2000);
@@ -228,7 +209,9 @@ function msgRedoLast(m) {
     menuShow(false);
     for (e=chat.lastElementChild; e && !e.classList.contains("sent"); e=chat.lastElementChild)
         e.remove();
-    msgSend(m).remove();
+    if (!m || m.length==0) try{ m = chat.lastElementChild.querySelector(".msg").innerHTML; }catch(e){m='Gjenta'}
+    let divR = msgSend(m);
+    divR.remove();
 }
 function msgSendSpeak() {
     let r = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
@@ -253,18 +236,17 @@ function msgRecieveTalkAndSend(t, bIsRetry=false) {
 const aiRaw2Htm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , ai2Prompt = a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
 , aiUrl='https://api.openai.com/v1/chat/completions'
-, aiModel=['o3-mini', 'gpt-3.5-turbo'][0]
+, aiModel=['o3-mini', 'gpt-4o-mini', 'gpt-3.5-turbo'][2]
 , aiGunnar=`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`
 //, aiUrl='https://api.deepseek.com/v1/chat/completions'//, aiModel='V3'// , aiGunnar=`4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s` 
 , aiGunn=()=> [...aiGunnar].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
 
-let aiReply=[''], aiHistory = []
+let aiReply=[''], aiHistory = [], aiRequestActiveCount = 0;
 
 function aiReset() {
     aiReply=[''];
     aiHistory=[ai2Prompt(aiPrompt)];
 }
-
 const aiRequestProgress = (d, t, l, iThread) => {
     t.substring(l).split("\n").forEach(line => {
         if (line.startsWith("data: ")) {
@@ -275,8 +257,8 @@ const aiRequestProgress = (d, t, l, iThread) => {
     d.innerHTML = aiRaw2Htm(aiReply[iThread]);
     return t.length;
 };
-
 const aiRequestComplete = (x, img, d, iThread, onDone) => {
+    aiRequestActiveCount--;
     img.classList.remove('rotating');
     if (x.status == 200)
         aiHistory[iThread].push({ role: 'assistant', content: aiReply[iThread] });
@@ -288,8 +270,8 @@ const aiRequestComplete = (x, img, d, iThread, onDone) => {
     if (!iThread) chat.scrollTop = chat.scrollHeight;
     onDone?.(aiReply[iThread]);
 };
-
 const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null) => {
+    aiRequestActiveCount++;
     let img = row.querySelector('img'), d = row.querySelector('.msg'), l = 0;
     aiHistory[iThread] ??= [...(aiHistory[aiHistory.length - 1] || [])];
     aiReply[iThread] ??= [...(aiReply[aiReply.length - 1] || [])];
@@ -304,19 +286,37 @@ const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null) => {
     x.onreadystatechange = () => x.readyState == 4 && aiRequestComplete(x, img, d, iThread, onDone);
     x.send(JSON.stringify({ model: aiModel, messages: aiHistory[iThread], stream: true }));
 };
-
-// aiRequest('Hei på deg!'); 
-
-function aiParse(s){
-    s.replace(/\?\?/,'?').split('\?').forEach(p=>{
-        let m = decodeURIComponent(p), fn='menuClick_'+menuId(m);
-        if (m.length)
-            if (typeof window[fn] === 'function') window[fn](null);
-            else {msgSend(m)}
-
+function aiParseWaitReqBefore(n = 100) {// Wait until aiRequestActiveCount is 0 or until maxChecks is reached (default 100 * 100ms = 10 sec)
+    return new Promise((resolve, reject) => {
+        let i = 0;
+        const interval = setInterval(() => {
+            if (!aiRequestActiveCount) {
+                clearInterval(interval);
+                resolve();
+            } else if (++i >= n) {
+                console.warn("Timeout waiting for AI requests to finish. Forcing counter to 0.");
+                aiRequestActiveCount = 0;
+                clearInterval(interval);
+                reject(new Error("Timeout waiting for AI requests to finish."));
+            }
+        }, 100);
     });
 }
-
+async function aiParsePerform(f, i) {
+    if (i < f.length) {
+        let m = decodeURIComponent(f[i].trim());
+        if (m.length) {
+            if (typeof window['menuClick_' + menuId(m)] === 'function') await new Promise((resolve) => { window['menuClick_' + menuId(m)](); resolve(); });
+            else await msgSend(m);
+            try { await aiParseWaitReqBefore();}catch(e){}
+        }
+        await aiParsePerform(f, i + 1);
+    }
+}
+function aiParse(s) {
+    aiRequestActiveCount = 0;
+    aiParsePerform(s.replace(/\?\?/g, '?').split('?'), 0);
+}
 /////////////// Init ///////////////
 menuReset();
 document.addEventListener('click', e => { if (!document.getElementById('menu').contains(e.target) && !document.getElementById('header').contains(e.target)) menuShow(false); });
@@ -324,7 +324,6 @@ input.addEventListener('keydown', e => { if (e.key === 'Enter') msgSend(); });
 aiReset();
 msgReset();
 aiParse(window.location.search);
-//aiParse('?Nynorsk');
-//aiParse('?Ungdomsspråk?Hvor%20er%20det??English?Deutch?Nynorsk');
-
+//aiParse('?Ungdomsspråk?Hvordan skjer inntaket?');
+//aiParse('?Ungdomsspråk?Hvor%20er%20det??Hva er dagsprogrammet??');
 //menuShow();
