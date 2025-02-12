@@ -1,5 +1,6 @@
 /////////////// Config /////////////////
-const msgWelcomeText=`Velkommen til foreldrelaget chat for de som skal inn på CatoSenteret, hva er ditt første spørsmål?`
+const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på CatoSenteret, hva er ditt første spørsmål?`
+`Velkommen! Denne chatten svarer på spørsmål du har om oppholdet ditt på CatoSenteret. Hva lurer du på?`
 ,aiPrompt=[{ role: `system`, content: `Du er en empatisk, kunnskapsrik og evidensbasert chatbot som hjelper pasienter som forbereder seg til sitt første opphold på CatoSenteret. 
     Målet ditt er å gi korte konsise tydelige, praktiske og forskningsbaserte råd som støtter pasientenes trygghet, helse og forberedelse. Du skal:
     1. Gi informasjon som er lett å forstå og tilpasset pasientens behov.
@@ -7,6 +8,7 @@ const msgWelcomeText=`Velkommen til foreldrelaget chat for de som skal inn på C
     3. Berolige pasienter ved å svare på vanlige spørsmål og gi konkrete anbefalinger.
     4. Være profesjonell og vennlig, men henvise til helsepersonell dersom du ikke kan gi tilstrekkelig informasjon.
     5. Oppfordre til forberedelser som fremmer et vellykket opphold og øker pasientens følelse av kontroll.
+    Du skal svare omtrent like kort som du blir spurt, kanskje litt lengre, men forsøk å speile lengde og stil på spørsmålene i svarene
     Eksempler på oppgaver inkluderer:
     - Forklare hvordan pasienten kan reise til senteret.
     - Informere om egenandel og reiseutgifter.
@@ -21,24 +23,29 @@ const msgWelcomeText=`Velkommen til foreldrelaget chat for de som skal inn på C
     ,[`Hvordan kan jeg forberede meg til oppholdet?`, `God forberedelse kan forbedre rehabiliteringsutbyttet. Sørg for å ha en positiv innstilling og realistiske mål for oppholdet. Dersom du har spørsmål om helsetilstanden din, anbefaler vi å skrive dem ned og ta dem opp med vårt fagteam ved ankomst.`]
     ,[`Hva er 2+2`, `Jeg ønsker ikke å svare på mattespørsmål. Kun spørsmål relevant opphold på Catosenteret`]
     ,[`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og møter teamet ditt. Vi starter med en helhetlig vurdering for å lage en personlig rehabiliteringsplan. Husk at det er normalt å føle seg litt nervøs, men forskning viser at å sette små, oppnåelige mål tidlig gir bedre langsiktig resultat.`]
-    ,['Hva er velkomstmeldingen?', msgWelcomeText]]
+    ,['Hva er velkomstmeldingen?', msgWelcomeText]
+]
 , aiConfigPipeReplace = '{pipe}'
 , aiConfig = [ //todo: hent algoritme fra ekstrafelter på menyen
  // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
     ['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', `4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
         , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4', 'gpt-4o-mini'], ['GPT o3§*', 'o3-mini']]]
     ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat', '4>c-ueq0~'+aiConfigPipeReplace+'ye%f}zscw4+wrf%1/zp1tl}/s', 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        , [['R1', 'v1-model-name'], ['V3', 'v3-model-name']]]
+        , [['R1', 'R1-model-name'], ['V3', 'v3-model-name']]]
 ]
 
 const menuText = // menu text with hierarchy specified with pipes
 `App >>§ -
     ||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
-    ||Hånd å holde i >>§-|||Kontakt|||Utvikling|||Simuler
+    ||Hånd å holde i >>§-|||Kommer...
 |AI med >>§-${ aiConfig.map(ai => `||${ai[0]} >>§!${ai[1]}${ai[2]}${ai[3]}${ai[5].map(aiM=>`|||${aiM[0]}`).join('') }`).join('') }
-|Funksjonalitet >>§ -||Begynn på nytt
+|Funksjonalitet og språk >>§ -
+    ||Språk >>|||Bokmål§*|||Nynorsk|||English|||Ungdomsspråk
+    ||Begynn på nytt
     ||Spørsmålsforslag§ *
-    ||Dypanalyse`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
+    ||Dypanalyse
+|Om >>§-||Kontakt||Personvernerklæring||Barkode||Utvikling >>§-|||Prompt|||Simuler|||Debug
+`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
 /////////////// Shortcuts //////////////
 const chat = document.querySelector('main')
 , menu = document.querySelector('#menu')
@@ -71,6 +78,7 @@ const menuAsArray = mStr => { // create hierarchy from | || ||| string
     if (b==null) b = menuE(mt).classList.contains('bold');
     if (b==true) menuE(mt).classList.add('bold');
     else menuE(mt).classList.remove('bold');
+    return b;
 }
 , menuEBoldOnly = (mt, mtA) => {
     mtA.forEach(m => menuEBold(m, false));
@@ -88,34 +96,31 @@ const menuAsArray = mStr => { // create hierarchy from | || ||| string
     return h;
 }
 , menuReset = () => menu.innerHTML = menuAsArray(menuText).map((_, i) => menuHtmlAddItem(menuAsArray(menuText), i)).join('')
+, eShow = (e, b) => (e.classList.toggle('hidden', !(b ?? e.classList.contains('hidden'))), !!b)
+, menuShow = b => eShow(menu, b);
+
 /////////////// menuClick_m_ - Menu handlers ///////////////
+const menuClick_OpenUrl=u=>window.open(u, '_blank');
 function menuClick_m_Begynnpnytt(e){
     chat.innerHTML='';
     aiReset();
     msgReset();
-    if (!menu.classList.contains('hidden'))
-        menu.classList.add('hidden');
+    menuShow(false);
 }
 function menuClick_m_Hndholdei(e,sm){ 
     switch (sm) {
         case 'Hånd å holde i': // stemmestyrt
-        case 'Kontakt': return window.open('https://www.aigap.no/snakk-med-oss', '_blank');
-        case 'Utvikling': return window.open('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=B3', '_blank');
-        case 'Simuler': 
-            inp.value = 'Hvordan kommer jeg meg dit?';
-            setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { inp.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 3000); });}, 3000);
-            menu.classList.toggle('hidden');
-            break;
+            return menuClick_OpenUrl('https://www.aigap.no/snakk-med-oss');
     }
 };
-function menuClick_m_CatoSenteret(e,sm){ menu.classList.toggle('hidden'); msgInfo(`<i>${sm=='Før opphold'?sm+' er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
+function menuClick_m_CatoSenteret(e,sm){ menuShow(); msgInfo(`<i>${sm=='Før opphold'?sm+' er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
 
-function menuClick_m_OpenAIUSA(e,sm){ //menu.classList.toggle('hidden'); 
+function menuClick_m_OpenAIUSA(e,sm){ //menuShow() 
     menuEBoldOnly(e.target.innerText, ['GPT 4', 'GPT 3.5', 'GPT o3', 'R1', 'V3']);
     switch (sm) {
-        case 'GPT 3.5': break;
-        case 'GPT 4': break;
-        case 'GPT o3': break;
+        case 'GPT 3.5': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>')
+        case 'GPT 4': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
+        case 'GPT o3': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
     }
     msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
 };
@@ -128,22 +133,35 @@ function menuClick_m_DeepseekKina(e,sm) {
     msgInfo('<i>Bytte til Deepseek algoritme '+sm+' er ikke ferdig kodet</i>');
 };
 let funcQuestionSuggestion = false, funcDeepAnalysis = false;
-function menuClick_m_Funksjonalitet(e,sm) {
-    switch (sm) {
-        case 'Spørsmålsforslag': 
-            funcQuestionSuggestion = !funcQuestionSuggestion;
-            menuEBold(sm, funcQuestionSuggestion);
-            if (funcQuestionSuggestion) suggestions.classList.remove('hidden');
-            else suggestions.classList.add('hidden');
-            msgInfo(`<i>Spørsmålsforslag ${funcQuestionSuggestion?'':'de'}aktivert</i>`);
-        break;
-        case 'Dypanalyse': 
-            funcDeepAnalysis = !funcDeepAnalysis; 
-            menuEBold(sm, funcDeepAnalysis);
-            msgInfo(`<i>Dypanalyse ${funcDeepAnalysis?'':'de'}aktivert</i>`);
-            break;
-    }
+function menuClick_m_Sprsmlsforslag(e) {
+    funcQuestionSuggestion = menuEBold('Sprsmlsforslag', !funcQuestionSuggestion);
+    eShow(suggestions,funcQuestionSuggestion||funcDeepAnalysis);
+    msgInfo(`<i>Spørsmålsforslag ${funcQuestionSuggestion?'':'de'}aktivert</i>`);
 }
+function menuClick_m_Dypanalyse(e) {
+    funcDeepAnalysis = menuEBold('Dypanalyse', !funcDeepAnalysis);
+    eShow(suggestions,funcQuestionSuggestion||funcDeepAnalysis);
+    console.log(funcDeepAnalysis)
+    msgInfo(`<i>Dypanalyse ${funcDeepAnalysis?'':'de'}aktivert</i>`);
+}
+window.menuClick_m_Kontakt=e=>menuClick_OpenUrl('https://www.aigap.no/snakk-med-oss');
+window.menuClick_m_Personvernerklring=e=>menuClick_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
+window.menuClick_m_Barkode=e=>menuClick_OpenUrl('barcode.jpg');
+window.menuClick_m_Prompt=e=>menuClick_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
+window.menuClick_m_Bokml=e=> menuShow(false)|msgRedoLast('Gjenta siste melding på bokmål og kortere. Fra nå av skal du kun svare kortfattet på bokmål');
+window.menuClick_m_Nynorsk=e=> menuShow(false)|msgRedoLast('Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk');
+window.menuClick_m_English=e=> menuShow(false)|msgRedoLast('Repeat last message in English. From now on only answer briefly in English');
+window.menuClick_m_Ungdomssprk=e=> menuShow(false)|msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom');
+//,['Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk', 'Velkomen til CatoSenteret! Eg svarar gjerne på spørsmål om opphaldet ditt. Kva vil du vite?']
+
+function menuClick_m_Simuler(e){
+    inp.value = 'Hvordan kommer jeg meg dit?';
+    setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { inp.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
+    menuShow(false);
+}
+function menuClick_m_Debug(e){
+}
+/////////////// menuClick_m_ - Menu generic ///////////////
 function menuClickLeaf(e){ // handle click on leaf menu item
     const mi = e.target, mt = mi.innerText.trim(), fn='menuClick_'+menuId(mt)
         , mtp=mi.parentElement.previousElementSibling.innerText.split('\n')[0].trim()
@@ -156,7 +174,7 @@ function menuClickLeaf(e){ // handle click on leaf menu item
 function msgIsSimulate(msg) { return msg.substring(0, 10) == "Simulate: "; }  
 
 function msgReset() {
-    msgAnswer(msgWelcomeText, true);
+    msgAnswer(aiPrompt[aiPrompt.length-1][1], true);
     input.focus();
 }
 
@@ -191,14 +209,10 @@ function msgSend(msgQ, onDone) {
     {
         if (!msgQ) input.value = '';
         r = msgAsk(msgQUse.split(/\|/)[0]);
-        if (msgIsSimulate(msgQUse)) msgStartReceive(msgQUse, msgAnswer(), onDone);
+        if (msgIsSimulate(msgQUse)) setTimeout(() => msgReceive_Placeholder(msgQUse, msgAnswer(), onDone), 2000);
         else aiRequest(msgQUse, msgAnswer(), 0, onDone);
     }
     return r;
-}
-function msgStartReceive(msgQ, divR, onDone) {
-    setTimeout(() => msgReceive_Placeholder(msgQ, divR, onDone), 2000);
-    return divR
 }
 function msgReceive_Placeholder(msgQ, divR, onDone) {
     let msgA = 'Svar på "' + msgQ + '"';
@@ -210,6 +224,12 @@ function msgReceive_Placeholder(msgQ, divR, onDone) {
     chat.scrollTop = chat.scrollHeight;
     onDone?.(divR, msgA);
 }
+function msgRedoLast(m) {
+    menuShow(false);
+    for (e=chat.lastElementChild; e && !e.classList.contains("sent"); e=chat.lastElementChild)
+        e.remove();
+    msgSend(m).remove();
+}
 function msgSendSpeak() {
     let r = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     r.lang = 'no-NO'; // Set language to Norwegian
@@ -220,18 +240,15 @@ function msgSendSpeak() {
             msgSend(null, msgRecieveTalkAndSend);
     };
 }
-function msgRecieveTalkAndSend(t) {
+function msgRecieveTalkAndSend(t, bIsRetry=false) {
     let u = new SpeechSynthesisUtterance(t);
     u.lang = 'no-NO'; 
     let voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('no'));
-    if (!voices.length) {
-        setTimeout(() => msgRecieveTalk(t), 100); // Ensure voices are loaded
-        return;
-    }
+    if (!bIsRetry && !voices.length) 
+        return setTimeout(() => msgRecieveTalkAndSend(t, true), 200); // Ensure voices are loaded
     speechSynthesis.speak(u);
     msgSendSpeak();
 }
-
 /////////////// AI ///////////////
 const aiRaw2Htm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , ai2Prompt = a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
@@ -289,10 +306,24 @@ const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null) => {
 };
 
 // aiRequest('Hei på deg!');
+function aiParse(s){
+    s.replace(/\?\?/,'?').split('\?').forEach(p=>{
+        let m = decodeURIComponent(p), fn='menuClick_'+menuId(m);
+        if (m.length)
+            if (typeof window[fn] === 'function') window[fn](null);
+            else {msgSend(m)}
+
+    });
+}
 
 /////////////// Init ///////////////
 menuReset();
-document.addEventListener('click', e => { if (!document.getElementById('menu').contains(e.target) && !document.getElementById('header').contains(e.target)) menu.classList.add('hidden'); });
+document.addEventListener('click', e => { if (!document.getElementById('menu').contains(e.target) && !document.getElementById('header').contains(e.target)) menuShow(false); });
 input.addEventListener('keydown', e => { if (e.key === 'Enter') msgSend(); });
 aiReset();
 msgReset();
+aiParse(window.location.search);
+//aiParse('?Nynorsk');
+//aiParse('?Ungdomsspråk?Hvor%20er%20det??English?Deutch?Nynorsk');
+
+//menuShow();
