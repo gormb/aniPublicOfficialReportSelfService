@@ -24,7 +24,7 @@ const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på
     ,[`Hva er 2+2`, `Jeg ønsker ikke å svare på mattespørsmål. Kun spørsmål relevant opphold på Catosenteret`]
     ,[`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og møter teamet ditt. Vi starter med en helhetlig vurdering for å lage en personlig rehabiliteringsplan. Husk at det er normalt å føle seg litt nervøs, men forskning viser at å sette små, oppnåelige mål tidlig gir bedre langsiktig resultat.`]
     ,['Hva er velkomstmeldingen?', msgWelcomeText]
-]
+] 
 , aiConfigPipeReplace = '{pipe}'
 , aiConfig = [ //todo: hent algoritme fra ekstrafelter på menyen
  // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
@@ -32,7 +32,7 @@ const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på
         , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4§*', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
     ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat', '4>c-ueq0~'+aiConfigPipeReplace+'ye%f}zscw4+wrf%1/zp1tl}/s', 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
         , [['R1', 'R1-model-name'], ['V3', 'v3-model-name']]]
-]
+];
 const menuText = `App >>§ -
     ||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
     ||Hånd å holde i >>§-|||Kommer...
@@ -236,7 +236,7 @@ function msgRecieveTalkAndSend(t, bIsRetry=false) {
 const aiRaw2Htm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , ai2Prompt = a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
 , aiUrl='https://api.openai.com/v1/chat/completions'
-, aiModel=['o3-mini', 'gpt-4o-mini', 'gpt-3.5-turbo'][2]
+, aiModel=['o3-mini', 'gpt-4o-mini', 'gpt-3.5-turbo'][0]
 , aiGunnar=`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`
 //, aiUrl='https://api.deepseek.com/v1/chat/completions'//, aiModel='V3'// , aiGunnar=`4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s` 
 , aiGunn=()=> [...aiGunnar].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
