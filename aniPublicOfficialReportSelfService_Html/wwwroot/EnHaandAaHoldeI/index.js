@@ -324,6 +324,7 @@ input.addEventListener('keydown', e => { if (e.key === 'Enter') msgSend(); });
 aiReset();
 msgReset();
 aiParse(window.location.search);
+
 //aiParse('?Ungdomsspråk?Hvordan skjer inntaket?');
 //aiParse('?Ungdomsspråk?Hvor%20er%20det??Hva er dagsprogrammet??');
 //menuShow();
