@@ -26,21 +26,26 @@ const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på
     ,[`Hva er 2+2`, `Jeg ønsker ikke å svare på mattespørsmål. Kun spørsmål relevant opphold på Catosenteret`]
     ,[`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og møter teamet ditt. Vi starter med en helhetlig vurdering for å lage en personlig rehabiliteringsplan. Husk at det er normalt å føle seg litt nervøs, men forskning viser at å sette små, oppnåelige mål tidlig gir bedre langsiktig resultat.`]
     ,['Hva er velkomstmeldingen?', msgWelcomeText]
-] 
-, aiConfigPipeReplace = '{pipe}'
+]
+, aiConfigPipeReplace = 'pipereplace'
 , aiConfig = [ //todo: hent algoritme fra ekstrafelter på menyen
- // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
-    ['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', `4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4§*', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
-    ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat', '4>c-ueq0~'+aiConfigPipeReplace+'ye%f}zscw4+wrf%1/zp1tl}/s', 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+    // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
+    ['Mistral (EU)', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        //, aiUrl='https://api.mistral.ai/v1/chat/completions', aiModel='mist '&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'
+        , [['Mistral large§*', 'mistral-large-latest'], ['Mistral small', 'mistral-small-latest']]]
+    ,['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
+    ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
         , [['R1', 'R1-model-name'], ['V3', 'v3-model-name']]]
-];
-const menuText = `App >>§ -
+]
+, aiConfigAllModels=['Mistral large', 'Mistral small', 'GPT 4', 'GPT 3.5', 'GPT o3', 'R1', 'V3']
+;
+const menuText = `App >>§-
     ||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
     ||Hånd å holde i >>§-|||Kommer...
-|AI med >>§-${ aiConfig.map(ai => `||${ai[0]} >>§!${ai[1]}${ai[2]}${ai[3]}${ai[5].map(aiM=>`|||${aiM[0]}`).join('') }`).join('') }
-|Funksjonalitet og språk >>§ -
-    ||Språk >>|||Bokmål§*|||Nynorsk|||English|||Ungdomsspråk
+|Språk >>||Bokmål§*||Nynorsk||English||Ungdom||Voksen§*
+|AI med >>§-${ aiConfig.map(ai => `||${ai[0]} >>§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[5].map(aiM=>`|||${aiM[0]}§§${aiM[1]}`).join('') }`).join('') }
+|Funksjonalitet >>§-
     ||Begynn på nytt
     ||Spørsmålsforslag§ *
     ||Dypanalyse
@@ -80,14 +85,15 @@ const menuAsArray = mStr => { // create hierarchy from | || ||| string
 }
 , menuEBoldOnly = (mt, mtA) => {
     mtA.forEach(m => menuEBold(m, false));
-    menuEBold(mt, true);
+    return menuEBold(mt, true);
 }
 , menuHtmlAddItem= (m, i) =>{ // create html for menu item and children
-    let mi=m[i], mt=mi.t.split('§')[0].trim(), b='&nbsp;'.repeat(mi.l*6), mo=mi.t.split('§')[1];
+    let mi=m[i], mSplit=mi.t.split('§'), mt=mSplit[0].trim(), mo=mSplit[1], b='&nbsp;'.repeat(mi.l*6)
+    , dX=mi.t.split('§§').slice(1).map((d, i)=>`data-d${i}='${d.replace(/\'/, /\'\'/)}'`).join(' '); // Generate data attributes
     if (!mi.c.length) // no children
-        return `<div id='${menuId(mt)}' class='menu-item${mo=='*'?' bold':''}' onclick="menuClickLeaf(event)">${b+mt}</div>`;
+        return `<div id='${menuId(mt)}' ${dX?dX:''} class='menu-item${mo=='*'?' bold':''}' onclick="menuClickLeaf(event)">${b+mt}</div>`;
     let h=`${mi.i && !mi.l?'<hr/>':''}<div class='menu-item' onclick='mc${mi.i}.classList.toggle("hidden")'>${b+mt}</div>`;
-    h+=`<div id="mc${mi.i}"${mo=='-'?' class="hidden"':''}>`;
+    h+=`<div id="mc${mi.i}" ${dX?dX:''}${mo=='-'?' class="hidden"':''}>`;
     for (let iS=0; iS<mi.c.length; iS++)
         h+=menuHtmlAddItem(mi.c, iS);
     h+='</div>'
@@ -98,6 +104,7 @@ const menuAsArray = mStr => { // create hierarchy from | || ||| string
 , menuShow = b => eShow(menu, b);
 /////////////// menuClick_m_ - Menu handlers ///////////////
 const menuClick_OpenUrl=u=>window.open(u, '_blank');
+window.menuClick_m_Kommer=e=>menuShow(false)^msgInfo('Under utvikling...')
 window.menuClick_m_Begynnpnytt=e=>{
     chat.innerHTML='';
     aiReset();
@@ -106,23 +113,41 @@ window.menuClick_m_Begynnpnytt=e=>{
 }
 window.menuClick_m_CatoSenteret=(e,sm)=>{ menuShow(); msgInfo(`<i>${sm=='Før opphold'?sm+' er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
 
-window.menuClick_m_OpenAIUSA=(e,sm)=>{ //menuShow() 
-    menuEBoldOnly(e.target.innerText, ['GPT 4', 'GPT 3.5', 'GPT o3', 'R1', 'V3']);
-    switch (sm) {
-        case 'GPT 3.5': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>')
-        case 'GPT 4': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
-        case 'GPT o3': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
-    }
-    msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
-};
-window.menuClick_m_DeepseekKina=(e,sm)=> {
-    menuEBoldOnly(e.target.innerText, ['GPT 4', 'GPT 3.5', 'GPT o3', 'R1', 'V3']);
-    switch (sm) {
-        case 'V3': return msgInfo('Deepseek V3 not available yet');
-        case 'R1': return msgInfo('Deepseek R3 reasoning not available yet'); 
-    }
-    msgInfo('<i>Bytte til Deepseek algoritme '+sm+' er ikke ferdig kodet</i>');
-};
+const menuClick_Model=id=>{
+    menuEBoldOnly(id, aiConfigAllModels)
+    const c=document.getElementById('m_'+id), d=c.dataset, pd=c.parentElement.dataset;
+    console.log(pd.d0, pd.d1)
+    aiModel=d.d0;
+    aiUrl=pd.d0;
+    aiGunnar=unescape(pd.d1);
+    msgInfo(c.innerHTML);
+    menuShow(false);
+    return 1;
+}
+window.menuClick_m_Mistrallarge=e=>menuClick_Model('Mistrallarge');
+window.menuClick_m_Mistralsmall=e=>menuClick_Model('Mistralsmall');
+window.menuClick_m_GPT35=e=>menuClick_Model('GPT35');
+window.menuClick_m_GPT4=e=>menuClick_Model('GPT4');
+window.menuClick_m_GPTo3=e=>menuClick_Model('GPTo3');
+window.menuClick_m_R1=e=>menuClick_Model('R1');
+window.menuClick_m_V3=e=>menuClick_Model('V3');
+// window.xmenuClick_m_OpenAIUSA=(e,sm)=>{ //menuShow() 
+//     menuEBoldOnly(e.target.innerText, aiConfigAllModels);
+//     switch (sm) {
+//         case 'GPT 3.5': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>')
+//         case 'GPT 4': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
+//         case 'GPT o3': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
+//     }
+//     msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
+// };
+// window.xmenuClick_m_DeepseekKina=(e,sm)=> {
+//     menuEBoldOnly(e.target.innerText, aiConfigAllModels);
+//     switch (sm) {
+//         case 'V3': return msgInfo('Deepseek V3 not available yet');
+//         case 'R1': return msgInfo('Deepseek R3 reasoning not available yet'); 
+//     }
+//     msgInfo('<i>Bytte til Deepseek algoritme '+sm+' er ikke ferdig kodet</i>');
+// };
 let funcQuestionSuggestion = false, funcDeepAnalysis = false;
 window.menuClick_m_Sprsmlsforslag=e=> {
     funcQuestionSuggestion = menuEBold('Sprsmlsforslag', !funcQuestionSuggestion);
@@ -139,13 +164,15 @@ window.menuClick_m_Kontakt=e=>menuClick_OpenUrl('https://www.aigap.no/snakk-med-
 window.menuClick_m_Personvernerklring=e=>menuClick_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
 window.menuClick_m_Barkode=e=>menuClick_OpenUrl('barcode.jpg');
 window.menuClick_m_Prompt=e=>menuClick_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
-window.menuClick_m_Bokml=e=> menuShow(false)|msgRedoLast('Gjenta siste melding på bokmål og kortere. Fra nå av skal du kun svare kortfattet på bokmål');
-window.menuClick_m_Nynorsk=e=>menuShow(false)|msgRedoLast('Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk');
-window.menuClick_m_English=e=> menuShow(false)|msgRedoLast('Repeat last message in English. From now on only answer briefly in English');
-window.menuClick_m_Ungdomssprk=e=> menuShow(false)|msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
+// Bokmål§*||Nynorsk||English||Ungdom||Voksen
+window.menuClick_m_Bokml=e=>menuShow(false)^menuEBoldOnly('Bokml', ['Nynorsk', 'English'])^msgRedoLast('Gjenta siste melding på bokmål og kortere. Fra nå av skal du kun svare kortfattet på bokmål');
+window.menuClick_m_Nynorsk=e=>menuShow(false)^menuEBoldOnly('Nynorsk', ['Bokml', 'English'])^msgRedoLast('Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk');
+window.menuClick_m_English=e=> menuShow(false)^menuEBoldOnly('English', ['Nynorsk', 'Bokml'])^msgRedoLast('Repeat last message in English. From now on only answer briefly in English');
+window.menuClick_m_Ungdom=e=>menuShow(false)^menuEBoldOnly('Ungdom', ['Voksen'])^msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
+window.menuClick_m_Voksen=e=>menuShow(false)^menuEBoldOnly('Voksen', ['Ungdom'])^msgRedoLast('Gjenta siste melding i en språkdrakt som passer for voksne. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
 window.menuClick_m_Simuler=e=>{
-    inp.value = 'Hvordan kommer jeg meg dit?';
-    setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { inp.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
+    input.value = 'Hvordan kommer jeg meg dit?';
+    setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
     menuShow(false);
 }
 window.menuClick_m_Debug=e=>{};
@@ -219,8 +246,8 @@ window.msgSendSpeak=()=> {
     r.lang = 'no-NO'; // Set language to Norwegian
     r.start();
     r.onresult = e => {
-        inp.value += e.results[0][0].transcript;
-        if (inp.value.length) 
+        input.value += e.results[0][0].transcript;
+        if (input.value.length) 
             msgSend(null, msgRecieveTalkAndSend);
     };
 }
@@ -236,13 +263,13 @@ window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
 /////////////// AI ///////////////
 const aiRaw2Htm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , ai2Prompt = a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
-, aiUrl='https://api.openai.com/v1/chat/completions'
-, aiModel=['o3-mini', 'gpt-4o-mini', 'gpt-3.5-turbo'][aiModelI]
-, aiGunnar=`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`
-//, aiUrl='https://api.deepseek.com/v1/chat/completions'//, aiModel='V3'// , aiGunnar=`4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s` 
 , aiGunn=()=> [...aiGunnar].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
 
-let aiReply=[''], aiHistory = [], aiRequestActiveCount = 0;
+let aiReply=[''], aiHistory = [], aiRequestActiveCount = 0
+//, aiUrl='https://api.openai.com/v1/chat/completions', aiModel=['o3-mini', 'gpt-4o-mini', 'gpt-3.5-turbo'][aiModelI], aiGunnar=`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`
+//, aiUrl='https://api.deepseek.com/v1/chat/completions', aiModel='V3', aiGunnar=`4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s`
+//, aiUrl='https://api.mistral.ai/v1/chat/completions', aiModel='mistral-small-latest', aiGunnar='&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'
+, aiUrl='https://api.mistral.ai/v1/chat/completions', aiModel='mistral-small-latest', aiGunnar=unescape(escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'))
 
 window.aiReset=()=> {
     aiReply=[''];
@@ -260,20 +287,17 @@ const aiRequestProgress = (d, t, l, iThread) => {
         chat.scrollTop = chat.scrollHeight;
     return t.length;
 };
-const aiRequestComplete = (x, img, d, iThread, onDone) => {
+const aiRequestComplete = (x, img, d, iThread, onDone, retries) => {
     aiRequestActiveCount--;
     img.classList.remove('rotating');
-    if (x.status == 200)
-        aiHistory[iThread].push({ role: 'assistant', content: aiReply[iThread] });
-    else
-        aiReply[iThread] = `<i>Feil ved kall til KI-tjenesten<br/>${!x.status?'Manglende internet?':(() => {
-            try { return JSON.parse(x.responseText)?.error?.message || x.statusText; } catch { return x.statusText; }
-            })()}</i>`;
+    if (x.status == 200) aiHistory[iThread].push({ role: 'assistant', content: aiReply[iThread] });
+    else if (x.status >= 400 && x.status < 500 && retries > 0) return setTimeout(() => ++aiRequestActiveCount^aiRequest(aiHistory[iThread].slice(-1)[0].content, d.parentElement, iThread, onDone, retries-1), 1000);
+    else aiReply[iThread] = `<i>Feil ved kall til KI-tjenesten<br/>${!x.status?'Manglende internet?':(() => { try { return JSON.parse(x.responseText)?.error?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
     d.innerHTML = aiRaw2Htm(aiReply[iThread]);
     if (!iThread) chat.scrollTop = chat.scrollHeight;
     onDone?.(aiReply[iThread]);
 };
-const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null) => {
+const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null, retries = 2) => {
     aiRequestActiveCount++;
     let img = row.querySelector('img'), d = row.querySelector('.msg'), l = 0;
     aiHistory[iThread] ??= [...(aiHistory[aiHistory.length - 1] || [])];
@@ -286,8 +310,9 @@ const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null) => {
     x.setRequestHeader("Content-Type", "application/json");
     x.setRequestHeader("Authorization", "Bearer " + aiGunn());
     x.onprogress = e => l = aiRequestProgress(d, x.responseText, l, iThread);
-    x.onreadystatechange = () => x.readyState == 4 && aiRequestComplete(x, img, d, iThread, onDone);
+    x.onreadystatechange = () => x.readyState == 4 && aiRequestComplete(x, img, d, iThread, onDone, retries);
     x.send(JSON.stringify({ model: aiModel, messages: aiHistory[iThread], stream: true }));
+    console.log(aiModel);
 };
 window.aiParseWaitReqBefore=(n = autoTimeout*10)=> {// Wait until aiRequestActiveCount is 0 or until autoTimeout sec)
     return new Promise((resolve, reject) => {
@@ -328,6 +353,6 @@ aiReset();
 msgReset();
 aiParse(window.location.search);
 
-//aiParse('?Ungdomsspråk?Hvordan skjer inntaket?');
-//aiParse('?Ungdomsspråk?Hvor%20er%20det??Hva er dagsprogrammet??');
+//aiParse('?Ungdom?Hvordan skjer inntaket?');
+//aiParse('?Ungdom?Nynorsk?Hvor%20er%20det??Hva er dagsprogrammet??');
 //menuShow();

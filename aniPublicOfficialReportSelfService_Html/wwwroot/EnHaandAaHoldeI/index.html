@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>En hånd å holde i</title>
+    <title>CatoSenteret før opphold</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <header id="header"><button onclick="uiChangeFontSize()">A</button>
-        <div><center>Sikret Chat</center></div>
-        <button onclick="menuShow()">m</button>
-    <div id="menu" class="menu hidden"></div></header>
+    <header id="header"><button onclick="uiChangeFontSize()">A</button><div><center>Sikret Chat<br/><div id="title">
+            CatoSenteret før opphold
+        </div></center></div><button onclick="menuShow()">m</button><div id="menu" class="menu hidden"></div>
+    </header>
     <main></main>
-    <footer id="suggestions" class="hidden">todo... create shortcuts to suggested questions</footer>
-    <footer><button onclick="msgSendSpeak()">🎤</button><input id="inp" placeholder="Melding til AI..."><button onclick="msgSend()">&nbsp;↑&nbsp;</button></footer>
+    <footer id="suggestions" class="hidden">
+        todo... create shortcuts to suggested questions
+    </footer>
+    <footer><button onclick="msgSendSpeak()">🎤</button><input id="inp" placeholder="..."><button onclick="msgSend()">&nbsp;↑&nbsp;</button></footer>
     <script src="index.js"></script>
 </body>
 </html>
