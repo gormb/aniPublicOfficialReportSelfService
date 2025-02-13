@@ -1,4 +1,5 @@
 /////////////// Config /////////////////
+const aiModelI=1, autoTimeout=10;
 const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på CatoSenteret, hva er ditt første spørsmål?`
 `Velkommen! Denne chatten svarer på spørsmål du har om oppholdet ditt på CatoSenteret. Hva lurer du på?`
 ,aiPrompt=[{ role: `system`, content: `Du er en empatisk, kunnskapsrik og evidensbasert chatbot som hjelper pasienter som forbereder seg til sitt første opphold på CatoSenteret. 
@@ -97,15 +98,15 @@ const menuAsArray = mStr => { // create hierarchy from | || ||| string
 , menuShow = b => eShow(menu, b);
 /////////////// menuClick_m_ - Menu handlers ///////////////
 const menuClick_OpenUrl=u=>window.open(u, '_blank');
-function menuClick_m_Begynnpnytt(e){
+window.menuClick_m_Begynnpnytt=e=>{
     chat.innerHTML='';
     aiReset();
     msgReset();
     menuShow(false);
 }
-function menuClick_m_CatoSenteret(e,sm){ menuShow(); msgInfo(`<i>${sm=='Før opphold'?sm+' er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
+window.menuClick_m_CatoSenteret=(e,sm)=>{ menuShow(); msgInfo(`<i>${sm=='Før opphold'?sm+' er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
 
-function menuClick_m_OpenAIUSA(e,sm){ //menuShow() 
+window.menuClick_m_OpenAIUSA=(e,sm)=>{ //menuShow() 
     menuEBoldOnly(e.target.innerText, ['GPT 4', 'GPT 3.5', 'GPT o3', 'R1', 'V3']);
     switch (sm) {
         case 'GPT 3.5': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>')
@@ -114,7 +115,7 @@ function menuClick_m_OpenAIUSA(e,sm){ //menuShow()
     }
     msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
 };
-function menuClick_m_DeepseekKina(e,sm) {
+window.menuClick_m_DeepseekKina=(e,sm)=> {
     menuEBoldOnly(e.target.innerText, ['GPT 4', 'GPT 3.5', 'GPT o3', 'R1', 'V3']);
     switch (sm) {
         case 'V3': return msgInfo('Deepseek V3 not available yet');
@@ -123,12 +124,12 @@ function menuClick_m_DeepseekKina(e,sm) {
     msgInfo('<i>Bytte til Deepseek algoritme '+sm+' er ikke ferdig kodet</i>');
 };
 let funcQuestionSuggestion = false, funcDeepAnalysis = false;
-function menuClick_m_Sprsmlsforslag(e) {
+window.menuClick_m_Sprsmlsforslag=e=> {
     funcQuestionSuggestion = menuEBold('Sprsmlsforslag', !funcQuestionSuggestion);
     eShow(suggestions,funcQuestionSuggestion||funcDeepAnalysis);
     msgInfo(`<i>Spørsmålsforslag ${funcQuestionSuggestion?'':'de'}aktivert</i>`);
 }
-function menuClick_m_Dypanalyse(e) {
+window.menuClick_m_Dypanalyse=e=> {
     funcDeepAnalysis = menuEBold('Dypanalyse', !funcDeepAnalysis);
     eShow(suggestions,funcQuestionSuggestion||funcDeepAnalysis);
     console.log(funcDeepAnalysis)
@@ -142,48 +143,47 @@ window.menuClick_m_Bokml=e=> menuShow(false)|msgRedoLast('Gjenta siste melding p
 window.menuClick_m_Nynorsk=e=>menuShow(false)|msgRedoLast('Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk');
 window.menuClick_m_English=e=> menuShow(false)|msgRedoLast('Repeat last message in English. From now on only answer briefly in English');
 window.menuClick_m_Ungdomssprk=e=> menuShow(false)|msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
-function menuClick_m_Simuler(e){
+window.menuClick_m_Simuler=e=>{
     inp.value = 'Hvordan kommer jeg meg dit?';
     setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { inp.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
     menuShow(false);
 }
-function menuClick_m_Debug(e){
-}
+window.menuClick_m_Debug=e=>{};
 /////////////// menuClick_m_ - Menu generic ///////////////
-function menuClickLeaf(e){ // handle click on leaf menu item
+window.menuClickLeaf=e=>{ // handle click on leaf menu item
     const mi = e.target, mt = mi.innerText.trim(), fn='menuClick_'+menuId(mt)
         , mtp=mi.parentElement.previousElementSibling.innerText.split('\n')[0].trim()
         , fnp='menuClick_'+menuId(mtp);
     if (typeof window[fn] === 'function') window[fn](e);
     else if (typeof window[fnp] === 'function') window[fnp](e, mt);
-    else e.target.outerHTML = `function ${fn}(e){} || ${fnp}(e,sm='${mt}'){};`;
+    else e.target.outerHTML = `window.${fn}=e=> || ${fnp}=(e,sm='${mt}'){};`;
 }
 /////////////// msg - Chat UI ///////////////
-function msgIsSimulate(msg) { return msg.substring(0, 10) == "Simulate: "; }  
+window.msgIsSimulate=msg=>msg.substring(0, 10) == "Simulate: ";
 
-function msgReset() {
+window.msgReset=e=> {
     msgAnswer(aiPrompt[aiPrompt.length-1][1], true);
     input.focus();
 }
-function msgAsk(msgQ) {
+window.msgAsk=msgQ=> {
     const el = ((b) => (b.className = "row sent", b.innerHTML = `&nbsp;<img class="icon" src="${imgQ}"><div class="msg">${msgQ}</div>`, b))(document.createElement("div"));
     chat.append(el);
     chat.scrollTop = chat.scrollHeight;
     return el;
 }
-function msgAnswer(msgA=tRotating, isDone=false) {
+window.msgAnswer=(msgA=tRotating, isDone=false)=> {
     const el = ((b) => (b.className = "row received", b.innerHTML = `<div class="msg">${msgA}</div><img class="icon${isDone?'':' rotating'}" src="${imgA}">&nbsp;`, b))(document.createElement("div"));
     chat.append(el);
     chat.scrollTop = chat.scrollHeight;
     return el;
 }
-function msgInfo(msg) {
+window.msgInfo=msg=> {
     const el = ((b) => (b.innerHTML = `<center><div>${msg} <span style="cursor: pointer" onclick="this.parentElement.parentElement.parentElement.remove()">&nbsp;✖&nbsp;</span></div></center>`, b))(document.createElement("div"));
     chat.append(el);
     chat.scrollTop = chat.scrollHeight;
     return el;
 }
-function msgSend(msgQ, onDone) {
+window.msgSend=(msgQ, onDone)=> {
     let msgQUse = msgQ?.trim() || input.value.trim();
     let r=null;
     if (!msgQUse) msgRedoLast()
@@ -196,7 +196,7 @@ function msgSend(msgQ, onDone) {
     }
     return r;
 }
-function msgReceive_Placeholder(msgQ, divR, onDone) {
+window.msgReceive_Placeholder=(msgQ, divR, onDone)=>{
     let msgA = 'Svar på "' + msgQ + '"';
     if (msgIsSimulate(msgQ.split(/\|/)[1]))
         msgA = msgQ.split(/\|/)[1].substring(10);
@@ -206,7 +206,7 @@ function msgReceive_Placeholder(msgQ, divR, onDone) {
     chat.scrollTop = chat.scrollHeight;
     onDone?.(divR, msgA);
 }
-function msgRedoLast(m) {
+window.msgRedoLast=m=> {
     menuShow(false);
     for (e=chat.lastElementChild; e && !e.classList.contains("sent"); e=chat.lastElementChild)
         e.remove();
@@ -214,7 +214,7 @@ function msgRedoLast(m) {
     let divR = msgSend(m);
     divR.remove();
 }
-function msgSendSpeak() {
+window.msgSendSpeak=()=> {
     let r = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     r.lang = 'no-NO'; // Set language to Norwegian
     r.start();
@@ -224,7 +224,7 @@ function msgSendSpeak() {
             msgSend(null, msgRecieveTalkAndSend);
     };
 }
-function msgRecieveTalkAndSend(t, bIsRetry=false) {
+window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
     let u = new SpeechSynthesisUtterance(t);
     u.lang = 'no-NO'; 
     let voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('no'));
@@ -237,14 +237,14 @@ function msgRecieveTalkAndSend(t, bIsRetry=false) {
 const aiRaw2Htm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , ai2Prompt = a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
 , aiUrl='https://api.openai.com/v1/chat/completions'
-, aiModel=['o3-mini', 'gpt-4o-mini', 'gpt-3.5-turbo'][0]
+, aiModel=['o3-mini', 'gpt-4o-mini', 'gpt-3.5-turbo'][aiModelI]
 , aiGunnar=`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`
 //, aiUrl='https://api.deepseek.com/v1/chat/completions'//, aiModel='V3'// , aiGunnar=`4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s` 
 , aiGunn=()=> [...aiGunnar].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
 
 let aiReply=[''], aiHistory = [], aiRequestActiveCount = 0;
 
-function aiReset() {
+window.aiReset=()=> {
     aiReply=[''];
     aiHistory=[ai2Prompt(aiPrompt)];
 }
@@ -287,7 +287,7 @@ const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null) => {
     x.onreadystatechange = () => x.readyState == 4 && aiRequestComplete(x, img, d, iThread, onDone);
     x.send(JSON.stringify({ model: aiModel, messages: aiHistory[iThread], stream: true }));
 };
-function aiParseWaitReqBefore(n = 100) {// Wait until aiRequestActiveCount is 0 or until maxChecks is reached (default 100 * 100ms = 10 sec)
+window.aiParseWaitReqBefore=(n = autoTimeout*10)=> {// Wait until aiRequestActiveCount is 0 or until autoTimeout sec)
     return new Promise((resolve, reject) => {
         let i = 0;
         const interval = setInterval(() => {
@@ -314,7 +314,7 @@ async function aiParsePerform(f, i) {
         await aiParsePerform(f, i + 1);
     }
 }
-function aiParse(s) {
+window.aiParse=s=> {
     aiRequestActiveCount = 0;
     aiParsePerform(s.replace(/\?\?/g, '?').split('?'), 0);
 }
