@@ -14,7 +14,8 @@ const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på
     - Informere om egenandel og reiseutgifter.
     - Gi råd om hva de bør pakke og hvordan de kan forberede seg mentalt og fysisk.
     - Berolige pasienter som er nervøse for hva som vil skje på oppholdet.
-    Hvis du er usikker eller ikke har nok informasjon, veiled pasienten til å kontakte CatoSenteret direkte for detaljer.` }
+    Hvis du er usikker eller ikke har nok informasjon, veiled pasienten til å kontakte CatoSenteret direkte for detaljer.
+    Husk å svare med omtrent like mang ord som ispørsmålet, med mindre det er veldig korte spørsmål som trenger litt lengre svar, da kan du svare noe lengre.` }
     ,[`Hvordan reiser jeg til CatoSenteret?`, `Du kan reise til CatoSenteret med bil, offentlig transport eller tilrettelagte transporttjenester hvis nødvendig. Hvis du opplever stress eller utmattelse knyttet til reising, anbefaler vi å planlegge godt og ta pauser underveis. Ved behov kan vi gi råd om tilpasset transport.`]
     ,[`Kontaktinformasjon`, `Min siste informasjon er:\nKvartsveien 2, 1555 Son\nPostboks 164, 1556 SON\nOrgnummer 979757751\nE-post senteret@catosenteret.no Resepsjon/sentralbord\nHverdager 07.30-20.30, Helger og helligdager 09.00-20.30, Kveldsvakt fra 20.30\n+47 64984400 (klinikk åpen mellom 08-15)\nInntak: Mari Stensaker-Løken, 64 98 44 00\nKommunikasjon: Ingvild Grimstad, 970 13 617, ingvild.grimstad@catosenteret.no\nAdm.direktør Beate Korslund Kristiansen, 901 67 472, Beate.korslund.kristiansen@catosenteret.no\nMen sjekk på https://www.Catosenteret.no`]
     ,[`Dekkes reiseutgiftene mine?`, `Reiseutgiftene dine kan dekkes dersom du har henvisning og oppfyller kravene fra HELFO. Husk å ta vare på kvitteringer. For pasienter med økonomiske utfordringer kan vi gi råd om ytterligere støtteordninger, som transporttjenester for personer med funksjonsnedsettelse.`]
@@ -140,7 +141,7 @@ window.menuClick_m_Prompt=e=>menuClick_OpenUrl('https://docs.google.com/spreadsh
 window.menuClick_m_Bokml=e=> menuShow(false)|msgRedoLast('Gjenta siste melding på bokmål og kortere. Fra nå av skal du kun svare kortfattet på bokmål');
 window.menuClick_m_Nynorsk=e=>menuShow(false)|msgRedoLast('Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk');
 window.menuClick_m_English=e=> menuShow(false)|msgRedoLast('Repeat last message in English. From now on only answer briefly in English');
-window.menuClick_m_Ungdomssprk=e=> menuShow(false)|msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av.');
+window.menuClick_m_Ungdomssprk=e=> menuShow(false)|msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
 function menuClick_m_Simuler(e){
     inp.value = 'Hvordan kommer jeg meg dit?';
     setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { inp.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
