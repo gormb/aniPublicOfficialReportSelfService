@@ -256,6 +256,8 @@ const aiRequestProgress = (d, t, l, iThread) => {
         }
     });
     d.innerHTML = aiRaw2Htm(aiReply[iThread]);
+    if (d?.parentElement?.parentElement==chat)
+        chat.scrollTop = chat.scrollHeight;
     return t.length;
 };
 const aiRequestComplete = (x, img, d, iThread, onDone) => {
