@@ -31,8 +31,7 @@ const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på
 , aiConfig = [ //todo: hent algoritme fra ekstrafelter på menyen
     // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
     ['Mistral (EU)', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        //, aiUrl='https://api.mistral.ai/v1/chat/completions', aiModel='mist '&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'
-        , [['Mistral large§*', 'mistral-large-latest'], ['Mistral small', 'mistral-small-latest']]]
+        , [['Mistral large', 'mistral-large-latest'], ['Mistral small§*', 'mistral-small-latest']]]
     ,['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
         , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
     ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
@@ -43,8 +42,8 @@ const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på
 const menuText = `App >>§-
     ||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
     ||Hånd å holde i >>§-|||Kommer...
-|Språk >>||Bokmål§*||Nynorsk||Svenska||Dansk||English||Ungdom||Voksen§*
-|AI med >>§-${ aiConfig.map(ai => `||${ai[0]} >>§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[5].map(aiM=>`|||${aiM[0]}§§${aiM[1]}`).join('') }`).join('') }
+|Språk >>§-||Ungdom||Voksen§*||Bokmål§*||Nynorsk||Svenska||Dansk||English
+|AI med >>§-${ aiConfig.map(ai => `||${ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[5].map(aiM=>`|||${aiM[0]}§§${aiM[1]}`).join('') }`).join('') }
     ||Forsøk alle AI
 |Funksjonalitet >>§-
     ||Begynn på nytt
@@ -78,7 +77,7 @@ const menuAsArray = mStr => { // create hierarchy from | || ||| string
 }
 , menuX= mt => mt.replace(/[^a-zA-Z0-9]/g, '')
 , menuId= mt => 'm_'+menuX(mt)
-, menuE = mt => document.getElementById(menuId(mt)) || console.log(`menuE: ${menuId(mt)} finnes ikke`)
+, menuE = mt => document.getElementById(menuId(mt)) || console.warn(`menuE: ${menuId(mt)} finnes ikke`)
 , menuEBold = (mt,b) => {
     if (b==null) b = menuE(mt).classList.contains('bold');
     if (b==true) menuE(mt).classList.add('bold');
@@ -125,7 +124,7 @@ const menuClick_Model=id=>{
     menuShow(false);
     return 1;
 }
-window.menuClick_ModelActive=()=>{return 'c_Mistrallarge'}
+window.menuClick_ModelActive=()=>{return 'Mistrallarge'}
 window.menuClick_m_Mistrallarge=e=>menuClick_Model('Mistrallarge');
 window.menuClick_m_Mistralsmall=e=>menuClick_Model('Mistralsmall');
 window.menuClick_m_GPT35=e=>menuClick_Model('GPT35');
@@ -133,15 +132,16 @@ window.menuClick_m_GPT4=e=>menuClick_Model('GPT4');
 window.menuClick_m_GPTo3=e=>menuClick_Model('GPTo3');
 window.menuClick_m_R1=e=>menuClick_Model('R1');
 window.menuClick_m_V3=e=>menuClick_Model('V3');
+let menuClick_m_ForskalleAC=0;
 window.menuClick_m_ForskalleAI=e=> {
-    orgId=menuClick_ModelActive();
-    msgInfo('Forsøker med alle AI');
-    aiConfigAllModels.forEach(m=>{
-        menuClick_Model(menuX(m));
-        //aiRequest(msgQUse, msgAnswer(), 0, onDone);
-        // msgSend()
-    });
-    //menuClick_Model(orgModel);
+    let m='Gjenta', orgId=menuClick_ModelActive(), cmd='';
+    try{  e=chat.lastElementChild;
+        while (e && !e.classList.contains("sent")) e = e.previousElementSibling;
+        m = e.innerText; 
+    }catch(ex){ console.warn(ex); m='Gjenta ...'}
+    aiConfigAllModels.forEach((mod,i)=>cmd+=`menuClick_Model(menuX('`+mod+`'));aiRequest('`+m.trim()+`', msgAnswer(), `+(i+1)+`, null,0);`);
+    eval(cmd);
+    menuClick_Model(orgId);
 }
 
 let funcQuestionSuggestion = false, funcDeepAnalysis = false;
@@ -292,7 +292,7 @@ const aiRequestComplete = (x, img, d, iThread, onDone, retries) => {
     img.classList.remove('rotating');
     if (x.status == 200) aiHistory[iThread].push({ role: 'assistant', content: aiReply[iThread] });
     else if (x.status >= 400 && x.status < 500 && retries > 0) return setTimeout(() => ++aiRequestActiveCount^aiRequest(aiHistory[iThread].slice(-1)[0].content, d.parentElement, iThread, onDone, retries-1), 1000);
-    else aiReply[iThread] = `<i>Feil ved kall til KI-tjenesten<br/>${!x.status?'Manglende internet?':(() => { try { return JSON.parse(x.responseText)?.error?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
+    else aiReply[iThread] = `<i>Feil ved kall til KI-tjenesten<br/>${!x.status?'Manglende internet?':(() => { try { let err = JSON.parse(x.response?.message || x.responseText); return err?.error?.message || err?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
     d.innerHTML = aiRaw2Htm(aiReply[iThread]);
     if (!iThread) chat.scrollTop = chat.scrollHeight;
     onDone?.(aiReply[iThread]);
