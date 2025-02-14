@@ -43,8 +43,9 @@ const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på
 const menuText = `App >>§-
     ||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
     ||Hånd å holde i >>§-|||Kommer...
-|Språk >>||Bokmål§*||Nynorsk||English||Ungdom||Voksen§*
+|Språk >>||Bokmål§*||Nynorsk||Svenska||Dansk||English||Ungdom||Voksen§*
 |AI med >>§-${ aiConfig.map(ai => `||${ai[0]} >>§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[5].map(aiM=>`|||${aiM[0]}§§${aiM[1]}`).join('') }`).join('') }
+    ||Forsøk alle AI
 |Funksjonalitet >>§-
     ||Begynn på nytt
     ||Spørsmålsforslag§ *
@@ -75,8 +76,9 @@ const menuAsArray = mStr => { // create hierarchy from | || ||| string
     m.forEach((mi) => { if (mi.l) m[mi.p].c.push(mi);});
     return m.filter(mi=>!mi.l);
 }
-, menuId= mt => 'm_'+mt.replace(/[^a-zA-Z0-9]/g, '')
-, menuE = mt => document.getElementById(menuId(mt)) || console.log(`menuE: ${mt} finnes ikke`)
+, menuX= mt => mt.replace(/[^a-zA-Z0-9]/g, '')
+, menuId= mt => 'm_'+menuX(mt)
+, menuE = mt => document.getElementById(menuId(mt)) || console.log(`menuE: ${menuId(mt)} finnes ikke`)
 , menuEBold = (mt,b) => {
     if (b==null) b = menuE(mt).classList.contains('bold');
     if (b==true) menuE(mt).classList.add('bold');
@@ -116,7 +118,6 @@ window.menuClick_m_CatoSenteret=(e,sm)=>{ menuShow(); msgInfo(`<i>${sm=='Før op
 const menuClick_Model=id=>{
     menuEBoldOnly(id, aiConfigAllModels)
     const c=document.getElementById('m_'+id), d=c.dataset, pd=c.parentElement.dataset;
-    console.log(pd.d0, pd.d1)
     aiModel=d.d0;
     aiUrl=pd.d0;
     aiGunnar=unescape(pd.d1);
@@ -124,6 +125,7 @@ const menuClick_Model=id=>{
     menuShow(false);
     return 1;
 }
+window.menuClick_ModelActive=()=>{return 'c_Mistrallarge'}
 window.menuClick_m_Mistrallarge=e=>menuClick_Model('Mistrallarge');
 window.menuClick_m_Mistralsmall=e=>menuClick_Model('Mistralsmall');
 window.menuClick_m_GPT35=e=>menuClick_Model('GPT35');
@@ -131,23 +133,17 @@ window.menuClick_m_GPT4=e=>menuClick_Model('GPT4');
 window.menuClick_m_GPTo3=e=>menuClick_Model('GPTo3');
 window.menuClick_m_R1=e=>menuClick_Model('R1');
 window.menuClick_m_V3=e=>menuClick_Model('V3');
-// window.xmenuClick_m_OpenAIUSA=(e,sm)=>{ //menuShow() 
-//     menuEBoldOnly(e.target.innerText, aiConfigAllModels);
-//     switch (sm) {
-//         case 'GPT 3.5': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>')
-//         case 'GPT 4': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
-//         case 'GPT o3': return msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
-//     }
-//     msgInfo('<i>Bytte til Open AI algoritme '+sm+' er ikke ferdig kodet</i>');
-// };
-// window.xmenuClick_m_DeepseekKina=(e,sm)=> {
-//     menuEBoldOnly(e.target.innerText, aiConfigAllModels);
-//     switch (sm) {
-//         case 'V3': return msgInfo('Deepseek V3 not available yet');
-//         case 'R1': return msgInfo('Deepseek R3 reasoning not available yet'); 
-//     }
-//     msgInfo('<i>Bytte til Deepseek algoritme '+sm+' er ikke ferdig kodet</i>');
-// };
+window.menuClick_m_ForskalleAI=e=> {
+    orgId=menuClick_ModelActive();
+    msgInfo('Forsøker med alle AI');
+    aiConfigAllModels.forEach(m=>{
+        menuClick_Model(menuX(m));
+        //aiRequest(msgQUse, msgAnswer(), 0, onDone);
+        // msgSend()
+    });
+    //menuClick_Model(orgModel);
+}
+
 let funcQuestionSuggestion = false, funcDeepAnalysis = false;
 window.menuClick_m_Sprsmlsforslag=e=> {
     funcQuestionSuggestion = menuEBold('Sprsmlsforslag', !funcQuestionSuggestion);
@@ -157,19 +153,23 @@ window.menuClick_m_Sprsmlsforslag=e=> {
 window.menuClick_m_Dypanalyse=e=> {
     funcDeepAnalysis = menuEBold('Dypanalyse', !funcDeepAnalysis);
     eShow(suggestions,funcQuestionSuggestion||funcDeepAnalysis);
-    console.log(funcDeepAnalysis)
+    console.log('menuClick_m_Dypanalyse', funcDeepAnalysis)
     msgInfo(`<i>Dypanalyse ${funcDeepAnalysis?'':'de'}aktivert</i>`);
 }
 window.menuClick_m_Kontakt=e=>menuClick_OpenUrl('https://www.aigap.no/snakk-med-oss');
 window.menuClick_m_Personvernerklring=e=>menuClick_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
 window.menuClick_m_Barkode=e=>menuClick_OpenUrl('barcode.jpg');
 window.menuClick_m_Prompt=e=>menuClick_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
-// Bokmål§*||Nynorsk||English||Ungdom||Voksen
-window.menuClick_m_Bokml=e=>menuShow(false)^menuEBoldOnly('Bokml', ['Nynorsk', 'English'])^msgRedoLast('Gjenta siste melding på bokmål og kortere. Fra nå av skal du kun svare kortfattet på bokmål');
-window.menuClick_m_Nynorsk=e=>menuShow(false)^menuEBoldOnly('Nynorsk', ['Bokml', 'English'])^msgRedoLast('Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk');
-window.menuClick_m_English=e=> menuShow(false)^menuEBoldOnly('English', ['Nynorsk', 'Bokml'])^msgRedoLast('Repeat last message in English. From now on only answer briefly in English');
+// Bokmål§*||Nynorsk||English||Svenska||Dansk||Ungdom||Voksen
+const menuClick_alleSpraak=['Bokml', 'Nynorsk', 'English', 'Svenska', 'Dansk'];
 window.menuClick_m_Ungdom=e=>menuShow(false)^menuEBoldOnly('Ungdom', ['Voksen'])^msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
 window.menuClick_m_Voksen=e=>menuShow(false)^menuEBoldOnly('Voksen', ['Ungdom'])^msgRedoLast('Gjenta siste melding i en språkdrakt som passer for voksne. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
+window.menuClick_m_Bokml=e=>menuShow(false)^menuEBoldOnly('Bokml', menuClick_alleSpraak)^msgRedoLast('Gjenta siste melding på bokmål og kortere. Fra nå av skal du kun svare kortfattet på bokmål');
+window.menuClick_m_Nynorsk=e=>menuShow(false)^menuEBoldOnly('Nynorsk', menuClick_alleSpraak)^msgRedoLast('Gjenta siste melding på nynorsk og kortere. Fra nå av skal du kun svare kortfattet på nynorsk');
+window.menuClick_m_Svenska=e=>menuShow(false)^menuEBoldOnly('Svenska', menuClick_alleSpraak)^msgRedoLast('Upprepa senaste meddelandet på svenska och kortare. Från och med nu ska du endast svara kortfattat på svenska.');
+window.menuClick_m_Dansk=e=>menuShow(false)^menuEBoldOnly('Dansk', menuClick_alleSpraak)^msgRedoLast('Gentag sidste besked på dansk og kortere. Fra nu af skal du kun svare kortfattet på dansk.');
+window.menuClick_m_English=e=> menuShow(false)^menuEBoldOnly('English', menuClick_alleSpraak)^msgRedoLast('Repeat last message in English. From now on only answer briefly in English');
+
 window.menuClick_m_Simuler=e=>{
     input.value = 'Hvordan kommer jeg meg dit?';
     setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
@@ -312,7 +312,6 @@ const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null, retries = 2
     x.onprogress = e => l = aiRequestProgress(d, x.responseText, l, iThread);
     x.onreadystatechange = () => x.readyState == 4 && aiRequestComplete(x, img, d, iThread, onDone, retries);
     x.send(JSON.stringify({ model: aiModel, messages: aiHistory[iThread], stream: true }));
-    console.log(aiModel);
 };
 window.aiParseWaitReqBefore=(n = autoTimeout*10)=> {// Wait until aiRequestActiveCount is 0 or until autoTimeout sec)
     return new Promise((resolve, reject) => {
@@ -351,6 +350,7 @@ document.addEventListener('click', e => { if (!document.getElementById('menu').c
 input.addEventListener('keydown', e => { if (e.key === 'Enter') msgSend(); });
 aiReset();
 msgReset();
+aiParse('');
 aiParse(window.location.search);
 
 //aiParse('?Ungdom?Hvordan skjer inntaket?');
