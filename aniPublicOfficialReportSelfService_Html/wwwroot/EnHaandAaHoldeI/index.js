@@ -1,8 +1,6 @@
 /////////////// Config /////////////////
-const aiModelI=1, autoTimeout=10;
-const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på CatoSenteret, hva er ditt første spørsmål?`
-`Velkommen! Denne chatten svarer på spørsmål du har om oppholdet ditt på CatoSenteret. Hva lurer du på?`
-,aiPrompt=[{ role: `system`, content: `Du er en empatisk, kunnskapsrik og evidensbasert chatbot som hjelper pasienter som forbereder seg til sitt første opphold på CatoSenteret. 
+const aiPromptWelcome=`Velkommen! Denne chatten svarer på spørsmål du har om oppholdet ditt på CatoSenteret. Hva lurer du på?`
+, aiPrompt=[{ role: `system`, content: `Du er en empatisk, kunnskapsrik og evidensbasert chatbot som hjelper pasienter som forbereder seg til sitt første opphold på CatoSenteret. 
     Målet ditt er å gi korte konsise tydelige, praktiske og forskningsbaserte råd som støtter pasientenes trygghet, helse og forberedelse. Du skal:
     1. Gi informasjon som er lett å forstå og tilpasset pasientens behov.
     2. Inkludere helseråd basert på beste praksis og forskning, med fokus på mestring og trivsel.
@@ -25,45 +23,56 @@ const msgWelcomeText=//`Velkommen til foreldrelaget chat for de som skal inn på
     ,[`Hvordan kan jeg forberede meg til oppholdet?`, `God forberedelse kan forbedre rehabiliteringsutbyttet. Sørg for å ha en positiv innstilling og realistiske mål for oppholdet. Dersom du har spørsmål om helsetilstanden din, anbefaler vi å skrive dem ned og ta dem opp med vårt fagteam ved ankomst.`]
     ,[`Hva er 2+2`, `Jeg ønsker ikke å svare på mattespørsmål. Kun spørsmål relevant opphold på Catosenteret`]
     ,[`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og møter teamet ditt. Vi starter med en helhetlig vurdering for å lage en personlig rehabiliteringsplan. Husk at det er normalt å føle seg litt nervøs, men forskning viser at å sette små, oppnåelige mål tidlig gir bedre langsiktig resultat.`]
-    ,['Hva er velkomstmeldingen?', msgWelcomeText]
+    ,['Hva er velkomstmeldingen?', aiPromptWelcome]
 ]
-, aiConfigPipeReplace = 'pipereplace'
-, aiConfig = [ //todo: hent algoritme fra ekstrafelter på menyen
-    // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
+, aiConfigDefault='Mistral large'
+, aiConfig = [ // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
     ['Mistral (EU)', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
         , [['Mistral large', 'mistral-large-latest'], ['Mistral small§*', 'mistral-small-latest']]]
     ,['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
         , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
     ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        , [['R1', 'R1-model-name'], ['V3', 'v3-model-name']]]
-]
-, aiConfigAllModels=['Mistral large', 'Mistral small', 'GPT 4', 'GPT 3.5', 'GPT o3', 'R1', 'V3']
-;
+        , [['R1', 'R1-model-name'], ['V3', 'v3-model-name']]]]
+, aiConfigTimeout=10;
 const menuText = `App >>§-
-    ||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
-    ||Hånd å holde i >>§-|||Kommer...
-|Språk >>§-||Ungdom||Voksen§*||Bokmål§*||Nynorsk||Svenska||Dansk||English
-|AI med >>§-${ aiConfig.map(ai => `||${ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[5].map(aiM=>`|||${aiM[0]}§§${aiM[1]}`).join('') }`).join('') }
-    ||Forsøk alle AI
-|Funksjonalitet >>§-
-    ||Begynn på nytt
-    ||Spørsmålsforslag§ *
-    ||Dypanalyse
-|Om >>§-||Kontakt||Personvernerklæring||Barkode||Utvikling >>§-|||Prompt|||Simuler|||Debug`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
-/////////////// Shortcuts //////////////
-const chat = document.querySelector('main')
-, menu = document.querySelector('#menu')
-, header = document.querySelector('#header')
-, suggestions = document.querySelector('#suggestions')
-, input = document.querySelector('footer input')
-, imgQ = 'https://upload.wikimedia.org/wikipedia/commons/2/29/Human_balance.png'
-, imgA = 'https://upload.wikimedia.org/wikipedia/commons/2/26/Noun-artificial-intelligence-884535.svg'
-, tRotating = `<div class='rotatingC'>&#8634</div>`;
+        ||CatoSenteret >>|||Før opphold§*|||Under opphold|||Etter opphold
+        ||Hånd å holde i >>§-|||Kommer...
+    |Språk >>§-||Ungdom||Voksen§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
+    |AI med >>§-${ aiConfig.map(ai => `||${ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[5].map(aiM=>`|||${aiM[0]}§§${aiM[1]}`).join('') }`).join('') }
+        ||Forsøk alle AI
+    |Funksjonalitet >>§-
+        ||Begynn på nytt
+        ||Spørsmålsforslag§ *
+        ||Grubling
+    |Om >>§-||Kontakt||Personvernerklæring||Barkode||Utvikling >>§-|||Prompt|||Simuler|||Debug`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
+/////////////// ui and Shortcuts //////////////
+const uiChat = document.querySelector('main')
+, uiMenu = document.querySelector('#menu')
+, uiHeader = document.querySelector('#header')
+, uiSuggestions = document.querySelector('#suggestions')
+, uiInput = document.querySelector('footer input')
+, uiImgQ = 'https://upload.wikimedia.org/wikipedia/commons/2/29/Human_balance.png'
+, uiImgQClick = e => {
+    let row = e.target.closest('.row');
+    while (row.nextElementSibling) row.nextElementSibling.remove();
+    uiInput.value = row.querySelector('.msg')?.textContent;
+    uiInput.focus();
+    row.remove();
+  }
+, uiImgA = 'https://upload.wikimedia.org/wikipedia/commons/2/26/Noun-artificial-intelligence-884535.svg'
+, uiImgAClick = e => {
+    let row = e.target.closest('.row');
+    while (row.nextElementSibling) row.nextElementSibling.remove();
+    msgSend();
+    uiInput.focus();
+  }
+, uitRotating = `<div class='rotatingC'>&#8634</div>`
+, uiShow = (e, b) => (e.classList.toggle('hidden', !(b ?? e.classList.contains('hidden'))), !!b)
 let uiChangeFontSizeI=0, uiChangeFontSize = () => {
     document.documentElement.style.setProperty('--font-size', ['medium', 'x-large', 'xx-large', 'xx-large', 'medium'][++uiChangeFontSizeI % 5]);
     document.body.classList.toggle('dark-mode', uiChangeFontSizeI%5 > 2);
 };
-/////////////// menu - Menu UI ///////////////
+/////////////// menu - util ///////////////
 const menuAsArray = mStr => { // create hierarchy from | || ||| string
     m=[], p=[0,0,0,0,0];
     mStr.replace(/\|/g, (m,i,s) => s[i-1]=='|' ?m:'\n').split('\n').forEach((r,i)=>{
@@ -100,21 +109,9 @@ const menuAsArray = mStr => { // create hierarchy from | || ||| string
     h+='</div>'
     return h;
 }
-, menuReset = () => menu.innerHTML = menuAsArray(menuText).map((_, i) => menuHtmlAddItem(menuAsArray(menuText), i)).join('')
-, eShow = (e, b) => (e.classList.toggle('hidden', !(b ?? e.classList.contains('hidden'))), !!b)
-, menuShow = b => eShow(menu, b);
-/////////////// menuClick_m_ - Menu handlers ///////////////
-const menuClick_OpenUrl=u=>window.open(u, '_blank');
-window.menuClick_m_Kommer=e=>menuShow(false)^msgInfo('Under utvikling...')
-window.menuClick_m_Begynnpnytt=e=>{
-    chat.innerHTML='';
-    aiReset();
-    msgReset();
-    menuShow(false);
-}
-window.menuClick_m_CatoSenteret=(e,sm)=>{ menuShow(); msgInfo(`<i>${sm=='Før opphold'?sm+' er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
-
-const menuClick_Model=id=>{
+, menuReset = () => uiMenu.innerHTML = menuAsArray(menuText).map((_, i) => menuHtmlAddItem(menuAsArray(menuText), i)).join('')
+, menuShow = b => uiShow(uiMenu, b)
+, menuClick_Model=id=>{
     menuEBoldOnly(id, aiConfigAllModels)
     const c=document.getElementById('m_'+id), d=c.dataset, pd=c.parentElement.dataset;
     aiModel=d.d0;
@@ -124,7 +121,20 @@ const menuClick_Model=id=>{
     menuShow(false);
     return 1;
 }
-window.menuClick_ModelActive=()=>{return 'Mistrallarge'}
+, menuClick_OpenUrl=u=>window.open(u, '_blank')
+, menuClick_alleSpraak=['Bokml', 'Nynorsk', 'English', 'Svenska', 'Dansk'];
+/////////////// menuClick_m_ - Menu handlers ///////////////
+window.menuClick_m_Kommer=e=>menuShow(false)^msgInfo('Under utvikling...')
+window.menuClick_m_Begynnpnytt=e=>{
+    uiChat.innerHTML='';
+    aiReset();
+    msgReset();
+    menuShow(false);
+}
+window.menuClick_m_CatoSenteret=(e,sm)=>{ menuShow(); msgInfo(`<i>${sm=='Før opphold'?sm+' er allerede aktivert</i>':sm+' er ikke aktivert'}</i>`);};
+
+window.menuClick_m_=e=>{/* line clicked */};
+window.menuClick_ModelActive=()=>{return 'Mistrallarge'};
 window.menuClick_m_Mistrallarge=e=>menuClick_Model('Mistrallarge');
 window.menuClick_m_Mistralsmall=e=>menuClick_Model('Mistralsmall');
 window.menuClick_m_GPT35=e=>menuClick_Model('GPT35');
@@ -135,7 +145,7 @@ window.menuClick_m_V3=e=>menuClick_Model('V3');
 let menuClick_m_ForskalleAC=0;
 window.menuClick_m_ForskalleAI=e=> {
     let m='Gjenta', orgId=menuClick_ModelActive(), cmd='';
-    try{  e=chat.lastElementChild;
+    try{  e=uiChat.lastElementChild;
         while (e && !e.classList.contains("sent")) e = e.previousElementSibling;
         m = e.innerText; 
     }catch(ex){ console.warn(ex); m='Gjenta ...'}
@@ -143,25 +153,22 @@ window.menuClick_m_ForskalleAI=e=> {
     eval(cmd);
     menuClick_Model(orgId);
 }
-
 let funcQuestionSuggestion = false, funcDeepAnalysis = false;
 window.menuClick_m_Sprsmlsforslag=e=> {
     funcQuestionSuggestion = menuEBold('Sprsmlsforslag', !funcQuestionSuggestion);
-    eShow(suggestions,funcQuestionSuggestion||funcDeepAnalysis);
+    uiShow(uiSuggestions,funcQuestionSuggestion||funcDeepAnalysis);
     msgInfo(`<i>Spørsmålsforslag ${funcQuestionSuggestion?'':'de'}aktivert</i>`);
 }
-window.menuClick_m_Dypanalyse=e=> {
-    funcDeepAnalysis = menuEBold('Dypanalyse', !funcDeepAnalysis);
-    eShow(suggestions,funcQuestionSuggestion||funcDeepAnalysis);
-    console.log('menuClick_m_Dypanalyse', funcDeepAnalysis)
-    msgInfo(`<i>Dypanalyse ${funcDeepAnalysis?'':'de'}aktivert</i>`);
+window.menuClick_m_Grubling=e=> {
+    funcDeepAnalysis = menuEBold('Grubling', !funcDeepAnalysis);
+    uiShow(uiSuggestions,funcQuestionSuggestion||funcDeepAnalysis);
+    console.log('menuClick_m_Grubling', funcDeepAnalysis)
+    msgInfo(`<i>Grubling ${funcDeepAnalysis?'':'de'}aktivert</i>`);
 }
 window.menuClick_m_Kontakt=e=>menuClick_OpenUrl('https://www.aigap.no/snakk-med-oss');
 window.menuClick_m_Personvernerklring=e=>menuClick_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
 window.menuClick_m_Barkode=e=>menuClick_OpenUrl('barcode.jpg');
 window.menuClick_m_Prompt=e=>menuClick_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
-// Bokmål§*||Nynorsk||English||Svenska||Dansk||Ungdom||Voksen
-const menuClick_alleSpraak=['Bokml', 'Nynorsk', 'English', 'Svenska', 'Dansk'];
 window.menuClick_m_Ungdom=e=>menuShow(false)^menuEBoldOnly('Ungdom', ['Voksen'])^msgRedoLast('Gjenta siste melding i en språkdrakt som passer for ungdom. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
 window.menuClick_m_Voksen=e=>menuShow(false)^menuEBoldOnly('Voksen', ['Ungdom'])^msgRedoLast('Gjenta siste melding i en språkdrakt som passer for voksne. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
 window.menuClick_m_Bokml=e=>menuShow(false)^menuEBoldOnly('Bokml', menuClick_alleSpraak)^msgRedoLast('Gjenta siste melding på bokmål og kortere. Fra nå av skal du kun svare kortfattet på bokmål');
@@ -169,10 +176,9 @@ window.menuClick_m_Nynorsk=e=>menuShow(false)^menuEBoldOnly('Nynorsk', menuClick
 window.menuClick_m_Svenska=e=>menuShow(false)^menuEBoldOnly('Svenska', menuClick_alleSpraak)^msgRedoLast('Upprepa senaste meddelandet på svenska och kortare. Från och med nu ska du endast svara kortfattat på svenska.');
 window.menuClick_m_Dansk=e=>menuShow(false)^menuEBoldOnly('Dansk', menuClick_alleSpraak)^msgRedoLast('Gentag sidste besked på dansk og kortere. Fra nu af skal du kun svare kortfattet på dansk.');
 window.menuClick_m_English=e=> menuShow(false)^menuEBoldOnly('English', menuClick_alleSpraak)^msgRedoLast('Repeat last message in English. From now on only answer briefly in English');
-
 window.menuClick_m_Simuler=e=>{
-    input.value = 'Hvordan kommer jeg meg dit?';
-    setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
+    uiInput.value = 'Hvordan kommer jeg meg dit?';
+    setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { uiInput.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
     menuShow(false);
 }
 window.menuClick_m_Debug=e=>{};
@@ -190,33 +196,33 @@ window.msgIsSimulate=msg=>msg.substring(0, 10) == "Simulate: ";
 
 window.msgReset=e=> {
     msgAnswer(aiPrompt[aiPrompt.length-1][1], true);
-    input.focus();
+    uiInput.focus();
 }
 window.msgAsk=msgQ=> {
-    const el = ((b) => (b.className = "row sent", b.innerHTML = `&nbsp;<img class="icon" src="${imgQ}"><div class="msg">${msgQ}</div>`, b))(document.createElement("div"));
-    chat.append(el);
-    chat.scrollTop = chat.scrollHeight;
+    const el = ((b) => (b.className = "row sent", b.innerHTML = `&nbsp;<img class="icon" src="${uiImgQ}" onclick="uiImgQClick(event)"><div class="msg">${msgQ}</div>`, b))(document.createElement("div"));
+    uiChat.append(el);
+    uiChat.scrollTop = uiChat.scrollHeight;
     return el;
 }
-window.msgAnswer=(msgA=tRotating, isDone=false)=> {
-    const el = ((b) => (b.className = "row received", b.innerHTML = `<div class="msg">${msgA}</div><img class="icon${isDone?'':' rotating'}" src="${imgA}">&nbsp;`, b))(document.createElement("div"));
-    chat.append(el);
-    chat.scrollTop = chat.scrollHeight;
+window.msgAnswer=(msgA=uitRotating, isDone=false)=> {
+    const el = ((b) => (b.className = "row received", b.innerHTML = `<div class="msg">${msgA}</div><img class="icon${isDone?'':' rotating'}" src="${uiImgA}" onclick="uiImgAClick(event)">&nbsp;`, b))(document.createElement("div"));
+    uiChat.append(el);
+    uiChat.scrollTop = uiChat.scrollHeight;
     return el;
 }
 window.msgInfo=msg=> {
     const el = ((b) => (b.innerHTML = `<center><div>${msg} <span style="cursor: pointer" onclick="this.parentElement.parentElement.parentElement.remove()">&nbsp;✖&nbsp;</span></div></center>`, b))(document.createElement("div"));
-    chat.append(el);
-    chat.scrollTop = chat.scrollHeight;
+    uiChat.append(el);
+    uiChat.scrollTop = uiChat.scrollHeight;
     return el;
 }
 window.msgSend=(msgQ, onDone)=> {
-    let msgQUse = msgQ?.trim() || input.value.trim();
+    let msgQUse = msgQ?.trim() || uiInput.value.trim();
     let r=null;
     if (!msgQUse) msgRedoLast()
     else if (typeof window['menuClick_'+menuId(msgQUse)] === 'function') window['menuClick_'+menuId(msgQUse)](null);
     else {
-        if (!msgQ) input.value = '';
+        if (!msgQ) uiInput.value = '';
         r = msgAsk(msgQUse.split(/\|/)[0]);
         if (msgIsSimulate(msgQUse)) setTimeout(() => msgReceive_Placeholder(msgQUse, msgAnswer(), onDone), 2000);
         else aiRequest(msgQUse, msgAnswer(), 0, onDone);
@@ -230,14 +236,14 @@ window.msgReceive_Placeholder=(msgQ, divR, onDone)=>{
     const msg = divR.querySelector(".msg"), icon = divR.querySelector(".icon");
     msg.innerText = msgA;
     icon.classList.remove("rotating"); // Remove rotation
-    chat.scrollTop = chat.scrollHeight;
+    uiChat.scrollTop = uiChat.scrollHeight;
     onDone?.(divR, msgA);
 }
 window.msgRedoLast=m=> {
     menuShow(false);
-    for (e=chat.lastElementChild; e && !e.classList.contains("sent"); e=chat.lastElementChild)
+    for (e=uiChat.lastElementChild; e && !e.classList.contains("sent"); e=uiChat.lastElementChild)
         e.remove();
-    if (!m || m.length==0) try{ m = chat.lastElementChild.querySelector(".msg").innerHTML; }catch(e){m='Gjenta'}
+    if (!m || m.length==0) try{ m = uiChat.lastElementChild.querySelector(".msg").innerHTML; }catch(e){m='Gjenta'}
     let divR = msgSend(m);
     divR.remove();
 }
@@ -246,8 +252,8 @@ window.msgSendSpeak=()=> {
     r.lang = 'no-NO'; // Set language to Norwegian
     r.start();
     r.onresult = e => {
-        input.value += e.results[0][0].transcript;
-        if (input.value.length) 
+        uiInput.value += e.results[0][0].transcript;
+        if (uiInput.value.length) 
             msgSend(null, msgRecieveTalkAndSend);
     };
 }
@@ -264,12 +270,10 @@ window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
 const aiRaw2Htm=raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
 , ai2Prompt = a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
 , aiGunn=()=> [...aiGunnar].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
+, aiConfigPipeReplace = 'pipereplace'
+, aiConfigAllModels = [...new Set(aiConfig.flatMap(cfg => (cfg[5] || []).map(m => m[0].split('§')[0])))]
 
-let aiReply=[''], aiHistory = [], aiRequestActiveCount = 0
-//, aiUrl='https://api.openai.com/v1/chat/completions', aiModel=['o3-mini', 'gpt-4o-mini', 'gpt-3.5-turbo'][aiModelI], aiGunnar=`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`
-//, aiUrl='https://api.deepseek.com/v1/chat/completions', aiModel='V3', aiGunnar=`4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s`
-//, aiUrl='https://api.mistral.ai/v1/chat/completions', aiModel='mistral-small-latest', aiGunnar='&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'
-, aiUrl='https://api.mistral.ai/v1/chat/completions', aiModel='mistral-small-latest', aiGunnar=unescape(escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'))
+let aiReply=[''], aiHistory = [], aiRequestActiveCount = 0, aiUrl, aiModel, aiGunnar
 
 window.aiReset=()=> {
     aiReply=[''];
@@ -283,21 +287,21 @@ const aiRequestProgress = (d, t, l, iThread) => {
         }
     });
     d.innerHTML = aiRaw2Htm(aiReply[iThread]);
-    if (d?.parentElement?.parentElement==chat)
-        chat.scrollTop = chat.scrollHeight;
+    if (d?.parentElement?.parentElement==uiChat)
+        uiChat.scrollTop = uiChat.scrollHeight;
     return t.length;
-};
-const aiRequestComplete = (x, img, d, iThread, onDone, retries) => {
+}
+, aiRequestComplete = (x, img, d, iThread, onDone, retries) => {
     aiRequestActiveCount--;
     img.classList.remove('rotating');
     if (x.status == 200) aiHistory[iThread].push({ role: 'assistant', content: aiReply[iThread] });
     else if (x.status >= 400 && x.status < 500 && retries > 0) return setTimeout(() => ++aiRequestActiveCount^aiRequest(aiHistory[iThread].slice(-1)[0].content, d.parentElement, iThread, onDone, retries-1), 1000);
     else aiReply[iThread] = `<i>Feil ved kall til KI-tjenesten<br/>${!x.status?'Manglende internet?':(() => { try { let err = JSON.parse(x.response?.message || x.responseText); return err?.error?.message || err?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
     d.innerHTML = aiRaw2Htm(aiReply[iThread]);
-    if (!iThread) chat.scrollTop = chat.scrollHeight;
+    if (!iThread) uiChat.scrollTop = uiChat.scrollHeight;
     onDone?.(aiReply[iThread]);
-};
-const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null, retries = 2) => {
+}
+, aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null, retries = 2) => {
     aiRequestActiveCount++;
     let img = row.querySelector('img'), d = row.querySelector('.msg'), l = 0;
     aiHistory[iThread] ??= [...(aiHistory[aiHistory.length - 1] || [])];
@@ -313,7 +317,7 @@ const aiRequest = (q, row = msgAnswer(), iThread = 0, onDone = null, retries = 2
     x.onreadystatechange = () => x.readyState == 4 && aiRequestComplete(x, img, d, iThread, onDone, retries);
     x.send(JSON.stringify({ model: aiModel, messages: aiHistory[iThread], stream: true }));
 };
-window.aiParseWaitReqBefore=(n = autoTimeout*10)=> {// Wait until aiRequestActiveCount is 0 or until autoTimeout sec)
+window.aiParseWaitReqBefore=(n = aiConfigTimeout*10)=> {// Wait until aiRequestActiveCount is 0 or until autoTimeout sec)
     return new Promise((resolve, reject) => {
         let i = 0;
         const interval = setInterval(() => {
@@ -342,17 +346,13 @@ async function aiParsePerform(f, i) {
 }
 window.aiParse=s=> {
     aiRequestActiveCount = 0;
-    aiParsePerform(s.replace(/\?\?/g, '?').split('?'), 0);
+    return aiParsePerform(s.replace(/\?\?/g, '?').split('?'), 0);
 }
 /////////////// Init ///////////////
 menuReset();
 document.addEventListener('click', e => { if (!document.getElementById('menu').contains(e.target) && !document.getElementById('header').contains(e.target)) menuShow(false); });
-input.addEventListener('keydown', e => { if (e.key === 'Enter') msgSend(); });
+uiInput.addEventListener('keydown', e => { if (e.key === 'Enter') msgSend(); });
 aiReset();
+aiParse(aiConfigDefault);uiChat.innerHTML='';
 msgReset();
-aiParse('');
 aiParse(window.location.search);
-
-//aiParse('?Ungdom?Hvordan skjer inntaket?');
-//aiParse('?Ungdom?Nynorsk?Hvor%20er%20det??Hva er dagsprogrammet??');
-//menuShow();
