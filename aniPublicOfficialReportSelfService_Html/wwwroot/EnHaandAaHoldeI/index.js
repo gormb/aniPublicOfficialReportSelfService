@@ -26,7 +26,7 @@ const aiPromptWelcome=`Velkommen! Denne chatten svarer på spørsmål du har om 
     ,[`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og møter teamet ditt. Vi starter med en helhetlig vurdering for å lage en personlig rehabiliteringsplan. Husk at det er normalt å føle seg litt nervøs, men forskning viser at å sette små, oppnåelige mål tidlig gir bedre langsiktig resultat.`]
     ,[aiPromptWelcomeQuestion, aiPromptWelcome]
 ]
-, aiConfigDefault='Mistral small'
+, aiConfigDefault='Mistral large'
 , aiConfig = [ // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
     ['Mistral (EU)', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
         , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
