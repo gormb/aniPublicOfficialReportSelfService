@@ -1,7 +1,7 @@
 /////////////// Config /////////////////
 const cfg={
     app:'...'
-    , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial forståelsesmodell', 'Kroppens stressystem']
+    , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial modell', 'Kroppens stressystem']
     , aiPromptWelcomeQuestion:`Hva er velkomstmeldingen?`
     , aiPromptWelcome:`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`
     , aiPrompt:[{ role: `system`, content: 
@@ -36,7 +36,7 @@ const cfg={
 const setting={
     menu: `App >>§ -
             ||CatoSenteret >>§ -|||Før opphold|||Under opphold|||Etter opphold
-            ||Hjemmelegen min >>§ -|||Biopsykososial forståelsesmodell|||Kroppens stressystem
+            ||Hjemmelegen min >>§ -|||Biopsykososial modell|||Kroppens stressystem
             ||Hånd å holde i >>§ -|||Blank§*|||Personvernrådgiveren|||Kommer...
         |Språk >>§-||Ungdom||Voksen§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
         |Sikkerhet >>§-||Personvern||Analyser Personvern
@@ -180,7 +180,7 @@ window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(SoonInitialize
 window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Etter opphold', cfg.appList))
 window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
 window.menuClick_m_blank=e=>cfg.load('(blank)').then(SoonInitializeChat('')^ui.menu.EBoldOnly('(blank)', cfg.appList))
-window.menuClick_m_biopsykososialforstelsesmodell=e=>cfg.load('Biopsykososial forståelsesmodell').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Biopsykososial forståelsesmodell', cfg.appList))
+window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList))
 window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
 window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
 //Språk >>
