@@ -25,6 +25,7 @@ body.dark-mode main { background: var(--dark-bg); }
 .row { display: flex; align-items: flex-start; gap: 10px; }
 .sent { justify-content: flex-start; }
 .received { justify-content: flex-end; }
+.info { justify-content: center; }
 .icon { height: 60px; cursor: pointer; }
     body.dark-mode .icon { filter: brightness(0) invert(1); }
 .msg { max-width: 70%; padding: 10px; border-radius: 10px; }

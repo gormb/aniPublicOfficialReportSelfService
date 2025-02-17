@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <header id="header"><button onclick="uiChangeFontSize()">A</button><div><center>Sikret Chat<br/><div id="title">
+    <header id="header"><button onclick="ui.ChangeFontSize()">A</button><div><center>Sikret Chat<br/><div id="title">
             CatoSenteret før opphold
-        </div></center></div><button onclick="menuShow()">m</button><div id="menu" class="menu hidden"></div>
+        </div></center></div><button onclick="ui.menu.Show()">m</button><div id="menu" class="menu hidden"></div>
     </header>
     <main></main>
     <footer id="suggestions" class="hidden">
@@ -17,5 +17,6 @@
     </footer>
     <footer><button onclick="msgSendSpeak()">🎤</button><input id="inp" placeholder="..."><button onclick="msgSend()">&nbsp;↑&nbsp;</button></footer>
     <script src="index.js"></script>
+    <script>InitializeChat();</script>
 </body>
 </html>
