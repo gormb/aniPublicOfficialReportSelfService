@@ -432,7 +432,6 @@ function InitializeChat(q=null) {
     ui.menu.Show(false);
     cfg.aiPrompt.push([cfg.aiPromptWelcomeQuestion, cfg.aiPromptWelcome]);
     ai.Reset();
-    console.log(ui.c.HeaderTitle)
     ui.c.Chat.innerHTML='';
     msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
     ui.c.Input.focus();
