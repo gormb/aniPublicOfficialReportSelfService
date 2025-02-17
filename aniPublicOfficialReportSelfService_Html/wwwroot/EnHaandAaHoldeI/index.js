@@ -25,9 +25,9 @@ const cfg={
         return new Promise((y, n) => {
             const cid = 'p_'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
             const s = document.createElement('script');
-            s.src = `${cid}.js`;    
-            s.onload = () => y(cfg.app.length+cfg.aiPromptWelcome.length+cfg.aiPrompt); // Resolve with updated cfg.aiPrompt
-            s.onerror = () => n(`Kunne ikke laste ${c}`);    
+            s.src = `${cid}.js`;
+            s.onload = () => y(cfg.app.length+cfg.aiPromptWelcome.length+cfg.aiPrompt); // Resolve with updated cfg.aiPrompt etc
+            s.onerror = () => n(`Kunne ikke laste ${c}`);
             document.head.appendChild(s);
         });
     }    
