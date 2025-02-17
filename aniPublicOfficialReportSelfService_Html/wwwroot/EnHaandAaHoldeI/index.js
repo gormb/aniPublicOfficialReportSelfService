@@ -1,7 +1,7 @@
 /////////////// Config /////////////////
 const cfg={
     app:'(Blank)'
-    , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank']
+    , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial forståelsesmodell', 'Kroppens stressystem']
     , aiPromptWelcomeQuestion:`Hva er velkomstmeldingen?`
     , aiPromptWelcome:`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`
     , aiPrompt:[{ role: `system`, content: 
@@ -30,24 +30,16 @@ const cfg={
             s.onerror = () => reject(`Kunne ikke laste ${c}`);    
             document.head.appendChild(s);
         });
-
-        // const script = document.createElement('script');
-        // script.src = `${cid}.js`;
-        // script.onload=e=>console.log(cfg.aiPrompt)//msgInfo(`Lastet inn ${c}`);
-        // script.onerror=e=>msgInfo(`Kunne ikke laste ${c}`);
-        // document.head.appendChild(script);
-        // console.log(cfg.aiPrompt);
     }    
 }
 /////////////// menu //////////////
 const setting={
     menu: `App >>§ -
             ||CatoSenteret >>§-|||Før opphold|||Under opphold|||Etter opphold
-            ||Hånd å holde i >>§ -|||Personvernrådgiveren|||Blank§*|||Kommer...
+            ||Hjemmelegen min >>§-|||Biopsykososial forståelsesmodell|||Kroppens stressystem
+            ||Hånd å holde i >>§ -|||Blank§*|||Personvernrådgiveren|||Kommer...
         |Språk >>§-||Ungdom||Voksen§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
-        |Sikkerhet >>§-
-            ||Personvern
-            ||Analyser Personvern
+        |Sikkerhet >>§-||Personvern||Analyser Personvern
             ||----------
             ||Ikke send sensitive data§*
             ||Omformuler sensitive data
@@ -196,6 +188,8 @@ window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(SoonInitialize
 
 window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
 window.menuClick_m_blank=e=>cfg.load('(blank)').then(SoonInitializeChat('')^ui.menu.EBoldOnly('(blank)', cfg.appList))
+window.menuClick_m_biopsykososialforstelsesmodell=e=>cfg.load('Biopsykososial forståelsesmodell').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Biopsykososial forståelsesmodell', cfg.appList))
+window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
 
 window.menuClick_m_=e=>{/* line or blank clicked */};
 window.menuClick_m_mistralsmall=e=>ui.menu.Click_Model('mistralsmall');
