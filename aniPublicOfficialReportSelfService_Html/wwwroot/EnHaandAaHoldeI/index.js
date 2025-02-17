@@ -1,6 +1,6 @@
 /////////////// Config /////////////////
 const cfg={
-    app:'(Blank)'
+    app:'...'
     , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial forståelsesmodell', 'Kroppens stressystem']
     , aiPromptWelcomeQuestion:`Hva er velkomstmeldingen?`
     , aiPromptWelcome:`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`
@@ -22,12 +22,12 @@ const cfg={
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `|||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[5].map(aiM=>`||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
     , load:c=>{
-        return new Promise((resolve, reject) => {
+        return new Promise((y, n) => {
             const cid = 'p_'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
             const s = document.createElement('script');
             s.src = `${cid}.js`;    
-            s.onload = () => resolve(cfg.aiPrompt); // Resolve with updated cfg.aiPrompt
-            s.onerror = () => reject(`Kunne ikke laste ${c}`);    
+            s.onload = () => y(cfg.app.length+cfg.aiPromptWelcome.length+cfg.aiPrompt); // Resolve with updated cfg.aiPrompt
+            s.onerror = () => n(`Kunne ikke laste ${c}`);    
             document.head.appendChild(s);
         });
     }    
@@ -35,8 +35,8 @@ const cfg={
 /////////////// menu //////////////
 const setting={
     menu: `App >>§ -
-            ||CatoSenteret >>§-|||Før opphold|||Under opphold|||Etter opphold
-            ||Hjemmelegen min >>§-|||Biopsykososial forståelsesmodell|||Kroppens stressystem
+            ||CatoSenteret >>§ -|||Før opphold|||Under opphold|||Etter opphold
+            ||Hjemmelegen min >>§ -|||Biopsykososial forståelsesmodell|||Kroppens stressystem
             ||Hånd å holde i >>§ -|||Blank§*|||Personvernrådgiveren|||Kommer...
         |Språk >>§-||Ungdom||Voksen§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
         |Sikkerhet >>§-||Personvern||Analyser Personvern
@@ -173,25 +173,34 @@ const ui = {
 };
 ui.init();
 /////////////// menuClick_m_ - Menu handlers ///////////////
-window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
-window.menuClick_m_begynnpnytt=e=>{
-    ui.menu.Show(false);
-    ui.c.Chat.innerHTML='';
-    ai.Reset();
-    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
-    ui.c.Input.focus();
-}
-
+window.menuClick_m_=e=>{/* line or blank clicked */};
+// App >>
 window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Før opphold', cfg.appList))
 window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Under opphold', cfg.appList))
 window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Etter opphold', cfg.appList))
-
 window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
 window.menuClick_m_blank=e=>cfg.load('(blank)').then(SoonInitializeChat('')^ui.menu.EBoldOnly('(blank)', cfg.appList))
 window.menuClick_m_biopsykososialforstelsesmodell=e=>cfg.load('Biopsykososial forståelsesmodell').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Biopsykososial forståelsesmodell', cfg.appList))
 window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
-
-window.menuClick_m_=e=>{/* line or blank clicked */};
+window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
+//Språk >>
+window.menuClick_m_ungdom=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdom', ['Voksen', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
+window.menuClick_m_voksen=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Voksen', ['Ungdom', ...ui.menu.Click_alleSpraak])^msgRedoLast('Overrsett siste melding til en språkdrakt som passer for voksne, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
+window.menuClick_m_bokml=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Bokml', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til bokmål. Fra nå av skal du kun svare kortfattet på bokmål');
+window.menuClick_m_nynorsk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Nynorsk', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til nynorsk. Fra nå av skal du kun svare kortfattet på nynorsk');
+window.menuClick_m_svenska=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Svenska', ui.menu.Click_alleSpraak)^msgRedoLast('Øversett senaste meddelandet på svenska. Från och med nu ska du endast svara kortfattat på svenska.');
+window.menuClick_m_dansk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Dansk', ui.menu.Click_alleSpraak)^msgRedoLast('Oversett sidste besked på dansk. Fra nu af skal du kun svare kortfattet på dansk.');
+window.menuClick_m_english=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English', ui.menu.Click_alleSpraak)^msgRedoLast('Translate last message to English. From now on only answer briefly in English');
+// Sikkerhet >>
+window.menuClick_m_personvern=e=>menuClick_m_personvernerklring(e) ;
+window.menuClick_m_analyserpersonvern=e=>ui.menu.Show(false)^msgInfo('menuClick_m_analyserpersonvern ikke implementert')
+window.menuClick_m_ikkesendsensitivedata=e=>ui.menu.EBoldOnly('ikkesendsensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
+window.menuClick_m_omformulersensitivedata=e=>ui.menu.EBoldOnly('omformulersensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
+window.menuClick_m_godtasensitivedata=e=>ui.menu.EBoldOnly('godtasensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
+window.menuClick_m_ikkemottatthelserdfraai=e=>ui.menu.EBoldOnly('ikkemottatthelserdfraai',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
+window.menuClick_m_omformulerhelserd=e=>ui.menu.EBoldOnly('omformulerhelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
+window.menuClick_m_godtahelserd=e=>ui.menu.EBoldOnly('godtahelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
+// Funksjonalitet
 window.menuClick_m_mistralsmall=e=>ui.menu.Click_Model('mistralsmall');
     window.menuClick_m_pvmistralsmall=e=>ui.menu.Click_Model('pvmistralsmall', 1);
     window.menuClick_m_bgmistralsmall=e=>ui.menu.Click_Model('bgmistralsmall', 2);
@@ -220,11 +229,16 @@ window.menuClick_m_forskalleai=e=> {
             e.remove();
         m = e.innerText;
     }catch(ex){ m=m||'Gjenta ...'}
-
     ai.AllModels(0).forEach((mod,i)=> {cmd+=`ui.menu.Click_Model(ui.menu.X('`+mod+`'));ai.Request('`+m.trim()+`', msgAnswer(), `+(i+1)+`, null,0);\n`});
-    
     try{eval(cmd);}catch(ex){console.warn('menuClick_m_forskalleai', ex.message, cmd)}
     ui.menu.Click_Model(cfg.aiProviderDefault.split('?')[0]);
+}
+window.menuClick_m_begynnpnytt=e=>{
+    ui.menu.Show(false);
+    ui.c.Chat.innerHTML='';
+    ai.Reset();
+    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
+    ui.c.Input.focus();
 }
 window.menuClick_m_sprsmlsforslag=e=> {
     setting.funcQuestionSuggestion = ui.menu.EBold(e.target.innerText, !setting.funcQuestionSuggestion);
@@ -236,34 +250,19 @@ window.menuClick_m_grubling=e=> {
     ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion||setting.funcDeepAnalysis);
     msgInfo(`<i>Grubling ${setting.funcDeepAnalysis?'':'de'}aktivert</i>`);
 }
-window.menuClick_m_personvern=e=>menuClick_m_personvernerklring(e) ;
-
-//window.menuClick_m_analyserpersonvern=e=>msgInfo( ;
-
-window.menuClick_m_hindresensitivedata=e=>setting.hindreSensitiveData=ui.menu.EBold(e.target.innerText) ;
-window.menuClick_m_omformulersensitivedata=e=>setting.omformulerSensitiveData=ui.menu.EBold(e.target.innerText) ;
-window.menuClick_m_hindrehelserdmottattavai=e=>setting.hindreHelseraad=ui.menu.EBold(e.target.innerText) ;
-window.menuClick_m_omformulerhelserd=e=>setting.omformulerHelseraad=ui.menu.EBold(e.target.innerText) ;
-
-window.menuClick_m_kontakt=e=>ui.menu.Click_OpenUrl('https://www.aigap.no/snakk-med-oss');
-window.menuClick_m_personvernerklring=e=>ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
-window.menuClick_m_barkode=e=>ui.menu.Click_OpenUrl('barcode.jpg');
-window.menuClick_m_prompt=e=>ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
-window.menuClick_m_ungdom=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdom', ['Voksen', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
-window.menuClick_m_voksen=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Voksen', ['Ungdom', ...ui.menu.Click_alleSpraak])^msgRedoLast('Overrsett siste melding til en språkdrakt som passer for voksne, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
-window.menuClick_m_bokml=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Bokml', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til bokmål. Fra nå av skal du kun svare kortfattet på bokmål');
-window.menuClick_m_nynorsk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Nynorsk', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til nynorsk. Fra nå av skal du kun svare kortfattet på nynorsk');
-window.menuClick_m_svenska=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Svenska', ui.menu.Click_alleSpraak)^msgRedoLast('Øversett senaste meddelandet på svenska. Från och med nu ska du endast svara kortfattat på svenska.');
-window.menuClick_m_dansk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Dansk', ui.menu.Click_alleSpraak)^msgRedoLast('Oversett sidste besked på dansk. Fra nu af skal du kun svare kortfattet på dansk.');
-window.menuClick_m_english=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English', ui.menu.Click_alleSpraak)^msgRedoLast('Translate last message to English. From now on only answer briefly in English');
+// Om >>
+window.menuClick_m_kontakt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/snakk-med-oss');
+window.menuClick_m_personvernerklring=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
+window.menuClick_m_barkode=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('barcode.jpg');
+window.menuClick_m_prompt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
 window.menuClick_m_simuler=e=>{
     ui.c.Input.value = 'Hvordan kommer jeg meg dit?';
     setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { ui.c.Input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
     ui.menu.Show(false);
 }
 window.menuClick_m_listmodeller=e=>ui.menu.Click_Models(e);
-window.menuClick_m_debug=e=>{};
-/////////////// menuClick_m_ - Menu generic ///////////////
+window.menuClick_m_debug=e=>ui.menu.Show(false)^msgInfo('menuClick_m_debug ikke implementert');
+/////////////// menuClick_m_ - Menu redirect ///////////////
 window.menuClickLeaf=e=>{ // handle click on leaf menu item
     const mi = e.target, mt = mi.innerText.trim(), fn=ui.menu.Fn(mt)
         , mtp=mi.parentElement.previousElementSibling.innerText.split('\n')[0].trim()
