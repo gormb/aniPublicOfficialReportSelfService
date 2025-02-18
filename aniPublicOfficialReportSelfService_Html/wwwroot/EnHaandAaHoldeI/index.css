@@ -28,6 +28,8 @@ body.dark-mode main { background: var(--dark-bg); }
 .info { justify-content: center; }
 .icon { height: 60px; cursor: pointer; }
     body.dark-mode .icon { filter: brightness(0) invert(1); }
+    .dice { height: 30px; }
+    .space { height: 30dvh; width: 1px }
 .msg { max-width: 70%; padding: 10px; border-radius: 10px; }
 .sent .msg { background: var(--secondary-color); color: var(--primary-color); border-top-right-radius: 0;}
     body.dark-mode .sent .msg { background: var(--dark-msg); color: var(--primary-color); }

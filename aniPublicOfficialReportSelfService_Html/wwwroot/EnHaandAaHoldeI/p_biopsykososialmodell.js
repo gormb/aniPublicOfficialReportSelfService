@@ -1,4 +1,3 @@
-cfg.app='Biopsykososial forståelsesmodell'
 cfg.aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/><br/>
@@ -41,3 +40,4 @@ Når brukeren svarer, tilpass all kommunikasjon deretter. Bruk enklere ord for b
 ,[`Hvorfor føles det godt å hjelpe andre?`, `Å hjelpe andre utløser oxytocin, et hormon som skaper følelsen av tilhørighet og glede, og kan redusere stress.`]
 ,[`Hvordan kan jeg forbedre søvnkvaliteten min?`, `Unngå skjermer før leggetid, ha en fast søvnrytme og skape en rolig soveromssituasjon. Søvn er avgjørende for både fysisk og mental helse.`]
 ]
+cfg.app='Biopsykososial forståelsesmodell'

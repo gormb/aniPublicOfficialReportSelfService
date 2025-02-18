@@ -1,4 +1,3 @@
-cfg.app='Under opphold'
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
 cfg.aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
 cfg.aiPrompt= [{ role: `system`, content:
@@ -20,3 +19,4 @@ Hvis du er usikker eller mangler informasjon, oppfordre pasienten til å kontakt
 ,[`Hva skjer hvis jeg ikke føler meg komfortabel med oppholdet?`, `Vi ønsker at du skal ha det bra. Hvis du har bekymringer eller ikke trives, snakk med personalet. De vil lytte og finne løsninger sammen med deg.`]
 ,[`Hva skjer den siste dagen?`, `På den siste dagen vil du ha en avsluttende samtale med ditt behandlingsteam. De vil gi deg råd om videre oppfølging. Du får også tid til å pakke og forberede hjemreisen.`]
 ]
+cfg.app='Under opphold'

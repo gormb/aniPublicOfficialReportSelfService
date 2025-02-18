@@ -4,7 +4,7 @@
 // meny for tilbakemeldinger
 const cfg={
     app:'...'
-    , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial modell', 'Kroppens stressystem', 'Verdens nyheter via Ideallya']
+    , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial modell', 'Kroppens stressystem', 'Verdens nyheter via Ideallya', 'Mine pasientdata']
     , aiPromptWelcomeQuestion:`Hva er velkomstmeldingen?`
     , aiPromptWelcome:`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`
     , aiPrompt:[{ role: `system`, content: 
@@ -56,6 +56,10 @@ const cfg={
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
         ,['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
+        ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', `%3F4'cY%3B%2FSJ%7B4Xpb%40MJXQ_T-%26W%22WD!%2CbS%60w%2F5%60%7F%3F%20~('%3E2WWM%3FQ%5D%25%3DSA*V~%7CR_L%25%7B%26T%24*%3E))%24b%5EP%23%5D%25TLF%3A*rJ`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+           // ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS`w/5`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+                , [['grok latest', 'grok-2-latest'], ['grok beta', 'grok-beta']]]
+                //?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS`w/5`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ
         ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]]
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `|||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[5].map(aiM=>`||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
@@ -66,8 +70,8 @@ const cfg={
             const s = document.createElement('script');
             s.src = `${cid}.js`;
             s.async = false;
-            // s.onload = () => y(cfg.app);
-            // s.onerror = () => n(`Kunne ikke laste ${c}`);
+            s.id='cfgloaded';
+            document.getElementById('cfgloaded')?.remove()
             document.head.appendChild(s);
             cfg.app=null
             let i = 0, chk = setInterval(e=>{
@@ -130,8 +134,12 @@ const ui = {
         , ImgAClick: e => { let r=e.target.closest('.row'); while(r.nextElementSibling) r.nextElementSibling.remove(); msgSend(); ui.c.Input.focus(); }
         , ImgH: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Point.svg'
         , ImgHClick: e => e.target.parentElement.parentElement.remove()
-        , ImgDiceU: ['https://upload.wikimedia.org/wikipedia/commons/', '1/1b/Dice-1-b.svg', '5/5f/Dice-2-b.svg','b/b1/Dice-3-b.svg','f/fd/Dice-4-b.svg','0/08/Dice-5-b.svg','2/26/Dice-6-b.svg', 'https://9/99/Dice-0.svg']
+        , ImgDiceU: ['https://upload.wikimedia.org/wikipedia/commons/', '1/1b/Dice-1-b.svg', '5/5f/Dice-2-b.svg','b/b1/Dice-3-b.svg','f/fd/Dice-4-b.svg','0/08/Dice-5-b.svg','2/26/Dice-6-b.svg', '9/99/Dice-0.svg']
         , ImgDice:i=>`<img class="icon dice" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[i||7]}">`
+        , ImgSpaceRemove:()=>document.querySelector('.space')?.remove()
+        , ImgSpaceAppend:()=>ui.c.Chat.lastElementChild.innerHTML+=`<img class="icon space" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[7]}">`
+    
+
         , tRotating: '<div class="rotatingC">&#8634</div>'
     }
     , Show: (el,b) => (el.classList.toggle('hidden', !(b ?? el.classList.contains('hidden'))), !!b)
@@ -229,6 +237,7 @@ window.menuClick_m_verdensnyheterviaideallya=e=>cfg.load('Verdens nyheter via Id
 window.menuClick_m_blank=e=>cfg.load('(blank)').then(InitializeChat('')^ui.menu.EBoldOnly('(blank)', cfg.appList))
 window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(InitializeChat('')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList))
 window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(InitializeChat('')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
+window.menuClick_m_minepasientdata=e=>cfg.load('Mine pasientdata').then(InitializeChat('')^ui.menu.EBoldOnly('Mine pasientdata', cfg.appList))
 window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
 //Språk >>
 window.menuClick_m_ungdom=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdom', ['Voksen', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
@@ -263,6 +272,12 @@ window.menuClick_m_gpt4=e=>ui.menu.Click_Model('GPT4');
 window.menuClick_m_gpto3=e=>ui.menu.Click_Model('GPTo3');
     window.menuClick_m_pvgpto3=e=>ui.menu.Click_Model('pvGPTo3', 1);
     window.menuClick_m_bggpto3=e=>ui.menu.Click_Model('bgGPTo3', 2);
+window.menuClick_m_groklatest=e=>ui.menu.Click_Model('groklatest');
+    window.menuClick_m_groklatest=e=>ui.menu.Click_Model('pvgroklatest', 1);
+    window.menuClick_m_groklatest=e=>ui.menu.Click_Model('bggroklatest', 2);
+window.menuClick_m_grokbeta=e=>ui.menu.Click_Model('grokbeta');
+    window.menuClick_m_grokbeta=e=>ui.menu.Click_Model('pvgrokbeta', 2);
+    window.menuClick_m_grokbeta=e=>ui.menu.Click_Model('bggrokbeta', 2);
 window.menuClick_m_deepseekreasoner=e=>ui.menu.Click_Model('deepseek-reasoner');
     window.menuClick_m_pvdeepseekreasoner=e=>ui.menu.Click_Model('pvdeepseek-reasoner', 1);
     window.menuClick_m_bgdeepseekreasoner=e=>ui.menu.Click_Model('bgdeepseek-reasoner', 2);
@@ -322,20 +337,26 @@ window.menuClickLeaf=e=>{ // handle click on leaf menu item
 window.msgIsSimulate=msg=>msg.substring(0, 10) == "Simulate: ";
 window.msgAsk=msgQ=> {
     const el = ((b) => (b.className = "row sent", b.innerHTML = `&nbsp;<img class="icon" src="${ui.c.ImgQ}" onclick="ui.c.ImgQClick(event)"><div class="msg">${msgQ}</div>`, b))(document.createElement("div"));
+    ui.c.ImgSpaceRemove();
     ui.c.Chat.append(el);
+    ui.c.ImgSpaceAppend();
     ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
     return el;
 }
 window.msgAnswer=(msgA=ui.c.tRotating, isDone=false)=> {
     const el = ((b) => (b.className = "row received", b.innerHTML = `<div class="msg">${msgA}</div><img class="icon${isDone?'':' rotating'}" src="${ui.c.ImgA}" onclick="ui.c.ImgAClick(event)">&nbsp;`, b))(document.createElement("div"));
+    ui.c.ImgSpaceRemove();
     ui.c.Chat.append(el);
+    ui.c.ImgSpaceAppend();
     ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
     return el;
 }
 window.msgInfo=(msg,handL=false,handR=false)=> {
     const elI=b=>b?`<img class="icon" src="${ui.c.ImgH}" onclick="ui.c.ImgHClick(event)">`:``
     const el = ((b) => (b.innerHTML = `<div class="row info">${elI(handL)}<div>${msg} ${handL|handR?'':'<span style="cursor: pointer" onclick="ui.c.ImgHClick(event)">&nbsp;✖&nbsp;</span>'}</div>${elI(handR)}</div>`, b))(document.createElement("div"));
+    ui.c.ImgSpaceRemove();
     ui.c.Chat.append(el);
+    ui.c.ImgSpaceAppend();
     //ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
     return el;
 }

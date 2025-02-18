@@ -1,4 +1,3 @@
-cfg.app='Verdens nyheter via Ideallya'
 cfg.aiPromptWelcome=`Velkommen til blank chat.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i>`;
@@ -39,14 +38,4 @@ Etter at brukeren har valgt kategori, oppsummer nyhetene kort. Hvis brukeren sp�
 ,[`Hvilke innovasjoner er på vei inn i markedet?`, `Flere selskaper lanserer [teknologi], som kan forandre [bransje]. Vil du høre hvilke selskaper som leder utviklingen?`]
 ,[`Hva er de nyeste anbefalingene om personlig økonomi?`, `Eksperter anbefaler nå [strategi] for å håndtere [økonomisk utfordring]. Vil du vite hvordan dette kan påvirke din økonomi?`]
 ];
-
-fetch('https://news.ideallya.com/no')
-  .then(response => response.text())
-  .then(html => {
-    let parser = new DOMParser();
-    let doc = parser.parseFromString(html, 'text/html');
-    console.log(doc.body.innerText); // Outputs all text from the page
-  })
-  .catch(error => console.error('Error fetching the page:', error));
-
-
+cfg.app='Verdens nyheter via Ideallya'

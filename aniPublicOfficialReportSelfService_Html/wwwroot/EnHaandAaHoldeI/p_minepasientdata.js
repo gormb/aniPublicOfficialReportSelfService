@@ -1,5 +1,5 @@
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg.aiPromptWelcome=`Velkommen til Personvernrådgiveren.<br/><br/>
+cfg.aiPromptWelcome=`Velkommen til rådgiveren for dine pasientdata.<br/><br/>
         <i>Vi prioriterer personvern. Spørsmål lagres ikke, og all data behandles i samsvar med GDPR. 
         For mer informasjon, se under Sikkerhet >> Personvern.</i><br/><br/>
         Hva lurer du på?`;
@@ -31,4 +31,4 @@ cfg.aiPrompt= [{ role: `system`, content: `Du er en ekspert på GDPR og personve
         [`Hva er dataminimering?`, `Dataminimering betyr at en virksomhet kun skal samle inn og lagre de personopplysningene som er nødvendige for det spesifikke formålet, og ikke mer enn det.`],
         [`Hvordan kan jeg klage på brudd på personvern?`, `Du kan klage til Datatilsynet hvis du mener dine personopplysninger er blitt behandlet i strid med GDPR. Før du klager, bør du prøve å kontakte virksomheten som behandler dine data.`]
     ];
-    cfg.app='Personvernrådgiveren'
+    cfg.app='Mine pasientdata'
