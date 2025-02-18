@@ -26,4 +26,4 @@ cfg.aiPrompt= [{ role: `system`, content:
         ,[`Hva er 2+2`, `Jeg ønsker ikke å svare på mattespørsmål. Kun spørsmål relevant opphold på Catosenteret`]
         ,[`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og møter teamet ditt. Vi starter med en helhetlig vurdering for å lage en personlig rehabiliteringsplan. Husk at det er normalt å føle seg litt nervøs, men forskning viser at å sette små, oppnåelige mål tidlig gir bedre langsiktig resultat.`]
     ];
-    InitializeChat('');
+    
