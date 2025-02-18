@@ -1,7 +1,10 @@
 /////////////// Config /////////////////
+// nårspmstilt, flytt dit. Hvis formye tekst lag pil ned
+// for mye tekst på sykdom?
+// meny for tilbakemeldinger
 const cfg={
     app:'...'
-    , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial modell', 'Kroppens stressystem']
+    , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial modell', 'Kroppens stressystem', 'Verdens nyheter via Ideallya']
     , aiPromptWelcomeQuestion:`Hva er velkomstmeldingen?`
     , aiPromptWelcome:`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`
     , aiPrompt:[{ role: `system`, content: 
@@ -11,6 +14,42 @@ const cfg={
         ,[`Hva er du ikke?`, `Et kognitivt vesen`]
     ]
     , aiProviderUse:['', 'PV ', 'BG ']
+    , aiPromptPV:[{ role: `system`, content: `Du er en ekspert på personvern, kvalitetssikring og risikohåndtering. Din oppgave er å vurdere sensitiviteten til meldinger i en chat-tjeneste. Du vurderer om:
+    - Brukeren deler sensitiv informasjon
+    - Chatboten gir uheldige eller misvisende svar
+    
+    Hvis meldingen starter med User:, skal du vurdere sensitiviteten i meldingen med terningkast fra 1-6.
+    
+    - 🎲 1: Ikke-sensitiv informasjon, ingen risiko ved deling.
+    - 🎲 2: Lav risiko, inneholder noen personopplysninger, men ikke kritisk.
+    - 🎲 3: Moderat sensitiv, inneholder identifiserbar informasjon.
+    - 🎲 4: Høy sensitivitet, informasjon kan misbrukes.
+    - 🎲 5: Svært sensitiv informasjon, krever streng tilgangskontroll.
+    - 🎲 6: Ekstremt sensitiv, informasjon kan ha alvorlige juridiske eller sikkerhetsmessige konsekvenser.
+
+    Hvis meldingen starter med Agent:, skal du vurdere om svaret er forsvarlig (🎲 1-3) eller bør justeres (🎲 4-6).
+    Alle med 🎲 4 eller høyere skal i tilleg ha Omformulering: "forslag"
+    
+    Gi svaret i format:
+    🎲 n: vurdering`}
+        ,[`User: Jeg har kreft`, `🎲 4: helseopplysninger men ikke koblet til person. Omformulering: "Jeg vil spørre om kreft"`]
+        ,[`User: Jeg er i Paris`, `🎲 1: ingen risiko`]
+        ,[`User: Mitt navn er Ola Normann, og jeg er veldig nørvøs og bryter sammen`, `🎲 6: helseopplysninger som kan kobles til person. Omformulering: "forslag"`]
+        ,[`User: Mitt navn er Kari Normann`, `🎲 2: identifiserbare personopplysninger`]
+        ,[`User: Hei, vet du hvor jeg kan finne informasjon om kollektivtransport i Oslo?`, `🎲 1: ingen risiko`]
+        ,[`User: Hva er e-postadressen til support hos Skatteetaten?`, `🎲 2: lav risiko`]
+        ,[`User: Kan jeg få tilsendt kopi av kontrakten jeg signerte, den ble sendt til min e-post: navn@domene.com`, `🎲 3: moderat sensitiv`]
+        ,[`User: Jeg bor på Parkveien 12B, 0350 Oslo. Kan du hjelpe meg med å finne nærmeste legekontor?`, `🎲 4: høy sensitivitet`, `Forslag: Kan du hjelpe meg med å finne nærmeste legekontor i mitt område?`]
+        ,[`User: Mitt personnummer er 01020312345, kan du sjekke status på skattekortet mitt?`, `🎲 5: svært sensitiv informasjon`, `Forslag: Hvordan kan jeg sjekke statusen på skattekortet mitt?`]
+        ,[`User: Jeg ble diagnostisert med depresjon i fjor og tar nå Sertraline. Jeg trenger råd om dosering.`, `🎲 6: ekstremt sensitiv informasjon`, `Forslag: Kan du gi generell informasjon om behandlingstilbud for depresjon?`]
+        ,[`Agent: Du kan finne informasjon om kollektivtransport på ruter.no.`, `🎲 1: ingen risiko`]
+        ,[`Agent: Skatteetatens e-post for kundeservice er kontakt@skatteetaten.no.`, `🎲 2: lav risiko`]
+        ,[`Agent: Du kan be om kopi av kontrakten ved å kontakte support.`, `🎲 3: moderat risiko`]
+        ,[`Agent: Du bor i nærheten av St. Hanshaugen, så nærmeste legekontor er Ullevål Medisinske Senter.`, `🎲 4: høy sensitivitet`, `Forslag: Du kan finne nærmeste legekontor ved å søke på Helsenorge.no.`]
+        ,[`Agent: Send meg personnummeret ditt, så kan jeg sjekke skattekortet for deg.`, `🎲 5: svært sensitivt`, `Forslag: Jeg kan ikke håndtere personopplysninger. Du kan sjekke skattekortet ditt på skatteetaten.no.`]
+        ,[`Agent: Jeg anbefaler deg å prøve 50 mg Sertraline, det fungerer for mange med depresjon.`, `🎲 6: ekstremt sensitivt`, `Forslag: Jeg kan ikke gi medisinske råd. Du bør snakke med fastlegen din om dette.`]
+    ]
+    , aiPromptBG:[{ role: `system`, content: `Du er en chatbot som skal generere nye spørsmål.`} ,[`Hva er mitt neste spørsmål?`, `Hva er viktig å tenke på?`],[`Hva er mitt neste spørsmål?`, `Hvordan kan jeg bruke denne tjenesten?`]]
     , aiProviderDefault:`mistral large?PV mistral small?BG mistral small` /* spørremodell?pvspørremodell */
     , aiProvider : [ // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
         ['Mistral (EU)§-', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
@@ -26,35 +65,39 @@ const cfg={
             const cid = 'p_'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
             const s = document.createElement('script');
             s.src = `${cid}.js`;
-            s.onload = () => y(cfg.app.length+cfg.aiPromptWelcome.length+cfg.aiPrompt); // Resolve with updated cfg.aiPrompt etc
-            s.onerror = () => n(`Kunne ikke laste ${c}`);
+            s.async = false;
+            // s.onload = () => y(cfg.app);
+            // s.onerror = () => n(`Kunne ikke laste ${c}`);
             document.head.appendChild(s);
+            cfg.app=null
+            let i = 0, chk = setInterval(e=>{
+                if (cfg.app) {
+                    clearInterval(chk);
+                    y();
+                } else if (i++ == 1000) { 
+                    clearInterval(chk);
+                    n(`Script loaded but not executed: ${cid}`);
+                }
+            }, 10);  // Check every 10ms
         });
     }    
 }
-/////////////// menu //////////////
+/////////////// menu and state //////////////
 const setting={
-    menu: `App >>§ -
-            ||CatoSenteret >>§ -|||Før opphold|||Under opphold|||Etter opphold
-            ||Hjemmelegen min >>§ -|||Biopsykososial modell|||Kroppens stressystem
-            ||Hånd å holde i >>§ -|||Blank§*|||Personvernrådgiveren|||Kommer...
+    menu: `App >>§-
+            ||CatoSenteret >>§-|||Før opphold|||Under opphold|||Etter opphold
+            ||Hjemmelegen min >>§-|||Biopsykososial modell|||Kroppens stressystem|||Mine pasientdata
+            ||Ideallya >>§-|||Verdens nyheter via Ideallya
+            ||Hånd å holde i >>§-|||Blank§*|||Personvernrådgiveren|||Kommer...
         |Språk >>§-||Ungdom||Voksen§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
         |Sikkerhet >>§-||Personvern||Analyser Personvern
-            ||----------
-            ||Ikke send sensitive data§*
-            ||Omformuler sensitive data
-            ||Godta sensitive data
-            ||----------
-            ||Ikke mottatt helseråd fra AI§*
-            ||Omformuler helseråd
-            ||Godta helseråd
+            ||----------||Ikke send sensitive data§*||Omformuler sensitive data||Godta sensitive data
+            ||----------||Ikke mottatt helseråd fra AI§*||Omformuler helseråd||Godta helseråd
         |Funksjonalitet >>§-
             ||AI tilbyder >>§ -${ cfg.menusForAiProvider('')}
             ||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }
             ||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
-            ||----------
-            ||Forsøk alle AI
-            ||Begynn på nytt
+            ||----------||Forsøk alle AI||Begynn på nytt
             ||Spørsmålsforslag§ *
             ||Grubling
         |Om >>§-||Kontakt||Personvernerklæring||Barkode||Utvikling >>§-|||Prompt|||Simuler|||List modeller|||Debug`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
@@ -87,6 +130,8 @@ const ui = {
         , ImgAClick: e => { let r=e.target.closest('.row'); while(r.nextElementSibling) r.nextElementSibling.remove(); msgSend(); ui.c.Input.focus(); }
         , ImgH: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Point.svg'
         , ImgHClick: e => e.target.parentElement.parentElement.remove()
+        , ImgDiceU: ['https://upload.wikimedia.org/wikipedia/commons/', '1/1b/Dice-1-b.svg', '5/5f/Dice-2-b.svg','b/b1/Dice-3-b.svg','f/fd/Dice-4-b.svg','0/08/Dice-5-b.svg','2/26/Dice-6-b.svg', 'https://9/99/Dice-0.svg']
+        , ImgDice:i=>`<img class="icon dice" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[i||7]}">`
         , tRotating: '<div class="rotatingC">&#8634</div>'
     }
     , Show: (el,b) => (el.classList.toggle('hidden', !(b ?? el.classList.contains('hidden'))), !!b)
@@ -175,13 +220,15 @@ ui.init();
 /////////////// menuClick_m_ - Menu handlers ///////////////
 window.menuClick_m_=e=>{/* line or blank clicked */};
 // App >>
-window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Før opphold', cfg.appList))
-window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Under opphold', cfg.appList))
-window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Etter opphold', cfg.appList))
-window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
-window.menuClick_m_blank=e=>cfg.load('(blank)').then(SoonInitializeChat('')^ui.menu.EBoldOnly('(blank)', cfg.appList))
-window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList))
-window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(SoonInitializeChat('')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
+// 
+window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(InitializeChat('')^ui.menu.EBoldOnly('Før opphold', cfg.appList))
+window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(InitializeChat('')^ui.menu.EBoldOnly('Under opphold', cfg.appList))
+window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(InitializeChat('')^ui.menu.EBoldOnly('Etter opphold', cfg.appList))
+window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(InitializeChat('')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
+window.menuClick_m_verdensnyheterviaideallya=e=>cfg.load('Verdens nyheter via Ideallya').then(InitializeChat('')^ui.menu.EBoldOnly('Verdens nyheter via Ideallya', cfg.appList))
+window.menuClick_m_blank=e=>cfg.load('(blank)').then(InitializeChat('')^ui.menu.EBoldOnly('(blank)', cfg.appList))
+window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(InitializeChat('')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList))
+window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(InitializeChat('')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
 window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
 //Språk >>
 window.menuClick_m_ungdom=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdom', ['Voksen', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
@@ -289,7 +336,7 @@ window.msgInfo=(msg,handL=false,handR=false)=> {
     const elI=b=>b?`<img class="icon" src="${ui.c.ImgH}" onclick="ui.c.ImgHClick(event)">`:``
     const el = ((b) => (b.innerHTML = `<div class="row info">${elI(handL)}<div>${msg} ${handL|handR?'':'<span style="cursor: pointer" onclick="ui.c.ImgHClick(event)">&nbsp;✖&nbsp;</span>'}</div>${elI(handR)}</div>`, b))(document.createElement("div"));
     ui.c.Chat.append(el);
-    ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
+    //ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
     return el;
 }
 window.msgSend=(msgQ, onDone)=> {
@@ -312,7 +359,7 @@ window.msgReceive_Placeholder=(msgQ, divR, onDone)=>{
     const msg = divR.querySelector(".msg"), icon = divR.querySelector(".icon");
     msg.innerText = msgA;
     icon.classList.remove("rotating"); // Remove rotation
-    ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
+    //ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
     onDone?.(divR, msgA);
 }
 window.msgRedoLast=m=> {
@@ -354,7 +401,7 @@ const ai={
     , Url:['','',''], Model:['','',''], Gunnar:['','','']
     , Reset:()=> {
         ai.Reply=[''];
-        ai.History=[ai.ai2Prompt(cfg.aiPrompt)];
+        ai.History=[ai.ai2Prompt(cfg.aiPrompt), ai.ai2Prompt(cfg.aiPromptPV), ai.ai2Prompt(cfg.aiPromptBG)];
     }
     , RequestProgress : (d, t, l, iThread) => {
         t.substring(l).split("\n").forEach(line => {
@@ -365,7 +412,7 @@ const ai={
         });
         d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
         if (d?.parentElement?.parentElement==ui.c.Chat)
-            ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
+            ;//ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
         return t.length;
     }
     , RequestComplete : (x, img, d, iThread, onDone, retries) => {
@@ -375,7 +422,7 @@ const ai={
         else if (x.status >= 400 && x.status < 500 && retries > 0) return setTimeout(() => ++ai.RequestActiveCount^ai.Request(ai.History[iThread].slice(-1)[0].content, d.parentElement, iThread, onDone, retries-1), 1000);
         else ai.Reply[iThread] = `<i>Feil ved kall til KI-tjenesten<br/>${!x.status?'Manglende internet?':(() => { try { let err = JSON.parse(x.response?.message || x.responseText); return err?.error?.message || err?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
         d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
-        if (!iThread) ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
+        if (!iThread) ;//ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
         onDone?.(ai.Reply[iThread]);
     }
     , Request : (q, row = msgAnswer(), iThread = 0, onDone = null, retries = 2) => {
@@ -396,8 +443,7 @@ const ai={
     }
     , ParseWaitReqBefore:(n = cfg.aiProviderTimeout*10)=> {// Wait until ai.RequestActiveCount is 0 or until autoTimeout sec)
         return new Promise((resolve, reject) => {
-            let i = 0;
-            const interval = setInterval(() => {
+            let i = 0, interval = setInterval(() => {
                 if (!ai.RequestActiveCount) {
                     clearInterval(interval);
                     resolve();
@@ -417,10 +463,10 @@ const ai={
                 let m = decodeURIComponent(f[i].trim())
                 ai.RequestActiveCount = 0;
                 if (typeof window[ui.menu.Fn(m)] === 'function') await new Promise((resolve) => { window[ui.menu.Fn(m)](); resolve(); });
-                else await msgSend(m);
+                else await new Promise((resolve) => { msgSend(m) });
                 try { await ai.ParseWaitReqBefore();}catch(e){}
             }
-            await ai.ParsePerform(f, i + 1);
+            ai.ParsePerform(f, i + 1);
         }
     }
     , Parse:s=> ai.ParsePerform(s.replace(/\?\?/g, '?').split('?'))
@@ -436,10 +482,4 @@ function InitializeChat(q=null) {
     ui.c.Input.focus();
     ai.Parse(q!=null?q:cfg.aiProviderDefault+window.location.search); //*/
     ui.c.HeaderTitle.innerHTML = cfg.app;
-}
-
-function SoonInitializeChat(q)
-{
-    ui.c.HeaderTitle.innerHTML = '&nbsp;';
-    setTimeout(() => { InitializeChat(q)}, 1000);
 }

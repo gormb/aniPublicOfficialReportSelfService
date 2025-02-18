@@ -5,3 +5,4 @@ For mer informasjon, se under Sikkerhet >> Personvern.</i>`;
 cfg.aiPrompt= [{ role: `system`, content: `Du er en kortfattet chatbot`}
 ,[`Hva er du?`, `En generell chatbot som kan spesialtilpasses`]
 ];
+InitializeChat('');
