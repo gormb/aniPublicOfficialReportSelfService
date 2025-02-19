@@ -1,5 +1,7 @@
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg.aiPromptWelcome=`Velkommen til rådgiveren for dine pasientdata.<br/><br/>
+cfg.aiPromptWelcome=`Velkommen til den uferdige rådgiveren for dine pasientdata.<br/>
+        <b>Denne er under utvikling!</b>
+        <br/><br/>
         <i>Vi prioriterer personvern. Spørsmål lagres ikke, og all data behandles i samsvar med GDPR. 
         For mer informasjon, se under Sikkerhet >> Personvern.</i><br/><br/>
         Hva lurer du på?`;
