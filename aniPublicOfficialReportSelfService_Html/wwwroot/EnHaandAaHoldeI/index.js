@@ -1,5 +1,4 @@
 /////////////// Config /////////////////
-// nårspmstilt, flytt dit. Hvis formye tekst lag pil ned
 // for mye tekst på sykdom?
 // meny for tilbakemeldinger
 const cfg={
@@ -52,12 +51,16 @@ const cfg={
     , aiPromptBG:[{ role: `system`, content: `Du er en chatbot som skal generere nye spørsmål.`} ,[`Hva er mitt neste spørsmål?`, `Hva er viktig å tenke på?`],[`Hva er mitt neste spørsmål?`, `Hvordan kan jeg bruke denne tjenesten?`]]
     , aiProviderDefault:`mistral large?PV mistral small?BG mistral small` /* spørremodell?pvspørremodell */
     , aiProvider : [ // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
-        ['Mistral (EU)§-', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        ['Mistral (EU)', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
         ,['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
-        ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', `%3F4'cY%3B%2FSJ%7B4Xpb%40MJXQ_T-%26W%22WD!%2CbS%60w%2F5%60%7F%3F%20~('%3E2WWM%3FQ%5D%25%3DSA*V~%7CR_L%25%7B%26T%24*%3E))%24b%5EP%23%5D%25TLF%3A*rJ`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-           // ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS`w/5`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', 
+            //`%3F4'c%26J4Y4%404_K8ODBEE%60K%24E%23Se8%2F9U%233%7DV3gLV%7DH._(P%24-86w6I)%2C%3DLa_%23M%3F%5EdW%7FUB%24%5C-XLK~a(YG3-3%7COT1`
+            escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`)
+            , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            
+        //,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS`w/5`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
                 , [['grok latest', 'grok-2-latest'], ['grok beta', 'grok-beta']]]
                 //?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS`w/5`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ
         ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
@@ -88,7 +91,8 @@ const cfg={
 }
 /////////////// menu and state //////////////
 const setting={
-    menu: `App >>§-
+    debug:false, dMsg:(k,v)=>{if(setting.debug) {if(v)console.warn(k,v); else console.warn(k)}}
+    , menu: `App >>§-
             ||CatoSenteret >>§-|||Før opphold|||Under opphold|||Etter opphold
             ||Hjemmelegen min >>§-|||Biopsykososial modell|||Kroppens stressystem|||Mine pasientdata
             ||Ideallya >>§-|||Verdens nyheter via Ideallya
@@ -98,14 +102,13 @@ const setting={
             ||----------||Ikke send sensitive data§*||Omformuler sensitive data||Godta sensitive data
             ||----------||Ikke mottatt helseråd fra AI§*||Omformuler helseråd||Godta helseråd
         |Funksjonalitet >>§-
-            ||AI tilbyder >>§ -${ cfg.menusForAiProvider('')}
+            ||AI tilbyder >>§-${ cfg.menusForAiProvider('')}
             ||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }
             ||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
             ||----------||Forsøk alle AI||Begynn på nytt
             ||Spørsmålsforslag§ *
             ||Grubling
         |Om >>§-||Kontakt||Personvernerklæring||Barkode||Utvikling >>§-|||Prompt|||Simuler|||List modeller|||Debug`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
-    //, menuClick_m_ForskalleAC:0
     , funcQuestionSuggestion: false
     , funcDeepAnalysis: false
     , hindreSensitiveData:true
@@ -198,6 +201,7 @@ const ui = {
             ai.Model[i]=d.d0;
             ai.Url[i]=pd.d0;
             ai.Gunnar[i]=unescape(pd.d1);
+            setting.dMsg(ai.Model[i], ai.Gunn(i));
             if (!i)
                 msgInfo(c.innerHTML, false, true);
             ui.menu.Show(false);
@@ -229,15 +233,15 @@ ui.init();
 window.menuClick_m_=e=>{/* line or blank clicked */};
 // App >>
 // 
-window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(InitializeChat('')^ui.menu.EBoldOnly('Før opphold', cfg.appList))
-window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(InitializeChat('')^ui.menu.EBoldOnly('Under opphold', cfg.appList))
-window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(InitializeChat('')^ui.menu.EBoldOnly('Etter opphold', cfg.appList))
-window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(InitializeChat('')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
-window.menuClick_m_verdensnyheterviaideallya=e=>cfg.load('Verdens nyheter via Ideallya').then(InitializeChat('')^ui.menu.EBoldOnly('Verdens nyheter via Ideallya', cfg.appList))
-window.menuClick_m_blank=e=>cfg.load('(blank)').then(InitializeChat('')^ui.menu.EBoldOnly('(blank)', cfg.appList))
-window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(InitializeChat('')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList))
-window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(InitializeChat('')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
-window.menuClick_m_minepasientdata=e=>cfg.load('Mine pasientdata').then(InitializeChat('')^ui.menu.EBoldOnly('Mine pasientdata', cfg.appList))
+window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Før opphold', cfg.appList))
+window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Under opphold', cfg.appList))
+window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Etter opphold', cfg.appList))
+window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
+window.menuClick_m_verdensnyheterviaideallya=e=>cfg.load('Verdens nyheter via Ideallya').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Verdens nyheter via Ideallya', cfg.appList))
+window.menuClick_m_blank=e=>cfg.load('(blank)').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('(blank)', cfg.appList))
+window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList))
+window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
+window.menuClick_m_minepasientdata=e=>cfg.load('Mine pasientdata').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Mine pasientdata', cfg.appList))
 window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
 //Språk >>
 window.menuClick_m_ungdom=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdom', ['Voksen', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
@@ -273,11 +277,11 @@ window.menuClick_m_gpto3=e=>ui.menu.Click_Model('GPTo3');
     window.menuClick_m_pvgpto3=e=>ui.menu.Click_Model('pvGPTo3', 1);
     window.menuClick_m_bggpto3=e=>ui.menu.Click_Model('bgGPTo3', 2);
 window.menuClick_m_groklatest=e=>ui.menu.Click_Model('groklatest');
-    window.menuClick_m_groklatest=e=>ui.menu.Click_Model('pvgroklatest', 1);
-    window.menuClick_m_groklatest=e=>ui.menu.Click_Model('bggroklatest', 2);
+    window.menuClick_m_pvgroklatest=e=>ui.menu.Click_Model('pvgroklatest', 1);
+    window.menuClick_m_bggroklatest=e=>ui.menu.Click_Model('bggroklatest', 2);
 window.menuClick_m_grokbeta=e=>ui.menu.Click_Model('grokbeta');
-    window.menuClick_m_grokbeta=e=>ui.menu.Click_Model('pvgrokbeta', 2);
-    window.menuClick_m_grokbeta=e=>ui.menu.Click_Model('bggrokbeta', 2);
+    window.menuClick_m_pvgrokbeta=e=>ui.menu.Click_Model('pvgrokbeta', 2);
+    window.menuClick_m_bggrokbeta=e=>ui.menu.Click_Model('bggrokbeta', 2);
 window.menuClick_m_deepseekreasoner=e=>ui.menu.Click_Model('deepseek-reasoner');
     window.menuClick_m_pvdeepseekreasoner=e=>ui.menu.Click_Model('pvdeepseek-reasoner', 1);
     window.menuClick_m_bgdeepseekreasoner=e=>ui.menu.Click_Model('bgdeepseek-reasoner', 2);
@@ -323,7 +327,7 @@ window.menuClick_m_simuler=e=>{
     ui.menu.Show(false);
 }
 window.menuClick_m_listmodeller=e=>ui.menu.Click_Models(e);
-window.menuClick_m_debug=e=>ui.menu.Show(false)^msgInfo('menuClick_m_debug ikke implementert');
+window.menuClick_m_debug=e=>ui.menu.Show(false)^(setting.debug=ui.menu.EBold('debug'));
 /////////////// menuClick_m_ - Menu redirect ///////////////
 window.menuClickLeaf=e=>{ // handle click on leaf menu item
     const mi = e.target, mt = mi.innerText.trim(), fn=ui.menu.Fn(mt)
@@ -356,7 +360,7 @@ window.msgInfo=(msg,handL=false,handR=false)=> {
     const el = ((b) => (b.innerHTML = `<div class="row info">${elI(handL)}<div>${msg} ${handL|handR?'':'<span style="cursor: pointer" onclick="ui.c.ImgHClick(event)">&nbsp;✖&nbsp;</span>'}</div>${elI(handR)}</div>`, b))(document.createElement("div"));
     ui.c.ImgSpaceRemove();
     ui.c.Chat.append(el);
-    ui.c.ImgSpaceAppend();
+    //ui.c.ImgSpaceAppend();
     //ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
     return el;
 }
@@ -478,22 +482,24 @@ const ai={
         });
     }
     , async ParsePerform(f, i=0) {
-        if (i < f.length) {
-            if (i||f[i]) 
-                { // ignore first parameter if blank
-                let m = decodeURIComponent(f[i].trim())
-                ai.RequestActiveCount = 0;
-                if (typeof window[ui.menu.Fn(m)] === 'function') await new Promise((resolve) => { window[ui.menu.Fn(m)](); resolve(); });
-                else await new Promise((resolve) => { msgSend(m) });
-                try { await ai.ParseWaitReqBefore();}catch(e){}
-            }
-            ai.ParsePerform(f, i + 1);
+        //setting.dMsg('ParsePerform begin', i)
+        if (i < f.length && (i || f[i]?.length)) {
+            let m = decodeURIComponent(f[i].trim()), fn = ui.menu.Fn(m);
+            setting.dMsg('ParsePerform msg:' + m, fn);
+            ai.RequestActiveCount = 0;
+            typeof window[fn] === 'function' 
+                ? await window[fn]()
+                : await msgSend(m);
+            await ai.ParseWaitReqBefore();
+            await ai.ParsePerform(f, i + 1);
         }
+        //setting.dMsg('ParsePerform end', i)
     }
     , Parse:s=> ai.ParsePerform(s.replace(/\?\?/g, '?').split('?'))
 }
 /////////////// Init ///////////////
-function InitializeChat(q=null) {
+async function InitializeChat(q=null) {
+    //setting.dMsg('InitializeChat begin', q||'(null)')
     if(q==null) ui.menu.Reset();
     ui.menu.Show(false);
     cfg.aiPrompt.push([cfg.aiPromptWelcomeQuestion, cfg.aiPromptWelcome]);
@@ -501,6 +507,8 @@ function InitializeChat(q=null) {
     ui.c.Chat.innerHTML='';
     msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
     ui.c.Input.focus();
-    ai.Parse(q!=null?q:cfg.aiProviderDefault+window.location.search); //*/
+    if (q==null) await ai.Parse(cfg.aiProviderDefault+window.location.search); //*/
+    else await ai.Parse(q);
     ui.c.HeaderTitle.innerHTML = cfg.app;
+    //setting.dMsg('InitializeChat end', q||'(null)')
 }
