@@ -92,9 +92,9 @@ const cfg={
 /////////////// menu and state //////////////
 const setting={
     debug:false, dMsg:(k,v)=>{if(setting.debug) {if(v)console.warn(k,v); else console.warn(k)}}
-    , menu: `App >>§-
+    , menu: `App >>§ -
             ||CatoSenteret >>§-|||Før opphold|||Under opphold|||Etter opphold
-            ||Hjemmelegen min >>§-|||Biopsykososial modell|||Kroppens stressystem|||Mine pasientdata
+            ||Hjemmelegen min >>§ -|||Biopsykososial modell|||Kroppens stressystem|||Mine pasientdata
             ||Ideallya >>§-|||Verdens nyheter via Ideallya
             ||Hånd å holde i >>§-|||Blank§*|||Personvernrådgiveren|||Kommer...
         |Språk >>§-||Ungdom||Voksen§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
@@ -193,6 +193,7 @@ const ui = {
         , Reset:()=> {
             ui.c.Menu.innerHTML = ui.menu.AsArray(setting.menu).map((_, i) => ui.menu.HtmlAddItem(ui.menu.AsArray(setting.menu), i)).join('')
             document.addEventListener('click', e => { if (!document.getElementById('menu').contains(e.target) && !document.getElementById('header').contains(e.target)) ui.menu.Show(false); });
+            return ui.c.Menu;
         }
         , Show : b => ui.Show(ui.c.Menu, b)
         , Click_Model:(id,i=0)=>{
@@ -290,6 +291,7 @@ window.menuClick_m_deepseekchat=e=>ui.menu.Click_Model('deepseek-chat');
     window.menuClick_m_bgdeepseekchat=e=>ui.menu.Click_Model('bgdeepseek-chat', 2);
 window.menuClick_m_forskalleai=e=> {
     let m='Gjenta', cmd='';
+    msgInfo('UNder utvikling!', false, true)
     try{
         for (e=ui.c.Chat.lastElementChild; e && !e.classList.contains("sent"); e=ui.c.Chat.lastElementChild)
             e.remove();
@@ -504,11 +506,14 @@ async function InitializeChat(q=null) {
     ui.menu.Show(false);
     cfg.aiPrompt.push([cfg.aiPromptWelcomeQuestion, cfg.aiPromptWelcome]);
     ai.Reset();
+    if (q==null) await ai.Parse(cfg.aiProviderDefault); //*/
     ui.c.Chat.innerHTML='';
     msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
     ui.c.Input.focus();
-    if (q==null) await ai.Parse(cfg.aiProviderDefault+window.location.search); //*/
+    if (q==null) await ai.Parse(window.location.search); //*/
     else await ai.Parse(q);
     ui.c.HeaderTitle.innerHTML = cfg.app;
+    if (cfg.app == '...')
+        ui.menu.Show(true)
     //setting.dMsg('InitializeChat end', q||'(null)')
 }
