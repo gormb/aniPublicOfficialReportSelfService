@@ -54,18 +54,23 @@ const cfg={
         ['Mistral (EU)', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
         ,['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['GPT 3.5', 'gpt-3.5-turbo'], ['GPT 4', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
-        ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', 
-            //`%3F4'c%26J4Y4%404_K8ODBEE%60K%24E%23Se8%2F9U%233%7DV3gLV%7DH._(P%24-86w6I)%2C%3DLa_%23M%3F%5EdW%7FUB%24%5C-XLK~a(YG3-3%7COT1`
-            escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`)
-            , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            
-        //,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS`w/5`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-                , [['grok latest', 'grok-2-latest'], ['grok beta', 'grok-beta']]]
-                //?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS`w/5`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ
-        ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            , [['GPT 4', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
+        ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            , [['grok latest', 'grok-2-latest'], ['grok beta', 'grok-beta']]]
+        ,['Anthropic (USA)', 'https://api.anthropic.com/v1/messages', escape(`4>c//&j4>'qajZ,);(U[YV2"=Jy&3gSW x8Jt]vESr$O|2"X\\84uk_\\;@Y1OP>v.YQE^?'ED=Y_HG %#vW77[]-$EH29>&&F39clDV<)@S`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            , [['Sonnet (best)', 'claude-3-5-sonnet-20241022'], ['Haiku (raskest)', 'claude-3-5-haiku-20241022']]
+            , 'anthropic-version:2023-06-01^anthropic-dangerous-direct-browser-access:true'
+        ]
+        ,['Google Gemini (USA tbd)', 'https://generativelanguage.googleapis.com/v1beta/openai/', `F%5C4%2FR%2BDEG%7BN8O77%3D4%5E%2C%3BZMQ%3BpOCH5%3F)Z()%25%5D%3EP_`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            // støtter ikke cross-site
+            , [['Gemini flash', 'gemini-1.5-flash'], ['Gemini pro', 'gemini-1.5-pro']]]
+        ,['Hugging Face (USA tbd)', 'https://api-inference.huggingface.co/models/', escape(`/3Q:M?3VKJVPU]Y,-C BM:Q:0]O#(E"^(/2SV`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            // støtter ikke >10GB
+            , [['Hugging DeepSeek R1', 'deepseek-ai/DeepSeek-R1'], ['Hugging DeepSeek V3', 'deepseek-ai/DeepSeek-V3']]]
+        ,['Deepseek (Kina tbd)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            // stengt for å kjøpe credits
             , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]]
-    , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `|||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[5].map(aiM=>`||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
+    , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `|||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
     , load:c=>{
         return new Promise((y, n) => {
@@ -202,6 +207,7 @@ const ui = {
             ai.Model[i]=d.d0;
             ai.Url[i]=pd.d0;
             ai.Gunnar[i]=unescape(pd.d1);
+            ai.AdditionalHeader[i]=pd.d4;
             setting.dMsg(ai.Model[i], ai.Gunn(i));
             if (!i)
                 msgInfo(c.innerHTML, false, true);
@@ -277,12 +283,31 @@ window.menuClick_m_gpt4=e=>ui.menu.Click_Model('GPT4');
 window.menuClick_m_gpto3=e=>ui.menu.Click_Model('GPTo3');
     window.menuClick_m_pvgpto3=e=>ui.menu.Click_Model('pvGPTo3', 1);
     window.menuClick_m_bggpto3=e=>ui.menu.Click_Model('bgGPTo3', 2);
+window.menuClick_m_geminiflash=e=>ui.menu.Click_Model('geminiflash');
+    window.menuClick_m_pvgeminiflash=e=>ui.menu.Click_Model('pvgeminiflash',1);
+    window.menuClick_m_bggeminiflash=e=>ui.menu.Click_Model('bggeminiflash', 2);
+window.menuClick_m_geminipro=e=>ui.menu.Click_Model('geminipro');
+    window.menuClick_m_pvgeminipro=e=>ui.menu.Click_Model('pvgeminipro');
+    window.menuClick_m_bggeminipro=e=>ui.menu.Click_Model('bggeminipro');
+window.menuClick_m_huggingdeepseekr1=e=>ui.menu.Click_Model('huggingdeepseekr1');
+    window.menuClick_m_pvhuggingdeepseekr1=e=>ui.menu.Click_Model('pvhuggingdeepseekr1', 1);
+    window.menuClick_m_bghuggingdeepseekr1=e=>ui.menu.Click_Model('bghuggingdeepseekr1', 2);
+window.menuClick_m_huggingdeepseekv3=e=>ui.menu.Click_Model('huggingdeepseekv3');
+    window.menuClick_m_pvhuggingdeepseekv3=e=>ui.menu.Click_Model('pvhuggingdeepseekv3', 1);
+    window.menuClick_m_bghuggingdeepseekv3=e=>ui.menu.Click_Model('bghuggingdeepseekv3', 2);
 window.menuClick_m_groklatest=e=>ui.menu.Click_Model('groklatest');
     window.menuClick_m_pvgroklatest=e=>ui.menu.Click_Model('pvgroklatest', 1);
     window.menuClick_m_bggroklatest=e=>ui.menu.Click_Model('bggroklatest', 2);
 window.menuClick_m_grokbeta=e=>ui.menu.Click_Model('grokbeta');
     window.menuClick_m_pvgrokbeta=e=>ui.menu.Click_Model('pvgrokbeta', 2);
     window.menuClick_m_bggrokbeta=e=>ui.menu.Click_Model('bggrokbeta', 2);
+window.menuClick_m_sonnetbest=e=>ui.menu.Click_Model('sonnetbest');
+    window.menuClick_m_pvsonnetbest=e=>ui.menu.Click_Model('pvsonnetbest');
+    window.menuClick_m_bgsonnetbest=e=>ui.menu.Click_Model('bgsonnetbest');
+window.menuClick_m_haikuraskest=e=>ui.menu.Click_Model('haikuraskest');
+    window.menuClick_m_pvhaikuraskest=e=>ui.menu.Click_Model('pvhaikuraskest');
+    window.menuClick_m_bghaikuraskest=e=>ui.menu.Click_Model('bghaikuraskest');
+
 window.menuClick_m_deepseekreasoner=e=>ui.menu.Click_Model('deepseek-reasoner');
     window.menuClick_m_pvdeepseekreasoner=e=>ui.menu.Click_Model('pvdeepseek-reasoner', 1);
     window.menuClick_m_bgdeepseekreasoner=e=>ui.menu.Click_Model('bgdeepseek-reasoner', 2);
@@ -425,21 +450,35 @@ const ai={
     , ConfigPipeReplace : 'pipereplace'
     , AllModels :i=> [...new Set(cfg.aiProvider.flatMap(c => (c[5] || []).map(m => cfg.aiProviderUse[i]+m[0].split('§')[0])))]
     , Reply:[''], History : [], RequestActiveCount : 0
-    , Url:['','',''], Model:['','',''], Gunnar:['','','']
+    , Url:['','',''], Model:['','',''], Gunnar:['','',''], AdditionalHeader:[null,null,null]
     , Reset:()=> {
         ai.Reply=[''];
         ai.History=[ai.ai2Prompt(cfg.aiPrompt), ai.ai2Prompt(cfg.aiPromptPV), ai.ai2Prompt(cfg.aiPromptBG)];
+    }
+    , RequestProgress_Antropic: (d, t, l, iThread) => {
+        // {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Hei lille v"} }	
+        // {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"enn! "} }
+        t.substring(l).split("\n").forEach(line => {
+            if (line.startsWith("data: ")) {
+                const j = line.slice(6).trim();
+                if (j !== "[DONE]") try {
+                    ai.Reply[iThread] += JSON.parse(j).delta.text || ""; 
+                } catch(ex) { setting.dMsg('RequestProgress', j)}
+            }
+        });
+        d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
+        return t.length;
     }
     , RequestProgress : (d, t, l, iThread) => {
         t.substring(l).split("\n").forEach(line => {
             if (line.startsWith("data: ")) {
                 const j = line.slice(6).trim();
-                if (j !== "[DONE]") try { ai.Reply[iThread] += JSON.parse(j).choices[0].delta.content || ""; } catch {}
+                if (j !== "[DONE]") try {
+                    ai.Reply[iThread] += JSON.parse(j)?.choices?.[0]?.delta?.content || ""; 
+                } catch(ex) { setting.dMsg('RequestProgress', j)}
             }
         });
         d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
-        if (d?.parentElement?.parentElement==ui.c.Chat)
-            ;//ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
         return t.length;
     }
     , RequestComplete : (x, img, d, iThread, onDone, retries) => {
@@ -447,26 +486,44 @@ const ai={
         img.classList.remove('rotating');
         if (x.status == 200) ai.History[iThread].push({ role: 'assistant', content: ai.Reply[iThread] });
         else if (x.status >= 400 && x.status < 500 && retries > 0) return setTimeout(() => ++ai.RequestActiveCount^ai.Request(ai.History[iThread].slice(-1)[0].content, d.parentElement, iThread, onDone, retries-1), 1000);
-        else ai.Reply[iThread] = `<i>Feil ved kall til KI-tjenesten<br/>${!x.status?'Manglende internet?':(() => { try { let err = JSON.parse(x.response?.message || x.responseText); return err?.error?.message || err?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
+        else ai.Reply[iThread] = `<i>Feil ved kall til KI-tjenesten ${ai.Model[0]}<br/>${!x.status?'Manglende internet?':(() => { try { let err = JSON.parse(x.response?.message || x.responseText); return err?.error?.message || err?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
         d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
         if (!iThread) ;//ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
         onDone?.(ai.Reply[iThread]);
     }
+    , RequestX : (iThread, onDone, retries, img, d) => {
+        let x = new XMLHttpRequest(), l=0
+            , isAnth = ai.Url[0].includes('.anthropic.')
+            , isHugg = ai.Url[0].includes('.huggingface.')
+            //, isGemi = ai.Url[0].includes('.googleapis.')
+        let u=ai.Url[0]+(isHugg?ai.Model[0]:'');
+        x.open("POST", u, true);
+        x.setRequestHeader("Content-Type", "application/json");
+        x.setRequestHeader("Authorization", "Bearer " + ai.Gunn());
+        x.onreadystatechange = () => x.readyState == 4 && ai.RequestComplete(x, img, d, iThread, onDone, retries);
+        x.onprogress = e => l = ai.RequestProgress(d, x.responseText, l, iThread);
+        ai.AdditionalHeader[0].split('^').map(p => p.split(':')).forEach(h=>{if (h[1]) x.setRequestHeader(h[0], h[1])});
+        let xml = ''
+        if (isAnth) { // Anthropic API (we are special)
+            x.onprogress=e=> l = ai.RequestProgress_Antropic(d, x.responseText, l, iThread);
+            x.setRequestHeader("x-api-key", ai.Gunn());
+            const sys = ai.History[iThread].find(m => m.role === "system")?.content;
+            const msgs = ai.History[iThread].filter(m => m.role !== "system");            
+            xml = JSON.stringify({ model: ai.Model[0], ...(sys ? { system: sys } : {}), messages: msgs, max_tokens: 8192, stream: true});
+        }
+        else if(isHugg) // Huggingface has model in url
+            xml = JSON.stringify({ messages: ai.History[iThread], stream: true });
+        else xml = JSON.stringify({ model: ai.Model[0], messages: ai.History[iThread], stream: true });
+        return x.send(xml);
+    }
     , Request : (q, row = msgAnswer(), iThread = 0, onDone = null, retries = 2) => {
-        ai.RequestActiveCount++;
         let img = row.querySelector('img'), d = row.querySelector('.msg'), l = 0;
+        ai.RequestActiveCount++;
         ai.History[iThread] ??= [...(ai.History[ai.History.length - 1] || [])];
         ai.Reply[iThread] ??= [...(ai.Reply[ai.Reply.length - 1] || [])];
         ai.Reply[iThread] = d.innerText.replace('↺', '');
         ai.History[iThread].push({ role: "user", content: q });
-
-        let x = new XMLHttpRequest();
-        x.open("POST", ai.Url[0], true);
-        x.setRequestHeader("Content-Type", "application/json");
-        x.setRequestHeader("Authorization", "Bearer " + ai.Gunn());
-        x.onprogress = e => l = ai.RequestProgress(d, x.responseText, l, iThread);
-        x.onreadystatechange = () => x.readyState == 4 && ai.RequestComplete(x, img, d, iThread, onDone, retries);
-        x.send(JSON.stringify({ model: ai.Model[0], messages: ai.History[iThread], stream: true }));
+        return ai.RequestX(iThread, onDone, retries, img, d);
     }
     , ParseWaitReqBefore:(n = cfg.aiProviderTimeout*10)=> {// Wait until ai.RequestActiveCount is 0 or until autoTimeout sec)
         return new Promise((resolve, reject) => {
