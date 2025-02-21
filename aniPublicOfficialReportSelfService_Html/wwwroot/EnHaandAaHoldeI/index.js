@@ -74,17 +74,19 @@ const setting={
             ||Ideallya >>§-|||Verdens nyheter via Ideallya
             ||Hånd å holde i >>§-|||Blank§*|||Personvernrådgiveren|||Kommer...
         |Språk >>§-||Ungdom||Voksen§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
-        |Sikkerhet >>§-||Personvern||Analyser Personvern
-            ||----------||Ikke send sensitive data§*||Omformuler sensitive data||Godta sensitive data
-            ||----------||Ikke mottatt helseråd fra AI§*||Omformuler helseråd||Godta helseråd
-        |Funksjonalitet >>§-
+        |Funksjonalitet >>§-||Begynn på nytt||Analyser Personvern||Forsøk alle AI
+            ||Utvikling >>§-|||Prompt|||Simuler|||List modeller
+        |Innstillinger >>§-
+            ||Lagre lokalt§ *
+            ||Spørsmålsforslag§ *
+            ||Grubling
+            ||Sikkerhet >>§-|||Ikke send sensitive data|||Omformuler sensitive data|||Godta sensitive data§*|||----------|||Ikke mottatt helseråd fra AI|||Omformuler helseråd|||Godta helseråd§*
             ||AI tilbyder >>§-${ cfg.menusForAiProvider('')}
             ||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }
             ||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
-            ||----------||Forsøk alle AI||Begynn på nytt
-            ||Spørsmålsforslag§ *
-            ||Grubling
-        |Om >>§-||Kontakt||Personvernerklæring||Barkode||Utvikling >>§-|||Prompt|||Simuler|||List modeller|||Debug`.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
+            ||Debug
+        |Om >>§-||Kontakt||Personvernerklæring||Barkode
+        `.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
     , funcQuestionSuggestion: false
     , funcDeepAnalysis: false
     , hindreSensitiveData:true
@@ -182,7 +184,6 @@ const ui = {
             setting.dMsg(ai.Model[i], ai.Gunn(i));
             if (!i)
                 msgInfo(c.innerHTML, false, true);
-            ui.menu.Show(false);
         }
         , Click_OpenUrl:u=>window.open(u, '_blank')
         , Click_alleSpraak:['Bokml', 'Nynorsk', 'English', 'Svenska', 'Dansk']
@@ -207,211 +208,7 @@ const ui = {
     , init:e=> ui.c.Input.addEventListener('keydown', e => { if (e.key === 'Enter') msgSend(); })
 };
 ui.init();
-/////////////// menuClick_m_ - Menu handlers ///////////////
-window.menuClick_m_=e=>{/* line or blank clicked */};
-// App >>
-// 
-window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Før opphold', cfg.appList))
-window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Under opphold', cfg.appList))
-window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Etter opphold', cfg.appList))
-window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
-window.menuClick_m_verdensnyheterviaideallya=e=>cfg.load('Verdens nyheter via Ideallya').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Verdens nyheter via Ideallya', cfg.appList))
-window.menuClick_m_blank=e=>cfg.load('(blank)').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('(blank)', cfg.appList))
-window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList))
-window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
-window.menuClick_m_minepasientdata=e=>cfg.load('Mine pasientdata').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Mine pasientdata', cfg.appList))
-window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
-//Språk >>
-window.menuClick_m_ungdom=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdom', ['Voksen', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
-window.menuClick_m_voksen=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Voksen', ['Ungdom', ...ui.menu.Click_alleSpraak])^msgRedoLast('Overrsett siste melding til en språkdrakt som passer for voksne, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
-window.menuClick_m_bokml=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Bokml', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til bokmål. Fra nå av skal du kun svare kortfattet på bokmål');
-window.menuClick_m_nynorsk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Nynorsk', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til nynorsk. Fra nå av skal du kun svare kortfattet på nynorsk');
-window.menuClick_m_svenska=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Svenska', ui.menu.Click_alleSpraak)^msgRedoLast('Øversett senaste meddelandet på svenska. Från och med nu ska du endast svara kortfattat på svenska.');
-window.menuClick_m_dansk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Dansk', ui.menu.Click_alleSpraak)^msgRedoLast('Oversett sidste besked på dansk. Fra nu af skal du kun svare kortfattet på dansk.');
-window.menuClick_m_english=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English', ui.menu.Click_alleSpraak)^msgRedoLast('Translate last message to English. From now on only answer briefly in English');
-// Sikkerhet >>
-window.menuClick_m_personvern=e=>menuClick_m_personvernerklring(e) ;
-window.menuClick_m_analyserpersonvern=e=>ui.menu.Show(false)^msgInfo('menuClick_m_analyserpersonvern ikke implementert')
-window.menuClick_m_ikkesendsensitivedata=e=>ui.menu.EBoldOnly('ikkesendsensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
-window.menuClick_m_omformulersensitivedata=e=>ui.menu.EBoldOnly('omformulersensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
-window.menuClick_m_godtasensitivedata=e=>ui.menu.EBoldOnly('godtasensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
-window.menuClick_m_ikkemottatthelserdfraai=e=>ui.menu.EBoldOnly('ikkemottatthelserdfraai',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
-window.menuClick_m_omformulerhelserd=e=>ui.menu.EBoldOnly('omformulerhelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
-window.menuClick_m_godtahelserd=e=>ui.menu.EBoldOnly('godtahelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
-// Funksjonalitet
-window.menuClick_m_mistralsmall=e=>ui.menu.Click_Model('mistralsmall');
-    window.menuClick_m_pvmistralsmall=e=>ui.menu.Click_Model('pvmistralsmall', 1);
-    window.menuClick_m_bgmistralsmall=e=>ui.menu.Click_Model('bgmistralsmall', 2);
-window.menuClick_m_mistrallarge=e=>ui.menu.Click_Model('mistrallarge');
-    window.menuClick_m_pvmistrallarge=e=>ui.menu.Click_Model('pvmistrallarge', 1);
-    window.menuClick_m_bgmistrallarge=e=>ui.menu.Click_Model('bgmistrallarge', 2);
-window.menuClick_m_gpt35=e=>ui.menu.Click_Model('GPT35');
-    window.menuClick_m_pvgpt35=e=>ui.menu.Click_Model('pvGPT35', 1);
-    window.menuClick_m_bggpt35=e=>ui.menu.Click_Model('bgGPT35', 2);
-window.menuClick_m_gpt4=e=>ui.menu.Click_Model('GPT4');
-    window.menuClick_m_pvgpt4=e=>ui.menu.Click_Model('pvGPT4', 1);
-    window.menuClick_m_bggpt4=e=>ui.menu.Click_Model('bgGPT4', 2);
-window.menuClick_m_gpto3=e=>ui.menu.Click_Model('GPTo3');
-    window.menuClick_m_pvgpto3=e=>ui.menu.Click_Model('pvGPTo3', 1);
-    window.menuClick_m_bggpto3=e=>ui.menu.Click_Model('bgGPTo3', 2);
-window.menuClick_m_geminiflash=e=>ui.menu.Click_Model('geminiflash');
-    window.menuClick_m_pvgeminiflash=e=>ui.menu.Click_Model('pvgeminiflash',1);
-    window.menuClick_m_bggeminiflash=e=>ui.menu.Click_Model('bggeminiflash', 2);
-window.menuClick_m_geminipro=e=>ui.menu.Click_Model('geminipro');
-    window.menuClick_m_pvgeminipro=e=>ui.menu.Click_Model('pvgeminipro');
-    window.menuClick_m_bggeminipro=e=>ui.menu.Click_Model('bggeminipro');
-window.menuClick_m_huggingdeepseekr1=e=>ui.menu.Click_Model('huggingdeepseekr1');
-    window.menuClick_m_pvhuggingdeepseekr1=e=>ui.menu.Click_Model('pvhuggingdeepseekr1', 1);
-    window.menuClick_m_bghuggingdeepseekr1=e=>ui.menu.Click_Model('bghuggingdeepseekr1', 2);
-window.menuClick_m_huggingdeepseekv3=e=>ui.menu.Click_Model('huggingdeepseekv3');
-    window.menuClick_m_pvhuggingdeepseekv3=e=>ui.menu.Click_Model('pvhuggingdeepseekv3', 1);
-    window.menuClick_m_bghuggingdeepseekv3=e=>ui.menu.Click_Model('bghuggingdeepseekv3', 2);
-window.menuClick_m_groklatest=e=>ui.menu.Click_Model('groklatest');
-    window.menuClick_m_pvgroklatest=e=>ui.menu.Click_Model('pvgroklatest', 1);
-    window.menuClick_m_bggroklatest=e=>ui.menu.Click_Model('bggroklatest', 2);
-window.menuClick_m_grokbeta=e=>ui.menu.Click_Model('grokbeta');
-    window.menuClick_m_pvgrokbeta=e=>ui.menu.Click_Model('pvgrokbeta', 2);
-    window.menuClick_m_bggrokbeta=e=>ui.menu.Click_Model('bggrokbeta', 2);
-window.menuClick_m_sonnetbest=e=>ui.menu.Click_Model('sonnetbest');
-    window.menuClick_m_pvsonnetbest=e=>ui.menu.Click_Model('pvsonnetbest');
-    window.menuClick_m_bgsonnetbest=e=>ui.menu.Click_Model('bgsonnetbest');
-window.menuClick_m_haikuraskest=e=>ui.menu.Click_Model('haikuraskest');
-    window.menuClick_m_pvhaikuraskest=e=>ui.menu.Click_Model('pvhaikuraskest');
-    window.menuClick_m_bghaikuraskest=e=>ui.menu.Click_Model('bghaikuraskest');
 
-window.menuClick_m_deepseekreasoner=e=>ui.menu.Click_Model('deepseek-reasoner');
-    window.menuClick_m_pvdeepseekreasoner=e=>ui.menu.Click_Model('pvdeepseek-reasoner', 1);
-    window.menuClick_m_bgdeepseekreasoner=e=>ui.menu.Click_Model('bgdeepseek-reasoner', 2);
-window.menuClick_m_deepseekchat=e=>ui.menu.Click_Model('deepseek-chat');
-    window.menuClick_m_pvdeepseekchat=e=>ui.menu.Click_Model('pvdeepseek-chat', 1);
-    window.menuClick_m_bgdeepseekchat=e=>ui.menu.Click_Model('bgdeepseek-chat', 2);
-window.menuClick_m_forskalleai=e=> {
-    let m='Gjenta', cmd='';
-    msgInfo('UNder utvikling!', false, true)
-    try{
-        for (e=ui.c.Chat.lastElementChild; e && !e.classList.contains("sent"); e=ui.c.Chat.lastElementChild)
-            e.remove();
-        m = e.innerText;
-    }catch(ex){ m=m||'Gjenta ...'}
-    ai.AllModels(0).forEach((mod,i)=> {cmd+=`ui.menu.Click_Model(ui.menu.X('`+mod+`'));ai.Request('`+m.trim()+`', msgAnswer(), `+(i+1)+`, null,0);\n`});
-    try{eval(cmd);}catch(ex){console.warn('menuClick_m_forskalleai', ex.message, cmd)}
-    ui.menu.Click_Model(cfg.aiProviderDefault.split('?')[0]);
-}
-window.menuClick_m_begynnpnytt=e=>{
-    ui.menu.Show(false);
-    ui.c.Chat.innerHTML='';
-    ai.Reset();
-    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
-    ui.c.Input.focus();
-}
-window.menuClick_m_sprsmlsforslag=e=> {
-    setting.funcQuestionSuggestion = ui.menu.EBold(e.target.innerText, !setting.funcQuestionSuggestion);
-    ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion||setting.funcDeepAnalysis);
-    msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion?'':'de'}aktivert</i>`);
-}
-window.menuClick_m_grubling=e=> {
-    setting.funcDeepAnalysis = ui.menu.EBold(e.target.innerText, !setting.funcDeepAnalysis);
-    ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion||setting.funcDeepAnalysis);
-    msgInfo(`<i>Grubling ${setting.funcDeepAnalysis?'':'de'}aktivert</i>`);
-}
-// Om >>
-window.menuClick_m_kontakt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/snakk-med-oss');
-window.menuClick_m_personvernerklring=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
-window.menuClick_m_barkode=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('barcode.jpg');
-window.menuClick_m_prompt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
-window.menuClick_m_simuler=e=>{
-    ui.c.Input.value = 'Hvordan kommer jeg meg dit?';
-    setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { ui.c.Input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
-    ui.menu.Show(false);
-}
-window.menuClick_m_listmodeller=e=>ui.menu.Click_Models(e);
-window.menuClick_m_debug=e=>ui.menu.Show(false)^(setting.debug=ui.menu.EBold('debug'));
-/////////////// menuClick_m_ - Menu redirect ///////////////
-window.menuClickLeaf=e=>{ // handle click on leaf menu item
-    const mi = e.target, mt = mi.innerText.trim(), fn=ui.menu.Fn(mt)
-        , mtp=mi.parentElement.previousElementSibling.innerText.split('\n')[0].trim()
-        , fnp=ui.menu.Fn(mtp);
-    if (typeof window[fn] === 'function') window[fn](e);
-    else if (typeof window[fnp] === 'function') window[fnp](e, mt);
-    else e.target.outerHTML = `window.${fn}=e=> || ${fnp}=(e,sm='${mt}'){};`;
-}
-/////////////// msg - Chat UI ///////////////
-window.msgIsSimulate=msg=>msg.substring(0, 10) == "Simulate: ";
-window.msgAsk=msgQ=> {
-    const el = ((b) => (b.className = "row sent", b.innerHTML = `&nbsp;<img class="icon" src="${ui.c.ImgQ}" onclick="ui.c.ImgQClick(event)"><div class="msg">${msgQ}</div>`, b))(document.createElement("div"));
-    ui.c.ImgSpaceRemove();
-    ui.c.Chat.append(el);
-    ui.c.ImgSpaceAppend();
-    ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
-    return el;
-}
-window.msgAnswer=(msgA=ui.c.tRotating, isDone=false)=> {
-    const el = ((b) => (b.className = "row received", b.innerHTML = `<div class="msg">${msgA}</div><img class="icon${isDone?'':' rotating'}" src="${ui.c.ImgA}" onclick="ui.c.ImgAClick(event)">&nbsp;`, b))(document.createElement("div"));
-    ui.c.ImgSpaceRemove();
-    ui.c.Chat.append(el);
-    ui.c.ImgSpaceAppend();
-    ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
-    return el;
-}
-window.msgInfo=(msg,handL=false,handR=false)=> {
-    const elI=b=>b?`<img class="icon" src="${ui.c.ImgH}" onclick="ui.c.ImgHClick(event)">`:``
-    const el = ((b) => (b.innerHTML = `<div class="row info">${elI(handL)}<div>${msg} ${handL|handR?'':'<span style="cursor: pointer" onclick="ui.c.ImgHClick(event)">&nbsp;✖&nbsp;</span>'}</div>${elI(handR)}</div>`, b))(document.createElement("div"));
-    ui.c.ImgSpaceRemove();
-    ui.c.Chat.append(el);
-    //ui.c.ImgSpaceAppend();
-    //ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
-    return el;
-}
-window.msgSend=(msgQ, onDone)=> {
-    let msgQUse = msgQ?.trim() || ui.c.Input.value.trim();
-    let r=null;
-    if (!msgQUse) msgRedoLast()
-    else if (typeof window[ui.menu.Fn(msgQUse)] === 'function') window[ui.menu.Fn(msgQUse)](null);
-    else {
-        if (!msgQ) ui.c.Input.value = '';
-        r = msgAsk(msgQUse.split(/\|/)[0]);
-        if (msgIsSimulate(msgQUse)) setTimeout(() => msgReceive_Placeholder(msgQUse, msgAnswer(), onDone), 2000);
-        else ai.Request(msgQUse, msgAnswer(), 0, onDone);
-    }
-    return r;
-}
-window.msgReceive_Placeholder=(msgQ, divR, onDone)=>{
-    let msgA = 'Svar på "' + msgQ + '"';
-    if (msgIsSimulate(msgQ.split(/\|/)[1]))
-        msgA = msgQ.split(/\|/)[1].substring(10);
-    const msg = divR.querySelector(".msg"), icon = divR.querySelector(".icon");
-    msg.innerText = msgA;
-    icon.classList.remove("rotating"); // Remove rotation
-    //ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
-    onDone?.(divR, msgA);
-}
-window.msgRedoLast=m=> {
-    ui.menu.Show(false);
-    for (e=ui.c.Chat.lastElementChild; e && !e.classList.contains("sent"); e=ui.c.Chat.lastElementChild)
-        e.remove();
-    if (!m || m.length==0) try{ m = ui.c.Chat.lastElementChild.querySelector(".msg").innerHTML; }catch(e){m='Gjenta'}
-    let divR = msgSend(m);
-    divR.remove();
-}
-window.msgSendSpeak=()=> {
-    let r = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    r.lang = 'no-NO'; // Set language to Norwegian
-    r.start();
-    r.onresult = e => {
-        ui.c.Input.value += e.results[0][0].transcript;
-        if (ui.c.Input.value.length) 
-            msgSend(null, msgRecieveTalkAndSend);
-    };
-}
-window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
-    let u = new SpeechSynthesisUtterance(t);
-    u.lang = 'no-NO'; 
-    let voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('no'));
-    if (!bIsRetry && !voices.length) 
-        return setTimeout(() => msgRecieveTalkAndSend(t, true), 200); // Ensure voices are loaded
-    speechSynthesis.speak(u);
-    msgSendSpeak();
-}
 /////////////// AI ///////////////
 const ai={
     Raw2Htm:raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
@@ -512,7 +309,7 @@ const ai={
         });
     }
     , async ParsePerform(f, i=0) {
-        //setting.dMsg('ParsePerform begin', i)
+        setting.dMsg('ParsePerform begin', i)
         if (i < f.length && (i || f[i]?.length)) {
             let m = decodeURIComponent(f[i].trim()), fn = ui.menu.Fn(m);
             setting.dMsg('ParsePerform msg:' + m, fn);
@@ -523,9 +320,179 @@ const ai={
             await ai.ParseWaitReqBefore();
             await ai.ParsePerform(f, i + 1);
         }
-        //setting.dMsg('ParsePerform end', i)
+        setting.dMsg('ParsePerform end', i)
     }
     , Parse:s=> ai.ParsePerform(s.replace(/\?\?/g, '?').split('?'))
+}
+
+/////////////// menuClick_m_ - Menu handlers ///////////////
+window.menuClick_m_=e=>{/* line or blank clicked */};
+// App >> // to be generated later...
+window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Før opphold', cfg.appList))
+window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Under opphold', cfg.appList))
+window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Etter opphold', cfg.appList))
+window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
+window.menuClick_m_verdensnyheterviaideallya=e=>cfg.load('Verdens nyheter via Ideallya').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Verdens nyheter via Ideallya', cfg.appList))
+window.menuClick_m_blank=e=>cfg.load('(blank)').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('(blank)', cfg.appList))
+window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList))
+window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
+window.menuClick_m_minepasientdata=e=>cfg.load('Mine pasientdata').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Mine pasientdata', cfg.appList))
+window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
+
+// Språk >>
+window.menuClick_m_ungdom=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdom', ['Voksen', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
+window.menuClick_m_voksen=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Voksen', ['Ungdom', ...ui.menu.Click_alleSpraak])^msgRedoLast('Overrsett siste melding til en språkdrakt som passer for voksne, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
+window.menuClick_m_bokml=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Bokml', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til bokmål. Fra nå av skal du kun svare kortfattet på bokmål');
+window.menuClick_m_nynorsk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Nynorsk', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til nynorsk. Fra nå av skal du kun svare kortfattet på nynorsk');
+window.menuClick_m_svenska=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Svenska', ui.menu.Click_alleSpraak)^msgRedoLast('Øversett senaste meddelandet på svenska. Från och med nu ska du endast svara kortfattat på svenska.');
+window.menuClick_m_dansk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Dansk', ui.menu.Click_alleSpraak)^msgRedoLast('Oversett sidste besked på dansk. Fra nu af skal du kun svare kortfattet på dansk.');
+window.menuClick_m_english=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English', ui.menu.Click_alleSpraak)^msgRedoLast('Translate last message to English. From now on only answer briefly in English');
+
+// Funksjonalitet >>
+window.menuClick_m_begynnpnytt=e=>{
+    ui.menu.Show(false);
+    ui.c.Chat.innerHTML='';
+    ai.Reset();
+    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
+    ui.c.Input.focus();
+}
+window.menuClick_m_analyserpersonvern=e=>ui.menu.Show(false)^msgInfo('menuClick_m_analyserpersonvern ikke implementert')
+window.menuClick_m_forskalleai=e=> {
+    let m='Gjenta', cmd='';
+    msgInfo('UNder utvikling!', false, true)
+    try{
+        for (e=ui.c.Chat.lastElementChild; e && !e.classList.contains("sent"); e=ui.c.Chat.lastElementChild)
+            e.remove();
+        m = e.innerText;
+    }catch(ex){ m=m||'Gjenta ...'}
+    ai.AllModels(0).forEach((mod,i)=> {cmd+=`ui.menu.Click_Model(ui.menu.X('`+mod+`'));ai.Request('`+m.trim()+`', msgAnswer(), `+(i+1)+`, null,0);\n`});
+    try{eval(cmd);}catch(ex){console.warn('menuClick_m_forskalleai', ex.message, cmd)}
+    ui.menu.Click_Model(cfg.aiProviderDefault.split('?')[0]);
+}
+window.menuClick_m_prompt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
+window.menuClick_m_simuler=e=>{
+    ui.c.Input.value = 'Hvordan kommer jeg meg dit?';
+    setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { ui.c.Input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
+    ui.menu.Show(false);
+}
+window.menuClick_m_listmodeller=e=>ui.menu.Click_Models(e);
+
+// Innstillinger >>
+window.menuClick_m_lagrelokalt=e=>ui.menu.EBold(e.target.innerText)
+window.menuClick_m_sprsmlsforslag=e=> {
+    setting.funcQuestionSuggestion = ui.menu.EBold(e.target.innerText, !setting.funcQuestionSuggestion);
+    ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion||setting.funcDeepAnalysis);
+    msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion?'':'de'}aktivert</i>`);
+}
+window.menuClick_m_grubling=e=> {
+    setting.funcDeepAnalysis = ui.menu.EBold(e.target.innerText, !setting.funcDeepAnalysis);
+    ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion||setting.funcDeepAnalysis);
+    msgInfo(`<i>Grubling ${setting.funcDeepAnalysis?'':'de'}aktivert</i>`);
+}
+window.menuClick_m_ikkesendsensitivedata=e=>ui.menu.EBoldOnly('ikkesendsensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
+    window.menuClick_m_omformulersensitivedata=e=>ui.menu.EBoldOnly('omformulersensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
+    window.menuClick_m_godtasensitivedata=e=>ui.menu.EBoldOnly('godtasensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
+window.menuClick_m_ikkemottatthelserdfraai=e=>ui.menu.EBoldOnly('ikkemottatthelserdfraai',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
+    window.menuClick_m_omformulerhelserd=e=>ui.menu.EBoldOnly('omformulerhelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
+    window.menuClick_m_godtahelserd=e=>ui.menu.EBoldOnly('godtahelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
+// Innstillinger >> AI >>
+const menuClicks_m=m=>`window.menuClick_m_${m}=e=>ui.menu.Click_Model('${m}');
+    window.menuClick_m_pv${m}=e=>ui.menu.Click_Model('pv${m}', 1);
+    window.menuClick_m_bg${m}=e=>ui.menu.Click_Model('bg${m}', 2);`
+ai.AllModels(0).forEach(e=>eval(menuClicks_m(ui.menu.X(e))))
+
+window.menuClick_m_debug=e=>(setting.debug=ui.menu.EBold('debug'));
+
+// Om >>
+window.menuClick_m_kontakt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/snakk-med-oss');
+window.menuClick_m_personvernerklring=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
+window.menuClick_m_barkode=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('barcode.jpg');
+
+/////////////// menuClick_m_ - Menu redirect ///////////////
+window.menuClickLeaf=e=>{ // handle click on leaf menu item
+    const mi = e.target, mt = mi.innerText.trim(), fn=ui.menu.Fn(mt)
+        , mtp=mi.parentElement.previousElementSibling.innerText.split('\n')[0].trim()
+        , fnp=ui.menu.Fn(mtp);
+    if (typeof window[fn] === 'function') window[fn](e);
+    else if (typeof window[fnp] === 'function') window[fnp](e, mt);
+    else e.target.outerHTML = `window.${fn}=e=>{};`;
+}
+/////////////// msg - Chat UI ///////////////
+window.msgIsSimulate=msg=>msg.substring(0, 10) == "Simulate: ";
+window.msgAsk=msgQ=> {
+    const el = ((b) => (b.className = "row sent", b.innerHTML = `&nbsp;<img class="icon" src="${ui.c.ImgQ}" onclick="ui.c.ImgQClick(event)"><div class="msg">${msgQ}</div>`, b))(document.createElement("div"));
+    ui.c.ImgSpaceRemove();
+    ui.c.Chat.append(el);
+    ui.c.ImgSpaceAppend();
+    ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
+    return el;
+}
+window.msgAnswer=(msgA=ui.c.tRotating, isDone=false)=> {
+    const el = ((b) => (b.className = "row received", b.innerHTML = `<div class="msg">${msgA}</div><img class="icon${isDone?'':' rotating'}" src="${ui.c.ImgA}" onclick="ui.c.ImgAClick(event)">&nbsp;`, b))(document.createElement("div"));
+    ui.c.ImgSpaceRemove();
+    ui.c.Chat.append(el);
+    ui.c.ImgSpaceAppend();
+    ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
+    return el;
+}
+window.msgInfo=(msg,handL=false,handR=false)=> {
+    const elI=b=>b?`<img class="icon" src="${ui.c.ImgH}" onclick="ui.c.ImgHClick(event)">`:``
+    const el = ((b) => (b.innerHTML = `<div class="row info">${elI(handL)}<div>${msg} ${handL|handR?'':'<span style="cursor: pointer" onclick="ui.c.ImgHClick(event)">&nbsp;✖&nbsp;</span>'}</div>${elI(handR)}</div>`, b))(document.createElement("div"));
+    ui.c.ImgSpaceRemove();
+    ui.c.Chat.append(el);
+    //ui.c.ImgSpaceAppend();
+    //ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
+    return el;
+}
+window.msgSend=(msgQ, onDone)=> {
+    let msgQUse = msgQ?.trim() || ui.c.Input.value.trim();
+    let r=null;
+    if (!msgQUse) msgRedoLast()
+    else if (typeof window[ui.menu.Fn(msgQUse)] === 'function') window[ui.menu.Fn(msgQUse)](null);
+    else {
+        if (!msgQ) ui.c.Input.value = '';
+        r = msgAsk(msgQUse.split(/\|/)[0]);
+        if (msgIsSimulate(msgQUse)) setTimeout(() => msgReceive_Placeholder(msgQUse, msgAnswer(), onDone), 2000);
+        else ai.Request(msgQUse, msgAnswer(), 0, onDone);
+    }
+    return r;
+}
+window.msgReceive_Placeholder=(msgQ, divR, onDone)=>{
+    let msgA = 'Svar på "' + msgQ + '"';
+    if (msgIsSimulate(msgQ.split(/\|/)[1]))
+        msgA = msgQ.split(/\|/)[1].substring(10);
+    const msg = divR.querySelector(".msg"), icon = divR.querySelector(".icon");
+    msg.innerText = msgA;
+    icon.classList.remove("rotating"); // Remove rotation
+    //ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
+    onDone?.(divR, msgA);
+}
+window.msgRedoLast=m=> {
+    ui.menu.Show(false);
+    for (e=ui.c.Chat.lastElementChild; e && !e.classList.contains("sent"); e=ui.c.Chat.lastElementChild)
+        e.remove();
+    if (!m || m.length==0) try{ m = ui.c.Chat.lastElementChild.querySelector(".msg").innerHTML; }catch(e){m='Gjenta'}
+    let divR = msgSend(m);
+    divR.remove();
+}
+window.msgSendSpeak=()=> {
+    let r = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    r.lang = 'no-NO'; // Set language to Norwegian
+    r.start();
+    r.onresult = e => {
+        ui.c.Input.value += e.results[0][0].transcript;
+        if (ui.c.Input.value.length) 
+            msgSend(null, msgRecieveTalkAndSend);
+    };
+}
+window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
+    let u = new SpeechSynthesisUtterance(t);
+    u.lang = 'no-NO'; 
+    let voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('no'));
+    if (!bIsRetry && !voices.length) 
+        return setTimeout(() => msgRecieveTalkAndSend(t, true), 200); // Ensure voices are loaded
+    speechSynthesis.speak(u);
+    msgSendSpeak();
 }
 /////////////// Init ///////////////
 async function InitializeChat(q=null) {
