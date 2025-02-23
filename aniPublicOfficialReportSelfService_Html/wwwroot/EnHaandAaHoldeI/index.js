@@ -99,6 +99,8 @@ const lagring={
     init:()=>{
         lagring.aktiv = localStorage.getItem('HaandAHoldeI aktiv');
         console.log('init lagring.aktiv', lagring.aktiv)
+        if (lagring.aktiv==null)
+            localStorage.setItem('HaandAHoldeI aktiv', 0)
         lagring.aktiv|=0;
     }
     , aktiv:null
