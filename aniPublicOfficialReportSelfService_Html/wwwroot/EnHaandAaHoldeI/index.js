@@ -97,16 +97,21 @@ const setting={
 /////////////// lagring ///////////////
 const lagring={
     init:()=>{
-        lagring.aktiv = localStorage.getItem('HaandAHoldeI aktiv');
+        lagring.aktiv = localStorage.getItem(lagring.lagrePre+'aktiv');
         console.log('init lagring.aktiv', lagring.aktiv)
-        if (lagring.aktiv==null)
-            localStorage.setItem('HaandAHoldeI aktiv', 0)
+        if (lagring.aktiv==null) {
+            console.log('init lagring.aktiv initier')
+            localStorage.setItem(lagring.lagrePre+'aktiv', 0)
+            lagring.aktiv = localStorage.getItem(lagring.lagrePre+'aktiv');
+            console.log('init lagring.aktiv initier', lagring.aktiv)
+        }
         lagring.aktiv|=0;
     }
+    , lagrePre:'HaandAaHoldeI '
     , aktiv:null
     , lagreaktiv:()=>{
         console.log('lagreaktiv lagring.aktiv', lagring.aktiv)
-        localStorage.setItem('HaandAHoldeI aktiv', lagring.aktiv)
+        localStorage.setItem(lagring.lagrePre+'aktiv', lagring.aktiv)
     }
     // // Lagre data
     // // Slette data
@@ -414,9 +419,9 @@ window.menuClick_m_listmodeller=e=>ui.menu.Click_Models(e);
 // Innstillinger >>
 window.menuClick_m_lagrelokalt=e=>{
     let l=++lagring.aktiv%2;
-
     lagring.aktiv=l;
     ui.visLagre()
+    lagring.lagreaktiv();
 /* 
     let storageActive = localStorage.getItem('storage') === "true";
 
