@@ -73,10 +73,10 @@ const setting={
             ||Hjemmelegen min >>§ -|||Biopsykososial modell|||Kroppens stressystem|||Mine pasientdata
             ||Ideallya >>§-|||Verdens nyheter via Ideallya
             ||Hånd å holde i >>§-|||Blank§*|||Personvernrådgiveren|||Kommer...
-        |Språk >>§-||Ungdom||Voksen§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
+        |Språk >>§-||Ungdomsspråk||Voksenspråk§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
         |Funksjonalitet >>§-||Begynn på nytt||Analyser Personvern||Forsøk alle AI
             ||Utvikling >>§-|||Prompt|||Simuler|||List modeller
-        |Innstillinger >>§-
+        |Innstillinger >>§-||Begynn på nytt||----------
             ||Lagre lokalt§ *
             ||Spørsmålsforslag§ *
             ||Grubling
@@ -94,15 +94,45 @@ const setting={
     , hindreHelseraad:true
     , omformulerHelseraad:false
 }
+/////////////// lagring ///////////////
+const lagring={
+    init:()=>{
+        lagring.aktiv = localStorage.getItem('HaandAHoldeI aktiv');
+        console.log('init lagring.aktiv', lagring.aktiv)
+        lagring.aktiv|=0;
+    }
+    , aktiv:null
+    , lagreaktiv:()=>{
+        console.log('lagreaktiv lagring.aktiv', lagring.aktiv)
+        localStorage.setItem('HaandAHoldeI aktiv', lagring.aktiv)
+    }
+    // // Lagre data
+    // // Slette data
+    // sessionStorage.removeItem("tempData");
+    // // Slette alt lagret i sessionStorage
+    // sessionStorage.clear();
+    , dirty:false
+}
+lagring.init();
 /////////////// ui and Shortcuts //////////////
 const ui = {
-    c: {
+    init:e=>{ 
+        ui.c.Input.addEventListener('keydown',e=>{ if (e.key === 'Enter')msgSend();});
+        ui.c.Speak.addEventListener('click',()=>msgSendSpeak());
+        ui.c.Send.addEventListener('click',()=>msgSend());
+        ui.c.Lagres.addEventListener('click',()=>menuClick_m_lagrelokalt());
+        setTimeout(()=>ui.visLagre(),250);
+    }
+   , c: {
         Chat: document.querySelector('main')
         , Menu: document.querySelector('#menu')
         , Header: document.querySelector('#header')
         , HeaderTitle: document.querySelector('#title')
+        , Lagres: document.querySelector('header span')
         , Suggestions: document.querySelector('#suggestions')
         , Input: document.querySelector('footer input')
+        , Speak: document.querySelector('#speak')
+        , Send: document.querySelector('#send')
         , ImgQ: 'https://upload.wikimedia.org/wikipedia/commons/2/29/Human_balance.png'
         , ImgQClick: e => {
             let r=e.target.closest('.row');
@@ -118,10 +148,13 @@ const ui = {
         , ImgDiceU: ['https://upload.wikimedia.org/wikipedia/commons/', '1/1b/Dice-1-b.svg', '5/5f/Dice-2-b.svg','b/b1/Dice-3-b.svg','f/fd/Dice-4-b.svg','0/08/Dice-5-b.svg','2/26/Dice-6-b.svg', '9/99/Dice-0.svg']
         , ImgDice:i=>`<img class="icon dice" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[i||7]}">`
         , ImgSpaceRemove:()=>document.querySelector('.space')?.remove()
-        , ImgSpaceAppend:()=>ui.c.Chat.lastElementChild.innerHTML+=`<img class="icon space" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[7]}">`
-    
-
+        , ImgSpaceAppend:()=>ui.c.Chat.lastElementChild.innerHTML+=`<img class="icon space" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[7]}">`    
         , tRotating: '<div class="rotatingC">&#8634</div>'
+    }
+    , visLagre:e=>{
+        l = lagring.aktiv;
+        ui.c.Lagres.innerHTML = ['&nbsp;&nbsp;🔒&nbsp;&nbsp;lagres ikke', '&nbsp;&nbsp;💾&nbsp;&nbsp;lagres lokalt'][l]//ikke, lokalt
+        ui.menu.EBold('lagrelokalt', lagring.aktiv>0);
     }
     , Show: (el,b) => (el.classList.toggle('hidden', !(b ?? el.classList.contains('hidden'))), !!b)
     , _sizeI: 0,
@@ -205,7 +238,6 @@ const ui = {
             });
         }
     }
-    , init:e=> ui.c.Input.addEventListener('keydown', e => { if (e.key === 'Enter') msgSend(); })
 };
 ui.init();
 
@@ -340,8 +372,8 @@ window.menuClick_m_minepasientdata=e=>cfg.load('Mine pasientdata').then(()=>Init
 window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
 
 // Språk >>
-window.menuClick_m_ungdom=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdom', ['Voksen', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
-window.menuClick_m_voksen=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Voksen', ['Ungdom', ...ui.menu.Click_alleSpraak])^msgRedoLast('Overrsett siste melding til en språkdrakt som passer for voksne, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
+window.menuClick_m_ungdomssprk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdomsspråk', ['Voksenspråk', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
+window.menuClick_m_voksensprk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Voksenspråk', ['Ungdomsspråk', ...ui.menu.Click_alleSpraak])^msgRedoLast('Overrsett siste melding til en språkdrakt som passer for voksne, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
 window.menuClick_m_bokml=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Bokml', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til bokmål. Fra nå av skal du kun svare kortfattet på bokmål');
 window.menuClick_m_nynorsk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Nynorsk', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til nynorsk. Fra nå av skal du kun svare kortfattet på nynorsk');
 window.menuClick_m_svenska=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Svenska', ui.menu.Click_alleSpraak)^msgRedoLast('Øversett senaste meddelandet på svenska. Från och med nu ska du endast svara kortfattat på svenska.');
@@ -378,7 +410,45 @@ window.menuClick_m_simuler=e=>{
 window.menuClick_m_listmodeller=e=>ui.menu.Click_Models(e);
 
 // Innstillinger >>
-window.menuClick_m_lagrelokalt=e=>ui.menu.EBold(e.target.innerText)
+window.menuClick_m_lagrelokalt=e=>{
+    let l=++lagring.aktiv%2;
+
+    lagring.aktiv=l;
+    ui.visLagre()
+/* 
+    let storageActive = localStorage.getItem('storage') === "true";
+
+    const load = () => (console.log("Laster forrige tilstand..."), storageActive = true);
+    const save = () => (console.log("Lagrer tilstand..."), storageActive = true);
+
+    document.getElementById('btn').addEventListener('click', () => {
+      if (!storageActive) {
+        localStorage.getItem('state')
+          ? confirm("Laste forrige?") ? load() : save()
+          : save();
+      } else {
+        save();
+      }
+      // Oppdater status i localStorage
+      localStorage.setItem('storage', storageActive);
+    });
+//     if (setting.lagring){
+//         if (setting.dirty) { // endret
+//         if ( queryYN('Overskrive forrige tilstand?'))
+//             load()
+//         else
+//             save()
+//         }
+//     }
+//     else {
+//         if (dirty)
+//             if (queryYN('slette innstillinger?'))
+// {}                clear()
+//             }
+//     ui.c.Lagres.innerHTML=ui.lagresText[1]
+//     ui.menu.EBold(e.target.innerText)
+*/
+}
 window.menuClick_m_sprsmlsforslag=e=> {
     setting.funcQuestionSuggestion = ui.menu.EBold(e.target.innerText, !setting.funcQuestionSuggestion);
     ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion||setting.funcDeepAnalysis);

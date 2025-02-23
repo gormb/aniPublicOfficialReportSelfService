@@ -45,3 +45,4 @@ button:hover { background: #0056b3; }
 .rotating { display: inline-block; animation: rotate 10s linear infinite; }
 @keyframes rotateC { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
 .rotatingC { display: inline-block; animation: rotateC 2s linear infinite; }
+.save { cursor: pointer;  }
