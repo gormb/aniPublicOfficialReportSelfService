@@ -123,7 +123,7 @@ const ui = {
         ui.c.Speak.addEventListener('click',()=>msgSendSpeak());
         ui.c.Send.addEventListener('click',()=>msgSend());
         ui.c.Lagres.addEventListener('click',()=>menuClick_m_lagrelokalt());
-        setTimeout(()=>ui.visLagre(),250);
+        setTimeout(()=>ui.visLagre(),1000);
     }
    , c: {
         Chat: document.querySelector('main')
