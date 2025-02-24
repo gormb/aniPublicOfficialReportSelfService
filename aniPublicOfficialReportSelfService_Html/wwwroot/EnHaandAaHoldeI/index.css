@@ -3,7 +3,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: var(--font-size); }
 .hidden { display: none; }
 .bold { font-weight: 700; }
-body { display: flex; flex-direction: column; height: 100dvh; background-color: var(--light-msg); color: #000; }
+body { display: flex; flex-direction: column; height: 100.3dvh; background-color: var(--light-msg); color: #000; }
     body.dark-mode { background-color: var(--dark-bg); color: #fff; }
 a { color: var(--primary-color); }
     body.dark-mode a { color: #4a90e2; }
