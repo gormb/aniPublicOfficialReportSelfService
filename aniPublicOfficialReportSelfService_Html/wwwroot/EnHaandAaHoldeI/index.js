@@ -162,7 +162,8 @@ const ui = {
         ui.c.Send.addEventListener('click',()=>msgSend());
         ui.c.Lagres.addEventListener('click',()=>menuClick_m_lagrelokalt());
         setTimeout(()=>ui.visLagre(),1000);
-        addEventListener("DOMContentLoaded",()=>setTimeout(()=>window.scrollTo(0, 1), 100));
+        
+        document.addEventListener("DOMContentLoaded",()=>setTimeout(()=>window.scrollTo(0, 1), 250));
     }
    , c: {
         Chat: document.querySelector('main')

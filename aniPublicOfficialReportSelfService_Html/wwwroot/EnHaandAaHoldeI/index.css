@@ -4,6 +4,7 @@
 .hidden { display: none; }
 .bold { font-weight: 700; }
 body { display: flex; flex-direction: column; height: 100.3dvh; background-color: var(--light-msg); color: #000; }
+    body::after {content: "";display: block;height: 1px;}
     body.dark-mode { background-color: var(--dark-bg); color: #fff; }
 a { color: var(--primary-color); }
     body.dark-mode a { color: #4a90e2; }
