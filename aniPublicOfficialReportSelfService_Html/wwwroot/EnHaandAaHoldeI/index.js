@@ -3,7 +3,16 @@
 // meny for tilbakemeldinger
 const cfg={
     app:'...'
-    , appList:['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial modell', 'Kroppens stressystem', 'Verdens nyheter via Ideallya', 'Mine pasientdata']
+    , appProvider:[['Helse >>§-',[
+            'Hjemmelegen min >>§-',['Biopsykososial modell','Kroppens stressystem','Mine pasientdata']
+            ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
+        ]],['Generelt >>§ -',[
+            'Hånd å holde i >>§-', ['Blank§*','Personvernrådgiveren','Kommer...']
+            ,'NAPHA >>',['NAPHA-veiviseren']
+            ,'Ideallya >>§-',['Verdens nyheter via Ideallya']]
+        ]]
+    , menusForAppProvider: () => cfg.appProvider.map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
+    , appList:()=>['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial modell', 'Kroppens stressystem', 'Verdens nyheter via Ideallya', 'Mine pasientdata', 'NAPHA-veiviseren']
     , aiPromptWelcomeQuestion:`Hva er velkomstmeldingen?`
     , aiPromptWelcome:`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`
     , aiPrompt:[{ role: `system`, content: 
@@ -66,25 +75,32 @@ const cfg={
     }    
 }
 /////////////// menu and state //////////////
+
 const setting={
     debug:false, dMsg:(k,v)=>{if(setting.debug) {if(v)console.warn(k,v); else console.warn(k)}}
-    , menu: `App >>§ -
-            ||CatoSenteret >>§-|||Før opphold|||Under opphold|||Etter opphold
-            ||Hjemmelegen min >>§ -|||Biopsykososial modell|||Kroppens stressystem|||Mine pasientdata
-            ||Ideallya >>§-|||Verdens nyheter via Ideallya
-            ||Hånd å holde i >>§-|||Blank§*|||Personvernrådgiveren|||Kommer...
-        |Språk >>§-||Ungdomsspråk||Voksenspråk§*||----------||Bokmål§*||Nynorsk||Svenska||Dansk||English
-        |Funksjonalitet >>§-||Begynn på nytt||Analyser Personvern||Forsøk alle AI
-            ||Utvikling >>§-|||Prompt|||Simuler|||List modeller
-        |Innstillinger >>§-||Begynn på nytt||----------
+    , menu: `
+        App >>§ - ${ cfg.menusForAppProvider('') }
+        |Apps >>§-
+            ||Helse >>
+                |||CatoSenteret >>§-||||Før opphold||||Under opphold||||Etter opphold
+                |||Hjemmelegen min >>§ -||||Biopsykososial modell||||Kroppens stressystem||||Mine pasientdata
+            ||Generelt >>§-
+                |||Ideallya >>§-||||Verdens nyheter via Ideallya
+                |||Hånd å holde i >>§-||||Blank§*||||Personvernrådgiveren||||Kommer...
+        |Språkdrakt >>§-||Sjargong >>|||Ungdomsspråk|||Voksenspråk§*
+            ||Språk|||Bokmål§*|||Nynorsk|||Svenska|||Dansk|||English
+        |Funksjonalitet >>§-||Analyser Personvern||Forsøk alle AI
+            ||Utvikling >>§-|||Prompt|||Simuler|||List modeller|||Debug
+        |Innstillinger >>§-||Begynn på nytt...
             ||Lagre lokalt§ *
             ||Spørsmålsforslag§ *
             ||Grubling
-            ||Sikkerhet >>§-|||Ikke send sensitive data|||Omformuler sensitive data|||Godta sensitive data§*|||----------|||Ikke mottatt helseråd fra AI|||Omformuler helseråd|||Godta helseråd§*
+            ||Sikkerhet >>§-
+                |||Sensitive data >>§-||||Ikke send sensitive data||||Omformuler sensitive data||||Godta sensitive data§*
+                |||Helseråd fra AI >>§-||||Ikke mottatt helseråd fra AI||||Omformuler helseråd||||Godta helseråd§*
             ||AI >>§-|||AI tilbyder >>§-${ cfg.menusForAiProvider('')}
                 |||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }
                 |||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
-            ||Debug
         |Om >>§-||Kontakt||Personvernerklæring||Barkode
         `.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
     , funcQuestionSuggestion: false
@@ -401,16 +417,18 @@ const ai={
 /////////////// menuClick_m_ - Menu handlers ///////////////
 window.menuClick_m_=e=>{/* line or blank clicked */};
 // App >> // to be generated later...
-window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Før opphold', cfg.appList))
-window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Under opphold', cfg.appList))
-window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Etter opphold', cfg.appList))
-window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList))
-window.menuClick_m_verdensnyheterviaideallya=e=>cfg.load('Verdens nyheter via Ideallya').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Verdens nyheter via Ideallya', cfg.appList))
-window.menuClick_m_blank=e=>cfg.load('(blank)').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('(blank)', cfg.appList))
-window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList))
-window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList))
-window.menuClick_m_minepasientdata=e=>cfg.load('Mine pasientdata').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Mine pasientdata', cfg.appList))
+window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Før opphold', cfg.appList()))
+window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Under opphold', cfg.appList()))
+window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Etter opphold', cfg.appList()))
+window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList()))
+window.menuClick_m_verdensnyheterviaideallya=e=>cfg.load('Verdens nyheter via Ideallya').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Verdens nyheter via Ideallya', cfg.appList()))
+window.menuClick_m_blank=e=>cfg.load('(blank)').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('(blank)', cfg.appList()))
+window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList()))
+window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList()))
+window.menuClick_m_minepasientdata=e=>cfg.load('Mine pasientdata').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Mine pasientdata', cfg.appList()))
 window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
+
+window.menuClick_m_naphaveiviseren=e=>cfg.load('NAPHA-veiviseren').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('NAPHA-veiviseren', cfg.appList()))
 
 // Språk >>
 window.menuClick_m_ungdomssprk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdomsspråk', ['Voksenspråk', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
@@ -591,3 +609,5 @@ async function InitializeChat(q=null) {
         ui.menu.Show(true)
     setting.dMsg('InitializeChat end', q||'(null)')
 }
+
+
