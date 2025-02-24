@@ -32,16 +32,16 @@ const cfg={
             , [['Sonnet (best)', 'claude-3-5-sonnet-20241022'], ['Haiku (raskest)', 'claude-3-5-haiku-20241022']]
             , 'anthropic-version:2023-06-01^anthropic-dangerous-direct-browser-access:true'
         ]
-        ,['Google Gemini (USA tbd)', 'https://generativelanguage.googleapis.com/v1beta/openai/', `F%5C4%2FR%2BDEG%7BN8O77%3D4%5E%2C%3BZMQ%3BpOCH5%3F)Z()%25%5D%3EP_`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        ,['Google Gemini (USA)?', 'https://generativelanguage.googleapis.com/v1beta/openai/', `F%5C4%2FR%2BDEG%7BN8O77%3D4%5E%2C%3BZMQ%3BpOCH5%3F)Z()%25%5D%3EP_`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             // støtter ikke cross-site
             , [['Gemini flash', 'gemini-1.5-flash'], ['Gemini pro', 'gemini-1.5-pro']]]
-        ,['Hugging Face (USA tbd)', 'https://api-inference.huggingface.co/models/', escape(`/3Q:M?3VKJVPU]Y,-C BM:Q:0]O#(E"^(/2SV`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        ,['Hugging Face (USA)?', 'https://api-inference.huggingface.co/models/', escape(`/3Q:M?3VKJVPU]Y,-C BM:Q:0]O#(E"^(/2SV`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             // støtter ikke >10GB
             , [['Hugging DeepSeek R1', 'deepseek-ai/DeepSeek-R1'], ['Hugging DeepSeek V3', 'deepseek-ai/DeepSeek-V3']]]
-        ,['Deepseek (Kina tbd)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        ,['Deepseek (Kina)?', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             // stengt for å kjøpe credits
             , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]]
-    , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `|||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
+    , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `||||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`|||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
     , load:c=>{
         return new Promise((y, n) => {
@@ -81,9 +81,9 @@ const setting={
             ||Spørsmålsforslag§ *
             ||Grubling
             ||Sikkerhet >>§-|||Ikke send sensitive data|||Omformuler sensitive data|||Godta sensitive data§*|||----------|||Ikke mottatt helseråd fra AI|||Omformuler helseråd|||Godta helseråd§*
-            ||AI tilbyder >>§-${ cfg.menusForAiProvider('')}
-            ||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }
-            ||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
+            ||AI >>§-|||AI tilbyder >>§-${ cfg.menusForAiProvider('')}
+                |||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }
+                |||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
             ||Debug
         |Om >>§-||Kontakt||Personvernerklæring||Barkode
         `.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
@@ -107,8 +107,9 @@ const lagring={
         }
         lagring.aktiv|=0;
     }
-    , lagrePre:'HaandAaHoldeI '
     , aktiv:null
+    , lagrePre:'HaandAaHoldeI '
+    , aktivApp:'app'
     , lagreaktiv:()=>{
         setting.dMsg('lagreaktiv lagring.aktiv', lagring.aktiv)
         localStorage.setItem(lagring.lagrePre+'aktiv', lagring.aktiv)
@@ -162,7 +163,6 @@ const ui = {
         ui.c.Send.addEventListener('click',()=>msgSend());
         ui.c.Lagres.addEventListener('click',()=>menuClick_m_lagrelokalt());
         setTimeout(()=>ui.visLagre(),1000);
-        
         document.addEventListener("DOMContentLoaded",()=>setTimeout(()=>window.scrollTo(0, 1), 250));
     }
    , c: {
@@ -249,7 +249,7 @@ const ui = {
             return ui.c.Menu;
         }
         , Show : b => ui.Show(ui.c.Menu, b)
-        , Click_Model:(id,i=0)=>{
+        , SelectModel:(id,i=0)=>{
             ui.menu.EBoldOnly(id, ai.AllModels(i))
             const c=document.getElementById(ui.menu.Id(id)), d=c.dataset, pd=c.parentElement.dataset;
             ai.Model[i]=d.d0;
@@ -262,7 +262,7 @@ const ui = {
         }
         , Click_OpenUrl:u=>window.open(u, '_blank')
         , Click_alleSpraak:['Bokml', 'Nynorsk', 'English', 'Svenska', 'Dansk']
-        , Click_Models:e=>{
+        , AllModels:e=>{
             Show(false);
             msgAsk('AI-modeller tilgjengelig');
             let //row=msgAnswer('Sjekker tilbyderne...'),img = row.querySelector('img'), div = row.querySelector('.msg')
@@ -438,9 +438,9 @@ window.menuClick_m_forskalleai=e=> {
             e.remove();
         m = e.innerText;
     }catch(ex){ m=m||'Gjenta ...'}
-    ai.AllModels(0).forEach((mod,i)=> {cmd+=`ui.menu.Click_Model(ui.menu.X('`+mod+`'));ai.Request('`+m.trim()+`', msgAnswer(), `+(i+1)+`, null,0);\n`});
+    ai.AllModels(0).forEach((mod,i)=> {cmd+=`ui.menu.SelectModel(ui.menu.X('`+mod+`'));ai.Request('`+m.trim()+`', msgAnswer(), `+(i+1)+`, null,0);\n`});
     try{eval(cmd);}catch(ex){console.warn('menuClick_m_forskalleai', ex.message, cmd)}
-    ui.menu.Click_Model(cfg.aiProviderDefault.split('?')[0]);
+    ui.menu.SelectModel(cfg.aiProviderDefault.split('?')[0]);
 }
 window.menuClick_m_prompt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
 window.menuClick_m_simuler=e=>{
@@ -448,7 +448,7 @@ window.menuClick_m_simuler=e=>{
     setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { ui.c.Input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
     ui.menu.Show(false);
 }
-window.menuClick_m_listmodeller=e=>ui.menu.Click_Models(e);
+window.menuClick_m_listmodeller=e=>ui.menu.AllModels(e);
 
 // Innstillinger >>
 window.menuClick_m_lagrelokalt=e=>{
@@ -475,9 +475,9 @@ window.menuClick_m_ikkemottatthelserdfraai=e=>ui.menu.EBoldOnly('ikkemottatthels
     window.menuClick_m_omformulerhelserd=e=>ui.menu.EBoldOnly('omformulerhelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
     window.menuClick_m_godtahelserd=e=>ui.menu.EBoldOnly('godtahelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
 // Innstillinger >> AI >>
-const menuClicks_m=m=>`window.menuClick_m_${m}=e=>ui.menu.Click_Model('${m}');
-    window.menuClick_m_pv${m}=e=>ui.menu.Click_Model('pv${m}', 1);
-    window.menuClick_m_bg${m}=e=>ui.menu.Click_Model('bg${m}', 2);`
+const menuClicks_m=m=>`window.menuClick_m_${m}=e=>ui.menu.SelectModel('${m}');
+    window.menuClick_m_pv${m}=e=>ui.menu.SelectModel('pv${m}', 1);
+    window.menuClick_m_bg${m}=e=>ui.menu.SelectModel('bg${m}', 2);`
 ai.AllModels(0).forEach(e=>eval(menuClicks_m(ui.menu.X(e))))
 
 window.menuClick_m_debug=e=>(setting.debug=ui.menu.EBold('debug'));
