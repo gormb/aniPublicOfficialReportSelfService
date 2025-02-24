@@ -98,19 +98,19 @@ const setting={
 const lagring={
     init:()=>{
         lagring.aktiv = localStorage.getItem(lagring.lagrePre+'aktiv');
-        console.log('init lagring.aktiv', lagring.aktiv)
+        setting.dMsg('init lagring.aktiv', lagring.aktiv)
         if (lagring.aktiv==null) {
-            console.log('init lagring.aktiv initier')
+            setting.dMsg('init lagring.aktiv initier')
             localStorage.setItem(lagring.lagrePre+'aktiv', 0)
             lagring.aktiv = localStorage.getItem(lagring.lagrePre+'aktiv');
-            console.log('init lagring.aktiv initier', lagring.aktiv)
+            setting.dMsg('init lagring.aktiv initier', lagring.aktiv)
         }
         lagring.aktiv|=0;
     }
     , lagrePre:'HaandAaHoldeI '
     , aktiv:null
     , lagreaktiv:()=>{
-        console.log('lagreaktiv lagring.aktiv', lagring.aktiv)
+        setting.dMsg('lagreaktiv lagring.aktiv', lagring.aktiv)
         localStorage.setItem(lagring.lagrePre+'aktiv', lagring.aktiv)
     }
     // // Lagre data
@@ -118,6 +118,39 @@ const lagring={
     // sessionStorage.removeItem("tempData");
     // // Slette alt lagret i sessionStorage
     // sessionStorage.clear();
+  /*   
+    let storageActive = localStorage.getItem('storage') === "true";
+
+    const load = () => (setting.dMsg("Laster forrige tilstand..."), storageActive = true);
+    const save = () => (setting.dMsg("Lagrer tilstand..."), storageActive = true);
+
+    document.getElementById('btn').addEventListener('click', () => {
+      if (!storageActive) {
+        localStorage.getItem('state')
+          ? confirm("Laste forrige?") ? load() : save()
+          : save();
+      } else {
+        save();
+      }
+      // Oppdater status i localStorage
+      localStorage.setItem('storage', storageActive);
+    });
+//     if (setting.lagring){
+//         if (setting.dirty) { // endret
+//         if ( queryYN('Overskrive forrige tilstand?'))
+//             load()
+//         else
+//             save()
+//         }
+//     }
+//     else {
+//         if (dirty)
+//             if (queryYN('slette innstillinger?'))
+// {}                clear()
+//             }
+//     ui.c.Lagres.innerHTML=ui.lagresText[1]
+//     ui.menu.EBold(e.target.innerText)
+*/
     , dirty:false
 }
 lagring.init();
@@ -422,39 +455,7 @@ window.menuClick_m_lagrelokalt=e=>{
     lagring.aktiv=l;
     ui.visLagre()
     lagring.lagreaktiv();
-/* 
-    let storageActive = localStorage.getItem('storage') === "true";
 
-    const load = () => (console.log("Laster forrige tilstand..."), storageActive = true);
-    const save = () => (console.log("Lagrer tilstand..."), storageActive = true);
-
-    document.getElementById('btn').addEventListener('click', () => {
-      if (!storageActive) {
-        localStorage.getItem('state')
-          ? confirm("Laste forrige?") ? load() : save()
-          : save();
-      } else {
-        save();
-      }
-      // Oppdater status i localStorage
-      localStorage.setItem('storage', storageActive);
-    });
-//     if (setting.lagring){
-//         if (setting.dirty) { // endret
-//         if ( queryYN('Overskrive forrige tilstand?'))
-//             load()
-//         else
-//             save()
-//         }
-//     }
-//     else {
-//         if (dirty)
-//             if (queryYN('slette innstillinger?'))
-// {}                clear()
-//             }
-//     ui.c.Lagres.innerHTML=ui.lagresText[1]
-//     ui.menu.EBold(e.target.innerText)
-*/
 }
 window.menuClick_m_sprsmlsforslag=e=> {
     setting.funcQuestionSuggestion = ui.menu.EBold(e.target.innerText, !setting.funcQuestionSuggestion);

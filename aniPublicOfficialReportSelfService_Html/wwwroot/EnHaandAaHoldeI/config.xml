@@ -1,0 +1,3 @@
+<preference name="Fullscreen" value="true" />
+<preference name="HideNavigationBar" value="true" />
+<preference name="SuppressesIncrementalRendering" value="true" />
