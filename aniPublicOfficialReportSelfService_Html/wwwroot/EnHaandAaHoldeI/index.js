@@ -162,6 +162,7 @@ const ui = {
         ui.c.Send.addEventListener('click',()=>msgSend());
         ui.c.Lagres.addEventListener('click',()=>menuClick_m_lagrelokalt());
         setTimeout(()=>ui.visLagre(),1000);
+        addEventListener("DOMContentLoaded",()=>setTimeout(()=>window.scrollTo(0, 1), 100));
     }
    , c: {
         Chat: document.querySelector('main')
@@ -280,7 +281,6 @@ const ui = {
     }
 };
 ui.init();
-
 /////////////// AI ///////////////
 const ai={
     Raw2Htm:raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
