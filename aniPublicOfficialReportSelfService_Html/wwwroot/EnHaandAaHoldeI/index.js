@@ -29,7 +29,7 @@ const cfg={
     , aiPromptBG:[{ role: `system`, content: `Du er en chatbot som skal generere nye spørsmål.`} 
         ,[`Hva er mitt neste spørsmål?`, `Hva er viktig å tenke på?`]
         ,[`Hva er mitt neste spørsmål?`, `Hvordan kan jeg bruke denne tjenesten?`]]
-    , aiProviderDefault:`mistral large?PV mistral small?BG mistral small` /* spørremodell?pvspørremodell */
+    , aiProviderDefault:()=> lagring.getAis() //`mistral large?PV mistral small?BG mistral small` 
     , aiProvider : [ // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
         ['Mistral (EU)', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
@@ -38,6 +38,7 @@ const cfg={
         ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['grok latest', 'grok-2-latest'], ['grok beta', 'grok-beta']]]
         ,['Anthropic (USA)', 'https://api.anthropic.com/v1/messages', escape(`4>c//&j4>'qajZ,);(U[YV2"=Jy&3gSW x8Jt]vESr$O|2"X\\84uk_\\;@Y1OP>v.YQE^?'ED=Y_HG %#vW77[]-$EH29>&&F39clDV<)@S`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            //, [['Sonnet (best)', 'claude-3-7-sonnet-20250219'], ['Haiku (raskest)', 'claude-3-7-haiku-20250219']]
             , [['Sonnet (best)', 'claude-3-5-sonnet-20241022'], ['Haiku (raskest)', 'claude-3-5-haiku-20241022']]
             , 'anthropic-version:2023-06-01^anthropic-dangerous-direct-browser-access:true'
         ]
@@ -79,20 +80,22 @@ const setting={
     debug:false, dMsg:(k,v)=>{if(setting.debug) {if(v)console.warn(k,v); else console.warn(k)}}
     , menu: `App >>§ - ${ cfg.menusForAppProvider('') }
         |Språkdrakt >>§-||Sjargong >>|||Ungdomsspråk|||Voksenspråk§*
-            ||Språk|||Bokmål§*|||Nynorsk|||Svenska|||Dansk|||English
+            ||Språk|||Bokmål§*|||Nynorsk|||Sámegiella|||Svenska|||Dansk|||English (UK)|||English (US)        
         |Funksjonalitet >>§-||Analyser Personvern||Forsøk alle AI
             ||Utvikling >>§-|||Prompt|||Simuler|||List modeller|||Debug
         |Innstillinger >>§-||Begynn på nytt...
-            ||Lagre lokalt§ *
+            ||Tøm lagring...
+            ||Lagre lokalt
             ||Spørsmålsforslag§ *
             ||Grubling
             ||Sikkerhet >>§-
                 |||Sensitive data >>§-||||Ikke send sensitive data||||Omformuler sensitive data||||Godta sensitive data§*
                 |||Helseråd fra AI >>§-||||Ikke mottatt helseråd fra AI||||Omformuler helseråd||||Godta helseråd§*
-            ||AI >>§-|||AI tilbyder >>§-${ cfg.menusForAiProvider('')}
+            ||AI >>§-|||Tilfeldige AI-tilbydere
+                |||AI tilbyder >>§-${ cfg.menusForAiProvider('')}
                 |||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }
                 |||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
-        |Om >>§-||Kontakt||Personvernerklæring||Barkode
+        |Om >>§-||Kontakt||Personvernerklæring||Tilbakemelding til Aigap||Barkode
         `.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
     , funcQuestionSuggestion: false
     , funcDeepAnalysis: false
@@ -102,74 +105,51 @@ const setting={
     , omformulerHelseraad:false
 }
 /////////////// lagring ///////////////
-const lagring={
-    init:()=>{
+const lagring = {
+    init: () => lagring.last()
+    , lagre_Pre: 'HaandAaHoldeI '
+    , aktiv: null, getAktiv: dflt => lagring.aktiv = lagring.g('aktiv') ?? dflt, setAktiv: a => lagring.s('aktiv', lagring.aktiv = a ?? lagring.aktiv)
+    , aktivApp: null, getAktivApp: dflt => lagring.aktivApp = lagring.g('aktivApp') ?? dflt, setAktivApp: a => lagring.s('aktivApp', lagring.aktivApp = a ?? lagring.aktivApp)
+    , ai:['mistralsmall','mistralsmall','mistralsmall'], getAi:(i, dflt) => lagring.ai[i] = lagring.g('setting ai'+i) ?? dflt, setAi:(i,a) => lagring.s('setting ai'+i, lagring.ai[i] = a ?? lagring.ai[i])
+    , sjargong: 'voksensprk'
+    , spraak: 'bokml'
+    , g: k => localStorage.getItem(lagring.lagre_Pre + k)
+    , s: (k, v) => !lagring.aktiv||localStorage.setItem(lagring.lagre_Pre + k, v)
+    , d: k => localStorage.removeItem(lagring.lagre_Pre + k)
+    , last: () => {
+        let delay = 100, delayI = 100
+        console.log('lagring.laster...')
+        if (lagring.aktiv != lagring.getAktiv(lagring.aktiv ?? 0))
+            setTimeout(() => ui.visLagre(), delay += delayI)
+        console.log('aktiv', lagring.aktiv)
+        if (lagring.aktiv > 0) {
+            // ai selected...done in getAis:()
+            // app chosen...
+            if (lagring.aktivApp != lagring.getAktivApp(lagring.aktivApp))
+                setTimeout(() => eval(`menuClick_m_${ui.menu.X(lagring.aktivApp)}()`), delay += delayI)
+            console.log(delay, delayI)
+            // the rest of the history...
+        }
+        console.log('eo lagring.laster...')
+    }
+    , getAis:()=>lagring.ai.join('?')
+    , toem: () => { // Remove all localStorage keys starting with lagring.lagre_Pre using d()
+        Object.keys(localStorage).forEach(k=>k.startsWith(lagring.lagre_Pre) && lagring.d(k.slice(lagring.lagre_Pre.length)))
         lagring.last();
     }
-    , aktiv:null
-    , aktivApp:'app'
-    , lagre_Pre:'HaandAaHoldeI '
-    , lagre_Item:i=>lagre_Pre+aktivApp+i
-    , last:()=>{
-        console.log('laster...')
-        let l = localStorage.getItem(lagring.lagre_Pre+'aktiv');
-        lagring.aktiv=l||0;
-        setting.dMsg('init lagring.aktiv', lagring.aktiv)
-        if (l==null) lagring.lagre();
-        //else if (l) lagring.last();
-    }
-    , lagre:()=>{
+    , lagre: () => {
         setting.dMsg('lagreaktiv lagring.aktiv', lagring.aktiv)
-        localStorage.setItem(lagring.lagre_Pre+'aktiv', lagring.aktiv)
-        if(lagring.aktiv) {
+        lagring.s('aktiv', lagring.aktiv)
+        if (lagring.aktiv) {
             setting.dMsg('lagreaktiv lagring.aktivApp', lagring.aktivApp)
-            localStorage.setItem(lagring.lagre_Pre+'aktivApp', lagring.aktivApp)
+            lagring.s('aktivApp', lagring.aktivApp)
         }
     }
-    // // Slette data
-    // sessionStorage.removeItem("tempData");
-    // // Slette alt lagret i sessionStorage
-    // sessionStorage.clear();
-  /*   
-    let storageActive = localStorage.getItem('storage') === "true";
-
-    const load = () => (setting.dMsg("Laster forrige tilstand..."), storageActive = true);
-    const save = () => (setting.dMsg("Lagrer tilstand..."), storageActive = true);
-
-    document.getElementById('btn').addEventListener('click', () => {
-      if (!storageActive) {
-        localStorage.getItem('state')
-          ? confirm("Laste forrige?") ? load() : save()
-          : save();
-      } else {
-        save();
-      }
-      // Oppdater status i localStorage
-      localStorage.setItem('storage', storageActive);
-    });
-//     if (setting.lagring){
-//         if (setting.dirty) { // endret
-//         if ( queryYN('Overskrive forrige tilstand?'))
-//             load()
-//         else
-//             save()
-//         }
-//     }
-//     else {
-//         if (dirty)
-//             if (queryYN('slette innstillinger?'))
-// {}                clear()
-//             }
-//     ui.c.Lagres.innerHTML=ui.lagresText[1]
-//     ui.menu.EBold(e.target.innerText)
-*/
-    , dirty:false
 }
-lagring.init();
 /////////////// ui and Shortcuts //////////////
 const ui = {
     init:e=>{ 
-        ui.c.Input.addEventListener('keydown',e=>{ if (e.key === 'Enter')msgSend();});
+        ui.c.Input.addEventListener('keydown',e=>{ if (e.key==='Enter') msgSend(); else if (e.key==='Escape') ui.c.Input.value='';});
         ui.c.Speak.addEventListener('click',()=>msgSendSpeak());
         ui.c.Send.addEventListener('click',()=>msgSend());
         ui.c.Lagres.addEventListener('click',()=>menuClick_m_lagrelokalt());
@@ -263,6 +243,7 @@ const ui = {
         , SelectModel:(id,i=0)=>{
             ui.menu.EBoldOnly(id, ai.AllModels(i))
             const c=document.getElementById(ui.menu.Id(id)), d=c.dataset, pd=c.parentElement.dataset;
+            lagring.setAi(i,id);
             ai.Model[i]=d.d0;
             ai.Url[i]=pd.d0;
             ai.Gunnar[i]=unescape(pd.d1);
@@ -272,7 +253,7 @@ const ui = {
                 msgInfo(c.innerHTML, false, true);
         }
         , Click_OpenUrl:u=>window.open(u, '_blank')
-        , Click_alleSpraak:['Bokml', 'Nynorsk', 'English', 'Svenska', 'Dansk']
+        , Click_alleSpraak:['Bokml', 'Nynorsk', 'Sámegiella', 'English (UK)', 'English (US)', 'Svenska', 'Dansk']
         , AllModels:e=>{
             Show(false);
             msgAsk('AI-modeller tilgjengelig');
@@ -291,8 +272,7 @@ const ui = {
             });
         }
     }
-};
-ui.init();
+}
 /////////////// AI ///////////////
 const ai={
     Raw2Htm:raw=>{ return raw.replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>').replace(/#### (.*)/g, '<h4>$1</h4>').replace(/### (.*)/g, '<h3>$1</h3>').replace(/## (.*)/g, '<h2>$1</h2>').replace(/# (.*)/g, '<h1>$1</h1>').replace(/\n/g, '<br/>');}
@@ -411,22 +391,27 @@ const ai={
 
 /////////////// menuClick_m_ - Menu handlers ///////////////
 window.menuClick_m_=e=>{/* line or blank clicked */};
-// App >> 
-window.menuClick_mApp=a=>cfg.load(a).then(()=>InitializeChat('?')^ui.menu.EBoldOnly(a, cfg.appList()))
-cfg.appList().forEach(a=>eval(`window.menuClick_m_${ui.menu.X(a)}=e=>window.menuClick_mApp('${a}')`))
-// App overloaded
+// menuClick_m_ - App >> 
+window.menuClicks_mApp=a=>{
+    lagring.setAktivApp(a);
+    cfg.load(a).then(()=>InitializeChat('?')^ui.menu.EBoldOnly(a, cfg.appList()))
+}
+cfg.appList().forEach(a=>eval(`window.menuClick_m_${ui.menu.X(a)}=e=>window.menuClicks_mApp('${a}')`))
+// menuClick_m_ - App overloaded
 window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
 
-// Språk >>
+// menuClick_m_ - Språk >>
 window.menuClick_m_ungdomssprk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdomsspråk', ['Voksenspråk', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
 window.menuClick_m_voksensprk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Voksenspråk', ['Ungdomsspråk', ...ui.menu.Click_alleSpraak])^msgRedoLast('Overrsett siste melding til en språkdrakt som passer for voksne, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer voksne. Du trenger ikke svare med maks femten ord lengre.');
-window.menuClick_m_bokml=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Bokml', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til bokmål. Fra nå av skal du kun svare kortfattet på bokmål');
-window.menuClick_m_nynorsk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Nynorsk', ui.menu.Click_alleSpraak)^msgRedoLast('Overrsett siste melding til nynorsk. Fra nå av skal du kun svare kortfattet på nynorsk');
+window.menuClick_m_bokml=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Bokml', ui.menu.Click_alleSpraak)^msgRedoLast('Oversett siste melding til bokmål. Fra nå av skal du kun svare kortfattet på bokmål');
+window.menuClick_m_nynorsk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Nynorsk', ui.menu.Click_alleSpraak)^msgRedoLast('Oversett siste melding til nynorsk. Fra nå av skal du kun svare kortfattet på nynorsk');
+window.menuClick_m_smegiella=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Sámegiella', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into Sámegiella. and idioms. In Sámegiella, the translation would be: "Geavahit vuosttaš mielddun Sámegiellatis. Nugo šiehtat, dahje veahkkin muhtun mielddun Sámegiellatis, geavahit kultuvrralaš miiheapmiid ja idiome. From now on, only answer in Sámegiella');
 window.menuClick_m_svenska=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Svenska', ui.menu.Click_alleSpraak)^msgRedoLast('Øversett senaste meddelandet på svenska. Från och med nu ska du endast svara kortfattat på svenska.');
 window.menuClick_m_dansk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Dansk', ui.menu.Click_alleSpraak)^msgRedoLast('Oversett sidste besked på dansk. Fra nu af skal du kun svare kortfattet på dansk.');
-window.menuClick_m_english=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English', ui.menu.Click_alleSpraak)^msgRedoLast('Translate last message to English. From now on only answer briefly in English');
+window.menuClick_m_englishus=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English (UK)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into British English. From now on, please respond briefly using British spelling, vocabulary, and idioms.');
+window.menuClick_m_englishuk=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English (US)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into American English. From now on, please respond briefly using American spelling, vocabulary, and idioms');
 
-// Funksjonalitet >>
+// menuClick_m_ - Funksjonalitet >>
 window.menuClick_m_analyserpersonvern=e=>ui.menu.Show(false)^msgInfo('menuClick_m_analyserpersonvern ikke implementert')
 window.menuClick_m_forskalleai=e=> {
     let m='Gjenta', cmd='';
@@ -438,7 +423,7 @@ window.menuClick_m_forskalleai=e=> {
     }catch(ex){ m=m||'Gjenta ...'}
     ai.AllModels(0).forEach((mod,i)=> {cmd+=`ui.menu.SelectModel(ui.menu.X('`+mod+`'));ai.Request('`+m.trim()+`', msgAnswer(), `+(i+1)+`, null,0);\n`});
     try{eval(cmd);}catch(ex){console.warn('menuClick_m_forskalleai', ex.message, cmd)}
-    ui.menu.SelectModel(cfg.aiProviderDefault.split('?')[0]);
+    ui.menu.SelectModel(cfg.aiProviderDefault().split('?')[0]);
 }
 window.menuClick_m_prompt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
 window.menuClick_m_simuler=e=>{
@@ -448,7 +433,7 @@ window.menuClick_m_simuler=e=>{
 }
 window.menuClick_m_listmodeller=e=>ui.menu.AllModels(e);
 
-// Innstillinger >>
+// menuClick_m_ - Innstillinger >>
 window.menuClick_m_begynnpnytt=e=>{
     ui.menu.Show(false);
     ui.c.Chat.innerHTML='';
@@ -456,12 +441,20 @@ window.menuClick_m_begynnpnytt=e=>{
     msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
     ui.c.Input.focus();
 }
+
+window.menuClick_m_tmlagring=e=>{
+    lagring.aktiv=l;
+    lagring.toem();
+    ui.visLagre()
+    msgInfo('Alle eventuelle data slettet', true)
+    ui.menu.Show(false);
+}
+
 window.menuClick_m_lagrelokalt=e=>{
     let l=++lagring.aktiv%2;
     lagring.aktiv=l;
-    ui.visLagre()
     lagring.lagre();
-
+    ui.visLagre()
 }
 window.menuClick_m_sprsmlsforslag=e=> {
     setting.funcQuestionSuggestion = ui.menu.EBold(e.target.innerText, !setting.funcQuestionSuggestion);
@@ -479,7 +472,13 @@ window.menuClick_m_ikkesendsensitivedata=e=>ui.menu.EBoldOnly('ikkesendsensitive
 window.menuClick_m_ikkemottatthelserdfraai=e=>ui.menu.EBoldOnly('ikkemottatthelserdfraai',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
     window.menuClick_m_omformulerhelserd=e=>ui.menu.EBoldOnly('omformulerhelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
     window.menuClick_m_godtahelserd=e=>ui.menu.EBoldOnly('godtahelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
-// Innstillinger >> AI >>
+// menuClick_m_ - Innstillinger >> AI >>
+window.menuClick_m_tilfeldigeaitilbydere=e=> {
+    const a = ai.AllModels(0);
+    eval(`window.menuClick_m_pv${ui.menu.X(a[Math.floor(Math.random()*a.length)])}()`)
+    eval(`window.menuClick_m_bg${ui.menu.X(a[Math.floor(Math.random()*a.length)])}()`)
+    eval(`window.menuClick_m_${ui.menu.X(a[Math.floor(Math.random()*a.length)])}()`)
+}
 const menuClicks_mMod=m=>`window.menuClick_m_${m}=e=>ui.menu.SelectModel('${m}');
     window.menuClick_m_pv${m}=e=>ui.menu.SelectModel('pv${m}', 1);
     window.menuClick_m_bg${m}=e=>ui.menu.SelectModel('bg${m}', 2);`
@@ -487,9 +486,10 @@ ai.AllModels(0).forEach(e=>eval(menuClicks_mMod(ui.menu.X(e))))
 
 window.menuClick_m_debug=e=>(setting.debug=ui.menu.EBold('debug'));
 
-// Om >>
+// menuClick_m_ - Om >>
 window.menuClick_m_kontakt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/snakk-med-oss');
 window.menuClick_m_personvernerklring=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
+window.menuClick_m_tilbakemeldingtilaigap=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1utfDpp9dwNN80uR6PnE93KyoeRMBMHiEMvJDtSuMICA/edit?usp=sharing');
 window.menuClick_m_barkode=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('barcode.jpg');
 
 /////////////// menuClick_m_ - Menu redirect ///////////////
@@ -571,7 +571,7 @@ window.msgSendSpeak=()=> {
 }
 window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
     let u = new SpeechSynthesisUtterance(t);
-    u.lang = 'no-NO'; 
+    u.lang = 'no-NO';
     let voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('no'));
     if (!bIsRetry && !voices.length) 
         return setTimeout(() => msgRecieveTalkAndSend(t, true), 200); // Ensure voices are loaded
@@ -585,8 +585,8 @@ async function InitializeChat(q=null) {
     ui.menu.Show(false);
     cfg.aiPrompt.push([cfg.aiPromptWelcomeQuestion, cfg.aiPromptWelcome]);
     ai.Reset();
-    if (q==null) await ai.Parse(cfg.aiProviderDefault); //*/
-    //ui.c.Chat.innerHTML='';
+    if (q==null) await ai.Parse(cfg.aiProviderDefault()); //*/
+    ui.c.Chat.innerHTML='';
     msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
     ui.c.Input.focus();
     if (q==null) await ai.Parse(window.location.search); //*/
@@ -597,4 +597,5 @@ async function InitializeChat(q=null) {
     setting.dMsg('InitializeChat end', q||'(null)')
 }
 
-
+lagring.init();
+ui.init();
