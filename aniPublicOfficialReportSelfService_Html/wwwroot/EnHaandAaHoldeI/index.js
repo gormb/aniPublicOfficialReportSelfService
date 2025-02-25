@@ -106,11 +106,11 @@ const setting={
 }
 /////////////// lagring ///////////////
 const lagring = {
-    init: () => lagring.last()
-    , lagre_Pre: 'HaandAaHoldeI '
-    , aktiv: null, getAktiv: dflt => lagring.aktiv = lagring.g('aktiv') ?? dflt, setAktiv: a => lagring.s('aktiv', lagring.aktiv = a ?? lagring.aktiv)
-    , aktivApp: null, getAktivApp: dflt => lagring.aktivApp = lagring.g('aktivApp') ?? dflt, setAktivApp: a => lagring.s('aktivApp', lagring.aktivApp = a ?? lagring.aktivApp)
-    , ai:['mistralsmall','mistralsmall','mistralsmall'], getAi:(i, dflt) => lagring.ai[i] = lagring.g('setting ai'+i) ?? dflt, setAi:(i,a) => lagring.s('setting ai'+i, lagring.ai[i] = a ?? lagring.ai[i])
+    init:()=> lagring.last()
+    , lagre_Pre:'HaandAaHoldeI '
+    , aktiv: null, getAktiv:dflt=>lagring.aktiv=lagring.g('aktiv')??dflt, setAktiv:a=>lagring.s('aktiv', lagring.aktiv=a??lagring.aktiv)
+    , aktivApp: null, getAktivApp:dflt=>lagring.aktivApp=lagring.g('aktivApp')??dflt, setAktivApp:a=>lagring.s('aktivApp',lagring.aktivApp=a??lagring.aktivApp)
+    , ai:['mistralsmall','mistralsmall','mistralsmall'], getAi:(i, dflt)=>lagring.ai[i]=lagring.g('setting ai'+i)??dflt, setAi:(i,a)=>lagring.s('setting ai'+i,lagring.ai[i]=a??lagring.ai[i])
     , sjargong: 'voksensprk'
     , spraak: 'bokml'
     , g: k => localStorage.getItem(lagring.lagre_Pre + k)
