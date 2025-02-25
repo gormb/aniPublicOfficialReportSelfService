@@ -1,18 +1,18 @@
 /////////////// Config /////////////////
-// for mye tekst på sykdom?
 // meny for tilbakemeldinger
 const cfg={
-    app:'...'
+    app: 'Velg App'
+    , ingenApp:'Velg App'
     , appProvider:[['Helse >>§-',[
             'Hjemmelegen min >>§-',['Biopsykososial modell','Kroppens stressystem','Mine pasientdata']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Generelt >>§ -',[
-            'Hånd å holde i >>§-', ['Blank§*','Personvernrådgiveren','Kommer...']
+            'Hånd å holde i >>§ -', ['Blank§*','Personvernrådgiveren']
             ,'NAPHA >>',['NAPHA-veiviseren']
             ,'Ideallya >>§-',['Verdens nyheter via Ideallya']]
         ]]
     , menusForAppProvider: () => cfg.appProvider.map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
-    , appList:()=>['Før opphold', 'Under opphold', 'Etter opphold', 'Personvernrådgiveren', 'Blank', 'Biopsykososial modell', 'Kroppens stressystem', 'Verdens nyheter via Ideallya', 'Mine pasientdata', 'NAPHA-veiviseren']
+    , appList:()=>cfg.appProvider.flatMap(([_, subs])=>subs.flatMap((s,i,a)=>i%2==0&&Array.isArray(a[i+1])?a[i+1]:[]).filter(Boolean))
     , aiPromptWelcomeQuestion:`Hva er velkomstmeldingen?`
     , aiPromptWelcome:`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`
     , aiPrompt:[{ role: `system`, content: 
@@ -75,18 +75,9 @@ const cfg={
     }    
 }
 /////////////// menu and state //////////////
-
 const setting={
     debug:false, dMsg:(k,v)=>{if(setting.debug) {if(v)console.warn(k,v); else console.warn(k)}}
-    , menu: `
-        App >>§ - ${ cfg.menusForAppProvider('') }
-        |Apps >>§-
-            ||Helse >>
-                |||CatoSenteret >>§-||||Før opphold||||Under opphold||||Etter opphold
-                |||Hjemmelegen min >>§ -||||Biopsykososial modell||||Kroppens stressystem||||Mine pasientdata
-            ||Generelt >>§-
-                |||Ideallya >>§-||||Verdens nyheter via Ideallya
-                |||Hånd å holde i >>§-||||Blank§*||||Personvernrådgiveren||||Kommer...
+    , menu: `App >>§ - ${ cfg.menusForAppProvider('') }
         |Språkdrakt >>§-||Sjargong >>|||Ungdomsspråk|||Voksenspråk§*
             ||Språk|||Bokmål§*|||Nynorsk|||Svenska|||Dansk|||English
         |Funksjonalitet >>§-||Analyser Personvern||Forsøk alle AI
@@ -113,24 +104,28 @@ const setting={
 /////////////// lagring ///////////////
 const lagring={
     init:()=>{
-        lagring.aktiv = localStorage.getItem(lagring.lagrePre+'aktiv');
-        setting.dMsg('init lagring.aktiv', lagring.aktiv)
-        if (lagring.aktiv==null) {
-            setting.dMsg('init lagring.aktiv initier')
-            localStorage.setItem(lagring.lagrePre+'aktiv', 0)
-            lagring.aktiv = localStorage.getItem(lagring.lagrePre+'aktiv');
-            setting.dMsg('init lagring.aktiv initier', lagring.aktiv)
-        }
-        lagring.aktiv|=0;
+        lagring.last();
     }
     , aktiv:null
-    , lagrePre:'HaandAaHoldeI '
     , aktivApp:'app'
-    , lagreaktiv:()=>{
-        setting.dMsg('lagreaktiv lagring.aktiv', lagring.aktiv)
-        localStorage.setItem(lagring.lagrePre+'aktiv', lagring.aktiv)
+    , lagre_Pre:'HaandAaHoldeI '
+    , lagre_Item:i=>lagre_Pre+aktivApp+i
+    , last:()=>{
+        console.log('laster...')
+        let l = localStorage.getItem(lagring.lagre_Pre+'aktiv');
+        lagring.aktiv=l||0;
+        setting.dMsg('init lagring.aktiv', lagring.aktiv)
+        if (l==null) lagring.lagre();
+        //else if (l) lagring.last();
     }
-    // // Lagre data
+    , lagre:()=>{
+        setting.dMsg('lagreaktiv lagring.aktiv', lagring.aktiv)
+        localStorage.setItem(lagring.lagre_Pre+'aktiv', lagring.aktiv)
+        if(lagring.aktiv) {
+            setting.dMsg('lagreaktiv lagring.aktivApp', lagring.aktivApp)
+            localStorage.setItem(lagring.lagre_Pre+'aktivApp', lagring.aktivApp)
+        }
+    }
     // // Slette data
     // sessionStorage.removeItem("tempData");
     // // Slette alt lagret i sessionStorage
@@ -416,19 +411,11 @@ const ai={
 
 /////////////// menuClick_m_ - Menu handlers ///////////////
 window.menuClick_m_=e=>{/* line or blank clicked */};
-// App >> // to be generated later...
-window.menuClick_m_fropphold=e=>cfg.load('Før opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Før opphold', cfg.appList()))
-window.menuClick_m_underopphold=e=>cfg.load('Under opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Under opphold', cfg.appList()))
-window.menuClick_m_etteropphold=e=>cfg.load('Etter opphold').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Etter opphold', cfg.appList()))
-window.menuClick_m_personvernrdgiveren=e=>cfg.load('Personvernrådgiveren').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Personvernrådgiveren', cfg.appList()))
-window.menuClick_m_verdensnyheterviaideallya=e=>cfg.load('Verdens nyheter via Ideallya').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Verdens nyheter via Ideallya', cfg.appList()))
-window.menuClick_m_blank=e=>cfg.load('(blank)').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('(blank)', cfg.appList()))
-window.menuClick_m_biopsykososialmodell=e=>cfg.load('Biopsykososial modell').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Biopsykososial modell', cfg.appList()))
-window.menuClick_m_kroppensstressystem=e=>cfg.load('Kroppens stressystem').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Kroppens stressystem', cfg.appList()))
-window.menuClick_m_minepasientdata=e=>cfg.load('Mine pasientdata').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('Mine pasientdata', cfg.appList()))
+// App >> 
+window.menuClick_mApp=a=>cfg.load(a).then(()=>InitializeChat('?')^ui.menu.EBoldOnly(a, cfg.appList()))
+cfg.appList().forEach(a=>eval(`window.menuClick_m_${ui.menu.X(a)}=e=>window.menuClick_mApp('${a}')`))
+// App overloaded
 window.menuClick_m_kommer=e=>ui.menu.Show(false)^msgInfo('Under utvikling...', false, true)
-
-window.menuClick_m_naphaveiviseren=e=>cfg.load('NAPHA-veiviseren').then(()=>InitializeChat('?')^ui.menu.EBoldOnly('NAPHA-veiviseren', cfg.appList()))
 
 // Språk >>
 window.menuClick_m_ungdomssprk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Ungdomsspråk', ['Voksenspråk', ...ui.menu.Click_alleSpraak])^msgRedoLast('Oversett siste melding til en språkdrakt som passer for ungdom, men har med all informasjonen. Fra nå av skal du svare med ord og på en måte som passer norsk ungdom. Svar med maks femten ord fra nå av med mindre spørsmålet har flere enn femten ord, da skal du bruke like mange ord som i spørsmålet.');
@@ -440,17 +427,10 @@ window.menuClick_m_dansk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Dansk', ui.me
 window.menuClick_m_english=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English', ui.menu.Click_alleSpraak)^msgRedoLast('Translate last message to English. From now on only answer briefly in English');
 
 // Funksjonalitet >>
-window.menuClick_m_begynnpnytt=e=>{
-    ui.menu.Show(false);
-    ui.c.Chat.innerHTML='';
-    ai.Reset();
-    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
-    ui.c.Input.focus();
-}
 window.menuClick_m_analyserpersonvern=e=>ui.menu.Show(false)^msgInfo('menuClick_m_analyserpersonvern ikke implementert')
 window.menuClick_m_forskalleai=e=> {
     let m='Gjenta', cmd='';
-    msgInfo('UNder utvikling!', false, true)
+    msgInfo('Under utvikling!', false, true)
     try{
         for (e=ui.c.Chat.lastElementChild; e && !e.classList.contains("sent"); e=ui.c.Chat.lastElementChild)
             e.remove();
@@ -469,11 +449,18 @@ window.menuClick_m_simuler=e=>{
 window.menuClick_m_listmodeller=e=>ui.menu.AllModels(e);
 
 // Innstillinger >>
+window.menuClick_m_begynnpnytt=e=>{
+    ui.menu.Show(false);
+    ui.c.Chat.innerHTML='';
+    ai.Reset();
+    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
+    ui.c.Input.focus();
+}
 window.menuClick_m_lagrelokalt=e=>{
     let l=++lagring.aktiv%2;
     lagring.aktiv=l;
     ui.visLagre()
-    lagring.lagreaktiv();
+    lagring.lagre();
 
 }
 window.menuClick_m_sprsmlsforslag=e=> {
@@ -493,10 +480,10 @@ window.menuClick_m_ikkemottatthelserdfraai=e=>ui.menu.EBoldOnly('ikkemottatthels
     window.menuClick_m_omformulerhelserd=e=>ui.menu.EBoldOnly('omformulerhelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
     window.menuClick_m_godtahelserd=e=>ui.menu.EBoldOnly('godtahelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
 // Innstillinger >> AI >>
-const menuClicks_m=m=>`window.menuClick_m_${m}=e=>ui.menu.SelectModel('${m}');
+const menuClicks_mMod=m=>`window.menuClick_m_${m}=e=>ui.menu.SelectModel('${m}');
     window.menuClick_m_pv${m}=e=>ui.menu.SelectModel('pv${m}', 1);
     window.menuClick_m_bg${m}=e=>ui.menu.SelectModel('bg${m}', 2);`
-ai.AllModels(0).forEach(e=>eval(menuClicks_m(ui.menu.X(e))))
+ai.AllModels(0).forEach(e=>eval(menuClicks_mMod(ui.menu.X(e))))
 
 window.menuClick_m_debug=e=>(setting.debug=ui.menu.EBold('debug'));
 
@@ -605,7 +592,7 @@ async function InitializeChat(q=null) {
     if (q==null) await ai.Parse(window.location.search); //*/
     else await ai.Parse(q);
     ui.c.HeaderTitle.innerHTML = cfg.app;
-    if (cfg.app == '...')
+    if (cfg.app == cfg.ingenApp)
         ui.menu.Show(true)
     setting.dMsg('InitializeChat end', q||'(null)')
 }
