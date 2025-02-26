@@ -3,8 +3,8 @@ cfg.aiPromptWelcome=`Velkommen til chatfor mottak og kartlegging.<br/><br/>
 
 Er du <br>
 a) pasient<br>
-b) helsepersonell<br>
-c) legesekretær<br>
+b) lege<br>
+c) helsepersonell<br>
 <br>
 eller noe annet?`;
 
