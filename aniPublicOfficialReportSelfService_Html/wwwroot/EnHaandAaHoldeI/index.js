@@ -83,7 +83,7 @@ const setting={
     , menu: `App >>§ - ${ cfg.menusForAppProvider('') }
         |Språkdrakt >>§-||Sjargong >>|||Ungdomsspråk|||Voksenspråk§*
             ||Språk|||Bokmål§*|||Nynorsk|||Sámegiella|||Svenska|||Dansk|||English (UK)|||English (US)        
-        |Funksjonalitet >>§-||Begynn på nytt...||Tøm lagring...
+        |Handling >>§-||Begynn på nytt...||Tøm lagring...
             ||Analyser Personvern||Forsøk alle AI
             ||Utvikling >>§-|||Prompt|||Simuler|||List modeller|||Debug
         |Innstillinger >>§-||Lagre lokalt

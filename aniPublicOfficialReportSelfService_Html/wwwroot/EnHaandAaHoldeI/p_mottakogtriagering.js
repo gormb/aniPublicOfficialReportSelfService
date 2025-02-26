@@ -1,10 +1,10 @@
-cfg.aiPromptWelcome=`Velkommen til chatfor mottak og kartlegging.<br/><br/>
+cfg.aiPromptWelcome=`Velkommen til chat for mottak og kartlegging.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Denne chatten kan benyttes av pasienter, helsepersonell og de som ønsker å lære om pasientmottak og triagering.</i><br/><br/>
 
 Er du <br>
 a) pasient<br>
-b) lege<br>
-c) helsepersonell<br>
+b) helsepersonell<br>
+c) foresatt<br>
 <br>
 eller noe annet?`;
 
