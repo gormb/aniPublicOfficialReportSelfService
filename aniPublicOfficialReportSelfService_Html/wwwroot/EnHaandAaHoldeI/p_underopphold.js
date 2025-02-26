@@ -1,4 +1,3 @@
-//cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
 cfg.aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
 cfg.aiPrompt= [{ role: `system`, content:
 `Du er en empatisk og kunnskapsrik chatbot som støtter pasienter under oppholdet på CatoSenteret. 

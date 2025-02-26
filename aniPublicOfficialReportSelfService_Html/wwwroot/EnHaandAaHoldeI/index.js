@@ -3,12 +3,14 @@
 const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
-    , appProvider:[['Helse >>§-',[
-            'Hjemmelegen min >>§-',['Biopsykososial modell','Kroppens stressystem','Mine pasientdata']
-            ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
-        ]],['Generelt >>§ -',[
-            'Hånd å holde i >>§ -', ['Blank§*','Personvernrådgiveren']
+    , appProvider:[['Helse >>§ -',[
+            'Hjemmelegen min >>§-',['Mottak og triasjering', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
+            ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
+            ,'Hlm - spesialist >>§ -',['Biopsykososial modell','Kroppens stressystem']
             ,'NAPHA >>',['NAPHA-veiviseren']
+            ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
+        ]],['Generelt >>§-',[
+            'Hånd å holde i >>§-', ['Blank§*','Personvernrådgiveren']
             ,'Ideallya >>§-',['Verdens nyheter via Ideallya']]
         ]]
     , menusForAppProvider: () => cfg.appProvider.map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
@@ -35,11 +37,13 @@ const cfg={
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
         ,['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['GPT 4', 'gpt-4o-mini'], ['GPT o3', 'o3-mini']]]
-        ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        ,['Deepseek (Kina)?', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]
+            ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['grok latest', 'grok-2-latest'], ['grok beta', 'grok-beta']]]
         ,['Anthropic (USA)', 'https://api.anthropic.com/v1/messages', escape(`4>c//&j4>'qajZ,);(U[YV2"=Jy&3gSW x8Jt]vESr$O|2"X\\84uk_\\;@Y1OP>v.YQE^?'ED=Y_HG %#vW77[]-$EH29>&&F39clDV<)@S`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            //, [['Sonnet (best)', 'claude-3-7-sonnet-20250219'], ['Haiku (raskest)', 'claude-3-7-haiku-20250219']]
-            , [['Sonnet (best)', 'claude-3-5-sonnet-20241022'], ['Haiku (raskest)', 'claude-3-5-haiku-20241022']]
+            , [['Sonnet (best)', 'claude-3-7-sonnet-20250219'], ['Haiku (raskest)', 'claude-3-7-haiku-20250219']]
+            //, [['Sonnet (best)', 'claude-3-5-sonnet-20241022'], ['Haiku (raskest)', 'claude-3-5-haiku-20241022']]
             , 'anthropic-version:2023-06-01^anthropic-dangerous-direct-browser-access:true'
         ]
         ,['Google Gemini (USA)?', 'https://generativelanguage.googleapis.com/v1beta/openai/', `F%5C4%2FR%2BDEG%7BN8O77%3D4%5E%2C%3BZMQ%3BpOCH5%3F)Z()%25%5D%3EP_`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
@@ -48,9 +52,7 @@ const cfg={
         ,['Hugging Face (USA)?', 'https://api-inference.huggingface.co/models/', escape(`/3Q:M?3VKJVPU]Y,-C BM:Q:0]O#(E"^(/2SV`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             // støtter ikke >10GB
             , [['Hugging DeepSeek R1', 'deepseek-ai/DeepSeek-R1'], ['Hugging DeepSeek V3', 'deepseek-ai/DeepSeek-V3']]]
-        ,['Deepseek (Kina)?', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            // stengt for å kjøpe credits
-            , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]]
+    ]
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `||||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`|||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
     , load:c=>{
@@ -81,11 +83,10 @@ const setting={
     , menu: `App >>§ - ${ cfg.menusForAppProvider('') }
         |Språkdrakt >>§-||Sjargong >>|||Ungdomsspråk|||Voksenspråk§*
             ||Språk|||Bokmål§*|||Nynorsk|||Sámegiella|||Svenska|||Dansk|||English (UK)|||English (US)        
-        |Funksjonalitet >>§-||Analyser Personvern||Forsøk alle AI
+        |Funksjonalitet >>§-||Begynn på nytt...||Tøm lagring...
+            ||Analyser Personvern||Forsøk alle AI
             ||Utvikling >>§-|||Prompt|||Simuler|||List modeller|||Debug
-        |Innstillinger >>§-||Begynn på nytt...
-            ||Tøm lagring...
-            ||Lagre lokalt
+        |Innstillinger >>§-||Lagre lokalt
             ||Spørsmålsforslag§ *
             ||Grubling
             ||Sikkerhet >>§-
