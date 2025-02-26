@@ -4,7 +4,7 @@ cfg.aiPromptWelcome=`Velkommen til chat for mottak og kartlegging.<br/><br/>
 Er du <br>
 a) pasient<br>
 b) helsepersonell<br>
-c) foresatt<br>
+c) foresatt for pasient<br>
 <br>
 eller noe annet?`;
 
@@ -21,7 +21,7 @@ cfg.aiPrompt= [
     Hvit: Små eller ingen skader/sykdom, ingen behandling nødvendig
 
     der det er relevant.
-    🔴🟡🟢⚫⚪ brukes som prefix i svaret der det er relevant, for å signalisere trageringsresultat (eller trolig resultat som følge av dialogen)
+    🔴🟡🟢⚫⚪ brukes som prefix i svaret der det er relevant, for å signalisere triageringsresultat (eller trolig resultat som følge av dialogen)
 
 Du skal tilpasse svarene dine avhengig av hvem du snakker med:
 a) For pasienter: Gi enkle og lettforståelige råd, og still oppfølgingsspørsmål for å kartlegge symptomer, varighet og alvorlighetsgrad.
@@ -325,7 +325,6 @@ Ikke still flere spørsmål samtidig, gjør det lett å kommemed neste spørsmå
 , [`Jeg opplever en lett irritasjon i huden som forsvinner med tid.`, `⚪ Har irritasjonen avtatt?`]
 , [`Jeg har en svak følelse av svimmelhet etter å ha stått lenge.`, `⚪ Har du tatt en liten pause?`]
 , [`Jeg føler en lett smerte i hodet etter en kort periode med aktivitet.`, `⚪ Har du hvilt og drukket vann?`]
-
 ];
 
-cfg.app='Velkomst og triagering'
+cfg.app='Mottak og triagering'
