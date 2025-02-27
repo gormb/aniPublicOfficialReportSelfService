@@ -1,6 +1,6 @@
 // Produsert med ChatGPT 20250224 (https://chatgpt.com/share/67bc6a41-48c4-800e-8ff7-6f02a9d4ce06)
 cfg.aiPromptWelcome=`Velkommen til chat om NAPHA.<br/><br/>
-<i>Vi prioriterer personvern. Spørsmål lagres ikke, og all data behandles i samsvar med GDPR. 
+<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
   
 <br/>👉 Hei! Før vi starter, kan du fortelle meg hvem du er?

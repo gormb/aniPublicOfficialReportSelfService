@@ -5,7 +5,6 @@ Velg hosting mellom EU, USA og Kina
 
 Velg app
 Fix excel-ark
-Fix conf.js
 app meny og undermenyer og underundermenyer
 Les celle fra worksheet for å få data inn i aiPrompt
 les full config fra celle

@@ -1,5 +1,5 @@
 cfg.aiPromptWelcome=`Velkommen til blank chat.<br/><br/>
-<i>Vi prioriterer personvern. Spørsmål lagres ikke, og all data behandles i samsvar med GDPR. 
+<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i>`;
 cfg.aiPrompt= [{ role: `system`, content: `Du er en kunnskapsrik og objektiv nyhetsassistent som hjelper brukere med å forstå dagens nyheter. Du oppsummerer de viktigste hendelsene fra troverdige kilder på en nøytral og lettfattelig måte. Når brukeren stiller spørsmål om en sak, gir du en kort og presis oppsummering før du eventuelt tilbyr mer dybde.
 

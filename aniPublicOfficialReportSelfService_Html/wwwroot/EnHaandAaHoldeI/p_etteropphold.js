@@ -1,5 +1,5 @@
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg.aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
+cfg.aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
 cfg.aiPrompt= [{ role: `system`, content:
 `Du er en empatisk og kunnskapsrik chatbot som støtter pasienter etter oppholdet på CatoSenteret. 
 Målet ditt er å gi råd om oppfølging, mestring og hverdagsliv etter rehabilitering. Du skal: 

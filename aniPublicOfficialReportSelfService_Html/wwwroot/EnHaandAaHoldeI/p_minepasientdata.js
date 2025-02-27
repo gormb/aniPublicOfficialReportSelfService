@@ -2,7 +2,7 @@
 cfg.aiPromptWelcome=`Velkommen til den uferdige rådgiveren for dine pasientdata.<br/>
         <b>Denne er under utvikling!</b>
         <br/><br/>
-        <i>Vi prioriterer personvern. Spørsmål lagres ikke, og all data behandles i samsvar med GDPR. 
+        <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
         For mer informasjon, se under Sikkerhet >> Personvern.</i><br/><br/>
         Hva lurer du på?`;
 cfg.aiPrompt= [{ role: `system`, content: `Du er en ekspert på GDPR og personvern, med spesiell kompetanse på norsk og europeisk personvernlovgivning. 
