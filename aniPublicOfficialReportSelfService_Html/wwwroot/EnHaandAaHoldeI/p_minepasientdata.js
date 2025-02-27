@@ -34,3 +34,4 @@ cfg.aiPrompt= [{ role: `system`, content: `Du er en ekspert på GDPR og personve
         [`Hvordan kan jeg klage på brudd på personvern?`, `Du kan klage til Datatilsynet hvis du mener dine personopplysninger er blitt behandlet i strid med GDPR. Før du klager, bør du prøve å kontakte virksomheten som behandler dine data.`]
     ];
     cfg.app='Mine pasientdata'
+    msgSend('mistrallarge')

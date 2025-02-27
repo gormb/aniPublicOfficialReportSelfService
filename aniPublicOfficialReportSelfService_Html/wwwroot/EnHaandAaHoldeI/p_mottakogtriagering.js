@@ -328,3 +328,4 @@ Ikke still flere spørsmål samtidig, gjør det lett å kommemed neste spørsmå
 ];
 
 cfg.app='Mottak og triagering'
+msgSend('mistrallarge')

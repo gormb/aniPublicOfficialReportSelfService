@@ -39,3 +39,4 @@ Etter at brukeren har valgt kategori, oppsummer nyhetene kort. Hvis brukeren sp�
 ,[`Hva er de nyeste anbefalingene om personlig økonomi?`, `Eksperter anbefaler nå [strategi] for å håndtere [økonomisk utfordring]. Vil du vite hvordan dette kan påvirke din økonomi?`]
 ];
 cfg.app='Verdens nyheter via Ideallya'
+msgSend('groklatest')

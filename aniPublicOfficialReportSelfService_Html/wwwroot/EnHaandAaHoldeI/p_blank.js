@@ -5,3 +5,4 @@ cfg.aiPrompt= [{ role: `system`, content: `Du er en kortfattet chatbot`}
 ,[`Hva er du?`, `En generell chatbot som kan spesialtilpasses`]
 ];
 cfg.app='(blank)'
+msgSend('mistralsmall')

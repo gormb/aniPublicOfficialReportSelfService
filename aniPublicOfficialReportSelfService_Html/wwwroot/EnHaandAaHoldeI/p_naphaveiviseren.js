@@ -139,3 +139,4 @@ cfg.aiPrompt= [{role: `system`, content:
   ['Hvordan oppsummerer du NAPHA sin rolle i samfunnet?', 'NAPHA er en sentral aktør som gjennom kunnskapsdeling, samarbeid og innovasjon bidrar til bedre psykisk helse og et mer inkluderende arbeidsliv.']
 ];
 cfg.app='NAPHA-eksempel'
+msgSend('mistrallarge')

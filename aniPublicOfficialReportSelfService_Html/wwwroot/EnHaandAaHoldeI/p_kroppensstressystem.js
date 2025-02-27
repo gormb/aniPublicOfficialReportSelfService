@@ -32,3 +32,4 @@ Dersom brukeren stiller spørsmål som ikke handler om kroppens stressystem, vei
 ,[`Hva betyr det når kroppen fryser helt og jeg ikke klarer å si noe?`, `Noen ganger, hvis stresset blir for stort, kan kroppen gå i 'frys-modus' og nesten skru seg av. Det er en annen måte kroppen prøver å beskytte deg på, men den beste måten å komme ut av det er å bevege seg eller snakke med noen du stoler på.`]
 ];
 cfg.app='Kroppens stressystem'
+msgSend('mistrallarge')

@@ -3,14 +3,16 @@
 const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
-    , appProvider:[['Helse >>§ -',[
+    , appProvider:[['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triagering', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§ -',['Biopsykososial modell','Kroppens stressystem']
-            ,'NAPHA >>',['NAPHA-veiviseren']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
+        ]],['Event >>§ -',[
+            'Lansering >>§ -', ['Yngvars bursdag', 'IT-revyens årsmøte']
+            ,'Konferanse >>§-', ['NAPHA-veiviseren', 'TEDxOslo2025', 'Future Insight']
         ]],['Generelt >>§-',[
-            'Hånd å holde i >>§-', ['Blank§*','Personvernrådgiveren']
+            'Hånd å holde i >>§-', ['Personvernrådgiveren','Innovasjon Norge søknad, Aigap','Blank§*']
             ,'Ideallya >>§-',['Verdens nyheter via Ideallya']]
         ]]
     , menusForAppProvider: () => cfg.appProvider.map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
@@ -55,9 +57,9 @@ const cfg={
     ]
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `||||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`|||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
-    , load:c=>{
+    , load:(c, cid=null)=>{
         return new Promise((y, n) => {
-            const cid = 'p_'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+            cid = cid||'p_'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
             const s = document.createElement('script');
             s.src = `${cid}.js`;
             s.async = false;

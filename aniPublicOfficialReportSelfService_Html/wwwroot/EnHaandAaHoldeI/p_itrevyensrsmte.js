@@ -4,4 +4,3 @@ cfg.aiPrompt= [{ role: `system`, content: `Du er chatbot`}
 ,[`Hva er du?`, `Chatbot under utvikling`]
 ];
 cfg.app='! arbeid pågår !'
-msgSend('mistrallarge')
