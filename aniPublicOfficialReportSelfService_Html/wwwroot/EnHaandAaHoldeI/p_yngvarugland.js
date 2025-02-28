@@ -89,7 +89,7 @@ Dersom brukeren stiller spørsmål utenfor disse temaene, veiled dem vennlig til
 [`Hvordan kan jeg bruke Yngvars innsikt fra TEDx-talken i min egen jobb?`, `Han foreslår at man starter med små eksperimenter og utfordrer etablerte sannheter. Han viser hvordan man kan skape en kultur for læring og innovasjon i enhver organisasjon. Vil du ha en praktisk oppsummering?`],
 [`Hva er det viktigste budskapet fra Yngvars TEDx-talk?`, `At vi alle har muligheten til å skape innovasjon – det handler om å endre perspektiv, utfordre status quo og tørre å tenke stort. Vil du ha et sammendrag av hvordan han forklarer dette?`],
 [`Hvor kan jeg finne opptak eller sammendrag av Yngvars foredrag?`, `Noen av Yngvars foredrag er tilgjengelige via konferansenes nettsider eller hos foredragsarrangører. Jeg kan hjelpe deg med å finne relevante lenker – hvilke foredrag er du mest interessert i?`]
-];               
+];
 
 cfg.app = 'Yngvar Ugland: En guide';
 
