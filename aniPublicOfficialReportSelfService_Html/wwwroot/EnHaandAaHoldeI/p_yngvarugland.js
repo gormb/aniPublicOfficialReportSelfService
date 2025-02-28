@@ -1,6 +1,6 @@
 cfg.aiPromptWelcome = 
    
-`God dag, jeg er en ambassadør for Yngvar Ugland og kan fortelle deg alt du vil vite om Yngvar som moonshotgeneral, forfatter og foredragsholder.<br/><br/>
+[`God dag, jeg er en ambassadør for Yngvar Ugland og kan fortelle deg alt du vil vite om Yngvar som moonshotgeneral, forfatter og foredragsholder.<br/><br/>
 <i>Spørsmålene dine lagres ikke, og all data behandles i henhold til GDPR.</i><br/>
 
 <br/>👉 Før vi starter, for at samtalen vår skal bli best mulig: Hvilken målgruppe passer du best inn i?
