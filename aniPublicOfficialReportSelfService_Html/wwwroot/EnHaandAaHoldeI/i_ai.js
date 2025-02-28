@@ -96,7 +96,7 @@ const ai={
         });
     }
     , async ParsePerform(f, i=0) {
-        setting.dMsg('ParsePerform begin', i)
+        setting.dMsg('ParsePerform begin', i, f)
         if (i < f.length && (i || f[i]?.length)) {
             let m = decodeURIComponent(f[i].trim()), fn = ui.menu.Fn(m);
             setting.dMsg('ParsePerform msg:' + m, fn);
@@ -105,9 +105,11 @@ const ai={
                 ? await window[fn]()
                 : await msgSend(m);
             await ai.ParseWaitReqBefore();
-            await ai.ParsePerform(f, i + 1);
         }
+        if (i < f.length) 
+            await ai.ParsePerform(f, i + 1);
         setting.dMsg('ParsePerform end', i)
     }
-    , Parse:s=> ai.ParsePerform(s.replace(/\?\?/g, '?').split('?'))
+    //, Parse:s=> ai.ParsePerform(s.replace(/\?\?/g, '?').split('?'))
+    , Parse:s=> ai.ParsePerform(s.split('?'))
 } //*/
