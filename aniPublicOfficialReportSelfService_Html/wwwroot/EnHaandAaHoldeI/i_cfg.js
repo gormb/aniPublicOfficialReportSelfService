@@ -8,7 +8,7 @@ const cfg={
             ,'Hlm - spesialist >>§ -',['Biopsykososial modell','Kroppens stressystem']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Event >>§ -',[
-            'Lansering >>§ -', ['Yngvars bursdag', 'IT-revyens årsmøte']
+            'Lansering >>§ -', ['Yngvar Ugland', 'IT-revyens årsmøte']
             ,'Konferanse >>§-', ['NAPHA-veiviseren', 'TEDxOslo2025', 'Future Insight']
         ]],['Generelt >>§-',[
             'Hånd å holde i >>§-', ['Personvernrådgiveren','Innovasjon Norge søknad, Aigap','Blank§*']
