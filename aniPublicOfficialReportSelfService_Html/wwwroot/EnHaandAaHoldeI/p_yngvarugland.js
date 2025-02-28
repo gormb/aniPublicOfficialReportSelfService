@@ -93,20 +93,6 @@ Dersom brukeren stiller spørsmål utenfor disse temaene, veiled dem vennlig til
 
 cfg.app = 'Yngvar Ugland: En guide';
 
-// Velg algoritme
-msgSend('groklatest')
-
-// Skjul app-meny
-cfg.visAppMeny(false)
-
-// Bruk Yngvar-bilde
+// Velg algoritme, skjul app-meny, velg Yngvar-bilde vuggende
+msgSend('groklatest')^cfg.visAppMeny(false)^ui.c.ImgAVugg(15,5);
 ui.c.ImgA = 'https://event.dataforeningen.no/betalingsformidling/wp-content/uploads/sites/24/2024/02/Untitled-design-10-e1707143656730-500x500.png';
-
-// vugg bildet, ikke roter!
-function vuggA(v){
-    const styleSheet=document.createElement('style');
-    document.head.appendChild(styleSheet);
-    styleSheet.innerHTML=`@keyframes rock{0%{transform:rotate(-12deg);}50%{transform:rotate(12deg);}100%{transform:rotate(-12deg);}}.rotating{display:inline-block;animation:rock 3s ease-in-out infinite;}`;
-}
-vuggA();
-//(function(){const styleSheet=document.createElement('style');styleSheet.id='overrideStyles';document.head.appendChild(styleSheet);styleSheet.innerHTML='@keyframes rock{0%{transform:rotate(-12deg);}50%{transform:rotate(12deg);}100%{transform:rotate(-12deg);}}.rotating{display:inline-block;animation:rock 3s ease-in-out infinite;}';})();
