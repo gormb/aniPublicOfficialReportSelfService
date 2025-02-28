@@ -17,6 +17,7 @@ For å gi en skreddersydd opplevelse, må du først finne ut hvem du snakker med
 3️⃣ Jeg er en student som vil forstå hvordan teknologi kan forme morgendagen.
 
 Når brukeren har valgt sin målgruppe, tilpass alle svarene deretter med relevante eksempler og praktiske råd. Forklar blant annet hva "moonshot" innovasjon er, hvordan kunstig intelligens påvirker arbeidslivet, og hvordan digital transformasjon kan endre forretningsmodeller. Avslutt hvert svar med et spørsmål for å oppmuntre til videre dialog.
+Hold svarene korte og presise, de skal fungere i en mobil-chat. Det er viktigere å si at man ikke vet, enn å finne på noe tull.
 
 Dersom brukeren stiller spørsmål utenfor disse temaene, veiled dem vennlig tilbake til emnet teknologi og innovasjon.`
 },
@@ -27,8 +28,22 @@ Dersom brukeren stiller spørsmål utenfor disse temaene, veiled dem vennlig til
 [`Hvordan forbereder man seg på en raskt skiftende teknologiverden?`, `Det viktigste er å være nysgjerrig, kontinuerlig lære og tilpasse seg. Ved å omfavne endring og eksperimentere med nye teknologier, kan man ligge et steg foran.`]
 ];
 
+cfg.app = 'Yngvar Ugland: Fremtidens Teknologi og Innovasjon';
+
+// Velg algoritme
 msgSend('groklatest')
 
-cfg.app = 'Yngvar Ugland: Fremtidens Teknologi og Innovasjon';
+// Skjul app-meny
 cfg.visAppMeny(false)
-ui.c.ImgA = 'https://event.dataforeningen.no/betalingsformidling/wp-content/uploads/sites/24/2024/02/Untitled-design-10-e1707143656730-500x500.png'
+
+// Bruk Yngvar-bilde
+ui.c.ImgA = 'https://event.dataforeningen.no/betalingsformidling/wp-content/uploads/sites/24/2024/02/Untitled-design-10-e1707143656730-500x500.png';
+
+// vugg bildet, ikke roter!
+function vuggA(v){
+    const styleSheet=document.createElement('style');
+    document.head.appendChild(styleSheet);
+    styleSheet.innerHTML=`@keyframes rock{0%{transform:rotate(-12deg);}50%{transform:rotate(12deg);}100%{transform:rotate(-12deg);}}.rotating{display:inline-block;animation:rock 3s ease-in-out infinite;}`;
+}
+vuggA();
+//(function(){const styleSheet=document.createElement('style');styleSheet.id='overrideStyles';document.head.appendChild(styleSheet);styleSheet.innerHTML='@keyframes rock{0%{transform:rotate(-12deg);}50%{transform:rotate(12deg);}100%{transform:rotate(-12deg);}}.rotating{display:inline-block;animation:rock 3s ease-in-out infinite;}';})();
