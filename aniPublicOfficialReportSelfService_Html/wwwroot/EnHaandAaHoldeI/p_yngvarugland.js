@@ -60,7 +60,7 @@ Dersom brukeren stiller spørsmål utenfor disse temaene, veiled dem vennlig til
 [`Hvordan forbereder man seg på en raskt skiftende teknologiverden?`, `Det viktigste er å være nysgjerrig, kontinuerlig lære og tilpasse seg. Ved å omfavne endring og eksperimentere med nye teknologier, kan man ligge et steg foran.`]
 ];
 
-cfg.app = 'Yngvar Ugland: Fremtidens Teknologi og Innovasjon';
+cfg.app = 'Yngvar Ugland: En guide';
 
 // Velg algoritme
 msgSend('groklatest')
