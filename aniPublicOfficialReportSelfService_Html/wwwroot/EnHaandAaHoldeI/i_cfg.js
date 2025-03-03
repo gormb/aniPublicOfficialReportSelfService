@@ -13,8 +13,9 @@ const cfg={
             ,'Konferanse >>§-', ['NAPHA-veiviseren', 'TEDxOslo2025', 'Future Insight']
         ]],['Generelt >>§ -',[
             'Hånd å holde i >>§-', ['Personvernrådgiveren','Innovasjon Norge søknad, Aigap','Blank§*']
-            ,'Digital assistent >>§ -', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO Din Offentlige Partner','NO Min Digitale Venn','NO TjenesteGuide','NO Alt På Ett Sted','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
-            ,'Ideallya >>§-',['Verdens nyheter via Ideallya']]
+            ,'Assistert veiledning >>§ -', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
+            ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
+                        ,'Ideallya >>§-',['Verdens nyheter via Ideallya']]
         ]]
     , menusForAppProvider: () => cfg.appProvider.map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
     , visAppMeny:b=>ui.Show(mc0,b)^ui.Show(mc0.previousElementSibling,b)^ui.Show(mc0.nextElementSibling,b)
