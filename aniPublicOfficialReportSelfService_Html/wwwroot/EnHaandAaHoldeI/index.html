@@ -19,10 +19,13 @@
         todo... create shortcuts to suggested questions
     </footer>
     <footer><button id="speak">🎤</button><input id="inp" placeholder="..."><button id="send">&nbsp;↑&nbsp;</button></footer>
-    <script src="i_cfg.js"></script><script src="i_setting.js"></script><script src="i_lagring.js"></script><script src="i_ui.js"></script><script src="i_ai.js"></script>
+    <script src="i_cfg.js"></script><script src="i_setting.js"></script>
+    <script src="i_ui.js"></script>
+    <script src="i_lagring.js"></script>
+    <script src="i_ai.js"></script>
     <script src="index.js"></script>
     <script src="ppv.js"></script>
     <script src="pbg.js"></script>
-    <script>InitializeChat();</script>
+    <script>setTimeout(()=>InitializeChat(), lagring.delay);</script>
 </body>
 </html>

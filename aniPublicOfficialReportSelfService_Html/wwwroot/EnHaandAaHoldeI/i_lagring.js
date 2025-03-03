@@ -10,18 +10,19 @@ const lagring = {
     , g: k => localStorage.getItem(lagring.lagre_Pre + k)
     , s: (k, v) => !lagring.aktiv||localStorage.setItem(lagring.lagre_Pre + k, v)
     , d: k => localStorage.removeItem(lagring.lagre_Pre + k)
+    , delay : 100, delayI : 100
     , last: () => {
-        let delay = 100, delayI = 100
+        let delay = 100//, delayI = 100
         console.log('lagring.laster...')
         if (lagring.aktiv != lagring.getAktiv(lagring.aktiv ?? 0))
-            setTimeout(() => ui.visLagre(), delay += delayI)
+            setTimeout(() => ui.visLagre(), delay += lagring.delayI)
         console.log('aktiv', lagring.aktiv)
         if (lagring.aktiv > 0) {
             // ai selected...done in getAis:()
             // app chosen...
             if (lagring.aktivApp != lagring.getAktivApp(lagring.aktivApp))
-                setTimeout(() => eval(`menuClick_m_${ui.menu.X(lagring.aktivApp)}()`), delay += delayI)
-            console.log(delay, delayI)
+                setTimeout(() => eval(`menuClick_m_${ui.menu.X(lagring.aktivApp)}()`), delay += lagring.delayI)
+            console.log(delay, lagring.delayI)
             // the rest of the history...
         }
         console.log('eo lagring.laster...')
