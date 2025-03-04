@@ -7,7 +7,7 @@ const ai={
     , ConfigPipeReplace : 'pipereplace'
     , AllModels :i=> [...new Set(cfg.aiProvider.flatMap(c => (c[5] || []).map(m => cfg.aiProviderUse[i]+m[0].split('§')[0])))]
     , Reply:[''], History : [], RequestActiveCount : 0
-    , Url:['','',''], Model:['','',''], Gunnar:['','',''], AdditionalHeader:[null,null,null]
+    , Url:['','',''], SugQ:[['',''],['',''],['','']], Model:['','',''], Gunnar:['','',''], AdditionalHeader:[null,null,null]
     , Reset:()=> {
         ai.Reply=[''];
         ai.History=[ai.ai2Prompt(cfg.aiPrompt), ai.ai2Prompt(cfg.aiPromptPV), ai.ai2Prompt(cfg.aiPromptBG)];
@@ -38,7 +38,7 @@ const ai={
     }
     , RequestComplete : (x, img, d, iThread, onDone, retries) => {
         ai.RequestActiveCount--;
-        img.classList.remove('rotating');
+        img?.classList.remove('rotating');
         if (x.status == 200) ai.History[iThread].push({ role: 'assistant', content: ai.Reply[iThread] });
         else if (x.status >= 400 && x.status < 500 && retries > 0) return setTimeout(() => ++ai.RequestActiveCount^ai.Request(ai.History[iThread].slice(-1)[0].content, d.parentElement, iThread, onDone, retries-1), 1000);
         else ai.Reply[iThread] = `<i>Feil ved kall til KI-tjenesten ${ai.Model[0]}<br/>${!x.status?'Manglende internet?':(() => { try { let err = JSON.parse(x.response?.message || x.responseText); return err?.error?.message || err?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
@@ -72,7 +72,7 @@ const ai={
         return x.send(xml);
     }
     , Request : (q, row = msgAnswer(), iThread = 0, onDone = null, retries = 2) => {
-        let img = row.querySelector('img'), d = row.querySelector('.msg'), l = 0;
+        let img = row.querySelector('img'), d = row.querySelector('.msg')??row, l = 0;
         ai.RequestActiveCount++;
         ai.History[iThread] ??= [...(ai.History[ai.History.length - 1] || [])];
         ai.Reply[iThread] ??= [...(ai.Reply[ai.Reply.length - 1] || [])];
@@ -110,6 +110,5 @@ const ai={
             await ai.ParsePerform(f, i + 1);
         setting.dMsg('ParsePerform end', i)
     }
-    //, Parse:s=> ai.ParsePerform(s.replace(/\?\?/g, '?').split('?'))
     , Parse:s=> ai.ParsePerform(s.split('?'))
 } //*/

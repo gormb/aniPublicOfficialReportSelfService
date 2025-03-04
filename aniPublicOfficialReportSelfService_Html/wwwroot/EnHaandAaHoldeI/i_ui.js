@@ -14,6 +14,7 @@ const ui = {
         , Header: document.querySelector('#header')
         , HeaderTitle: document.querySelector('#title')
         , Lagres: document.querySelector('header span')
+        , Grubling: document.querySelector('#grubling')
         , Suggestions: document.querySelector('#suggestions')
         , Input: document.querySelector('footer input')
         , Speak: document.querySelector('#speak')
@@ -37,6 +38,30 @@ const ui = {
         , ImgSpaceAppend:()=>ui.c.Chat.lastElementChild.innerHTML+=`<img class="icon space" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[7]}">`    
         , tRotating: '<div class="rotatingC">&#8634</div>'
     }
+    , SuggestI:0
+    , SuggestTimeout:2000
+    , SuggestIsIdle:true
+    , Suggest:i=>{
+        if (ui.SuggestIsIdle) {
+            ui.SuggestI=i??ui.SuggestI;
+            if (!ui.SuggestI) { // tøm forslag og vent 10 sec
+                ui.c.Suggestions.innerHTML = "";
+                setTimeout(()=>ui.Suggest(++ui.SuggestI), ui.SuggestTimeout);
+            }
+            else if (ui.SuggestI<3){ // Forslag 1-2-3
+                let b = document.createElement("div"), sg=ai.SugQ[0];
+                b.innerHTML = '<span class="row rotatingC">&#8634</span>';
+                b.classList.add('msg');b.classList.add('forslag');
+                b.onclick = () => msgSend(b.innerText)^ui.Suggest(0);
+                ui.c.Suggestions.appendChild(b);
+                ai.History[2] =ai.History[0];
+                ai.Reply[2] = ai.Reply[0];
+                ai.Request(sg[i<2?0:1], b, 2, ()=>
+                    setTimeout(()=>ui.Suggest(++ui.SuggestI), ui.SuggestTimeout)
+                );
+            }
+        }
+    }    
     , visLagre:e=>{
         l = lagring.aktiv;
         ui.c.Lagres.innerHTML = ['&nbsp;&nbsp;🔒&nbsp;&nbsp;lagres ikke', '&nbsp;&nbsp;💾&nbsp;&nbsp;lagres lokalt'][l]//ikke, lokalt
@@ -99,6 +124,8 @@ const ui = {
             lagring.setAi(i,id);
             ai.Model[i]=d.d0;
             ai.Url[i]=pd.d0;
+            ai.SugQ[i][0]=pd.d2;
+            ai.SugQ[i][1]=pd.d3;
             ai.Gunnar[i]=unescape(pd.d1);
             ai.AdditionalHeader[i]=pd.d4;
             setting.dMsg(ai.Model[i], ai.Gunn(i));

@@ -42,8 +42,9 @@ input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ccc; bac
     body.dark-mode input { background: var(--dark-msg); border: 1px solid #444; color: white; }
 button { padding: 10px 20px; border: none; border-radius: 50%; background: var(--primary-color); color: white; cursor: pointer; }
 button:hover { background: #0056b3; }
+    .forslag {padding: 10px 10px; border-radius: 25%; border-style: dashed; overflow: hidden; font-style: italic; cursor: pointer;}
 @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-.rotating { display: inline-block; animation: rotate 10s linear infinite; }
+    .rotating { display: inline-block; animation: rotate 10s linear infinite; }
 @keyframes rotateC { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
-.rotatingC { display: inline-block; animation: rotateC 2s linear infinite; }
-.save { cursor: pointer;  }
+    .rotatingC { display: inline-block; animation: rotateC 2s linear infinite; }
+.save { cursor: pointer; }

@@ -30,7 +30,7 @@ window.menuClick_m_forskalleai=e=> {
             e.remove();
         m = e.innerText;
     }catch(ex){ m=m||'Gjenta ...'}
-    ai.AllModels(0).forEach((mod,i)=> {cmd+=`ui.menu.SelectModel(ui.menu.X('`+mod+`'));ai.Request('`+m.trim()+`', msgAnswer(), `+(i+1)+`, null,0);\n`});
+    ai.AllModels(0).forEach((mod,i)=> {cmd+=`ui.menu.SelectModel(ui.menu.X('`+mod+`'));ai.Request('`+m.trim()+`', msgAnswer(), `+(i+3)+`, null,0);\n`});
     try{eval(cmd);}catch(ex){console.warn('menuClick_m_forskalleai', ex.message, cmd)}
     ui.menu.SelectModel(cfg.aiProviderDefault().split('?')[0]);
 }
@@ -41,7 +41,6 @@ window.menuClick_m_simuler=e=>{
     ui.menu.Show(false);
 }
 window.menuClick_m_listmodeller=e=>ui.menu.AllModels(e);
-
 // menuClick_m_ - Innstillinger >>
 window.menuClick_m_begynnpnytt=e=>{
     ui.menu.Show(false);
@@ -50,7 +49,6 @@ window.menuClick_m_begynnpnytt=e=>{
     msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
     ui.c.Input.focus();
 }
-
 window.menuClick_m_tmlagring=e=>{
     lagring.aktiv=l;
     lagring.toem();
@@ -58,7 +56,6 @@ window.menuClick_m_tmlagring=e=>{
     msgInfo('Alle eventuelle data slettet', true)
     ui.menu.Show(false);
 }
-
 window.menuClick_m_lagrelokalt=e=>{
     let l=++lagring.aktiv%2;
     lagring.aktiv=l;
@@ -66,13 +63,16 @@ window.menuClick_m_lagrelokalt=e=>{
     ui.visLagre()
 }
 window.menuClick_m_sprsmlsforslag=e=> {
-    setting.funcQuestionSuggestion = ui.menu.EBold(e.target.innerText, !setting.funcQuestionSuggestion);
-    ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion||setting.funcDeepAnalysis);
-    msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion?'':'de'}aktivert</i>`);
+    setting.funcQuestionSuggestion = ui.menu.EBold('sprsmlsforslag', !setting.funcQuestionSuggestion);
+    ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion);
+    // msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion?'':'de'}aktivert</i>`);
+    msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion ? 'aktivert,<br>kommer etter 10 sekunder inaktivitet' : 'deaktivert'}</i>`,false, true);
+    if (setting.funcQuestionSuggestion)
+        ui.Suggest();
 }
 window.menuClick_m_grubling=e=> {
     setting.funcDeepAnalysis = ui.menu.EBold(e.target.innerText, !setting.funcDeepAnalysis);
-    ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion||setting.funcDeepAnalysis);
+    ui.Show(ui.c.Grubling, setting.funcDeepAnalysis);
     msgInfo(`<i>Grubling ${setting.funcDeepAnalysis?'':'de'}aktivert</i>`);
 }
 window.menuClick_m_ikkesendsensitivedata=e=>ui.menu.EBoldOnly('ikkesendsensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
