@@ -39,27 +39,25 @@ const ui = {
         , tRotating: '<div class="rotatingC">&#8634</div>'
     }
     , SuggestI:0
-    , SuggestTimeout:2000
-    , SuggestIsIdle:true
+    , SuggestTimeout:5000
     , Suggest:i=>{
-        if (ui.SuggestIsIdle) {
-            ui.SuggestI=i??ui.SuggestI;
-            if (!ui.SuggestI) { // tøm forslag og vent 10 sec
-                ui.c.Suggestions.innerHTML = "";
-                setTimeout(()=>ui.Suggest(++ui.SuggestI), ui.SuggestTimeout);
-            }
-            else if (ui.SuggestI<3){ // Forslag 1-2-3
-                let b = document.createElement("div"), sg=ai.SugQ[0];
-                b.innerHTML = '<span class="row rotatingC">&#8634</span>';
-                b.classList.add('msg');b.classList.add('forslag');
-                b.onclick = () => msgSend(b.innerText)^ui.Suggest(0);
-                ui.c.Suggestions.appendChild(b);
-                ai.History[2] =ai.History[0];
-                ai.Reply[2] = ai.Reply[0];
-                ai.Request(sg[i<2?0:1], b, 2, ()=>
-                    setTimeout(()=>ui.Suggest(++ui.SuggestI), ui.SuggestTimeout)
-                );
-            }
+        ui.SuggestI=i??ui.SuggestI;
+        if (!ui.SuggestI) // tøm forslag og vis
+        {
+            ui.Show(ui.c.Suggestions, true)
+            ui.c.Suggestions.innerHTML = "";
+        }
+        if (ui.SuggestI<3){ // Forslag 1-2-3
+            let b = document.createElement("div"), sg=ai.SugQ[0];
+            b.innerHTML = '<span class="row rotatingC">&#8634</span>';
+            b.classList.add('msg');b.classList.add('forslag');
+            b.onclick = () => msgSend(b.innerText);
+            ui.c.Suggestions.appendChild(b);
+            ai.History[2] =ai.History[0];
+            ai.Reply[2] = ai.Reply[0];
+            ai.Request(sg[i<2?0:1], b, 2, ()=>
+                setTimeout(()=>ui.Suggest(++ui.SuggestI), ui.SuggestTimeout)
+            );
         }
     }    
     , visLagre:e=>{
@@ -100,12 +98,13 @@ const ui = {
             mtA.forEach(m => ui.menu.EBold(m, false));
             return ui.menu.EBold(mt, true);
         }
+        , Toggle:m=>[...m.parentElement.children].forEach(i=>i.classList.contains("menu-item")||ui.Show(i, i==m?null:false))
         , HtmlAddItem: (m, i) =>{ // create html for menu item and children
             let mi=m[i], mSplit=mi.t.split('§'), mt=mSplit[0].trim(), mo=mSplit[1], b='&nbsp;'.repeat(mi.l*6)
             , dX=mi.t.split('§§').slice(1).map((d, i)=>`data-d${i}='${d.replace(/\'/, /\'\'/)}'`).join(' '); // Generate data attributes
             if (!mi.c.length) // no children
                 return `<div id='${ui.menu.Id(mt)}' ${dX?dX:''} class='menu-item${mo=='*'?' bold':''}' onclick="menuClickLeaf(event)">${b+mt}</div>`;
-            let h=`${mi.i && !mi.l?'<hr/>':''}<div class='menu-item' onclick='mc${mi.i}.classList.toggle("hidden")'>${b+mt}</div>`;
+            let h=`${mi.i && !mi.l?'<hr/>':''}<div class='menu-item' onclick='ui.menu.Toggle(mc${mi.i})'>${b+mt}</div>`;
             h+=`<div id="mc${mi.i}" ${dX?dX:''}${mo=='-'?' class="hidden"':''}>`;
             for (let iS=0; iS<mi.c.length; iS++)
                 h+=ui.menu.HtmlAddItem(mi.c, iS);
@@ -182,6 +181,7 @@ window.msgInfo=(msg,handL=false,handR=false)=> {
     return el;
 }
 window.msgSend=(msgQ, onDone)=> {
+    ui.Show(ui.c.Suggestions, false);
     let msgQUse = msgQ?.trim() || ui.c.Input.value.trim();
     let r=null;
     if (!msgQUse) msgRedoLast()

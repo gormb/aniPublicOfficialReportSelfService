@@ -13,8 +13,7 @@ const setting={
                 |||Helseråd fra AI >>§-||||Ikke mottatt helseråd fra AI||||Omformuler helseråd||||Godta helseråd§*
             ||AI >>§-|||AI tilbyder >>§-${ cfg.menusForAiProvider('')}|||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }|||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
                 |||Tilfeldige AI-tilbydere
-            ||Analyse >>§-|||Spørsmålsforslag§ *
-                |||Grubling
+            ||Grubling
             ||Lagre lokalt
         |Om >>§-||Kontakt||Personvernerklæring||Tilbakemelding til Aigap||Barkode
         `.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')

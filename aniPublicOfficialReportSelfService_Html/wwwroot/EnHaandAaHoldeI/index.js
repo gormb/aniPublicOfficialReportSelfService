@@ -62,14 +62,14 @@ window.menuClick_m_lagrelokalt=e=>{
     lagring.lagre();
     ui.visLagre()
 }
-window.menuClick_m_sprsmlsforslag=e=> {
-    setting.funcQuestionSuggestion = ui.menu.EBold('sprsmlsforslag', !setting.funcQuestionSuggestion);
-    ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion);
-    // msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion?'':'de'}aktivert</i>`);
-    msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion ? 'aktivert,<br>kommer etter 10 sekunder inaktivitet' : 'deaktivert'}</i>`,false, true);
-    if (setting.funcQuestionSuggestion)
-        ui.Suggest();
-}
+// window.menuClick_m_sprsmlsforslag=e=> {
+//     setting.funcQuestionSuggestion = ui.menu.EBold('sprsmlsforslag', !setting.funcQuestionSuggestion);
+//     ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion);
+//     // msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion?'':'de'}aktivert</i>`);
+//     msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion ? 'aktivert,<br>kommer etter 10 sekunder inaktivitet' : 'deaktivert'}</i>`,false, true);
+//     if (setting.funcQuestionSuggestion)
+//         ui.Suggest();
+// }
 window.menuClick_m_grubling=e=> {
     setting.funcDeepAnalysis = ui.menu.EBold(e.target.innerText, !setting.funcDeepAnalysis);
     ui.Show(ui.c.Grubling, setting.funcDeepAnalysis);
