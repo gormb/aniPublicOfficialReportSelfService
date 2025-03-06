@@ -36,6 +36,8 @@ const ui = {
         , ImgDice:i=>`<img class="icon dice" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[i||7]}">`
         , ImgSpaceRemove:()=>document.querySelector('.space')?.remove()
         , ImgSpaceAppend:()=>ui.c.Chat.lastElementChild.innerHTML+=`<img class="icon space" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[7]}">`    
+        , ImgQrUrl:'barcode.jpg'
+        , ImgQr:()=>ui.c.ImgQrUrl
         , tRotating: '<div class="rotatingC">&#8634</div>'
     }
     , SuggestI:0

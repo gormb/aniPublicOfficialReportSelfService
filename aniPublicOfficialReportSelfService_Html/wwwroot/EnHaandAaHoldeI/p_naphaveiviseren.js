@@ -143,6 +143,7 @@ cfg.app='NAPHA-eksempel'
 
 msgSend('mistrallarge')^cfg.visAppMeny(false);
 ui.c.ImgA = 'p_naphaveiviseren.png'
+ui.c.ImgQrUrl = 'p_naphaveiviserenqr.png'
 
 document.documentElement.style.setProperty('--primary-color', '#FF9700');
 document.documentElement.style.setProperty('--font-family', "'Ubuntu', sans-serif");
