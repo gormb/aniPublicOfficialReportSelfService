@@ -9,7 +9,7 @@ const cfg={
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Event >>§-',[
             'Lansering >>§-', ['IT-revyens årsmøte']
-            ,'Folk >>§ -', ['Om Silje Føyen', 'Om Gorm Braarvig', 'Yngvar Ugland', 'Om Arne Dybdahl'] 
+            ,'Folk >>§ -', ['Om Silje Føyen', 'Om Gorm Braarvig'] 
             ,'Konferanse >>§-', ['NAPHA-veiviseren', 'TEDxOslo2025', 'Future Insight']
         ]],['Generelt >>§ -',[
             'Hånd å holde i >>§-', ['Personvernrådgiveren','Innovasjon Norge søknad, Aigap','Blank§*']
