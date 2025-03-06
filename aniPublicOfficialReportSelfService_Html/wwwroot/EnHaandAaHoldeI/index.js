@@ -28,7 +28,34 @@ window.menuClick_m_begynnpnytt=e=>{
     msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
     ui.c.Input.focus();
 }
-window.menuClick_m_analyserpersonvern=e=>ui.menu.Show(false)^msgInfo('menuClick_m_analyserpersonvern ikke implementert')
+window.menuClick_m_analyserpersonvern=e=>{ 
+    ui.menu.Show(false);
+    ai.History[1] =ai.History[0];
+    ai.Reply[1] = ai.Reply[0];
+
+/*
+        ui.SuggestI=i??ui.SuggestI;
+        if (!ui.SuggestI) // tøm forslag og vis
+        {
+            ui.Show(ui.c.Suggestions, true)
+            ui.c.Suggestions.innerHTML = "";
+        }
+        if (ui.SuggestI<3){ // Forslag 1-2-3
+            let b = document.createElement("div"), sg=ai.SugQ[0];
+            b.innerHTML = '<span class="row rotatingC">&#8634</span>';
+            b.classList.add('msg');b.classList.add('forslag');
+            b.onclick = () => msgSend(b.innerText);
+            ui.c.Suggestions.appendChild(b);
+            ai.History[2] =ai.History[0];
+            ai.Reply[2] = ai.Reply[0];
+            ai.Request(sg[i<2?0:1], b, 2, ()=>
+                setTimeout(()=>ui.Suggest(++ui.SuggestI), ui.SuggestTimeout)
+            );
+        }
+    }    
+
+    */
+}
 window.menuClick_m_forskalleai=e=> {
     let m='Gjenta', cmd='';
     msgInfo('Under utvikling!', false, true)

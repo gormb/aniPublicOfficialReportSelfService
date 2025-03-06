@@ -43,7 +43,7 @@ input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ccc; bac
 button { padding: 10px 20px; border: none; border-radius: 50%; background: var(--primary-color); color: white; cursor: pointer; }
 button:hover { background: #0056b3; }
     .forslag {padding: 10px 10px; border-radius: 25%; border-style: dashed; overflow: hidden; font-style: italic; cursor: pointer;
-        display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4;}
+        display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 3;}
     .suggest { position: absolute; bottom: 44px; left: 44dvw; z-index: 100;background: #ccc;border-top: 1px solid #ccc;padding: 7px 14px;}
 @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     .rotating { display: inline-block; animation: rotate 10s linear infinite; }
