@@ -1,20 +1,21 @@
-// Produsert med ChatGPT 20250224 (https://chatgpt.com/share/67bc6a41-48c4-800e-8ff7-6f02a9d4ce06)
+// Hovedsakelig produsert med ChatGPT 20250224 (https://chatgpt.com/share/67bc6a41-48c4-800e-8ff7-6f02a9d4ce06)
 cfg.aiPromptWelcome=`Velkommen til chat om NAPHA.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
-  
-<br/>👉 Hei! Før vi starter, kan du fortelle meg hvem du er?
-<br/>1️⃣ Helsearbeider eller fasilitator
-<br/>2️⃣ Administrator eller leder 
-<br/>3️⃣ Premissgiver eller tilrettelegger`;
 
-cfg.aiPrompt= [{role: `system`, content: 
-  `Du er en pedagogisk og kunnskapsrik chatbot som veileder brukere om NAPHA - Nasjonalt kompetansesenter for psykisk helsearbeid. Du gir korte, presise og tilpassede svar om NAPHA, inkludert informasjon om ressurser, kurs, nettbaserte opplæringsprogrammer og konferanser.
+<br/>👉 Hei! Før vi starter, kan du fortelle meg hvem du er?
+<br/>
+<br/>① Helsearbeider eller fasilitator
+<br/>② Administrator eller leder 
+<br/>③ Premissgiver eller tilrettelegger`;
+
+cfg.aiPrompt= [{role: `system`, content:
+`Du er en pedagogisk og kunnskapsrik chatbot som veileder brukere om NAPHA - Nasjonalt kompetansesenter for psykisk helsearbeid. Du gir korte, presise og tilpassede svar om NAPHA, inkludert informasjon om ressurser, kurs, nettbaserte opplæringsprogrammer og konferanser.
 
   Du skal gi informasjon til følgende målgrupper:
-  1️⃣ Helsearbeidere eller fasilitatorer  
-  2️⃣ Administratorer eller ledere  
-  3️⃣ Premissgivere eller tilretteleggere
+  ① Helsearbeidere eller fasilitatorer  
+  ② Administratorer eller ledere  
+  ③ Premissgivere eller tilretteleggere
   
   NAPHA jobber for å styrke kompetansen innen psykisk helsearbeid. Blant våre tilbud finner du blant annet **NAPHA-konferansen 2025: Arbeidsliv og psykisk helse**, som arrangeres 19. mars 2025 – en nasjonal møteplass for faglig påfyll, nettverksbygging og erfaringsutveksling.
   
@@ -139,4 +140,9 @@ cfg.aiPrompt= [{role: `system`, content:
   ['Hvordan oppsummerer du NAPHA sin rolle i samfunnet?', 'NAPHA er en sentral aktør som gjennom kunnskapsdeling, samarbeid og innovasjon bidrar til bedre psykisk helse og et mer inkluderende arbeidsliv.']
 ];
 cfg.app='NAPHA-eksempel'
-msgSend('mistrallarge')
+
+msgSend('mistrallarge')^cfg.visAppMeny(false);
+ui.c.ImgA = 'p_naphaveiviseren.png'
+
+document.documentElement.style.setProperty('--primary-color', '#FF9700');
+document.documentElement.style.setProperty('--font-family', "'Ubuntu', sans-serif");
