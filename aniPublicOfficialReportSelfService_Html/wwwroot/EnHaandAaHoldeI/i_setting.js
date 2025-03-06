@@ -15,9 +15,9 @@ const setting={
                 |||Tilfeldige AI-tilbydere
             ||Grubling
             ||Lagre lokalt
+            ||Vis App-meny
         |Om >>§-||Kontakt||Personvernerklæring||Tilbakemelding til Aigap||Barkode
         `.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
-    , funcQuestionSuggestion: false
     , funcDeepAnalysis: false
     , hindreSensitiveData:true
     , omformulerSensitiveData:false

@@ -63,7 +63,7 @@ const ui = {
     , visLagre:e=>{
         l = lagring.aktiv;
         ui.c.Lagres.innerHTML = ['&nbsp;&nbsp;🔒&nbsp;&nbsp;lagres ikke', '&nbsp;&nbsp;💾&nbsp;&nbsp;lagres lokalt'][l]//ikke, lokalt
-        ui.menu.EBold('lagrelokalt', lagring.aktiv>0);
+        return ui.menu.EBold('lagrelokalt', lagring.aktiv>0);
     }
     , Show: (el,b) => (el.classList.toggle('hidden', !(b ?? el.classList.contains('hidden'))), !!b)
     , _sizeI: 0,
@@ -87,17 +87,19 @@ const ui = {
         , Id: mt => 'm_'+ui.menu.X(mt)
         , Fn: mt => 'menuClick_' + ui.menu.Id(mt)
         , E : mt => document.getElementById(ui.menu.Id(mt)) || console.warn(`ui.menu.E: ${ui.menu.Id(mt)} finnes ikke`)
-        , EBold : (mt,b=null) => {
+        , EFeat : (mt,b,f) => {
             let e=ui.menu.E(mt)
-            if (b==null) b = !e.classList.contains('bold');
-            if (b==true) e.classList.add('bold');
-            else e.classList.remove('bold');
+            if (b==null) b = !e.classList.contains(f);
+            if (b==true) e.classList.add(f);
+            else e.classList.remove(f);
             return b;
         }
+        , EBold : (mt,b=null) => ui.menu.EFeat(mt,b,'bold')
         , EBoldOnly : (mt, mtA) => {
             mtA.forEach(m => ui.menu.EBold(m, false));
             return ui.menu.EBold(mt, true);
         }
+        , EHide : (mt,b=null) => ui.menu.EFeat(mt,b,'hidden')        
         , Toggle:m=>[...m.parentElement.children].forEach(i=>i.classList.contains("menu-item")||ui.Show(i, i==m?null:false))
           
         , HtmlAddItem: (m, i) =>{ // create html for menu item and children

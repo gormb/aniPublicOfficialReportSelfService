@@ -20,7 +20,14 @@ window.menuClick_m_dansk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Dansk', ui.me
 window.menuClick_m_englishus=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English (UK)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into British English. From now on, please respond briefly using British spelling, vocabulary, and idioms.');
 window.menuClick_m_englishuk=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English (US)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into American English. From now on, please respond briefly using American spelling, vocabulary, and idioms');
 
-// menuClick_m_ - Funksjonalitet >>
+// menuClick_m_ - Handling >>
+window.menuClick_m_begynnpnytt=e=>{
+    ui.menu.Show(false);
+    ui.c.Chat.innerHTML='';
+    ai.Reset();
+    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
+    ui.c.Input.focus();
+}
 window.menuClick_m_analyserpersonvern=e=>ui.menu.Show(false)^msgInfo('menuClick_m_analyserpersonvern ikke implementert')
 window.menuClick_m_forskalleai=e=> {
     let m='Gjenta', cmd='';
@@ -42,13 +49,12 @@ window.menuClick_m_simuler=e=>{
 }
 window.menuClick_m_listmodeller=e=>ui.menu.AllModels(e);
 // menuClick_m_ - Innstillinger >>
-window.menuClick_m_begynnpnytt=e=>{
-    ui.menu.Show(false);
-    ui.c.Chat.innerHTML='';
-    ai.Reset();
-    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
-    ui.c.Input.focus();
-}
+window.menuClick_m_ikkesendsensitivedata=e=>ui.menu.EBoldOnly('ikkesendsensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
+    window.menuClick_m_omformulersensitivedata=e=>ui.menu.EBoldOnly('omformulersensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
+    window.menuClick_m_godtasensitivedata=e=>ui.menu.EBoldOnly('godtasensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
+window.menuClick_m_ikkemottatthelserdfraai=e=>ui.menu.EBoldOnly('ikkemottatthelserdfraai',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
+    window.menuClick_m_omformulerhelserd=e=>ui.menu.EBoldOnly('omformulerhelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
+    window.menuClick_m_godtahelserd=e=>ui.menu.EBoldOnly('godtahelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
 window.menuClick_m_tmlagring=e=>{
     lagring.aktiv=l;
     lagring.toem();
@@ -56,31 +62,13 @@ window.menuClick_m_tmlagring=e=>{
     msgInfo('Alle eventuelle data slettet', true)
     ui.menu.Show(false);
 }
-window.menuClick_m_lagrelokalt=e=>{
-    let l=++lagring.aktiv%2;
-    lagring.aktiv=l;
-    lagring.lagre();
-    ui.visLagre()
-}
-// window.menuClick_m_sprsmlsforslag=e=> {
-//     setting.funcQuestionSuggestion = ui.menu.EBold('sprsmlsforslag', !setting.funcQuestionSuggestion);
-//     ui.Show(ui.c.Suggestions, setting.funcQuestionSuggestion);
-//     // msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion?'':'de'}aktivert</i>`);
-//     msgInfo(`<i>Spørsmålsforslag ${setting.funcQuestionSuggestion ? 'aktivert,<br>kommer etter 10 sekunder inaktivitet' : 'deaktivert'}</i>`,false, true);
-//     if (setting.funcQuestionSuggestion)
-//         ui.Suggest();
-// }
+window.menuClick_m_lagrelokalt=e=>lagring.lagre(++lagring.aktiv%2)^ui.visLagre();
 window.menuClick_m_grubling=e=> {
     setting.funcDeepAnalysis = ui.menu.EBold(e.target.innerText, !setting.funcDeepAnalysis);
     ui.Show(ui.c.Grubling, setting.funcDeepAnalysis);
     msgInfo(`<i>Grubling ${setting.funcDeepAnalysis?'':'de'}aktivert</i>`);
 }
-window.menuClick_m_ikkesendsensitivedata=e=>ui.menu.EBoldOnly('ikkesendsensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
-    window.menuClick_m_omformulersensitivedata=e=>ui.menu.EBoldOnly('omformulersensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
-    window.menuClick_m_godtasensitivedata=e=>ui.menu.EBoldOnly('godtasensitivedata',['ikkesendsensitivedata','omformulersensitivedata','godtasensitivedata']);
-window.menuClick_m_ikkemottatthelserdfraai=e=>ui.menu.EBoldOnly('ikkemottatthelserdfraai',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
-    window.menuClick_m_omformulerhelserd=e=>ui.menu.EBoldOnly('omformulerhelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
-    window.menuClick_m_godtahelserd=e=>ui.menu.EBoldOnly('godtahelserd',['ikkemottatthelserdfraai','omformulerhelserd','godtahelserd']);
+window.menuClick_m_visappmeny=e=>cfg.visAppMeny(true)
 // menuClick_m_ - Innstillinger >> AI >>
 window.menuClick_m_tilfeldigeaitilbydere=e=> {
     const a = ai.AllModels(0);

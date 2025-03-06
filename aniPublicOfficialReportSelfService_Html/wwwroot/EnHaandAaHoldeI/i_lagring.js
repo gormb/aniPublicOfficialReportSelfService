@@ -32,12 +32,14 @@ const lagring = {
         Object.keys(localStorage).forEach(k=>k.startsWith(lagring.lagre_Pre) && lagring.d(k.slice(lagring.lagre_Pre.length)))
         lagring.last();
     }
-    , lagre: () => {
+    , lagre: (a) => {
+        lagring.aktiv=a??lagring.aktiv;
         setting.dMsg('lagreaktiv lagring.aktiv', lagring.aktiv)
         lagring.s('aktiv', lagring.aktiv)
         if (lagring.aktiv) {
             setting.dMsg('lagreaktiv lagring.aktivApp', lagring.aktivApp)
             lagring.s('aktivApp', lagring.aktivApp)
         }
+        return lagring.aktiv;
     }
 } //*/
