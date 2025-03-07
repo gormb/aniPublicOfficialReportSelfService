@@ -28,12 +28,75 @@ window.menuClick_m_begynnpnytt=e=>{
     msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
     ui.c.Input.focus();
 }
+
+// const diceC = m => {
+//     let [m0, m1 = ''] = m.replace(/"/g, '').split('Omformulering:');
+//     let d = [...m.matchAll(/🎲 (\d)/g)].map(m => +m[1]);
+//     return [d[0] || null, m0.trim(), d[1] || null, m1.trim()];
+// };
+
+const diceC = m => {
+    let d = [...m.matchAll(/🎲 (\d)/g)].map(m => +m[1]);
+    let [m0, m1 = ''] = m.replace(/"/g, '').split('Omformulering:')
+        .map(t => t.replace(/🎲 \d+:?/g, '').trim()); // Remove all 🎲 n and optional ":"
+    return [d[0] || null, m0, d[1] || null, m1];
+};
+
+
+const pvVurderH = (i, iF) => { 
+    let a = ai.History[1][i].content.startsWith('Agent:'), c = ai.History[1][i].content,
+        row = [...ui.c.Chat.children].find(r => r.textContent.includes(c.replace(/^Agent: |^User: /, ''))); // Find the correct row
+    console.log(row, c);
+
+    let b = msgInfo(ui.c.tRotating, !a, a);
+
+    if (row)
+        row.insertAdjacentElement('afterend', b); // Move it under the correct chat row
+    else {
+        b.remove();
+        b=msgInfo(c.slice(0,29)+'...<br>');
+    }
+
+    ai.Request(c, b, 1, (r) => {
+        let [d0, m0, d1, m1] = diceC(r),
+            t0 = `<i> ${m0} </i>` + (d0 == d1 ? '' : '<br>'),
+            t1 = ` ${m1} `,
+            i0 = ui.c.ImgDice(d0), i1 = ui.c.ImgDice(d1);
+        b.innerHTML = i0 + t0 + (d0 != d1 ? i1 + t1 : '');        
+        if (i > iF) pvVurderH(i - 2, iF);
+    });
+}
+
+/*const pvVurderH=(i, iF)=>{ 
+    let a=ai.History[1][i].content.startsWith('Agent:'), c=ai.History[1][i].content;
+
+    let b=msgInfo(ui.c.tRotating, !a, a)
+    ai.Request(c, b, 1, (r)=>{
+        //el.remove();
+        let [d0, m0, d1, m1] = diceC(r)
+            ,t0='<i> '+m0+' </i>'+(d0==d1?'':'<br>')
+            ,t1=' '+m1+' ',i0=ui.c.ImgDice(d0),i1=ui.c.ImgDice(d1);
+        htm = i0 + t0;
+        if (d0!=d1) htm+=i1+t1;
+        b.innerHTML=htm;
+        if (i>iF) pvVurderH(i-2, iF);  
+    });
+} // file:///C:/Source/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/EnHaandAaHoldeI/index.html?GPT4?jeg%20har%20aids?analyserpersonvern
+*/
+
 window.menuClick_m_analyserpersonvern=e=>{ 
     ui.menu.Show(false);
-    ai.History[1] =ai.History[0];
-    ai.Reply[1] = ai.Reply[0];
-
-/*
+    let iHl=ai.History[0].length-1, iHf=iHl;
+    while (iHf>0 && ai.History[0][--iHf].content!=cfg.aiPromptWelcomeQuestion)
+        ;
+    ai.History[1] = [...ai.ai2Prompt(cfg.aiPromptPV),...ai.History[0].slice(++iHf, iHl + 1).flatMap(m => [
+            { role: 'user', content: (m.role === 'user' ? 'User: ' : 'Agent: ') + m.content },
+            { role: 'assistant', content: ui.c.tRotating }])];
+    let l=ai.History[1].length-1, lPre=ai.ai2Prompt(cfg.aiPromptPV).length;
+    pvVurderH(l-1, lPre);
+    console.log(ai.History[1]);
+    return;
+/* Suggest...
         ui.SuggestI=i??ui.SuggestI;
         if (!ui.SuggestI) // tøm forslag og vis
         {
@@ -47,7 +110,6 @@ window.menuClick_m_analyserpersonvern=e=>{
             b.onclick = () => msgSend(b.innerText);
             ui.c.Suggestions.appendChild(b);
             ai.History[2] =ai.History[0];
-            ai.Reply[2] = ai.Reply[0];
             ai.Request(sg[i<2?0:1], b, 2, ()=>
                 setTimeout(()=>ui.Suggest(++ui.SuggestI), ui.SuggestTimeout)
             );

@@ -29,7 +29,7 @@ body.dark-mode main { background: var(--dark-bg); }
 .info { justify-content: center; }
 .icon { height: 60px; cursor: pointer; }
     body.dark-mode .icon { filter: brightness(0) invert(1); }
-    .dice { height: 30px; }
+    .dice { height: 18px; }
     .space { height: 30dvh; width: 1px }
 .msg { max-width: 70%; padding: 10px; border-radius: 10px; }
 .sent .msg { background: var(--secondary-color); color: var(--primary-color); border-top-right-radius: 0;}
@@ -41,7 +41,7 @@ footer { padding: 10px; background: #f1f1f1; display: flex; gap: 10px; align-ite
 input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ccc; background: var(--light-msg); }
     body.dark-mode input { background: var(--dark-msg); border: 1px solid #444; color: white; }
 button { padding: 10px 20px; border: none; border-radius: 50%; background: var(--primary-color); color: white; cursor: pointer; }
-button:hover { background: #0056b3; }
+button:hover { background: var(--primary-color); }
     .forslag {padding: 10px 10px; border-radius: 25%; border-style: dashed; overflow: hidden; font-style: italic; cursor: pointer;
         display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 3;}
     .suggest { position: absolute; bottom: 44px; left: 44dvw; z-index: 100;background: #ccc;border-top: 1px solid #ccc;padding: 7px 14px;}

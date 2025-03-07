@@ -13,19 +13,19 @@ const lagring = {
     , delay : 100, delayI : 100
     , last: () => {
         let delay = 100//, delayI = 100
-        console.log('lagring.laster...')
+        setting.dMsg('lagring.laster...')
         if (lagring.aktiv != lagring.getAktiv(lagring.aktiv ?? 0))
             setTimeout(() => ui.visLagre(), delay += lagring.delayI)
-        console.log('aktiv', lagring.aktiv)
+        setting.dMsg('aktiv', lagring.aktiv)
         if (lagring.aktiv > 0) {
             // ai selected...done in getAis:()
             // app chosen...
             if (lagring.aktivApp != lagring.getAktivApp(lagring.aktivApp))
                 setTimeout(() => eval(`menuClick_m_${ui.menu.X(lagring.aktivApp)}()`), delay += lagring.delayI)
-            console.log(delay, lagring.delayI)
+            setting.dMsg(delay, lagring.delayI)
             // the rest of the history...
         }
-        console.log('eo lagring.laster...')
+        setting.dMsg('eo lagring.laster...')
     }
     , getAis:()=>lagring.ai.join('?')
     , toem: () => { // Remove all localStorage keys starting with lagring.lagre_Pre using d()

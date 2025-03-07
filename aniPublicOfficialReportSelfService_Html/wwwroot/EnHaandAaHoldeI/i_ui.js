@@ -55,8 +55,7 @@ const ui = {
             b.classList.add('msg');b.classList.add('forslag');
             b.onclick = () => msgSend(b.innerText);
             ui.c.Suggestions.appendChild(b);
-            ai.History[2] =ai.History[0];
-            ai.Reply[2] = ai.Reply[0];
+            ai.History[2] = ai.History[0];
             ai.Request(sg[i<2?0:1], b, 2, ()=>
                 setTimeout(()=>ui.Suggest(++ui.SuggestI), ui.SuggestTimeout)
             );
