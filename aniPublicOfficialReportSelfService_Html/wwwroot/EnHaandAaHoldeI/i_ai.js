@@ -49,8 +49,7 @@ const ai={
     , RequestX : (iThread, onDone, retries, img, d) => {
         let x = new XMLHttpRequest(), l=0
             , isAnth = ai.Url[0].includes('.anthropic.')
-            , isHugg = ai.Url[0].includes('.huggingface.')
-            //, isGemi = ai.Url[0].includes('.googleapis.')
+            , isHugg = ai.Url[0].includes('.huggingface.') //, isGemi = ai.Url[0].includes('.googleapis.')
         let u=ai.Url[0]+(isHugg?ai.Model[0]:'');
         x.open("POST", u, true);
         x.setRequestHeader("Content-Type", "application/json");
