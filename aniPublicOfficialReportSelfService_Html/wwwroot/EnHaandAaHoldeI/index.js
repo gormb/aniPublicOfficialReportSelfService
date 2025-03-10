@@ -44,45 +44,19 @@ const diceC = m => {
 
 
 const pvVurderH = (i, iF) => { 
-    let a = ai.History[1][i].content.startsWith('Agent:'), c = ai.History[1][i].content,
-        row = [...ui.c.Chat.children].find(r => r.textContent.includes(c.replace(/^Agent: |^User: /, ''))); // Find the correct row
+    let a = ai.History[1][i].content.startsWith('Agent:'), c = ai.History[1][i].content
+        , row = [...ui.c.Chat.children].find(r => r.textContent.includes(c.replace(/^Agent: |^User: /, ''))) // Find the correct row
+        , b = msgInfo(ui.c.tRotating, !a, a);
+    if(!row) row = msgInfo(c.slice(0,49)+'...');
     console.log(row, c);
-
-    let b = msgInfo(ui.c.tRotating, !a, a);
-
-    if (row)
-        row.insertAdjacentElement('afterend', b); // Move it under the correct chat row
-    else {
-        b.remove();
-        b=msgInfo(c.slice(0,29)+'...<br>');
-    }
-
+    row.insertAdjacentElement('afterend', b); // Move it under the correct chat row
     ai.Request(c, b, 1, (r) => {
         let [d0, m0, d1, m1] = diceC(r),
-            t0 = `<i> ${m0} </i>` + (d0 == d1 ? '' : '<br>'),
-            t1 = ` ${m1} `,
-            i0 = ui.c.ImgDice(d0), i1 = ui.c.ImgDice(d1);
-        b.innerHTML = i0 + t0 + (d0 != d1 ? i1 + t1 : '');        
+            t0 = `<i> ${m0} </i>`,t1 = ` ${m1} `, i0 = ui.c.ImgDice(d0), i1 = ui.c.ImgDice(d1);
+        b.innerHTML = i0 + t0 + (d0 != d1 ? '<br>' + i1 + t1 : '');
         if (i > iF) pvVurderH(i - 2, iF);
     });
 }
-
-/*const pvVurderH=(i, iF)=>{ 
-    let a=ai.History[1][i].content.startsWith('Agent:'), c=ai.History[1][i].content;
-
-    let b=msgInfo(ui.c.tRotating, !a, a)
-    ai.Request(c, b, 1, (r)=>{
-        //el.remove();
-        let [d0, m0, d1, m1] = diceC(r)
-            ,t0='<i> '+m0+' </i>'+(d0==d1?'':'<br>')
-            ,t1=' '+m1+' ',i0=ui.c.ImgDice(d0),i1=ui.c.ImgDice(d1);
-        htm = i0 + t0;
-        if (d0!=d1) htm+=i1+t1;
-        b.innerHTML=htm;
-        if (i>iF) pvVurderH(i-2, iF);  
-    });
-} // file:///C:/Source/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/EnHaandAaHoldeI/index.html?GPT4?jeg%20har%20aids?analyserpersonvern
-*/
 
 window.menuClick_m_analyserpersonvern=e=>{ 
     ui.menu.Show(false);
