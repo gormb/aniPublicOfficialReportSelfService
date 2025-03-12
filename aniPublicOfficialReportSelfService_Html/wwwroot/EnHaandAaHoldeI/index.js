@@ -42,7 +42,6 @@ const diceC = m => {
     return [d[0] || null, m0, d[1] || null, m1];
 };
 
-
 const pvVurderH = (i, iF) => { 
     let a = ai.History[1][i].content.startsWith('Agent:'), c = ai.History[1][i].content
         , row = [...ui.c.Chat.children].find(r => r.textContent.includes(c.replace(/^Agent: |^User: /, ''))) // Find the correct row
@@ -183,3 +182,6 @@ async function InitializeChat(q=null) {
 
 lagring.init();
 ui.init();
+
+// Forces a full reload when navigating back/forward
+if (performance.getEntriesByType("navigation")[0]?.type === "back_forward") location.reload(true); 
