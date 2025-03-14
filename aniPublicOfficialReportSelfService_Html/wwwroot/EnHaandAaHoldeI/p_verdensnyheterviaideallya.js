@@ -1,3 +1,4 @@
+cfg.load('verdensnyheterviaideallyacfg');
 
 cfg.aiPromptWelcome = `Velkommen til chat om nyheter.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
@@ -293,4 +294,6 @@ Hvis brukeren spør om en hendelse du ikke har oppdateringer på, foreslå relev
 cfg.app = 'Verdensnyheter via Ideallya';
 
 // Avsluttende melding eller kommando for å sende filen
-msgSend('groklatest');
+
+
+
