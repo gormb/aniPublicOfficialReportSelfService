@@ -141,7 +141,9 @@ cfg.aiPrompt= [{role: `system`, content:
 ];
 cfg.app='NAPHA-eksempel'
 
-msgSend('mistrallarge')^cfg.visAppMeny(false);
+//msgSend('mistrallarge')
+msgSend('gpt4')
+^cfg.visAppMeny(false);
 ui.c.ImgA = 'p_naphaveiviseren.png'
 ui.c.ImgQrUrl = 'p_naphaveiviserenqr.png'
 
