@@ -5,17 +5,17 @@ const cfg={
     , appProvider:[['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triagering', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
-            ,'Hlm - spesialist >>§ -',['Biopsykososial modell','Kroppens stressystem']
+            ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
-        ]],['Event >>§-',[
+        ]],['Event >>§ -',[
             'Lansering >>§-', ['IT-revyens årsmøte']
-            ,'Folk >>§ -', ['Om Silje Føyen', 'Om Gorm Braarvig']
-            ,'Konferanse >>§-', ['NAPHA-veiviseren', 'TEDxOslo2025', 'Future Insight']
-        ]],['Generelt >>§ -',[
+            ,'Folk >>§-', ['Om Silje Føyen', 'Om Gorm Braarvig']
+            ,'Konferanse >>§ -', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025', 'TEDxOslo 2025']
+        ]],['Generelt >>§-',[
             'Hånd å holde i >>§-', ['Personvernrådgiveren','Innovasjon Norge søknad, Aigap','Blank§*']
-            ,'Assistert veiledning >>§ -', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
+            ,'Assistert veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
             ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
-                        ,'Ideallya >>§-',['Verdens nyheter via Ideallya']]
+            ,'Nyheter >>§-',['Verdens nyheter via Ideallya']]
         ]]
     , menusForAppProvider: () => cfg.appProvider.map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
     , visAppMeny:b=>ui.Show(mc0,b)^ui.Show(mc0.previousElementSibling,b)^ui.Show(mc0.nextElementSibling,b)
@@ -36,7 +36,7 @@ const cfg={
     , aiPromptBG:[{ role: `system`, content: `Du er en chatbot som skal generere nye spørsmål.`} 
         ,[`Hva er mitt neste spørsmål?`, `Hva er viktig å tenke på?`]
         ,[`Hva er mitt neste spørsmål?`, `Hvordan kan jeg bruke denne tjenesten?`]]
-    , aiProviderDefault:()=> lagring.getAis() //`mistral large?PV mistral small?BG mistral small` 
+    , aiProviderDefault:()=> lagring.getAis() //`mistral large?PV mistral small?BG mistral small`
     , aiProvider : [ // [name, url, gunn, Spørsmålsforslag prompt, Spørsmålsforslag prompt(n), [[aiName, aiModel]]]
         ['Mistral (EU)', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
@@ -61,7 +61,6 @@ const cfg={
             , [['Aigap Deepseek', 'deepseek-r1:latest'], ['Aigap bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
         ,['Lokal 1234', 'http://localhost:1234/v1/chat/completions ', ``, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Lokal Deepseek', 'deepseek-r1:latest'], ['Lokal bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
-
         ]// https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/EnHaandAaHoldeI/
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `||||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`|||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
