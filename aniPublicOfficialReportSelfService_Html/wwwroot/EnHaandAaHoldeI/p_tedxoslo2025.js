@@ -63,7 +63,7 @@ Oppmuntre alltid til videre dialog med et spørsmål på slutten.`}
 
 cfg.app = 'TEDxOslo2025'
 
-msgSend('gpt4')
+msgSend('mistrallarge')
 ^cfg.visAppMeny(false);
 ui.c.ImgA = 'p_tedxoslo2025.png'
 ui.c.ImgQrUrl = 'p_tedxoslo2025qr.png'
