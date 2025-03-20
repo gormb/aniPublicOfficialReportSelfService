@@ -149,7 +149,7 @@ window.menuClick_m_debug=e=>(setting.debug=ui.menu.EBold('debug'));
 window.menuClick_m_kontakt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/snakk-med-oss');
 window.menuClick_m_personvernerklring=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
 window.menuClick_m_tilbakemeldingtilaigap=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1utfDpp9dwNN80uR6PnE93KyoeRMBMHiEMvJDtSuMICA/edit?usp=sharing');
-window.menuClick_m_barkode=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl(ui.c.ImgQr());
+window.menuClick_m_qrkode=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl(ui.c.ImgQr());
 
 /////////////// menuClick_m_ - Menu redirect ///////////////
 window.menuClickLeaf=e=>{ // handle click on leaf menu item

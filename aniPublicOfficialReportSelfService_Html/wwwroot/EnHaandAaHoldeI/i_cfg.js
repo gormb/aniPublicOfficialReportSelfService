@@ -7,6 +7,9 @@ const cfg={
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
+        ]],['Virksomhetsverktøy >>§-',[
+            'Ledelse >>§-', ['Leder-LMX']
+            ,'HR >>§-', ['HR-Medarbeidersamtale', 'HR-Ansettelsen']
         ]],['Event >>§ -',[
             'Lansering >>§-', ['IT-revyens årsmøte']
             ,'Folk >>§-', ['Om Silje Føyen', 'Om Gorm Braarvig']

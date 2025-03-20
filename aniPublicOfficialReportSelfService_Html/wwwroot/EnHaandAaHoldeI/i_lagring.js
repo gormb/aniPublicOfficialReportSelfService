@@ -42,4 +42,9 @@ const lagring = {
         }
         return lagring.aktiv;
     }
+    , sky: {
+        init:e=>alert('hei')
+    }
 } //*/
+
+//lagring.sky.init()

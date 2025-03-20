@@ -16,7 +16,7 @@ const setting={
             ||Grubling
             ||Lagre lokalt
             ||Vis App-meny
-        |Om >>§-||Kontakt||Personvernerklæring||Tilbakemelding til Aigap||Barkode
+        |Om >>§-||Kontakt||Personvernerklæring||Tilbakemelding til Aigap||QR-kode
         `.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
     , funcDeepAnalysis: false
     , hindreSensitiveData:true
