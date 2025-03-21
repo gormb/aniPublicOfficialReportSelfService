@@ -10,6 +10,7 @@ const cfg={
         ]],['Virksomhetsverktøy >>§-',[
             'Ledelse >>§-', ['Leder-LMX']
             ,'HR >>§-', ['HR-Medarbeidersamtale', 'HR-Ansettelsen']
+            ,'IT >>§-', ['ROS assistent']
         ]],['Event >>§ -',[
             'Lansering >>§-', ['IT-revyens årsmøte']
             ,'Folk >>§-', ['Om Silje Føyen', 'Om Gorm Braarvig']
