@@ -42,9 +42,15 @@ const lagring = {
         }
         return lagring.aktiv;
     }
-    , sky: {
-        init:e=>alert('hei')
+    ,sb: {
+        k:1
+        ,uri:'https://nasxmebvjoxcmzevvbts.supabase.co/rest/v1/'
+        ,key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hc3htZWJ2am94Y216ZXZ2YnRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0NzEzNjcsImV4cCI6MjA1ODA0NzM2N30.zvy3HGBwKealFrrOBFJaVk7jLrO4yqDxn6q9i6sSdsI'
+        ,s:(e,x)=>{const[t,...c]=e.split(',');const q=c.length?'?select='+c.join(','):'';fetch(lagring.sb.uri+t+q,{headers:{apikey:lagring.sb.key}}).then(r=>r.json()).then(d=>x(c.length?d.map(r=>c.map(k=>r[k]??'')):d))}
+        ,i:(t,v,x)=>{fetch(sb.uri+t,{method:'POST',headers:{apikey:sb.key,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(v)}).then(r=>r.json()).then(x)}
+        ,u:(t,v,x)=>{const id=v.id;delete v.id;fetch(sb.uri+t+'?id=eq.'+id,{method:'PATCH',headers:{apikey:sb.key,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(v)}).then(r=>r.json()).then(x)}
+        ,d:(t,v,x)=>{fetch(sb.uri+t+'?id=eq.'+v.id,{method:'DELETE',headers:{apikey:sb.key,'Prefer':'return=representation'}}).then(r=>r.json()).then(x)}
     }
 } //*/
 
-//lagring.sky.init()
+lagring.sb.s('a',console.warn)
