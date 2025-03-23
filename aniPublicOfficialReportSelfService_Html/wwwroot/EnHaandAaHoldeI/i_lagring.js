@@ -42,9 +42,26 @@ const lagring = {
         }
         return lagring.aktiv;
     }
-    , sky: {
-        init:e=>alert('hei')
+    , sbsb:{
+        uri:'https://nasxmebvjoxcmzevvbts.supabase.co/rest/v1/'
+        ,sql:'https://nasxmebvjoxcmzevvbts.supabase.co/rest/v1/rpc/execute_sql'
+        ,key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hc3htZWJ2am94Y216ZXZ2YnRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0NzEzNjcsImV4cCI6MjA1ODA0NzM2N30.zvy3HGBwKealFrrOBFJaVk7jLrO4yqDxn6q9i6sSdsI'
+        //,s2:(e,x)=>{const[t,...c]=e.split(',');fetch(lagring.sb.uri+t+'?select='+c.join(','),{headers:{apikey:lagring.sb.key}}).then(r=>r.json()).then(d=>x(d.map(r=>c.map(k=>r[k]??''))))}
+        ,s:(e,x)=>{const[t,...c]=e.split(',');const q=c.length?'?select='+c.join(','):'';fetch(lagring.sb.uri+t+q,{headers:{apikey:lagring.sb.key}}).then(r=>r.json()).then(d=>x(c.length?d.map(r=>c.map(k=>r[k]??'')):d))}
+        ,i:(t,v,x)=>fetch(lagring.sb.uri+t,{method:'POST',headers:{apikey:lagring.sb.key,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(v)}).then(r=>r.json()).then(x)
+        ,u:(t,v,x)=>{const id=v.id;delete v.id;fetch(lagring.sb.uri+t+'?id=eq.'+id,{method:'PATCH',headers:{apikey:lagring.sb.key,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(v)}).then(r=>r.json()).then(x)}
+        ,d:(t,v,x)=>fetch(lagring.sb.uri+t+'?id=eq.'+v.id,{method:'DELETE',headers:{apikey:lagring.sb.key,'Prefer':'return=representation'}}).then(r=>r.json()).then(x)
+        ,iu:(t,v,x)=>lagring.sb.d(t, v, ()=>lagring.sb.i(t,v,x))
+        ,sA:x=>lagring.sb.s('a',x)
+        ,sAp:x=>lagring.sb.s('a_p',x)
     }
 } //*/
-
-//lagring.sky.init()
+// //lagring.sb.s('a,id,App,mormor',console.warn)
+// lagring.sb.d('a', {id:'123'}, console.warn);
+// lagring.sb.d('a', {id:'1234'}, console.warn);
+// lagring.sb.d('a', {id:'11234'}, console.warn);
+//lagring.sb.iu('a', {id:'1234', App:'1234 Test'}, console.warn);
+//lagring.sb.iu('a', {id:'11234', App:'11234 Test'}, console.warn);
+//lagring.sb.s('b,id,App', r => console.table(r));
+lagring.sb.sA(console.warn)
+lagring.sb.sAp(console.warn)
