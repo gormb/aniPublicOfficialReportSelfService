@@ -2,16 +2,16 @@
 const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
-    , appProvider:[['Helse >>§-',[
+    , appProvider_Stat:[['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triagering', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
-        ]],['Virksomhetsverktøy >>§-',[
+        ]],['Virksomhet >>§-',[
             'Ledelse >>§-', ['Leder-LMX']
             ,'HR >>§-', ['HR-Medarbeidersamtale', 'HR-Ansettelsen']
             ,'IT >>§-', ['ROS assistent']
-        ]],['Event >>§ -',[
+        ]],['Event >>§-',[
             'Lansering >>§-', ['IT-revyens årsmøte']
             ,'Folk >>§-', ['Om Silje Føyen', 'Om Gorm Braarvig']
             ,'Konferanse >>§ -', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025', 'TEDxOslo 2025']
@@ -21,6 +21,22 @@ const cfg={
             ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
             ,'Nyheter >>§-',['Verdens nyheter via Ideallya']]
         ]]
+    , appProvider:cfg.appProvider_Stat
+    , appProvider_Db:[[]]
+    , appProvider1:()=>Object.entries([...cfg.appProvider_Stat.flatMap(([m,s])=>s.flatMap((v,i,a)=>i%2?v.map(App=>({App,mor:a[i-1].slice(0,-5),mormor:m.slice(0,-5)})):[]),...Object.values(cfg.appProvider_Db.reduce((a,r)=>(a[r.App]=r,a),{})))].reduce((o,{App,mor,mormor})=>((o[mormor+' >>§-']??={})[mor+' >>§-']??=new Set()).add(App),o={})&&o).map(([m,s])=>[m,Object.entries(s).flatMap(([k,v])=>[k,[...v]])])
+
+    , appProvider2: () => {
+        const out = {};
+        [...cfg.appProvider_Stat.flatMap(([m, s]) =>
+            s.flatMap((k, i, a) =>
+                i % 2 ? k.map(App => 
+                    ({ App, mor: a[i - 1].slice(0, -5), mormor: m.slice(0, -5) })) : [])
+            ), ...Object.values(Object.fromEntries(cfg.appProvider_Db.map(r => [r.App, r])))]
+        .forEach(({ App, mor, mormor }) => { const m = mormor + ' >>§-', s = mor + ' >>§-';
+            (out[m] ??= {})[s] ??= new Set(), out[m][s].add(App);
+        });
+        return Object.entries(out).map(([m, s]) => [m, Object.entries(s).flatMap(([k, v]) => [k, [...v]])]);
+    }
     , menusForAppProvider: () => cfg.appProvider.map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
     , visAppMeny:b=>ui.Show(mc0,b)^ui.Show(mc0.previousElementSibling,b)^ui.Show(mc0.nextElementSibling,b)
     , appList:()=>cfg.appProvider.flatMap(([_, subs])=>subs.flatMap((s,i,a)=>i%2==0&&Array.isArray(a[i+1])?a[i+1]:[]).filter(Boolean))
