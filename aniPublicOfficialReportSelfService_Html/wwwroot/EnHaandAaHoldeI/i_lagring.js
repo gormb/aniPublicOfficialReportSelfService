@@ -62,9 +62,9 @@ const lagring = {
     ,net: {
         //k:1,
         eId:()=>lagring.id?0:lagring.getId()^lagring.id
-        ,g:k=>eId()^lagring.net.sel(lagring.net.gsdT,k)
+        ,g:k=>lagring.net.eId()^lagring.net.sel(lagring.net.gsdT,k)
         ,s:(k,v)=>lagring.net.eId()^lagring.net.upd(lagring.net.gsdT,k,v)
-        ,d:k=>eId()^lagring.net.del(lagring.net.gsdT,k)
+        ,d:k=>lagring.net.eId()^lagring.net.del(lagring.net.gsdT,k)
         ,gsdT:'HaandAaHoldeI'
         ,uri:'https://nasxmebvjoxcmzevvbts.supabase.co/rest/v1/'
         ,key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hc3htZWJ2am94Y216ZXZ2YnRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0NzEzNjcsImV4cCI6MjA1ODA0NzM2N30.zvy3HGBwKealFrrOBFJaVk7jLrO4yqDxn6q9i6sSdsI'
@@ -79,8 +79,11 @@ const lagring = {
         s:[...'abcdefghijklmnopqrstuvwxyz0123456789']
         ,i:(n=Math.random()*2176782336)=>{let r='',a=lagring.idC.s;while(n|=0)r=a[n%36]+r,n/=36;return r.padStart(6,'a')}
         ,t:s=>{let n=0,a=lagring.idC.s;for(let i=0;i<6;i++)n=n*36+a.indexOf(s[i]);return n}
+        ,ok:v=>v.length==6&&[...v].every(c=>lagring.idC.s.includes(c))
+        ,p:q=>{let m=(q||'').match(/id=([a-z0-9]{6})/);return m&&lagring.idC.ok(m[1])?lagring.idC.t(m[1]):undefined}
     }
 }
+lagring.idC.p('id=gorm9')
 //lagring.net.sel('a,id,App,mormor',console.warn)//lagring.net.del('a', {id:'123'}, console.warn);//lagring.net.del('a', {id:'1234'}, console.warn);//lagring.net.del('a', {id:'11234'}, console.warn);//lagring.net.upd('a', {id:'1234', App:'1234 Test'}, console.warn);//lagring.net.upd('a', {id:'11234', App:'11234 Test'}, console.warn);//lagring.net.sel('b,id,App', r => console.table(r));
 lagring.net.selA(console.warn)
 lagring.net.selAp(console.warn)
