@@ -126,4 +126,6 @@ ui.c.ImgQrUrl = 'p_rosassistentqr.png'
 document.documentElement.style.setProperty('--primary-color', 'rgb(57,120,19)');
 document.documentElement.style.setProperty('--font-family', "'Inter', sans-serif");
 
+setTimeout(()=>ui.qr(),500)
+
 cfg.app='KIROS-assistenten'

@@ -155,6 +155,7 @@ const ui = {
             });
         }
     }
+    ,qr:u=>qr.d(u,ui.c.Chat)
 }
 /////////////// msg - Chat UI ///////////////
 window.msgIsSimulate=msg=>msg.substring(0, 10) == "Simulate: ";

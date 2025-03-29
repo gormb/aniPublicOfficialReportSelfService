@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("WAResolvable",["Promise"],(function(a,b,c,d,e,f){"use strict";var g;a=function(){function a(){var a=this;this.$1=function(){};this.$2=!1;this.isSettled=!1;this.promise=new(g||(g=b("Promise")))(function(b){a.$1=b})}var c=a.prototype;c.resolve=function(a){this.$2=!0,this.isSettled=!0,this.$1(a)};c.reject=function(a){this.isSettled=!0,this.resolve((g||(g=b("Promise"))).reject(a))};c.resolveWasCalled=function(){return this.$2};return a}();f.Resolvable=a}),66);
