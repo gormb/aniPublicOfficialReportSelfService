@@ -64,7 +64,8 @@ const ui = {
     }    
     , visLagre:e=>{
         l = lagring.aktiv;
-        ui.c.Lagres.innerHTML = ['&nbsp;&nbsp;🔒&nbsp;&nbsp;lagres ikke', '&nbsp;&nbsp;💾&nbsp;&nbsp;lagres lokalt'][l]//ikke, lokalt
+        //ui.c.Lagres.innerHTML = ['&nbsp;&nbsp;🔒&nbsp;&nbsp;lagres ikke', '&nbsp;&nbsp;💾&nbsp;&nbsp;lagres lokalt'][l]//ikke, lokalt
+        ui.c.Lagres.innerHTML = ['&nbsp;&nbsp;🔒&nbsp;&nbsp;lagres ikke', '&nbsp;&nbsp;💾&nbsp;&nbsp;lagres lokalt', '&nbsp;&nbsp;☁️&nbsp;&nbsp;nettlagret'][l]
         return ui.menu.EBold('lagrelokalt', lagring.aktiv>0);
     }
     , Show: (el,b) => (el.classList.toggle('hidden', !(b ?? el.classList.contains('hidden'))), !!b)
@@ -155,7 +156,8 @@ const ui = {
             });
         }
     }
-    ,qr:u=>qr.d(u,ui.c.Chat)
+    ,qr:u=>qr.d(u,ui.c.Chat,.7)
+    ,qrU:()=>ui.qr()
 }
 /////////////// msg - Chat UI ///////////////
 window.msgIsSimulate=msg=>msg.substring(0, 10) == "Simulate: ";
