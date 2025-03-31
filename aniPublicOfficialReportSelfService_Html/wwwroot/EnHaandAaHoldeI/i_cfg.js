@@ -8,7 +8,8 @@ const cfg={
             ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Virksomhet >>§-',[
-            'Ledelse >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
+            'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning']
+            ,'Ledelse >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
             ,'HR >>§-', ['HR: Ansettelsen', 'HR: Medarbeidersamtale', 'HR: Oppsigelsen', 'HR: Restrukturering']
             ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper']
         ]],['Event >>§-',[
@@ -28,8 +29,8 @@ const cfg={
     , appProvider2: () => {
         const out = {};
         [...cfg.appProvider_Stat.flatMap(([m, s]) =>
-            s.flatMap((k, i, a) =>
-                i % 2 ? k.map(App => 
+            s.flatMap((k, i, a)=>
+                i % 2 ? k.map(App=>
                     ({ App, mor: a[i - 1].slice(0, -5), mormor: m.slice(0, -5) })) : [])
             ), ...Object.values(Object.fromEntries(cfg.appProvider_Db.map(r => [r.App, r])))]
         .forEach(({ App, mor, mormor }) => { const m = mormor + ' >>§-', s = mor + ' >>§-';
