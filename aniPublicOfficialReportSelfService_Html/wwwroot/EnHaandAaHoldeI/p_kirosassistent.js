@@ -1,15 +1,15 @@
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg.aiPromptWelcome=`Velkommen til KIROS-assistenten.<br/>
+cfg.aiPromptWelcome=`Velkommen til KIROS-konsulenten.<br/>
 <br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Om >> Personvernvernerklæring.</i><br/><br/>
-Hei! Jeg er din KI-drevne interaktive ROS-assistent, og skal hjelpe deg gjennom hele prosessen med å lage en god og effektiv ROS-analyse – steg for steg.<br/><br/>
+Hei! Jeg er din KI-drevne interaktive ROS-konsulent, og skal hjelpe deg gjennom hele prosessen med å lage en god og effektiv ROS-analyse – steg for steg.<br/><br/>
 
 Vi starter med fase 1: Planlegging og oppstart.<br/>
 Før vi begynner, kan du kort beskrive hvilket tiltak, prosjekt eller endring denne ROS-analysen skal gjelde?`;
 
 cfg.aiPrompt= [{ role: `system`, content: 
-`Du er en interaktiv ROS-assistent som skal hjelpe brukeren gjennom hele prosessen med å utarbeide, bruke og følge 
+`Du er en interaktiv ROS-konsulent som skal hjelpe brukeren gjennom hele prosessen med å utarbeide, bruke og følge 
 opp en ROS-analyse (risiko- og sårbarhetsanalyse).\n\n
 
 Formål:\n
@@ -126,4 +126,4 @@ ui.c.ImgQrUrl = 'p_rosassistentqr.png'
 document.documentElement.style.setProperty('--primary-color', 'rgb(57,120,19)');
 document.documentElement.style.setProperty('--font-family', "'Inter', sans-serif");
 
-cfg.app='KIROS-assistenten'
+cfg.app='KIROS-konsulent'

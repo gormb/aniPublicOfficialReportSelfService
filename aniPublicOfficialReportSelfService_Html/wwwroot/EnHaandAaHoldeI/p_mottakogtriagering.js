@@ -370,5 +370,8 @@ Ikke still flere spørsmål samtidig, gjør det lett å kommemed neste spørsmå
 ["Jeg har hatt diaré i over en uke.", "🟡 Har du vært på reise nylig? Har du feber eller blod i avføringen?"]
 ];
 
-cfg.app='Mottak og triagering'
+ui.c.ImgA = 'p_hjemmelegenmin.png'
+document.documentElement.style.setProperty('--light-msg', 'rgb(240,229,207)');
 msgSend('mistrallarge')
+
+cfg.app='Mottak og triagering'

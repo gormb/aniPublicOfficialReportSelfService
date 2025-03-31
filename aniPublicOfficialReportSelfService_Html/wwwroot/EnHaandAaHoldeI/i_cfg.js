@@ -8,9 +8,9 @@ const cfg={
             ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Virksomhet >>§-',[
-            'Ledelse >>§-', ['Leder-LMX']
-            ,'HR >>§-', ['HR-Medarbeidersamtale', 'HR-Ansettelsen']
-            ,'IT >>§-', ['ROS assistent']
+            'Ledelse >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
+            ,'HR >>§-', ['HR: Ansettelsen', 'HR: Medarbeidersamtale', 'HR: Oppsigelsen', 'HR: Restrukturering']
+            ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper']
         ]],['Event >>§-',[
             'Lansering >>§-', ['IT-revyens årsmøte']
             ,'Folk >>§-', ['Om Silje Føyen', 'Om Gorm Braarvig']
