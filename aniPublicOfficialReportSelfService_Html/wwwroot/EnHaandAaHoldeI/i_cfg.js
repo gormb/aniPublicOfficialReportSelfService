@@ -24,8 +24,13 @@ const cfg={
         ]]
     , appProvider3:this.appProvider_Stat
     , appProvider_Db:[['Generelt','Ny','Koblingsfeil!']]
-    , appProviderM:()=>cfg.appProvider_Stat// merge loaded from db
+    , appProviderM:()=>{//cfg.appProvider_Stat// merge loaded from db
         //Object.entries([...cfg.appProvider_Stat.flatMap(([m,s])=>s.flatMap((v,i,a)=>i%2?v.map(App=>({App,mor:a[i-1].slice(0,-5),mormor:m.slice(0,-5)})):[]),...Object.values(cfg.appProvider_Db.reduce((a,r)=>(a[r.App]=r,a),{})))].reduce((o,{App,mor,mormor})=>((o[mormor+' >>§-']??={})[mor+' >>§-']??=new Set()).add(App),o={})&&o).map(([m,s])=>[m,Object.entries(s).flatMap(([k,v])=>[k,[...v]])])
+
+        let ap=cfg.appProvider_Stat, apM=[['Generelt >>§-',['Test']]
+            ,['Ny mormor',['Ny mor']]];
+        return ap;
+    }
     , appProvider2: () => {
         const out = {};
         [...cfg.appProvider_Stat.flatMap(([m, s]) =>
