@@ -2,21 +2,21 @@
 const lagring = {
     init:()=> lagring.last()
     , aktiv: null
-        , getAktiv:dflt=>lagring.aktiv=lagring.lok.g('aktiv')??dflt
+        , getAktiv:def=>lagring.aktiv=lagring.lok.g('aktiv')??def
         , setAktiv:a=>lagring.lok.s('aktiv', lagring.aktiv=a??lagring.aktiv)^lagring.net.s('aktiv', lagring.aktiv)
     , id: null
-        , getId:dflt=>lagring.id=lagring.lok.g('id')??dflt??lagring.idC.i()
+        , getId:def=>lagring.id=lagring.lok.g('id')??def??lagring.idC.i()
         , setId:i=>lagring.lok.s('id', lagring.id=i??lagring.id??lagring.idC.i())
     , aktivApp: null
-        , getAktivApp:dflt=>lagring.aktivApp=lagring.g('aktivApp')??dflt
+        , getAktivApp:def=>lagring.aktivApp=lagring.g('aktivApp')??def
         , setAktivApp:a=>lagring.s('aktivApp',lagring.aktivApp=a??lagring.aktivApp)
     , ai:['mistralsmall','mistralsmall','mistralsmall']
-        , getAi:(i, dflt)=>lagring.ai[i]=lagring.g('setting ai'+i)??dflt
+        , getAi:(i, def)=>lagring.ai[i]=lagring.g('setting ai'+i)??def
         , setAi:(i,a)=>lagring.s('setting ai'+i,lagring.ai[i]=a??lagring.ai[i])
     , sjargong: 'voksensprk'
     , spraak: 'bokml'
-    , delay : 100, delayI : 100
-    , last: () => {
+    , delay:100, delayI:100
+    , last:()=> {
         let delay = 100//, delayI = 100
         setting.dMsg('lagring.laster...')
         if (lagring.aktiv != lagring.getAktiv(lagring.aktiv ?? 0))

@@ -7,7 +7,7 @@ const setting={
             ||Språk >>§-|||Bokmål§*|||Nynorsk|||Sámegiella|||Svenska|||Dansk|||English (UK)|||English (US)        
         |Handling >>§-||Begynn på nytt...||Tøm lagring...
             ||Analyser personvern||Forsøk alle AI
-            ||Utvikling >>§-|||Prompt|||Simuler|||List modeller|||Debug
+            ||Utvikling >>§-|||Prompt|||Løsningsdesign|||Simuler|||List modeller|||Debug
         |Innstillinger >>§-
             ||Sikkerhet >>§-|||Sensitive data >>§-||||Ikke send sensitive data||||Omformuler sensitive data||||Godta sensitive data§*
                 |||Helseråd fra AI >>§-||||Ikke mottatt helseråd fra AI||||Omformuler helseråd||||Godta helseråd§*
