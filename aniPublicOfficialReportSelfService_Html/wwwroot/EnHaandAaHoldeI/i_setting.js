@@ -5,18 +5,17 @@ const setting={
     , menu:ver=>`App >>§- ${ cfg.menusForAppProvider(ver) }
         |Språkdrakt >>§-||Sjargong >>|||Ungdomsspråk|||Voksenspråk§*
             ||Språk >>§-|||Bokmål§*|||Nynorsk|||Sámegiella|||Svenska|||Dansk|||English (UK)|||English (US)        
-        |Handling >>§-||Begynn på nytt...||Tøm lagring...
-            ||Analyser personvern||Forsøk alle AI
-            ||Utvikling >>§-|||Administrer|||Løsningsdesign|||Simuler|||List modeller|||Debug
+        ${ver?'':'|Handling >>§-||Begynn på nytt...||Tøm lagring...||Analyser personvern||Forsøk alle AI'}
+            ${ver?'':'||Utvikling >>§-|||Administrer|||Løsningsdesign|||Simuler|||List modeller|||Debug'}
         |Innstillinger >>§-
             ||Sikkerhet >>§-|||Sensitive data >>§-||||Ikke send sensitive data||||Omformuler sensitive data||||Godta sensitive data§*
                 |||Helseråd fra AI >>§-||||Ikke mottatt helseråd fra AI||||Omformuler helseråd||||Godta helseråd§*
             ||AI >>§-|||AI tilbyder >>§-${ cfg.menusForAiProvider('')}|||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }|||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
                 |||Tilfeldige AI-tilbydere
-            ||Grubling
-            ||Lagre lokalt
+            ${ver?'':'||Grubling'}
+            ${ver?'':'||Lagre lokalt'}
             ||Vis App-meny
-        |Om >>§-||Kontakt||Personvernerklæring||Tilbakemelding til Aigap||QR-kode
+        ${ver?'':'|Om >>§-||Kontakt||Personvernerklæring||Tilbakemelding til Aigap||QR-kode'}
         `.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
     , funcDeepAnalysis: false
     , hindreSensitiveData:true
