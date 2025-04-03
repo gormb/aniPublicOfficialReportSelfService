@@ -2,7 +2,7 @@
 const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
-    , appProvider_Stat:[['Helse >>§-',[
+    , appProvider_Man:[['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triagering', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
@@ -22,30 +22,30 @@ const cfg={
             ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
             ,'Nyheter >>§-',['Verdens nyheter via Ideallya']]
         ]]
-    , appProvider3:this.appProvider_Stat
+    //, appProvider3:this.appProvider_Man
     , appProvider_Db:[['Generelt','Ny','Koblingsfeil!']]
-    , appProviderM:()=>{//cfg.appProvider_Stat// merge loaded from db
-        //Object.entries([...cfg.appProvider_Stat.flatMap(([m,s])=>s.flatMap((v,i,a)=>i%2?v.map(App=>({App,mor:a[i-1].slice(0,-5),mormor:m.slice(0,-5)})):[]),...Object.values(cfg.appProvider_Db.reduce((a,r)=>(a[r.App]=r,a),{})))].reduce((o,{App,mor,mormor})=>((o[mormor+' >>§-']??={})[mor+' >>§-']??=new Set()).add(App),o={})&&o).map(([m,s])=>[m,Object.entries(s).flatMap(([k,v])=>[k,[...v]])])
-
-        let ap=cfg.appProvider_Stat, apM=[['Generelt >>§-',['Test']]
-            ,['Ny mormor',['Ny mor']]];
+    , appProviderM:ver=>{//cfg.appProvider_Man// merge loaded from db
+        //Object.entries([...cfg.appProvider_Man.flatMap(([m,s])=>s.flatMap((v,i,a)=>i%2?v.map(App=>({App,mor:a[i-1].slice(0,-5),mormor:m.slice(0,-5)})):[]),...Object.values(cfg.appProvider_Db.reduce((a,r)=>(a[r.App]=r,a),{})))].reduce((o,{App,mor,mormor})=>((o[mormor+' >>§-']??={})[mor+' >>§-']??=new Set()).add(App),o={})&&o).map(([m,s])=>[m,Object.entries(s).flatMap(([k,v])=>[k,[...v]])])
+        let ap=JSON.parse(JSON.stringify(cfg.appProvider_Man)), apM=[['Generelt >>§-',['Test']],['Ny mormor',['Ny mor']]];
+        ver=='admin'&&ap.forEach((mm,i)=>ap[i][1].forEach((m,j)=>!(j%2)||ap[i][1][j].push('<< ny/endre/slett app >>'))^
+            ap[i][1].push(['<< ny/endre/slett mor >>']))^ap.push(['<< ny/endre/slett mormor >>',[]])
         return ap;
     }
-    , appProvider2: () => {
-        const out = {};
-        [...cfg.appProvider_Stat.flatMap(([m, s]) =>
-            s.flatMap((k, i, a)=>
-                i % 2 ? k.map(App=>
-                    ({ App, mor: a[i - 1].slice(0, -5), mormor: m.slice(0, -5) })) : [])
-            ), ...Object.values(Object.fromEntries(cfg.appProvider_Db.map(r => [r.App, r])))]
-        .forEach(({ App, mor, mormor }) => { const m = mormor + ' >>§-', s = mor + ' >>§-';
-            (out[m] ??= {})[s] ??= new Set(), out[m][s].add(App);
-        });
-        return Object.entries(out).map(([m, s]) => [m, Object.entries(s).flatMap(([k, v]) => [k, [...v]])]);
-    }
-    , menusForAppProvider: () => cfg.appProviderM().map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
+    // , appProvider2: () => {
+    //     const out = {};
+    //     [...cfg.appProvider_Man.flatMap(([m, s]) =>
+    //         s.flatMap((k, i, a)=>
+    //             i % 2 ? k.map(App=>
+    //                 ({ App, mor: a[i - 1].slice(0, -5), mormor: m.slice(0, -5) })) : [])
+    //         ), ...Object.values(Object.fromEntries(cfg.appProvider_Db.map(r => [r.App, r])))]
+    //     .forEach(({ App, mor, mormor }) => { const m = mormor + ' >>§-', s = mor + ' >>§-';
+    //         (out[m] ??= {})[s] ??= new Set(), out[m][s].add(App);
+    //     });
+    //     return Object.entries(out).map(([m, s]) => [m, Object.entries(s).flatMap(([k, v]) => [k, [...v]])]);
+    // }
+    , menusForAppProvider:ver=> cfg.appProviderM(ver).map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
     , visAppMeny:b=>ui.Show(mc0,b)^ui.Show(mc0.previousElementSibling,b)^ui.Show(mc0.nextElementSibling,b)
-    , appList:()=>cfg.appProviderM().flatMap(([_, subs])=>subs.flatMap((s,i,a)=>i%2==0&&Array.isArray(a[i+1])?a[i+1]:[]).filter(Boolean))
+    , appList:ver=>cfg.appProviderM(ver).flatMap(([_, subs])=>subs.flatMap((s,i,a)=>i%2==0&&Array.isArray(a[i+1])?a[i+1]:[]).filter(Boolean))
     , aiPromptWelcomeQuestion:`Hva er velkomstmeldingen?`
     , aiPromptWelcome:`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`
     , aiPrompt:[{ role: `system`, content: 

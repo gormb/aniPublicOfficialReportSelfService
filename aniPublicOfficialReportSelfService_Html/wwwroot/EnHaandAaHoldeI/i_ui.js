@@ -116,8 +116,8 @@ const ui = {
             h+='</div>'
             return h;
         }
-        , Reset:()=> {
-            ui.c.Menu.innerHTML = ui.menu.AsArray(setting.menu).map((_, i) => ui.menu.HtmlAddItem(ui.menu.AsArray(setting.menu), i)).join('')
+        , Reset:ver=> {
+            ui.c.Menu.innerHTML = ui.menu.AsArray(setting.menu(ver)).map((_, i) => ui.menu.HtmlAddItem(ui.menu.AsArray(setting.menu(ver)), i)).join('')
             document.addEventListener('click', e => { if (!document.getElementById('menu').contains(e.target) && !document.getElementById('header').contains(e.target)) ui.menu.Show(false); });
             return ui.c.Menu;
         }

@@ -1,12 +1,31 @@
-/////////////// menuClick_m_ - Menu handlers ///////////////
 
-// menuClick_m_ - App >> 
-window.menuClicks_mAppM=a=>{
-     lagring.setAktivApp(a);
+const admin={
+    lsAppMorMor:e=>admin.lsShowTell('<b>Juster App kategorymeny</b><hr>'+admin.cA(e).join('<br>').replace('<< ny/endre/slett mormor'
+        ,`<hr><ul><li>ny app mormor "x"</li><li>endre app mormor "${admin.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.cA(e)[0].trim()}"</li></ul>`)
+        ,`endre app mormor  "${admin.cA(e)[0].trim()}" "${admin.cA(e)[0].trim()}"`)
+    ,lsAppMor:e=>admin.lsShowTell(`<b>Juster App underkategorymeny for kategory ${admin.cMor(e)}</b><hr>`+admin.cA(e).join('<br>').replace('<< ny/endre/slett mor'
+        ,`<hr><ul><li>ny app mormor "${admin.cMor(e)}" mor "x"</li><li>endre app mormor "${admin.cMor(e)}" mor "${admin.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.cMor(e)}" mor "${admin.cA(e)[0].trim()}"</li></ul>`)
+        ,`endre app mormor "${admin.cMor(e)}" mor "${admin.cA(e)[0].trim()}" "${admin.cA(e)[0].trim()}"`)
+    ,lsApp:e=>admin.lsShowTell(`<b>Juster App for underkategory ${admin.cMor(e)}, kategory ${admin.cMor(e.parentElement)}</b><hr>`+admin.cA(e).join('<br>').replace('<< ny/endre/slett app'
+        ,`<hr><ul><li>ny app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "x"</li><li>endre app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "${admin.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "${admin.cA(e)[0].trim()}"</li></ul>`)
+        ,`endre app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "${admin.cA(e)[0].trim()}" "${admin.cA(e)[0].trim()}"`)
+    ,lsShowTell:(s,t)=>msgInfo(s,1,0)^ui.menu.Show(false)^(ui.c.Input.value=t)
+    ,c:e=>e.innerText.replace(/[\u00A0]+/g, '').replace(/>/g,'')
+    ,cA:e=>admin.c(e).split('\x0a')
+    ,cMor:e=>admin.c(e.previousSibling).trim()
 }
-cfg.appList().forEach(a=>eval(`window.menuClick_m_${ui.menu.X(a)}=e=>window.menuClicks_mAppM('${a}')`))
+// menuClick_m_ - App >>
+window.menuClicks_mAppM=(a,e)=>{
+    if(a[0]=='<') admin.lsApp(event.target.parentElement);
+    else lagring.setAktivApp(a);
+}
 
-window.menuClick_m_prompt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
+/////////////// menuClick_m_ - Menu handlers ///////////////
+cfg.appList('admin').forEach(a=>eval(`window.menuClick_m_${ui.menu.X(a)}=e=>window.menuClicks_mAppM('${a}',e)`))
+window.menuClick_m_nyendreslettmormor=e=>{admin.lsAppMorMor(event.target.parentElement)};
+window.menuClick_m_nyendreslettmor=e=>{admin.lsAppMor(event.target.parentElement)};
+
+window.menuClick_m_prompt=e=>ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4')^ui.menu.Show(false);
 window.menuClick_m_simuler=e=>{
     ui.c.Input.value = 'Hvordan kommer jeg meg dit?';
     setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { ui.c.Input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
@@ -44,11 +63,11 @@ ai.AllModels(0).forEach(e=>eval(menuClicks_mMod(ui.menu.X(e))))
 window.menuClick_m_debug=e=>(setting.debug=ui.menu.EBold('debug'));
 
 // menuClick_m_ - Om >>
-window.menuClick_m_kontakt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/snakk-med-oss');
-window.menuClick_m_personvernerklring=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
-window.menuClick_m_tilbakemeldingtilaigap=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1utfDpp9dwNN80uR6PnE93KyoeRMBMHiEMvJDtSuMICA/edit?usp=sharing');
-window.menuClick_m_qrkode=e=>ui.menu.Show(false)^ui.qrU()^setTimeout(()=>ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight, 500);
-//window.menuClick_m_qrkode=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl(ui.c.ImgQr());
+window.menuClick_m_kontakt=e=>ui.menu.Click_OpenUrl('https://www.aigap.no/snakk-med-oss')^ui.menu.Show(false);
+window.menuClick_m_personvernerklring=e=>ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring')^ui.menu.Show(false);
+window.menuClick_m_tilbakemeldingtilaigap=e=>ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1utfDpp9dwNN80uR6PnE93KyoeRMBMHiEMvJDtSuMICA/edit?usp=sharing')^ui.menu.Show(false);
+window.menuClick_m_qrkode=e=>ui.qrU()^setTimeout(()=>ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight, 500)^ui.menu.Show(false);
+//window.menuClick_m_qrkode=e=>ui.menu.Click_OpenUrl(ui.c.ImgQr())^ui.menu.Show(false);
 //setTimeout(()=>ui.qr(),500)
 
 /////////////// menuClick_m_ - Menu redirect ///////////////

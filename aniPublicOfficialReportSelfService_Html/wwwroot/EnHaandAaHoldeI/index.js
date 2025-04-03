@@ -97,8 +97,8 @@ window.menuClick_m_forskalleai=e=> {
     try{eval(cmd);}catch(ex){console.warn('menuClick_m_forskalleai', ex.message, cmd)}
     ui.menu.SelectModel(cfg.aiProviderDefault().split('?')[0]);
 }
-window.menuClick_m_prompt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
-window.menuClick_m_lsningsdesign=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.figma.com/design/2FbP5MyLOXCcuEjRict2f3/HjemmelegenMin');
+window.menuClick_m_administrer=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('indexadmin.html');//ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4');
+window.menuClick_m_lsningsdesign=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.figma.com/proto/2FbP5MyLOXCcuEjRict2f3/HjemmelegenMin?node-id=6830-20&t=FqZ5AB6Xx28a26IO-1');
 window.menuClick_m_simuler=e=>{
     ui.c.Input.value = 'Hvordan kommer jeg meg dit?';
     setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { ui.c.Input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
