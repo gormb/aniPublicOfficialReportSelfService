@@ -19,8 +19,8 @@ const ui = {
         , Lagres: document.querySelector('header span')
         , Grubling: document.querySelector('#grubling')
         , Suggestions: document.querySelector('#suggestions')
+        , Suggest: document.querySelector('.suggest')
         , Input: document.querySelector('footer textarea')
-        //, Input: document.querySelector('footer input')
         , Speak: document.querySelector('#speak')
         , Send: document.querySelector('#send')
         , ImgQ: 'https://upload.wikimedia.org/wikipedia/commons/2/29/Human_balance.png'
@@ -47,8 +47,9 @@ const ui = {
     }
     ,e:{
         Input_keydown:e=>e.key==='Enter'&&!e.shiftKey&&!e.ctrlKey?msgSend():e.key==='Escape'?ui.e.Input_setValue(''):0
-        ,Input_adjustHeight:()=>(ui.c.Input.style.height = 'auto')^
-            (ui.c.Input.style.height = Math.min(ui.c.Input.scrollHeight, 4.6 * parseFloat(getComputedStyle(ui.c.Input).lineHeight)) + 'px')
+        ,Input_adjustHeight:()=> (ui.c.Input.style.height='auto')^
+            (ui.c.Input.style.height=Math.min(ui.c.Input.scrollHeight,4.6*parseFloat(getComputedStyle(ui.c.Input).lineHeight))+'px')^
+            (ui.c.Suggest&&(ui.c.Suggest.style.bottom=ui.c.Input.offsetHeight+4+'px'))
         ,Input_setValue:v=>(ui.c.Input.value=v)^(ui.e.Input_adjustHeight())
     }
     , SuggestI:0
