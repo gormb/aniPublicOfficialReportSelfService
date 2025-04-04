@@ -60,8 +60,8 @@ cfg.app = 'TEDxFredrikstad'
 
 msgSend('gpt4')
 ^cfg.visAppMeny(false);
-// ui.c.ImgA = 'p_tedxfredrikstad.png'
-// ui.c.ImgQrUrl = 'p_tedxfredrikstadqr.png'
+// ui.c.ImgA = 'p/tedxfredrikstad.png'
+// ui.c.ImgQrUrl = 'p/tedxfredrikstadqr.png'
 
 //document.documentElement.style.setProperty('--primary-color', '#E62B1E'); // TEDx sin røde farge
 //document.documentElement.style.setProperty('--font-family', "'Montserrat', sans-serif");

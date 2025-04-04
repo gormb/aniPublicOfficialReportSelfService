@@ -92,7 +92,7 @@ const cfg={
     , aiProviderTimeout:10
     , load:(c, cid=null)=>{
         return new Promise((y, n) => {
-            cid = cid||'p_'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+            cid = cid||'p/'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
             const s = document.createElement('script');
             s.src = `${cid}.js`;
             s.async = false;

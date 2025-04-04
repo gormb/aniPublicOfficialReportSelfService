@@ -31,7 +31,7 @@ Hvis pasienten stiller spørsmål som ikke er medisinske, kan du svare vennlig, 
 ,[`Jeg våkner med hjertebank og svette`, `🟡 Det kan være stress eller angst, men vi må også vurdere andre årsaker. Har du hatt dette ofte i det siste?`]
 ];
 
-ui.c.ImgA = 'p_hjemmelegenmin.png'
+ui.c.ImgA = 'p/hjemmelegenmin.png'
 document.documentElement.style.setProperty('--light-msg', 'rgb(240,229,207)');
 msgSend('mistrallarge')
 cfg.app='Hjemmelegen min';

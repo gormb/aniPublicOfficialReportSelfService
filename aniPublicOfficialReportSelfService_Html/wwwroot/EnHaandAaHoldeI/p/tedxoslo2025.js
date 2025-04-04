@@ -49,8 +49,8 @@ cfg.app = 'EVENTxOslo2025'
 
 msgSend('mistrallarge')
 ^cfg.visAppMeny(false);
-ui.c.ImgA = 'p_tedxoslo2025.png'
-ui.c.ImgQrUrl = 'p_tedxoslo2025qr.png'
+ui.c.ImgA = 'p/tedxoslo2025.png'
+ui.c.ImgQrUrl = 'p/tedxoslo2025qr.png'
 
 document.documentElement.style.setProperty('--primary-color', '#E62B1E'); // EVENTx-rød
 document.documentElement.style.setProperty('--font-family', "'Montserrat', sans-serif");

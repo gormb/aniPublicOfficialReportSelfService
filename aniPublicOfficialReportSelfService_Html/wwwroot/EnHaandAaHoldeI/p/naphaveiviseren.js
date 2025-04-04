@@ -144,8 +144,8 @@ cfg.app='NAPHA-eksempel'
 msgSend('mistrallarge')
 //msgSend('gpt4')
 ^cfg.visAppMeny(false);
-ui.c.ImgA = 'p_naphaveiviseren.png'
-ui.c.ImgQrUrl = 'p_naphaveiviserenqr.png'
+ui.c.ImgA = 'p/naphaveiviseren.png'
+ui.c.ImgQrUrl = 'p/naphaveiviserenqr.png'
 
 document.documentElement.style.setProperty('--primary-color', '#FF9700');
 document.documentElement.style.setProperty('--font-family', "'Ubuntu', sans-serif");
