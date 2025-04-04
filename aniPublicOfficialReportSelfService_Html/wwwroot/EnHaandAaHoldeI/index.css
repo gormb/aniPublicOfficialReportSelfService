@@ -38,8 +38,10 @@ body.dark-mode main { background: var(--dark-bg); }
     body.dark-mode .received .msg { background: var(--primary-color); color: #fff; }
 footer { padding: 10px; background: #f1f1f1; display: flex; gap: 10px; align-items: center; border-top: 1px solid #ccc; }
     body.dark-mode footer { background: var(--dark-msg); border-top: 1px solid #444; }
-input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ccc; background: var(--light-msg); }
+input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ccc; background: var(--light-msg); resize: none; height: auto; width: 100%;}
     body.dark-mode input { background: var(--dark-msg); border: 1px solid #444; color: white; }
+textarea { flex: 1; width: 100%; padding: 6px 5px 7px; border-radius: 10px; border: 1px solid #ccc; background: var(--light-msg); resize: none; height: auto; overflow-y: auto; max-height: 4.6em; min-height: 1.6em; line-height: 1; }
+    body.dark-mode textarea { background: var(--dark-msg); border: 1px solid #444; color: white; }
 button { padding: 10px 20px; border: none; border-radius: 50%; background: var(--primary-color); color: white; cursor: pointer; }
 button:hover { background: var(--primary-color); }
     .forslag {padding: 10px 10px; border-radius: 25%; border-style: dashed; overflow: hidden; font-style: italic; cursor: pointer;

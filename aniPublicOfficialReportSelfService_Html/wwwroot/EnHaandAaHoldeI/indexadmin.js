@@ -9,7 +9,7 @@ const admin={
     ,lsApp:e=>admin.lsShowTell(`<b>Juster App for underkategory ${admin.cMor(e)}, kategory ${admin.cMor(e.parentElement)}</b><hr>`+admin.cA(e).join('<br>').replace('<< ny/endre/slett app'
         ,`<hr><ul><li>ny app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "x"</li><li>endre app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "${admin.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "${admin.cA(e)[0].trim()}"</li></ul>`)
         ,`endre app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "${admin.cA(e)[0].trim()}" "${admin.cA(e)[0].trim()}"`)
-    ,lsShowTell:(s,t)=>msgInfo(s,1,0)^ui.menu.Show(false)^(ui.c.Input.value=t)
+    ,lsShowTell:(s,t)=>msgInfo(s,1,0)^ui.menu.Show(false)^ui.e.Input_setValue(t)
     ,c:e=>e.innerText.replace(/[\u00A0]+/g, '').replace(/>/g,'')
     ,cA:e=>admin.c(e).split('\x0a')
     ,cMor:e=>admin.c(e.previousSibling).trim()
@@ -27,8 +27,8 @@ window.menuClick_m_nyendreslettmor=e=>{admin.lsAppMor(event.target.parentElement
 
 window.menuClick_m_prompt=e=>ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4')^ui.menu.Show(false);
 window.menuClick_m_simuler=e=>{
-    ui.c.Input.value = 'Hvordan kommer jeg meg dit?';
-    setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { ui.c.Input.value = 'Hva er relevansen til Ullevål sykehus?'; setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
+    ui.e.Input_setValue('Hvordan kommer jeg meg dit?');
+    setTimeout(() => { msgSend('Simulate: Hvordan kommer jeg meg dit?|Simulate: Du kan reise til CatoSenteret på Ullevål sykehus med bil, offentlig transport eller tilrettelagte transporttjenester', ()=> { ui.e.Input_setValue('Hva er relevansen til Ullevål sykehus?'); setTimeout(() => { msgSend('Hva er relevansen til Ullevål sykehus?');}, 2000); });}, 2000);
     ui.menu.Show(false);
 }
 window.menuClick_m_listmodeller=e=>ui.menu.AllModels(e);
@@ -47,6 +47,7 @@ window.menuClick_m_tmlagring=e=>{
     ui.menu.Show(false);
 }
 window.menuClick_m_lagrelokalt=e=>lagring.lagre(++lagring.aktiv%3)^ui.visLagre();
+
 window.menuClick_m_visappmeny=e=>cfg.visAppMeny(true)
 // menuClick_m_ - Innstillinger >> AI >>
 window.menuClick_m_tilfeldigeaitilbydere=e=> {
