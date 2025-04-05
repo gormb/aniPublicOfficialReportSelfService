@@ -2,7 +2,13 @@
 const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
-    , appProvider_Man:[['Helse >>§-',[
+    , appProvider_Man:[['Personlig >>§-',[
+            'Assistert veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
+            ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
+            ,'Hånd å holde i >>§-', ['Personvernrådgiveren','Innovasjon Norge søknad, Aigap','Blank§*']
+            ,'Nyheter >>§-', ['Verdens nyheter via Ideallya']
+            ,'Logikk >>§ -', ['Tankefeilvarsler']
+        ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triagering', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
@@ -15,14 +21,8 @@ const cfg={
         ]],['Event >>§-',[
             'Lansering >>§-', ['IT-revyens årsmøte']
             ,'Folk >>§-', ['Om Silje Føyen', 'Om Gorm Braarvig']
-            ,'Konferanse >>§ -', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025', 'TEDxOslo 2025']
-        ]],['Generelt >>§-',[
-            'Hånd å holde i >>§-', ['Personvernrådgiveren','Innovasjon Norge søknad, Aigap','Blank§*']
-            ,'Assistert veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
-            ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
-            ,'Nyheter >>§-',['Verdens nyheter via Ideallya']]
-        ]]
-    //, appProvider3:this.appProvider_Man
+            ,'Konferanse >>§-', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025', 'TEDxOslo 2025']
+        ]]]
     , appProvider_Db:[['Generelt','Ny','Koblingsfeil!']]
     , appProviderM:ver=>{//cfg.appProvider_Man// merge loaded from db
         //Object.entries([...cfg.appProvider_Man.flatMap(([m,s])=>s.flatMap((v,i,a)=>i%2?v.map(App=>({App,mor:a[i-1].slice(0,-5),mormor:m.slice(0,-5)})):[]),...Object.values(cfg.appProvider_Db.reduce((a,r)=>(a[r.App]=r,a),{})))].reduce((o,{App,mor,mormor})=>((o[mormor+' >>§-']??={})[mor+' >>§-']??=new Set()).add(App),o={})&&o).map(([m,s])=>[m,Object.entries(s).flatMap(([k,v])=>[k,[...v]])])
