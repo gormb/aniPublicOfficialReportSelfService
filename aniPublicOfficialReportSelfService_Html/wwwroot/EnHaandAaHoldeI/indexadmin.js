@@ -1,29 +1,31 @@
 
 const admin={
-    lsAppMorMor:e=>admin.lsShowTell('<b>Juster App kategorymeny</b><hr>'+admin.cA(e).join('<br>').replace('<< ny/endre/slett mormor'
-        ,`<hr><ul><li>ny app mormor "x"</li><li>endre app mormor "${admin.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.cA(e)[0].trim()}"</li></ul>`)
-        ,`endre app mormor  "${admin.cA(e)[0].trim()}" "${admin.cA(e)[0].trim()}"`)
-    ,lsAppMor:e=>admin.lsShowTell(`<b>Juster App underkategorymeny for kategory ${admin.cMor(e)}</b><hr>`+admin.cA(e).join('<br>').replace('<< ny/endre/slett mor'
-        ,`<hr><ul><li>ny app mormor "${admin.cMor(e)}" mor "x"</li><li>endre app mormor "${admin.cMor(e)}" mor "${admin.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.cMor(e)}" mor "${admin.cA(e)[0].trim()}"</li></ul>`)
-        ,`endre app mormor "${admin.cMor(e)}" mor "${admin.cA(e)[0].trim()}" "${admin.cA(e)[0].trim()}"`)
-    ,lsApp:e=>admin.lsShowTell(`<b>Juster App for underkategory ${admin.cMor(e)}, kategory ${admin.cMor(e.parentElement)}</b><hr>`+admin.cA(e).join('<br>').replace('<< ny/endre/slett app'
-        ,`<hr><ul><li>ny app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "x"</li><li>endre app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "${admin.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "${admin.cA(e)[0].trim()}"</li></ul>`)
-        ,`endre app mormor "${admin.cMor(e.parentElement)}" mor "${admin.cMor(e)}" "${admin.cA(e)[0].trim()}" "${admin.cA(e)[0].trim()}"`)
-    ,lsShowTell:(s,t)=>msgInfo(s,1,0)^ui.menu.Show(false)^ui.e.Input_setValue(t)
-    ,c:e=>e.innerText.replace(/[\u00A0]+/g, '').replace(/>/g,'')
-    ,cA:e=>admin.c(e).split('\x0a')
-    ,cMor:e=>admin.c(e.previousSibling).trim()
+    msg:{
+        appMorMor:e=>admin.msg.showTell('<b>Juster App kategorymeny</b><hr>'+admin.msg.cA(e).join('<br>').replace('<< ny/endre/slett mormor'
+            ,`<hr><ul><li>ny app mormor "x"</li><li>endre app mormor "${admin.msg.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.msg.cA(e)[0].trim()}"</li></ul>`)
+            ,`admin: ny/endre/slett app mormor "${admin.msg.cA(e)[0].trim()}" "${admin.msg.cA(e)[0].trim()}"`)
+        ,appMor:e=>admin.msg.showTell(`<b>Juster App underkategorymeny for kategory ${admin.msg.cMor(e)}</b><hr>`+admin.msg.cA(e).join('<br>').replace('<< ny/endre/slett mor'
+            ,`<hr><ul><li>ny app mormor "${admin.msg.cMor(e)}" mor "x"</li><li>endre app mormor "${admin.msg.cMor(e)}" mor "${admin.msg.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.msg.cMor(e)}" mor "${admin.msg.cA(e)[0].trim()}"</li></ul>`)
+            ,`admin: ny/endre/slett app mormor "${admin.msg.cMor(e)}" mor "${admin.msg.cA(e)[0].trim()}" "${admin.msg.cA(e)[0].trim()}"`)
+        ,app:e=>admin.msg.showTell(`<b>Juster App for underkategory ${admin.msg.cMor(e)}, kategory ${admin.msg.cMor(e.parentElement)}</b><hr>`+admin.msg.cA(e).join('<br>').replace('<< ny/endre/slett app'
+            ,`<hr><ul><li>ny app mormor "${admin.msg.cMor(e.parentElement)}" mor "${admin.msg.cMor(e)}" "x"</li><li>endre app mormor "${admin.msg.cMor(e.parentElement)}" mor "${admin.msg.cMor(e)}" "${admin.msg.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.msg.cMor(e.parentElement)}" mor "${admin.msg.cMor(e)}" "${admin.msg.cA(e)[0].trim()}"</li></ul>`)
+            ,`admin: ny/endre/slett app mormor "${admin.msg.cMor(e.parentElement)}" mor "${admin.msg.cMor(e)}" "${admin.msg.cA(e)[0].trim()}" "${admin.msg.cA(e)[0].trim()}"`)
+        ,showTell:(s,t)=>msgInfo(s,1,0)^ui.menu.Show(false)^ui.e.Input_setValue(t)
+        ,c:e=>e.innerText.replace(/[\u00A0]+/g, '').replace(/>/g,'')
+        ,cA:e=>admin.msg.c(e).split('\x0a')
+        ,cMor:e=>admin.msg.c(e.previousSibling).trim()
+        }
 }
 // menuClick_m_ - App >>
 window.menuClicks_mAppM=(a,e)=>{
-    if(a[0]=='<') admin.lsApp(event.target.parentElement);
+    if(a[0]=='<') admin.msg.app(event.target.parentElement);
     else lagring.setAktivApp(a);
 }
 
 /////////////// menuClick_m_ - Menu handlers ///////////////
 cfg.appList('admin').forEach(a=>eval(`window.menuClick_m_${ui.menu.X(a)}=e=>window.menuClicks_mAppM('${a}',e)`))
-window.menuClick_m_nyendreslettmormor=e=>{admin.lsAppMorMor(event.target.parentElement)};
-window.menuClick_m_nyendreslettmor=e=>{admin.lsAppMor(event.target.parentElement)};
+window.menuClick_m_nyendreslettmormor=e=>{admin.msg.appMorMor(event.target.parentElement)};
+window.menuClick_m_nyendreslettmor=e=>{admin.msg.appMor(event.target.parentElement)};
 
 window.menuClick_m_prompt=e=>ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4')^ui.menu.Show(false);
 window.menuClick_m_simuler=e=>{

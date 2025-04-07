@@ -3,19 +3,20 @@ const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
     , appProvider_Man:[['Personlig >>§-',[
-            'Assistert veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
-            ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
+            'Logikk >>§ -', ['Tankefeilvarsler']
             ,'Hånd å holde i >>§-', ['Personvernrådgiveren','Innovasjon Norge søknad, Aigap','Blank§*']
             ,'Nyheter >>§-', ['Verdens nyheter via Ideallya']
-            ,'Logikk >>§ -', ['Tankefeilvarsler']
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triagering', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
+        ]],['Offentlig >>§-',[
+            'Assistert veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
+            ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
         ]],['Virksomhet >>§-',[
             'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning']
-            ,'Ledelse >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
+            ,'Leder >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
             ,'HR >>§-', ['HR: Ansettelsen', 'HR: Medarbeidersamtale', 'HR: Oppsigelsen', 'HR: Restrukturering']
             ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper']
         ]],['Event >>§-',[
