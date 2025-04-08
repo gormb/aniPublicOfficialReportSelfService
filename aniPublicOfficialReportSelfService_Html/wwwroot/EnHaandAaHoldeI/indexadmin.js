@@ -18,10 +18,10 @@ const admin={
 // menuClick_m_ - App >>
 window.menuClicks_mAppM=(a,e)=>(a[0]=='<')?admin.msg.app(event.target.parentElement):lagring.setAktivApp(a);
 cfg.appList('admin').forEach(a=>eval(`window.menuClick_m_${ui.menu.X(a)}=e=>window.menuClicks_mAppM('${a}',e)`))
-
-/////////////// menuClick_m_ - Menu handlers ///////////////
 window.menuClick_m_nyendreslettmormor=e=>{admin.msg.appMorMor(event.target.parentElement)};
 window.menuClick_m_nyendreslettmor=e=>{admin.msg.appMor(event.target.parentElement)};
+
+/////////////// menuClick_m_ - Menu handlers ///////////////
 
 window.menuClick_m_prompt=e=>ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4')^ui.menu.Show(false);
 window.menuClick_m_simuler=e=>{
