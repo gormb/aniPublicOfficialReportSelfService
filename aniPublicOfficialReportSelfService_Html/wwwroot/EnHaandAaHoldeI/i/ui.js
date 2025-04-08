@@ -170,7 +170,7 @@ const ui = {
     ,qrU:()=>ui.qr()
 }
 /////////////// msg - Chat UI ///////////////
-window.msgIsSimulate=msg=>msg.substring(0, 10) == "Simulate: ";
+window.msgIsSimulate=msg=>msg.startsWith("Simulate: ");
 window.msgAsk=msgQ=> {
     const el = ((b) => (b.className = "row sent", b.innerHTML = `&nbsp;<img class="icon" src="${ui.c.ImgQ}" onclick="ui.c.ImgQClick(event)"><div class="msg">${msgQ}</div>`, b))(document.createElement("div"));
     ui.c.ImgSpaceRemove();
@@ -196,12 +196,24 @@ window.msgInfo=(msg,handL=false,handR=false)=> {
     //ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
     return el;
 }
+window.msgAdmin=(msgQ, onDone)=> {
+    let mA=msgQ.split('|'), r;
+    if (mA.length>1) mA.forEach((m)=>r=msgAdmin(m))
+    else { // parse message
+        const m=msgQ.replace('admin: ', '').trim()
+        r=msgAsk(m);
+        msgAnswer('result!',1);
+    }
+    onDone?.(r);
+    return r;
+}
 window.msgSend=(msgQ, onDone)=> {
     ui.Show(ui.c.Suggestions, false);
     let msgQUse = msgQ?.trim() || ui.c.Input.value.trim();
     let r=null;
     if (!msgQUse) msgRedoLast()
-    else if (typeof window[ui.menu.Fn(msgQUse)] === 'function') window[ui.menu.Fn(msgQUse)](null);
+    else if (typeof window[ui.menu.Fn(msgQUse)] === 'function') r=window[ui.menu.Fn(msgQUse)](null);
+    else if (msgQUse.startsWith('admin: ')) r=msgAdmin(msgQUse,onDone)
     else {
         if (!msgQ) ui.e.Input_setValue('');
         r = msgAsk(msgQUse.split(/\|/)[0]);
@@ -212,7 +224,7 @@ window.msgSend=(msgQ, onDone)=> {
 }
 window.msgReceive_Placeholder=(msgQ, divR, onDone)=>{
     let msgA = 'Svar på "' + msgQ + '"';
-    if (msgIsSimulate(msgQ.split(/\|/)[1]))
+    if (msgIsSimulate(msgQ?.split(/\|/)[1]))
         msgA = msgQ.split(/\|/)[1].substring(10);
     const msg = divR.querySelector(".msg"), icon = divR.querySelector(".icon");
     msg.innerText = msgA;
