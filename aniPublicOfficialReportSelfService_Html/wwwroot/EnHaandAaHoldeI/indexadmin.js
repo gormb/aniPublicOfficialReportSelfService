@@ -14,7 +14,7 @@ const admin={
         ,c:e=>e.innerText.replace(/[\u00A0]+/g, '').replace(/>/g,'')
         ,cA:e=>admin.msg.c(e).split('\x0a')
         ,cMor:e=>admin.msg.c(e.previousSibling).trim()
-        }
+    }
 }
 // menuClick_m_ - App >>
 window.menuClicks_mAppM=(a,e)=>{
