@@ -200,9 +200,10 @@ window.msgAdmin=(msgQ, onDone)=> {
     let mA=msgQ.split('|'), r;
     if (mA.length>1) mA.forEach((m)=>r=msgAdmin(m))
     else { // parse message
-        const m=msgQ.replace('admin: ', '').trim()
-        r=msgAsk(m);
-        msgAnswer('result!',1);
+        const m='<i>'+msgQ.trim()+'</i>'
+        msgAsk(m);
+        r=msgAnswer();
+        setTimeout(()=>(r.querySelector('.msg').innerHTML='<i>admin: resultat</i>')+(r.querySelector('img')?.classList.remove('rotating')),1000)
     }
     onDone?.(r);
     return r;

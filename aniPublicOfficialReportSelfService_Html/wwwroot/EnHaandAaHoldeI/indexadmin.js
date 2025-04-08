@@ -83,5 +83,7 @@ window.menuClickLeaf=e=>{ // handle click on leaf menu item
 lagring.init();
 ui.init();
 ui.menu.Reset('admin');
+ai.Parse(window.location.search);
+
 // Forces a full reload when navigating back/forward
 //if (performance.getEntriesByType("navigation")[0]?.type === "back_forward") location.reload(true); 
