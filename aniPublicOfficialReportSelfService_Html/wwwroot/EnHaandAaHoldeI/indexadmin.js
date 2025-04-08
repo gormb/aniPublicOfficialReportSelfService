@@ -1,15 +1,14 @@
-
 const admin={
     msg:{
         appMorMor:e=>admin.msg.showTell('<b>Juster App kategorymeny</b><hr>'+admin.msg.cA(e).join('<br>').replace('<< ny/endre/slett mormor'
-            ,`<hr><ul><li>ny app mormor "x"</li><li>endre app mormor "${admin.msg.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.msg.cA(e)[0].trim()}"</li></ul>`)
-            ,`admin: ny/endre/slett app mormor "${admin.msg.cA(e)[0].trim()}" "${admin.msg.cA(e)[0].trim()}"`)
+            ,`<hr><ul><li>app "x":: ny</li><li>app "${admin.msg.cA(e)[0].trim()}":: endre "x"::</li><li>app "${admin.msg.cA(e)[0].trim()}":: slett</li></ul>`)
+            ,`admin: app "${admin.msg.cA(e)[0].trim()}":: ny/endre/slett`)
         ,appMor:e=>admin.msg.showTell(`<b>Juster App underkategorymeny for kategory ${admin.msg.cMor(e)}</b><hr>`+admin.msg.cA(e).join('<br>').replace('<< ny/endre/slett mor'
-            ,`<hr><ul><li>ny app mormor "${admin.msg.cMor(e)}" mor "x"</li><li>endre app mormor "${admin.msg.cMor(e)}" mor "${admin.msg.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.msg.cMor(e)}" mor "${admin.msg.cA(e)[0].trim()}"</li></ul>`)
-            ,`admin: ny/endre/slett app mormor "${admin.msg.cMor(e)}" mor "${admin.msg.cA(e)[0].trim()}" "${admin.msg.cA(e)[0].trim()}"`)
+            ,`<hr><ul><li>app "${admin.msg.cMor(e)}":"x": ny</li><li>app "${admin.msg.cMor(e)}":"${admin.msg.cA(e)[0].trim()}": endre "x":</li><li>app "${admin.msg.cMor(e)}":"${admin.msg.cA(e)[0].trim()}": slett</li></ul>`)
+            ,`admin: app "${admin.msg.cMor(e)}":"${admin.msg.cA(e)[0].trim()}": ny/endre/slett`)
         ,app:e=>admin.msg.showTell(`<b>Juster App for underkategory ${admin.msg.cMor(e)}, kategory ${admin.msg.cMor(e.parentElement)}</b><hr>`+admin.msg.cA(e).join('<br>').replace('<< ny/endre/slett app'
-            ,`<hr><ul><li>ny app mormor "${admin.msg.cMor(e.parentElement)}" mor "${admin.msg.cMor(e)}" "x"</li><li>endre app mormor "${admin.msg.cMor(e.parentElement)}" mor "${admin.msg.cMor(e)}" "${admin.msg.cA(e)[0].trim()}" "x"</li><li>slett app mormor "${admin.msg.cMor(e.parentElement)}" mor "${admin.msg.cMor(e)}" "${admin.msg.cA(e)[0].trim()}"</li></ul>`)
-            ,`admin: ny/endre/slett app mormor "${admin.msg.cMor(e.parentElement)}" mor "${admin.msg.cMor(e)}" "${admin.msg.cA(e)[0].trim()}" "${admin.msg.cA(e)[0].trim()}"`)
+            ,`<hr><ul><li>app ny "${admin.msg.cMor(e.parentElement)}":"${admin.msg.cMor(e)}":"x"</li><li>app "${admin.msg.cMor(e.parentElement)}":"${admin.msg.cMor(e)}":"${admin.msg.cA(e)[0].trim()}" endre "x"</li><li>app "${admin.msg.cMor(e.parentElement)}":"${admin.msg.cMor(e)}":"${admin.msg.cA(e)[0].trim()}" slett</li></ul>`)
+            ,`admin: app "${admin.msg.cMor(e.parentElement)}":"${admin.msg.cMor(e)}":"${admin.msg.cA(e)[0].trim()}" ny/endre/slett`)
         ,showTell:(s,t)=>msgInfo(s,1,0)^ui.menu.Show(false)^ui.e.Input_setValue(t)
         ,c:e=>e.innerText.replace(/[\u00A0]+/g, '').replace(/>/g,'')
         ,cA:e=>admin.msg.c(e).split('\x0a')
@@ -17,13 +16,10 @@ const admin={
     }
 }
 // menuClick_m_ - App >>
-window.menuClicks_mAppM=(a,e)=>{
-    if(a[0]=='<') admin.msg.app(event.target.parentElement);
-    else lagring.setAktivApp(a);
-}
+window.menuClicks_mAppM=(a,e)=>(a[0]=='<')?admin.msg.app(event.target.parentElement):lagring.setAktivApp(a);
+cfg.appList('admin').forEach(a=>eval(`window.menuClick_m_${ui.menu.X(a)}=e=>window.menuClicks_mAppM('${a}',e)`))
 
 /////////////// menuClick_m_ - Menu handlers ///////////////
-cfg.appList('admin').forEach(a=>eval(`window.menuClick_m_${ui.menu.X(a)}=e=>window.menuClicks_mAppM('${a}',e)`))
 window.menuClick_m_nyendreslettmormor=e=>{admin.msg.appMorMor(event.target.parentElement)};
 window.menuClick_m_nyendreslettmor=e=>{admin.msg.appMor(event.target.parentElement)};
 
