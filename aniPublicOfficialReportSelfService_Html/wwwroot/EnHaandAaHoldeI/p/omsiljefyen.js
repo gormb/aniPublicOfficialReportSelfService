@@ -16,7 +16,6 @@ cfg.aiPrompt = [{role: `system`, content:
    ,[`Hva er bestillerkompetanse i ghostwriting?`, `Bestillerkompetanse handler om å vite hva du trenger fra en ghostwriter, sette tydelige forventninger og gi gode briefinger for å sikre best mulig resultat.`]
    ];
 
-cfg.app = 'Silje Føyen: En guide';
+   msgSend('groklatest')^cfg.visAppMeny(false)^ui.c.ImgAVugg(15,5);
+   cfg.app = 'Silje Føyen: En guide';
 
-// Velg algoritme, skjul app-meny, velg Yngvar-bilde vuggende
-msgSend('groklatest')^cfg.visAppMeny(false)^ui.c.ImgAVugg(15,5);

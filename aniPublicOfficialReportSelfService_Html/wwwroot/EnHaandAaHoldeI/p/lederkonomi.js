@@ -32,4 +32,5 @@ cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor 
 ,[`Jeg må presentere tall for styret – hjelp!`, `Velg 3–5 tall, bruk grafer og forklar hva du vil de skal gjøre med det.`]
 ];
 
+ui.c.ImgAReset()
 cfg.app='Økonomi';

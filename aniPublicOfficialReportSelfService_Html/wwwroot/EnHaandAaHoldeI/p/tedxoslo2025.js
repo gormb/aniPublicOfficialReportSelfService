@@ -45,7 +45,6 @@ Oppmuntre alltid til videre dialog med et spørsmål på slutten.`}
 ,[`Hvor kan jeg finne tidligere EVENTxOslo-foredrag?`, `Mange tidligere EVENTxOslo-foredrag er tilgjengelige på YouTube. Sjekk vår nettside for lenker.`]
 ];
 
-cfg.app = 'EVENTxOslo2025'
 
 msgSend('mistrallarge')
 ^cfg.visAppMeny(false);
@@ -54,3 +53,4 @@ ui.c.ImgQrUrl = 'p/tedxoslo2025qr.png'
 
 document.documentElement.style.setProperty('--primary-color', '#E62B1E'); // EVENTx-rød
 document.documentElement.style.setProperty('--font-family', "'Montserrat', sans-serif");
+cfg.app = 'EVENTxOslo2025'

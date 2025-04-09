@@ -35,10 +35,6 @@ Gorm er en ekspert på **strategi, virksomhetsarkitektur og kunstig intelligens*
 [`Hvor kan jeg høre Gorm snakke om disse temaene?`, `Han holder jevnlig foredrag for blant annet Digdir, DFØ, Dataforeningen og FHI. Ønsker du en oversikt over kommende arrangementer?`]
 ];
 
-cfg.app = 'Gorm Braarvig: En guide';
-
-// Velg algoritme, skjul app-meny, velg Yngvar-bilde vuggende
-msgSend('groklatest')^cfg.visAppMeny(false)^ui.c.ImgAVugg(15,5);
 
 cfg.aiPrompt.push(
    [`Hva er den største utfordringen med å implementere AI i offentlig sektor?`, 
@@ -83,3 +79,7 @@ cfg.aiPrompt.push(
    [`Hvordan kan AI og XR sammen skape bedre helsetjenester?`, 
     `Ved å kombinere AI med utvidet virkelighet (XR) kan vi skape mer interaktive og effektive helsetjenester. Gorm har jobbet med konseptet ‘Familielegen min’, som bruker AI og XR for bedre pasientbehandling.`]
 );
+
+msgSend('mistrallarge')
+msgSend('groklatest')^cfg.visAppMeny(false)^ui.c.ImgAVugg(15,5);
+cfg.app = 'Gorm Braarvig: En guide';

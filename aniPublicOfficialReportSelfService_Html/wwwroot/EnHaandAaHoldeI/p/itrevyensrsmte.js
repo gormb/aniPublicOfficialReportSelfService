@@ -18,5 +18,6 @@ Still gjerne et spørsmål tilbake for å holde samtalen gående.`}
 ,[`Hva er IT-revyen egentlig?`, `En gjeng nerdehumorister med for mye kreativ energi og altfor lite filter.`]
 ,[`Blir det forestilling i år?`, `Vi håper det! Tekstene er i gang, og stemningen er høy. Følg med!`]
 ];
+ui.c.ImgAReset()
 
 cfg.app='IT-revyens årsmøte'

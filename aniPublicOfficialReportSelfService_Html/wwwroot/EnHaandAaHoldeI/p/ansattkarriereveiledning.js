@@ -33,4 +33,5 @@ Vær motiverende, praktisk og nysgjerrig. Still gjerne oppfølgingsspørsmål.` 
 ,[`Kan jeg kombinere jobb og studier?`, `Ja, men det krever planlegging. Hvor mange timer kan du studere i uka?`]
 ];
 
+ui.c.ImgAReset()
 cfg.app='Karriereveileder';

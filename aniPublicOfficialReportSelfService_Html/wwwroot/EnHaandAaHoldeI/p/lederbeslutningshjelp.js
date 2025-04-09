@@ -31,4 +31,5 @@ cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor 
 ,[`Vi står i en omdømmekrise – skal jeg si noe nå?`, `Hva skjer hvis du ikke sier noe? Hva skjer hvis du gjør det for tidlig?`]
 ];
 
+ui.c.ImgAReset()
 cfg.app='Beslutning';

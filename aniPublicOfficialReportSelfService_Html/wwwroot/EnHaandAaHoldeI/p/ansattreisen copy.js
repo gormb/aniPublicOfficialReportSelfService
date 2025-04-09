@@ -41,4 +41,5 @@ Svar gjerne med oppfølgingsspørsmål hvis det gir bedre hjelp.` }
 ,[`Kan jeg få referanse fra leder?`, `Som oftest, ja – spør gjerne direkte. Trenger du den skriftlig eller muntlig?`]
 ];
 
+ui.c.ImgAReset()
 cfg.app='Ansettelsesreisen';

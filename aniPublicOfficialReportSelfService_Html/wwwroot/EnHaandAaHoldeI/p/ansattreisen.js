@@ -32,4 +32,5 @@ Svar er korte, tilpasset mobil, og gir trygghet. Bruker vet ikke alltid hvilken 
 ,[`Jeg skal slutte snart`, `Overgang fra *ansettelsesforhold → avslutning*. Husk overlevering og be om referanse hvis aktuelt.`]
 ];
 
+ui.c.ImgAReset()
 cfg.app='Ansatt';

@@ -7,4 +7,5 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som gir praktisk og 
 ,[`Hvordan håndtere usikkerhet blant ansatte?`, `Tidlig og ærlig informasjon er nøkkelen. Har dere planlagt kommunikasjon?`]
 ,[`Er det krav til drøftingsmøter?`, `Ja, med tillitsvalgte og berørte ansatte. Skal jeg vise forslag til prosessplan?`]
 ];
+ui.c.ImgAReset()
 cfg.app='HR-Restrukturering'

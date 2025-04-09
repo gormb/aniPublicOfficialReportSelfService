@@ -27,4 +27,5 @@ cfg.aiPrompt=[
 ,[`Hvordan bygger jeg tillit hos nyansatte?`, `Vær tilgjengelig, vis interesse og følg opp tidlig. Har du hatt en god introduksjonssamtale?`]
 ];
 
+ui.c.ImgAReset()
 cfg.app='Leder-LMX';

@@ -35,3 +35,5 @@ ui.c.ImgA = 'p/hjemmelegenmin.png'
 document.documentElement.style.setProperty('--light-msg', 'rgb(240,229,207)');
 msgSend('mistrallarge')
 cfg.app='Hjemmelegen min';
+
+

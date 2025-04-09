@@ -32,4 +32,5 @@ cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor 
 ,[`Folk er slitne og overbelastet`, `Kan noe fjernes? Eller bytte tempo på noe dere gjør ukentlig?`]
 ];
 
+ui.c.ImgAReset()
 cfg.app='Forbedring';

@@ -29,4 +29,5 @@ cfg.aiPrompt=[
 ,[`Hvordan får jeg kontroll på alt?`, `Du trenger ikke ha kontroll på alt – men du bør ha oversikt. Vil du lage en enkel ukeplan sammen?`]
 ];
 
+ui.c.ImgAReset()
 cfg.app='Ny som leder';
