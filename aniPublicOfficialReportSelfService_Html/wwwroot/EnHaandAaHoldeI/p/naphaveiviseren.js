@@ -139,7 +139,6 @@ cfg.aiPrompt= [{role: `system`, content:
   ['Hva er de langsiktige målene til NAPHA?', 'De langsiktige målene inkluderer å redusere forekomsten av psykiske helseproblemer og forbedre arbeidsmiljøet nasjonalt.'],
   ['Hvordan oppsummerer du NAPHA sin rolle i samfunnet?', 'NAPHA er en sentral aktør som gjennom kunnskapsdeling, samarbeid og innovasjon bidrar til bedre psykisk helse og et mer inkluderende arbeidsliv.']
 ];
-cfg.app='NAPHA-eksempel'
 
 msgSend('mistrallarge')
 //msgSend('gpt4')
@@ -149,3 +148,5 @@ ui.c.ImgQrUrl = 'p/naphaveiviserenqr.png'
 
 document.documentElement.style.setProperty('--primary-color', '#FF9700');
 document.documentElement.style.setProperty('--font-family', "'Ubuntu', sans-serif");
+
+cfg.app='NAPHA-eksempel'
