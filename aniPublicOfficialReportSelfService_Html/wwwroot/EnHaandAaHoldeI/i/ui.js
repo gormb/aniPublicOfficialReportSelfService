@@ -34,6 +34,7 @@ const ui = {
         , ImgA:'https://upload.wikimedia.org/wikipedia/commons/2/26/Noun-artificial-intelligence-884535.svg'
         , ImgAClick: e => { let r=e.target.closest('.row'); while(r.nextElementSibling) r.nextElementSibling.remove(); msgSend(); ui.c.Input.focus(); }
         , ImgAVugg:(v,t)=>document.head.appendChild(document.createElement('style')).innerHTML=`@keyframes rock{0%,100%{transform:rotate(0deg);}25%{transform:rotate(${v}deg);}75%{transform:rotate(-${v}deg);}}.rotating{display:inline-block;animation:rock ${t}s ease-in-out infinite;}`
+        , ImgAFlag:(v,t) =>document.head.appendChild(document.createElement('style')).innerHTML=`@keyframes flagWaving {0% { transform: translateX(0)skewX(0deg);}50%{transform:translateX(-1px) skewX(-${v}deg);}100%{transform:translateX(0) skewX(0deg); }}.rotating {display: inline-block;animation: flagWaving ${t}s ease-in-out infinite;}`
         , ImgARoter:t=>document.head.appendChild(document.createElement('style')).innerHTML=`@keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } };}.rotating { display: inline-block; animation: rotate ${t}s linear infinite; }`
         , ImgAReset:(i='https://upload.wikimedia.org/wikipedia/commons/2/26/Noun-artificial-intelligence-884535.svg')=>ui.c.ImgARoter(10)^(ui.c.ImgA=i)
         , ImgH: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Point.svg'
@@ -42,7 +43,7 @@ const ui = {
         , ImgDice:i=>`<img class="icon dice" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[i||7]}">`
         , ImgSpaceRemove:()=>document.querySelector('.space')?.remove()
         , ImgSpaceAppend:()=>ui.c.Chat.lastElementChild.innerHTML+=`<img class="icon space" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[7]}">`    
-        , ImgQrUrl:'barcode.jpg'
+        //, ImgQrUrl:'barcode.jpg'
         , ImgQr:()=>ui.c.ImgQrUrl
         , tRotating: '<div class="rotatingC">&#8634</div>'
     }

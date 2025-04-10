@@ -121,7 +121,6 @@ Hvis du ikke er sikker på et svar eller trenger mer kontekst, oppfordre brukere
 ];
 msgSend('mistrallarge')^cfg.visAppMeny(false)^ui.c.ImgAVugg(5,2);
 ui.c.ImgA = 'p/kirosassistent.webp'
-ui.c.ImgQrUrl = 'p/rosassistentqr.png'
 
 document.documentElement.style.setProperty('--primary-color', 'rgb(57,120,19)');
 document.documentElement.style.setProperty('--font-family', "'Inter', sans-serif");

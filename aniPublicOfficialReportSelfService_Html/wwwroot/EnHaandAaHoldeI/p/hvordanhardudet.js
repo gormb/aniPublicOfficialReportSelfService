@@ -34,7 +34,7 @@ Ikke anta at brukeren snakker om seg selv. Spør ved behov: "Snakker du om deg s
 ,[`Jeg vet ikke om jeg klarer en dag til`, `Du er ikke alene. Har du vurdert å snakke med fastlegen din, eller ringe Mental Helse på 116 123?`]
 ];
 
-ui.c.ImgAReset()
+ui.c.ImgAReset()^ui.c.ImgARoter(15)
 msgSend('mistrallarge')
 
 document.documentElement.style.setProperty('--primary-color', 'rgb(57,120,19)');

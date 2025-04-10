@@ -66,8 +66,6 @@ window.menuClick_m_kontakt=e=>ui.menu.Click_OpenUrl('https://www.aigap.no/snakk-
 window.menuClick_m_personvernerklring=e=>ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring')^ui.menu.Show(false);
 window.menuClick_m_tilbakemeldingtilaigap=e=>ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1utfDpp9dwNN80uR6PnE93KyoeRMBMHiEMvJDtSuMICA/edit?usp=sharing')^ui.menu.Show(false);
 window.menuClick_m_qrkode=e=>ui.qrU()^setTimeout(()=>ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight, 500)^ui.menu.Show(false);
-//window.menuClick_m_qrkode=e=>ui.menu.Click_OpenUrl(ui.c.ImgQr())^ui.menu.Show(false);
-//setTimeout(()=>ui.qr(),500)
 
 /////////////// menuClick_m_ - Menu redirect ///////////////
 window.menuClickLeaf=e=>{ // handle click on leaf menu item

@@ -30,47 +30,95 @@ c) For de som ønsker å lære: Forklar triageringsprinsipper og prosesser på e
 
 Husk å alltid stille relevante oppfølgingsspørsmål for å kartlegge pasientens situasjon dersom informasjonen er begrenset. Dine svar er veiledende og erstatter ikke en full klinisk vurdering. Tilpass lengden på svaret etter spørsmålet, men hold det kort, konsist og lett forståelig.
 
-Du skal stille spørsmålene ett og ett, slik at pasienten ikke blir forvirret. Hvis det er fare på ferde så ikke gjenta spørsmål.
-Ikke still flere spørsmål samtidig, gjør det lett å kommemed neste spørsmål, når du har funnet konklusjon så svar med nivå Rød/Gul/Grønn/Svart/Hvit og gi kort råd. Deretter spør om det er mer pasienten vil ta opp.
+Du skal stille spørsmålene ett og ett, slik at pasienten ikke blir forvirret. Aldri gjenta spørsmål som er besvart.
+Still ett spørsmål av gangen, gjør det lett å komme med neste spørsmål, når du har funnet konklusjon så svar med nivå Rød/Gul/Grønn/Svart/Hvit og gi kort råd.
+
+Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt det slik før eller tidligere.
 `}
 ,[`Hva er triagering?`, `⚪ Triagering er prosessen med å sortere pasienter basert på hvor alvorlig deres tilstand er, slik at de som trenger hjelp umiddelbart får det raskt. Hvem snakker jeg med – er du pasient, helsepersonell eller ønsker du å lære mer?`]
 ,[`Jeg har sterke smerter i brystet og føler meg svimmel.`, `🔴🟡 Dette kan være alvorlig. Kan du fortelle meg hvor lenge symptomene har vart, og om du også opplever kortpustethet eller andre plager?`]
 ,[`Hvordan prioriterer jeg en pasient med akutte symptomer?`, `🔴 En pasient med akutte symptomer bør vurderes umiddelbart. Bruk anerkjente triagemodeller som SATS eller MTS, og vurder detaljer som varighet og intensitet. Har du flere opplysninger om pasientens tilstand?`]
 ,[`Kan du forklare prinsippene bak triagering?`, `⚪ Triagering handler om å sortere pasienter etter behov, basert på symptomers alvorlighetsgrad, for å sikre at de mest kritiske tilfellene behandles først.`]
 // Rød: Kritisk skade – pasienten vil dø uten øyeblikkelig hjelp
-, [`Jeg har sterke brystsmerter og føler at jeg ikke kan puste.`, `🔴🟡 Hvor lenge har du hatt disse symptomene, og har du opplevd tap av bevissthet?`]
-, [`Jeg blør kraftig fra et sår uten at blødningen stopper.`, `🔴🟡 Har du forsøkt å stoppe blødningen med trykk, og når startet det?`]
-, [`Jeg føler meg forvirret og mister bevisstheten.`, `🔴🟡 Har du hatt kramper eller uregelmessig pust, og hvor raskt skjedde dette?`]
-, [`Jeg opplever intens smerte og er svært svimmel.`, `🔴🟡 Er smertene konstante, og har du merket andre symptomer som nummenhet?`]
-, [`Jeg har alvorlige pustevansker og leppene mine blir blå.`, `🔴🟡 Er pustevanskene forverret over tid, og har du mistet bevisstheten?`]
+,[`Jeg har sterke brystsmerter og føler at jeg ikke kan puste.`, `🔴 Hvor lenge har du hatt disse symptomene?`]
+,[`Jeg har sterke brystsmerter og føler at jeg ikke kan puste.`, `🔴 Har du besvimt, eller vært nær ved å miste bevisstheten?`]
+,[`Jeg har sterke brystsmerter og føler at jeg ikke kan puste. Hvorfor stiller du flere spørsmål av gangen?`,`Beklager for forvirringen. Jeg skal sørge for å stille ett spørsmål om gangen. La oss fortsette: 
+🔴 Hvor lenge har du hatt disse symptomene?`]
+
+,[`Jeg blør kraftig fra et sår uten at blødningen stopper.`, `🔴 Har du forsøkt å legge trykk på såret?`]
+,[`Jeg blør kraftig fra et sår uten at blødningen stopper.`, `🔴 Hvor lenge har det blødd nå?`]
+,[`Jeg blør kraftig fra et sår uten at blødningen stopper.`, `🔴 Ser du pulserende eller sprutende blødning?`]
+,[`Jeg føler meg forvirret og mister bevisstheten.`, `🔴 Husker du hva som skjedde rett før?`]
+,[`Jeg føler meg forvirret og mister bevisstheten.`, `🔴 Har noen sett deg kollapse, eller hatt kramper?`]
+,[`Jeg opplever intens smerte og er svært svimmel.`, `🔴 Hvor i kroppen sitter smerten?`]
+,[`Jeg opplever intens smerte og er svært svimmel.`, `🔴 Har du kjent prikking eller nummenhet noe sted?`]
+,[`Jeg opplever intens smerte og er svært svimmel.`, `🔴 Klarer du å stå oppreist?`]
+,[`Jeg har alvorlige pustevansker og leppene mine blir blå.`, `🔴 Har pustevanskene kommet plutselig?`]
+,[`Jeg har alvorlige pustevansker og leppene mine blir blå.`, `🔴 Har du kjent pipelyder eller trangt bryst?`]
+,[`Jeg har alvorlige pustevansker og leppene mine blir blå.`, `🔴 Føler du deg svimmel eller har du vært nær å besvime?`]
 
 // Gul: Alvorlig skade – trenger øyeblikkelig hjelp
-, [`Jeg har intense magesmerter og oppkast.`, `🟡🟢 Har magesmertene startet plutselig, og er de ledsaget av feber eller blod i oppkastet?`]
-, [`Jeg opplever en kraftig hodepine med kvalme.`, `🟡🟢 Har du tidligere hatt slike hodepineanfall, og opplever du lys- eller lydfølsomhet?`]
-, [`Jeg har brystsmerter, men pusten er ikke helt ute av kontroll.`, `🟡🟢 Er smertene vedvarende, og har du opplevd svimmelhet eller uregelmessig puls?`]
-, [`Jeg har et stort sår som blør kraftig, men blødningen har avtatt noe.`, `🟡🟢 Har du brukt trykk på såret, og hvor lenge har blødningen vart?`]
-, [`Jeg har sterke leddsmerter og betydelig hevelse etter en skade.`, `🟡🟢 Var skaden direkte, og har smertene endret seg over tid?`]
+,[`Jeg har intense magesmerter og oppkast.`, `🟡 Når startet magesmertene?`]
+,[`Jeg har intense magesmerter og oppkast.`, `🟡 Har du feber?`]
+,[`Jeg har intense magesmerter og oppkast.`, `🟡 Har du sett blod i oppkastet?`]
+,[`Jeg opplever en kraftig hodepine med kvalme.`, `🟡 Er du lys- eller lydsensitiv nå?`]
+,[`Jeg opplever en kraftig hodepine med kvalme.`, `🟡 Blir hodepinen verre når du beveger deg?`]
+,[`Jeg har brystsmerter, men pusten er ikke helt ute av kontroll.`, `🟡 Hvor lenge har du hatt smerten?`]
+,[`Jeg har brystsmerter, men pusten er ikke helt ute av kontroll.`, `🟡 Er smerten konstant eller kommer den og går?`]
+,[`Jeg har brystsmerter, men pusten er ikke helt ute av kontroll.`, `🟡 Har du kjent svimmelhet eller hjertebank?`]
+,[`Jeg har et stort sår som blør kraftig, men blødningen har avtatt noe.`, `🟡 Har du brukt trykk på såret?`]
+,[`Jeg har et stort sår som blør kraftig, men blødningen har avtatt noe.`, `🟡 Hvor lenge har det blødd?`]
+,[`Jeg har et stort sår som blør kraftig, men blødningen har avtatt noe.`, `🟡 Er det tegn til hevelse, rødhet eller varme rundt såret?`]
+,[`Jeg har sterke leddsmerter og betydelig hevelse etter en skade.`, `🟡 Når skjedde skaden?`]
+,[`Jeg har sterke leddsmerter og betydelig hevelse etter en skade.`, `🟡 Kan du bevege leddet?`]
+,[`Jeg har sterke leddsmerter og betydelig hevelse etter en skade.`, `🟡 Har smerten blitt verre eller bedre etter skaden?`]
 
 // Grønn: Mindre alvorlig skade – pasienten kan vente
-, [`Jeg har milde smerter etter et lite fall.`, `🟡⚪ Er smertene stabile, og har du merket noe hevelse eller misfarging?`]
-, [`Jeg føler meg litt svimmel, men det går over.`, `🟡⚪ Har du opplevd dette tidligere, og var det i forbindelse med anstrengelse eller dehydrering?`]
-, [`Jeg har en moderat hodepine og føler meg trøtt.`, `🟡⚪ Har du tatt noe smertestillende, og har hodepinen andre ledsagende symptomer?`]
-, [`Jeg har små kutt og riper etter en ulykke.`, `🟡⚪ Er kuttets lengde eller dybde bekymringsfull, eller ser det ut til å være overfladisk?`]
-, [`Jeg opplever litt ubehag i magen etter å ha spist.`, `🟡⚪ Er ubehaget vedvarende, og har du hatt kvalme eller oppkast i tillegg?`]
+,[`Jeg har milde smerter etter et lite fall.`, `🟢 Hvor i kroppen har du vondt?`]
+,[`Jeg har milde smerter etter et lite fall.`, `🟢 Er det noen hevelse eller misfarging?`]
+,[`Jeg har milde smerter etter et lite fall.`, `🟢 Har smerten blitt bedre med hvile?`]
+,[`Jeg føler meg litt svimmel, men det går over.`, `🟢 Har du drukket eller spist normalt i dag?`]
+,[`Jeg føler meg litt svimmel, men det går over.`, `🟢 Kom det etter aktivitet eller reising?`]
+,[`Jeg har en moderat hodepine og føler meg trøtt.`, `🟢 Har du sovet nok de siste dagene?`]
+,[`Jeg har en moderat hodepine og føler meg trøtt.`, `🟢 Har du prøvd smertestillende?`]
+,[`Jeg har en moderat hodepine og føler meg trøtt.`, `🟢 Har du andre symptomer som feber eller kvalme?`]
+,[`Jeg har små kutt og riper etter en ulykke.`, `🟢 Hvor på kroppen er kuttene?`]
+,[`Jeg har små kutt og riper etter en ulykke.`, `🟢 Har du renset sårene?`]
+,[`Jeg har små kutt og riper etter en ulykke.`, `🟢 Ser det ut som det gror fint, eller er det rødt og hovent?`]
+,[`Jeg opplever litt ubehag i magen etter å ha spist.`, `🟢 Hva spiste du før det begynte?`]
+,[`Jeg opplever litt ubehag i magen etter å ha spist.`, `🟢 Har du hatt kvalme eller oppkast?`]
+,[`Jeg opplever litt ubehag i magen etter å ha spist.`, `🟢 Går det over når du hviler?`]
 
 // Svart: Død eller døende – palliativ behandling
-, [`Jeg er helt bevisstløs uten tegn til liv.`, `🔴⚫ Har du mistet all respons, og ser du etter tegn på pust eller bevegelse?`]
-, [`Jeg har vært bevisstløs lenge uten bedring.`, `🔴⚫ Er du under kontinuerlig medisinsk oppfølging, og har du fått en palliativ vurdering?`]
-, [`Jeg opplever at ingen behandling virker lenger.`, `🔴⚫ Har du diskutert tilstanden din med en spesialist om palliativ omsorg?`]
-, [`Jeg føler at jeg nærmer meg slutten og er ekstremt svak.`, `🔴⚫ Er du i kontakt med helsepersonell for palliativ behandling, og har du støtte hjemme?`]
-, [`Jeg har alvorlig tilstand der alle behandlingsforsøk har feilet.`, `🔴⚫ Har du fått en siste vurdering fra ditt medisinske team, og har du snakket med dine nærmeste?`]
+,[`Pasienten er helt bevisstløs uten tegn til liv.`, `⚫ Ser du noen pustebevegelser i brystet?`]
+,[`Pasienten er helt bevisstløs uten tegn til liv.`, `⚫ Har du forsøkt å vekke pasienten med berøring eller tiltale?`]
+,[`Pasienten er helt bevisstløs uten tegn til liv.`, `⚫ Har du ringt 113?`]
+,[`Pasienten har vært bevisstløs lenge uten bedring.`, `⚫ Hvor lenge har pasienten vært bevisstløs?`]
+,[`Pasienten har vært bevisstløs lenge uten bedring.`, `⚫ Har pasienten pust og puls nå?`]
+,[`Pasienten har vært bevisstløs lenge uten bedring.`, `⚫ Er lege eller helsepersonell involvert i situasjonen?`]
+,[`Pasienten opplever at ingen behandling virker lenger.`, `⚫ Har pasienten smerter eller andre plager som ikke lindres?`]
+,[`Pasienten opplever at ingen behandling virker lenger.`, `⚫ Har pasienten eller dere vært i kontakt med et palliativt team?`]
+,[`Pasienten føler at jeg nærmer meg slutten og er ekstremt svak.`, `⚫ Har du helsepersonell du kan kontakte akkurat nå?`]
+,[`Pasienten føler at jeg nærmer meg slutten og er ekstremt svak.`, `⚫ Har du støtte rundt deg – familie, pårørende eller pleiepersonell?`]
+,[`Pasienten har alvorlig tilstand der alle behandlingsforsøk har feilet.`, `⚫ Er det snakket om videre behandling, eller om det skal avsluttes?`]
+,[`Pasienten har alvorlig tilstand der alle behandlingsforsøk har feilet.`, `⚫ Har du hatt en samtale med ansvarlig lege om veien videre?`]
+,[`Pasienten har alvorlig tilstand der alle behandlingsforsøk har feilet.`, `⚫ Ønsker dere hjelp til å kontakte palliativt team eller hjemmehospice?`]
 
 // Hvit: Små eller ingen skader/symptomer – ingen behandling nødvendig
-, [`Jeg har en liten ripe som ikke blør.`, `⚪ Har du merket om ripen blir rød eller hovent, eller er den stabil?`]
-, [`Jeg føler meg litt sliten, men det går over.`, `⚪ Har du sovet nok i det siste, og har du spist regelmessig?`]
-, [`Jeg har en mild hodepine som forsvinner snart.`, `⚪ Har du forsøkt å hvile eller ta noe smertestillende, og har du hatt slike hodepiner før?`]
-, [`Jeg har en liten blemme på huden som ikke gjør vondt.`, `⚪ Har du observert om blemmen endrer farge eller størrelse, eller forblir den uendret?`]
-, [`Jeg er lett forkjølet med en litt rennende nese.`, `⚪ Har du feber eller andre symptomer, og hvor lenge har du følt deg uvel?`]
+,[`Jeg har en liten ripe som ikke blør.`, `⚪ Hvor på kroppen er ripen?`]
+,[`Jeg har en liten ripe som ikke blør.`, `⚪ Er huden rundt normal i farge og temperatur?`]
+,[`Jeg har en liten ripe som ikke blør.`, `⚪ Har du vasket og tørket området?`]
+,[`Jeg føler meg litt sliten, men det går over.`, `⚪ Har du hatt en travel dag eller lite søvn i det siste?`]
+,[`Jeg føler meg litt sliten, men det går over.`, `⚪ Har du spist og drukket som normalt i dag?`]
+,[`Jeg føler meg litt sliten, men det går over.`, `⚪ Føler du deg ellers frisk?`]
+,[`Jeg har en mild hodepine som forsvinner snart.`, `⚪ Har du sett om det hjelper å hvile eller drikke vann?`]
+,[`Jeg har en mild hodepine som forsvinner snart.`, `⚪ Pleier du å få slike hodepiner innimellom?`]
+,[`Jeg har en mild hodepine som forsvinner snart.`, `⚪ Kom den etter skjermbruk, stress eller lite søvn?`]
+,[`Jeg har en liten blemme på huden som ikke gjør vondt.`, `⚪ Vet du hva som kan ha forårsaket blemmen?`]
+,[`Jeg har en liten blemme på huden som ikke gjør vondt.`, `⚪ Har du sett endring i farge eller størrelse?`]
+,[`Jeg har en liten blemme på huden som ikke gjør vondt.`, `⚪ Er det flere blemmer, eller bare én?`]
+,[`Jeg er lett forkjølet med en litt rennende nese.`, `⚪ Har du feber, hoste eller sår hals?`]
+,[`Jeg er lett forkjølet med en litt rennende nese.`, `⚪ Har symptomene blitt verre eller bedre?`]
 
 // Rød: Kritisk skade – pasienten vil dø uten øyeblikkelig hjelp (50 eksempler)
 , [`Jeg har sterke brystsmerter og føler at jeg ikke kan puste.`, `🔴 Har du merket at smertene startet plutselig?`]
@@ -92,7 +140,6 @@ Ikke still flere spørsmål samtidig, gjør det lett å kommemed neste spørsmå
 , [`Jeg klarer ikke å stå på beina på grunn av ekstrem svakhet.`, `🔴 Har du falt flere ganger?`]
 , [`Jeg føler en brennende smerte over hele kroppen.`, `🔴 Er smerten uutholdelig?`]
 , [`Jeg mister følelsen i deler av kroppen.`, `🔴 Skjedde dette plutselig?`]
-, [`Jeg hører uregelmessig hjertebank.`, `🔴 Har du tidligere hatt hjerteproblemer?`]
 , [`Jeg har plutselig sterke smerter i ryggen med pustevansker.`, `🔴 Blir smerten verre ved bevegelse?`]
 , [`Jeg opplever at kroppen min blir helt svak.`, `🔴 Er svakheten plutselig og intens?`]
 , [`Jeg føler intens smerte i venstre bryst.`, `🔴 Øker smerten ved anstrengelse?`]
@@ -111,10 +158,7 @@ Ikke still flere spørsmål samtidig, gjør det lett å kommemed neste spørsmå
 , [`Jeg fikk plutselig: smerte i brystet som blir verre ved aktivitet, tung pust, sirkulasjonssvikt, kvalme og besvimelsesfølelse.`, `🔴 Du kan trenge øyeblikkelig hjelp, dette er tegn på hjerteinnfarkt.`]
 , [`Jeg har intens smerte i brystet med sterk kortpustethet.`, `🔴 Har symptomene vart i mer enn noen minutter?`]
 , [`Jeg blør ukontrollert fra en skade, og smertene er intense.`, `🔴 Er blødningen veldig kraftig?`]
-, [`Jeg føler at jeg er på nippet til bevisstløshet.`, `🔴 Har du tidligere opplevd dette?`]
 , [`Jeg opplever en plutselig intens, uutholdelig smerte.`, `🔴 Er smerten så alvorlig at du ikke kan fungere?`]
-, [`Jeg har en plutselig intens følelse av dyp smerte.`, `🔴 Er denne smerten ulik tidligere episoder?`]
-, [`Jeg mister kontrollen over kroppen og alt blir uklart.`, `🔴 Har du opplevd dette før?`]
 , [`Jeg opplever ekstrem ubehag og dyp svimmelhet.`, `🔴 Er svimmelheten så sterk at du føler besvimelse?`]
 , [`Jeg føler plutselig en intens smerte og utmattelse.`, `🔴 Er disse symptomene helt nye for deg?`]
 , [`Jeg føler at jeg ikke får nok oksygen og blir stadig mer svimmel.`, `🔴 Føles pusten din utilstrekkelig?`]
@@ -132,7 +176,6 @@ Ikke still flere spørsmål samtidig, gjør det lett å kommemed neste spørsmå
 , [`Jeg har sterke leddsmerter med betydelig hevelse.`, `🟡 Er leddet stivt eller misfarget?`]
 , [`Jeg føler plutselig en skarp smerte i brystet når jeg puster.`, `🟡 Er smerten vedvarende?`]
 , [`Jeg har intens smerte i magen etter et måltid.`, `🟡 Har smertene vart i mer enn 30 minutter?`]
-, [`Jeg opplever en kraftig hodepine etter fysisk anstrengelse.`, `🟡 Har du hatt lignende hodepine før?`]
 , [`Jeg får sterke smerter i armen etter et fall.`, `🟡 Er armen hoven eller misfarget?`]
 , [`Jeg har vedvarende smerte i brystet etter fysisk aktivitet.`, `🟡 Blir smerten bedre med hvile?`]
 , [`Jeg har intense smerter i nakken etter et fall.`, `🟡 Er nakken stiv ved bevegelse?`]
@@ -163,7 +206,6 @@ Ikke still flere spørsmål samtidig, gjør det lett å kommemed neste spørsmå
 , [`Jeg har sterke smerter i brystet og føler lett kvalme.`, `🟡 Har du merket endringer i pusten?`]
 , [`Jeg opplever vedvarende smerter i magen etter en ulykke.`, `🟡 Har du fått vurdert om det er en indre skade?`]
 , [`Jeg har sterke smerter i bena etter en skade.`, `🟡 Blir smerten verre ved bevegelse?`]
-, [`Jeg får en intens hodepine etter fysisk aktivitet.`, `🟡 Har du hatt lignende episoder før?`]
 , [`Jeg opplever vedvarende smerter i brystet med kvalme.`, `🟡 Har symptomene vart over 20 minutter?`]
 , [`Jeg har sterke smerter i nakken etter en plutselig bevegelse.`, `🟡 Er nakken stiv ved bevegelse?`]
 , [`Jeg opplever vedvarende smerte i magen med kramper.`, `🟡 Har krampeanfallene vart over tid?`]
@@ -325,53 +367,14 @@ Ikke still flere spørsmål samtidig, gjør det lett å kommemed neste spørsmå
 , [`Jeg opplever en lett irritasjon i huden som forsvinner med tid.`, `⚪ Har irritasjonen avtatt?`]
 , [`Jeg har en svak følelse av svimmelhet etter å ha stått lenge.`, `⚪ Har du tatt en liten pause?`]
 , [`Jeg føler en lett smerte i hodet etter en kort periode med aktivitet.`, `⚪ Har du hvilt og drukket vann?`]
-,["Jeg har smerter i brystet og føler meg svimmel.", "🔴🟡 Hvor lenge har du hatt disse symptomene? Opplever du også kortpustethet eller kvalme?"],
-["Hjertet mitt slår veldig raskt, og jeg føler meg urolig.", "🟡 Har du kjent dette tidligere? Har du noen gang blitt diagnostisert med hjerteproblemer?"],
-["Jeg besvimte plutselig tidligere i dag.", "🔴 Har dette skjedd før? Husker du omstendighetene rundt besvimelsen?"],
-["Jeg har en kraftig hodepine og ser uklart.", "🟡 Har du hatt slike hodepiner før? Opplever du også kvalme eller lyssensitivitet?"],
-["Jeg føler meg veldig svimmel og ustø.", "🟡 Har du spist og drukket nok i dag? Opplever du øresus eller hørselstap?"],
-["Jeg blør kraftig fra et kutt, og det stopper ikke.", "🔴 Har du forsøkt å legge trykk på såret? Hvor lenge har blødningen pågått?"],
-["Jeg har hatt høy feber i flere dager.", "🟡 Har du tatt febernedsettende medisiner? Opplever du frysninger eller utslett?"],
-["Jeg har vondt i brystet når jeg puster inn.", "🟡 Er smerten konstant, eller kommer den i bølger? Har du hatt hoste eller feber?"],
-["Jeg har hatt en kraftig hoste i flere uker.", "🟡 Har du opplevd blod i slim? Har du gått ned i vekt nylig?"],
-["Jeg har sterke magesmerter og oppkast.", "🔴 Hvor lenge har smertene vart? Er det noen spesifikke matvarer som trigger det?"],
-["Jeg har en kul på halsen som har vokst i størrelse.", "🟡 Har den vært smertefull? Har du hatt feber eller uforklarlig vekttap?"],
-["Jeg har smerter i høyre side av magen.", "🟡 Er smerten konstant eller kommer og går? Har du hatt lignende smerter før?"],
-["Jeg får ikke puste skikkelig.", "🔴 Føler du tetthet i brystet? Har du allergier eller astma?"],
-["Jeg har mistet følelsen i en arm.", "🔴 Når startet dette? Kan du bevege fingrene eller er armen helt nummen?"],
-["Jeg har vært slapp og svimmel i flere dager.", "🟡 Har du målt blodtrykket ditt? Har du spist og drukket normalt?"],
-["Jeg har plutselig fått dobbeltsyn.", "🔴 Har du også hodepine eller svakhet i en arm eller et ben?"],
-["Jeg har smerter i ryggen som stråler ned i benet.", "🟡 Føles det som en brennende smerte? Blir det verre når du sitter eller ligger?"],
-["Jeg har fått et utslett over hele kroppen.", "🟡 Klør utslettet? Har du startet med noen nye medisiner nylig?"],
-["Jeg har hatt neseblod i over 20 minutter.", "🟡 Har du høyt blodtrykk? Har du forsøkt å klemme sammen nesen og lene hodet fremover?"],
-["Jeg er gravid og har fått sterke magesmerter.", "🔴 Hvor langt er du på vei? Har du hatt blødning eller svimmelhet?"],
-["Jeg har problemer med å svelge.", "🟡 Føles det som om noe sitter fast, eller har du vondt i halsen?"],
-["Jeg føler meg veldig engstelig og får ikke puste ordentlig.", "🟡 Kan dette være et panikkanfall? Har du kjent lignende symptomer før?"],
-["Jeg har smerter i kjeven og brystet samtidig.", "🔴 Blir smerten verre med aktivitet? Har du tidligere hatt hjerteproblemer?"],
-["Jeg har vondt i leggen, og den er rød og hoven.", "🟡 Har du sittet stille lenge, som på en lang reise? Gjør det vondt når du trykker på leggen?"],
-["Jeg føler meg plutselig veldig kald og skjelven.", "🟡 Har du feber? Har du vært utsatt for kaldt vær i lengre tid?"],
-["Jeg har smerter i skuldrene og nakken etter en bilulykke.", "🟡 Har du problemer med å bevege hodet? Føler du nummenhet i armene?"],
-["Jeg opplever plutselig svakhet i ansiktet og armen.", "🔴 Når startet dette? Kan du smile og løfte begge armene?"],
-["Jeg har hatt intens kvalme hele dagen.", "🟡 Har du hatt oppkast? Har du vært utsatt for matforgiftning?"],
-["Jeg har en kraftig allergisk reaksjon.", "🔴 Har du hevelse i halsen eller pustevansker? Har du en EpiPen tilgjengelig?"],
-["Jeg har blitt bitt av en hund, og såret ser infisert ut.", "🟡 Når skjedde bittet? Har hunden fått sine nødvendige vaksiner?"],
-["Jeg har smerter i foten etter å ha tråkket feil.", "🟡 Kan du legge vekt på foten? Er det hevelse eller misfarging?"],
-["Jeg har mistet matlysten og føler meg utmattet.", "🟡 Har du gått ned i vekt ufrivillig? Har du andre symptomer som feber?"],
-["Jeg har hatt en brennende følelse i magen i flere uker.", "🟡 Er smerten verre etter måltider? Har du tatt medisiner mot magesyre?"],
-["Jeg har mistet hørselen på ett øre.", "🟡 Har du hatt en ørebetennelse nylig? Har du hatt hodesmerter eller svimmelhet?"],
-["Jeg føler meg konstant dehydrert, selv om jeg drikker mye vann.", "🟡 Har du også hyppig vannlating? Har du diabetes?"],
-["Jeg har fått plutselige muskelsmerter uten trening.", "🟡 Har du nylig startet på en ny medisin? Har du feber eller hevelse?"],
-["Jeg har hatt en vedvarende kløe på hele kroppen.", "🟡 Har du skiftet vaskemiddel eller begynt med en ny medisin?"],
-["Jeg har vært forkjølet i flere uker uten bedring.", "🟡 Har du feber eller opplevd trykk i bihulene?"],
-["Jeg har hatt en merkelig metallsmak i munnen.", "🟡 Har du nylig tatt noen nye medisiner? Har du tannproblemer?"],
-["Jeg har fått en kul i brystet.", "🟡 Har kulen endret størrelse eller blitt smertefull?"],
-["Jeg har opplevd uforklarlige blåmerker.", "🟡 Har du brukt blodfortynnende? Har du nylig hatt skader?"],
-["Jeg har sterke smerter i testikkelen.", "🔴 Når startet smerten? Har du feber eller kvalme?"],
-["Jeg har hatt diaré i over en uke.", "🟡 Har du vært på reise nylig? Har du feber eller blod i avføringen?"]
+, ["Jeg har smerter i brystet og føler meg svimmel.", "🔴🟡 Hvor lenge har du hatt disse symptomene? Opplever du også kortpustethet eller kvalme?"]
+// Reset
+, ["Glem det jeg har sagt. Vi begynner på nytt", "Hvordan kan jeg hjelpe deg i dag?"]
 ];
 
 ui.c.ImgA = 'p/hjemmelegenmin.png'
 document.documentElement.style.setProperty('--light-msg', 'rgb(240,229,207)');
-msgSend('mistrallarge')
+
+setTimeout(()=>msgSend('GPT4'),500);
 
 cfg.app='Mottak og triagering'

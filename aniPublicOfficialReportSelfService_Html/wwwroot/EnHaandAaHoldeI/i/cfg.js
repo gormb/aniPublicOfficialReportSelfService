@@ -3,7 +3,7 @@ const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
     , appProvider_Man:[['Personlig >>§-',[
-            'Hånd å holde i >>§ -', ['Hvordan har du det?','Personvernrådgiveren','Innovasjon Norge søknad, Aigap','Blank§*']
+            'Hånd å holde i >>§ -', ['Hvordan har du det?','Personvernrådgiveren','Aigap Innovasjon Norge','Blank§*']
             ,'Logikk >>§-', ['Tankefeilvarsler']
             ,'Nyheter >>§-', ['Verdens nyheter via Ideallya']
         ]],['Helse >>§-',[

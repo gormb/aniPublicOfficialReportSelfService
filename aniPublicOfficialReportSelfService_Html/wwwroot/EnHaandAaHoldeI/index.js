@@ -25,30 +25,8 @@ window.menuClick_m_begynnpnytt=e=>{
     ui.menu.Show(false);
     ui.c.Chat.innerHTML='';
     ai.Reset();
-    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1], true);
+    msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1],true);
     ui.c.Input.focus();
-}
-
-const diceC = m => {
-    let d = [...m.matchAll(/🎲 (\d)/g)].map(m => +m[1]);
-    let [m0, m1 = ''] = m.replace(/"/g, '').split('Omformulering:')
-        .map(t => t.replace(/🎲 \d+:?/g, '').trim()); // Remove all 🎲 n and optional ":"
-    return [d[0] || null, m0, d[1] || null, m1];
-};
-
-const pvVurderH = (i, iF) => { 
-    let a = ai.History[1][i].content.startsWith('Agent:'), c = ai.History[1][i].content
-        , row = [...ui.c.Chat.children].find(r => r.textContent.includes(c.replace(/^Agent: |^User: /, ''))) // Find the correct row
-        , b = msgInfo(ui.c.tRotating, !a, a);
-    if(!row) row = msgInfo(c.slice(0,49)+'...');
-    console.log(row, c);
-    row.insertAdjacentElement('afterend', b); // Move it under the correct chat row
-    ai.Request(c, b, 1, (r) => {
-        let [d0, m0, d1, m1] = diceC(r),
-            t0 = `<i> ${m0} </i>`,t1 = ` ${m1} `, i0 = ui.c.ImgDice(d0), i1 = ui.c.ImgDice(d1);
-        b.innerHTML = i0 + t0 + (d0 != d1 ? '<br>' + i1 + t1 : '');
-        if (i > iF) pvVurderH(i - 2, iF);
-    });
 }
 
 window.menuClick_m_analyserpersonvern=e=>{ 
@@ -60,30 +38,10 @@ window.menuClick_m_analyserpersonvern=e=>{
             { role: 'user', content: (m.role === 'user' ? 'User: ' : 'Agent: ') + m.content },
             { role: 'assistant', content: ui.c.tRotating }])];
     let l=ai.History[1].length-1, lPre=ai.ai2Prompt(cfg.aiPromptPV).length;
-    pvVurderH(l-1, lPre);
+    pv.Rydd();
+    pv.VurderH(l-1, lPre);
     console.log(ai.History[1]);
     return;
-/* Suggest...
-        ui.SuggestI=i??ui.SuggestI;
-        if (!ui.SuggestI) // tøm forslag og vis
-        {
-            ui.Show(ui.c.Suggestions, true)
-            ui.c.Suggestions.innerHTML = "";
-        }
-        if (ui.SuggestI<3){ // Forslag 1-2-3
-            let b = document.createElement("div"), sg=ai.SugQ[0];
-            b.innerHTML = '<span class="row rotatingC">&#8634</span>';
-            b.classList.add('msg');b.classList.add('forslag');
-            b.onclick = () => msgSend(b.innerText);
-            ui.c.Suggestions.appendChild(b);
-            ai.History[2] =ai.History[0];
-            ai.Request(sg[i<2?0:1], b, 2, ()=>
-                setTimeout(()=>ui.Suggest(++ui.SuggestI), ui.SuggestTimeout)
-            );
-        }
-    }    
-
-    */
 }
 window.menuClick_m_forskalleai=e=> {
     let m='Gjenta', cmd='';
@@ -147,8 +105,6 @@ window.menuClick_m_kontakt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https:/
 window.menuClick_m_personvernerklring=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
 window.menuClick_m_tilbakemeldingtilaigap=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1utfDpp9dwNN80uR6PnE93KyoeRMBMHiEMvJDtSuMICA/edit?usp=sharing');
 window.menuClick_m_qrkode=e=>ui.menu.Show(false)^ui.qrU()^setTimeout(()=>ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight, 500);
-//window.menuClick_m_qrkode=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl(ui.c.ImgQr());
-//setTimeout(()=>ui.qr(),500)
 
 /////////////// menuClick_m_ - Menu redirect ///////////////
 window.menuClickLeaf=e=>{ // handle click on leaf menu item

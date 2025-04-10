@@ -81,5 +81,6 @@ cfg.aiPrompt.push(
 );
 
 msgSend('mistrallarge')
-msgSend('groklatest')^cfg.visAppMeny(false)^ui.c.ImgAVugg(15,5);
+^cfg.visAppMeny(false)^ui.c.ImgAVugg(15,5);
+
 cfg.app = 'Gorm Braarvig: En guide';

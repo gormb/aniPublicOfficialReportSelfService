@@ -1,4 +1,4 @@
-/////////////// QR-code /////////////////
+// QR-code
 const qr = {
     i:(s='https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js')=>window.QRCodeStyling?Promise.resolve():new Promise(r=>document.head.appendChild(Object.assign(document.createElement("script"),{src:s,onload:r})))
     ,sz:r=>Math.floor(Math.min(innerWidth,innerHeight)*r)
