@@ -16,12 +16,12 @@ const pv={
                 d[i_d++][1]=d1;
                 return [i0 + t0, d0 !== d1 ? i1 + t1 : ''];  // Create 2x2 array with HTML content
             });
-            if (d[1][0]==d[0][0]&&d[1][1]==d[0][1]) console.warn('dice: rows alike',d)^(a[1][0]=a[1][1]='');
-            else if (d[1][1]==d[1][0]) console.warn('dice: lowest equal',d[1])^(a[1][1]='');
-            if (d[0][1]==d[0][0]) console.warn('dice: topmost alike',d[0])^(a[0][1]='');
+            if (d[1][0] == d[0][0] && d[1][1] == d[0][1]) console.warn('dice: rows alike', d), a[1][0] = a[1][1] = '';
+            else if (d[1][1] == d[1][0]) console.warn('dice: lowest equal', d[1]), a?.[1] && (a[1][1] = '');
+            if (d[0][1] == d[0][0]) console.warn('dice: topmost alike', d[0]), a?.[0] && (a[0][1] = '');                        
             b.innerHTML = `<table>`
-                + `<tr><td>${a[0][0]}</td><td>${a[1][0]}</td></tr>` // First column
-                + `<tr><td>${a[0][1]}</td><td>${a[1][1]}</td></tr>` // Second column
+                + `<tr><td>${a?.[0]?.[0]}</td><td>${a?.[1]?.[0]}</td></tr>` // First column
+                + `<tr><td>${a?.[0]?.[1]}</td><td>${a?.[1]?.[1]}</td></tr>` // Second column
                 + `</table>`;
         
             if (i > iF) pv.VurderH(i - 2, iF);
