@@ -222,6 +222,13 @@ Når har du opplevd at det å overse egne følelser har påvirket en relasjon?`]
 ui.c.ImgAReset()
 ui.c.ImgA='p/enkeleqtest.svg'
 msgSend('mistrallarge')
+
 document.documentElement.style.setProperty('--primary-color', '#0A6B80'); // mild salviegrønn
-document.documentElement.style.setProperty('--font-family', "'Quicksand', sans-serif");
+
+const gFont=f=>(document.head.appendChild(Object.assign(document.createElement('link'),{href:`https://fonts.googleapis.com/css2?family=${encodeURIComponent(f)}&display=swap`,rel:'stylesheet'})),document.documentElement.style.setProperty('--font-family',`'${f}',sans-serif`));
+ui.font.n('Quicksand')
+
+// document.head.appendChild(Object.assign(document.createElement('link'), { href: 'https://fonts.googleapis.com/css2?family=Quicksand&display=swap', rel: 'stylesheet' }));
+// document.documentElement.style.setProperty('--font-family', "'Quicksand', sans-serif");
+
 cfg.app='Enkel EQ-test'
