@@ -3,7 +3,6 @@ const ui = {
     init:e=>{ 
         ui.c.Input.addEventListener('keydown',(e)=>ui.e.Input_keydown(e));
         ui.c.Input.addEventListener('input',(e)=>ui.e.Input_adjustHeight());
-        //ui.c.Input.addEventListener('keydown',e=>{ if (e.key==='Enter') msgSend(); else if (e.key==='Escape') ui.e.Input_setValue('');});
         ui.c.Speak.addEventListener('click',()=>msgSendSpeak());
         ui.Show(ui.c.Speak, false);
         ui.c.Send.addEventListener('click',()=>msgSend());
@@ -43,8 +42,6 @@ const ui = {
         , ImgDice:i=>`<img class="icon dice" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[i||7]}">`
         , ImgSpaceRemove:()=>document.querySelector('.space')?.remove()
         , ImgSpaceAppend:()=>ui.c.Chat.lastElementChild.innerHTML+=`<img class="icon space" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[7]}">`    
-        //, ImgQrUrl:'barcode.jpg'
-        , ImgQr:()=>ui.c.ImgQrUrl
         , tRotating: '<div class="rotatingC">&#8634</div>'
     }
     ,e:{
