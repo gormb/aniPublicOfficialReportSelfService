@@ -15,6 +15,10 @@ const lagring = {
         , setAi:(i,a)=>lagring.s('setting ai'+i,lagring.ai[i]=a??lagring.ai[i])
     , sjargong: 'voksensprk'
     , spraak: 'bokml'
+    , qr:()=>window.location.origin+window.location.pathname
+        +'?'+lagring.getAktivApp()+'?'+lagring.getAi(0,'')
+        +(lagring.spraak=='bokml'?'':'?'+lagring.spraak)
+        +(lagring.sjargong=='voksensprk'?'':'?'+lagring.sjargong)
     , delay:100, delayI:100
     , last:()=> {
         let delay = 100//, delayI = 100

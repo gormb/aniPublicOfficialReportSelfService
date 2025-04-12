@@ -168,8 +168,8 @@ const ui = {
             });
         }
     }
-    ,qr:u=>qr.d(u,ui.c.Chat,.7)
-    ,qrU:()=>ui.qr()
+    ,qr:u=>qr.d(u,ui.c.Chat,.6)
+    ,qrU:()=>ui.qr(lagring.qr())
 }
 /////////////// msg - Chat UI ///////////////
 window.msgIsSimulate=msg=>msg.startsWith("Simulate: ");
