@@ -44,7 +44,7 @@ window.menuClick_m_tmlagring=e=>{
     msgInfo('Alle eventuelle data slettet', true)
     ui.menu.Show(false);
 }
-window.menuClick_m_lagrelokalt=e=>lagring.lagre(++lagring.aktiv%3)^ui.visLagre();
+window.menuClick_m_lagreinnhold=e=>lagring.lagre(++lagring.aktiv%3)^ui.visLagre();
 
 window.menuClick_m_visappmeny=e=>cfg.visAppMeny(true)
 // menuClick_m_ - Innstillinger >> AI >>

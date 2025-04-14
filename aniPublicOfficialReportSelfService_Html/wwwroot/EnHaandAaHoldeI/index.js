@@ -77,7 +77,7 @@ window.menuClick_m_tmlagring=e=>{
     msgInfo('Alle eventuelle data slettet', true)
     ui.menu.Show(false);
 }
-window.menuClick_m_lagrelokalt=e=>lagring.lagre(++lagring.aktiv%3)^ui.visLagre();
+window.menuClick_m_lagreinnhold=e=>lagring.lagre(++lagring.aktiv%3)^ui.visLagre();
 window.menuClick_m_stttinnsnakking=e=>ui.Show(ui.c.Speak,ui.menu.EBold('stttinnsnakking'));
 
 window.menuClick_m_grubling=e=> {
@@ -105,6 +105,7 @@ window.menuClick_m_kontakt=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https:/
 window.menuClick_m_personvernerklring=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://www.aigap.no/personvernerkl%C3%A6ring');
 window.menuClick_m_tilbakemeldingtilaigap=e=>ui.menu.Show(false)^ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1utfDpp9dwNN80uR6PnE93KyoeRMBMHiEMvJDtSuMICA/edit?usp=sharing');
 window.menuClick_m_qrkode=e=>ui.menu.Show(false)^ui.qrU()^setTimeout(()=>ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight, 500);
+window.menuClick_m_applenke=e=>window.menuClick_m_qrkode()^ui.menu.Show(false)^(ui.c.Input.value=lagring.qr())^ui.c.Input.focus()^ui.c.Input.select();
 
 /////////////// menuClick_m_ - Menu redirect ///////////////
 window.menuClickLeaf=e=>{ // handle click on leaf menu item

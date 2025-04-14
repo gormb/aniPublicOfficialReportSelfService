@@ -14,10 +14,10 @@ const setting={
             ||AI >>§-|||AI tilbyder >>§-${ cfg.menusForAiProvider('')}|||Personvernkontroll AI >>§-${cfg.menusForAiProvider('PV ') }|||Bakgrunnsjobb AI >>§-${cfg.menusForAiProvider('BG ') }
                 |||Tilfeldige AI-tilbydere
             ${ver?'':'||Grubling'}
-            ${ver?'':'||Lagre lokalt'}
-            ||Støtt innsnakking
+            ${ver?'':'||Lagre innhold'}
+            ||Støtt innsnakking§*
             ||Vis App-meny
-        ${ver?'':'|Om >>§-||Kontakt||Personvernerklæring||Tilbakemelding til Aigap||QR-kode'}
+        ${ver?'':'|Om >>§-||Kontakt||Personvernerklæring||Tilbakemelding til Aigap||QR-kode||App-lenke'}
         `.replace(/(\s*\|)/g, '|').replace(/^\s+|\s+$/g, '')
     , funcDeepAnalysis: false
     , hindreSensitiveData:true

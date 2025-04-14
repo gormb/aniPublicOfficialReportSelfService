@@ -4,9 +4,9 @@ const ui = {
         ui.c.Input.addEventListener('keydown',(e)=>ui.e.Input_keydown(e));
         ui.c.Input.addEventListener('input',(e)=>ui.e.Input_adjustHeight());
         ui.c.Speak.addEventListener('click',()=>msgSendSpeak());
-        ui.Show(ui.c.Speak, false);
+        //ui.Show(ui.c.Speak, false);
         ui.c.Send.addEventListener('click',()=>msgSend());
-        ui.c.Lagres&&(ui.c.Lagres.addEventListener('click',()=>menuClick_m_lagrelokalt())^setTimeout(()=>ui.visLagre(),1000));
+        ui.c.Lagres&&(ui.c.Lagres.addEventListener('click',()=>menuClick_m_lagreinnhold())^setTimeout(()=>ui.visLagre(),1000));
         document.addEventListener("DOMContentLoaded",()=>setTimeout(()=>window.scrollTo(0, 1), 250));
         setTimeout(()=>window.scrollTo(0, 1), 250);
     }
@@ -75,7 +75,7 @@ const ui = {
     , visLagre:e=>{
         l = lagring.aktiv;
         ui.c.Lagres.innerHTML = ['&nbsp;&nbsp;🔒&nbsp;&nbsp;lagres ikke', '&nbsp;&nbsp;💾&nbsp;&nbsp;lagres lokalt', '&nbsp;&nbsp;☁️&nbsp;&nbsp;nettlagret'][l]
-        return ui.menu.EBold('lagrelokalt', lagring.aktiv>0);
+        return ui.menu.EBold('lagreinnhold', lagring.aktiv>0);
     }
     , Show: (el,b) => (el.classList.toggle('hidden', !(b ?? el.classList.contains('hidden'))), !!b)
     , _sizeI: 0,
