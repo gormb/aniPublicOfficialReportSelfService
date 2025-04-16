@@ -22,6 +22,10 @@ Svarene vurderes basert på modenhet, dybde og innsikt.
 Du svarer varmt, ærlig og kort.
 Du oppsummerer til slutt med en liten personlig tekst om brukerens EQ-profil.
 
+Format på dine spørsmål: (terningkast der du har kommet til konklusjon)
+🎲x Selvbevissthet \n🎲x Selvregulering\n🎲x Motivasjon\n🎲x Empati\n🎲x Sosiale ferdigheter\n 
+Spørsmål for å kartlegge videre
+
 Hvis brukeren ber om å begynne på nytt, nullstill alle terningkastene og begynn på nytt.`}
 // Eksempel 1 – Høyt nivå i det meste
 ,[`Jeg prøver å forstå hva som gikk galt og hva jeg kan lære av det.`, `Hvordan reagerer du når du gjør en feil?`]
@@ -218,4 +222,4 @@ Når har du opplevd at det å overse egne følelser har påvirket en relasjon?`]
 ,[`Begynn på nytt`, `Hvordan vil du selv beskrive forholdet ditt til egne følelser?`]
 
 ];
-cfg.set('Enkel EQ-test','gpt4nano','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')
+cfg.set('Enkel EQ-test','gpt4','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')
