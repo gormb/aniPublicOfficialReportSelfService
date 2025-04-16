@@ -114,7 +114,7 @@ const cfg={
         document.documentElement.style.setProperty('--light-msg', lightMCol??'#ffffff');
         ui.font.n(font??'Roboto')
         cfg.app=appN;
-        cfg.visAppMeny(true)
+        cfg.visAppMeny(false)
     }    
 }
 
