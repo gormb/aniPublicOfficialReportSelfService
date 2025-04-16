@@ -40,6 +40,4 @@ Avslutt med å spørre: "Vil du starte på nytt med en annen prosess?" når pros
 ,[`Ja, alt er dokumentert og lukket`, `Incident Management fullført ✅\nVil du starte på nytt med en annen prosess?`]
 
 ];
-ui.c.ImgAReset()
-
-cfg.app='ITIL-hjelper';
+cfg.set('ITIL-hjelper')

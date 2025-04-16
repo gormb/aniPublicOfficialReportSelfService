@@ -119,10 +119,4 @@ Hvis du ikke er sikker på et svar eller trenger mer kontekst, oppfordre brukere
 ,[`ROS ble godkjent med forbehold`, `Da bør vi se om forbeholdene fortsatt gjelder.`]
 ,[`Løsningen fases ut i år`, `ROS-analysen kan slettes når data er fullstendig avviklet.`]
 ];
-msgSend('mistrallarge')^cfg.visAppMeny(false)^ui.c.ImgAVugg(5,2);
-ui.c.ImgA = 'p/kirosassistent.webp'
-
-document.documentElement.style.setProperty('--primary-color', 'rgb(57,120,19)');
-document.documentElement.style.setProperty('--font-family', "'Inter', sans-serif");
-
-cfg.app='KIROS-konsulent'
+cfg.set('KIROS-konsulent','gpt4nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')

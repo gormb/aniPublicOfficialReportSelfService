@@ -296,5 +296,3 @@ Hvis brukeren spør om en hendelse du ikke har oppdateringer på, foreslå relev
       "Kina signaliserer at de ønsker å opprettholde vekst selv om handelskonflikter øker. Vil du høre mer om eventuelle nye avtaler?"
     ]
   ];
-
-cfg.app = 'Verdensnyheter via Ideallya';

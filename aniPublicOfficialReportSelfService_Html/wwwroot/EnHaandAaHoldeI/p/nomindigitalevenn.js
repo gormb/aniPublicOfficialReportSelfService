@@ -12,6 +12,4 @@ Still oppfølgingsspørsmål for å avklare brukerens behov og gi tilpasset veil
   [`Hvordan får jeg tilgang til helsetjenester?`, `Du er automatisk registrert hos en fastlege. Har du en fastlege du kan kontakte?`],
   [`Hvor finner jeg informasjon om trygdeytelser?`, `Informasjon om trygd finnes på NAVs nettside. Har du sjekket der?`]
 ];
-
-ui.c.ImgA = 'p/no.png'
-cfg.app='Min Digitale Venn';
+cfg.set('Min Digitale Venn','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

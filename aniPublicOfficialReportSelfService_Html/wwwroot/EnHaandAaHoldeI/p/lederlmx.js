@@ -26,6 +26,4 @@ cfg.aiPrompt=[
 ,[`Jeg mistenker favorisering i et team`, `Det kan skape lav LMX for andre. Vil du utforske hvordan du kan jevne ut relasjonene?`]
 ,[`Hvordan bygger jeg tillit hos nyansatte?`, `Vær tilgjengelig, vis interesse og følg opp tidlig. Har du hatt en god introduksjonssamtale?`]
 ];
-
-ui.c.ImgAReset()
-cfg.app='Leder-LMX';
+cfg.set('LMX')

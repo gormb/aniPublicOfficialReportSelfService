@@ -140,12 +140,4 @@ cfg.aiPrompt= [{role: `system`, content:
   ['Hvordan oppsummerer du NAPHA sin rolle i samfunnet?', 'NAPHA er en sentral aktør som gjennom kunnskapsdeling, samarbeid og innovasjon bidrar til bedre psykisk helse og et mer inkluderende arbeidsliv.']
 ];
 
-msgSend('mistrallarge')
-//msgSend('gpt4')
-^cfg.visAppMeny(false);
-ui.c.ImgA = 'p/naphaveiviseren.png'
-
-document.documentElement.style.setProperty('--primary-color', '#FF9700');
-document.documentElement.style.setProperty('--font-family', "'Ubuntu', sans-serif");
-
-cfg.app='NAPHA-eksempel'
+cfg.set('NAPHA-eksempel','gpt4nano','p/naphaveiviseren.png',null,'#FF9700',null,'Ubuntu')

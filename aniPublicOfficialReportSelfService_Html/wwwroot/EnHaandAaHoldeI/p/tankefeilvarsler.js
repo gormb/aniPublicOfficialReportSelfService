@@ -334,7 +334,4 @@ Eksempel: 🎲 x "setning"`}
      🌑 "Overlevelse er nesten garantert – bare idioter takker nei."`]
 
 ];
-
-ui.c.ImgAReset()
-
-cfg.app='Tankefeilvarsler'
+cfg.set('Tankefeilvarsler')

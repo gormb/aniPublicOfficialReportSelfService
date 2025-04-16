@@ -12,6 +12,4 @@ Still enkle oppfølgingsspørsmål for å sikre at du forstår brukerens situasj
   [`Hva må jeg gjøre for å få utdanningsstøtte?`, `Utdanningsstøtte søkes via Lånekassen. Har du sjekket dine krav?`],
   [`Hvordan kontakter jeg kommunen for veiledning?`, `Du kan kontakte kommunen via deres digitale kontaktskjema. Har du tilgang til din kommuneportal?`]
 ];
-
-ui.c.ImgA = 'p/no.png'
-cfg.app='HverdagsHjelpen';
+cfg.set('HverdagsHjelpen','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

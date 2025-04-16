@@ -13,7 +13,4 @@ Still gjerne oppfølgingsspørsmål for å tilpasse veiledningen til brukerens s
   [`Hva er mine rettigheter som student?`, `Studenter kan få stipend og lån fra Lånekassen. Er du student ved en godkjent institusjon?`]
 ];
 
-msgSend('mistrallarge')^cfg.visAppMeny(false)^ui.c.ImgAVugg(5,2);
-ui.c.ImgA = 'p/no.png'
-
-cfg.app='Alt Om Tjenester';
+cfg.set('Alt Om Tjenester','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

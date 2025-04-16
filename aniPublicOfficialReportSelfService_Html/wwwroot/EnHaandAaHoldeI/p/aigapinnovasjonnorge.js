@@ -11,6 +11,4 @@ info kommer
 `}
 ,[`Hva er du?`, `Chatbot under utvikling`]
 ];
-ui.c.ImgAReset()
-msgSend('mistrallarge')
-cfg.app='Aigap/Innovasjon Norge'
+cfg.set('Aigap/Innovasjon Norge','mistrallarge')

@@ -33,8 +33,4 @@ cfg.aiPrompt= [{ role: `system`, content: `Du er en ekspert på GDPR og personve
         [`Hva er dataminimering?`, `Dataminimering betyr at en virksomhet kun skal samle inn og lagre de personopplysningene som er nødvendige for det spesifikke formålet, og ikke mer enn det.`],
         [`Hvordan kan jeg klage på brudd på personvern?`, `Du kan klage til Datatilsynet hvis du mener dine personopplysninger er blitt behandlet i strid med GDPR. Før du klager, bør du prøve å kontakte virksomheten som behandler dine data.`]
     ];
-    ui.c.ImgA = 'p/hjemmelegenmin.png'
-    document.documentElement.style.setProperty('--light-msg', 'rgb(240,229,207)');
-    msgSend('mistrallarge')
-        
-    cfg.app='Mine pasientdata'
+    cfg.set('Mine pasientdata','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

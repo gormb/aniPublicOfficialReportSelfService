@@ -12,6 +12,4 @@ Still oppfølgingsspørsmål for å kartlegge brukerens situasjon.`
   [`Hvordan oppdaterer jeg mine personopplysninger?`, `Dette gjøres via Folkeregisteret. Har du all nødvendig dokumentasjon?`],
   [`Hvilke rettigheter har jeg ved arbeidsledighet?`, `Arbeidsledige kan få dagpenger. Har du registrert deg hos NAV?`]
 ];
-
-ui.c.ImgA = 'p/no.png'
-cfg.app='RettighetsVakten';
+cfg.set('RettighetsVakten','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

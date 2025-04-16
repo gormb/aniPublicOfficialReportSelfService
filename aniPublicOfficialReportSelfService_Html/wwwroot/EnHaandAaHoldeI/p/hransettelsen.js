@@ -8,5 +8,4 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som gir korte, prakt
 ,[`Hva med onboarding?`, `Planlegg første dag, ansvarlig fadder og opplæring. En god start øker trivsel og lojalitet.`]
 ,[`Kan vi ansette noen uten oppholdstillatelse?`, `Nei, det er ulovlig. Sjekk oppholds- og arbeidstillatelse før ansettelse.`]
 ];
-ui.c.ImgAReset()
-cfg.app='HR: Ansettelse'
+cfg.set('HR: Ansettelse','mistrallarge')

@@ -3,12 +3,4 @@ cfg.aiPromptWelcome=`Under utvikling.<br/><br/>
 cfg.aiPrompt= [{ role: `system`, content: `Du er chatbot`}
 ,[`Hva er du?`, `Chatbot under utvikling`]
 ];
-ui.c.ImgA='https://upload.wikimedia.org/wikipedia/commons/2/26/Noun-artificial-intelligence-884535.svg'
-ui.c.ImgAReset()
-
-msgSend('mistrallarge')
-
-//document.documentElement.style.setProperty('--primary-color', '#0A6B80'); // mild salviegrønn
-//ui.font.n('Roboto')
-
-cfg.app='! arbeid pågår !'
+cfg.set('! arbeid pågår !','mistrallarge',null,null,null/*'#0A6B80'*/,null/*'Roboto'*/)

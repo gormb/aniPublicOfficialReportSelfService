@@ -18,4 +18,5 @@ Hvis du er usikker eller mangler informasjon, oppfordre pasienten til å kontakt
 ,[`Hva skjer hvis jeg ikke føler meg komfortabel med oppholdet?`, `Vi ønsker at du skal ha det bra. Hvis du har bekymringer eller ikke trives, snakk med personalet. De vil lytte og finne løsninger sammen med deg.`]
 ,[`Hva skjer den siste dagen?`, `På den siste dagen vil du ha en avsluttende samtale med ditt behandlingsteam. De vil gi deg råd om videre oppfølging. Du får også tid til å pakke og forberede hjemreisen.`]
 ]
-cfg.app='Under opphold'
+
+cfg.set('Under opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

@@ -18,6 +18,4 @@ Hvis du mangler informasjon, oppfordre pasienten til å kontakte sitt lokale hel
 ,[`Hva skjer hvis jeg trenger en ny vurdering av min helsetilstand?`, `Hvis du trenger en ny vurdering, bør du kontakte fastlegen din. Fastlegen kan henvise deg videre til spesialisthelsetjenesten eller rehabilitering om nødvendig.`]
 ,[`Hvordan gir jeg tilbakemelding om oppholdet?`, `Vi setter stor pris på tilbakemeldinger! Du kan gi tilbakemelding via CatoSenterets nettside eller snakke med en av våre ansatte. Dine erfaringer hjelper oss å forbedre tilbudet vårt.`]
 ];
-ui.c.ImgA = 'p/hjemmelegenmin.png'
-document.documentElement.style.setProperty('--light-msg', 'rgb(240,229,207)');
-cfg.app='Etter opphold'
+cfg.set('Etter opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

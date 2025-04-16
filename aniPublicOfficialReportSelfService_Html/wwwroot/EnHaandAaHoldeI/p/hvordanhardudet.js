@@ -33,10 +33,4 @@ Ikke anta at brukeren snakker om seg selv. Spør ved behov: "Snakker du om deg s
 ,[`Datteren min har sluttet å spise og isolerer seg helt`, `Det høres vanskelig ut. Har dere klart å snakke sammen om hvordan hun har det?`]
 ,[`Jeg vet ikke om jeg klarer en dag til`, `Du er ikke alene. Har du vurdert å snakke med fastlegen din, eller ringe Mental Helse på 116 123?`]
 ];
-
-ui.c.ImgAReset()^ui.c.ImgARoter(15)
-msgSend('mistrallarge')
-
-document.documentElement.style.setProperty('--primary-color', 'rgb(57,120,19)');
-document.documentElement.style.setProperty('--font-family', "'Inter', sans-serif");
-cfg.app='Hvordan har du det'
+cfg.set('Hvordan har du det','mistrallarge',null,'r,15','rgb(57,120,19)',null,'Inter')

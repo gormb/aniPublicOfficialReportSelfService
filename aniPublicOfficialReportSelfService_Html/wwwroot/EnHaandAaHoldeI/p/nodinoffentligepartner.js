@@ -12,6 +12,4 @@ Still oppfølgingsspørsmål for å kartlegge brukerens situasjon og gi målrett
   [`Når skal jeg fornye passet mitt?`, `Passet fornyes hos politiet. Har du sjekket utløpsdatoen?`],
   [`Hva er prosessen for å søke om bostøtte?`, `Bostøtte søkes gjennom din kommune. Har du ditt personnummer klart?`]
 ];
-
-ui.c.ImgA = 'p/no.png'
-cfg.app='Din Offentlige Partner';
+cfg.set('Din Offentlige Partner','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

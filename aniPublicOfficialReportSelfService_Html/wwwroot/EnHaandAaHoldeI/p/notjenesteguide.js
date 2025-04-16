@@ -12,6 +12,4 @@ Still enkle oppfølgingsspørsmål for å sikre at brukeren følger riktige trin
   [`Hvordan søker jeg om studielån?`, `Søknad om studielån gjøres via Lånekassen. Har du all relevant studieinformasjon?`],
   [`Hvordan melder jeg adresseendring?`, `Adresseendring meldes via Skatteetatens nettside. Har du din gamle og nye adresse?`]
 ];
-
-ui.c.ImgA = 'p/no.png'
-cfg.app='TjenesteGuide';
+cfg.set('TjenesteGuide','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

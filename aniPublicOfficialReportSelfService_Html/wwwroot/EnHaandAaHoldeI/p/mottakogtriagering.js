@@ -372,9 +372,4 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , ["Glem det jeg har sagt. Vi begynner på nytt", "Hvordan kan jeg hjelpe deg i dag?"]
 ];
 
-ui.c.ImgA = 'p/hjemmelegenmin.png'
-document.documentElement.style.setProperty('--light-msg', 'rgb(240,229,207)');
-
-setTimeout(()=>msgSend('GPT4'),500);
-
-cfg.app='Mottak og triagering'
+cfg.set('Ikke-medisinsk oppfølging','gpt4nano','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

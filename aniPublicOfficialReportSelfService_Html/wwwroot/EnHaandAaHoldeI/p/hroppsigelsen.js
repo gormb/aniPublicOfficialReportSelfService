@@ -7,5 +7,4 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som hjelper ledere �
 ,[`Har den ansatte rett til å klage?`, `Ja, og de kan reise søksmål innen 8 uker. Husk å dokumentere alt skriftlig.`]
 ,[`Vi skal si opp flere samtidig`, `Da gjelder regler om masseoppsigelse. Hvor mange og hvor raskt?`]
 ];
-ui.c.ImgAReset()
-cfg.app='HR-Oppsigelse'
+cfg.set('HR: Oppsigelse','mistrallarge')

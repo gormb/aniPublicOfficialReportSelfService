@@ -12,6 +12,5 @@ Still gjerne oppfølgingsspørsmål for å sikre at veiledningen treffer riktig.
   [`Hvordan melder jeg inn endringer i helsetjenestene mine?`, `Kontakt din lokale helsestasjon. Vet du hvilken helsestasjon du tilhører?`],
   [`Hvordan laster jeg ned min pensjonsoversikt?`, `Pensjonsoversikt finnes på Min Pensjon. Har du logget inn med BankID?`]
 ];
+cfg.set('Enkel Navigatør','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
 
-ui.c.ImgA = 'p/no.png'
-cfg.app='Enkel Navigatør';

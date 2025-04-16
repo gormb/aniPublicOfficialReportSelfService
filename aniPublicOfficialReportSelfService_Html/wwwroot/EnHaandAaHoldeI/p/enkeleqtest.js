@@ -218,12 +218,4 @@ Når har du opplevd at det å overse egne følelser har påvirket en relasjon?`]
 ,[`Begynn på nytt`, `Hvordan vil du selv beskrive forholdet ditt til egne følelser?`]
 
 ];
-
-ui.c.ImgAReset()
-ui.c.ImgA='p/enkeleqtest.svg'
-msgSend('mistrallarge')
-
-document.documentElement.style.setProperty('--primary-color', '#0A6B80'); // mild salviegrønn
-ui.font.n('Quicksand')
-
-cfg.app='Enkel EQ-test'
+cfg.set('Enkel EQ-test','gpt4nano','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')

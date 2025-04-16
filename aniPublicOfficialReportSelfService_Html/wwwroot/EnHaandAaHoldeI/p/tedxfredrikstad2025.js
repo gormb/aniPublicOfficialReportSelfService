@@ -56,10 +56,4 @@ Oppmuntre alltid til videre dialog med et spørsmål på slutten. Hvis brukeren 
 [`Hvilke verdier er viktige for TEDxFredrikstad?`, `Vi følger TED sine kjerneverdier: Inkludering, vitenskapelig troverdighet, mangfoldige perspektiver og upartiskhet.`]
 ];
 
-msgSend('mistrallarge')
-^cfg.visAppMeny(false);
-ui.c.ImgA = 'p/tedxoslo2025.png'
-document.documentElement.style.setProperty('--primary-color', '#E62B1E'); // EVENTx-rød
-document.documentElement.style.setProperty('--font-family', "'Montserrat', sans-serif");
-
-cfg.app = 'TEDxFredrikstad'
+cfg.set('TEDxFredrikstad','mistrallarge','p/tedxoslo2025.png',null,'#E62B1E',null,'Montserrat')

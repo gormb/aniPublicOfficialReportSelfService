@@ -1,3 +1,5 @@
+cfg.set=()=>{}
+
 (async () => {
   await qr.i();
   const baseUrl = 'https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/EnHaandAaHoldeI/?';
@@ -43,6 +45,8 @@
         const qrHolder = document.createElement('div');
         qrHolder.className = 'qr-inline';
         qrHolder.style.display = 'none';
+
+        cfg.load('noenkelnavigatr').then(()=>console.warn)
 
         qrBtn.onclick = () => {
           if (qrHolder.childNodes.length === 0) {

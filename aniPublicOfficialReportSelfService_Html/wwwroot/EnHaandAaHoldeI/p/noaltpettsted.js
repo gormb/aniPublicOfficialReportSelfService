@@ -12,5 +12,4 @@ Still oppfølgingsspørsmål for å kartlegge hva brukeren ønsker oversikt over
   [`Hvordan får jeg oversikt over mine offentlige avtaler?`, `Du kan se dine avtaler i din digitale postkasse. Har du tilgang til Digital Postkasse?`],
   [`Hvordan ser jeg mine utdanningsrettigheter?`, `Utdanningsinformasjon finnes hos Utdanningsdirektoratet. Har du sjekket deres nettside?`]
 ];
-ui.c.ImgA = 'p/no.png'
-cfg.app='Alt På Ett Sted';
+cfg.set('Alt På Ett Sted','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

@@ -22,7 +22,7 @@ const cfg={
         ]],['Event >>§-',[
             'Lansering >>§-', ['IT-revyens årsmøte']
             ,'Folk >>§-', ['Om Silje Føyen', 'Om Gorm Braarvig']
-            ,'Konferanse >>§-', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025', 'TEDxOslo 2025']
+            ,'Konferanse >>§-', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025', 'EVENTxOslo 2025']
         ]]]
     , appProvider_Db:[['Generelt','Ny','Koblingsfeil!']]
     , appProviderM:ver=>{//cfg.appProvider_Man// merge loaded from db
@@ -32,18 +32,6 @@ const cfg={
             ap[i][1].push(['<< ny/endre/slett mor >>']))^ap.push(['<< ny/endre/slett mormor >>',[]])
         return ap;
     }
-    // , appProvider2: () => {
-    //     const out = {};
-    //     [...cfg.appProvider_Man.flatMap(([m, s]) =>
-    //         s.flatMap((k, i, a)=>
-    //             i % 2 ? k.map(App=>
-    //                 ({ App, mor: a[i - 1].slice(0, -5), mormor: m.slice(0, -5) })) : [])
-    //         ), ...Object.values(Object.fromEntries(cfg.appProvider_Db.map(r => [r.App, r])))]
-    //     .forEach(({ App, mor, mormor }) => { const m = mormor + ' >>§-', s = mor + ' >>§-';
-    //         (out[m] ??= {})[s] ??= new Set(), out[m][s].add(App);
-    //     });
-    //     return Object.entries(out).map(([m, s]) => [m, Object.entries(s).flatMap(([k, v]) => [k, [...v]])]);
-    // }
     , menusForAppProvider:ver=> cfg.appProviderM(ver).map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
     , visAppMeny:b=>ui.Show(mc0,b)^ui.Show(mc0.previousElementSibling,b)^ui.Show(mc0.nextElementSibling,b)
     , appList:ver=>cfg.appProviderM(ver).flatMap(([_, subs])=>subs.flatMap((s,i,a)=>i%2==0&&Array.isArray(a[i+1])?a[i+1]:[]).filter(Boolean))
@@ -68,7 +56,7 @@ const cfg={
         ['Mistral (EU)', 'https://api.mistral.ai/v1/chat/completions', escape('&W%%(`HcWMG](Y[]CEVPz6.CN&#M8]#@'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
         ,['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['GPT 4', 'gpt-4o-mini'], ['GPT 4 search', 'gpt-4o-mini-search-preview'], ['GPT o3', 'o3-mini']]]
+            , [['GPT 4 nano', 'gpt-4.1-nano'],['GPT 4', 'gpt-4.1-mini'],['GPT 4 search', 'gpt-4o-mini-search-preview'], ['GPT o3', 'o3-mini']]]
         ,['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]
         ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
@@ -88,9 +76,11 @@ const cfg={
             , [['Aigap Deepseek', 'deepseek-r1:latest'], ['Aigap bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
         ,['Lokal 1234', 'http://localhost:1234/v1/chat/completions ', ``, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Lokal Deepseek', 'deepseek-r1:latest'], ['Lokal bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
-        ]// https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/EnHaandAaHoldeI/
+        ]
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `||||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`|||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
+    //, loadVal:(u,y)=>new Promise((...)=>y(...))
+    , loadV:(u,y)=>fetch(new URL(u,location)).then(r=>r.text()).then(y)
     , load:(c, cid=null)=>{
         return new Promise((y, n) => {
             cid = cid||'p/'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
@@ -111,5 +101,21 @@ const cfg={
                 }
             }, 10);  // Check every 10ms
         });
+    }
+    ,set:(appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
+        if(ai) setTimeout(()=>msgSend(ai),500);
+        if(iA) ui.c.ImgA=iA;
+        iEa=iEffekt?.split(',');
+        if(!iEffekt) ui.c.ImgAReset(iA)
+        else if(iEa[0]=='r') ui.c.ImgARoter(iEa?.[1])
+        else if(iEa[0]=='v') ui.c.ImgAVugg(iEa?.[1],iEa?.[2])
+        else if(iEa[0]=='f') ui.c.ImgAFlag(iEa?.[1],iEa?.[2])
+        document.documentElement.style.setProperty('--primary-color', priCol??'#007bff');
+        document.documentElement.style.setProperty('--light-msg', lightMCol??'#ffffff');
+        ui.font.n(font??'Roboto')
+        cfg.app=appN;
+        cfg.visAppMeny(true)
     }    
 }
+
+//cfg.loadV('i/cfg.js',h=>console.warn(h));

@@ -50,7 +50,4 @@ Still gjerne oppfølgingsspørsmål for å avklare brukerens situasjon.`
   [`Hvordan sjekker jeg om jeg har ubetalte regninger fra det offentlige?`, `Dette kan sjekkes via Digipost eller eFaktura. Har du tilgang til din digitale postkasse?`],
   [`Kan jeg få støtte til tilpasning av bolig ved nedsatt funksjonsevne?`, `Husbanken gir tilskudd. Har du fått en vurdering fra ergoterapeut?`]
 ];
-
-ui.c.ImgA = 'p/no.png'
-ui.c.ImgAFlag(1,.5)
-cfg.app='Min Offentlige Hjelper';
+cfg.set('Min Offentlige Hjelper','gpt4nano','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

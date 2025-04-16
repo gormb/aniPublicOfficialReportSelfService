@@ -32,6 +32,5 @@ Vær motiverende, praktisk og nysgjerrig. Still gjerne oppfølgingsspørsmål.` 
 ,[`Finnes det støtteordninger for videreutdanning?`, `Ja, bl.a. Lånekassen og NAV. Vil du vite mer om dine muligheter?`]
 ,[`Kan jeg kombinere jobb og studier?`, `Ja, men det krever planlegging. Hvor mange timer kan du studere i uka?`]
 ];
+cfg.set('Karriereveileder','mistrallarge')
 
-ui.c.ImgAReset()
-cfg.app='Karriereveileder';

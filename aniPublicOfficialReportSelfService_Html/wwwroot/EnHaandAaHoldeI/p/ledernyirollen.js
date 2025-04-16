@@ -28,6 +28,4 @@ cfg.aiPrompt=[
 ,[`Hvordan prioriterer jeg når alt virker viktig?`, `Hva haster og hva har størst effekt? Vil du ha en enkel modell for å sortere?`]
 ,[`Hvordan får jeg kontroll på alt?`, `Du trenger ikke ha kontroll på alt – men du bør ha oversikt. Vil du lage en enkel ukeplan sammen?`]
 ];
-
-ui.c.ImgAReset()
-cfg.app='Ny som leder';
+cfg.set('Ny som leder')
