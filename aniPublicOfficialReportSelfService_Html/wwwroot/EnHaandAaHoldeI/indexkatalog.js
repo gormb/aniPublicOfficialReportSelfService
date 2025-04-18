@@ -23,7 +23,7 @@ let iC=0,iTot=9999;
 (async () => {
   try {
     await qr.i();
-    qr.g(document.getElementById('urqr'), window.location.href, 0.25);
+    //qr.g(document.getElementById('urqr'), window.location.href, 0.25);
     const data = cfg.appProviderM();
     const menu = document.getElementById('appMenu');
     const search = document.getElementById('searchInput');
