@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til Alt På Ett Sted.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til Alt På Ett Sted.<br/><br/>
 <i>Her får du en samlet oversikt over dine offentlige data og tjenester. Informasjonen er veiledende – denne assistenten hjelper deg med å holde orden på avtaler og rettigheter.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -12,4 +12,4 @@ Still oppfølgingsspørsmål for å kartlegge hva brukeren ønsker oversikt over
   [`Hvordan får jeg oversikt over mine offentlige avtaler?`, `Du kan se dine avtaler i din digitale postkasse. Har du tilgang til Digital Postkasse?`],
   [`Hvordan ser jeg mine utdanningsrettigheter?`, `Utdanningsinformasjon finnes hos Utdanningsdirektoratet. Har du sjekket deres nettside?`]
 ];
-cfg.set('Alt På Ett Sted','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Alt På Ett Sted','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

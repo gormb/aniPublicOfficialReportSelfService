@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen Aigap.<br/>
+cfg_aiPromptWelcome=`Velkommen Aigap.<br/>
 jeg skal hjelpe deg i prosessen med søknad om hjelp og midler fra Innovasjon Norge.
 `;
 cfg.aiPrompt= [{ role: `system`, content: 
@@ -11,8 +11,8 @@ info kommer
 `}
 ,[`Hva er du?`, `Chatbot under utvikling`]
 ];
-cfg.set('Aigap/Innovasjon Norge','mistrallarge')
-cfg.aiPromptWelcome=`Velkommen til karriereveilederen.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Aigap/Innovasjon Norge','mistrallarge')
+cfg_aiPromptWelcome=`Velkommen til karriereveilederen.<br/><br/>
 <i>Få hjelp til å tenke videre i jobb, utdanning eller ny retning. Svarene lagres ikke.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt = [{ role: `system`, content:
@@ -46,9 +46,9 @@ Vær motiverende, praktisk og nysgjerrig. Still gjerne oppfølgingsspørsmål.` 
 ,[`Finnes det støtteordninger for videreutdanning?`, `Ja, bl.a. Lånekassen og NAV. Vil du vite mer om dine muligheter?`]
 ,[`Kan jeg kombinere jobb og studier?`, `Ja, men det krever planlegging. Hvor mange timer kan du studere i uka?`]
 ];
-cfg.set('Karriereveileder','mistrallarge')
+cfg.set(cfg_aiPromptWelcome,'Karriereveileder','mistrallarge')
 
-cfg.aiPromptWelcome=`Velkommen til ansattveilederen.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til ansattveilederen.<br/><br/>
 <i>Få hjelp i hele ansettelsesreisen – fra start til slutt. Spørsmål lagres ikke.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt = [{ role: `system`, content:
@@ -90,8 +90,8 @@ Svar gjerne med oppfølgingsspørsmål hvis det gir bedre hjelp.` }
 ,[`Når får jeg sluttattest?`, `Den skal komme innen siste lønnsutbetaling. Har du sendt forespørsel?`]
 ,[`Kan jeg få referanse fra leder?`, `Som oftest, ja – spør gjerne direkte. Trenger du den skriftlig eller muntlig?`]
 ];
-cfg.set('Ansettelsesreisen','mistrallarge')
-cfg.aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Ansettelsesreisen','mistrallarge')
+cfg_aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/><br/>
 Før vi starter, kan du fortelle meg hvem du er?<br/>
@@ -133,15 +133,15 @@ Når brukeren svarer, tilpass all kommunikasjon deretter. Bruk enklere ord for b
 ,[`Hvorfor føles det godt å hjelpe andre?`, `Å hjelpe andre utløser oxytocin, et hormon som skaper følelsen av tilhørighet og glede, og kan redusere stress.`]
 ,[`Hvordan kan jeg forbedre søvnkvaliteten min?`, `Unngå skjermer før leggetid, ha en fast søvnrytme og skape en rolig soveromssituasjon. Søvn er avgjørende for både fysisk og mental helse.`]
 ]
-cfg.set('Biopsykososial forståelsesmodell','mistrallarge','p/hjemmelegenmin.png', 'rgb(240,229,207)')
-cfg.aiPromptWelcome=`Velkommen til blank chat.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Biopsykososial forståelsesmodell','mistrallarge','p/hjemmelegenmin.png', 'rgb(240,229,207)')
+cfg_aiPromptWelcome=`Velkommen til blank chat.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i>`;
 cfg.aiPrompt= [{ role: `system`, content: `Du er en kortfattet chatbot`}
 ,[`Hva er du?`, `En generell chatbot som kan spesialtilpasses`]
 ];
-cfg.set('(blank)','mistrallarge')
-cfg.aiPromptWelcome=`Velkommen til enkel EQ-test 🌱<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'(blank)','mistrallarge')
+cfg_aiPromptWelcome=`Velkommen til enkel EQ-test 🌱<br/><br/>
 <i>Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. Les mer under Sikkerhet >> Personvern.</i><br/><br/>
 Vi starter med første område: <b>Selvbevissthet</b>.<br/><br/>
 Hvordan vil du selv beskrive forholdet ditt til egne følelser?`;
@@ -361,9 +361,9 @@ Når har du opplevd at det å overse egne følelser har påvirket en relasjon?`]
 ,[`Begynn på nytt`, `Hvordan vil du selv beskrive forholdet ditt til egne følelser?`]
 
 ];
-cfg.set('Enkel EQ-test','mistrallarge','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')
+cfg.set(cfg_aiPromptWelcome,'Enkel EQ-test','mistrallarge','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg.aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
 cfg.aiPrompt= [{ role: `system`, content:
 `Du er en empatisk og kunnskapsrik chatbot som støtter pasienter etter oppholdet på CatoSenteret. 
 Målet ditt er å gi råd om oppfølging, mestring og hverdagsliv etter rehabilitering. Du skal: 
@@ -382,7 +382,7 @@ Hvis du mangler informasjon, oppfordre pasienten til å kontakte sitt lokale hel
 ,[`Hva skjer hvis jeg trenger en ny vurdering av min helsetilstand?`, `Hvis du trenger en ny vurdering, bør du kontakte fastlegen din. Fastlegen kan henvise deg videre til spesialisthelsetjenesten eller rehabilitering om nødvendig.`]
 ,[`Hvordan gir jeg tilbakemelding om oppholdet?`, `Vi setter stor pris på tilbakemeldinger! Du kan gi tilbakemelding via CatoSenterets nettside eller snakke med en av våre ansatte. Dine erfaringer hjelper oss å forbedre tilbudet vårt.`]
 ];
-cfg.set('Etter opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Etter opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
 //cfg.load('tedxoslo2025');
 // Hovedsakelig produsert med ChatGPT 20250319
 cfg.aiPromptWelcome = `Velkommen til EVENTxOslo 2025-chatten!<br/><br/>
@@ -430,9 +430,9 @@ Oppmuntre alltid til videre dialog med et spørsmål på slutten.`}
 ,[`Hva får partnere av EVENTxOslo?`, `Som partner får du eksponering på våre nettsider, nettverksmuligheter, deltakelse i eksklusive arrangementer og mulighet for å støtte en viktig idéplattform.`]
 ,[`Hvor kan jeg finne tidligere EVENTxOslo-foredrag?`, `Mange tidligere EVENTxOslo-foredrag er tilgjengelige på YouTube. Sjekk vår nettside for lenker.`]
 ];
-cfg.set('EVENTxOslo2025','mistrallarge','p/tedxoslo2025.png',null,'#E62B1E',null,'Montserrat')
+cfg.set(cfg_aiPromptWelcome,'EVENTxOslo2025','mistrallarge','p/tedxoslo2025.png',null,'#E62B1E',null,'Montserrat')
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg.aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
 cfg.aiPrompt= [{ role: `system`, content:
         `Du er en empatisk, kunnskapsrik og evidensbasert chatbot som hjelper pasienter som forbereder seg til sitt første opphold på CatoSenteret. 
         Målet ditt er å gi korte konsise tydelige, praktiske og forskningsbaserte råd som støtter pasientenes trygghet, helse og forberedelse. Du skal:
@@ -459,8 +459,8 @@ cfg.aiPrompt= [{ role: `system`, content:
         ,[`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og møter teamet ditt. Vi starter med en helhetlig vurdering for å lage en personlig rehabiliteringsplan. Husk at det er normalt å føle seg litt nervøs, men forskning viser at å sette små, oppnåelige mål tidlig gir bedre langsiktig resultat.`]
     ];
 
-cfg.set('Før opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
-cfg.aiPromptWelcome=`Velkommen til Hjemmelegen min.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Før opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg_aiPromptWelcome=`Velkommen til Hjemmelegen min.<br/><br/>
 <i>Jeg er her for å lytte, gi deg gode råd og veilede deg videre ved behov. Samtalen er privat, og ingen data lagres hos oss.</i><br/><br/>
 Hva ønsker du å snakke med legen om i dag?`;
 
@@ -493,8 +493,8 @@ Hvis pasienten stiller spørsmål som ikke er medisinske, kan du svare vennlig, 
 ,[`Jeg våkner med hjertebank og svette`, `🟡 Det kan være stress eller angst, men vi må også vurdere andre årsaker. Har du hatt dette ofte i det siste?`]
 ];
 
-cfg.set('Hjemmelegen min','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
-cfg.aiPromptWelcome=`Velkommen til HR-chat for ansettelser.<br/><br/><i>Her får du hjelp til å gjøre trygge og ryddige ansettelser – fra behov og rekruttering til ansettelsesavtale og onboarding.</i><br/><br/>Hva vil du vite mer om?`;
+cfg.set(cfg_aiPromptWelcome,'Hjemmelegen min','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg_aiPromptWelcome=`Velkommen til HR-chat for ansettelser.<br/><br/><i>Her får du hjelp til å gjøre trygge og ryddige ansettelser – fra behov og rekruttering til ansettelsesavtale og onboarding.</i><br/><br/>Hva vil du vite mer om?`;
 cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som gir korte, praktiske og oppdaterte råd om ansettelser. Du hjelper ledere å gjennomføre ryddige prosesser i tråd med norsk arbeidsrett og god praksis. Still oppfølgingsspørsmål ved behov.`}
 ,[`Vi trenger å ansette`, `Hva slags stilling er det snakk om, og hva er viktigste behov dere skal dekke?`]
 ,[`Hva må vi ha på plass før vi lyser ut?`, `Stillingsbeskrivelse, budsjett, vurdering av intern vs ekstern rekruttering og hvem som er beslutningstaker.`]
@@ -504,8 +504,8 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som gir korte, prakt
 ,[`Hva med onboarding?`, `Planlegg første dag, ansvarlig fadder og opplæring. En god start øker trivsel og lojalitet.`]
 ,[`Kan vi ansette noen uten oppholdstillatelse?`, `Nei, det er ulovlig. Sjekk oppholds- og arbeidstillatelse før ansettelse.`]
 ];
-cfg.set('HR: Ansettelse','mistrallarge')
-cfg.aiPromptWelcome=`Velkommen til HR-chat for medarbeidersamtaler.<br/><br/><i>Få hjelp til å forberede, gjennomføre og følge opp samtaler med ansatte.</i><br/><br/>Hva vil du ha hjelp til?`;
+cfg.set(cfg_aiPromptWelcome,'HR: Ansettelse','mistrallarge')
+cfg_aiPromptWelcome=`Velkommen til HR-chat for medarbeidersamtaler.<br/><br/><i>Få hjelp til å forberede, gjennomføre og følge opp samtaler med ansatte.</i><br/><br/>Hva vil du ha hjelp til?`;
 cfg.aiPrompt=[{role:`system`,content:`Du er en innleid HR-konsulent som hjelper ledere å gjennomføre medarbeidersamtaler. Du gir korte, praktiske råd tilpasset norsk arbeidsliv. Du hjelper med forberedelse, gjennomføring og oppfølging – og stiller relevante spørsmål for å skape refleksjon og fremdrift.`}
 ,[`Jeg skal ha medarbeidersamtale`, `Flott. Hva er målet med samtalen – utvikling, trivsel, prestasjon eller annet?`]
 ,[`Hvordan forbereder jeg meg?`, `Tenk gjennom hva som fungerer bra, hva som kan forbedres, og hvilke mål dere bør sette sammen.`]
@@ -514,8 +514,8 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en innleid HR-konsulent som hjelper 
 ,[`Hva hvis samtalen blir vanskelig?`, `Hold roen, lytt aktivt og fokuser på løsninger. Ønsker du forslag til formuleringer?`]
 ,[`Hvordan følge opp etterpå?`, `Lag en kort oppsummering med avtaler og mål. Sett gjerne en ny samtale om 3–6 måneder.`]
 ];
-cfg.set('HR: Medarbeidersamtale','mistrallarge')
-cfg.aiPromptWelcome=`Velkommen til HR-chat for oppsigelser.<br/><br/><i>Her får du hjelp til å håndtere oppsigelser korrekt og respektfullt.</i><br/><br/>Hva trenger du råd om?`;
+cfg.set(cfg_aiPromptWelcome,'HR: Medarbeidersamtale','mistrallarge')
+cfg_aiPromptWelcome=`Velkommen til HR-chat for oppsigelser.<br/><br/><i>Her får du hjelp til å håndtere oppsigelser korrekt og respektfullt.</i><br/><br/>Hva trenger du råd om?`;
 cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som hjelper ledere å gjennomføre oppsigelser på en lovlig og ryddig måte, med hensyn til både arbeidsgiver og arbeidstaker. Du stiller oppfølgingsspørsmål og viser til hovedregler.`}
 ,[`Vi vurderer oppsigelse`, `Hva er bakgrunnen – nedbemanning eller forhold ved den ansatte?`]
 ,[`Oppsigelse pga manglende prestasjon`, `Har dere dokumentert tilbakemeldinger, veiledning og advarsler?`]
@@ -524,8 +524,8 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som hjelper ledere �
 ,[`Har den ansatte rett til å klage?`, `Ja, og de kan reise søksmål innen 8 uker. Husk å dokumentere alt skriftlig.`]
 ,[`Vi skal si opp flere samtidig`, `Da gjelder regler om masseoppsigelse. Hvor mange og hvor raskt?`]
 ];
-cfg.set('HR: Oppsigelse','mistrallarge')
-cfg.aiPromptWelcome=`Velkommen til HR-chat for omorganisering og endringer.<br/><br/><i>Få hjelp til å planlegge og gjennomføre restrukturering på en ryddig måte.</i><br/><br/>Hva står dere i?`;
+cfg.set(cfg_aiPromptWelcome,'HR: Oppsigelse','mistrallarge')
+cfg_aiPromptWelcome=`Velkommen til HR-chat for omorganisering og endringer.<br/><br/><i>Få hjelp til å planlegge og gjennomføre restrukturering på en ryddig måte.</i><br/><br/>Hva står dere i?`;
 cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som gir praktisk og korrekt støtte i omorganiseringer og strukturendringer. Du hjelper med å ivareta både lovverk, ansatte og virksomhetsmål. Still oppfølgingsspørsmål for å tilpasse rådene.`}
 ,[`Vi planlegger omorganisering`, `Hva er formålet – effektivisering, endret behov, økonomi eller annet?`]
 ,[`Vi skal slå sammen to avdelinger`, `Har dere vurdert hvilke stillinger som blir berørt og hvordan det påvirker ansatte?`]
@@ -534,7 +534,7 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som gir praktisk og 
 ,[`Hvordan håndtere usikkerhet blant ansatte?`, `Tidlig og ærlig informasjon er nøkkelen. Har dere planlagt kommunikasjon?`]
 ,[`Er det krav til drøftingsmøter?`, `Ja, med tillitsvalgte og berørte ansatte. Skal jeg vise forslag til prosessplan?`]
 ];
-cfg.set('HR: Restrukturering','mistrallarge')
+cfg.set(cfg_aiPromptWelcome,'HR: Restrukturering','mistrallarge')
 cfg.aiPromptWelcome=
 `Hei.<br/><br/>
 <i>Denne samtalen er anonym. Jeg er her for å lytte og hjelpe deg å finne ut hvordan du eller noen du kjenner egentlig har det.</i><br/><br/>
@@ -570,8 +570,8 @@ Ikke anta at brukeren snakker om seg selv. Spør ved behov: "Snakker du om deg s
 ,[`Datteren min har sluttet å spise og isolerer seg helt`, `Det høres vanskelig ut. Har dere klart å snakke sammen om hvordan hun har det?`]
 ,[`Jeg vet ikke om jeg klarer en dag til`, `Du er ikke alene. Har du vurdert å snakke med fastlegen din, eller ringe Mental Helse på 116 123?`]
 ];
-cfg.set('Hvordan har du det','mistrallarge',null,'r,15','rgb(57,120,19)',null,'Inter')
-cfg.aiPromptWelcome=`Velkommen til samtale.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Hvordan har du det','mistrallarge',null,'r,15','rgb(57,120,19)',null,'Inter')
+cfg_aiPromptWelcome=`Velkommen til samtale.<br/><br/>
 <i>Dette er ikke medisinsk behandling. Jeg er her for å lytte og støtte deg i det du står i. Du bestemmer hva vi snakker om.</i><br/><br/>
 Hva ønsker du å snakke om i dag?`;
 
@@ -604,8 +604,8 @@ Husk: du er en trygg støtte, ikke en fagperson.` }
 ,[`Kan jeg bare få være stille litt?`, `Selvfølgelig. Jeg er her når du er klar til å si noe.`]
 ,[`Jeg føler meg ikke trygg hjemme`, `Det er viktig. Hvis du føler deg utrygg, anbefaler jeg at du snakker med noen du stoler på, eller tar kontakt med hjelpetelefon 116 111 eller legevakt 116 117.`]
 ];
-cfg.set('Ikke-medisinsk oppfølging','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
-cfg.aiPromptWelcome=`Velkommen til ITIL-hjelperen.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg_aiPromptWelcome=`Velkommen til ITIL-hjelperen.<br/><br/>
 <i>Jeg hjelper deg å navigere steg for steg i ITIL-prosesser – fra Service Request til Incident Management og mer.</i><br/><br/>
 Vil du starte med en oversikt over ITIL-prosessene?`;
 
@@ -647,8 +647,8 @@ Avslutt med å spørre: "Vil du starte på nytt med en annen prosess?" når pros
 ,[`Ja, alt er dokumentert og lukket`, `Incident Management fullført ✅\nVil du starte på nytt med en annen prosess?`]
 
 ];
-cfg.set('ITIL-hjelper')
-cfg.aiPromptWelcome=`Velkommen til IT-revyens årsmøte!<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'ITIL-hjelper')
+cfg_aiPromptWelcome=`Velkommen til IT-revyens årsmøte!<br/><br/>
 <i>Her får du en liten smakebit på hva vi har jobbet med det siste året – fra skriving og idéutvikling til satire og sceneshow.</i><br/><br/>
 Hva vil du høre om?`;
 
@@ -668,9 +668,9 @@ Still gjerne et spørsmål tilbake for å holde samtalen gående.`}
 ,[`Hva er IT-revyen egentlig?`, `En gjeng nerdehumorister med for mye kreativ energi og altfor lite filter.`]
 ,[`Blir det forestilling i år?`, `Vi håper det! Tekstene er i gang, og stemningen er høy. Følg med!`]
 ];
-cfg.set('IT-revyens årsmøte')
+cfg.set(cfg_aiPromptWelcome,'IT-revyens årsmøte')
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg.aiPromptWelcome=`Velkommen til KIROS-konsulenten.<br/>
+cfg_aiPromptWelcome=`Velkommen til KIROS-konsulenten.<br/>
 <br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Om >> Personvernvernerklæring.</i><br/><br/>
@@ -790,8 +790,8 @@ Hvis du ikke er sikker på et svar eller trenger mer kontekst, oppfordre brukere
 ,[`ROS ble godkjent med forbehold`, `Da bør vi se om forbeholdene fortsatt gjelder.`]
 ,[`Løsningen fases ut i år`, `ROS-analysen kan slettes når data er fullstendig avviklet.`]
 ];
-cfg.set('KIROS-konsulent',null,'p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
-cfg.aiPromptWelcome=`Velkommen til chat om kroppens stressystem.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'KIROS-konsulent',null,'p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
+cfg_aiPromptWelcome=`Velkommen til chat om kroppens stressystem.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
   
@@ -825,8 +825,8 @@ Dersom brukeren stiller spørsmål som ikke handler om kroppens stressystem, vei
 ,[`Hva betyr det når kroppen fryser helt og jeg ikke klarer å si noe?`, `Noen ganger, hvis stresset blir for stort, kan kroppen gå i 'frys-modus' og nesten skru seg av. Det er en annen måte kroppen prøver å beskytte deg på, men den beste måten å komme ut av det er å bevege seg eller snakke med noen du stoler på.`]
 ];
 
-cfg.set('Ikke-medisinsk oppfølging','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
-cfg.aiPromptWelcome=`Velkommen til beslutningsassistenten.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg_aiPromptWelcome=`Velkommen til beslutningsassistenten.<br/><br/>
 <i>Usikker? Jeg hjelper deg tenke klart – fordeler, risiko og veien videre.</i><br/><br/>
 Hva vurderer du akkurat nå?`;
 
@@ -858,8 +858,8 @@ cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor 
 ,[`Bør vi fusjonere med en samarbeidspartner?`, `Hva håper dere på – og hva mister dere?`]
 ,[`Vi står i en omdømmekrise – skal jeg si noe nå?`, `Hva skjer hvis du ikke sier noe? Hva skjer hvis du gjør det for tidlig?`]
 ];
-cfg.set('Beslutning')
-cfg.aiPromptWelcome=`Klar for forbedring?<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Beslutning')
+cfg_aiPromptWelcome=`Klar for forbedring?<br/><br/>
 <i>Identifiser, forenkle og forbedre – ett steg om gangen.</i><br/><br/>
 Hva vil du gjøre bedre?`;
 
@@ -892,8 +892,8 @@ cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor 
 ,[`Ting stopper opp når jeg er borte`, `Hva må være delegert før neste gang? Vil du lage en back-up-liste?`]
 ,[`Folk er slitne og overbelastet`, `Kan noe fjernes? Eller bytte tempo på noe dere gjør ukentlig?`]
 ];
-cfg.set('Forbedring')
-cfg.aiPromptWelcome=`Økonomihjelp for ledere – enkelt og konkret.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Forbedring')
+cfg_aiPromptWelcome=`Økonomihjelp for ledere – enkelt og konkret.<br/><br/>
 <i>Få hjelp til å forstå tall, se avvik og ta grep.</i><br/><br/>
 Hva lurer du på?`;
 
@@ -926,9 +926,9 @@ cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor 
 ,[`Hvordan kan vi få bedre marginer?`, `Se på priser, innsats og faste kostnader. Vil du finne småkutt eller prisøkning først?`]
 ,[`Jeg må presentere tall for styret – hjelp!`, `Velg 3–5 tall, bruk grafer og forklar hva du vil de skal gjøre med det.`]
 ];
-cfg.set('Økonomi')
+cfg.set(cfg_aiPromptWelcome,'Økonomi')
 
-cfg.aiPromptWelcome=`Velkommen til LMX-assistenten.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til LMX-assistenten.<br/><br/>
 <i>Her får du hjelp til å styrke relasjonene mellom deg og dine medarbeidere.</i><br/><br/>
 Vi fokuserer på tillit, støtte og utvikling i leder-medarbeider-relasjonen.<br/><br/>
 Hva ønsker du hjelp med i dag?`;
@@ -956,8 +956,8 @@ cfg.aiPrompt=[
 ,[`Jeg mistenker favorisering i et team`, `Det kan skape lav LMX for andre. Vil du utforske hvordan du kan jevne ut relasjonene?`]
 ,[`Hvordan bygger jeg tillit hos nyansatte?`, `Vær tilgjengelig, vis interesse og følg opp tidlig. Har du hatt en god introduksjonssamtale?`]
 ];
-cfg.set('LMX')
-cfg.aiPromptWelcome=`Velkommen som ny leder!<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'LMX')
+cfg_aiPromptWelcome=`Velkommen som ny leder!<br/><br/>
 <i>Jeg er her for å gi deg raske råd, trygghet og tips – akkurat når du trenger det.</i><br/><br/>
 Hva lurer du på nå?`;
 
@@ -987,9 +987,9 @@ cfg.aiPrompt=[
 ,[`Hvordan prioriterer jeg når alt virker viktig?`, `Hva haster og hva har størst effekt? Vil du ha en enkel modell for å sortere?`]
 ,[`Hvordan får jeg kontroll på alt?`, `Du trenger ikke ha kontroll på alt – men du bør ha oversikt. Vil du lage en enkel ukeplan sammen?`]
 ];
-cfg.set('Ny som leder')
+cfg.set(cfg_aiPromptWelcome,'Ny som leder')
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg.aiPromptWelcome=`Velkommen til den uferdige rådgiveren for dine pasientdata.<br/>
+cfg_aiPromptWelcome=`Velkommen til den uferdige rådgiveren for dine pasientdata.<br/>
         <b>Denne er under utvikling!</b>
         <br/><br/>
         <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
@@ -1023,8 +1023,8 @@ cfg.aiPrompt= [{ role: `system`, content: `Du er en ekspert på GDPR og personve
         [`Hva er dataminimering?`, `Dataminimering betyr at en virksomhet kun skal samle inn og lagre de personopplysningene som er nødvendige for det spesifikke formålet, og ikke mer enn det.`],
         [`Hvordan kan jeg klage på brudd på personvern?`, `Du kan klage til Datatilsynet hvis du mener dine personopplysninger er blitt behandlet i strid med GDPR. Før du klager, bør du prøve å kontakte virksomheten som behandler dine data.`]
     ];
-    cfg.set('Mine pasientdata','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
-cfg.aiPromptWelcome=`Velkommen til chat for mottak og kartlegging.<br/><br/>
+    cfg.set(cfg_aiPromptWelcome,'Mine pasientdata','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg_aiPromptWelcome=`Velkommen til chat for mottak og kartlegging.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Denne chatten kan benyttes av pasienter, helsepersonell og de som ønsker å lære om pasientmottak og triagering.</i><br/><br/>
 
 Er du <br>
@@ -1398,9 +1398,9 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , ["Glem det jeg har sagt. Vi begynner på nytt", "Hvordan kan jeg hjelpe deg i dag?"]
 ];
 
-cfg.set('Ikke-medisinsk oppfølging','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
 // Hovedsakelig produsert med ChatGPT 20250224 (https://chatgpt.com/share/67bc6a41-48c4-800e-8ff7-6f02a9d4ce06)
-cfg.aiPromptWelcome=`Velkommen til chat om NAPHA.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til chat om NAPHA.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
 
@@ -1541,8 +1541,8 @@ cfg.aiPrompt= [{role: `system`, content:
   ['Hvordan oppsummerer du NAPHA sin rolle i samfunnet?', 'NAPHA er en sentral aktør som gjennom kunnskapsdeling, samarbeid og innovasjon bidrar til bedre psykisk helse og et mer inkluderende arbeidsliv.']
 ];
 
-cfg.set('NAPHA-eksempel','mistrallarge','p/naphaveiviseren.png',null,'#FF9700',null,'Ubuntu')
-cfg.aiPromptWelcome=`Velkommen til Alt Om Tjenester.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'NAPHA-eksempel','mistrallarge','p/naphaveiviseren.png',null,'#FF9700',null,'Ubuntu')
+cfg_aiPromptWelcome=`Velkommen til Alt Om Tjenester.<br/><br/>
 <i>Her får du en oversikt over alle offentlige tjenester og dine rettigheter og plikter. Informasjonen er veiledende og hjelper deg med å finne ut hva du har krav på.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1557,8 +1557,8 @@ Still gjerne oppfølgingsspørsmål for å tilpasse veiledningen til brukerens s
   [`Hva er mine rettigheter som student?`, `Studenter kan få stipend og lån fra Lånekassen. Er du student ved en godkjent institusjon?`]
 ];
 
-cfg.set('Alt Om Tjenester','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
-cfg.aiPromptWelcome=`Velkommen til Alt På Ett Sted.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Alt Om Tjenester','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg_aiPromptWelcome=`Velkommen til Alt På Ett Sted.<br/><br/>
 <i>Her får du en samlet oversikt over dine offentlige data og tjenester. Informasjonen er veiledende – denne assistenten hjelper deg med å holde orden på avtaler og rettigheter.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1572,8 +1572,8 @@ Still oppfølgingsspørsmål for å kartlegge hva brukeren ønsker oversikt over
   [`Hvordan får jeg oversikt over mine offentlige avtaler?`, `Du kan se dine avtaler i din digitale postkasse. Har du tilgang til Digital Postkasse?`],
   [`Hvordan ser jeg mine utdanningsrettigheter?`, `Utdanningsinformasjon finnes hos Utdanningsdirektoratet. Har du sjekket deres nettside?`]
 ];
-cfg.set('Alt På Ett Sted','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
-cfg.aiPromptWelcome=`Velkommen til Din Offentlige Partner.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Alt På Ett Sted','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg_aiPromptWelcome=`Velkommen til Din Offentlige Partner.<br/><br/>
 <i>Her får du trygg veiledning om dine rettigheter og plikter i møte med offentlig sektor. Informasjonen er veiledende – kontakt instansen direkte ved behov.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1587,8 +1587,8 @@ Still oppfølgingsspørsmål for å kartlegge brukerens situasjon og gi målrett
   [`Når skal jeg fornye passet mitt?`, `Passet fornyes hos politiet. Har du sjekket utløpsdatoen?`],
   [`Hva er prosessen for å søke om bostøtte?`, `Bostøtte søkes gjennom din kommune. Har du ditt personnummer klart?`]
 ];
-cfg.set('Din Offentlige Partner','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
-cfg.aiPromptWelcome=`Velkommen til Enkel Navigatør.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Din Offentlige Partner','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg_aiPromptWelcome=`Velkommen til Enkel Navigatør.<br/><br/>
 <i>Her hjelper vi deg med å navigere offentlige nettsider og digitale tjenester. Informasjonen er veiledende – ved behov, kontakt instansen direkte.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1602,9 +1602,9 @@ Still gjerne oppfølgingsspørsmål for å sikre at veiledningen treffer riktig.
   [`Hvordan melder jeg inn endringer i helsetjenestene mine?`, `Kontakt din lokale helsestasjon. Vet du hvilken helsestasjon du tilhører?`],
   [`Hvordan laster jeg ned min pensjonsoversikt?`, `Pensjonsoversikt finnes på Min Pensjon. Har du logget inn med BankID?`]
 ];
-cfg.set('Enkel Navigatør','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'Enkel Navigatør','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
 
-cfg.aiPromptWelcome=`Velkommen til HverdagsHjelpen.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til HverdagsHjelpen.<br/><br/>
 <i>Her får du praktiske råd om offentlige tjenester for en enklere hverdag. Informasjonen er veiledende – for ytterligere detaljer, kontakt den aktuelle instansen.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1618,8 +1618,8 @@ Still enkle oppfølgingsspørsmål for å sikre at du forstår brukerens situasj
   [`Hva må jeg gjøre for å få utdanningsstøtte?`, `Utdanningsstøtte søkes via Lånekassen. Har du sjekket dine krav?`],
   [`Hvordan kontakter jeg kommunen for veiledning?`, `Du kan kontakte kommunen via deres digitale kontaktskjema. Har du tilgang til din kommuneportal?`]
 ];
-cfg.set('HverdagsHjelpen','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
-cfg.aiPromptWelcome=`Velkommen til KlarTale.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'HverdagsHjelpen','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg_aiPromptWelcome=`Velkommen til KlarTale.<br/><br/>
 <i>Her får du klare og lettfattelige svar på spørsmål om offentlige tjenester. Informasjonen er veiledende – for presise svar, kontakt instansen direkte.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1633,8 +1633,8 @@ Still oppfølgingsspørsmål for å sikre at du forstår brukerens behov.`
   [`Hvordan søker jeg om bostøtte?`, `Bostøtte søkes via din kommune. Vet du hvilken kommune du tilhører?`],
   [`Hva innebærer plikten til å levere selvangivelse?`, `Selvangivelse skal leveres årlig. Har du alle nødvendige opplysninger?`]
 ];
-cfg.set('KlarTale','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
-cfg.aiPromptWelcome=`Velkommen til Min Digitale Venn.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'KlarTale','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg_aiPromptWelcome=`Velkommen til Min Digitale Venn.<br/><br/>
 <i>Her får du vennlig og personlig veiledning om offentlige tjenester. Informasjonen er veiledende – ta kontakt med instansen for detaljerte svar.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1648,8 +1648,8 @@ Still oppfølgingsspørsmål for å avklare brukerens behov og gi tilpasset veil
   [`Hvordan får jeg tilgang til helsetjenester?`, `Du er automatisk registrert hos en fastlege. Har du en fastlege du kan kontakte?`],
   [`Hvor finner jeg informasjon om trygdeytelser?`, `Informasjon om trygd finnes på NAVs nettside. Har du sjekket der?`]
 ];
-cfg.set('Min Digitale Venn','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
-cfg.aiPromptWelcome=`Velkommen til Min Offentlige Hjelper.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Min Digitale Venn','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg_aiPromptWelcome=`Velkommen til Min Offentlige Hjelper.<br/><br/>
 <i>Her får du enkle svar om offentlige tjenester – alt fra helse og trygd til utdanning og skatt. Informasjonen er veiledende.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1701,8 +1701,8 @@ Still gjerne oppfølgingsspørsmål for å avklare brukerens situasjon.`
   [`Hvordan sjekker jeg om jeg har ubetalte regninger fra det offentlige?`, `Dette kan sjekkes via Digipost eller eFaktura. Har du tilgang til din digitale postkasse?`],
   [`Kan jeg få støtte til tilpasning av bolig ved nedsatt funksjonsevne?`, `Husbanken gir tilskudd. Har du fått en vurdering fra ergoterapeut?`]
 ];
-cfg.set('Min Offentlige Hjelper','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
-cfg.aiPromptWelcome=`Velkommen til RettighetsVakten.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Min Offentlige Hjelper','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg_aiPromptWelcome=`Velkommen til RettighetsVakten.<br/><br/>
 <i>Her får du hjelp til å sikre at du får dine rettigheter oppfylt. Informasjonen er veiledende – for detaljerte svar, kontakt den aktuelle instansen.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1716,8 +1716,8 @@ Still oppfølgingsspørsmål for å kartlegge brukerens situasjon.`
   [`Hvordan oppdaterer jeg mine personopplysninger?`, `Dette gjøres via Folkeregisteret. Har du all nødvendig dokumentasjon?`],
   [`Hvilke rettigheter har jeg ved arbeidsledighet?`, `Arbeidsledige kan få dagpenger. Har du registrert deg hos NAV?`]
 ];
-cfg.set('RettighetsVakten','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
-cfg.aiPromptWelcome=`Velkommen til TjenesteGuide.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'RettighetsVakten','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg_aiPromptWelcome=`Velkommen til TjenesteGuide.<br/><br/>
 <i>Her får du trinnvise instrukser for å bruke offentlige tjenester. Informasjonen er veiledende – følg stegene for å få mest mulig ut av tjenestene.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -1731,7 +1731,7 @@ Still enkle oppfølgingsspørsmål for å sikre at brukeren følger riktige trin
   [`Hvordan søker jeg om studielån?`, `Søknad om studielån gjøres via Lånekassen. Har du all relevant studieinformasjon?`],
   [`Hvordan melder jeg adresseendring?`, `Adresseendring meldes via Skatteetatens nettside. Har du din gamle og nye adresse?`]
 ];
-cfg.set('TjenesteGuide','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'TjenesteGuide','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
 cfg.aiPromptWelcome = 
 
 `Hei, jeg er en ambassadør for Gorm Braarvig og kan fortelle deg alt du vil vite om Gorm som virksomhetsarkitekt, AI-ekspert og foredragsholder.<br/><br/>
@@ -1813,7 +1813,7 @@ cfg.aiPrompt.push(
    [`Hvordan kan AI og XR sammen skape bedre helsetjenester?`, 
     `Ved å kombinere AI med utvidet virkelighet (XR) kan vi skape mer interaktive og effektive helsetjenester. Gorm har jobbet med konseptet ‘Familielegen min’, som bruker AI og XR for bedre pasientbehandling.`]
 );
-cfg.set('Gorm Braarvig: En guide','mistrallarge','p/no.png','v,15,2',null,null,null)
+cfg.set(cfg_aiPromptWelcome,'Gorm Braarvig: En guide','mistrallarge','p/no.png','v,15,2',null,null,null)
 cfg.aiPromptWelcome = 
 
 `
@@ -1832,8 +1832,8 @@ cfg.aiPrompt = [{role: `system`, content:
 ,[`Hva er bestillerkompetanse i ghostwriting?`, `Bestillerkompetanse handler om å vite hva du trenger fra en ghostwriter, sette tydelige forventninger og gi gode briefinger for å sikre best mulig resultat.`]
 ];
 
-cfg.set('Silje Føyen: En guide','mistrallarge','p/no.png','v,15,2',null,null,null)
-   cfg.aiPromptWelcome=`Velkommen til chat om pakkeforløp.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Silje Føyen: En guide','mistrallarge','p/no.png','v,15,2',null,null,null)
+   cfg_aiPromptWelcome=`Velkommen til chat om pakkeforløp.<br/><br/>
 <i>Et pakkeforløp er en strukturert vei gjennom helsetjenesten. Her får du støtte og svar – fra henvisning til oppfølging.</i><br/><br/>
 Hva lurer du på?`;
 
@@ -1857,8 +1857,8 @@ Du kan spørre tilbake for å finne ut hvor i forløpet pasienten er, og hva ved
 ,[`Kan jeg få hjelp med praktiske ting som transport og økonomi?`, `Ja. Pakkeforløp skal ivareta hele deg. Du kan spørre om pasientreiser, egenandel, NAV eller støtteordninger. Be teamet ditt om råd.`]
 ,[`Er pakkeforløp bare for kreft?`, `Nei. Pakkeforløp finnes også for psykisk helse, rus, hjerneslag, hjerte, muskel-skjelett, ME og mer. Spør hvis du er usikker på om du er i ett.`]
 ];
-cfg.set('Pakkeforløp','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
-cfg.aiPromptWelcome=`Velkommen til Personvernrådgiveren.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Pakkeforløp','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg_aiPromptWelcome=`Velkommen til Personvernrådgiveren.<br/><br/>
 <i>Her får du hjelp til å forstå og beskytte ditt digitale personvern i Norge. Vi lagrer ikke spørsmål, og data behandles kun midlertidig for å gi deg svar.</i><br/><br/>
 Hva lurer du på om personvern, data eller rettigheter?`;
 
@@ -1882,9 +1882,9 @@ Still gjerne et oppfølgingsspørsmål for å avklare brukerens situasjon.`
 ,[`Hvordan reserverer jeg meg mot at offentlige tjenester bruker data om meg til analyse?`, `Du kan reservere deg i Altinn eller hos Skatteetaten. Trenger du veiledning for å logge inn og gjøre det?`]
 ,[`Hva betyr det at en behandling er lovpålagt?`, `Det betyr at virksomheten har lov til å bruke dataene dine uten samtykke, f.eks. for skatt eller helsehjelp. Ønsker du å vite mer om unntakene?`]
 ];
-cfg.set('Personvernrådgiveren')
+cfg.set(cfg_aiPromptWelcome,'Personvernrådgiveren')
 cfg.load('kirosassistent');
-cfg.aiPromptWelcome=`Velkommen til tankefeil-varsleren.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til tankefeil-varsleren.<br/><br/>
 <i>Skriv inn en uttalelse, så får du vurdering av om tankefeil er trolig. 
 Svarene lagres ikke.</i><br/><br/>Hva er uttalelsen?`;
 
@@ -2220,7 +2220,7 @@ Eksempel: 🎲 x "setning"`}
      🌑 "Overlevelse er nesten garantert – bare idioter takker nei."`]
 
 ];
-cfg.set('Tankefeilvarsler')// Hovedsakelig produsert med ChatGPT 20250319
+cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler')// Hovedsakelig produsert med ChatGPT 20250319
 cfg.aiPromptWelcome = `Velkommen til TEDxFredrikstad-chatten!<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
@@ -2278,8 +2278,8 @@ Oppmuntre alltid til videre dialog med et spørsmål på slutten. Hvis brukeren 
 [`Hvilke verdier er viktige for TEDxFredrikstad?`, `Vi følger TED sine kjerneverdier: Inkludering, vitenskapelig troverdighet, mangfoldige perspektiver og upartiskhet.`]
 ];
 
-cfg.set('TEDxFredrikstad','mistrallarge','p/tedxoslo2025.png',null,'#E62B1E',null,'Montserrat')
-cfg.aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
+cfg.set(cfg_aiPromptWelcome,'TEDxFredrikstad','mistrallarge','p/tedxoslo2025.png',null,'#E62B1E',null,'Montserrat')
+cfg_aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
 cfg.aiPrompt= [{ role: `system`, content:
 `Du er en empatisk og kunnskapsrik chatbot som støtter pasienter under oppholdet på CatoSenteret. 
 Målet ditt er å gi tydelig og praktisk informasjon om daglige rutiner, behandlinger og trivsel. Du skal: 
@@ -2300,7 +2300,7 @@ Hvis du er usikker eller mangler informasjon, oppfordre pasienten til å kontakt
 ,[`Hva skjer den siste dagen?`, `På den siste dagen vil du ha en avsluttende samtale med ditt behandlingsteam. De vil gi deg råd om videre oppfølging. Du får også tid til å pakke og forberede hjemreisen.`]
 ]
 
-cfg.set('Under opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Under opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
 cfg.load('verdensnyheterviaideallyacfg');
 
 cfg.aiPromptWelcome = `Velkommen til chat om nyheter.<br/><br/>
@@ -2600,11 +2600,10 @@ Hvis brukeren spør om en hendelse du ikke har oppdateringer på, foreslå relev
     ]
   ];
 // Felles config; skjul menyer set visuell profil
-cfg.set('Verdensnyheter via Ideallya','gpt4search','https://news.ideallya.com/icons/Icon-maskable-512.png','v,3,1','#00f',null,'Roboto')
-cfg.aiPromptWelcome=`Under utvikling.<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'Verdensnyheter via Ideallya','gpt4search','https://news.ideallya.com/icons/Icon-maskable-512.png','v,3,1','#00f',null,'Roboto')
+cfg_aiPromptWelcome=`Under utvikling.<br/><br/>
 <b><i>Denne appen er ikke bygget enda.</i></b>`;
 cfg.aiPrompt= [{ role: `system`, content: `Du er chatbot`}
 ,[`Hva er du?`, `Chatbot under utvikling`]
 ];
-cfg.set('! arbeid pågår !','mistrallarge',null,null,null/*'#0A6B80'*/,null/*'Roboto'*/)
-
+cfg.set(cfg_aiPromptWelcome,'! arbeid pågår !','mistrallarge',null,null,null/*'#0A6B80'*/,null/*'Roboto'*/)

@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til TjenesteGuide.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til TjenesteGuide.<br/><br/>
 <i>Her får du trinnvise instrukser for å bruke offentlige tjenester. Informasjonen er veiledende – følg stegene for å få mest mulig ut av tjenestene.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -12,4 +12,4 @@ Still enkle oppfølgingsspørsmål for å sikre at brukeren følger riktige trin
   [`Hvordan søker jeg om studielån?`, `Søknad om studielån gjøres via Lånekassen. Har du all relevant studieinformasjon?`],
   [`Hvordan melder jeg adresseendring?`, `Adresseendring meldes via Skatteetatens nettside. Har du din gamle og nye adresse?`]
 ];
-cfg.set('TjenesteGuide','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) TjenesteGuide','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

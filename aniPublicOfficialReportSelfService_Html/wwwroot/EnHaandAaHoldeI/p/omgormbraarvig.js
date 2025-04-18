@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome = 
+cfg_aiPromptWelcome = 
 
 `Hei, jeg er en ambassadør for Gorm Braarvig og kan fortelle deg alt du vil vite om Gorm som virksomhetsarkitekt, AI-ekspert og foredragsholder.<br/><br/>
 <i>Spørsmålene dine lagres ikke, og all data behandles i henhold til GDPR.</i><br/>
@@ -79,4 +79,4 @@ cfg.aiPrompt.push(
    [`Hvordan kan AI og XR sammen skape bedre helsetjenester?`, 
     `Ved å kombinere AI med utvidet virkelighet (XR) kan vi skape mer interaktive og effektive helsetjenester. Gorm har jobbet med konseptet ‘Familielegen min’, som bruker AI og XR for bedre pasientbehandling.`]
 );
-cfg.set('Gorm Braarvig: En guide','gpt4nano','p/no.png','v,15,2',null,null,null)
+cfg.set(cfg_aiPromptWelcome,'Om Gorm Braarvig','gpt4nano','p/no.png','v,15,2',null,null,null)

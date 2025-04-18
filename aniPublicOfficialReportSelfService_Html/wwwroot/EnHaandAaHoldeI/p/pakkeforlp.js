@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til chat om pakkeforløp.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til chat om pakkeforløp.<br/><br/>
 <i>Et pakkeforløp er en strukturert vei gjennom helsetjenesten. Her får du støtte og svar – fra henvisning til oppfølging.</i><br/><br/>
 Hva lurer du på?`;
 
@@ -22,4 +22,4 @@ Du kan spørre tilbake for å finne ut hvor i forløpet pasienten er, og hva ved
 ,[`Kan jeg få hjelp med praktiske ting som transport og økonomi?`, `Ja. Pakkeforløp skal ivareta hele deg. Du kan spørre om pasientreiser, egenandel, NAV eller støtteordninger. Be teamet ditt om råd.`]
 ,[`Er pakkeforløp bare for kreft?`, `Nei. Pakkeforløp finnes også for psykisk helse, rus, hjerneslag, hjerte, muskel-skjelett, ME og mer. Spør hvis du er usikker på om du er i ett.`]
 ];
-cfg.set('Pakkeforløp','gpt4','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Pakkeforløp','gpt4','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

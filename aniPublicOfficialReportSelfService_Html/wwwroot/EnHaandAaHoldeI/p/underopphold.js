@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
 cfg.aiPrompt= [{ role: `system`, content:
 `Du er en empatisk og kunnskapsrik chatbot som støtter pasienter under oppholdet på CatoSenteret. 
 Målet ditt er å gi tydelig og praktisk informasjon om daglige rutiner, behandlinger og trivsel. Du skal: 
@@ -19,4 +19,4 @@ Hvis du er usikker eller mangler informasjon, oppfordre pasienten til å kontakt
 ,[`Hva skjer den siste dagen?`, `På den siste dagen vil du ha en avsluttende samtale med ditt behandlingsteam. De vil gi deg råd om videre oppfølging. Du får også tid til å pakke og forberede hjemreisen.`]
 ]
 
-cfg.set('Under opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Under opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

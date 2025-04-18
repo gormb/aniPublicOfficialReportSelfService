@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen Aigap.<br/>
+cfg_aiPromptWelcome=`Velkommen Aigap.<br/>
 jeg skal hjelpe deg i prosessen med søknad om hjelp og midler fra Innovasjon Norge.
 `;
 cfg.aiPrompt= [{ role: `system`, content: 
@@ -11,4 +11,4 @@ info kommer
 `}
 ,[`Hva er du?`, `Chatbot under utvikling`]
 ];
-cfg.set('Aigap/Innovasjon Norge','mistrallarge')
+cfg.set(cfg_aiPromptWelcome,'Aigap/Innovasjon Norge','mistrallarge')

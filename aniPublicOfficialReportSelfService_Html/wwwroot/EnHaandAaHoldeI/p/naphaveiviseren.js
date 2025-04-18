@@ -1,5 +1,5 @@
 // Hovedsakelig produsert med ChatGPT 20250224 (https://chatgpt.com/share/67bc6a41-48c4-800e-8ff7-6f02a9d4ce06)
-cfg.aiPromptWelcome=`Velkommen til chat om NAPHA.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til chat om NAPHA.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
 
@@ -140,4 +140,4 @@ cfg.aiPrompt= [{role: `system`, content:
   ['Hvordan oppsummerer du NAPHA sin rolle i samfunnet?', 'NAPHA er en sentral aktør som gjennom kunnskapsdeling, samarbeid og innovasjon bidrar til bedre psykisk helse og et mer inkluderende arbeidsliv.']
 ];
 
-cfg.set('NAPHA-eksempel','gpt4nano','p/naphaveiviseren.png',null,'#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'NAPHA-veiviseren','gpt4nano','p/naphaveiviseren.png',null,'#FF9700',null,'Ubuntu')

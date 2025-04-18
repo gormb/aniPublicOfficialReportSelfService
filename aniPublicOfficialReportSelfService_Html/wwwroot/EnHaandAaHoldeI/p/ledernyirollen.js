@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen som ny leder!<br/><br/>
+cfg_aiPromptWelcome=`Velkommen som ny leder!<br/><br/>
 <i>Jeg er her for å gi deg raske råd, trygghet og tips – akkurat når du trenger det.</i><br/><br/>
 Hva lurer du på nå?`;
 
@@ -28,4 +28,4 @@ cfg.aiPrompt=[
 ,[`Hvordan prioriterer jeg når alt virker viktig?`, `Hva haster og hva har størst effekt? Vil du ha en enkel modell for å sortere?`]
 ,[`Hvordan får jeg kontroll på alt?`, `Du trenger ikke ha kontroll på alt – men du bør ha oversikt. Vil du lage en enkel ukeplan sammen?`]
 ];
-cfg.set('Ny som leder')
+cfg.set(cfg_aiPromptWelcome,'Leder: Ny i rollen')

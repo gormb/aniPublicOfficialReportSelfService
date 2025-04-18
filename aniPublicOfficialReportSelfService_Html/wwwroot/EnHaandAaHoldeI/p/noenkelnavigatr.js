@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til Enkel Navigatør.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til Enkel Navigatør.<br/><br/>
 <i>Her hjelper vi deg med å navigere offentlige nettsider og digitale tjenester. Informasjonen er veiledende – ved behov, kontakt instansen direkte.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -12,5 +12,5 @@ Still gjerne oppfølgingsspørsmål for å sikre at veiledningen treffer riktig.
   [`Hvordan melder jeg inn endringer i helsetjenestene mine?`, `Kontakt din lokale helsestasjon. Vet du hvilken helsestasjon du tilhører?`],
   [`Hvordan laster jeg ned min pensjonsoversikt?`, `Pensjonsoversikt finnes på Min Pensjon. Har du logget inn med BankID?`]
 ];
-cfg.set('Enkel Navigatør','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Enkel Navigatør','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
 

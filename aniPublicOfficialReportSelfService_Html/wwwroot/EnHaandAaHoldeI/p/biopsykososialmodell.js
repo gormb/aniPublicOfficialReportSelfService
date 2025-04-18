@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/><br/>
 Før vi starter, kan du fortelle meg hvem du er?<br/>
@@ -40,4 +40,4 @@ Når brukeren svarer, tilpass all kommunikasjon deretter. Bruk enklere ord for b
 ,[`Hvorfor føles det godt å hjelpe andre?`, `Å hjelpe andre utløser oxytocin, et hormon som skaper følelsen av tilhørighet og glede, og kan redusere stress.`]
 ,[`Hvordan kan jeg forbedre søvnkvaliteten min?`, `Unngå skjermer før leggetid, ha en fast søvnrytme og skape en rolig soveromssituasjon. Søvn er avgjørende for både fysisk og mental helse.`]
 ]
-cfg.set('Biopsykososial forståelsesmodell','gpt4nano','p/hjemmelegenmin.png', 'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Biopsykososial modell','gpt4nano','p/hjemmelegenmin.png', 'rgb(240,229,207)')

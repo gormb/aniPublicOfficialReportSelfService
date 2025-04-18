@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Klar for forbedring?<br/><br/>
+cfg_aiPromptWelcome=`Klar for forbedring?<br/><br/>
 <i>Identifiser, forenkle og forbedre – ett steg om gangen.</i><br/><br/>
 Hva vil du gjøre bedre?`;
 
@@ -31,4 +31,4 @@ cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor 
 ,[`Ting stopper opp når jeg er borte`, `Hva må være delegert før neste gang? Vil du lage en back-up-liste?`]
 ,[`Folk er slitne og overbelastet`, `Kan noe fjernes? Eller bytte tempo på noe dere gjør ukentlig?`]
 ];
-cfg.set('Forbedring')
+cfg.set(cfg_aiPromptWelcome,'Leder: Forbedring')

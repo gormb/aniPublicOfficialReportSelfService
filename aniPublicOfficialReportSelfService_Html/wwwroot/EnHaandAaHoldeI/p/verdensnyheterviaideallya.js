@@ -1,6 +1,5 @@
-cfg.load('verdensnyheterviaideallyacfg');
 
-cfg.aiPromptWelcome = `Velkommen til chat om nyheter.<br/><br/>
+cfg_aiPromptWelcome = `Velkommen til chat om nyheter.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i>
 <br><br>Lær mer på <a href="https://news.ideallya.com">Ideallya</a><br>
@@ -296,3 +295,6 @@ Hvis brukeren spør om en hendelse du ikke har oppdateringer på, foreslå relev
       "Kina signaliserer at de ønsker å opprettholde vekst selv om handelskonflikter øker. Vil du høre mer om eventuelle nye avtaler?"
     ]
   ];
+
+cfg.load('verdensnyheterviaideallyacfg');
+//cfg.set(cfg_aiPromptWelcome,'Verdensnyheter via Ideallya','gpt4search','https://news.ideallya.com/icons/Icon-maskable-512.png','v,3,1','#00f',null,'Roboto')

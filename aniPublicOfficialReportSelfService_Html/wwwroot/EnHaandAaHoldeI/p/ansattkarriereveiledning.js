@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til karriereveilederen.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til karriereveilederen.<br/><br/>
 <i>Få hjelp til å tenke videre i jobb, utdanning eller ny retning. Svarene lagres ikke.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt = [{ role: `system`, content:
@@ -32,5 +32,5 @@ Vær motiverende, praktisk og nysgjerrig. Still gjerne oppfølgingsspørsmål.` 
 ,[`Finnes det støtteordninger for videreutdanning?`, `Ja, bl.a. Lånekassen og NAV. Vil du vite mer om dine muligheter?`]
 ,[`Kan jeg kombinere jobb og studier?`, `Ja, men det krever planlegging. Hvor mange timer kan du studere i uka?`]
 ];
-cfg.set('Karriereveileder','mistrallarge')
+cfg.set(cfg_aiPromptWelcome,'Ansatt: Karriereveiledning','mistrallarge')
 

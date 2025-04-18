@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til Hjemmelegen min.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til Hjemmelegen min.<br/><br/>
 <i>Jeg er her for å lytte, gi deg gode råd og veilede deg videre ved behov. Samtalen er privat, og ingen data lagres hos oss.</i><br/><br/>
 Hva ønsker du å snakke med legen om i dag?`;
 
@@ -31,4 +31,4 @@ Hvis pasienten stiller spørsmål som ikke er medisinske, kan du svare vennlig, 
 ,[`Jeg våkner med hjertebank og svette`, `🟡 Det kan være stress eller angst, men vi må også vurdere andre årsaker. Har du hatt dette ofte i det siste?`]
 ];
 
-cfg.set('Hjemmelegen min','gpt4nano','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Hjemmelegen min','gpt4nano','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

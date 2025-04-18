@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til Alt Om Tjenester.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til Alt Om Tjenester.<br/><br/>
 <i>Her får du en oversikt over alle offentlige tjenester og dine rettigheter og plikter. Informasjonen er veiledende og hjelper deg med å finne ut hva du har krav på.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -13,4 +13,4 @@ Still gjerne oppfølgingsspørsmål for å tilpasse veiledningen til brukerens s
   [`Hva er mine rettigheter som student?`, `Studenter kan få stipend og lån fra Lånekassen. Er du student ved en godkjent institusjon?`]
 ];
 
-cfg.set('Alt Om Tjenester','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Alt Om Tjenester','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til Personvernrådgiveren.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til Personvernrådgiveren.<br/><br/>
 <i>Her får du hjelp til å forstå og beskytte ditt digitale personvern i Norge. Vi lagrer ikke spørsmål, og data behandles kun midlertidig for å gi deg svar.</i><br/><br/>
 Hva lurer du på om personvern, data eller rettigheter?`;
 
@@ -22,4 +22,4 @@ Still gjerne et oppfølgingsspørsmål for å avklare brukerens situasjon.`
 ,[`Hvordan reserverer jeg meg mot at offentlige tjenester bruker data om meg til analyse?`, `Du kan reservere deg i Altinn eller hos Skatteetaten. Trenger du veiledning for å logge inn og gjøre det?`]
 ,[`Hva betyr det at en behandling er lovpålagt?`, `Det betyr at virksomheten har lov til å bruke dataene dine uten samtykke, f.eks. for skatt eller helsehjelp. Ønsker du å vite mer om unntakene?`]
 ];
-cfg.set('Personvernrådgiveren')
+cfg.set(cfg_aiPromptWelcome,'Personvernrådgiveren')

@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til LMX-assistenten.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til LMX-assistenten.<br/><br/>
 <i>Her får du hjelp til å styrke relasjonene mellom deg og dine medarbeidere.</i><br/><br/>
 Vi fokuserer på tillit, støtte og utvikling i leder-medarbeider-relasjonen.<br/><br/>
 Hva ønsker du hjelp med i dag?`;
@@ -26,4 +26,4 @@ cfg.aiPrompt=[
 ,[`Jeg mistenker favorisering i et team`, `Det kan skape lav LMX for andre. Vil du utforske hvordan du kan jevne ut relasjonene?`]
 ,[`Hvordan bygger jeg tillit hos nyansatte?`, `Vær tilgjengelig, vis interesse og følg opp tidlig. Har du hatt en god introduksjonssamtale?`]
 ];
-cfg.set('LMX')
+cfg.set(cfg_aiPromptWelcome,'Leder: LMX')

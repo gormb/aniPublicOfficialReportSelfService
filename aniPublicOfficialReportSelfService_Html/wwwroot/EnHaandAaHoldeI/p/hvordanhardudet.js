@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=
+cfg_aiPromptWelcome=
 `Hei.<br/><br/>
 <i>Denne samtalen er anonym. Jeg er her for å lytte og hjelpe deg å finne ut hvordan du eller noen du kjenner egentlig har det.</i><br/><br/>
 Du kan skrive akkurat som det føles.`
@@ -33,4 +33,4 @@ Ikke anta at brukeren snakker om seg selv. Spør ved behov: "Snakker du om deg s
 ,[`Datteren min har sluttet å spise og isolerer seg helt`, `Det høres vanskelig ut. Har dere klart å snakke sammen om hvordan hun har det?`]
 ,[`Jeg vet ikke om jeg klarer en dag til`, `Du er ikke alene. Har du vurdert å snakke med fastlegen din, eller ringe Mental Helse på 116 123?`]
 ];
-cfg.set('Hvordan har du det','mistrallarge',null,'r,15','rgb(57,120,19)',null,'Inter')
+cfg.set(cfg_aiPromptWelcome,'Hvordan har du det','gpt4nano','p/hvordanhardudet.svg',null,'#6C5B7B',null,'Lora')

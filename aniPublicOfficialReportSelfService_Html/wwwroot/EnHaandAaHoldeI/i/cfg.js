@@ -7,7 +7,7 @@ const cfg={
             ,'Hjernetrim >>§-', ['Tankefeilvarsler','Enkel EQ-test']
             ,'Nyheter >>§-', ['Verdens nyheter via Ideallya']
         ]],['Helse >>§-',[
-            'Hjemmelegen min >>§-',['Mottak og triagering', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
+            'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
@@ -63,14 +63,11 @@ const cfg={
             , [['grok latest', 'grok-2-latest'], ['grok beta', 'grok-beta']]]
         ,['Anthropic (USA)', 'https://api.anthropic.com/v1/messages', escape(`4>c//&j4>'qajZ,);(U[YV2"=Jy&3gSW x8Jt]vESr$O|2"X\\84uk_\\;@Y1OP>v.YQE^?'ED=Y_HG %#vW77[]-$EH29>&&F39clDV<)@S`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Sonnet (best)', 'claude-3-7-sonnet-20250219'], ['Haiku (raskest)', 'claude-3-7-haiku-20250219']]
-            //, [['Sonnet (best)', 'claude-3-5-sonnet-20241022'], ['Haiku (raskest)', 'claude-3-5-haiku-20241022']]
-            , 'anthropic-version:2023-06-01^anthropic-dangerous-direct-browser-access:true'
-        ]
+            , 'anthropic-version:2023-06-01^anthropic-dangerous-direct-browser-access:true']
         ,['Google Gemini (USA)?', 'https://generativelanguage.googleapis.com/v1beta/openai/', `F%5C4%2FR%2BDEG%7BN8O77%3D4%5E%2C%3BZMQ%3BpOCH5%3F)Z()%25%5D%3EP_`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             // støtter ikke cross-site
             , [['Gemini flash', 'gemini-1.5-flash'], ['Gemini pro', 'gemini-1.5-pro']]]
         ,['Hugging Face (USA)?', 'https://api-inference.huggingface.co/models/', escape(`/3Q:M?3VKJVPU]Y,-C BM:Q:0]O#(E"^(/2SV`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            // støtter ikke >10GB
             , [['Hugging DeepSeek R1', 'deepseek-ai/DeepSeek-R1'], ['Hugging DeepSeek V3', 'deepseek-ai/DeepSeek-V3']]]
         ,['Aigap Server 1235', 'https://api.aigap.no:1235/v1/chat/completions ', ``, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Aigap Deepseek', 'deepseek-r1:latest'], ['Aigap bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
@@ -89,8 +86,8 @@ const cfg={
             s.async = false;
             s.id='cfgloaded';
             document.getElementById('cfgloaded')?.remove()
-            document.head.appendChild(s);
             cfg.app=null
+            document.head.appendChild(s);
             let i = 0, chk = setInterval(e=>{
                 if (cfg.app) {
                     clearInterval(chk);
@@ -102,7 +99,8 @@ const cfg={
             }, 10);  // Check every 10ms
         });
     }
-    ,set:(appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
+    ,set:(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
+        cfg.aiPromptWelcome=aiPromptWelcome
         if(ai) setTimeout(()=>msgSend(ai),500);
         if(iA) ui.c.ImgA=iA;
         iEa=iEffekt?.split(',');
@@ -117,5 +115,3 @@ const cfg={
         cfg.visAppMeny(false)
     }    
 }
-
-//cfg.loadV('i/cfg.js',h=>console.warn(h));

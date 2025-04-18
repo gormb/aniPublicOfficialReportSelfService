@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til Min Offentlige Hjelper.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til Min Offentlige Hjelper.<br/><br/>
 <i>Her får du enkle svar om offentlige tjenester – alt fra helse og trygd til utdanning og skatt. Informasjonen er veiledende.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -50,4 +50,4 @@ Still gjerne oppfølgingsspørsmål for å avklare brukerens situasjon.`
   [`Hvordan sjekker jeg om jeg har ubetalte regninger fra det offentlige?`, `Dette kan sjekkes via Digipost eller eFaktura. Har du tilgang til din digitale postkasse?`],
   [`Kan jeg få støtte til tilpasning av bolig ved nedsatt funksjonsevne?`, `Husbanken gir tilskudd. Har du fått en vurdering fra ergoterapeut?`]
 ];
-cfg.set('Min Offentlige Hjelper','gpt4nano','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt4nano','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

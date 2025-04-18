@@ -1,6 +1,6 @@
 //cfg.load('tedxoslo2025');
 // Hovedsakelig produsert med ChatGPT 20250319
-cfg.aiPromptWelcome = `Velkommen til EVENTxOslo 2025-chatten!<br/><br/>
+cfg_aiPromptWelcome = `Velkommen til EVENTxOslo 2025-chatten!<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
 
@@ -45,4 +45,4 @@ Oppmuntre alltid til videre dialog med et spørsmål på slutten.`}
 ,[`Hva får partnere av EVENTxOslo?`, `Som partner får du eksponering på våre nettsider, nettverksmuligheter, deltakelse i eksklusive arrangementer og mulighet for å støtte en viktig idéplattform.`]
 ,[`Hvor kan jeg finne tidligere EVENTxOslo-foredrag?`, `Mange tidligere EVENTxOslo-foredrag er tilgjengelige på YouTube. Sjekk vår nettside for lenker.`]
 ];
-cfg.set('EVENTxOslo2025','mistrallarge','p/tedxoslo2025.png',null,'#E62B1E',null,'Montserrat')
+cfg.set(cfg_aiPromptWelcome,'EVENTxOslo2025','mistrallarge','p/tedxoslo2025.png',null,'#E62B1E',null,'Montserrat')

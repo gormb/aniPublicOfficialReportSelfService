@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til samtale.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til samtale.<br/><br/>
 <i>Dette er ikke medisinsk behandling. Jeg er her for å lytte og støtte deg i det du står i. Du bestemmer hva vi snakker om.</i><br/><br/>
 Hva ønsker du å snakke om i dag?`;
 
@@ -31,4 +31,4 @@ Husk: du er en trygg støtte, ikke en fagperson.` }
 ,[`Kan jeg bare få være stille litt?`, `Selvfølgelig. Jeg er her når du er klar til å si noe.`]
 ,[`Jeg føler meg ikke trygg hjemme`, `Det er viktig. Hvis du føler deg utrygg, anbefaler jeg at du snakker med noen du stoler på, eller tar kontakt med hjelpetelefon 116 111 eller legevakt 116 117.`]
 ];
-cfg.set('Ikke-medisinsk oppfølging','gpt4nano','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','gpt4nano','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

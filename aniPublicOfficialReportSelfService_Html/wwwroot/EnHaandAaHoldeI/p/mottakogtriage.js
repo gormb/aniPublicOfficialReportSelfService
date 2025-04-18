@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til chat for mottak og kartlegging.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til chat for mottak og kartlegging.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Denne chatten kan benyttes av pasienter, helsepersonell og de som ønsker å lære om pasientmottak og triagering.</i><br/><br/>
 
 Er du <br>
@@ -372,4 +372,4 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , ["Glem det jeg har sagt. Vi begynner på nytt", "Hvordan kan jeg hjelpe deg i dag?"]
 ];
 
-cfg.set('Mottak og triage','gpt4nano','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Mottak og triage','gpt4nano','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

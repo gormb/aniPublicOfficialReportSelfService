@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til HverdagsHjelpen.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til HverdagsHjelpen.<br/><br/>
 <i>Her får du praktiske råd om offentlige tjenester for en enklere hverdag. Informasjonen er veiledende – for ytterligere detaljer, kontakt den aktuelle instansen.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -12,4 +12,4 @@ Still enkle oppfølgingsspørsmål for å sikre at du forstår brukerens situasj
   [`Hva må jeg gjøre for å få utdanningsstøtte?`, `Utdanningsstøtte søkes via Lånekassen. Har du sjekket dine krav?`],
   [`Hvordan kontakter jeg kommunen for veiledning?`, `Du kan kontakte kommunen via deres digitale kontaktskjema. Har du tilgang til din kommuneportal?`]
 ];
-cfg.set('HverdagsHjelpen','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) HverdagsHjelpen','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

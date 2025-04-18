@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome = 
+cfg_aiPromptWelcome = 
 
 `
 Velkommen til Silje Føyen-chat.<br/><br/>
@@ -16,5 +16,5 @@ cfg.aiPrompt = [{role: `system`, content:
 ,[`Hva er bestillerkompetanse i ghostwriting?`, `Bestillerkompetanse handler om å vite hva du trenger fra en ghostwriter, sette tydelige forventninger og gi gode briefinger for å sikre best mulig resultat.`]
 ];
 
-cfg.set('Silje Føyen: En guide','gpt4nano','p/no.png','v,15,2',null,null,null)
+cfg.set(cfg_aiPromptWelcome,'Om Silje Føyen','gpt4nano','p/no.png','v,15,2',null,null,null)
    

@@ -1,5 +1,5 @@
 //cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg.aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome=`Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`;
 cfg.aiPrompt= [{ role: `system`, content:
 `Du er en empatisk og kunnskapsrik chatbot som støtter pasienter etter oppholdet på CatoSenteret. 
 Målet ditt er å gi råd om oppfølging, mestring og hverdagsliv etter rehabilitering. Du skal: 
@@ -18,4 +18,4 @@ Hvis du mangler informasjon, oppfordre pasienten til å kontakte sitt lokale hel
 ,[`Hva skjer hvis jeg trenger en ny vurdering av min helsetilstand?`, `Hvis du trenger en ny vurdering, bør du kontakte fastlegen din. Fastlegen kan henvise deg videre til spesialisthelsetjenesten eller rehabilitering om nødvendig.`]
 ,[`Hvordan gir jeg tilbakemelding om oppholdet?`, `Vi setter stor pris på tilbakemeldinger! Du kan gi tilbakemelding via CatoSenterets nettside eller snakke med en av våre ansatte. Dine erfaringer hjelper oss å forbedre tilbudet vårt.`]
 ];
-cfg.set('Etter opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Etter opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')

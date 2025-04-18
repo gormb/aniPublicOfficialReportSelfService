@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til ansattveilederen.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til ansattveilederen.<br/><br/>
 <i>Få hjelp i hele ansettelsesreisen – fra start til slutt. Spørsmål lagres ikke.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt = [{ role: `system`, content:
@@ -40,4 +40,4 @@ Svar gjerne med oppfølgingsspørsmål hvis det gir bedre hjelp.` }
 ,[`Når får jeg sluttattest?`, `Den skal komme innen siste lønnsutbetaling. Har du sendt forespørsel?`]
 ,[`Kan jeg få referanse fra leder?`, `Som oftest, ja – spør gjerne direkte. Trenger du den skriftlig eller muntlig?`]
 ];
-cfg.set('Ansettelsesreisen','mistrallarge')
+cfg.set(cfg_aiPromptWelcome,'Ansatt: Reisen','mistrallarge')

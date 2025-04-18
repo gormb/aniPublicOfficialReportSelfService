@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til RettighetsVakten.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til RettighetsVakten.<br/><br/>
 <i>Her får du hjelp til å sikre at du får dine rettigheter oppfylt. Informasjonen er veiledende – for detaljerte svar, kontakt den aktuelle instansen.</i><br/><br/>Hva lurer du på?`;
 
 cfg.aiPrompt= [
@@ -12,4 +12,4 @@ Still oppfølgingsspørsmål for å kartlegge brukerens situasjon.`
   [`Hvordan oppdaterer jeg mine personopplysninger?`, `Dette gjøres via Folkeregisteret. Har du all nødvendig dokumentasjon?`],
   [`Hvilke rettigheter har jeg ved arbeidsledighet?`, `Arbeidsledige kan få dagpenger. Har du registrert deg hos NAV?`]
 ];
-cfg.set('RettighetsVakten','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) RettighetsVakten','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')

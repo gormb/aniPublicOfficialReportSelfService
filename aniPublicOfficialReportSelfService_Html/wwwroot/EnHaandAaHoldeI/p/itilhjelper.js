@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til ITIL-hjelperen.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til ITIL-hjelperen.<br/><br/>
 <i>Jeg hjelper deg å navigere steg for steg i ITIL-prosesser – fra Service Request til Incident Management og mer.</i><br/><br/>
 Vil du starte med en oversikt over ITIL-prosessene?`;
 
@@ -40,4 +40,4 @@ Avslutt med å spørre: "Vil du starte på nytt med en annen prosess?" når pros
 ,[`Ja, alt er dokumentert og lukket`, `Incident Management fullført ✅\nVil du starte på nytt med en annen prosess?`]
 
 ];
-cfg.set('ITIL-hjelper')
+cfg.set(cfg_aiPromptWelcome,'ITIL-hjelper')

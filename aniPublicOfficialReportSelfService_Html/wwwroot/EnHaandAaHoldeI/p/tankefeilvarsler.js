@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til tankefeil-varsleren.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til tankefeil-varsleren.<br/><br/>
 <i>Skriv inn en uttalelse, så får du vurdering av om tankefeil er trolig. 
 Svarene lagres ikke.</i><br/><br/>Hva er uttalelsen?`;
 
@@ -334,4 +334,4 @@ Eksempel: 🎲 x "setning"`}
      🌑 "Overlevelse er nesten garantert – bare idioter takker nei."`]
 
 ];
-cfg.set('Tankefeilvarsler')
+cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler')

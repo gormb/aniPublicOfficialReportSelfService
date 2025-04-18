@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til IT-revyens årsmøte!<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til IT-revyens årsmøte!<br/><br/>
 <i>Her får du en liten smakebit på hva vi har jobbet med det siste året – fra skriving og idéutvikling til satire og sceneshow.</i><br/><br/>
 Hva vil du høre om?`;
 
@@ -18,4 +18,4 @@ Still gjerne et spørsmål tilbake for å holde samtalen gående.`}
 ,[`Hva er IT-revyen egentlig?`, `En gjeng nerdehumorister med for mye kreativ energi og altfor lite filter.`]
 ,[`Blir det forestilling i år?`, `Vi håper det! Tekstene er i gang, og stemningen er høy. Følg med!`]
 ];
-cfg.set('IT-revyens årsmøte')
+cfg.set(cfg_aiPromptWelcome,'IT-revyens årsmøte')

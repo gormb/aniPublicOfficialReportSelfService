@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til beslutningsassistenten.<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til beslutningsassistenten.<br/><br/>
 <i>Usikker? Jeg hjelper deg tenke klart – fordeler, risiko og veien videre.</i><br/><br/>
 Hva vurderer du akkurat nå?`;
 
@@ -30,4 +30,4 @@ cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor 
 ,[`Bør vi fusjonere med en samarbeidspartner?`, `Hva håper dere på – og hva mister dere?`]
 ,[`Vi står i en omdømmekrise – skal jeg si noe nå?`, `Hva skjer hvis du ikke sier noe? Hva skjer hvis du gjør det for tidlig?`]
 ];
-cfg.set('Beslutning')
+cfg.set(cfg_aiPromptWelcome,'Leder: Beslutningshjelp')

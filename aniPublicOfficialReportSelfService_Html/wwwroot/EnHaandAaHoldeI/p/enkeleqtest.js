@@ -1,4 +1,4 @@
-cfg.aiPromptWelcome=`Velkommen til enkel EQ-test 🌱<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til enkel EQ-test 🌱<br/><br/>
 <i>Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. Les mer under Sikkerhet >> Personvern.</i><br/><br/>
 Vi starter med første område: <b>Selvbevissthet</b>.<br/><br/>
 Hvordan vil du selv beskrive forholdet ditt til egne følelser?`;
@@ -30,8 +30,7 @@ Hvis brukeren ber om å begynne på nytt, nullstill alle terningkastene og begyn
 // Eksempel 1 – Høyt nivå i det meste
 ,[`Jeg prøver å forstå hva som gikk galt og hva jeg kan lære av det.`, `Hvordan reagerer du når du gjør en feil?`]
 ,[`Jeg lærer mye av mine egne reaksjoner og tenker ofte over dem i ettertid.`
-, `🎲6 Selvbevissthet\n
-Hvordan bruker du feil som læring om deg selv?`]
+, `Hvordan bruker du feil som læring om deg selv?`]
 ,[`Jeg tar noen dype pust og fjerner meg fra situasjonen til jeg roer meg ned.`
 , `🎲6 Selvbevissthet\n
 Når du blir sint, hva gjør du for å roe deg ned?`]
@@ -222,4 +221,4 @@ Når har du opplevd at det å overse egne følelser har påvirket en relasjon?`]
 ,[`Begynn på nytt`, `Hvordan vil du selv beskrive forholdet ditt til egne følelser?`]
 
 ];
-cfg.set('Enkel EQ-test','gpt4','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')
+cfg.set(cfg_aiPromptWelcome,'Enkel EQ-test','gpt4','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')

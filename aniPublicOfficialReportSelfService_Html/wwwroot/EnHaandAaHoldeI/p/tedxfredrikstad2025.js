@@ -1,5 +1,5 @@
 // Hovedsakelig produsert med ChatGPT 20250319
-cfg.aiPromptWelcome = `Velkommen til TEDxFredrikstad-chatten!<br/><br/>
+cfg_aiPromptWelcome = `Velkommen til TEDxFredrikstad-chatten!<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
 
@@ -56,4 +56,4 @@ Oppmuntre alltid til videre dialog med et spørsmål på slutten. Hvis brukeren 
 [`Hvilke verdier er viktige for TEDxFredrikstad?`, `Vi følger TED sine kjerneverdier: Inkludering, vitenskapelig troverdighet, mangfoldige perspektiver og upartiskhet.`]
 ];
 
-cfg.set('TEDxFredrikstad','mistrallarge','p/tedxoslo2025.png',null,'#E62B1E',null,'Montserrat')
+cfg.set(cfg_aiPromptWelcome,'TEDxFredrikstad 2025','mistrallarge','p/tedxoslo2025.png',null,'#E62B1E',null,'Montserrat')
