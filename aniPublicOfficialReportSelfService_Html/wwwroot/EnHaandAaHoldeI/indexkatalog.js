@@ -21,7 +21,6 @@ cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
 let iC=0,iTot=9999;
 
 (async()=>{
-  //try {
     await qr.i();
     const items=[], data=cfg.appProviderM(), menu=document.getElementById('appMenu'), search=document.getElementById('searchInput');
     const createAppListItem = (app, url) => {
@@ -89,7 +88,4 @@ let iC=0,iTot=9999;
       });
     });
     (q => q && (search.value = q, search.dispatchEvent(new Event('input')), search.style.display = 'none'))(new URLSearchParams(location.search).get('q'));
-  //   } catch (error) {
-  //   console.error('An error occurred:', error);
-  // }
 })();
