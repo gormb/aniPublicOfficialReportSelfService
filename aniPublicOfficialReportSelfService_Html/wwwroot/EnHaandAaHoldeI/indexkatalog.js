@@ -11,14 +11,15 @@ cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
   qr.g(dQr, baseUrl+id, 0.45, img.src);
   setTimeout(()=>{
     img.style.display='none';
-    dDesc.innerHTML=aiPromptWelcome;
-  },1000);
-  // document.documentElement.style.setProperty('--primary-color', priCol??'#007bff');
-  // document.documentElement.style.setProperty('--light-msg', lightMCol??'#ffffff');
-  // ui.font.n(font??'Roboto')
+    //dDesc.innerHTML=aiPromptWelcome;
+    ui.font.n(font??'Roboto')
+    dDesc.innerHTML=`<div style="padding:1vw;border-radius:1vw
+      ;font-family:${font??'Roboto'};color:${lightMCol??'#ffffff'};background:${priCol??'#007bff'}">
+      ${aiPromptWelcome}</div>`;
+  },500);
 } //cfg.set(cfg_aiPromptWelcome,'KIROS-konsulent','gpt4nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
 
-let iC=0,iTot=9;
+let iC=0,iTot=9999;
 
 (async()=>{
   try {
