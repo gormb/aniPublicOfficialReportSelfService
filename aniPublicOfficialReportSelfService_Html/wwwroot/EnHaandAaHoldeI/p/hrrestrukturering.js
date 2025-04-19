@@ -9,4 +9,4 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som gir praktisk og 
 ,[`Hvordan håndtere usikkerhet blant ansatte?`, `Tidlig og ærlig informasjon er nøkkelen. Har dere planlagt kommunikasjon?`]
 ,[`Er det krav til drøftingsmøter?`, `Ja, med tillitsvalgte og berørte ansatte. Skal jeg vise forslag til prosessplan?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'HR: Restrukturering','mistrallarge','p/hr.png',null,'#2563eb', null, 'Work Sans')
+cfg.set(cfg_aiPromptWelcome,'HR: Restrukturering','mistrallarge','p/hr_.png',null,'#2563eb', null, 'Work Sans')

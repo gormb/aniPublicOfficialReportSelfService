@@ -104,7 +104,7 @@ const ui = {
             let e=ui.menu.E(mt)
             if (b==null) b = !e.classList.contains(f);
             if (b==true) e.classList.add(f);
-            else e.classList.remove(f);
+            else e?.classList?.remove(f);
             return b;
         }
         , EBold : (mt,b=null) => ui.menu.EFeat(mt,b,'bold')

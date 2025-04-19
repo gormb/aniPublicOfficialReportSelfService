@@ -9,4 +9,4 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som hjelper ledere �
 ,[`Har den ansatte rett til å klage?`, `Ja, og de kan reise søksmål innen 8 uker. Husk å dokumentere alt skriftlig.`]
 ,[`Vi skal si opp flere samtidig`, `Da gjelder regler om masseoppsigelse. Hvor mange og hvor raskt?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'HR: Oppsigelsen','mistrallarge','p/hr.png',null,'#2563eb', null, 'Work Sans')
+cfg.set(cfg_aiPromptWelcome,'HR: Oppsigelsen','mistrallarge','p/hr_.png',null,'#2563eb', null, 'Work Sans')
