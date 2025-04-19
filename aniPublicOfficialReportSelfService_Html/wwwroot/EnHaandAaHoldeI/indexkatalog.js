@@ -32,12 +32,14 @@ let iC=0,iTot=9999;
         Object.assign(document.createElement('a'), { href: url, textContent: app })
         , Object.assign(document.createElement('div'), { id: 'qr_' + id, innerHTML: ui.c.tRotating /*'laster QR...'*/ })
         , Object.assign(document.createElement('img'), { id:'img_'+id, src:ui.c.ImgA, style:'height:5vw'})
-        , Object.assign(document.createElement('div'), { id: 'set_' + id, innerHTML: ui.c.tRotating /*'laster beskrivelse...'*/ })
         , Object.assign(document.createElement('button'), {
-          textContent: 'v', onclick: () => {
-            const f=document.getElementById('ifr_'+id);
-            f.style.display=f.style.display=='none'?'':'none';}})
-        , Object.assign(document.createElement('iframe'), { id: 'ifr_' + id, src: url, style: 'display:none' })
+          textContent: '👀', onclick: () => {
+            const f=document.getElementById('ifr_'+id),d=f.style.display;
+            f.style.display=d=='none'?'':'none';
+            document.getElementById('set_'+id).style.display=d==''?'':'none';
+          }})
+          , Object.assign(document.createElement('div'), { id: 'set_' + id, innerHTML: ui.c.tRotating /*'laster beskrivelse...'*/ })
+          , Object.assign(document.createElement('iframe'), { id: 'ifr_' + id, src: url, style: 'display:none' })
       );
       cfg.load(app);
       return li;
