@@ -30,4 +30,4 @@ Hvis du ikke er sikker på et svar eller trenger mer kontekst, oppfordre brukere
 [`Hva er dataminimering?`, `Dataminimering betyr at en virksomhet kun skal samle inn og lagre de personopplysningene som er nødvendige for det spesifikke formålet, og ikke mer enn det.`],
 [`Hvordan kan jeg klage på brudd på personvern?`, `Du kan klage til Datatilsynet hvis du mener dine personopplysninger er blitt behandlet i strid med GDPR. Før du klager, bør du prøve å kontakte virksomheten som behandler dine data.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Mine pasientdata','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Mine pasientdata','mistrallarge','p/minepasientdata.png',null,null,'rgb(240,229,207)')

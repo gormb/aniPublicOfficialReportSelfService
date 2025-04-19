@@ -28,4 +28,4 @@ cfg.aiPrompt= [{ role: `system`, content:
         ,[`Hva skjer den første dagen?`, `Den første dagen får du en omvisning og møter teamet ditt. Vi starter med en helhetlig vurdering for å lage en personlig rehabiliteringsplan. Husk at det er normalt å føle seg litt nervøs, men forskning viser at å sette små, oppnåelige mål tidlig gir bedre langsiktig resultat.`]
     ];
 
-cfg.set(cfg_aiPromptWelcome,'Før opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Før opphold','mistrallarge','p/fropphold.png',null,null,'rgb(240,229,207)')

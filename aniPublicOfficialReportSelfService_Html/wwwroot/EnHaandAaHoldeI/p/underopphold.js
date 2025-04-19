@@ -21,4 +21,4 @@ Hvis du er usikker eller mangler informasjon, oppfordre pasienten til å kontakt
 ,[`Hva skjer den siste dagen?`, `På den siste dagen vil du ha en avsluttende samtale med ditt behandlingsteam. De vil gi deg råd om videre oppfølging. Du får også tid til å pakke og forberede hjemreisen.`]
 ]
 
-cfg.set(cfg_aiPromptWelcome,'Under opphold','mistrallarge','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Under opphold','mistrallarge','p/underopphold.png',null,null,'rgb(240,229,207)')
