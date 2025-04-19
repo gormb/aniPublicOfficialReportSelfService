@@ -334,4 +334,4 @@ Eksempel: 🎲 x "setning"`}
      🌑 "Overlevelse er nesten garantert – bare idioter takker nei."`]
 
 ];
-cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler',null,'p/tankefeilvarsler.png')
+cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler',null,'p/tankefeilvarsler.png','f,5,2')

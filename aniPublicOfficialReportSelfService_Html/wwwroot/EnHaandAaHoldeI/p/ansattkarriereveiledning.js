@@ -38,5 +38,5 @@ Vær motiverende, praktisk og nysgjerrig. Still gjerne oppfølgingsspørsmål.` 
 ,[`Finnes det støtteordninger for videreutdanning?`, `Ja, bl.a. Lånekassen og NAV. Vil du vite mer om dine muligheter?`]
 ,[`Kan jeg kombinere jobb og studier?`, `Ja, men det krever planlegging. Hvor mange timer kan du studere i uka?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Ansatt: Karriereveiledning','mistrallarge','p/ansatt.png',null,'#2563eb', null, 'Work Sans')
+cfg.set(cfg_aiPromptWelcome,'Ansatt: Karriereveiledning','mistrallarge','p/ansatt.png','f,5,2','#2563eb', null, 'Work Sans')
 

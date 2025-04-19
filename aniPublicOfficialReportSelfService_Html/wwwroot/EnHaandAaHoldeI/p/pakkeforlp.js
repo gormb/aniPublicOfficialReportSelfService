@@ -22,4 +22,4 @@ Du kan spørre tilbake for å finne ut hvor i forløpet pasienten er, og hva ved
 ,[`Kan jeg få hjelp med praktiske ting som transport og økonomi?`, `Ja. Pakkeforløp skal ivareta hele deg. Du kan spørre om pasientreiser, egenandel, NAV eller støtteordninger. Be teamet ditt om råd.`]
 ,[`Er pakkeforløp bare for kreft?`, `Nei. Pakkeforløp finnes også for psykisk helse, rus, hjerneslag, hjerte, muskel-skjelett, ME og mer. Spør hvis du er usikker på om du er i ett.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Pakkeforløp','gpt4','p/pakkeforlp.png',null,'#4aa3c3',null,'Lato')
+cfg.set(cfg_aiPromptWelcome,'Pakkeforløp','gpt4','p/pakkeforlp.png','f,5,2','#4aa3c3',null,'Lato')
