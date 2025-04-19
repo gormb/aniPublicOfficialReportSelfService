@@ -14,4 +14,4 @@ Still gjerne oppfølgingsspørsmål for å tilpasse veiledningen til brukerens s
   [`Hva er mine rettigheter som student?`, `Studenter kan få stipend og lån fra Lånekassen. Er du student ved en godkjent institusjon?`]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'(NO) Alt Om Tjenester','mistrallarge','p/no.png','f,5,2','#fbbf24', '#000000', 'Lexend')
+cfg.set(cfg_aiPromptWelcome,'(NO) Alt Om Tjenester','mistrallarge','p/no.png','f,5,2','#fbbf24', null, 'Lexend')

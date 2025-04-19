@@ -13,4 +13,4 @@ Still oppfølgingsspørsmål for å kartlegge brukerens situasjon.`
   [`Hvordan oppdaterer jeg mine personopplysninger?`, `Dette gjøres via Folkeregisteret. Har du all nødvendig dokumentasjon?`],
   [`Hvilke rettigheter har jeg ved arbeidsledighet?`, `Arbeidsledige kan få dagpenger. Har du registrert deg hos NAV?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) RettighetsVakten','mistrallarge','p/no.png','f,5,2','#f97316', '#000000', 'Assistant')
+cfg.set(cfg_aiPromptWelcome,'(NO) RettighetsVakten','mistrallarge','p/no.png','f,5,2','#f97316', null, 'Assistant')

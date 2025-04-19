@@ -13,4 +13,4 @@ Still enkle oppfølgingsspørsmål for å sikre at brukeren følger riktige trin
   [`Hvordan søker jeg om studielån?`, `Søknad om studielån gjøres via Lånekassen. Har du all relevant studieinformasjon?`],
   [`Hvordan melder jeg adresseendring?`, `Adresseendring meldes via Skatteetatens nettside. Har du din gamle og nye adresse?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) TjenesteGuide','mistrallarge','p/no.png','f,5,2','#fb923c', '#000000', 'Cabin')
+cfg.set(cfg_aiPromptWelcome,'(NO) TjenesteGuide','mistrallarge','p/no.png','f,5,2','#fb923c', null, 'Cabin')
