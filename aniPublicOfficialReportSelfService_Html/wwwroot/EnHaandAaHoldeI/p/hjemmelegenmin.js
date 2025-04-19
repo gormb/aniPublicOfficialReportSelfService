@@ -97,4 +97,4 @@ Hvis pasienten stiller spørsmål som ikke er medisinske, kan du svare vennlig, 
 ,[`Jeg er bare så sliten`, `Det høres ut som du har båret mye. Du trenger ikke være sterk hele tiden – nå er du her, og det er nok for nå.`]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'Hjemmelegen min','gpt4nano','p/hjemmelegenmin.png',null,null,'rgb(240,229,207)')
+cfg.set(cfg_aiPromptWelcome,'Hjemmelegen min','gpt4nano','p/hjemmelegenmin.png',null,'#7da27c',null,'Merriweather')
