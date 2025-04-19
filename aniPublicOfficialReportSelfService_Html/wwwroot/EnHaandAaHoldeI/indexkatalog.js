@@ -18,7 +18,7 @@ cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
   },500);
 } //cfg.set(cfg_aiPromptWelcome,'KIROS-konsulent','gpt4nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
 
-let iC=0,iTot=7;
+let iC=0,iTot=9999;
 
 (async()=>{
   //try {
