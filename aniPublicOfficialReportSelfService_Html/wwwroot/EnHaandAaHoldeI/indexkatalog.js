@@ -18,17 +18,12 @@ cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
   // ui.font.n(font??'Roboto')
 } //cfg.set(cfg_aiPromptWelcome,'KIROS-konsulent','gpt4nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
 
-let iC=0,iTot=9999;
+let iC=0,iTot=9;
 
-(async () => {
+(async()=>{
   try {
     await qr.i();
-    //qr.g(document.getElementById('urqr'), window.location.href, 0.25);
-    const data = cfg.appProviderM();
-    const menu = document.getElementById('appMenu');
-    const search = document.getElementById('searchInput');
-    const items = [];
-
+    const items=[], data=cfg.appProviderM(), menu=document.getElementById('appMenu'), search=document.getElementById('searchInput');
     const createAppListItem = (app, url) => {
       let id=app.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
       const li = document.createElement('li');
@@ -36,33 +31,28 @@ let iC=0,iTot=9999;
       
       li.append(
         Object.assign(document.createElement('a'), { href: url, textContent: app })
-        //, qrHolder
         , Object.assign(document.createElement('div'), { id: 'qr_' + id, innerHTML: ui.c.tRotating /*'laster QR...'*/ })
         , Object.assign(document.createElement('img'), { id:'img_'+id, src:ui.c.ImgA, style:'height:5vw'})
         , Object.assign(document.createElement('div'), { id: 'set_' + id, innerHTML: ui.c.tRotating /*'laster beskrivelse...'*/ })
         , Object.assign(document.createElement('button'), {
           textContent: 'v', onclick: () => {
-            const iframe = document.getElementById('ifr_' + id);
-            iframe.style.display = iframe.style.display === 'none' ? '' : 'none';}})
-        , Object.assign(document.createElement('iframe'), { id: 'ifr_' + id, src: url, style: 'display:none;height:40vw' })
+            const f=document.getElementById('ifr_'+id);
+            f.style.display=f.style.display=='none'?'':'none';}})
+        , Object.assign(document.createElement('iframe'), { id: 'ifr_' + id, src: url, style: 'display:none' })
       );
       cfg.load(app);
       return li;
     };
-
     data.forEach(([temaRaw, grupper]) => {
       const section = document.createElement('div');
       section.classList.add('section');
-      const header = document.createElement('h2');
-      header.textContent = temaRaw.split('>>')[0];
-      section.appendChild(header);
+      section.appendChild(/*header*/Object.assign(document.createElement('h2'),{textContent:temaRaw.split('>>')[0]}));
       for (let i = 0; i < grupper.length; i += 2) {
         const [gruppeRaw, apper] = [grupper[i], grupper[i + 1]];
           const groupDiv = document.createElement('div');
           groupDiv.classList.add('group');
           groupDiv.appendChild(Object.assign(document.createElement('h3'), { textContent: gruppeRaw.split('>>')[0]}));
           const ul = document.createElement('ul');
-
           apper.forEach(app => {
             if (iC++<iTot)
               if (typeof app === 'string' && !app.includes('<<')) {
@@ -82,26 +72,22 @@ let iC=0,iTot=9999;
     search.addEventListener('input', () => {
       const q = search.value.trim().toLowerCase();
       const sections = document.querySelectorAll('.section');
-
       sections.forEach(section => {
         let sectionVisible = false;
         const groups = section.querySelectorAll('.group');
         groups.forEach(group => {
           const apps = group.querySelectorAll('li');
           let groupVisible = false;
-
           apps.forEach(app => {
             const appData = app.getAttribute('data-app');
             const appMatches = appData.includes(q);
             app.style.display = appMatches ? '' : 'none';
-            groupVisible = groupVisible || appMatches;  // Mark group as visible if any app matches
+            groupVisible = groupVisible || appMatches;
           });
-
-          group.style.display = groupVisible ? '' : 'none';  // Show group if it's visible
-          sectionVisible = sectionVisible || groupVisible;  // Mark section as visible if any group is visible
+          group.style.display = groupVisible ? '' : 'none';
+          sectionVisible = sectionVisible || groupVisible;
         });
-
-        section.style.display = sectionVisible ? '' : 'none';  // Show section if any group is visible
+        section.style.display = sectionVisible ? '' : 'none';
       });
     });
 
