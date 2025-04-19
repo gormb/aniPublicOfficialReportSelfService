@@ -22,6 +22,7 @@ let iC=0,iTot=9999;
 
 (async()=>{
     await qr.i();
+    qr.g(document.getElementById('urqr'), window.location.href, 0.25, 'p/aigap.webp');
     const items=[], data=cfg.appProviderM(), menu=document.getElementById('appMenu'), search=document.getElementById('searchInput');
     const createAppListItem = (app, url) => {
       const li = document.createElement('li');

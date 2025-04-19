@@ -28,4 +28,4 @@ cfg.aiPrompt=[
 ,[`Hvordan prioriterer jeg når alt virker viktig?`, `Hva haster og hva har størst effekt? Vil du ha en enkel modell for å sortere?`]
 ,[`Hvordan får jeg kontroll på alt?`, `Du trenger ikke ha kontroll på alt – men du bør ha oversikt. Vil du lage en enkel ukeplan sammen?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Leder: Ny i rollen')
+cfg.set(cfg_aiPromptWelcome,'Leder: Ny i rollen',null,'p/leder.png',null,'#1e40af', null, 'Merriweather Sans')

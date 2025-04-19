@@ -9,8 +9,9 @@ li { display: flex; flex-direction: column; align-items: center; background: #ff
 iframe { display: flex; flex-direction: row; align-items: center; background: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); width: 40vw;height: 40vw; }
 a { text-decoration: none; color: #0077cc; font-weight: 500; font-size: larger; }
 a:hover { text-decoration: underline; }
+button {font-size: 2rem;}
 .qr-inline { margin-top: 0.8rem; width: auto; height: auto; }
-.qr-button-large { margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 1rem; background-color: #0077cc; color: white; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s ease; }
+.qr-button-large { margin-top: .5rem; padding: 0.5rem 1rem; font-size: 1rem; background-color: #0077cc; color: white; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s ease; }
 .qr-button-large:hover { background-color: #005fa3; }
 .hidden { display: none; }
 i,i+br {display: none;}

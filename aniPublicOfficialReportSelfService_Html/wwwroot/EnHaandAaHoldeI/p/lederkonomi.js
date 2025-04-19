@@ -31,5 +31,5 @@ cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor 
 ,[`Hvordan kan vi få bedre marginer?`, `Se på priser, innsats og faste kostnader. Vil du finne småkutt eller prisøkning først?`]
 ,[`Jeg må presentere tall for styret – hjelp!`, `Velg 3–5 tall, bruk grafer og forklar hva du vil de skal gjøre med det.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Leder: Økonomi')
+cfg.set(cfg_aiPromptWelcome,'Leder: Økonomi',null,'p/leder.png',null,'#1e40af', null, 'Merriweather Sans')
 

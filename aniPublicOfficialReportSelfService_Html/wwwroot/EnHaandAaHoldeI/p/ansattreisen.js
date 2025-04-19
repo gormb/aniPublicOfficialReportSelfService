@@ -41,4 +41,4 @@ Svar gjerne med oppfølgingsspørsmål hvis det gir bedre hjelp.` }
 ,[`Når får jeg sluttattest?`, `Den skal komme innen siste lønnsutbetaling. Har du sendt forespørsel?`]
 ,[`Kan jeg få referanse fra leder?`, `Som oftest, ja – spør gjerne direkte. Trenger du den skriftlig eller muntlig?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Ansatt: Reisen','mistrallarge')
+cfg.set(cfg_aiPromptWelcome,'Ansatt: Reisen','mistrallarge','p/ansatt.png',null,'#2563eb', null, 'Work Sans')

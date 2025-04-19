@@ -14,4 +14,4 @@ Still enkle oppfølgingsspørsmål for å sikre at du forstår brukerens situasj
   [`Hva må jeg gjøre for å få utdanningsstøtte?`, `Utdanningsstøtte søkes via Lånekassen. Har du sjekket dine krav?`],
   [`Hvordan kontakter jeg kommunen for veiledning?`, `Du kan kontakte kommunen via deres digitale kontaktskjema. Har du tilgang til din kommuneportal?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) HverdagsHjelpen','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) HverdagsHjelpen','mistrallarge','p/no.png','f,5,2','#f59e0b', '#000000', 'Public Sans')

@@ -25,4 +25,4 @@ cfg.aiPrompt=[
 ,[`Jeg mistenker favorisering i et team`, `Det kan skape lav LMX for andre. Vil du utforske hvordan du kan jevne ut relasjonene?`]
 ,[`Hvordan bygger jeg tillit hos nyansatte?`, `Vær tilgjengelig, vis interesse og følg opp tidlig. Har du hatt en god introduksjonssamtale?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Leder: LMX')
+cfg.set(cfg_aiPromptWelcome,'Leder: LMX',null,'p/leder.png',null,'#1e40af', null, 'Merriweather Sans')

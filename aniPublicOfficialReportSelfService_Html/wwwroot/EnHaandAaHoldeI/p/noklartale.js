@@ -13,4 +13,4 @@ Still oppfølgingsspørsmål for å sikre at du forstår brukerens behov.`
   [`Hvordan søker jeg om bostøtte?`, `Bostøtte søkes via din kommune. Vet du hvilken kommune du tilhører?`],
   [`Hva innebærer plikten til å levere selvangivelse?`, `Selvangivelse skal leveres årlig. Har du alle nødvendige opplysninger?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) KlarTale','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) KlarTale','mistrallarge','p/no.png','f,5,2','#f59e0b', '#000000', 'Atkinson Hyperlegible')

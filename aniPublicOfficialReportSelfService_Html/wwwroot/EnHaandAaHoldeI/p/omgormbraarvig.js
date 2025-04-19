@@ -77,4 +77,4 @@ cfg.aiPrompt.push(
    [`Hvordan kan AI og XR sammen skape bedre helsetjenester?`, 
     `Ved å kombinere AI med utvidet virkelighet (XR) kan vi skape mer interaktive og effektive helsetjenester. Gorm har jobbet med konseptet ‘Familielegen min’, som bruker AI og XR for bedre pasientbehandling.`]
 );
-cfg.set(cfg_aiPromptWelcome,'Om Gorm Braarvig','gpt4nano','p/no.png','v,15,2',null,null,null)
+cfg.set(cfg_aiPromptWelcome,'Om Gorm Braarvig','gpt4nano','p/no.png','v,15,2','#2563eb', null, 'Raleway')

@@ -9,4 +9,4 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en innleid HR-konsulent som hjelper 
 ,[`Hva hvis samtalen blir vanskelig?`, `Hold roen, lytt aktivt og fokuser på løsninger. Ønsker du forslag til formuleringer?`]
 ,[`Hvordan følge opp etterpå?`, `Lag en kort oppsummering med avtaler og mål. Sett gjerne en ny samtale om 3–6 måneder.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'HR: Medarbeidersamtale','mistrallarge')
+cfg.set(cfg_aiPromptWelcome,'HR: Medarbeidersamtale','mistrallarge','p/hr.png',null,'#2563eb', null, 'Work Sans')
