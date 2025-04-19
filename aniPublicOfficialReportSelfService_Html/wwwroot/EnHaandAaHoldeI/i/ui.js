@@ -83,9 +83,7 @@ const ui = {
       document.documentElement.style.setProperty('--font-size', ['medium','x-large','xx-large','xx-large','medium'][++this._sizeI % 5]);
       document.body.classList.toggle('dark-mode', this._sizeI % 5 > 2);
     }
-    ,font:{
-        n:f=>(document.head.appendChild(Object.assign(document.createElement('link'),{href:`https://fonts.googleapis.com/css2?family=${encodeURIComponent(f)}&display=swap`,rel:'stylesheet'})),document.documentElement.style.setProperty('--font-family',`'${f}'`))
-    }
+    ,font:{n:f=>(document.head.appendChild(Object.assign(document.createElement('link'),{href:`https://fonts.googleapis.com/css2?family=${encodeURIComponent(f)}&display=swap`,rel:'stylesheet'})),document.documentElement.style.setProperty('--font-family',`'${f}'`),f)}
     , menu : {
         AsArray (mStr) { // create hierarchy from | || ||| string
             m=[], p=[0,0,0,0,0];

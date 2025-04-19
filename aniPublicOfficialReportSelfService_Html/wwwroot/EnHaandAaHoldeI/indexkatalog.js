@@ -11,25 +11,24 @@ cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
   qr.g(dQr, baseUrl+id, 0.45, img.src);
   setTimeout(()=>{
     img.style.display='none';
-    //dDesc.innerHTML=aiPromptWelcome;
-    ui.font.n(font??'Roboto')
+    
     dDesc.innerHTML=`<div style="padding:1vw;border-radius:1vw
-      ;font-family:${font??'Roboto'};color:${lightMCol??'#ffffff'};background:${priCol??'#007bff'}">
+      ;font-family:${ui.font.n(font??'Roboto')};color:${lightMCol??'#ffffff'};background:${priCol??'#007bff'}">
       ${aiPromptWelcome}</div>`;
   },500);
 } //cfg.set(cfg_aiPromptWelcome,'KIROS-konsulent','gpt4nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
 
-let iC=0,iTot=9999;
+let iC=0,iTot=7;
 
 (async()=>{
-  try {
+  //try {
     await qr.i();
     const items=[], data=cfg.appProviderM(), menu=document.getElementById('appMenu'), search=document.getElementById('searchInput');
     const createAppListItem = (app, url) => {
-      let id=app.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
       const li = document.createElement('li');
       li.setAttribute('data-app', app.toLowerCase());
-      
+      app=app.split('|')[0];
+      let id=app.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
       li.append(
         Object.assign(document.createElement('a'), { href: url, textContent: app })
         , Object.assign(document.createElement('div'), { id: 'qr_' + id, innerHTML: ui.c.tRotating /*'laster QR...'*/ })
@@ -47,7 +46,7 @@ let iC=0,iTot=9999;
     data.forEach(([temaRaw, grupper]) => {
       const section = document.createElement('div');
       section.classList.add('section');
-      section.appendChild(/*header*/Object.assign(document.createElement('h2'),{textContent:temaRaw.split('>>')[0]}));
+      section.appendChild(Object.assign(document.createElement('h2'),{textContent:temaRaw.split('>>')[0]}));
       for (let i = 0; i < grupper.length; i += 2) {
         const [gruppeRaw, apper] = [grupper[i], grupper[i + 1]];
           const groupDiv = document.createElement('div');
@@ -58,7 +57,7 @@ let iC=0,iTot=9999;
             if (iC++<iTot)
               if (typeof app === 'string' && !app.includes('<<')) {
                 const url = baseUrl + encodeURIComponent(app.trim());
-                const li = createAppListItem(app, url);
+                const li = createAppListItem(app+'|'+gruppeRaw.split('>>')[0]+'|'+temaRaw.split('>>')[0], url);
                 ul.appendChild(li);
                 items.push(li);
               }
@@ -68,8 +67,6 @@ let iC=0,iTot=9999;
         }
       menu.appendChild(section);
     });
-
-    // Search filtering
     search.addEventListener('input', () => {
       const q = search.value.trim().toLowerCase();
       const sections = document.querySelectorAll('.section');
@@ -91,8 +88,8 @@ let iC=0,iTot=9999;
         section.style.display = sectionVisible ? '' : 'none';
       });
     });
-
-  } catch (error) {
-    console.error('An error occurred:', error);
-  }
+    (q => q && (search.value = q, search.dispatchEvent(new Event('input')), search.style.display = 'none'))(new URLSearchParams(location.search).get('q'));
+  //   } catch (error) {
+  //   console.error('An error occurred:', error);
+  // }
 })();
