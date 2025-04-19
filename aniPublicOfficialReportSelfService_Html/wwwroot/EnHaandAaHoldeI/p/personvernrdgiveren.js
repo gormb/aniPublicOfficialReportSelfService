@@ -1,6 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til Personvernrådgiveren.<br/><br/>
-<i>Her får du hjelp til å forstå og beskytte ditt digitale personvern i Norge. Vi lagrer ikke spørsmål, og data behandles kun midlertidig for å gi deg svar.</i><br/><br/>
-Hva lurer du på om personvern, data eller rettigheter?`;
+cfg_aiPromptWelcome = `Personvernrådgiveren 🔐<br/><br/>
+Korte, klare råd om innsyn, sletting, reservasjon og andre personvern­rettigheter for digitale tjenester i Norge – uten unødvendig jusspråk.<br/><br/>
+Fortell kort hva du vil forstå eller få gjort, så viser jeg deg trinnene. Hva gjelder saken?`;
 
 cfg.aiPrompt = [
   { role: `system`, content:

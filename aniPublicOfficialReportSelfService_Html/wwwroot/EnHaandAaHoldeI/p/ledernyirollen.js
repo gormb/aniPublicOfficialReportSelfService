@@ -1,6 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen som ny leder!<br/><br/>
-<i>Jeg er her for å gi deg raske råd, trygghet og tips – akkurat når du trenger det.</i><br/><br/>
-Hva lurer du på nå?`;
+cfg_aiPromptWelcome = `Velkommen som ny leder!🚀<br/><br/>
+Jeg er din erfarne mentor – klar med raske råd, sjekklister og trygghet for alt fra prioritering til vanskelige samtaler.<br/><br/>
+Hva vil du sparre om først?`;
 
 cfg.aiPrompt=[
   { role: `system`, content: 

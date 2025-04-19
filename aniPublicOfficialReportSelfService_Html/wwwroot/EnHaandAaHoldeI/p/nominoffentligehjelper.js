@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til Min Offentlige Hjelper.<br/><br/>
-<i>Her får du enkle svar om offentlige tjenester – alt fra helse og trygd til utdanning og skatt. Informasjonen er veiledende.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome = `Min Offentlige Hjelper 🤝<br/><br/>
+Rask vei til klare svar om helse, trygd, utdanning, skatt – og alt annet det offentlige tilbyr.<br/><br/>
+Hva trenger du hjelp til akkurat nå?`;
 
 cfg.aiPrompt= [
   { role: `system`, content:

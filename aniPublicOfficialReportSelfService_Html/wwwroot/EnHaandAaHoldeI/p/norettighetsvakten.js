@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til RettighetsVakten.<br/><br/>
-<i>Her får du hjelp til å sikre at du får dine rettigheter oppfylt. Informasjonen er veiledende – for detaljerte svar, kontakt den aktuelle instansen.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome = `RettighetsVakten 🛡️<br/><br/>
+Få raske råd om frister, klager og andre rettigheter – så ingenting glipper.<br/><br/>
+Hva vil du sikre nå?`;
 
 cfg.aiPrompt= [
   { role: `system`, content:

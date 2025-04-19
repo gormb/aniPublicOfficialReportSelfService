@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til Alt På Ett Sted.<br/><br/>
-<i>Her får du en samlet oversikt over dine offentlige data og tjenester. Informasjonen er veiledende – denne assistenten hjelper deg med å holde orden på avtaler og rettigheter.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome = `Alt På Ett Sted 🗂️<br/><br/>
+Se avtaler, utbetalinger og rettigheter fra NAV, Skatteetaten, Helsenorge – alt samlet på ett sted.<br/><br/>
+Hva vil du ha oversikt over først?`;
 
 cfg.aiPrompt= [
   { role: `system`, content:

@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til KlarTale.<br/><br/>
-<i>Her får du klare og lettfattelige svar på spørsmål om offentlige tjenester. Informasjonen er veiledende – for presise svar, kontakt instansen direkte.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome = `KlarTale 📢<br/><br/>
+Offentlige regler – forklart i korte, klare setninger uten jusspråk.<br/><br/>
+Hva vil du ha svar på?`;
 
 cfg.aiPrompt= [
   { role: `system`, content:

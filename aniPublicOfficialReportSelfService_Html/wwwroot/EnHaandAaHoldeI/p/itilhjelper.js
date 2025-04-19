@@ -1,6 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til ITIL-hjelperen.<br/><br/>
-<i>Jeg hjelper deg å navigere steg for steg i ITIL-prosesser – fra Service Request til Incident Management og mer.</i><br/><br/>
-Vil du starte med en oversikt over ITIL-prosessene?`;
+cfg_aiPromptWelcome = `Velkommen til ITIL‑hjelperen ⚙️<br/><br/>
+Få raske stegvise råd gjennom nøkkelprosesser som Incident, Change og Service Request – én prosess om gangen.<br/><br/>
+Vil du starte med en oversikt over ITIL‑prosessene?`;
 
 cfg.aiPrompt=[
   { role: `system`, content: 

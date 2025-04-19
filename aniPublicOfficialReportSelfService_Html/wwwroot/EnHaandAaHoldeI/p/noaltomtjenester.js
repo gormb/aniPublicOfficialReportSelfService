@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til Alt Om Tjenester.<br/><br/>
-<i>Her får du en oversikt over alle offentlige tjenester og dine rettigheter og plikter. Informasjonen er veiledende og hjelper deg med å finne ut hva du har krav på.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome = `Alt Om Tjenester 📚<br/><br/>
+Få full oversikt over offentlige rettigheter, plikter og tjenester – pluss praktiske råd for å ta dem i bruk.<br/><br/>
+Hva vil du vite mer om?`;
 
 cfg.aiPrompt= [
   { role: `system`, content:

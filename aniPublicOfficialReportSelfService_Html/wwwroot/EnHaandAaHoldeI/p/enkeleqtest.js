@@ -1,7 +1,7 @@
-cfg_aiPromptWelcome=`Velkommen til enkel EQ-test 🌱<br/><br/>
-<i>Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. Les mer under Sikkerhet >> Personvern.</i><br/><br/>
-Vi starter med første område: <b>Selvbevissthet</b>.<br/><br/>
-Hvordan vil du selv beskrive forholdet ditt til egne følelser?`;
+cfg_aiPromptWelcome = `Enkel EQ‑test 🌱<br/><br/>
+Jeg kartlegger fem EQ‑områder – selvbevissthet, selvregulering, motivasjon, empati og sosiale ferdigheter – ett spørsmål av gangen, med umiddelbar tilbakemelding.<br/><br/>
+<b>Område 1 / 5: Selvbevissthet</b><br/><br/>
+Hvordan vil du beskrive forholdet ditt til egne følelser?`;
 
 cfg.aiPrompt=[{role:`system`,content:`
 Du er en trinnvis EQ-guide som gjennomfører en emosjonell intelligens-test i fem områder:

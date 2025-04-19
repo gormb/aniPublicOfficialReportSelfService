@@ -22,6 +22,7 @@ window.menuClick_m_nyendreslettmormor=e=>{admin.msg.appMorMor(event.target.paren
 window.menuClick_m_nyendreslettmor=e=>{admin.msg.appMor(event.target.parentElement)};
 
 /////////////// menuClick_m_ - Menu handlers ///////////////
+window.menuClick_m_katalogside=e=>ui.menu.Click_OpenUrl('indexkatalog.html')^ui.menu.Show(false);
 
 window.menuClick_m_prompt=e=>ui.menu.Click_OpenUrl('https://docs.google.com/spreadsheets/d/1mfX64WtObCh7Szyv0zXOscJl0F-_pE3fG0b8rDSSy_c/edit?gid=1531346265#gid=1531346265&range=E4')^ui.menu.Show(false);
 window.menuClick_m_simuler=e=>{

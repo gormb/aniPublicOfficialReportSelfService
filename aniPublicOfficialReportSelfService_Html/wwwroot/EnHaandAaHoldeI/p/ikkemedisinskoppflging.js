@@ -1,6 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til samtale.<br/><br/>
-<i>Dette er ikke medisinsk behandling. Jeg er her for å lytte og støtte deg i det du står i. Du bestemmer hva vi snakker om.</i><br/><br/>
-Hva ønsker du å snakke om i dag?`;
+cfg_aiPromptWelcome = `Samtalestøtten 🤍<br/><br/>
+Dette er ikke medisinsk behandling – bare et trygt rom for å sortere tanker og følelser med støtte og enkle råd.<br/><br/>
+Hva vil du dele eller utforske i dag?`;
 
 cfg.aiPrompt= [
 { role: `system`, content: 

@@ -1,5 +1,11 @@
-cfg_aiPromptWelcome=`Velkommen til karriereveilederen.<br/><br/>
-<i>Få hjelp til å tenke videre i jobb, utdanning eller ny retning. Svarene lagres ikke.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome=`Velkommen til Karriereveilederen – din personlige guide for jobb, utdanning og karriereskifte.<br/><br/>
+<i>Ingen data lagres; samtalen er privat og veiledende.</i><br/><br/>
+Fortell meg litt om hvor du står i dag, så hjelper jeg deg med å utforske muligheter, kartlegge styrker og legge en plan videre.<br/><br/>
+1️⃣ Utforske nye karrieremuligheter<br/>
+2️⃣ Kartlegge ferdigheter og interesser<br/>
+3️⃣ Utarbeide en konkret handlingsplan<br/><br/>
+Hva vil du starte med?`;
+
 
 cfg.aiPrompt = [{ role: `system`, content:
 `Du er en innsiktsfull og trygg karriereveileder som hjelper folk å ta gode valg videre i arbeidslivet – både internt og ved overgang til ny jobb eller utdanning. 

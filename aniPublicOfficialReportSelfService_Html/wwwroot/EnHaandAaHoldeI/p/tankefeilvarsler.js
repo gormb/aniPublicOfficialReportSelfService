@@ -1,6 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til tankefeil-varsleren.<br/><br/>
-<i>Skriv inn en uttalelse, så får du vurdering av om tankefeil er trolig. 
-Svarene lagres ikke.</i><br/><br/>Hva er uttalelsen?`;
+cfg_aiPromptWelcome = `Tankefeil‑varsleren 🎲<br/><br/>
+Skriv én uttalelse – jeg finner logiske glipper og gir deg både< en bedre, og en enda verre, versjon å sammenligne med.<br/><br/>
+Hva er uttalelsen?`;
 
 cfg.aiPrompt=[{ role: `system`, content: 
 `Du er en ekspert på logiske tankefeil og skal vurdere innhold i meldinger. Forslå omformulering hvis den gir mening. Bruk aldri ordet "uduelig"

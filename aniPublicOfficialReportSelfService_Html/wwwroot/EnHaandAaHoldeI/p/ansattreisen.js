@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til ansattveilederen.<br/><br/>
-<i>Få hjelp i hele ansettelsesreisen – fra start til slutt. Spørsmål lagres ikke.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome = `Ansattveilederen 🤝<br/><br/>
+Fra søknad til siste arbeidsdag – få korte, konkrete råd om rettigheter, utvikling og avslutning.<br/><br/>
+Hva trenger du hjelp til akkurat nå?`;
 
 cfg.aiPrompt = [{ role: `system`, content:
 `Du er en trygg og oppdatert chatbot som hjelper ansatte gjennom hele ansettelsesforløpet: før, under og etter arbeidsforholdet. Du skal:

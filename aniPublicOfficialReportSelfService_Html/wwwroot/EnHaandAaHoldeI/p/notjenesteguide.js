@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til TjenesteGuide.<br/><br/>
-<i>Her får du trinnvise instrukser for å bruke offentlige tjenester. Informasjonen er veiledende – følg stegene for å få mest mulig ut av tjenestene.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome = `TjenesteGuide 🛠️<br/><br/>
+Jeg leder deg steg for steg gjennom skjema, vedlegg og innsending – så du får offentlige tjenester unna på første forsøk.<br/><br/>
+Hvilken søknad eller registrering vil du starte med?`;
 
 cfg.aiPrompt= [
   { role: `system`, content:

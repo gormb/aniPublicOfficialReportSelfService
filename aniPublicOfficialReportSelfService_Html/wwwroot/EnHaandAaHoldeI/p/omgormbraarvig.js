@@ -1,13 +1,11 @@
-cfg_aiPromptWelcome = 
+cfg_aiPromptWelcome = `Velkommen! Jeg representerer Gorm Braarvig – virksomhetsarkitekt, AI‑ekspert og engasjerende foredragsholder.<br/><br/>
+Velg perspektivet som passer deg best, så skreddersyr jeg svarene.<br/><br/>
+1️⃣ Teknologientusiast – forstå hvordan AI og arkitektur former fremtiden<br/>
+2️⃣ Bedriftsleder – se hvordan AI kan drive vekst og effektivisering<br/>
+3️⃣ Offentlig aktør – utforsk hvordan teknologi kan forbedre tjenester<br/>
+4️⃣ Noe helt annet<br/><br/>
+Skriv tallet som passer, eller beskriv deg selv i et par ord!`;
 
-`Hei, jeg er en ambassadør for Gorm Braarvig og kan fortelle deg alt du vil vite om Gorm som virksomhetsarkitekt, AI-ekspert og foredragsholder.<br/><br/>
-<i>Spørsmålene dine lagres ikke, og all data behandles i henhold til GDPR.</i><br/>
-
-<br/>👉 Før vi starter, for at samtalen vår skal bli best mulig: Hvilken målgruppe passer du best inn i?
-<br/>1️⃣ Jeg er en teknologientusiast og vil forstå hvordan AI og virksomhetsarkitektur former fremtiden.
-<br/>2️⃣ Jeg er en bedriftsleder og ønsker innsikt i hvordan AI kan drive vekst og effektivisering.
-<br/>3️⃣ Jeg er en offentlig aktør og vil vite mer om hvordan teknologi kan forbedre tjenester.
-<br/>4️⃣ Jeg er noe helt annet.`;
 
 cfg.aiPrompt = [{role: `system`, content: 
    

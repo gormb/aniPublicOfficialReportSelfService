@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til Enkel Navigatør.<br/><br/>
-<i>Her hjelper vi deg med å navigere offentlige nettsider og digitale tjenester. Informasjonen er veiledende – ved behov, kontakt instansen direkte.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome = `Enkel Navigatør 🧭<br/><br/>
+Klikk‑for‑klikk‑hjelp til å finne skjema, frister og info på offentlige nettsider – uten å rote bort tid.<br/><br/>
+Hvilken side eller tjeneste vil du navigere til?`;
 
 cfg.aiPrompt= [
   { role: `system`, content:

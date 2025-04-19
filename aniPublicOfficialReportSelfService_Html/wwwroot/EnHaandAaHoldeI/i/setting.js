@@ -5,8 +5,8 @@ const setting={
     , menu:ver=>`App >>§- ${ cfg.menusForAppProvider(ver) }
         |Språkdrakt >>§-||Sjargong >>|||Ungdomsspråk|||Voksenspråk§*
             ||Språk >>§-|||Bokmål§*|||Nynorsk|||Sámegiella|||Svenska|||Dansk|||English (UK)|||English (US)        
-        ${ver?'':'|Handling >>§-||Begynn på nytt...||Tøm lagring...||Analyser personvern||Forsøk alle AI'}
-            ${ver?'':'||Administrasjon'}
+        |Handling >>§-${ver?'':'||Begynn på nytt...||Tøm lagring...||Analyser personvern||Forsøk alle AI'}
+            ${ver?'||Katalogside...':'||Administrasjon...'}
             ${ver?'':'||Utvikling >>§-|||Løsningsdesign|||Simuler|||List modeller|||Debug'}
         |Innstillinger >>§-
             ||Sikkerhet >>§-|||Sensitive data >>§-||||Ikke send sensitive data||||Omformuler sensitive data||||Godta sensitive data§*

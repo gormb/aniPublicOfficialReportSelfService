@@ -37,9 +37,9 @@ let iC=0,iTot=9999;
       li.append(
         Object.assign(document.createElement('a'), { href: url, textContent: app })
         //, qrHolder
-        , Object.assign(document.createElement('div'), { id: 'qr_' + id, textContent: 'laster QR...' })
+        , Object.assign(document.createElement('div'), { id: 'qr_' + id, innerHTML: ui.c.tRotating /*'laster QR...'*/ })
         , Object.assign(document.createElement('img'), { id:'img_'+id, src:ui.c.ImgA, style:'height:5vw'})
-        , Object.assign(document.createElement('div'), { id: 'set_' + id, textContent: 'laster beskrivelse...' })
+        , Object.assign(document.createElement('div'), { id: 'set_' + id, innerHTML: ui.c.tRotating /*'laster beskrivelse...'*/ })
         , Object.assign(document.createElement('button'), {
           textContent: 'v', onclick: () => {
             const iframe = document.getElementById('ifr_' + id);

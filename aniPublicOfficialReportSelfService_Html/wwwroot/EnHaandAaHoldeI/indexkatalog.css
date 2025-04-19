@@ -12,3 +12,8 @@ a:hover { text-decoration: underline; }
 .qr-button-large { margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 1rem; background-color: #0077cc; color: white; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s ease; }
 .qr-button-large:hover { background-color: #005fa3; }
 .hidden { display: none; }
+i,i+br {display: none;}
+@keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .rotating { display: inline-block; animation: rotate 10s linear infinite; }
+@keyframes rotateC { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
+    .rotatingC { display: inline-block; animation: rotateC 2s linear infinite; }

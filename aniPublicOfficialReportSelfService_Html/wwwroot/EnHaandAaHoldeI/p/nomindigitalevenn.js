@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til Min Digitale Venn.<br/><br/>
-<i>Her får du vennlig og personlig veiledning om offentlige tjenester. Informasjonen er veiledende – ta kontakt med instansen for detaljerte svar.</i><br/><br/>Hva lurer du på?`;
+cfg_aiPromptWelcome = `Din Digitale Venn 🤗<br/><br/>
+Vennlig veiledning gjennom alt det offentlige kan tilby – fra trygd og utdanning til helse og bostøtte.<br/><br/>
+Fortell meg kort hva du lurer på, så viser jeg deg veien videre.`;
 
 cfg.aiPrompt= [
   { role: `system`, content:

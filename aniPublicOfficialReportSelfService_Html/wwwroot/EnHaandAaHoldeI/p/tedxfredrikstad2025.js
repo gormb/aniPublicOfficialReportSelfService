@@ -1,13 +1,12 @@
 // Hovedsakelig produsert med ChatGPT 20250319
-cfg_aiPromptWelcome = `Velkommen til TEDxFredrikstad-chatten!<br/><br/>
-<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
-For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
+cfg_aiPromptWelcome = `Velkommen til TEDxFredrikstad 2025‑chatten!✨<br/><br/>
+Idéer som setter spor – bli med bak kulissene eller finn ut hvordan du kan bidra på scenen og i salen.<br/><br/>
+👉 Hva interesserer deg mest?<br/><br/>
+① Inspirasjon og idéutveksling<br/>
+② Teknologi og innovasjon<br/>
+③ Samfunn, bærekraft og entreprenørskap<br/><br/>
+Skriv tallet som passer, eller formulér ditt eget spørsmål!`;
 
-<br/>👉 Hva interesserer deg mest?
-<br/>
-<br/>① Inspirasjon og idéutveksling  
-<br/>② Teknologi og innovasjon  
-<br/>③ Samfunn, bærekraft og entreprenørskap`;
 
 cfg.aiPrompt = [{ role: `system`, content:
 `Du er en engasjerende og kunnskapsrik chatbot for TEDxFredrikstad – en uavhengig, lokalt organisert TEDx-konferanse dedikert til å dele idéer verdt å spre.

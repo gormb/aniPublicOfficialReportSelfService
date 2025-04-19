@@ -1,6 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til chat om pakkeforløp.<br/><br/>
-<i>Et pakkeforløp er en strukturert vei gjennom helsetjenesten. Her får du støtte og svar – fra henvisning til oppfølging.</i><br/><br/>
-Hva lurer du på?`;
+cfg_aiPromptWelcome = `Pakkeforløp‑assistenten 🩺<br/><br/>
+En strukturert vei gjennom helsetjenesten – fra henvisning til oppfølging. Jeg forklarer hvert steg og hvem som kan hjelpe deg videre.<br/><br/>
+Er du <b>før behandling</b>, <b>under behandling</b> eller <b>i oppfølging</b> – eller vil du bare stille et konkret spørsmål?`;
 
 cfg.aiPrompt=[{ role: `system`, content:
 `Du er en pasientvennlig og kunnskapsrik chatbot som hjelper pasienter med å forstå sitt pakkeforløp. Du skal gi trygg og tydelig støtte i de tre fasene:

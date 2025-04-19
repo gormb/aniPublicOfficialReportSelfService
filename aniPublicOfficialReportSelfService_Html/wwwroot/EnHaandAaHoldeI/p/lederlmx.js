@@ -1,7 +1,6 @@
-cfg_aiPromptWelcome=`Velkommen til LMX-assistenten.<br/><br/>
-<i>Her får du hjelp til å styrke relasjonene mellom deg og dine medarbeidere.</i><br/><br/>
-Vi fokuserer på tillit, støtte og utvikling i leder-medarbeider-relasjonen.<br/><br/>
-Hva ønsker du hjelp med i dag?`;
+cfg_aiPromptWelcome = `LMX‑assistenten 🤝<br/><br/>
+Bygg sterkere leder–medarbeider‑relasjoner gjennom tillit, støtte og klare roller – én praktisk samtale om gangen.<br/><br/>
+Hva vil du styrke først?`;
 
 cfg.aiPrompt=[
   { role: `system`, content: 

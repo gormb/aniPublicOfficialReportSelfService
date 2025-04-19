@@ -1,5 +1,6 @@
 cfg_aiPromptWelcome=`Velkommen til chat for mottak og kartlegging.<br/><br/>
-<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell. Denne chatten kan benyttes av pasienter, helsepersonell og de som ønsker å lære om pasientmottak og triagering.</i><br/><br/>
+<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell.</i><br><br>
+Denne chatten kan benyttes av pasienter, helsepersonell og de som ønsker å lære om pasientmottak og triagering.<br/><br/>
 
 Er du <br>
 a) pasient<br>

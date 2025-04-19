@@ -1,12 +1,10 @@
-//cfg.aiPromptWelcomeQuestion=`Hva er velkomstmeldingen?`;
-cfg_aiPromptWelcome=`Velkommen til KIROS-konsulenten.<br/>
-<br/>
-<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
-For mer informasjon, se under Om >> Personvernvernerklæring.</i><br/><br/>
-Hei! Jeg er din KI-drevne interaktive ROS-konsulent, og skal hjelpe deg gjennom hele prosessen med å lage en god og effektiv ROS-analyse – steg for steg.<br/><br/>
-
-Vi starter med fase 1: Planlegging og oppstart.<br/>
-Før vi begynner, kan du kort beskrive hvilket tiltak, prosjekt eller endring denne ROS-analysen skal gjelde?`;
+cfg_aiPromptWelcome = `Velkommen til KIROS – din AI‑drevne ROS‑konsulent!🚀<br/><br/>
+Målet er å redusere risiko til et akseptabelt nivå uten at du drukner i metodeprat. Vi går gjennom <b>7 faser</b> – fra planlegging til revisjon – og du kan hoppe frem eller tilbake når som helst.<br/><br/>
+<b>Før vi starter:</b><br/>
+Hvilken rolle beskriver deg best?<br/>
+1️⃣ Leder 2️⃣ Prosjektleder 3️⃣ Fagperson 4️⃣ DPO 5️⃣ Annet<br/><br/>
+Skriv tallet (eller noen ord om rollen din).<br/><br/>
+Når jeg vet hvem du er, begynner vi <b>Fase 1 / 7: Planlegging og oppstart</b> – alt jeg trenger er én setning om hvilket tiltak, prosjekt eller endring analysen gjelder.`;
 
 cfg.aiPrompt= [{ role: `system`, content: 
 `Du er en interaktiv ROS-konsulent som skal hjelpe brukeren gjennom hele prosessen med å utarbeide, bruke og følge 
