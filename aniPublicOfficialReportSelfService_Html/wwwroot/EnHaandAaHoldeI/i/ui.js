@@ -1,4 +1,4 @@
-/////////////// ui and Shortcuts //////////////
+/////////////// ui //////////////
 const ui = {
     init:e=>{ 
         ui.c.Input.addEventListener('keydown',(e)=>ui.e.Input_keydown(e));
@@ -169,7 +169,7 @@ const ui = {
     ,qr:u=>qr.d(u,ui.c.Chat,.6)
     ,qrU:()=>ui.qr(lagring.qr())
 }
-/////////////// msg - Chat UI ///////////////
+/////////////// msg ///////////////
 window.msgIsSimulate=msg=>msg.startsWith("Simulate: ");
 window.msgAsk=msgQ=> {
     const el = ((b) => (b.className = "row sent", b.innerHTML = `&nbsp;<img class="icon" src="${ui.c.ImgQ}" onclick="ui.c.ImgQClick(event)"><div class="msg">${msgQ}</div>`, b))(document.createElement("div"));

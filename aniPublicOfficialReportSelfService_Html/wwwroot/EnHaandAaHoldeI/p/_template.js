@@ -5,4 +5,4 @@ Fortell gjerne hva du hadde tenkt å bruke den til – innspill hjelper oss å 
 cfg.aiPrompt= [{ role: `system`, content: `Du er chatbot`}
 ,[`Hva er du?`, `Chatbot under utvikling`]
 ];
-cfg.set(cfg_aiPromptWelcome,'! arbeid pågår !','mistrallarge',null,null,null/*'#0A6B80'*/,null/*'Roboto'*/)
+cfg.set(cfg_aiPromptWelcome,'_tempate','mistrallarge',null,null,null/*'#0A6B80'*/,null/*'Roboto'*/)

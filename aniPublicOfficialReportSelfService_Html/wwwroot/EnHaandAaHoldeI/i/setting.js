@@ -1,5 +1,4 @@
-/////////////// menu and state //////////////
- 
+/////////////// setting ////////////// 
 const setting={
     debug:false, dMsg:(k,v)=>{if(setting.debug) {if(v)console.warn(k,v); else console.warn(k)}}
     , menu:ver=>`App >>§- ${ cfg.menusForAppProvider(ver) }
