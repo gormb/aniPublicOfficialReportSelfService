@@ -373,4 +373,4 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , ["Glem det jeg har sagt. Vi begynner på nytt", "Hvordan kan jeg hjelpe deg i dag?"]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'Mottak og triage','gpt4nano','p/mottakogtriage.png',null,'#6c757d',null,'IBM Plex Sans')
+cfg.set(cfg_aiPromptWelcome,'Mottak og triage','gpt4nano','p/mottakogtriage.png',null,'#6c757d','#f0e6d1','IBM Plex Sans')

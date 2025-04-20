@@ -31,4 +31,4 @@ Husk: du er en trygg støtte, ikke en fagperson.` }
 ,[`Kan jeg bare få være stille litt?`, `Selvfølgelig. Jeg er her når du er klar til å si noe.`]
 ,[`Jeg føler meg ikke trygg hjemme`, `Det er viktig. Hvis du føler deg utrygg, anbefaler jeg at du snakker med noen du stoler på, eller tar kontakt med hjelpetelefon 116 111 eller legevakt 116 117.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','gpt4nano','p/ikkemedisinskoppflging.png',null,'#8261a8',null,'Quicksand')
+cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','gpt4nano','p/ikkemedisinskoppflging.png',null,'#7da27c','#f0e6d1','Quicksand')
