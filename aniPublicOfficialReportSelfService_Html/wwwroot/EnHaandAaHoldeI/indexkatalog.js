@@ -8,7 +8,7 @@ cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
   , dDesc=document.getElementById('set_'+id)
   dQr.innerText='';
   if (iA) img.src=iA;
-  qr.g(dQr, baseUrl+id, 0.45, img.src);
+  qr.g(dQr, baseUrl+id, 0.3, img.src);
   setTimeout(()=>{
     img.style.display='none';
     
@@ -29,7 +29,7 @@ let iC=0,iTot=9999;
       app=app.split('|')[0];
       let id=app.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
       li.append(
-        Object.assign(document.createElement('a'), { href: url, textContent: app })
+        Object.assign(document.createElement('a'), { href: url, target: '_blank', textContent: app })
         , Object.assign(document.createElement('hr'))
         , Object.assign(document.createElement('button'), {
           textContent: '👀', onclick: () => {
@@ -94,5 +94,5 @@ let iC=0,iTot=9999;
       });
     });
     (q => q && (search.value = q, search.dispatchEvent(new Event('input')), search.style.display = 'none'))(new URLSearchParams(location.search).get('q'));
-    qr.g(document.getElementById('urqr'), window.location.href, 0.5, 'p/aigap.webp');
+    qr.g(document.getElementById('urqr'), window.location.href, 0.25, 'p/aigap.webp');
 })();
