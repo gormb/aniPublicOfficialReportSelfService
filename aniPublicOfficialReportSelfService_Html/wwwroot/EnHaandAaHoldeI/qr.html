@@ -1,30 +1,29 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><title>Aigap QR</title></head><body>
 <div style="display:none"><input id=l placeholder="?l=Link..."><input id=i placeholder="&i=Image..."><input id=s placeholder="&s=Space..."><input id=z placeholder="&z=Size...">
-<hr/><a id=link target="_blank">&nbsp;</a>
-<hr/><div id="if1">&lt;iframe src="<span id=if1link></span>" width=200 height=200 style="border:1">&lt;/iframe></div>
+<hr/>
+<hr/><div id="if1">&lt;iframe src="<a id=lnk target="_blank">&nbsp;</a>" width=<span id="lnkw">150</span> height=<span id="lnkh">150</span> style="border:1">&lt;/iframe></div>
 <hr/><div id="if2"></div>
 <hr/>
 </div>
-  <a target="_blank"><div id=urqr></div></a>
-  <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+<a id=urqr target="_blank" style="display:none"></a>
+<script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 <script>
-let $=id=>document.getElementById(id),qr,tm
-,qs=new URLSearchParams(location.search)
-;if(!qs.size)document.body.firstElementChild.style.display=''
-let l=$('l'),i=$('i'),s=$('s'),z=$('z'),link=$('link'),if1link=$('if1link'),if1=$('if1'),if2=$('if2')
-l.value=qs.get('l')||''; i.value=qs.get('i')||''; s.value=qs.get('s')||'1em'; z.value=qs.get('z')||''
-let on=()=>{clearTimeout(tm);tm=setTimeout(()=>{
-let u=l?l.value:qs.get('l'), img=i?i.value:qs.get('i'), m=s?s.value:'1em', size=+z?.value||256
-//if(!u)return
-let q='?' + ['l','i','s','z'].map(k=>$(k)?.value&&k+'='+encodeURIComponent($(k).value)).filter(Boolean).join('&')
-;if1link.textContent=link.href=link.textContent=location.pathname+q
-console.warn(if2)
-;if2.innerHTML=if1.innerText
+let qr,tm,q=new URLSearchParams(location.search)
+if(!q.size) document.body.firstElementChild.style.display=''
+else urqr.style.display=''
+let lnk=document.getElementById('lnk'),lnkw=document.getElementById('lnkw'),lnkh=document.getElementById('lnkh')
+l.value=q.get('l')||'',i.value=q.get('i')||'',s.value=+q.get('s')||0,z.value=q.get('z')||''
+let on=()=>{clearTimeout(tm);tm=setTimeout(_=>{
+let u=l.value,img=i.value,m=+s.value,w=+z.value||256
+let qs='?' + [l,i,s,z].map(e=>e.value&&e.id+'='+encodeURIComponent(e.value)).filter(Boolean).join('&')
 urqr.style.margin=m
-qr=new QRCodeStyling({width:size,height:size,data:u,image:img})
-urqr.innerHTML=''; qr.append(urqr)
+urqr.href=u;
+lnk.href=lnk.innerText=location.pathname+qs
+lnkw.innerText = lnkh.innerText = +w +20+ 2*m
+if2.innerHTML=if1.innerText
+qr=new QRCodeStyling({width:w,height:w,data:u,image:img})
+urqr.innerHTML='';qr.append(urqr)
 },500)}
-on(); if(l) [l,i,s,z].forEach(e=>e.addEventListener('input',on))
+on();[l,i,s,z].forEach(e=>e.oninput=on)
 </script>
-
 </body></html>
