@@ -1,5 +1,5 @@
 //const baseUrl = 'https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/EnHaandAaHoldeI/?';
-const baseUrl = location.href.replace('indexkatalog.html','index.html')+'?';
+const baseUrl = location.href.split('?')[0].replace('indexkatalog.html','index.html')+'?';
 
 cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
   cfg.aiPromptWelcome=aiPromptWelcome
