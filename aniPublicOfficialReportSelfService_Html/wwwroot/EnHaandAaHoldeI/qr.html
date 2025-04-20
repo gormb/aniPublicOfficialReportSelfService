@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Aigap QR</title></head><body>
+<div style="display:none"><input id=l placeholder="?l=Link..."><input id=i placeholder="&i=Image..."><input id=s placeholder="&s=Space..."><input id=z placeholder="&z=Size...">
+<hr/><a id=link target="_blank">&nbsp;</a>
+<hr/><div id="if1">&lt;iframe src="<span id=if1link></span>" width=200 height=200 style="border:1">&lt;/iframe></div>
+<hr/><div id="if2"></div>
+<hr/>
+</div>
+  <a target="_blank"><div id=urqr></div></a>
+  <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+<script>
+let $=id=>document.getElementById(id),qr,tm
+,qs=new URLSearchParams(location.search)
+;if(!qs.size)document.body.firstElementChild.style.display=''
+let l=$('l'),i=$('i'),s=$('s'),z=$('z'),link=$('link'),if1link=$('if1link'),if1=$('if1'),if2=$('if2')
+l.value=qs.get('l')||''; i.value=qs.get('i')||''; s.value=qs.get('s')||'1em'; z.value=qs.get('z')||''
+let on=()=>{clearTimeout(tm);tm=setTimeout(()=>{
+let u=l?l.value:qs.get('l'), img=i?i.value:qs.get('i'), m=s?s.value:'1em', size=+z?.value||256
+//if(!u)return
+let q='?' + ['l','i','s','z'].map(k=>$(k)?.value&&k+'='+encodeURIComponent($(k).value)).filter(Boolean).join('&')
+;if1link.textContent=link.href=link.textContent=location.pathname+q
+console.warn(if2)
+;if2.innerHTML=if1.innerText
+urqr.style.margin=m
+qr=new QRCodeStyling({width:size,height:size,data:u,image:img})
+urqr.innerHTML=''; qr.append(urqr)
+},500)}
+on(); if(l) [l,i,s,z].forEach(e=>e.addEventListener('input',on))
+</script>
+
+</body></html>
