@@ -30,16 +30,18 @@ let iC=0,iTot=9999;
       let id=app.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
       li.append(
         Object.assign(document.createElement('a'), { href: url, textContent: app })
-        , Object.assign(document.createElement('div'), { id: 'qr_' + id, innerHTML: ui.c.tRotating /*'laster QR...'*/ })
-        , Object.assign(document.createElement('img'), { id:'img_'+id, src:ui.c.ImgA, style:'height:5vw'})
+        , Object.assign(document.createElement('hr'))
         , Object.assign(document.createElement('button'), {
           textContent: '👀', onclick: () => {
             const f=document.getElementById('ifr_'+id),d=f.style.display;
             f.style.display=d=='none'?'':'none';
             document.getElementById('set_'+id).style.display=d==''?'':'none';
-          }})
-          , Object.assign(document.createElement('div'), { id: 'set_' + id, innerHTML: ui.c.tRotating /*'laster beskrivelse...'*/ })
-          , Object.assign(document.createElement('iframe'), { id: 'ifr_' + id, src: url, style: 'display:none' })
+            document.getElementById('qr_'+id).style.display=d==''?'':'none';
+        }})
+        , Object.assign(document.createElement('div'), { id: 'set_' + id, innerHTML: ui.c.tRotating /*'beskrivelse...'*/ })
+        , Object.assign(document.createElement('div'), { id: 'qr_' + id, innerHTML: ui.c.tRotating /*'QR...'*/ })
+        , Object.assign(document.createElement('img'), { id:'img_'+id, src:ui.c.ImgA, style:'height:5vw'})
+        , Object.assign(document.createElement('iframe'), { id: 'ifr_' + id, src: url, style: 'display:none' })
       );
       cfg.load(app);
       return li;
@@ -47,11 +49,13 @@ let iC=0,iTot=9999;
     data.forEach(([temaRaw, grupper]) => {
       const section = document.createElement('div');
       section.classList.add('section');
+      section.appendChild(document.createElement('hr'));
       section.appendChild(Object.assign(document.createElement('h2'),{textContent:temaRaw.split('>>')[0]}));
       for (let i = 0; i < grupper.length; i += 2) {
         const [gruppeRaw, apper] = [grupper[i], grupper[i + 1]];
           const groupDiv = document.createElement('div');
           groupDiv.classList.add('group');
+          groupDiv.appendChild(document.createElement('hr'));
           groupDiv.appendChild(Object.assign(document.createElement('h3'), { textContent: gruppeRaw.split('>>')[0]}));
           const ul = document.createElement('ul');
           apper.forEach(app => {
