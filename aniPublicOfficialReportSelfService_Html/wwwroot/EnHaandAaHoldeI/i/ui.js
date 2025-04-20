@@ -27,7 +27,9 @@ const ui = {
             let r=e.target.closest('.row');
             while(r.nextElementSibling)
                 r.nextElementSibling.remove();
-            ui.e.Input_setValue(r.querySelector('.msg')?.textContent); ui.c.Input.focus();
+            ui.e.Input_setValue(r.querySelector('.msg')?.textContent); 
+            ui.c.Input.focus();
+            ui.c.Input.select();
             r.remove();
         }
         , ImgA:'https://upload.wikimedia.org/wikipedia/commons/2/26/Noun-artificial-intelligence-884535.svg'

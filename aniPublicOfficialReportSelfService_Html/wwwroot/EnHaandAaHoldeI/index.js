@@ -28,7 +28,6 @@ window.menuClick_m_begynnpnytt=e=>{
     msgAnswer(cfg.aiPrompt[cfg.aiPrompt.length-1][1],true);
     ui.c.Input.focus();
 }
-
 window.menuClick_m_analyserpersonvern=e=>{ 
     ui.menu.Show(false);
     let iHl=ai.History[0].length-1, iHf=iHl;
