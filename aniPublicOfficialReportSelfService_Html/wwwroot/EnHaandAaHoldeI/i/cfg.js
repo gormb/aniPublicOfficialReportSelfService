@@ -111,7 +111,8 @@ const cfg={
         document.documentElement.style.setProperty('--primary-color', priCol??'#007bff');
         document.documentElement.style.setProperty('--light-msg', lightMCol??'#ffffff');
         ui.font.n(font??'Roboto')
-        cfg.app=appN;
+        cfg.app=document.title=appN;
+        
         cfg.visAppMeny(false)
     }    
 }
