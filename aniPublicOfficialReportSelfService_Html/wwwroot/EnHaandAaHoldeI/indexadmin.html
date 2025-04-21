@@ -2,16 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.01">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.01">
+    <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
     <link rel="stylesheet" href="index.css">
+
+<style>
+    table { border-collapse: collapse; width: 100%; margin: 2rem auto; max-width: 900px; }
+    th,td { border: 1px solid #ccc; padding: 0.75rem; text-align: left; }
+    th { background-color: #e6f0ff; }
+    caption { caption-side: top; font-weight: bold; font-size: 1.4rem; padding: 1rem; }
+</style>
+
 </head>
 <body>
     <header id="header"><button onclick="ui.ChangeFontSize()">A</button><div>
         <center>Sikret Chat - administrasjon</center></div>
         <button onclick="ui.menu.Show()">m</button><div id="menu" class="menu hidden"></div>
     </header>
-    <main></main>
+    <main>
+
+<script>
+const d={meta:
+[['c','Kunde',['id,text,','idk,text,parent','createdAt,timestamp,Når kunden ble opprettet','metadata,jsonb,div info']
+,[25,15]]
+,['u','Bruker',['id,text,','metadata,jsonb,div info','dtFrom,timestamptz,opprettet','dtTo,timestamptz,avsluttet']
+,[25,28]]
+,['h','Tilbyder',['id,text,','Navn,text,eg Mistral','uri,text,','gunnars,text,','spm1,text,','spm2,text,','dtFrom,timestamptz,Gyldig fra (default 2000-01-01)','dtTo,timestamptz,Gyldig til (default 2099-12-31)']
+,[85,38]]
+,['f','Funksjonalitet',['id,text,','id_h,text,','Funksjon,text,Type funksjonalitet, eg chat','modell,text,AI-modell','modellid,text,Teknisk modellnavn','dtFrom,timestamptz,Gyldig fra (default 2000-01-01)','dtTo,timestamptz,Gyldig til (default 2099-12-31)']
+,[75,30]]
+,['a','App',['id,text,','App,text,Navn på appen','mor,text,Kategori','mormor,text,Hovedkategori','id_f,text,metode','cfg,jsonb,Inneholder f.eks. systemprompt,velkomsttekst,farger','dtFrom,timestamptz,Gyldig fra (default 2000-01-01)','dtTo,timestamptz,Gyldig til (default 2099-12-31)']
+,[75,20]]
+,['a_p','Few-shot par',['id,text,','id_a,text,','line,int,Plassering','usr,text,Brukermelding','sys,text,Chatbotsvar','dtFrom,timestamptz,Gyldig fra (default 2000-01-01)','dtTo,timestamptz,Gyldig til (default 2099-12-31)']
+,[85,12]]
+,['us','Brukersesjon',['id,text,','id_u,text,bruker','id_c,text,bruker','id_a,text,app','id_f,text,metode','dtFrom,timestamptz,sesjon startet','dtTo,timestamptz,sesjon ferdig (default 2099-12-31)']
+,[50,22]]
+,['m','Melding',['id,text,','id_us,text,sesjon','sendt,text,','mottatt,text,','id_f,text,algoritme/funksjon','dtFrom,timestamptz,sendt','dtTo,timestamptz,Ferdig mottatt (evt 2099-12-31)']
+,[50,35]]
+]
+    ,tab:(n,d,r)=>{const rows=r.map(x=>x.split(',').map(x=>x.trim())),cols=rows.map(([f,t])=>`${f} ${t}${f==='dtFrom'?` DEFAULT '2000-01-01T00:00:00Z'`:''}${f==='dtTo'?` DEFAULT '2099-12-31T23:59:59Z'`:''}${f==='createdAt'?` DEFAULT now()`:''}`),idx=[],fk=[];rows.forEach(([f])=>{if(f.startsWith('id_')){idx.push(`CREATE INDEX ${n}_${f}_idx ON ${n}(${f}, dtFrom, dtTo);`);fk.push(`ALTER TABLE ${n} ADD CONSTRAINT ${n}_${f}_fk FOREIGN KEY (${f}) REFERENCES ${f.slice(3)}(id);`);}});const insertCols=rows.map(([f])=>f).filter(f=>!['dtFrom','dtTo','createdAt'].includes(f)),insertVals=rows.filter(([f])=>insertCols.includes(f)).map(([f,t])=>f.startsWith('id_')?`'demo_id'`:t==='text'?`'demo_${f}'`:t==='jsonb'?`'{ "demo": "value" }'`:t.includes('timestamp')?`now()`:`0`),ins=`INSERT INTO ${n} (${insertCols.join(', ')}) VALUES (${insertVals.join(', ')});`;return `<table class="hidde" id="dTab_${n}"><caption>-- ${n} (${d} --)</caption><tr><th>/*Felt</th><th>Type</th><th>Beskrivelse</th></tr>${rows.map(([f,t,b])=>`<tr data-f="${f}"><td>${f}</td><td>${t}</td><td>${b}</td></tr>`).join('')}<tr><td colspan=3><code>*/<br>DROP TABLE IF EXISTS ${n} CASCADE;</code></td></tr><tr><td colspan=3><code>CREATE TABLE ${n} (${cols.join(', ')}<br>,PRIMARY KEY (id));</code></td></tr><tr><td colspan=3><code>${[...idx,...fk].join('<br>')}</code></td></tr><tr><td colspan=3><code>${ins}</code></td></tr></table>`}
+
+
+    //https://supabase.com/dashboard/project/nasxmebvjoxcmzevvbts/sql/new
+    ,tabN:a=>a.map(t=>d.tab(...t)).join('')
+    ,erR:a=>a.flatMap(([from,_,rows])=>rows.map(r => r.split(',')[0]).filter(f => f.startsWith('id_')).map(f => ({from, to: f.slice(3)})))
+    ,erNbox:a=>a.map(([id,l,_,[x,y]])=>`<div id=b_${id} style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);z-index:1;border:1px solid;padding:4px;font:12px sans-serif;max-width:120px;min-width:80px;width:max-content;text-align:center;background:white">${id}<br>${l}</div>`).join('')
+    ,erNsvg1: a => {
+        const svg=document.getElementById('svgLayer')
+            ,pt = svg.createSVGPoint()
+            ,toSvg=el=>{
+                if(!el)return;
+                const r = el.getBoundingClientRect();
+                pt.x = r.left + r.width/2;
+                pt.y = r.top + r.height/2;
+                return pt.matrixTransform(svg.getScreenCTM().inverse());
+            };
+            svg.innerHTML = d.erR(a).map(({from,to}) => {
+                const p1 = toSvg(document.getElementById('b_'+from)),p2 = toSvg(document.getElementById('b_'+to));
+                return p1&&p2&&`<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="black"/>`;
+            }).join('');
+    }
+    ,erNsvg: a => {
+  const s = document.getElementById('svgLayer'), p = s.createSVGPoint(),
+  c = e => { const r = e.getBoundingClientRect(); p.x = r.left + r.width/2; p.y = r.top + r.height/2; return p.matrixTransform(s.getScreenCTM().inverse()) };
+  s.innerHTML = `<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+<path d="M0 0 L10 5 L0 10 Z" fill="black"/></marker></defs>` +
+  d.erR(a).map(({from,to})=>{
+    const p1 = c(document.getElementById('b_'+from)),
+          p2 = c(document.getElementById('b_'+to)),
+          mx = (p1.x + p2.x)/2,
+          my = (p1.y + p2.y)/2;
+    return p1&&p2&&`<path d="M${p1.x} ${p1.y} L${mx} ${my} L${p2.x} ${p2.y}" stroke="black" fill="none" marker-mid="url(#arrow)"/>`;
+  }).join('');
+}
+
+    ,erN: a => (setTimeout(() => d.erNsvg(a), 100),'<svg id=svgLayer style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none"></svg>' + d.erNbox(a))
+};
+</script>
+
+</main>
     <footer id="grubling" class="hidden">....</footer>
     <footer id="suggestions" class="hidden">...</footer>
     <footer>
@@ -25,5 +94,11 @@
     <script src="i/ai.js"></script>
     <script src="indexadmin.js"></script>
     <script src="i/pv.js"></script><script src="i/pbg.js"></script>
+
+<script>
+msgInfo('<br>'.repeat(20)+ d.erN(d.meta))//
+msgInfo(d.tabN(d.meta))
+</script>
+
 </body>
 </html>

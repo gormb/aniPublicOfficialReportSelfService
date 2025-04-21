@@ -76,7 +76,6 @@ const cfg={
         ]
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `||||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`|||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
-    //, loadVal:(u,y)=>new Promise((...)=>y(...))
     , loadV:(u,y)=>fetch(new URL(u,location)).then(r=>r.text()).then(y)
     , load:(c, cid=null)=>{
         return new Promise((y, n) => {

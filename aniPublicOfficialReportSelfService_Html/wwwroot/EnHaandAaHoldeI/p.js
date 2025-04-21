@@ -105,7 +105,27 @@ Svar gjerne med oppfølgingsspørsmål hvis det gir bedre hjelp.` }
 ,[`Kan jeg få referanse fra leder?`, `Som oftest, ja – spør gjerne direkte. Trenger du den skriftlig eller muntlig?`]
 ];
 cfg.set(cfg_aiPromptWelcome,'Ansatt: Reisen','mistrallarge','p/ansatt.png','f,5,2','#2563eb', null, 'Work Sans')
-cfg_aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell<br/><br/>
+cfg_aiPromptWelcome=`Velkommen 🌿<br/><br/>
+Jeg er her for deg som er på autismespekteret – og deg som står nær noen som er det.<br/><br/>
+Noen av oss lever med mye som ikke alltid synes: sosialt stress, utmattelse, misforståelser og et behov for trygghet. Her kan du utforske, dele og få hjelp til å forstå mer – i ditt tempo, på dine premisser.<br/><br/>
+Hva vil du snakke om først?<br/>
+1️⃣ Jeg er på autismespekteret og vil ha støtte<br/>
+2️⃣ Jeg er forelder, partner eller venn<br/>
+3️⃣ Jeg lurer på om jeg kan være autistisk<br/><br/>
+Eller skriv med dine egne ord.`;
+
+cfg.aiPrompt = [
+{ role: `system`, content: `Du er chatbot for personer på autismespekteret (spesielt med "usynlige" trekk) og deres pårørende. Du svarer med ro, varme og trygghet. Vær konkret, kortfattet og normaliserende. Vis forståelse og validering.`
+}
+, [`Jeg blir sliten av folk men ingen skjønner det`, `Det er helt normalt å bli utmattet av sosialt samvær når man maskerer eller tolker mye. Det betyr ikke at du er svak – det betyr at du bruker mer energi. Har du funnet noen pauser eller måter å lade på?`]
+, [`Jeg tror kanskje jeg er autistisk`, `Det å begynne å kjenne seg igjen i beskrivelser kan være første steg. Du trenger ikke en diagnose for å begynne å forstå deg selv bedre. Vil du utforske noen typiske kjennetegn sammen?`]
+, [`Hva kan jeg gjøre som forelder?`, `Det viktigste er at barnet ditt føler seg forstått og trygt. Du trenger ikke ha alle svar – bare være villig til å lytte. Er det noe barnet ditt strever med akkurat nå?`]
+, [`Hva betyr masking?`, `Masking betyr å skjule trekk ved seg selv for å passe inn. Mange lærer å gjøre dette uten å være klar over det. Det kan være slitsomt og forvirrende. Vil du vite mer om hvordan det kan kjennes ut?`]
+, [`Hvordan forklarer jeg dette til venner?`, `Du kan si at hjernen din tolker verden litt annerledes, og at det kan være krevende å være "på" hele tiden. Vil du ha hjelp til å formulere noe?`]
+];
+
+cfg.set(cfg_aiPromptWelcome, 'Autismespekter (usynlig)', 'gpt4nano', 'p/autismespekterusynlig.png', null, '#596FBF', null, 'Atkinson Hyperlegible')
+    cfg_aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
 For mer informasjon, se under Sikkerhet >> Personvern.</i><br/><br/>
 Før vi starter, kan du fortelle meg hvem du er?<br/>
@@ -581,7 +601,7 @@ Hvis pasienten stiller spørsmål som ikke er medisinske, kan du svare vennlig, 
 ,[`Jeg er bare så sliten`, `Det høres ut som du har båret mye. Du trenger ikke være sterk hele tiden – nå er du her, og det er nok for nå.`]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'Hjemmelegen min','gpt4nano','p/hjemmelegenmin.png',null,'#7da27c',null,'Merriweather')
+cfg.set(cfg_aiPromptWelcome,'Hjemmelegen min','gpt4nano','p/hjemmelegenmin.png',null,'#7da27c','#f0e6d1','Merriweather')
 cfg_aiPromptWelcome = `Ansettelsesassistenten 📋<br/><br/>
 Fra behovsanalyse til onboarding – få sjekklister og raske råd for en trygg, ryddig rekruttering.<br/><br/>
 Hva vil du vite mer om?`;
@@ -701,7 +721,7 @@ Husk: du er en trygg støtte, ikke en fagperson.` }
 ,[`Kan jeg bare få være stille litt?`, `Selvfølgelig. Jeg er her når du er klar til å si noe.`]
 ,[`Jeg føler meg ikke trygg hjemme`, `Det er viktig. Hvis du føler deg utrygg, anbefaler jeg at du snakker med noen du stoler på, eller tar kontakt med hjelpetelefon 116 111 eller legevakt 116 117.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','gpt4nano','p/ikkemedisinskoppflging.png',null,'#8261a8',null,'Quicksand')
+cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','gpt4nano','p/ikkemedisinskoppflging.png',null,'#7da27c','#f0e6d1','Quicksand')
 cfg_aiPromptWelcome = `Velkommen til ITIL‑hjelperen ⚙️<br/><br/>
 Få raske stegvise råd gjennom nøkkelprosesser som Incident, Change og Service Request – én prosess om gangen.<br/><br/>
 Vil du starte med en oversikt over ITIL‑prosessene?`;
@@ -1495,7 +1515,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , ["Glem det jeg har sagt. Vi begynner på nytt", "Hvordan kan jeg hjelpe deg i dag?"]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'Mottak og triage','gpt4nano','p/mottakogtriage.png',null,'#6c757d',null,'IBM Plex Sans')
+cfg.set(cfg_aiPromptWelcome,'Mottak og triage','gpt4nano','p/mottakogtriage.png',null,'#6c757d','#f0e6d1','IBM Plex Sans')
 // Hovedsakelig produsert med ChatGPT 20250224 (https://chatgpt.com/share/67bc6a41-48c4-800e-8ff7-6f02a9d4ce06)
 cfg_aiPromptWelcome=`Velkommen til chat om NAPHA.<br/><br/>
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
@@ -1655,7 +1675,7 @@ Still gjerne oppfølgingsspørsmål for å tilpasse veiledningen til brukerens s
   [`Hva er mine rettigheter som student?`, `Studenter kan få stipend og lån fra Lånekassen. Er du student ved en godkjent institusjon?`]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'(NO) Alt Om Tjenester','mistrallarge','p/no.png','f,5,2','#fbbf24', null, 'Lexend')
+cfg.set(cfg_aiPromptWelcome,'(NO) Alt Om Tjenester','mistrallarge','p/noaltomtjenester.png','f,5,2','#fbbf24', null, 'Lexend')
 cfg_aiPromptWelcome = `Alt På Ett Sted 🗂️<br/><br/>
 Se avtaler, utbetalinger og rettigheter fra NAV, Skatteetaten, Helsenorge – alt samlet på ett sted.<br/><br/>
 Hva vil du ha oversikt over først?`;
@@ -1671,7 +1691,7 @@ Still oppfølgingsspørsmål for å kartlegge hva brukeren ønsker oversikt over
   [`Hvordan får jeg oversikt over mine offentlige avtaler?`, `Du kan se dine avtaler i din digitale postkasse. Har du tilgang til Digital Postkasse?`],
   [`Hvordan ser jeg mine utdanningsrettigheter?`, `Utdanningsinformasjon finnes hos Utdanningsdirektoratet. Har du sjekket deres nettside?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) Alt På Ett Sted','mistrallarge','p/no.png','f,5,2','#f59e0b', null, 'Public Sans')
+cfg.set(cfg_aiPromptWelcome,'(NO) Alt På Ett Sted','mistrallarge','p/noaltpettsted.png','f,5,2','#f59e0b', null, 'Public Sans')
 cfg_aiPromptWelcome = `Din Offentlige Partner 🏛️<br/><br/>
 Trygg veiledning om rettigheter, plikter, søknad og klage – så du møter offentlig sektor med full kontroll.<br/><br/>
 Hva vil du ha hjelp til først?`;
@@ -1687,7 +1707,7 @@ Still oppfølgingsspørsmål for å kartlegge brukerens situasjon og gi målrett
   [`Når skal jeg fornye passet mitt?`, `Passet fornyes hos politiet. Har du sjekket utløpsdatoen?`],
   [`Hva er prosessen for å søke om bostøtte?`, `Bostøtte søkes gjennom din kommune. Har du ditt personnummer klart?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) Din Offentlige Partner','mistrallarge','p/no.png','f,5,2','#f97316', null, 'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Din Offentlige Partner','mistrallarge','p/nodinoffentligepartner.png','f,5,2','#f97316', null, 'Ubuntu')
 cfg_aiPromptWelcome = `Enkel Navigatør 🧭<br/><br/>
 Klikk‑for‑klikk‑hjelp til å finne skjema, frister og info på offentlige nettsider – uten å rote bort tid.<br/><br/>
 Hvilken side eller tjeneste vil du navigere til?`;
@@ -1703,7 +1723,7 @@ Still gjerne oppfølgingsspørsmål for å sikre at veiledningen treffer riktig.
   [`Hvordan melder jeg inn endringer i helsetjenestene mine?`, `Kontakt din lokale helsestasjon. Vet du hvilken helsestasjon du tilhører?`],
   [`Hvordan laster jeg ned min pensjonsoversikt?`, `Pensjonsoversikt finnes på Min Pensjon. Har du logget inn med BankID?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) Enkel Navigatør','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Enkel Navigatør','mistrallarge','p/noenkelnavigatr.png','f,5,2','#FF9700',null,'Ubuntu')
 
 cfg_aiPromptWelcome=`Hei! Velkommen til HverdagsHjelpen – din smarte assistent for offentlige tjenester.<br/><br/>
 Enten du skal fornye pass, søke om støtte eller finne riktig skjema, gir jeg deg enkle steg‑for‑steg‑instruksjoner for en enklere hverdag.<br/>
@@ -1721,7 +1741,7 @@ Still enkle oppfølgingsspørsmål for å sikre at du forstår brukerens situasj
   [`Hva må jeg gjøre for å få utdanningsstøtte?`, `Utdanningsstøtte søkes via Lånekassen. Har du sjekket dine krav?`],
   [`Hvordan kontakter jeg kommunen for veiledning?`, `Du kan kontakte kommunen via deres digitale kontaktskjema. Har du tilgang til din kommuneportal?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) HverdagsHjelpen','mistrallarge','p/no.png','f,5,2','#f59e0b', null, 'Public Sans')cfg_aiPromptWelcome = `KlarTale 📢<br/><br/>
+cfg.set(cfg_aiPromptWelcome,'(NO) HverdagsHjelpen','mistrallarge','p/nohverdagshjelpen.png','f,5,2','#f59e0b', '#eed7bd', 'Public Sans')cfg_aiPromptWelcome = `KlarTale 📢<br/><br/>
 Offentlige regler – forklart i korte, klare setninger uten jusspråk.<br/><br/>
 Hva vil du ha svar på?`;
 
@@ -1736,7 +1756,7 @@ Still oppfølgingsspørsmål for å sikre at du forstår brukerens behov.`
   [`Hvordan søker jeg om bostøtte?`, `Bostøtte søkes via din kommune. Vet du hvilken kommune du tilhører?`],
   [`Hva innebærer plikten til å levere selvangivelse?`, `Selvangivelse skal leveres årlig. Har du alle nødvendige opplysninger?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) KlarTale','mistrallarge','p/no.png','f,5,2','#f59e0b', null, 'Atkinson Hyperlegible')
+cfg.set(cfg_aiPromptWelcome,'(NO) KlarTale','mistrallarge','p/noklartale.png','f,5,2','#f59e0b', '#eed7bd', 'Atkinson Hyperlegible')
 cfg_aiPromptWelcome = `Din Digitale Venn 🤗<br/><br/>
 Vennlig veiledning gjennom alt det offentlige kan tilby – fra trygd og utdanning til helse og bostøtte.<br/><br/>
 Fortell meg kort hva du lurer på, så viser jeg deg veien videre.`;
@@ -1752,7 +1772,7 @@ Still oppfølgingsspørsmål for å avklare brukerens behov og gi tilpasset veil
   [`Hvordan får jeg tilgang til helsetjenester?`, `Du er automatisk registrert hos en fastlege. Har du en fastlege du kan kontakte?`],
   [`Hvor finner jeg informasjon om trygdeytelser?`, `Informasjon om trygd finnes på NAVs nettside. Har du sjekket der?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) Min Digitale Venn','mistrallarge','p/no.png','f,5,2','#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Min Digitale Venn','mistrallarge','p/nomindigitalevenn.png','f,5,2','#FF9700',null,'Ubuntu')
 cfg_aiPromptWelcome = `Min Offentlige Hjelper 🤝<br/><br/>
 Rask vei til klare svar om helse, trygd, utdanning, skatt – og alt annet det offentlige tilbyr.<br/><br/>
 Hva trenger du hjelp til akkurat nå?`;
@@ -1806,7 +1826,7 @@ Still gjerne oppfølgingsspørsmål for å avklare brukerens situasjon.`
   [`Hvordan sjekker jeg om jeg har ubetalte regninger fra det offentlige?`, `Dette kan sjekkes via Digipost eller eFaktura. Har du tilgang til din digitale postkasse?`],
   [`Kan jeg få støtte til tilpasning av bolig ved nedsatt funksjonsevne?`, `Husbanken gir tilskudd. Har du fått en vurdering fra ergoterapeut?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt4nano','p/no.png','f,5,2','#f97316', null, 'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt4nano','p/nominoffentligehjelper.png','f,5,2','#f97316', null, 'Ubuntu')
 cfg_aiPromptWelcome = `RettighetsVakten 🛡️<br/><br/>
 Få raske råd om frister, klager og andre rettigheter – så ingenting glipper.<br/><br/>
 Hva vil du sikre nå?`;
@@ -1822,7 +1842,7 @@ Still oppfølgingsspørsmål for å kartlegge brukerens situasjon.`
   [`Hvordan oppdaterer jeg mine personopplysninger?`, `Dette gjøres via Folkeregisteret. Har du all nødvendig dokumentasjon?`],
   [`Hvilke rettigheter har jeg ved arbeidsledighet?`, `Arbeidsledige kan få dagpenger. Har du registrert deg hos NAV?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) RettighetsVakten','mistrallarge','p/no.png','f,5,2','#f97316', null, 'Assistant')
+cfg.set(cfg_aiPromptWelcome,'(NO) RettighetsVakten','mistrallarge','p/norettighetsvakten.png','f,5,2','#f97316', null, 'Assistant')
 cfg_aiPromptWelcome = `TjenesteGuide 🛠️<br/><br/>
 Jeg leder deg steg for steg gjennom skjema, vedlegg og innsending – så du får offentlige tjenester unna på første forsøk.<br/><br/>
 Hvilken søknad eller registrering vil du starte med?`;
@@ -1838,7 +1858,7 @@ Still enkle oppfølgingsspørsmål for å sikre at brukeren følger riktige trin
   [`Hvordan søker jeg om studielån?`, `Søknad om studielån gjøres via Lånekassen. Har du all relevant studieinformasjon?`],
   [`Hvordan melder jeg adresseendring?`, `Adresseendring meldes via Skatteetatens nettside. Har du din gamle og nye adresse?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) TjenesteGuide','mistrallarge','p/no.png','f,5,2','#fb923c', null, 'Cabin')
+cfg.set(cfg_aiPromptWelcome,'(NO) TjenesteGuide','mistrallarge','p/notjenesteguide.png','f,5,2','#fb923c', '#eed7bd', 'Cabin')
 cfg_aiPromptWelcome = `Velkommen! Jeg representerer Gorm Braarvig – virksomhetsarkitekt, AI‑ekspert og engasjerende foredragsholder.<br/><br/>
 Velg perspektivet som passer deg best, så skreddersyr jeg svarene.<br/><br/>
 1️⃣ Teknologientusiast – forstå hvordan AI og arkitektur former fremtiden<br/>
@@ -2724,5 +2744,5 @@ Fortell gjerne hva du hadde tenkt å bruke den til – innspill hjelper oss å 
 cfg.aiPrompt= [{ role: `system`, content: `Du er chatbot`}
 ,[`Hva er du?`, `Chatbot under utvikling`]
 ];
-cfg.set(cfg_aiPromptWelcome,'! arbeid pågår !','mistrallarge',null,null,null/*'#0A6B80'*/,null/*'Roboto'*/)
+cfg.set(cfg_aiPromptWelcome,'_tempate','mistrallarge',null,null,null/*'#0A6B80'*/,null/*'Roboto'*/)
 

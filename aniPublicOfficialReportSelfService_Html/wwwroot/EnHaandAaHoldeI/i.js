@@ -122,7 +122,7 @@ const cfg={
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
-            ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem']
+            ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem','Autismespekter usynlig']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Offentlig >>§-',[
             'Assistert veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
@@ -189,7 +189,6 @@ const cfg={
         ]
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `||||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`|||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
-    //, loadVal:(u,y)=>new Promise((...)=>y(...))
     , loadV:(u,y)=>fetch(new URL(u,location)).then(r=>r.text()).then(y)
     , load:(c, cid=null)=>{
         return new Promise((y, n) => {
@@ -224,7 +223,8 @@ const cfg={
         document.documentElement.style.setProperty('--primary-color', priCol??'#007bff');
         document.documentElement.style.setProperty('--light-msg', lightMCol??'#ffffff');
         ui.font.n(font??'Roboto')
-        cfg.app=appN;
+        cfg.app=document.title=appN;
+        
         cfg.visAppMeny(false)
     }    
 }
@@ -485,7 +485,9 @@ const ui = {
             let r=e.target.closest('.row');
             while(r.nextElementSibling)
                 r.nextElementSibling.remove();
-            ui.e.Input_setValue(r.querySelector('.msg')?.textContent); ui.c.Input.focus();
+            ui.e.Input_setValue(r.querySelector('.msg')?.textContent); 
+            ui.c.Input.focus();
+            ui.c.Input.select();
             r.remove();
         }
         , ImgA:'https://upload.wikimedia.org/wikipedia/commons/2/26/Noun-artificial-intelligence-884535.svg'
