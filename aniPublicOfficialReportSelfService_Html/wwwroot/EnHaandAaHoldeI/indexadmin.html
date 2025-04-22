@@ -15,12 +15,12 @@
 
 </head>
 <body>
-    <header id="header"><button onclick="ui.ChangeFontSize()">A</button><div>
+    <header id="header"><button onclick="ui.ChangeFontSize()">/*A</button><div>
         <center>Sikret Chat - administrasjon</center></div>
         <button onclick="ui.menu.Show()">m</button><div id="menu" class="menu hidden"></div>
     </header>
+    <span style="color:#fff">--*/</span>
     <main>
-
 </main>
     <footer id="grubling" class="hidden">....</footer>
     <footer id="suggestions" class="hidden">...</footer>
@@ -36,8 +36,10 @@
     <script src="indexadmin.js"></script>
     <script src="i/pv.js"></script><script src="i/pbg.js"></script>
     <script>
-        msgInfo('<br>'.repeat(13)+ lagring.d.erN(lagring.d.meta))//
-        msgInfo(lagring.d.tabN(lagring.d.meta))
+        // msgInfo('<br>'.repeat(13)+ lagring.d.erN(lagring.d.meta))//
+        msgInfo(lagring.d.tabN(lagring.d.meta)+'<span style="color:#fff">/*</span>')
+        setTimeout(()=>msgInfo(qr.d(undefined,ui.c.Chat,undefined,'p/aigap.webp')&undefined),2000);
     </script>
+    <span style="color:#fff">--*/</span>
 </body>
 </html>
