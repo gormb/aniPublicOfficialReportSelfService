@@ -1,5 +1,5 @@
 cfg_aiPromptWelcome = `Tankefeil‑varsleren 🎲<br/><br/>
-Skriv én uttalelse – jeg finner logiske glipper og gir deg både< en bedre, og en enda verre, versjon å sammenligne med.<br/><br/>
+Skriv én uttalelse – jeg finner logiske glipper og gir deg både en bedre, og en enda verre, versjon å sammenligne med.<br/><br/>
 Hva er uttalelsen?`;
 
 cfg.aiPrompt=[{ role: `system`, content: 
