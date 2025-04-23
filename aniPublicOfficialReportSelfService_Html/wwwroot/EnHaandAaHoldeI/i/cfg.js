@@ -9,7 +9,7 @@ const cfg={
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
-            ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem','Autismespekter usynlig']
+            ,'Hlm - spesialist >>§-',['Flytveilederen','Biopsykososial modell','Kroppens stressystem','Autismespekter usynlig']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Offentlig >>§-',[
             'Assistert veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
