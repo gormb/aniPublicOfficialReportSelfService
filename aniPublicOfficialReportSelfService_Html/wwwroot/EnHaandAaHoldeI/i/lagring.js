@@ -94,7 +94,7 @@ const lagring = {
         ,tab:(n,d,r,fmt)=>{const a=r.map(x=>x.split(',').map(x=>x.trim())),rows=a.map(([f,t,b])=>`<tr><td>${f}</td><td>${t}</td><td>${b||''}</td></tr>`).join(''),sql=[lagring.d.tabSD(n),lagring.d.tabSC(n,r),lagring.d.tabSX(n,r)].join('\n');return fmt=='html'?`<table class="hidde" id="dTab_${n}"><caption>-- ${n} ${d} --</caption><tr><th>Felt</th><th>Type</th><th>Beskrivelse</th></tr>${rows}<tr><td colspan=3>${sql.replace(/\n/g,'<br>')}</td></tr></table>`:sql}
         ,tabN:(a,fmt='html')=>{let d=new Set(),o=[],f=n=>{if(d.has(n))return;let t=a.find(t=>t[0]==n);if(!t)return;t[2].forEach(r=>{let x=r.split(',')[0].trim();if(x.startsWith('id_'))f(x.slice(3));});o.push(lagring.d.tab(t[0], t[1], t[2], fmt));d.add(n)};a.forEach(([n])=>f(n));return o.join('')}
         ,erR:a=>a.flatMap(([from,_,rows])=>rows.map(r=>r.split(',')[0]).filter(f=>f.startsWith('id_')).map(f => ({from,to: f.slice(3)})))
-        ,erNbox:a=>a.map(([id,l,_,[x,y,c]])=>`<div id=b_${id} style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);z-index:1;font-size:10pt;border:1px solid;padding:4px;max-width:120px;min-width:80px;width:max-content;text-align:center;background:${c}">${id}<br>${l}</div>`).join('')
+        ,erNbox:a=>a.map(([id,l,_,[x,y,c]])=>`<div id=b_${id} style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);z-index:1;font-size:9pt;border:1px solid;padding:4px;max-width:120px;min-width:80px;width:max-content;text-align:center;background:${c}">${id}<br>${l}</div>`).join('')
         ,erNsvg:a=>{const s=document.getElementById('svgLayer'),p=s.createSVGPoint(),c=e=>{if(!e)return;const r=e.getBoundingClientRect(); p.x=r.left+r.width/2; p.y = r.top + r.height/2; return p.matrixTransform(s.getScreenCTM().inverse()) };s.innerHTML = `<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="black"/></marker></defs>`+lagring.d.erR(a).map(({from,to})=>{const p1 = c(document.getElementById('b_'+from)),p2 = c(document.getElementById('b_'+to)),mx = (p1?.x + p2?.x)/2,my = (p1?.y + p2?.y)/2;return p1&&p2&&`<path d="M${p1.x} ${p1.y} L${mx} ${my} L${p2.x} ${p2.y}" stroke="black" fill="none" marker-mid="url(#arrow)"/>`;}).join('');}
         ,erN: a => (setTimeout(() => lagring.d.erNsvg(a),100),'<svg id=svgLayer style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none"></svg>' + lagring.d.erNbox(a))
     }
@@ -138,8 +138,11 @@ lagring.d.fyll = (n = 'ukjent') => {
 };
 //lagring.d.pilotC=n=>Object.keys(lagring.d.meta).forEach(t=>lagring.net.del(t, `like.${t}_${n}`));
 //lagring.d.fyll('ukjent');
-
+lagring.d.fyllP=n=>{
+    return `/*AI generated*/
+    lagring.net.s('u',{id:gormbraarvig,data:{navn:'Gorm Braarvig'}})`
+}
 //lagring.idC.p('id=gorm9')
-lagring.net.sel('a',console.warn)//lagring.net.del('a', {id:'123'}, console.warn);//lagring.net.del('a', {id:'1234'}, console.warn);//lagring.net.del('a', {id:'11234'}, console.warn);//lagring.net.upd('a', {id:'1234', App:'1234 Test'}, console.warn);//lagring.net.upd('a', {id:'11234', App:'11234 Test'}, console.warn);//lagring.net.sel('b,id,App', r => console.table(r));
+//lagring.net.sel('a',console.warn)//lagring.net.del('a', {id:'123'}, console.warn);//lagring.net.del('a', {id:'1234'}, console.warn);//lagring.net.del('a', {id:'11234'}, console.warn);//lagring.net.upd('a', {id:'1234', App:'1234 Test'}, console.warn);//lagring.net.upd('a', {id:'11234', App:'11234 Test'}, console.warn);//lagring.net.sel('b,id,App', r => console.table(r));
 //lagring.net.selA(console.warn)
 //lagring.net.selAp(console.warn)//{"id": "ny", "App":"Ny", "mor":"Ny", "mormor":"Utvikling"}

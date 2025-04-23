@@ -12,12 +12,11 @@ cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
   qr.g(dQr, baseUrl+id, 0.3, img.src);
   setTimeout(()=>{
     img.style.display='none';
-    
     dDesc.innerHTML=`<div style="padding:1vw;border-radius:1vw
       ;font-family:${ui.font.n(font??'Roboto')};color:${lightMCol??'#ffffff'};background:${priCol??'#007bff'}">
       ${aiPromptWelcome}</div>`;
   },500);
-} //cfg.set(cfg_aiPromptWelcome,'KIROS-konsulent','gpt4nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
+}
 
 let iC=0,iTot=9999;
 
