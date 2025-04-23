@@ -83,4 +83,4 @@ Eller bare si noe helt eget.`]
 
 ]
 
-cfg.set(cfg_aiPromptWelcome, 'Flytveilederen', 'gpt4', 'p/flytveilederen.png', 'f,5,2', '#0C4A6E', null, 'Atkinson Hyperlegible')
+cfg.set(cfg_aiPromptWelcome, 'Flytveilederen', 'mistrallarge', 'p/flytveilederen.png', 'f,5,2', '#0C4A6E', null, 'Atkinson Hyperlegible')
