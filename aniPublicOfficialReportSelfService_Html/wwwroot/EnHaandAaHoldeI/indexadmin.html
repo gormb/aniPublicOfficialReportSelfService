@@ -6,12 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
     <link rel="stylesheet" href="index.css">
 
-<style>
-    table { border-collapse: collapse; width: 100%; margin: 2rem auto; max-width: 900px; }
-    th,td { border: 1px solid #ccc; padding: 0.75rem; text-align: left; }
-    th { background-color: #e6f0ff; }
-    caption { caption-side: top; font-weight: bold; font-size: 1.4rem; padding: 1rem; }
-</style>
+<style>table { border-collapse: collapse; width: 100%; margin: 2rem auto; max-width: 900px; }th,td { border: 1px solid #ccc; padding: 0.75rem; text-align: left; }th { background-color: #e6f0ff; }caption { caption-side: top; font-weight: bold; font-size: 1.4rem; padding: 1rem; }</style>
 
 </head>
 <body>
@@ -19,27 +14,41 @@
         <center>Sikret Chat - administrasjon</center></div>
         <button onclick="ui.menu.Show()">m</button><div id="menu" class="menu hidden"></div>
     </header>
-    <span style="color:#fff">--*/</span>
     <main>
-</main>
+        <span style="color:#fff">--*/<br>/*</span>
+    </main>
     <footer id="grubling" class="hidden">....</footer>
     <footer id="suggestions" class="hidden">...</footer>
     <footer>
         <button id="speak">🎤</button><textarea id="inp" placeholder="..."></textarea><button id="send">&nbsp;↑&nbsp;</button>
+        <script src="i/cfg.js"></script>
+        <script src="i/setting.js"></script>
+        <script src="i/ui.js"></script>
+        <script src="i/qr.js"></script>
+        <script src="i/lagring.js"></script>
+        <script src="i/ai.js"></script>
+        <script src="indexadmin.js"></script>
+        <script src="i/deploy.js"></script>
+        <script src="i/pv.js"></script><script src="i/pbg.js"></script>
     </footer>
-    <script src="i/cfg.js"></script>
-    <script src="i/setting.js"></script>
-    <script src="i/ui.js"></script>
-    <script src="i/qr.js"></script>
-    <script src="i/lagring.js"></script>
-    <script src="i/ai.js"></script>
-    <script src="indexadmin.js"></script>
-    <script src="i/pv.js"></script><script src="i/pbg.js"></script>
     <script>
-        msgInfo('<br>'.repeat(13)+ lagring.d.erN(lagring.d.meta))//
-        msgInfo(lagring.d.tabN(lagring.d.meta)+'<span style="color:#fff">/*</span>')
-        setTimeout(()=>msgInfo(qr.d(undefined,ui.c.Chat,undefined,'p/aigap.webp')&undefined),2000);
+        c='<span style="color:#fff">-- */<br>/*</span>'
+        s=c+'<br>'.repeat(12)
+
+        lagring.d.rels=()=>lagring.d.meta.map(([t, _, cols]) =>[t, cols.toString().split(',').filter(f => f.startsWith('id_') && f !== 'id').map(f => f.slice(3))]);
+        lagring.d.relsi = () => lagring.d.rels().reduce((a,[t,rs]) => (rs.forEach(r => (a[r] ??= []).push(t)), a), {});
+        console.log(lagring.d.relsi())
+        //msgInfo(s+`/* Relasjoner\n`+lagring.d.rels().map(([t,rels])=>`${t}=${rels.join(',')}`).join('\n').replaceAll(/\n/g,'<br>') +`*/`);
+
+        msgInfo(s+lagring.d.erN(lagring.d.meta))
+        msgInfo(`/*Kopier SQL for
+            <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,''))">drop&create</button>
+            <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,'drop'))">drop</button>
+            <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,'create'))">create</button><br>
+            */`);
+        m=msgInfo(lagring.d.tabN(lagring.d.meta)+c);
+        qr.d(undefined,m,undefined,'p/aigap.webp');
+        document.write('*/');
     </script>
-    <span style="color:#fff">--*/</span>
 </body>
 </html>
