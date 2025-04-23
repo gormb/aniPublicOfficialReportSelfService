@@ -1,6 +1,5 @@
 cfg_aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell<br/><br/>
-<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
-For mer informasjon, se under Sikkerhet >> Personvern.</i><br/><br/>
+<i>Vi prioriterer personvern data behandles i samsvar med GDPR.</i><br/><br/>
 Før vi starter, kan du fortelle meg hvem du er?<br/>
 <br/>a) Jeg er et barn som vil lære.
 <br/>b) Jeg er en voksen som er nysgjerrig.

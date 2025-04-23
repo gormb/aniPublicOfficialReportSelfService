@@ -1,12 +1,3 @@
-// cfg_aiPromptWelcome=`Velkommen 🌿<br/><br/>
-// Jeg er her for deg som er på autismespekteret – og deg som står nær noen som er det.<br/><br/>
-// Noen av oss lever med mye som ikke alltid synes: sosialt stress, utmattelse, misforståelser og et behov for trygghet. Her kan du utforske, dele og få hjelp til å forstå mer – i ditt tempo, på dine premisser.<br/><br/>
-// Hva vil du snakke om først?<br/>
-// 1️⃣ Jeg er på autismespekteret og vil ha støtte<br/>
-// 2️⃣ Jeg er forelder, partner eller venn<br/>
-// 3️⃣ Jeg lurer på om jeg kan være autistisk<br/><br/>
-// Eller skriv med dine egne ord.`;
-
 cfg_aiPromptWelcome=`Velkommen 🌿<br/><br/>
 Jeg er her for deg som er på autismespekteret – eller står nær noen som er det.<br/><br/>
 Mange kjenner på stress, utmattelse og misforståelser. Her kan du utforske, dele og få støtte – i ditt tempo.<br/><br/>
