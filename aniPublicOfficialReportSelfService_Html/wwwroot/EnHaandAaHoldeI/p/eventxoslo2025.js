@@ -1,12 +1,16 @@
 //cfg.load('tedxoslo2025');
 // Hovedsakelig produsert med ChatGPT 20250319
-cfg_aiPromptWelcome = `Velkommen til EVENTxOslo 2025‑chatten!✨<br/><br/>
-Oppdag hvordan algoritmer, intuisjon, kunst og samfunns­drivkrefter smelter sammen på årets mest fremtidsrettede konferanse.<br/><br/>
-👉 Hva interesserer deg mest?<br/><br/>
-① Teknologi og algoritmer<br/>
-② Intuisjon og beslutningstaking<br/>
-③ Kreativitet og kunst i en teknologidominert verden<br/>
-④ Sosiale bevegelser og samfunnsendringer<br/><br/>
+cfg_aiPromptWelcome = `Velkommen til EVENTxOslo 2025‑chatten!✨
+
+Oppdag hvordan algoritmer, intuisjon, kunst og samfunns­drivkrefter smelter sammen på årets mest fremtidsrettede konferanse.
+
+👉 Hva interesserer deg mest?
+
+① Teknologi og algoritmer
+② Intuisjon og beslutningstaking
+③ Kreativitet og kunst i en teknologidominert verden
+④ Sosiale bevegelser og samfunnsendringer
+
 Skriv tallet som frister – eller still ditt eget spørsmål!`;
 
 

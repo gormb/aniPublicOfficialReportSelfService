@@ -1,9 +1,12 @@
-cfg_aiPromptWelcome=`Velkommen til IT‑revyens årsmøte og årsberetning!<br/><br/>
-<i>Her ser vi tilbake på fjorårets høydepunkter, presenterer regnskapet og stemmer over nye styrekandidater – før vi kaster blikket frem mot neste sesong.</i><br/><br/>
-Hva ønsker du å høre om?<br/>
-1️⃣ Årsberetning og nøkkeltall<br/>
-2️⃣ Valg av styre og kandidater<br/>
-3️⃣ Planer og idéer for kommende revy<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til IT‑revyens årsmøte og årsberetning!
+
+<i>Her ser vi tilbake på fjorårets høydepunkter, presenterer regnskapet og stemmer over nye styrekandidater – før vi kaster blikket frem mot neste sesong.</i>
+
+Hva ønsker du å høre om?
+1️⃣ Årsberetning og nøkkeltall
+2️⃣ Valg av styre og kandidater
+3️⃣ Planer og idéer for kommende revy
+
 Velg et nummer eller skriv hva du gjerne vil vite mer om.`;
 
 

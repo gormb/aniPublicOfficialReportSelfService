@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Din Digitale Venn 🤗<br/><br/>
-Vennlig veiledning gjennom alt det offentlige kan tilby – fra trygd og utdanning til helse og bostøtte.<br/><br/>
+cfg_aiPromptWelcome = `Din Digitale Venn 🤗
+
+Vennlig veiledning gjennom alt det offentlige kan tilby – fra trygd og utdanning til helse og bostøtte.
+
 Fortell meg kort hva du lurer på, så viser jeg deg veien videre.`;
 
 cfg.aiPrompt= [

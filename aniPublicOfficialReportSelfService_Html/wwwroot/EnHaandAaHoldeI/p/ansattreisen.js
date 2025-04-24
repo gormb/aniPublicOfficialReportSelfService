@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Ansattveilederen 🤝<br/><br/>
-Fra søknad til siste arbeidsdag – få korte, konkrete råd om rettigheter, utvikling og avslutning.<br/><br/>
+cfg_aiPromptWelcome = `Ansattveilederen 🤝
+
+Fra søknad til siste arbeidsdag – få korte, konkrete råd om rettigheter, utvikling og avslutning.
+
 Hva trenger du hjelp til akkurat nå?`;
 
 cfg.aiPrompt = [{ role: `system`, content:

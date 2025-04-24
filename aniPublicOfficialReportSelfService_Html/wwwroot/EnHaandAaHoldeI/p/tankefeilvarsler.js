@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Tankefeil‑varsleren 🎲<br/><br/>
-Skriv én uttalelse – jeg finner logiske glipper og gir deg både en bedre, og en enda verre, versjon å sammenligne med.<br/><br/>
+cfg_aiPromptWelcome = `Tankefeil‑varsleren 🎲
+
+Skriv én uttalelse – jeg finner logiske glipper og gir deg både en bedre, og en enda verre, versjon å sammenligne med.
+
 Hva er uttalelsen?`;
 
 cfg.aiPrompt=[{ role: `system`, content: 
@@ -334,4 +336,4 @@ Eksempel: 🎲 x "setning"`}
      🌑 "Overlevelse er nesten garantert – bare idioter takker nei."`]
 
 ];
-cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler',null,'p/tankefeilvarsler.png','f,5,2')
+cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler','gpt4','p/tankefeilvarsler.png','f,5,2')

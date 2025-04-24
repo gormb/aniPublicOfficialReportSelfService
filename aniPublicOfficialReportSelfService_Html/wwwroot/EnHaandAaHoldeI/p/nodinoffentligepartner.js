@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Din Offentlige Partner 🏛️<br/><br/>
-Trygg veiledning om rettigheter, plikter, søknad og klage – så du møter offentlig sektor med full kontroll.<br/><br/>
+cfg_aiPromptWelcome = `Din Offentlige Partner 🏛️
+
+Trygg veiledning om rettigheter, plikter, søknad og klage – så du møter offentlig sektor med full kontroll.
+
 Hva vil du ha hjelp til først?`;
 
 cfg.aiPrompt= [

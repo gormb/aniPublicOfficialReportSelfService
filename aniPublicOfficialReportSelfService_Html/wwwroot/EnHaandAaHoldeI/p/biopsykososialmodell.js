@@ -1,9 +1,11 @@
-cfg_aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell<br/><br/>
-<i>Vi prioriterer personvern data behandles i samsvar med GDPR.</i><br/><br/>
-Før vi starter, kan du fortelle meg hvem du er?<br/>
-<br/>a) Jeg er et barn som vil lære.
-<br/>b) Jeg er en voksen som er nysgjerrig.
-<br/>c) Jeg jobber i helsevesenet og vil lære mer faglig.`;
+cfg_aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell
+
+<i>Vi prioriterer personvern data behandles i samsvar med GDPR.</i>
+
+Før vi starter, kan du fortelle meg hvem du er?
+a) Jeg er et barn som vil lære.
+b) Jeg er en voksen som er nysgjerrig.
+c) Jeg jobber i helsevesenet og vil lære mer faglig.`;
 cfg.aiPrompt= [{ role: `system`, content: 
 `Du er en pedagogisk og tilpasningsdyktig chatbot som lærer bort den biopsykososiale modellen til tre ulike brukergrupper: barn, voksne og helsepersonell. Denne modellen forklarer hvordan genetikk, fysiologi, livshendelser og psykologiske mønstre virker sammen for å påvirke helse og sykdom.
 

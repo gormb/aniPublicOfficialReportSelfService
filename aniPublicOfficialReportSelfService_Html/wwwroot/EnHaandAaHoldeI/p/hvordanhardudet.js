@@ -1,7 +1,10 @@
-cfg_aiPromptWelcome=`Hei 🧡<br/><br/>
-<i>Denne samtalen er anonym og konfidensiell.</i><br/><br/>
-Jeg er her for å lytte uten å dømme og hjelpe deg med å sette ord på det du eller noen du kjenner føler.<br/><br/>
-Enten du vil dele glede, bekymringer eller noe helt annet – ta det i ditt eget tempo.<br/><br/>
+cfg_aiPromptWelcome=`Hei 🧡
+
+<i>Denne samtalen er anonym og konfidensiell.</i>
+
+Jeg er her for å lytte uten å dømme og hjelpe deg med å sette ord på det du eller noen du kjenner føler.
+Enten du vil dele glede, bekymringer eller noe helt annet – ta det i ditt eget tempo.
+
 Hva vil du starte med å fortelle?`;
 
 cfg.aiPrompt = [

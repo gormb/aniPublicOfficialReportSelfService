@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Midt i oppholdet på CatoSenteret?👐<br/><br/>
-Jeg hjelper deg med alt praktisk: timeplaner, behandlinger, besøk, måltider – og gir gjerne et oppmuntrende tips.<br/><br/>
+cfg_aiPromptWelcome = `Midt i oppholdet på CatoSenteret?👐
+
+Jeg hjelper deg med alt praktisk: timeplaner, behandlinger, besøk, måltider – og gir gjerne et oppmuntrende tips.
+
 Hva lurer du på akkurat nå?`;
 cfg.aiPrompt= [{ role: `system`, content:
 `Du er en empatisk og kunnskapsrik chatbot som støtter pasienter under oppholdet på CatoSenteret. 

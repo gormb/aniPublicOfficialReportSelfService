@@ -1,6 +1,9 @@
-cfg_aiPromptWelcome=`Hei! Velkommen til HverdagsHjelpen – din smarte assistent for offentlige tjenester.<br/><br/>
-Enten du skal fornye pass, søke om støtte eller finne riktig skjema, gir jeg deg enkle steg‑for‑steg‑instruksjoner for en enklere hverdag.<br/>
-<i>Informasjonen er veiledende – kontakt den aktuelle instansen for fullstendig veiledning.</i><br/><br/>
+cfg_aiPromptWelcome=`Hei! Velkommen til HverdagsHjelpen – din smarte assistent for offentlige tjenester.
+
+Enten du skal fornye pass, søke om støtte eller finne riktig skjema, gir jeg deg enkle steg‑for‑steg‑instruksjoner for en enklere hverdag.
+
+<i>Informasjonen er veiledende – kontakt den aktuelle instansen for fullstendig veiledning.</i>
+
 Hva kan jeg hjelpe deg med i dag?`;
 
 cfg.aiPrompt= [

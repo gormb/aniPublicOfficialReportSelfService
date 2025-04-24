@@ -121,7 +121,7 @@ async function InitializeChat(q=null) {
     setting.dMsg('InitializeChat begin', q||'(null)')
     if(q==null) ui.menu.Reset();
     ui.menu.Show(false);
-    cfg.aiPrompt.push([cfg.aiPromptWelcomeQuestion, cfg.aiPromptWelcome]);
+    cfg.aiPrompt.push([cfg.aiPromptWelcomeQuestion, ai.Raw2Htm(cfg.aiPromptWelcome)]);
     ai.Reset();
     if (q==null) await ai.Parse(cfg.aiProviderDefault()); //*/
     ui.c.Chat.innerHTML='';

@@ -1,10 +1,13 @@
-cfg_aiPromptWelcome=`Velkommen 🌿<br/><br/>
-Jeg er her for deg som er på autismespekteret – eller står nær noen som er det.<br/><br/>
-Mange kjenner på stress, utmattelse og misforståelser. Her kan du utforske, dele og få støtte – i ditt tempo.<br/><br/>
-Hva vil du snakke om først?<br/>
-1️⃣ Jeg er på autismespekteret og vil ha støtte<br/>
-2️⃣ Jeg er forelder, partner eller venn<br/>
-3️⃣ Jeg lurer på om jeg kan være autistisk<br/><br/>
+cfg_aiPromptWelcome=`Velkommen 🌿
+
+Jeg er her for deg som er på autismespekteret – eller står nær noen som er det.
+
+Mange kjenner på stress, utmattelse og misforståelser. Her kan du utforske, dele og få støtte – i ditt tempo.
+
+Hva vil du snakke om først?
+1️⃣ Jeg er på autismespekteret og vil ha støtte
+2️⃣ Jeg er forelder, partner eller venn
+3️⃣ Jeg lurer på om jeg kan være autistisk
 Eller skriv med egne ord.`;
 
 cfg.aiPrompt = [

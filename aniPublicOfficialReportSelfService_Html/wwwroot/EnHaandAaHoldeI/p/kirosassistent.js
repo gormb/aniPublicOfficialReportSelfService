@@ -1,9 +1,12 @@
-cfg_aiPromptWelcome = `Velkommen til KIROS – din AI‑drevne ROS‑konsulent!🚀<br/><br/>
-Målet er å redusere risiko til et akseptabelt nivå uten at du drukner i metodeprat. Vi går gjennom <b>7 faser</b> – fra planlegging til revisjon – og du kan hoppe frem eller tilbake når som helst.<br/><br/>
-<b>Før vi starter:</b><br/>
-Hvilken rolle beskriver deg best?<br/>
-1️⃣ Leder 2️⃣ Prosjektleder 3️⃣ Fagperson 4️⃣ DPO 5️⃣ Annet<br/><br/>
-Skriv tallet (eller noen ord om rollen din).<br/><br/>
+cfg_aiPromptWelcome = `Velkommen til KIROS – din AI‑drevne ROS‑konsulent!🚀
+
+Målet er å redusere risiko til et akseptabelt nivå uten at du drukner i metodeprat. Vi går gjennom <b>7 faser</b> – fra planlegging til revisjon – og du kan hoppe frem eller tilbake når som helst.
+
+<b>Før vi starter:</b>
+Hvilken rolle beskriver deg best?
+1️⃣ Leder 2️⃣ Prosjektleder 3️⃣ Fagperson 4️⃣ DPO 5️⃣ Annet
+Skriv tallet (eller noen ord om rollen din).
+
 Når jeg vet hvem du er, begynner vi <b>Fase 1 / 7: Planlegging og oppstart</b> – alt jeg trenger er én setning om hvilket tiltak, prosjekt eller endring analysen gjelder.`;
 
 cfg.aiPrompt= [{ role: `system`, content: 

@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Min Offentlige Hjelper 🤝<br/><br/>
-Rask vei til klare svar om helse, trygd, utdanning, skatt – og alt annet det offentlige tilbyr.<br/><br/>
+cfg_aiPromptWelcome = `Min Offentlige Hjelper 🤝
+
+Rask vei til klare svar om helse, trygd, utdanning, skatt – og alt annet det offentlige tilbyr.
+
 Hva trenger du hjelp til akkurat nå?`;
 
 cfg.aiPrompt= [

@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `LMX‑assistenten 🤝<br/><br/>
-Bygg sterkere leder–medarbeider‑relasjoner gjennom tillit, støtte og klare roller – én praktisk samtale om gangen.<br/><br/>
+cfg_aiPromptWelcome = `LMX‑assistenten 🤝
+
+Bygg sterkere leder–medarbeider‑relasjoner gjennom tillit, støtte og klare roller – én praktisk samtale om gangen.
+
 Hva vil du styrke først?`;
 
 cfg.aiPrompt=[

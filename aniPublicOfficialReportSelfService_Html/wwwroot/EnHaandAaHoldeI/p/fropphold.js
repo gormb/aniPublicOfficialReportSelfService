@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Velkommen til CatoSenter-chat 💬<br/><br/>
-Jeg hjelper deg med å forberede deg til rehabiliterings­oppholdet ditt – praktisk, trygt og forsknings­basert. Spør om reise, egenandel, pakkeliste eller hva som skjer den første dagen.<br/><br/>
+cfg_aiPromptWelcome = `Velkommen til CatoSenter-chat 💬
+
+Jeg hjelper deg med å forberede deg til rehabiliterings­oppholdet ditt – praktisk, trygt og forsknings­basert. Spør om reise, egenandel, pakkeliste eller hva som skjer den første dagen.
+
 Hva lurer du på?`;
 
 cfg.aiPrompt= [{ role: `system`, content:

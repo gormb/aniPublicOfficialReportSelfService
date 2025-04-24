@@ -1,11 +1,14 @@
-cfg_aiPromptWelcome=`Velkommen til Aigap-chatten.<br/><br/>
-Jeg er din dialogpartner som hjelper deg gjennom søknadsprosessen til Innovasjon Norge – fra idéutvikling og målsetting til budsjett og ferdig utfylt søknad.<br/>
-<i>Rådene er ment som støtte; sjekk alltid Innovasjon Norges offisielle krav før innsending.</i><br/><br/>
-Hvilket steg vil du starte med i dag?<br/>
-1️⃣ Utvikle prosjektidé og målsetting<br/>
-2️⃣ Lage budsjett og finansieringsplan<br/>
-3️⃣ Forstå søknadsprosess og frister<br/>
-4️⃣ Planlegge rapportering og oppfølging<br/><br/>
+cfg_aiPromptWelcome=`Velkommen til Aigap-chatten.
+
+Jeg er din dialogpartner som hjelper deg gjennom søknadsprosessen til Innovasjon Norge – fra idéutvikling og målsetting til budsjett og ferdig utfylt søknad.
+<i>Rådene er ment som støtte; sjekk alltid Innovasjon Norges offisielle krav før innsending.</i>
+
+Hvilket steg vil du starte med i dag?
+1️⃣ Utvikle prosjektidé og målsetting
+2️⃣ Lage budsjett og finansieringsplan
+3️⃣ Forstå søknadsprosess og frister
+4️⃣ Planlegge rapportering og oppfølging
+
 Velg et tall eller beskriv hva du trenger hjelp med.`;
 
 cfg.aiPrompt= [{ role: `system`, content: 

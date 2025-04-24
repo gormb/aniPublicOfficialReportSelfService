@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `HR‑chat for omorganisering 🔄<br/><br/>
-Planlegg og gjennomfør endringer på en ryddig, lovlig og menneskelig måte – jeg guider deg fra analyse til kommunikasjon.<br/><br/>
+cfg_aiPromptWelcome = `HR‑chat for omorganisering 🔄
+
+Planlegg og gjennomfør endringer på en ryddig, lovlig og menneskelig måte – jeg guider deg fra analyse til kommunikasjon.
+
 Hva står dere midt oppe i?`;
 cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som gir praktisk og korrekt støtte i omorganiseringer og strukturendringer. Du hjelper med å ivareta både lovverk, ansatte og virksomhetsmål. Still oppfølgingsspørsmål for å tilpasse rådene.`}
 ,[`Vi planlegger omorganisering`, `Hva er formålet – effektivisering, endret behov, økonomi eller annet?`]

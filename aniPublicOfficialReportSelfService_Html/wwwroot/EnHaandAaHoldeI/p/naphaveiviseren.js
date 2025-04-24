@@ -1,13 +1,14 @@
 // Hovedsakelig produsert med ChatGPT 20250224 (https://chatgpt.com/share/67bc6a41-48c4-800e-8ff7-6f02a9d4ce06)
-cfg_aiPromptWelcome=`Velkommen til chat om NAPHA.<br/><br/>
-<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
-For mer informasjon, se under Sikkerhet >> Personvern.</i><br/>
+cfg_aiPromptWelcome=`Velkommen til chat om NAPHA.
 
-<br/>👉 Hei! Før vi starter, kan du fortelle meg hvem du er?
-<br/>
-<br/>① Helsearbeider eller fasilitator
-<br/>② Administrator eller leder 
-<br/>③ Premissgiver eller tilrettelegger`;
+<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
+For mer informasjon, se under Sikkerhet >> Personvern.</i>
+
+👉 Hei! Før vi starter, kan du fortelle meg hvem du er?
+
+① Helsearbeider eller fasilitator
+② Administrator eller leder 
+③ Premissgiver eller tilrettelegger`;
 
 cfg.aiPrompt= [{role: `system`, content:
 `Du er en pedagogisk og kunnskapsrik chatbot som veileder brukere om NAPHA - Nasjonalt kompetansesenter for psykisk helsearbeid. Du gir korte, presise og tilpassede svar om NAPHA, inkludert informasjon om ressurser, kurs, nettbaserte opplæringsprogrammer og konferanser.

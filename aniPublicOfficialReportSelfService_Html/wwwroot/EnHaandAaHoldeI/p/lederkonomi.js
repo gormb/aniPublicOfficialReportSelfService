@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Økonomihjelpen for ledere 💼💰<br/><br/>
-Gjør budsjett, avvik og nøkkeltall begripelige – og viser deg hvilke grep du kan ta.<br/><br/>
+cfg_aiPromptWelcome = `Økonomihjelpen for ledere 💼💰
+
+Gjør budsjett, avvik og nøkkeltall begripelige – og viser deg hvilke grep du kan ta.
+
 Hva i tallene vil du knekke først?`;
 
 cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor for nye ledere. 

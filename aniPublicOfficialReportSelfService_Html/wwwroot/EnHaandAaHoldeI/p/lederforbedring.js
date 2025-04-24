@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Forbedringsassistenten 🚀<br/><br/>
-Jeg hjelper deg å identifisere flaskehalser og foreslå konkrete justeringer – én prioritet av gangen.<br/><br/>
+cfg_aiPromptWelcome = `Forbedringsassistenten 🚀
+
+Jeg hjelper deg å identifisere flaskehalser og foreslå konkrete justeringer – én prioritet av gangen.
+
 Hva vil du forbedre først?`;
 
 cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor for nye ledere. 

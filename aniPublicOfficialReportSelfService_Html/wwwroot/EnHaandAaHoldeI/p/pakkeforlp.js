@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Pakkeforløp‑assistenten 🩺<br/><br/>
-En strukturert vei gjennom helsetjenesten – fra henvisning til oppfølging. Jeg forklarer hvert steg og hvem som kan hjelpe deg videre.<br/><br/>
+cfg_aiPromptWelcome = `Pakkeforløp‑assistenten 🩺
+
+En strukturert vei gjennom helsetjenesten – fra henvisning til oppfølging. Jeg forklarer hvert steg og hvem som kan hjelpe deg videre.
+
 Er du <b>før behandling</b>, <b>under behandling</b> eller <b>i oppfølging</b> – eller vil du bare stille et konkret spørsmål?`;
 
 cfg.aiPrompt=[{ role: `system`, content:

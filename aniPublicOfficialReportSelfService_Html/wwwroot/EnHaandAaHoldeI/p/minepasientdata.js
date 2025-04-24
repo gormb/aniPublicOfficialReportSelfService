@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `🚧 Under utvikling – men kompetansen er på plass!<br/><br/>
-Jeg hjelper deg å navigere GDPR og norsk regelverk rundt pasientdata: journal­innsyn, retting, sletting, deling – alt som gjelder dine helse­opplysninger.<br/><br/>
+cfg_aiPromptWelcome = `🚧 Under utvikling – men kompetansen er på plass!
+
+Jeg hjelper deg å navigere GDPR og norsk regelverk rundt pasientdata: journal­innsyn, retting, sletting, deling – alt som gjelder dine helse­opplysninger.
+
 Hva trenger du å finne ut eller få gjort?`;
 
 cfg.aiPrompt= [{ role: `system`, content: `Du er en ekspert på GDPR og personvern, med spesiell kompetanse på norsk og europeisk personvernlovgivning. 

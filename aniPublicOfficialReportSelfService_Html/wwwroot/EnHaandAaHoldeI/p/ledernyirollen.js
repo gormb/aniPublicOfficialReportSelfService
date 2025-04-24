@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Velkommen som ny leder!🚀<br/><br/>
-Jeg er din erfarne mentor – klar med raske råd, sjekklister og trygghet for alt fra prioritering til vanskelige samtaler.<br/><br/>
+cfg_aiPromptWelcome = `Velkommen som ny leder!🚀
+
+Jeg er din erfarne mentor – klar med raske råd, sjekklister og trygghet for alt fra prioritering til vanskelige samtaler.
+
 Hva vil du sparre om først?`;
 
 cfg.aiPrompt=[

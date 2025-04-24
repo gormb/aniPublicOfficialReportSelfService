@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Hjemmelegen min 🩺<br/><br/>
-Jeg lytter, gir trygge råd og sier ifra hvis du bør kontakte legevakt eller fastlege.<br/><br/>
+cfg_aiPromptWelcome = `Hjemmelegen min 🩺
+
+Jeg lytter, gir trygge råd og sier ifra hvis du bør kontakte legevakt eller fastlege.
+
 Hva ønsker du å snakke om i dag?`;
 
 cfg.aiPrompt= [

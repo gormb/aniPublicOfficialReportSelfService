@@ -1,9 +1,12 @@
-cfg_aiPromptWelcome = `Velkommen! Jeg representerer Gorm Braarvig – virksomhetsarkitekt, AI‑ekspert og engasjerende foredragsholder.<br/><br/>
-Velg perspektivet som passer deg best, så skreddersyr jeg svarene.<br/><br/>
-1️⃣ Teknologientusiast – forstå hvordan AI og arkitektur former fremtiden<br/>
-2️⃣ Bedriftsleder – se hvordan AI kan drive vekst og effektivisering<br/>
-3️⃣ Offentlig aktør – utforsk hvordan teknologi kan forbedre tjenester<br/>
-4️⃣ Noe helt annet<br/><br/>
+cfg_aiPromptWelcome = `Velkommen! Jeg representerer Gorm Braarvig – virksomhetsarkitekt, AI‑ekspert og engasjerende foredragsholder.
+
+Velg perspektivet som passer deg best, så skreddersyr jeg svarene.
+
+1️⃣ Teknologientusiast – forstå hvordan AI og arkitektur former fremtiden
+2️⃣ Bedriftsleder – se hvordan AI kan drive vekst og effektivisering
+3️⃣ Offentlig aktør – utforsk hvordan teknologi kan forbedre tjenester
+4️⃣ Noe helt annet
+
 Skriv tallet som passer, eller beskriv deg selv i et par ord!`;
 
 

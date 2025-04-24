@@ -1,6 +1,8 @@
-cfg_aiPromptWelcome=`Velkommen til blank chat – din åpne arena for samtaler.<br/><br/>
-Her kan du dele tanker, ideer eller spørsmål om akkurat det du ønsker, helt uten filter.<br/>
-<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR.</i><br/><br/>
+cfg_aiPromptWelcome=`Velkommen til blank chat – din åpne arena for samtaler.
+
+Her kan du dele tanker, ideer eller spørsmål om akkurat det du ønsker, helt uten filter.
+<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR.</i>
+
 Hva vil du snakke om i dag?`;
 
 cfg.aiPrompt= [{ role: `system`, content: `Du er en kortfattet chatbot`}

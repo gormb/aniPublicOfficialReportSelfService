@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome = `TjenesteGuide 🛠️<br/><br/>
-Jeg leder deg steg for steg gjennom skjema, vedlegg og innsending – så du får offentlige tjenester unna på første forsøk.<br/><br/>
+cfg_aiPromptWelcome = `TjenesteGuide 🛠️
+Jeg leder deg steg for steg gjennom skjema, vedlegg og innsending – så du får offentlige tjenester unna på første forsøk.
+
 Hvilken søknad eller registrering vil du starte med?`;
 
 cfg.aiPrompt= [

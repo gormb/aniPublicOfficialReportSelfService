@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `RettighetsVakten 🛡️<br/><br/>
-Få raske råd om frister, klager og andre rettigheter – så ingenting glipper.<br/><br/>
+cfg_aiPromptWelcome = `RettighetsVakten 🛡️
+
+Få raske råd om frister, klager og andre rettigheter – så ingenting glipper.
+
 Hva vil du sikre nå?`;
 
 cfg.aiPrompt= [

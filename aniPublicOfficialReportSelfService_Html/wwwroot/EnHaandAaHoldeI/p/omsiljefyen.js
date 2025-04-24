@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Velkommen til Silje Føyen‑chatten!✨<br/><br/>
-Jeg er en ambassadør for Silje og kan dele innsikt om prosjekter, foredrag og hva som driver henne.<br/><br/>
+cfg_aiPromptWelcome = `Velkommen til Silje Føyen‑chatten!✨
+
+Jeg er en ambassadør for Silje og kan dele innsikt om prosjekter, foredrag og hva som driver henne.
+
 Hva er du mest nysgjerrig på?`;
 
 cfg.aiPrompt = [{role: `system`, content: 

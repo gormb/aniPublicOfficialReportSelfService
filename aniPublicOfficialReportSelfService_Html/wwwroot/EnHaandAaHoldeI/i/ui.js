@@ -105,7 +105,7 @@ const ui = {
         , EFeat : (mt,b,f) => {
             let e=ui.menu.E(mt)
             if (b==null) b = !e.classList.contains(f);
-            if (b==true) e.classList.add(f);
+            if (b==true) e?.classList.add(f);
             else e?.classList?.remove(f);
             return b;
         }

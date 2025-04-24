@@ -1,10 +1,14 @@
 // Hovedsakelig produsert med ChatGPT 20250319
-cfg_aiPromptWelcome = `Velkommen til TEDxFredrikstad 2025‑chatten!✨<br/><br/>
-Idéer som setter spor – bli med bak kulissene eller finn ut hvordan du kan bidra på scenen og i salen.<br/><br/>
-👉 Hva interesserer deg mest?<br/><br/>
-① Inspirasjon og idéutveksling<br/>
-② Teknologi og innovasjon<br/>
-③ Samfunn, bærekraft og entreprenørskap<br/><br/>
+cfg_aiPromptWelcome = `Velkommen til TEDxFredrikstad 2025‑chatten!✨
+
+Idéer som setter spor – bli med bak kulissene eller finn ut hvordan du kan bidra på scenen og i salen.
+
+👉 Hva interesserer deg mest?
+
+① Inspirasjon og idéutveksling
+② Teknologi og innovasjon
+③ Samfunn, bærekraft og entreprenørskap
+
 Skriv tallet som passer, eller formulér ditt eget spørsmål!`;
 
 

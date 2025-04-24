@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Alt Om Tjenester 📚<br/><br/>
-Få full oversikt over offentlige rettigheter, plikter og tjenester – pluss praktiske råd for å ta dem i bruk.<br/><br/>
+cfg_aiPromptWelcome = `Alt Om Tjenester 📚
+
+Få full oversikt over offentlige rettigheter, plikter og tjenester – pluss praktiske råd for å ta dem i bruk.
+
 Hva vil du vite mer om?`;
 
 cfg.aiPrompt= [

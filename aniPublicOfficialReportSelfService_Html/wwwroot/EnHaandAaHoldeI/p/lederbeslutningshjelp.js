@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Beslutningsassistenten 🧭<br/><br/>
-Jeg hjelper deg å se alternativer, risiko og gevinst – og lande et trygt valg.<br/><br/>
+cfg_aiPromptWelcome = `Beslutningsassistenten 🧭
+
+Jeg hjelper deg å se alternativer, risiko og gevinst – og lande et trygt valg.
+
 Hva vurderer du akkurat nå?`;
 
 cfg.aiPrompt=[{ role: `system`, content: `Du er en erfaren og trygg ledermentor for nye ledere. 

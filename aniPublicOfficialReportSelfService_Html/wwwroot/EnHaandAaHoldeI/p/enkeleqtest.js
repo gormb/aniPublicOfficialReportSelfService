@@ -1,6 +1,9 @@
-cfg_aiPromptWelcome = `Enkel EQ‑test 🌱<br/><br/>
-Jeg kartlegger fem EQ‑områder – selvbevissthet, selvregulering, motivasjon, empati og sosiale ferdigheter – ett spørsmål av gangen, med umiddelbar tilbakemelding.<br/><br/>
-<b>Område 1 / 5: Selvbevissthet</b><br/><br/>
+cfg_aiPromptWelcome = `Enkel EQ‑test 🌱
+
+Jeg kartlegger fem EQ‑områder – selvbevissthet, selvregulering, motivasjon, empati og sosiale ferdigheter – ett spørsmål av gangen, med umiddelbar tilbakemelding.
+
+<b>Område 1 / 5: Selvbevissthet</b>
+
 Hvordan vil du beskrive forholdet ditt til egne følelser?`;
 
 cfg.aiPrompt=[{role:`system`,content:`

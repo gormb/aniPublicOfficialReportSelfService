@@ -1,15 +1,17 @@
-cfg_aiPromptWelcome = `Velkommen til Flytveilederen 🌬️<br/><br/>
-🧩 Helse og hverdagsliv henger ofte sammen.<br/>
-Det finnes noe som kalles <b>flyt</b> – en tilstand der man gjør noe som føles meningsfullt<br/>
-og akkurat passe krevende.<br/>
-Sånne øyeblikk kan hjelpe kroppen og hodet mer enn man tror.<br/><br/>
+cfg_aiPromptWelcome = `Velkommen til Flytveilederen 🌬️
 
-Vi starter enkelt:<br/>
-Hva høres mest riktig ut i dag?<br/><br/>
-1️⃣ Jeg vil forstå hva flow/flyt er<br/>
-2️⃣ Jeg vil vite hvorfor det er bra for meg<br/>
-3️⃣ Jeg vil finne en aktivitet som kan gi meg flyt<br/>
-4️⃣ Jeg har gjort noe og vil kjenne etter hvordan det var<br/><br/>
+🧩 Helse og hverdagsliv henger ofte sammen.
+Det finnes noe som kalles <b>flyt</b> – en tilstand der man gjør noe som føles meningsfullt
+og akkurat passe krevende.
+Sånne øyeblikk kan hjelpe kroppen og hodet mer enn man tror.
+
+Vi starter enkelt:
+Hva høres mest riktig ut i dag?
+1️⃣ Jeg vil forstå hva flow/flyt er
+2️⃣ Jeg vil vite hvorfor det er bra for meg
+3️⃣ Jeg vil finne en aktivitet som kan gi meg flyt
+4️⃣ Jeg har gjort noe og vil kjenne etter hvordan det var
+
 Eller bare skriv hvordan du har det akkurat nå.`
 
 cfg.aiPrompt = [

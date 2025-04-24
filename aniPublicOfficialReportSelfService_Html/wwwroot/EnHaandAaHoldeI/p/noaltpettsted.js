@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Alt På Ett Sted 🗂️<br/><br/>
-Se avtaler, utbetalinger og rettigheter fra NAV, Skatteetaten, Helsenorge – alt samlet på ett sted.<br/><br/>
+cfg_aiPromptWelcome = `Alt På Ett Sted 🗂️
+
+Se avtaler, utbetalinger og rettigheter fra NAV, Skatteetaten, Helsenorge – alt samlet på ett sted.
+
 Hva vil du ha oversikt over først?`;
 
 cfg.aiPrompt= [

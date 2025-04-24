@@ -1,5 +1,6 @@
-cfg_aiPromptWelcome=`🚧 Kommer snart!<br/><br/>
-<b><i>Denne appen er under utvikling.</i></b><br/>
+cfg_aiPromptWelcome=`🚧 Kommer snart!
+
+<b><i>Denne appen er under utvikling.</i></b>
 Fortell gjerne hva du hadde tenkt å bruke den til – innspill hjelper oss å bygge de riktige funksjonene.
 `;
 cfg.aiPrompt= [{ role: `system`, content: `Du er chatbot`}

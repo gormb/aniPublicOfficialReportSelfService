@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Ansettelsesassistenten 📋<br/><br/>
-Fra behovsanalyse til onboarding – få sjekklister og raske råd for en trygg, ryddig rekruttering.<br/><br/>
+cfg_aiPromptWelcome = `Ansettelsesassistenten 📋
+
+Fra behovsanalyse til onboarding – få sjekklister og raske råd for en trygg, ryddig rekruttering.
+
 Hva vil du vite mer om?`;
 cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som gir korte, praktiske og oppdaterte råd om ansettelser. Du hjelper ledere å gjennomføre ryddige prosesser i tråd med norsk arbeidsrett og god praksis. Still oppfølgingsspørsmål ved behov.`}
 ,[`Vi trenger å ansette`, `Hva slags stilling er det snakk om, og hva er viktigste behov dere skal dekke?`]

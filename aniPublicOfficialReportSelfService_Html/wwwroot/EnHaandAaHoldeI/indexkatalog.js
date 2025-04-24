@@ -1,8 +1,7 @@
-//const baseUrl = 'https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/EnHaandAaHoldeI/?';
 const baseUrl = location.href.split('?')[0].replace('indexkatalog.html','index.html')+'?';
 
-cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
-  cfg.aiPromptWelcome=aiPromptWelcome
+cfg.set=(aiPromptWelcome,appN,aiMod,iA,iEffekt,priCol,lightMCol,font)=>{
+  //cfg.aiPromptWelcome=ai.Raw2Htm(aiPromptWelcome)
   cfg.app=appN;
   const id=appN.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
   , dQr=document.getElementById('qr_'+id), img=document.getElementById('img_'+id)
@@ -14,11 +13,12 @@ cfg.set=(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
     img.style.display='none';
     dDesc.innerHTML=`<div style="padding:1vw;border-radius:1vw
       ;font-family:${ui.font.n(font??'Roboto')};color:${lightMCol??'#ffffff'};background:${priCol??'#007bff'}">
-      ${aiPromptWelcome}</div>`;
+      ${ai.Raw2Htm(aiPromptWelcome)}</div>`;
   },500);
 }
 
 let iC=0,iTot=9999;
+
 
 (async()=>{
     await qr.i();

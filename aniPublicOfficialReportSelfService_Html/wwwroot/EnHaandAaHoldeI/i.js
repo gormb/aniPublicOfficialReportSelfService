@@ -122,7 +122,7 @@ const cfg={
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
-            ,'Hlm - spesialist >>§-',['Biopsykososial modell','Kroppens stressystem','Autismespekter usynlig']
+            ,'Hlm - spesialist >>§-',['Flytveilederen','Biopsykososial modell','Kroppens stressystem','Autismespekter usynlig']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Offentlig >>§-',[
             'Assistert veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
@@ -228,6 +228,14 @@ const cfg={
         cfg.visAppMeny(false)
     }    
 }
+
+//lagring.d.fyll('ukjent');
+lagring.d.fyllP(`
+Gorm Braarvig er Koder, del av Aigap som er både bruker og Kunde.
+Gorm kjøpte produktet "Appdesign hver måned" som er underprodukt av "Appdesign".
+Produktet "Fri bruk månedlig" er inkludert i produktet "Appdesign hver måned".
+"Fri bruk månedlig" er del av "Fri bruk".
+`);
 /////////////// lagring ///////////////
 const lagring = {
     init:()=> lagring.last()
@@ -306,7 +314,7 @@ const lagring = {
         ,upd:(t,v,x)=>{const id=v.id;delete v.id;fetch(lagring.net.uri+t+'?id=eq.'+id,{method:'PATCH',headers:{apikey:lagring.net.key,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(v)}).then(r=>r.json()).then(x)}
         ,del:(t,v,x)=>{fetch(lagring.net.uri+t+'?id=eq.'+v.id,{method:'DELETE',headers:{apikey:lagring.net.key,'Prefer':'return=representation'}}).then(r=>r.json()).then(x)}
         ,selA:x=>lagring.net.sel('a',x)
-        ,selAp:x=>lagring.net.sel('a_p',x)
+        ,selAp:x=>lagring.net.sel('ap',x)
     }
     ,idC:{ // console.warn( lagring.id.t(lagring.id.i() ))
         s:[...'abcdefghijklmnopqrstuvwxyz0123456789']
@@ -318,63 +326,62 @@ const lagring = {
     ,d:{
         t:f=>['id,text,'].concat(f,['dtFrom,timestamptz,Gyldig fra (default 2000-01-01)','dtTo,timestamptz,Gyldig til (default 2099-12-31)'])
         ,meta:[]
-        ,tab:(n,d,r)=>{const rows=r.map(x=>x.split(',').map(x=>x.trim())),cols=rows.map(([f,t])=>`${f} ${t}${f==='dtFrom'?" DEFAULT '2000-01-01T00:00:00Z'":''}${f==='dtTo'?" DEFAULT '2099-12-31T23:59:59Z'":''}${f==='createdAt'?" DEFAULT now()":''}`),idx=[],fk=[],tabs=Object.fromEntries(lagring.d.meta.map(([n])=>[n,1]));rows.forEach(([f])=>{if(f.startsWith('id_')){const ref=f.slice(3);if(ref!==n&&tabs[ref]){idx.push(`CREATE INDEX ${n}_${f}_idx ON ${n}(${f}, dtFrom, dtTo);`);fk.push(`ALTER TABLE ${n} ADD CONSTRAINT ${n}_${f}_fk FOREIGN KEY (${f}) REFERENCES ${ref}(id);`);}}});const insertCols=rows.map(([f])=>f).filter(f=>!['dtFrom','dtTo','createdAt'].includes(f)),insertVals=rows.filter(([f])=>insertCols.includes(f)).map(([f,t])=>f.startsWith('id_')?"'demo_id'":t==='text'?`'demo_${f}'`:t==='jsonb'?`'{ "demo": "value" }'`:t.includes('timestamp')?'now()':`0`),ins=`INSERT INTO ${n} (${insertCols.join(', ')}) VALUES (${insertVals.join(', ')});`;return `<table class="hidde" id="dTab_${n}"><caption>-- ${n} ${d} --<br><div style="color:#fff">/*</div></caption><tr><th>Felt</th><th>Type</th><th>Beskrivelse</th></tr>${rows.map(([f,t,b])=>`<tr data-f="${f}"><td>${f}</td><td>${t}</td><td>${b}</td></tr>`).join('')}<tr><td colspan=3><code><div style="color:#fff">*/</div><br>DROP TABLE IF EXISTS ${n} CASCADE;</code></td></tr><tr><td colspan=3><code>CREATE TABLE ${n} (${cols.join(', ')}<br>,PRIMARY KEY (id));</code></td></tr><tr><td colspan=3><code>${[...idx,...fk].join('<br>')}</code></td></tr><tr><td colspan=3><code>${ins}</code></td></tr></table>`}
-        ,tabN:a=>{let d=new Set(),o=[],f=n=>{if(d.has(n))return;let t=a.find(t=>t[0]==n);if(!t)return;t[2].forEach(r=>{let x=r.split(',')[0].trim();if(x.startsWith('id_'))f(x.slice(3));});o.push(lagring.d.tab(...t));d.add(n)};a.forEach(([n])=>f(n));return o.join('')}          
-        ,tabNOld:a=>a.map(t=>lagring.d.tab(...t)).join('')
-        ,erR:a=>a.flatMap(([from,_,rows])=>rows.map(r=>r.split(',')[0]).filter(f=>f.startsWith('id_')).map(f => ({from, to: f.slice(3)})))
-        ,erNbox1:a=>a.map(([id,l,_,[x,y,c]])=>`<div id=b_${id} style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);z-index:1;border:1px solid;padding:4px;font:12px sans-serif;max-width:120px;min-width:80px;width:max-content;text-align:center;background:white">${id}<br>${l}</div>`).join('')
-        ,erNbox2:a=>a.map(([id,l,_,[x,y]])=>
-            `<div id=b_${id} style="position:absolute;left:calc(${x}% - 50px);top:calc(${y}% - 25px);border:1px solid;padding:4px;
-            font:12px sans-serif;width:100px;text-align:center;background:${c||'white'}">
-            ${id}<br><small>${l}</small></div>`).join('')
-        ,erNbox:a=>a.map(([id,l,_,[x,y,c]])=>
-            `<div id=b_${id} style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);z-index:1;border:1px solid;padding:4px;
-            font:12px sans-serif;max-width:120px;min-width:80px;width:max-content;text-align:center;background:${c||'white'}">
-            ${id}<br>${l}</div>`).join('')
-            
+        ,tabSD:n=>`DROP TABLE IF EXISTS ${n} CASCADE;`
+        ,tabSC:(n,r)=>{const a=r.map(x=>x.split(',').map(x=>x)),c=a.map(([f,t])=>f+' '+t+(f=='dtFrom'?" DEFAULT '2000-01-01T00:00:00Z'":'')+(f=='dtTo'?" DEFAULT '2099-12-31T23:59:59Z'":'')+(f=='createdAt'?" DEFAULT now()":'')),i=a.filter(([f])=>!['dtFrom','dtTo','createdAt'].includes(f)),cols=i.map(([f])=>f),vals=i.map(([f,t])=>f.startsWith('id_')?"'demo_id'":t=='text'?"'demo_"+f+"'":t=='jsonb'?"'{\"demo\":\"value\"}'":t.includes('timestamp')?'now()':'0');return`CREATE TABLE ${n} (${c.join(', ')}, PRIMARY KEY (id));\nINSERT INTO ${n} (${cols.join(',')}) VALUES (${vals.join(', ')});`}
+        ,tabSX:(n,r)=>{const a=r.map(x=>x.split(',').map(x=>x)),t=Object.fromEntries(lagring.d.meta.map(([n])=>[n,1])),x=[];a.forEach(([f])=>{if(f.startsWith('id_')){const ref=f.slice(3);if(ref!==n&&t[ref]){x.push(`CREATE INDEX ${n}_${f}_idx ON ${n}(${f},dtFrom,dtTo);`);x.push(`ALTER TABLE ${n} ADD CONSTRAINT ${n}_${f}_fk FOREIGN KEY (${f}) REFERENCES ${ref}(id);`);}}});return x.join('\n');}
+        ,tab:(n,d,r,fmt)=>{const a=r.map(x=>x.split(',').map(x=>x.trim())),rows=a.map(([f,t,b])=>`<tr><td>${f}</td><td>${t}</td><td>${b||''}</td></tr>`).join(''),sql=[lagring.d.tabSD(n),lagring.d.tabSC(n,r),lagring.d.tabSX(n,r)].join('\n');return fmt=='html'?`<table class="hidde" id="dTab_${n}"><caption>-- ${n} ${d} --</caption><tr><th>Felt</th><th>Type</th><th>Beskrivelse</th></tr>${rows}<tr><td colspan=3>${sql.replace(/\n/g,'<br>')}</td></tr></table>`:sql}
+        ,tabN:(a,fmt='html')=>{let d=new Set(),o=[],f=n=>{if(d.has(n))return;let t=a.find(t=>t[0]==n);if(!t)return;t[2].forEach(r=>{let x=r.split(',')[0].trim();if(x.startsWith('id_'))f(x.slice(3));});o.push(lagring.d.tab(t[0], t[1], t[2], fmt));d.add(n)};a.forEach(([n])=>f(n));return o.join('')}
+        ,erR:a=>a.flatMap(([from,_,rows])=>rows.map(r=>r.split(',')[0]).filter(f=>f.startsWith('id_')).map(f => ({from,to: f.slice(3)})))
+        ,erNbox:a=>a.map(([id,l,_,[x,y,c]])=>`<div id=b_${id} style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);z-index:1;font-size:9pt;border:1px solid;padding:4px;max-width:120px;min-width:80px;width:max-content;text-align:center;background:${c}">${id}<br>${l}</div>`).join('')
         ,erNsvg:a=>{const s=document.getElementById('svgLayer'),p=s.createSVGPoint(),c=e=>{if(!e)return;const r=e.getBoundingClientRect(); p.x=r.left+r.width/2; p.y = r.top + r.height/2; return p.matrixTransform(s.getScreenCTM().inverse()) };s.innerHTML = `<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="black"/></marker></defs>`+lagring.d.erR(a).map(({from,to})=>{const p1 = c(document.getElementById('b_'+from)),p2 = c(document.getElementById('b_'+to)),mx = (p1?.x + p2?.x)/2,my = (p1?.y + p2?.y)/2;return p1&&p2&&`<path d="M${p1.x} ${p1.y} L${mx} ${my} L${p2.x} ${p2.y}" stroke="black" fill="none" marker-mid="url(#arrow)"/>`;}).join('');}
-        ,erN: a => (setTimeout(() => lagring.d.erNsvg(a), 100),'<svg id=svgLayer style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none"></svg>' + lagring.d.erNbox(a))
+        ,erN: a => (setTimeout(() => lagring.d.erNsvg(a),100),'<svg id=svgLayer style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none"></svg>' + lagring.d.erNbox(a))
     }
 }
-// lagring.d.meta=[
-//     //bruk
-//     ['u', 'Bruker',lagring.d.t(['metadata,jsonb,div info']),[50,12,'#d0e7ff']]
-//     ,['us','Brukersesjon',['id,text,','id_u,text,bruker','id_su,text,anvendelse','id_a,text,app','id_f,text,metode','dtFrom,timestamptz,sesjon startet','dtTo,timestamptz,sesjon ferdig (default 2099-12-31)'],[50,22,'#aed8ff']]
-//     ,['su','Anvendelse',['id,text,','id_o,text,Ordre','id_u,text,Bruker som får tilgang','id_p,text,Produkt som anvendes','status,text,aktiv/inaktiv','dtFrom,timestamptz,Gyldig fra','dtTo,timestamptz,Gyldig til'],[32,18,'#b7e4f9']]
-//     //innhold
-//     ,['m','Melding',['id,text,','id_mor,text,Del av annen','id_us,text,sesjon','sendt,text,','mottatt,text,','id_f,text,funksjon','dtFrom,timestamptz,sendt','dtTo,timestamptz,mottatt'],[50,35,'#fce0f4']]
-//     //teknikk
-//     ,['h','Tilbyder',['id,text,','Navn,text,eg Mistral','uri,text,','gunnars,text,','spm1,text,','spm2,text,','dtFrom,timestamptz,Gyldig fra (default 2000-01-01)','dtTo,timestamptz,Gyldig til (default 2099-12-31)'],[85,38,'#e0d4fc']]
-//     ,['f','Funksjonalitet',['id,text,','id_h,text,','id_mor,text,Gruppering','Funksjon,text,Type funksjonalitet','modell,text,AI-modell','modellid,text,Teknisk navn','dtFrom,timestamptz,Fra','dtTo,timestamptz,til'],[75,30,'#c7f3d0']]
-//     ,['a','App',['id,text,','App,text,Navn','mor,text,Kategori','mormor,text,Hovedkategori','id_f,text,metode','cfg,jsonb,config','dtFrom,timestamptz,Fra','dtTo,timestamptz,til'],[75,20,'#d2f4ec']]
-//     ,['a_p','Few-shot',['id,text,','id_a,text,','line,int,Plassering','usr,text,Brukermelding','sys,text,Chatbotsvar','dtFrom,timestamptz,Gyldig fra (default 2000-01-01)','dtTo,timestamptz,Gyldig til (default 2099-12-31)'],[85,12,'#ffe3ef']]
-//     //økonomi
-//     ,['o','Ordre',['id,text,','id_mor,text,Foreldres ordre','id_c,text,Kunde','id_p,text,Produkt','antall,int,Antall enheter','status,text,aktiv/avsluttet','dtFrom,timestamptz,Start','dtTo,timestamptz,Slutt'],[15,25,'#ffd2a4']]
-//     ,['p','Produkt',['id,text,','navn,text,Navn på produktet','beskrivelse,text,Valgfritt','pris,int,I øre','valuta,text,Valuta som NOK, EUR'],[15,12,'#fff2b2']]
-//     ,['pay','Betaling',['id,text,','id_o,text,','id_c,text,','amt,int,I øre','status,text,initiert / gjennomført / feilet','provider,text,f.eks. Stripe','ref,text,Ekstern referanse','dtBet,timestamptz,Betalingsdato'],[15,40,'#ffe5a0']]
-//     ,['c','Kunde',['id,text,','idk,text,parent','createdAt,timestamp,Når kunden ble opprettet','metadata,jsonb,div info'],[30,32,'#f7f2d0']]
-//     ]
+
 lagring.d.meta = [
     //bruk
-    ['u', 'Bruker', lagring.d.t(['metadata,jsonb,div info']), [50,12,'#d0e7ff']]
-    ,['us','Brukersesjon',lagring.d.t(['id_u,text,bruker','id_su,text,anvendelse','id_a,text,app','id_f,text,metode']),[50,22,'#aed8ff']]
-    ,['su','Anvendelse',lagring.d.t(['id_o,text,Ordre','id_u,text,Bruker som får tilgang','id_p,text,Produkt som anvendes','status,text,aktiv/inaktiv']),[32,18,'#b7e4f9']]
+    ['u', 'Bruker', lagring.d.t(['data,jsonb,div info']), [49,12,'#acf']]
+    ,['us','Brukersesjon',lagring.d.t(['id_u,text,bruker','id_su,text,anvendelse','id_a,text,app','id_f,text,metode']),[50,24,'#acf']]
+    ,['su','Anvendelse',lagring.d.t(['id_o,text,Ordre','id_u,text,Bruker som får tilgang','id_p,text,Produkt som anvendes','status,text,aktiv/inaktiv']),[32,18,'#acf']]
     //innhold
-    ,['m','Melding',lagring.d.t(['id_mor,text,Del av annen','id_us,text,sesjon','sendt,text,','mottatt,text,','id_f,text,funksjon']),[50,35,'#fce0f4']]
+    ,['ac', 'Koder', lagring.d.t(['id_mor,text,Kodegruppering','id_u,text,bruker','data,jsonb,']), [69,5,'#9cf']]
+    ,['m','Melding',lagring.d.t(['id_mor,text,Del av annen','id_us,text,sesjon','sendt,text,','mottatt,text,','id_f,text,funksjon']),[49.5,35,'#fbd']]
     //teknikk
-    ,['h','Tilbyder',lagring.d.t(['Navn,text,eg Mistral','uri,text,','gunnars,text,','spm1,text,','spm2,text,']),[85,38,'#e0d4fc']]
-    ,['f','Funksjonalitet',lagring.d.t(['id_h,text,','id_mor,text,Gruppering','Funksjon,text,Type funksjonalitet','modell,text,AI-modell','modellid,text,Teknisk navn']),[75,30,'#c7f3d0']]
-    ,['a','App',lagring.d.t(['App,text,Navn','mor,text,Kategori','mormor,text,Hovedkategori','id_f,text,metode','cfg,jsonb,config']),[75,20,'#d2f4ec']]
-    ,['a_p','Few-shot',lagring.d.t(['id_a,text,','line,int,Plassering','usr,text,Brukermelding','sys,text,Chatbotsvar']),[85,12,'#ffe3ef']]
+    ,['h','Tilbyder',lagring.d.t(['Navn,text,eg Mistral','uri,text,','gunnars,text,','spm1,text,','spm2,text,']),[84,40,'#dff']]
+    ,['f','Funksjonalitet',lagring.d.t(['id_h,text,','id_mor,text,Gruppering','Funksjon,text,Type funksjonalitet','modell,text,AI-modell','modellid,text,Teknisk navn']),[70,32,'#cfc']]
+    ,['a','App',lagring.d.t(['App,text,Navn','mor,text,Kategori','mormor,text,Hovedkategori','id_f,text,metode','id_ac,text,','cfg,jsonb,config']),[75,21,'#cfc']]
+    ,['ap','Prompt',lagring.d.t(['id_a,text,','id_ac,text,','line,int,Plassering','usr,text,Brukermelding','sys,text,Chatbotsvar']),[85,12,'#cfc']]
     //økonomi
-    ,['o','Ordre',lagring.d.t(['id_mor,text,Foreldres ordre','id_c,text,Kunde','id_p,text,Produkt','antall,int,Antall enheter','status,text,aktiv/avsluttet']),[15,25,'#ffd2a4']]
-    ,['p','Produkt',lagring.d.t(['navn,text,Navn på produktet','beskrivelse,text,Valgfritt','pris,int,I øre','valuta,text,Valuta som NOK, EUR']),[15,12,'#fff2b2']]
-    ,['pay','Betaling',lagring.d.t(['id_o,text,','id_c,text,','amt,int,I øre','status,text,initiert / gjennomført / feilet','provider,text,f.eks. Stripe','ref,text,Ekstern referanse','dtBet,timestamptz,Betalingsdato']),[15,40,'#ffe5a0']]
-    ,['c','Kunde',lagring.d.t(['id_mor,text,morkunde','metadata,jsonb,div info']),[30,32,'#f7f2d0']]
+    ,['o','Ordre',lagring.d.t(['id_mor,text,Ordre-gruppering','id_c,text,Kunde','id_p,text,Produkt','antall,int,Antall enheter','status,text,aktiv/avsluttet']),[15,25,'#fa6']]
+    ,['p','Produkt',lagring.d.t(['navn,text,Navn på produktet','beskrivelse,text,Valgfritt','pris,int,I øre','valuta,text,Valuta som NOK, EUR']),[15,12,'#fc8']]
+    ,['pay','Betaling',lagring.d.t(['id_o,text,','id_c,text,','amt,int,I øre','status,text,initiert / gjennomført / feilet','provider,text,f.eks. Stripe','ref,text,Ekstern referanse','dtBet,timestamptz,Betalingsdato']),[15,40,'#fa6']]
+    ,['c','Kunde',lagring.d.t(['id_mor,text,morkunde','data,jsonb,div info']),[30,32,'#fc8']]
 ]
 
+lagring.d.fyll = (n = 'ukjent') => {
+    lagring.net.s('c', { id: `c_${n}_mor`, data: { type: `${n}test` } });
+    lagring.net.s('c', { id: `c_${n}`, id_mor: `c_${n}_mor`, data: { type: `${n}test` } });
+    lagring.net.s('p', { id: `p_${n}`, navn: `${n}produkt`, beskrivelse: `${n} testprodukt`, pris: 100000, valuta: 'NOK' });
+    lagring.net.s('p', { id: `p_${n}_mrr`, navn: `${n}produkt MRR`, beskrivelse: `${n} med månedlig inntekt`, pris: 10000, valuta: 'NOK' });
+    lagring.net.s('o', { id: `o_${n}`, id_c: `c_${n}`, id_p: `p_${n}_mrr`, antall: 1, status: 'aktiv' });
+    lagring.net.s('pay', { id: `pay_${n}`, id_o: `o_${n}`, id_c: `c_${n}`, amt: 10000, status: 'gjennomført', provider: 'test', ref: `ref_${n}`, dtBet: new Date().toISOString() });
+    lagring.net.s('u', { id: `u_${n}`, data: { navn: `${n}bruker` } });
+    lagring.net.s('su', { id: `su_${n}`, id_o: `o_${n}`, id_u: `u_${n}`, id_p: `p_${n}_mrr`, status: 'aktiv' });
+    lagring.net.s('us', { id: `us_${n}`, id_u: `u_${n}`, id_su: `su_${n}`, id_a: `a_${n}`, id_f: `f_${n}` });
+    lagring.net.s('m', { id: `m_${n}`, id_mor: null, id_us: `us_${n}`, sendt: `${n} hei`, mottatt: `${n} svar`, id_f: `f_${n}` });
+    lagring.net.s('h', { id: `h_${n}`, Navn: `${n}AI`, uri: `https://ai.${n}.no`, gunnars: 'abc123', spm1: 'Hva er neste?', spm2: 'Hva lurer du på?' });
+    lagring.net.s('f', { id: `f_${n}`, id_h: `h_${n}`, id_mor: null, Funksjon: 'chat', modell: 'demo', modellid: 'demo-model' });
+    lagring.net.s('a', { id: `a_${n}`, App: `${n}App`, mor: `${n}Kategori`, mormor: `${n}Hovedkategori`, id_f: `f_${n}`, cfg: { pilot: true } });
+    lagring.net.s('ap', { id: `ap_${n}`, id_a: `a_${n}`, line: 1, usr: `${n} bruker`, sys: `${n} bot` });
+};
+//lagring.d.pilotC=n=>Object.keys(lagring.d.meta).forEach(t=>lagring.net.del(t, `like.${t}_${n}`));
+//lagring.d.fyll('ukjent');
+lagring.d.fyllP=n=>{
+    return `/*AI generated*/
+    lagring.net.s('u',{id:gormbraarvig,data:{navn:'Gorm Braarvig'}})`
+}
 //lagring.idC.p('id=gorm9')
-lagring.net.sel('a',console.warn)//lagring.net.del('a', {id:'123'}, console.warn);//lagring.net.del('a', {id:'1234'}, console.warn);//lagring.net.del('a', {id:'11234'}, console.warn);//lagring.net.upd('a', {id:'1234', App:'1234 Test'}, console.warn);//lagring.net.upd('a', {id:'11234', App:'11234 Test'}, console.warn);//lagring.net.sel('b,id,App', r => console.table(r));
+//lagring.net.sel('a',console.warn)//lagring.net.del('a', {id:'123'}, console.warn);//lagring.net.del('a', {id:'1234'}, console.warn);//lagring.net.del('a', {id:'11234'}, console.warn);//lagring.net.upd('a', {id:'1234', App:'1234 Test'}, console.warn);//lagring.net.upd('a', {id:'11234', App:'11234 Test'}, console.warn);//lagring.net.sel('b,id,App', r => console.table(r));
 //lagring.net.selA(console.warn)
 //lagring.net.selAp(console.warn)//{"id": "ny", "App":"Ny", "mor":"Ny", "mormor":"Utvikling"}
 /////////////// pbg ///////////////

@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `Samtalestøtten 🤍<br/><br/>
-Dette er ikke medisinsk behandling – bare et trygt rom for å sortere tanker og følelser med støtte og enkle råd.<br/><br/>
+cfg_aiPromptWelcome = `Samtalestøtten 🤍
+
+Dette er ikke medisinsk behandling – bare et trygt rom for å sortere tanker og følelser med støtte og enkle råd.
+
 Hva vil du dele eller utforske i dag?`;
 
 cfg.aiPrompt= [

@@ -8,6 +8,7 @@ body { display: flex; flex-direction: column; height: 100.3dvh; background-color
     body.dark-mode { background-color: var(--dark-bg); color: #fff; }
 a { color: var(--light-msg); }
     body.dark-mode a { color: var(--primary-color); }
+    a[onclick] {all: unset;cursor: pointer;}
 button { padding: 20px 30px; border: none; border-radius: 50%; background: var(--primary-color); color: white; cursor: pointer; }
 button:hover { background: var(--primary-color); color: var(--primary-color);}
     body.dark-mode button:hover { background: var(--dark-msg); }

@@ -1,5 +1,7 @@
-cfg_aiPromptWelcome = `KlarTale 📢<br/><br/>
-Offentlige regler – forklart i korte, klare setninger uten jusspråk.<br/><br/>
+cfg_aiPromptWelcome = `KlarTale 📢
+
+Offentlige regler – forklart i korte, klare setninger uten jusspråk.
+
 Hva vil du ha svar på?`;
 
 cfg.aiPrompt= [
