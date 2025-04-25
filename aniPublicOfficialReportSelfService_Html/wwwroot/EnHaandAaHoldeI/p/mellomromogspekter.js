@@ -1,14 +1,12 @@
-cfg_aiPromptWelcome = `Hei 🌿
+cfg_aiPromptWelcome = 
+`Noe skurrer kanskje – i følelser, relasjoner eller hvordan du oppfatter verden.
 
-Dette er et sted for deg som kjenner at noe skurrer – i følelser, relasjoner eller hvordan du oppfatter verden.
+Vi kan utforske det sammen, i ditt tempo.
 
-Du trenger ikke vite hva det skyldes. Vi utforsker det sammen, i ditt tempo.
-
-Hva kjenner du deg mest igjen i akkurat nå?
-
-1️⃣ Jeg kjenner meg ikke helt igjen i "vanlig", men vet ikke hva det betyr
-2️⃣ Jeg forstår ikke alltid egne følelser eller reaksjoner
-3️⃣ Jeg blir raskt utmattet sosialt, og sliter med å hente meg inn igjen
+Hva kjenner du deg mest igjen i nå?
+1️⃣ Jeg kjenner meg ikke igjen i "vanlig", men vet ikke helt hva det betyr  
+2️⃣ Jeg forstår ikke alltid egne følelser  
+3️⃣ Jeg blir raskt utmattet sosialt
 
 Eller bare skriv med egne ord.`;
 
