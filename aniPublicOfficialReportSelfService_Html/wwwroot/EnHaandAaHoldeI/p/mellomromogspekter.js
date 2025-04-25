@@ -1,14 +1,14 @@
 cfg_aiPromptWelcome = 
-`Noe skurrer kanskje – i følelser, relasjoner eller hvordan du oppfatter verden.
+`Noe skurrer i følelser, relasjoner eller hvordan man oppfatter verden.
 
-Vi kan utforske det sammen, i ditt tempo.
-
+Vi kan utforske det sammen, i ditt tempo. 
 Hva kjenner du deg mest igjen i nå?
-1️⃣ Jeg kjenner meg ikke igjen i "vanlig", men vet ikke helt hva det betyr  
-2️⃣ Jeg forstår ikke alltid egne følelser  
+
+1️⃣ Jeg kjenner meg ikke igjen i "vanlig", vet ikke helt hvorfor
+2️⃣ Jeg forstår ikke alltid egne følelser
 3️⃣ Jeg blir raskt utmattet sosialt
 
-Eller bare skriv med egne ord.`;
+Eller oppgi med egne ord.`;
 
 cfg.aiPrompt = [
 { role: `system`, content: 
