@@ -1,56 +1,24 @@
 /////////////// ai ///////////////
 const ai={
-    //Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-    //   Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-    // ,Raw2Htm:raw=>raw
-    //     .replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
-    //     .replace(/#### (.*)/g,'<h4>$1</h4>').replace(/### (.*)/g,'<h3>$1</h3>').replace(/## (.*)/g,'<h2>$1</h2>').replace(/# (.*)/g,'<h1>$1</h1>')
-    //     .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
-    //     .replace(/^(\d)️⃣ (.*)$/gm,(_,n,t)=>ai.Raw2HtmA(n+'️⃣',t))
-    //     .replace(/^(\d)\. (.*)$/gm,(_,n,t)=>ai.Raw2HtmA(n+'.',t))
-    //     .replace(/^(\d): (.*)$/gm,(_,n,t)=>ai.Raw2HtmA(n+':',t))
-    //     .replace(/^– (.*)$/gm,(_,t)=>ai.Raw2HtmA('–',t))
-    //     .replace(/^([a-zA-Z])\) (.*)$/gm,(_,n,t)=>ai.Raw2HtmA(n+')',t))
-    //     .replace(/(?:^|<br\s*\/?>|\r?\n)\s*🎲\s*(\d)\s*(?:[-–]\s*)?(.*)/g,(_,n,t)=>'<br>'+ai.Raw2HtmA('🎲 '+n,t))
-    //     .replace(/(?:^|<br\s*\/?>|\r?\n)\s*🔁\s(.*)/g,(_,t)=>'<br>'+ai.Raw2HtmA('🔁',t))
-    //     .replace(/(?:^|<br\s*\/?>|\r?\n)\s*🌑\s(.*)/g,(_,t)=>'<br>'+ai.Raw2HtmA('🌑',t))
-    //     .replace(/\n/g,'<br/>')
-
     Raw2HtmS:'(?:^|\\n\\n|<br\\s*/?>|\\r?\\n)'
-,Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-,Raw2Htm:raw=>raw
-  .replace(/\r\n/g,'\n')
-  .replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
-  .replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
-  .replace(/#### (.*)/g,'<h4>$1</h4>')
-  .replace(/### (.*)/g,'<h3>$1</h3>')
-  .replace(/## (.*)/g,'<h2>$1</h2>')
-  .replace(/# (.*)/g,'<h1>$1</h1>')
-  .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
-  .replace(/\n/g,'<br>')
-  .replace(new RegExp(ai.Raw2HtmS+'🎲\\s*(\\d)\\s*(?:[-–]\\s*)?(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA('🎲 '+n,t))
-  .replace(new RegExp(ai.Raw2HtmS+'🔁\\s*(.*)','g'),(_,t)=>'<br>'+ai.Raw2HtmA('🔁',t))
-  .replace(new RegExp(ai.Raw2HtmS+'🌑\\s*(.*)','g'),(_,t)=>'<br>'+ai.Raw2HtmA('🌑',t))
-  .replace(new RegExp(ai.Raw2HtmS+'(\\d)️⃣\\s*(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA(n+'️⃣',t))
-  .replace(new RegExp(ai.Raw2HtmS+'(\\d)\\.\\s*(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA(n+'.',t))
-  .replace(new RegExp(ai.Raw2HtmS+'(\\d):\\s*(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA(n+':',t))
-  .replace(new RegExp(ai.Raw2HtmS+'–\\s*(.*)','g'),(_,t)=>'<br>'+ai.Raw2HtmA('–',t))
-  .replace(new RegExp(ai.Raw2HtmS+'([a-zA-Z])\\)\\s*(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA(n+')',t))
-
-    // Raw2HtmS:'(?:^|<br\\s*/?>|\\r?\\n)\\s*'
-    //     ,Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-    //     ,Raw2Htm:raw=>raw
-    //         .replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
-    //         .replace(/#### (.*)/g,'<h4>$1</h4>').replace(/### (.*)/g,'<h3>$1</h3>').replace(/## (.*)/g,'<h2>$1</h2>').replace(/# (.*)/g,'<h1>$1</h1>')
-    //         .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
-    //         .replace(new RegExp(ai.Raw2HtmS+'🎲\\s*(\\d)\\s*(?:[-–]\\s*)?(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA('🎲 '+n,t))
-    //         .replace(new RegExp(ai.Raw2HtmS+'🔁\\s*(.*)','g'),(_,t)=>'<br>'+ai.Raw2HtmA('🔁',t))
-    //         .replace(new RegExp(ai.Raw2HtmS+'🌑\\s*(.*)','g'),(_,t)=>'<br>'+ai.Raw2HtmA('🌑',t))
-    //         .replace(new RegExp(ai.Raw2HtmS+'(\\d)️⃣\\s*(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA(n+'️⃣',t))
-    //         .replace(new RegExp(ai.Raw2HtmS+'(\\d)\\.\\s*(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA(n+'.',t))
-    //         .replace(new RegExp(ai.Raw2HtmS+'(\\d):\\s*(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA(n+':',t))
-    //         .replace(new RegExp(ai.Raw2HtmS+'–\\s*(.*)','g'),(_,t)=>'<br>'+ai.Raw2HtmA('–',t))
-    //         .replace(new RegExp(ai.Raw2HtmS+'([a-zA-Z])\\)\\s*(.*)','g'),(_,n,t)=>'<br>'+ai.Raw2HtmA(n+')',t))
+    ,Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
+    ,Raw2Htm:raw=>raw.split(/\r?\n/).map(line=>
+        line.replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
+            .replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
+            .replace(/#### (.*)/g,'<h4>$1</h4>')
+            .replace(/### (.*)/g,'<h3>$1</h3>')
+            .replace(/## (.*)/g,'<h2>$1</h2>')
+            .replace(/# (.*)/g,'<h1>$1</h1>')
+            .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
+            .replace(/^🎲\s*(\d)\s*(?:[-–]\s*)?(.*)/,(_,n,t)=>ai.Raw2HtmA('🎲 '+n,t))
+            .replace(/^🔁\s*(.*)/,(_,t)=>ai.Raw2HtmA('🔁',t))
+            .replace(/^🌑\s*(.*)/,(_,t)=>ai.Raw2HtmA('🌑',t))
+            .replace(/^(\d)️⃣\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'️⃣',t))
+            .replace(/^(\d)\.\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'.',t))
+            .replace(/^(\d):\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+':',t))
+            .replace(/^–\s*(.*)/,(_,t)=>ai.Raw2HtmA('–',t))
+            .replace(/^([a-zA-Z])\)\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+')',t))
+      ).join('<br>')
 
       , ai2Prompt: a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
     , Gun:(g)=> [...g].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
