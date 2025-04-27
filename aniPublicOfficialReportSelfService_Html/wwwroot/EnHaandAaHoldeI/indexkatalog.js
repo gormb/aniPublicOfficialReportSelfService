@@ -1,7 +1,7 @@
 const baseUrl = location.href.split('?')[0].replace('indexkatalog.html','index.html')+'?';
 
 cfg.set=(aiPromptWelcome,appN,aiMod,iA,iEffekt,priCol,lightMCol,font)=>{
-  //cfg.aiPromptWelcome=ai.Raw2Htm(aiPromptWelcome)
+  cfg.aiPromptWelcome=ai.Raw2Htm(aiPromptWelcome)
   cfg.app=appN;
   const id=appN.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
   , dQr=document.getElementById('qr_'+id), img=document.getElementById('img_'+id)
@@ -18,7 +18,6 @@ cfg.set=(aiPromptWelcome,appN,aiMod,iA,iEffekt,priCol,lightMCol,font)=>{
 }
 
 let iC=0,iTot=9999;
-
 
 (async()=>{
     await qr.i();

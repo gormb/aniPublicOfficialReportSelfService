@@ -44,10 +44,20 @@ a[onclick] {all: unset;cursor: pointer;}
         //msgInfo(s+`/* Relasjoner\n`+lagring.d.rels().map(([t,rels])=>`${t}=${rels.join(',')}`).join('\n').replaceAll(/\n/g,'<br>') +`*/`);
 
         msgInfo(s+lagring.d.erN(lagring.d.meta))
-        msgInfo(`/*Kopier SQL for
-            <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,''))">drop&create</button>
-            <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,'drop'))">drop</button>
-            <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,'create'))">create</button><br>
+        msgInfo(`/*Copy SQL
+            <hr>structure <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,''))">drop&create</button>
+                <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,'drop'))">drop (todo)</button>
+                <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,'create'))">create (todo)</button>
+            <hr>data
+                <button onclick="navigator.clipboard.writeText('todo')">fill unknown</button>
+                <button onclick="navigator.clipboard.writeText('todo')">simulate tests</button>
+                <button onclick="navigator.clipboard.writeText('todo')">report tests</button>
+            <hr>store
+                <button onclick="navigator.clipboard.writeText('todo')">message in<br>app for session</button>
+                <button onclick="navigator.clipboard.writeText('todo')">fb->ac create app with<br>function and prompts</button>
+                <button onclick="navigator.clipboard.writeText('todo')">host has<br>functionality</button>
+            <hr>retrieve
+                <button onclick="navigator.clipboard.writeText('todo')">user used<br>app with messages</button>
             */`);
         m=msgInfo(lagring.d.tabN(lagring.d.meta)+c);
         qr.d(undefined,m,undefined,'p/aigap.webp');
