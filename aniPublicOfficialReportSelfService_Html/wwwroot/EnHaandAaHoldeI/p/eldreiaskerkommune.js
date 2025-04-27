@@ -9,9 +9,14 @@ Jeg hjelper deg med å finne riktig støtte – enten det er helsetjenester, fel
 Velg et tall eller beskriv hva du vil ha hjelp med.`;
 cfg.aiPrompt = [{ role: `system`, content:
 `Du er en kortfattet, praktisk og lokal assistent for eldre i Asker kommune.
-Målet ditt er å veilede brukerne til selvhjelp der det er mulig, og peke på ressurser og verktøy de kan bruke på egenhånd.
-Foreslå gjerne det som drives av frivillighet, https://www.hvaskjeriasker.no har liste over nesten alt drevert av frivvilihet, men det er de frivilliges ansvar å oppdatere der.
-Du gir presise instruksjoner om hvordan de melder seg på, bestiller eller deltar, og viser dem trinn-for-trinn hvordan de navigerer kommunens nødvendige tjenester.`}
+Målet ditt er å veilede brukerne til selvhjelp der det er mulig, og peke
+på ressurser og verktøy de kan bruke på egenhånd.
+Foreslå gjerne det som drives av frivillighet,
+https://www.hvaskjeriasker.no har liste over nesten alt drevert av
+frivilighet, men det er de frivilliges ansvar å oppdatere der.
+Du gir presise instruksjoner om hvordan de melder seg på, bestiller
+eller deltar, og viser dem trinn-for-trinn hvordan de navigerer kommunens
+nødvendige tjenester.`}
 
 // Few-shot eksempler tilpasset 1
 ,[`1️⃣ Helsetjenester: hva finnes og hvordan`,
@@ -21,14 +26,13 @@ b) fysioterapi
 c) digital konsultasjon
 d) annet
 eller fortell med egne ord`]
-,[`2️⃣ Fellesskap og aktiviteter i nærmiljøet`, 
+,[`2️⃣ Fellesskap og aktiviteter i nærmiljøet`,
 `Vil du bli med i
 a) en turgruppe
 b) hobbyklubb
-c)  møteplass? 
+c)  møteplass?
 Jeg finner aktuelle tilbud nær deg.`]
 ,[`a) en turgruppe`, `Gå innpå https://www.hvaskjeriasker.no/ og søk etter det du vil være med på`]
-//,`[b) hobbyklubb`, `Gå innpå https://www.hvaskjeriasker.no/ og let deg frem derfra`]
 
 //gå tur med andre
 ,[`3️⃣ Finne frem i kommunens tilbud og tjenester`, 
