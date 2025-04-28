@@ -122,7 +122,7 @@
         ,['c','Customer',lagring.d.t(['id_parent,text,parent customer','data,jsonb,div info']),[15,39,'#fc8']]
     ]
 
-    lagring.d.fyll = (n = 'ukjent') => {
+    lagring.d.fyll = (n = 'unspesified') => {
         lagring.net.s('c', { id: `c_${n}_parent`, data: { type: `${n}test` } });
         lagring.net.s('c', { id: `c_${n}`, id_parent: `c_${n}_parent`, data: { type: `${n}test` } });
         lagring.net.s('p', { id: `p_${n}`, Name: `${n}produkt`, beskrivelse: `${n} testprodukt`, pris: 100000, valuta: 'NOK' });
@@ -139,7 +139,7 @@
         //lagring.net.s('ap', { id: `ap_${n}`, id_a: `a_${n}`, line: 1, usr: `${n} bruker`, sys: `${n} bot` });
     };
     //lagring.d.pilotC=n=>Object.keys(lagring.d.meta).forEach(t=>lagring.net.del(t, `like.${t}_${n}`));
-    //lagring.d.fyll('ukjent');
+    //lagring.d.fyll('unspesified');
     lagring.d.fyllP=n=>{
         return `/*AI generated*/
         lagring.net.s('u',{id:gormbraarvig,data:{Name:'Gorm Braarvig'}})`

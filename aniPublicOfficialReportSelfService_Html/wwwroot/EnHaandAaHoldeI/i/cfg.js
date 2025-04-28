@@ -16,7 +16,7 @@ const cfg={
             ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
             ,'Kommune >>§-', ['Eldre i Asker Kommune']
         ]],['Virksomhet >>§-',[
-            'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning']
+            'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning', 'Ansatt: Meningsfylt jobb']
             ,'Leder >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
             ,'HR >>§-', ['HR: Ansettelsen', 'HR: Medarbeidersamtale', 'HR: Oppsigelsen', 'HR: Restrukturering']
             ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper']
