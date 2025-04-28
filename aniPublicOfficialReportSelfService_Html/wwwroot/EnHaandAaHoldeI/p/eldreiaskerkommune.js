@@ -1,4 +1,4 @@
-cfg_aiPromptWelcome = `Velkommen, eldre i Asker Kommune 👵🧓
+cfg_aiPromptWelcome=`Velkommen, eldre i Asker Kommune 👵🧓
 
 Jeg hjelper deg med å finne riktig støtte – enten det er helsetjenester, fellesskap eller navigering i kommunens tilbud.
 

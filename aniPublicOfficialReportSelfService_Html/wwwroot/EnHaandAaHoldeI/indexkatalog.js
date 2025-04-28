@@ -33,14 +33,14 @@ let iC=0,iTot=9999;
         , Object.assign(document.createElement('button'), {
           textContent: '👀', onclick: () => {
             const f=document.getElementById('ifr_'+id),d=f.style.display;
-            f.style.display=d=='none'?'':'none';
+            f.style.display=d!='none'?'none':'';
             document.getElementById('set_'+id).style.display=d==''?'':'none';
             document.getElementById('qr_'+id).style.display=d==''?'':'none';
         }})
         , Object.assign(document.createElement('div'), { id: 'set_' + id, innerHTML: ui.c.tRotating /*'beskrivelse...'*/ })
         , Object.assign(document.createElement('div'), { id: 'qr_' + id, innerHTML: ui.c.tRotating /*'QR...'*/ })
         , Object.assign(document.createElement('img'), { id:'img_'+id, src:ui.c.ImgA, style:'height:5vw'})
-        , Object.assign(document.createElement('iframe'), { id: 'ifr_' + id, src: url, style: 'display:none' })
+        , Object.assign(document.createElement('iframe'), { id: 'ifr_' + id, src: url, style: 'display:none', loading:'lazy' })
       );
       cfg.load(app);
       return li;
