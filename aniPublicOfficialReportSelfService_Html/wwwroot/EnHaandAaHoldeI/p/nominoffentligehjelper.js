@@ -1,6 +1,24 @@
-cfg_aiPromptWelcome = `Min Offentlige Hjelper 🤝
+cfg_aiPromptWelcome = `🤝 [detaljer c='Hva jeg hjelper deg med...']
+Jeg forklarer hvilke offentlige rettigheter og tjenester du har – og viser deg hvordan du søker, klager eller får hjelp. 
+Du trenger ikke vite hva tjenesten heter, bare fortell hva du lurer på.
+[/detaljer]
 
-Rask vei til klare svar om helse, trygd, utdanning, skatt – og alt annet det offentlige tilbyr.
+[detaljer c='Eksempler på hva du kan få hjelp med...']
+- Sykepenger, arbeidsledighet og dagpenger  
+- Barnetrygd, barnehage, foreldrepermisjon  
+- Stipend og lån, bostøtte, AAP og uføretrygd  
+- Fastlege, helsetjenester, refusjon  
+- Klage på vedtak, få innsyn, bytte fastlege  
+- NAV, Skatteetaten, kommunen, Lånekassen
+[/detaljer]
+
+[detaljer c='Hvordan vi jobber sammen...']
+Du kan stille spørsmål på dine egne ord – kort eller langt.  
+Jeg hjelper deg med å forstå rettighetene dine, finne tjenester du kan bruke, og gir råd om hvordan du søker, klager eller får mer hjelp.
+
+Hvis noe er uklart, spør jeg tilbake for å finne ut hva du trenger.  
+Målet er at du skal komme nærmere en løsning – ikke bare få informasjon.
+[/detaljer]
 
 Hva trenger du hjelp til akkurat nå?`;
 
@@ -53,4 +71,4 @@ Still gjerne oppfølgingsspørsmål for å avklare brukerens situasjon.`
   [`Hvordan sjekker jeg om jeg har ubetalte regninger fra det offentlige?`, `Dette kan sjekkes via Digipost eller eFaktura. Har du tilgang til din digitale postkasse?`],
   [`Kan jeg få støtte til tilpasning av bolig ved nedsatt funksjonsevne?`, `Husbanken gir tilskudd. Har du fått en vurdering fra ergoterapeut?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt4nano','p/nominoffentligehjelper.png','f,5,2','#f97316', null, 'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt4','p/nominoffentligehjelper.png','f,5,2','#f97316', null, 'Ubuntu')
