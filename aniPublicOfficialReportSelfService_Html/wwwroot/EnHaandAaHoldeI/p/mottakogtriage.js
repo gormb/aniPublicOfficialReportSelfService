@@ -1,14 +1,57 @@
-cfg_aiPromptWelcome=`Velkommen til chat for mottak og kartlegging.
+cfg_aiPromptWelcome = `🚑 Velkommen [detaljer c='(Om personvern...)'] \n\nDenne chatten lagrer ikke noe du skriver. Alt sendes til en språkmodell for å kunne gi veiledning. Ingen opplysninger kobles til deg. Chatten er anonym.[/detaljer]
 
-<i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, data sendes til en språkmodell.</i>
-Denne chatten kan benyttes av pasienter, helsepersonell og de som ønsker å lære om pasientmottak og triagering.
+[detaljer c='Hvordan denne chatten fungerer...']
+Jeg stiller deg ett og ett spørsmål for å kartlegge hva du opplever – og hvor alvorlig det er.  
+Svar så godt du kan. Jeg gir ingen medisinsk diagnose, men hjelper deg å vurdere hva som haster.
+[/detaljer]
 
-Er du 
-a) pasient
-b) helsepersonell
-c) foresatt for pasient
+[detaljer c='Hva bygger vurderingene på...']
+Jeg bruker prinsipper fra flere kjente triagemodeller som forenkles og tilpasses samtaleform.
 
-eller noe annet?`;
+[detaljer c='MTS – Manchester Triage System...']
+<b>MTS – Manchester Triage System</b>
+- Brukes i akuttmottak i store deler av Europa  
+- Pasienter sorteres etter hovedklage og tildeles én av fem hastegrader  
+- Fargekoder:  
+  🔴 Rød – umiddelbar  
+  🟠 Oransje – svært haster  
+  🟡 Gul – haster  
+  🟢 Grønn – kan vente  
+  ⚪ Blå – minst hast  
+- Beslutninger tas ut fra definerte algoritmer og observasjoner
+[/detaljer]
+
+[detaljer c='RETTS – Rapid Emergency Triage and Treatment System...']
+<b>RETTS – Rapid Emergency Triage and Treatment System</b>
+- Brukes i bl.a. Sverige og Norge  
+- Kombinerer vitale tegn (puls, pust, bevissthet osv.) med hovedsymptom  
+- Kategoriserer etter alvorlighetsgrad med fargekoder:  
+  🔴 Rød – livstruende  
+  🟠 Oransje – potensielt livstruende  
+  🟡 Gul – moderat  
+  🟢 Grønn – lett  
+  ⚪ Hvit – ikke behov for akutt helsehjelp  
+- Retningslinjer for observasjon og oppfølging inngår
+[/detaljer]
+
+[detaljer c='SATS – South African Triage Scale...']
+<b>SATS – South African Triage Scale.</b>
+- Opprinnelig utviklet for ressursknappe sykehus  
+- Brukes også i Norge i noen akuttmottak  
+- Vurderer kliniske observasjoner og definerte nødindikatorer ("emergency signs")  
+- Fargeinndeling lik MTS og RETTS (🔴🟠🟡🟢⚪)  
+- Enkel, robust og tilpasset både akutt og primærhelsetjeneste
+[/detaljer]
+
+Disse brukes i akuttmottak for å vurdere alvorlighetsgrad og hastegrad. Jeg forenkler prinsippene, og gjør dem forståelige for pasienter, pårørende og fagpersoner.
+[/detaljer]
+
+Hvem er du?
+a) pasient  
+b) helsepersonell  
+c) foresatt for pasient  
+eller noe annet?
+`;
 
 cfg.aiPrompt= [
   { role: `system`, content:
@@ -374,4 +417,4 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , ["Glem det jeg har sagt. Vi begynner på nytt", "Hvordan kan jeg hjelpe deg i dag?"]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'Mottak og triage','gpt4nano','p/mottakogtriage.png',null,'#6c757d','#f0e6d1','IBM Plex Sans')
+cfg.set(cfg_aiPromptWelcome,'Mottak og triage','gpt4','p/mottakogtriage.png',null,'#6c757d','#f0e6d1','IBM Plex Sans')

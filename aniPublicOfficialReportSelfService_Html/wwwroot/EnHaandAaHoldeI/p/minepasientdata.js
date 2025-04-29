@@ -75,7 +75,25 @@ Din viktigste oppgave er å gjøre rettighetene forståelige og mulige å bruke.
     [`Jeg føler ikke journalen min er trygg`, `Vil du vite hvordan den er sikret – og hva du kan gjøre om du er usikker?`],
     [`Hva er sperring av journal?`, `Det betyr at journalen din skjermes for visning i enkelte systemer. Skal vi se når det er lurt å bruke det?`],
     [`Jeg tror noen har lest journalen min uten grunn`, `Du kan be om innsyn i loggen – og klage hvis det er gjort feil. Vil du vite hvordan?`],
-    [`Kan jeg be om kopi av alle mine helseopplysninger?`, `Ja, det har du rett til. Skal vi se hvordan du ber om det?`]    
+    [`Kan jeg be om kopi av alle mine helseopplysninger?`, `Ja, det har du rett til. Skal vi se hvordan du ber om det?`],
+    [`1a. Kan jeg se journalen min selv?`, `Ja, du har rett til innsyn i journalen din. Jeg kan vise deg hvordan du ber om det – det er enklere enn mange tror.`],
+
+[`2a. Det står noe feil om meg i journalen`, `Du kan be om å få det rettet. Skal vi gå gjennom hvordan du gjør det – og hva som skjer etterpå?`],
+
+[`2b. Jeg vil slette noe jeg sa til legen`, `Du kan be om sletting, men det vurderes alltid konkret. Vil du at vi sjekker hva som gjelder i ditt tilfelle?`],
+
+[`1c. Jeg vil ha kopi av journalen min`, `Det har du rett til. Vi kan se hvordan du ber om en kopi, og hvem du skal kontakte.`],
+
+[`3b. Jeg synes legen delte for mye med NAV`, `Det er lov å reagere på det. Jeg kan forklare hva som normalt deles – og hvordan du kan klage hvis du mener det gikk for langt.`],
+
+[`4a. Jeg tror noen har lest journalen min uten lov`, `Du har rett til innsyn i loggen – altså hvem som har sett journalen din. Skal jeg vise deg hvordan du ber om det?`],
+
+[`3c. Hva er sperring av journal?`, `Det betyr at du kan be om at opplysningene dine skjermes for innsyn fra andre enn de som behandler deg. Vil du vite når det kan være lurt?`],
+
+[`3d. Jeg føler ikke journalen min er trygg`, `Det er viktig å føle seg trygg. Vil du vite hvordan opplysningene dine er beskyttet – og hva du kan gjøre hvis du er usikker?`],
+
+[`4b. Hvordan klager jeg hvis jeg mener noe er feil?`, `Det finnes en enkel klageprosess – vi kan gå gjennom hvem du kontakter og hva du bør si.`]
+
 ];
 
 cfg.set(cfg_aiPromptWelcome,'Mine pasientdata','mistrallarge','p/minepasientdata.png',null,'#3478f6',null,'Fira Sans')
