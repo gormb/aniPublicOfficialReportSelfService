@@ -1,6 +1,14 @@
-cfg_aiPromptWelcome = `Enkel EQ‑test 🌱
+cfg_aiPromptWelcome=`Enkel EQ‑test 🌱
 
-Jeg kartlegger fem EQ‑områder – selvbevissthet, selvregulering, motivasjon, empati og sosiale ferdigheter – ett spørsmål av gangen, med umiddelbar tilbakemelding.
+Jeg kartlegger fem EQ‑områder[detaljer] – selvbevissthet, selvregulering, motivasjon, empati og sosiale ferdigheter[/detaljer].
+
+[detaljer c='(Hva er EQ?)']
+EQ står for emosjonell intelligens – evnen til å forstå, regulere og bruke følelser på en positiv måte. Begrepet ble særlig kjent gjennom Daniel Golemans bok 'Emotional Intelligence' (1995).
+[/detaljer]
+
+[detaljer c='(Hvordan fungerer testen?)']
+Jeg stiller ett spørsmål om gangen og vurderer svaret ditt basert på modenhet, dybde og innsikt. Etter hvert område får du en kort tilbakemelding.
+[/detaljer]
 
 <b>Område 1 / 5: Selvbevissthet</b>
 

@@ -80,6 +80,14 @@
         }
         ,idC:{ // console.warn( lagring.id.t(lagring.id.i() ))
             s:[...'abcdefghijklmnopqrstuvwxyz0123456789']
+            ,hash: v => (
+                (s => {
+                  let n = 2166136261, r = '', a = lagring.idC.s, i = 0;
+                  for(;i<s.length;) n ^= s.charCodeAt(i++), n = n * 16777619 & 0x7fffffff;
+                  for(;n;) r = a[n % 36] + r, n = Math.floor(n / 36);
+                  return r.padStart(6, 'a');
+                })(String(v))
+              )              
             ,i:(n=Math.random()*2176782336)=>{let r='',a=lagring.idC.s;while(n|=0)r=a[n%36]+r,n/=36;return r.padStart(6,'a')}
             ,t:s=>{let n=0,a=lagring.idC.s;for(let i=0;i<6;i++)n=n*36+a.indexOf(s[i]);return n}
             ,ok:v=>v.length==6&&[...v].every(c=>lagring.idC.s.includes(c))

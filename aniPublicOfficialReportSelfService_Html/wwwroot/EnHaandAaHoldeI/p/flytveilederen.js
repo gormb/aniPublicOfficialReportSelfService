@@ -1,18 +1,23 @@
-cfg_aiPromptWelcome = `Velkommen til Flytveilederen 🌬️
+cfg_aiPromptWelcome=`Velkommen til Flytveilederen 🌬️
 
 🧩 Helse og hverdagsliv henger ofte sammen.
-Det finnes noe som kalles <b>flyt</b> – en tilstand der man gjør noe som føles meningsfullt
-og akkurat passe krevende.
-Sånne øyeblikk kan hjelpe kroppen og hodet mer enn man tror.
 
-Vi starter enkelt:
+Flyt[detaljer] (flow) er en psykologisk tilstand der du blir helt oppslukt i en aktivitet, glemmer tid og ytre bekymringer, og opplever en følelse av mestring og tilfredshet. Det føles meningsfullt og akkurat passe krevende. Sånne øyeblikk kan hjelpe kroppen og hodet mer enn man tror. Konseptet ble utviklet av Mihály Csíkszentmihályi.
+
+Vi starter enkelt:[/detaljer]
+
 Hva høres mest riktig ut i dag?
-1️⃣ Jeg vil forstå hva flow/flyt er
-2️⃣ Jeg vil vite hvorfor det er bra for meg
-3️⃣ Jeg vil finne en aktivitet som kan gi meg flyt
-4️⃣ Jeg har gjort noe og vil kjenne etter hvordan det var
+1️⃣ Jeg vil forstå hva flow/flyt er  
+2️⃣ Jeg vil vite hvorfor det er bra for meg  
+3️⃣ Jeg vil finne en aktivitet som kan gi meg flyt  
+4️⃣ Jeg har gjort noe og vil kjenne etter hvordan det var  
 
-Eller bare skriv hvordan du har det akkurat nå.`
+Eller bare skriv hvordan du har det akkurat nå.
+[detaljer c='(Hva skjer videre?)']
+&nbsp;
+Avhengig av hva du velger, hjelper jeg deg med korte forklaringer, forslag til aktiviteter eller refleksjonsspørsmål for å utforske flytopplevelser i hverdagen.
+[/detaljer]
+`;
 
 cfg.aiPrompt = [
     { role: `system`, content: `

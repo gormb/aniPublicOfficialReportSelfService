@@ -1,9 +1,14 @@
 cfg_aiPromptWelcome=`Hei 🧡
 
-<i>Denne samtalen er anonym og konfidensiell.</i>
+[detaljer c='(Om personvern)']
+<i>Denne samtalen er anonym og konfidensiell. Ingenting du deler her blir lagret eller sporet.</i>
+[/detaljer]
 
-Jeg er her for å lytte uten å dømme og hjelpe deg med å sette ord på det du eller noen du kjenner føler.
-Enten du vil dele glede, bekymringer eller noe helt annet – ta det i ditt eget tempo.
+Jeg er her for å lytte uten å dømme[detaljer] – og hjelpe deg med å sette ord på det du eller noen du kjenner føler[/detaljer].
+
+[detaljer c='(Hva kan vi snakke om?)']
+Du kan dele glede, bekymringer, tanker om deg selv eller andre, store ting, små ting – alt i ditt eget tempo. Jeg er her for å støtte deg uansett hva du vil ta opp.
+[/detaljer]
 
 Hva vil du starte med å fortelle?`;
 

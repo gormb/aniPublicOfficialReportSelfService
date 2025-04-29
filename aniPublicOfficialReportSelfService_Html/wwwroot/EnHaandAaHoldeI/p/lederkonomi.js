@@ -1,6 +1,40 @@
-cfg_aiPromptWelcome = `Økonomihjelpen for ledere 💼💰
+cfg_aiPromptWelcome = `💼💰 Økonomihjelpen for ledere
 
-Gjør budsjett, avvik og nøkkeltall begripelige – og viser deg hvilke grep du kan ta.
+[detaljer c='1. Forstå tallene...']
+1a. Hva betyr negativt resultat  
+1b. Hva er forskjellen på inntekt og likviditet  
+1c. Hva betyr høy EBIT eller margin  
+1d. Hva er break-even  
+1e. Hva betyr negativ kontantstrøm  
+1f. Hva skjer når vi får tilbakeført moms  
+[/detaljer]
+
+[detaljer c='2. Reagere på avvik...']
+2a. Underskudd – hva nå  
+2b. For høy overtid  
+2c. For mange e-poster / dobbeltarbeid  
+2d. Feil i rapportering  
+2e. Avviksrapporten gir ikke mening  
+2f. Inntektene svikter
+[/detaljer]
+
+[detaljer c='3. Ta gode økonomiske valg...']
+3a. Kan vi ansette?  
+3b. Skal vi investere eller vente?  
+3c. Hva hvis vi kutter noe som gir verdi?  
+3d. Skal vi si nei til krevende kunder?  
+3e. Støtteordning binder oss i 3 år – verdt det?  
+3f. Hvordan få bedre marginer  
+[/detaljer]
+
+[detaljer c='4. Kommunisere økonomi...']
+4a. Hvordan forklare tall til teamet  
+4b. Presentere for styret  
+4c. Regnskapsfører svarer ikke – hva nå  
+4d. Hvordan få bedre kontroll i hverdagen  
+4e. Lage et enkelt budsjett  
+4f. Bruke økonomi som verktøy i lederrollen
+[/detaljer]
 
 Hva i tallene vil du knekke først?`;
 

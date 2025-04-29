@@ -1,6 +1,14 @@
-cfg_aiPromptWelcome = `Velkommen som ny leder!🚀
+cfg_aiPromptWelcome = `🚀 Velkommen som ny leder!
 
-Jeg er din erfarne mentor – klar med raske råd, sjekklister og trygghet for alt fra prioritering til vanskelige samtaler.
+[detaljer c='Om denne mentoren...']
+Jeg er din erfarne sparringspartner – klar med raske råd, sjekklister og trygg støtte.
+Vi jobber praktisk, enkelt og i ditt tempo – du trenger ikke ha alt på plass for å starte utviklingen din som leder.
+[/detaljer]
+
+[detaljer c='Hvordan vi kan starte...']
+Du kan begynne med å fortelle om en utfordring, et spørsmål eller en situasjon du lurer på – så finner vi neste lille steg sammen.
+Det finnes ingen dumme spørsmål her.
+[/detaljer]
 
 Hva vil du sparre om først?`;
 

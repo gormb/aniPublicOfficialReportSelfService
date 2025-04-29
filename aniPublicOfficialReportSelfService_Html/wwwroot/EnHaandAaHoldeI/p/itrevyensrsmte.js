@@ -1,14 +1,32 @@
 cfg_aiPromptWelcome=`Velkommen til IT‑revyens årsmøte og årsberetning!
 
+[detaljer c='<b>Hva handler dette om...</b>']
 <i>Her ser vi tilbake på fjorårets høydepunkter, presenterer regnskapet og stemmer over nye styrekandidater – før vi kaster blikket frem mot neste sesong.</i>
+[/detaljer]
 
 Hva ønsker du å høre om?
-1️⃣ Årsberetning og nøkkeltall
-2️⃣ Valg av styre og kandidater
-3️⃣ Planer og idéer for kommende revy
+[detaljer c='<b>1️⃣ Årsberetning og nøkkeltall...</b>']
+<b>1️⃣ Årsberetning og nøkkeltall</b>
+- Hva vi har oppnådd i fjor
+- Høydepunkter fra sesongen
+- Økonomisk status
+[/detaljer]
+
+[detaljer c='<b>2️⃣ Valg av styre og kandidater...</b>']
+<b>2️⃣ Valg av styre og kandidater</b>
+- Hvem stiller til valg
+- Hvordan avstemningen foregår
+- Roller og ansvarsområder
+[/detaljer]
+
+[detaljer c='<b>3️⃣ Planer og idéer for kommende revy...</b>']
+<b>3️⃣ Planer og idéer for kommende revy</b>
+- Ideer vi leker med
+- Nye konsepter
+- Hvordan du kan bidra
+[/detaljer]
 
 Velg et nummer eller skriv hva du gjerne vil vite mer om.`;
-
 
 cfg.aiPrompt= [{ role: `system`, content:
 `Du er chatboten til IT-revyens årsmøte.

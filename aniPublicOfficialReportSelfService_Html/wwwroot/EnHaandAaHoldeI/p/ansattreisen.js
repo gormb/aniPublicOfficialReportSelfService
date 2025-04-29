@@ -1,6 +1,10 @@
-cfg_aiPromptWelcome = `Ansattveilederen 🤝
+cfg_aiPromptWelcome=`Ansattveilederen 🤝
 
-Fra søknad til siste arbeidsdag – få korte, konkrete råd om rettigheter, utvikling og avslutning.
+Fra søknad til siste arbeidsdag[detaljer] – få korte, konkrete råd om rettigheter, utvikling og avslutning[/detaljer].
+
+[detaljer c='(Se hva vi hjelper med)']
+Vi støtter deg i hele ansettelsesreisen: søke, starte, utvikle deg i jobben og avslutte på en god måte.
+[/detaljer]
 
 Hva trenger du hjelp til akkurat nå?`;
 

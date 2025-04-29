@@ -148,7 +148,7 @@ const cfg={
             ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
             ,'Kommune >>§-', ['Eldre i Asker Kommune']
         ]],['Virksomhet >>§-',[
-            'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning']
+            'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning', 'Ansatt: Meningsfylt jobb']
             ,'Leder >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
             ,'HR >>§-', ['HR: Ansettelsen', 'HR: Medarbeidersamtale', 'HR: Oppsigelsen', 'HR: Restrukturering']
             ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper']
@@ -232,7 +232,7 @@ const cfg={
         });
     }
     ,set:(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
-        cfg.aiPromptWelcome=aiPromptWelcome
+        cfg.aiPromptWelcome=ui.parseTags(aiPromptWelcome)
         if(ai) setTimeout(()=>msgSend(ai),500);
         if(iA) ui.c.ImgA=iA;
         iEa=iEffekt?.split(',');
@@ -338,6 +338,14 @@ Produktet "Fri bruk månedlig" er inkludert i produktet "Appdesign hver måned".
         }
         ,idC:{ // console.warn( lagring.id.t(lagring.id.i() ))
             s:[...'abcdefghijklmnopqrstuvwxyz0123456789']
+            ,hash: v => (
+                (s => {
+                  let n = 2166136261, r = '', a = lagring.idC.s, i = 0;
+                  for(;i<s.length;) n ^= s.charCodeAt(i++), n = n * 16777619 & 0x7fffffff;
+                  for(;n;) r = a[n % 36] + r, n = Math.floor(n / 36);
+                  return r.padStart(6, 'a');
+                })(String(v))
+              )              
             ,i:(n=Math.random()*2176782336)=>{let r='',a=lagring.idC.s;while(n|=0)r=a[n%36]+r,n/=36;return r.padStart(6,'a')}
             ,t:s=>{let n=0,a=lagring.idC.s;for(let i=0;i<6;i++)n=n*36+a.indexOf(s[i]);return n}
             ,ok:v=>v.length==6&&[...v].every(c=>lagring.idC.s.includes(c))
@@ -713,6 +721,8 @@ const ui = {
     }
     ,qr:u=>qr.d(u,ui.c.Chat,.6)
     ,qrU:()=>ui.qr(lagring.qr())
+    ,parseSkjulHtm:(c='...',h)=>`<span onclick="const n=this.nextElementSibling;this.remove();n.style.display=''">${c}</span><span style="display:none">${h}</span>`
+    ,parseTags:h=>h.replace(/\[detaljer(?:\s+c=['"](.*?)['"])?\]([\s\S]*?)\[\/detaljer\]/g, (_, c, innhold) => ui.parseSkjulHtm(c || '...', innhold.replace(/^\n+|\n+$/g, '')))
 }
 /////////////// msg ///////////////
 window.msgIsSimulate=msg=>msg.startsWith("Simulate: ");

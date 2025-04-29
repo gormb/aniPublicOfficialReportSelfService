@@ -170,6 +170,15 @@ const ui = {
     }
     ,qr:u=>qr.d(u,ui.c.Chat,.6)
     ,qrU:()=>ui.qr(lagring.qr())
+    ,parseSkjulHtm:(c='...',h)=>`<span onclick="const n=this.nextElementSibling;this.remove();n.style.display=''">${c}</span><span style="display:none">${h}</span>`
+    ,parseTags:h=>{
+        const regex = /\[detaljer(?:\s+c=['"](.*?)['"])?\]([\s\S]*?)\[\/detaljer\]/g;
+        function recursiveReplace(html) {
+            const newHtml= html.replace(regex,(_, c, innhold)=>ui.parseSkjulHtm(c || '...', innhold.replace(/^\n+|\n+$/g, '')));
+            return newHtml==html?html:recursiveReplace(newHtml);
+        }
+        return ai.Raw2Htm(recursiveReplace(h));
+    }              
 }
 /////////////// msg ///////////////
 window.msgIsSimulate=msg=>msg.startsWith("Simulate: ");

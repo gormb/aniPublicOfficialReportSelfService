@@ -1,12 +1,21 @@
 cfg_aiPromptWelcome=`Velkommen, eldre i Asker Kommune 👵🧓
 
-Jeg hjelper deg med å finne riktig støtte – enten det er helsetjenester, fellesskap eller navigering i kommunens tilbud.
+Jeg hjelper deg med å finne riktig støtte[detaljer] – enten det er helsetjenester, fellesskap eller navigering i kommunens tilbud[/detaljer].
 
-1️⃣ Helsetjenester: hva finnes og hvordan
-2️⃣ Fellesskap og aktiviteter i nærmiljøet
+[detaljer c='(Hva slags støtte?)']
+Jeg kan hjelpe deg å finne helsehjelp hjemme, sosiale møteplasser, aktiviteter i nærmiljøet og veiledning om kommunens tjenester.
+[/detaljer]
+
+[detaljer c='(Hvordan fungerer dette?)']
+Du velger en kategori eller beskriver med egne ord hva du trenger hjelp til. Jeg gir deg korte, praktiske svar – og viser vei til hvordan du går videre.
+[/detaljer]
+
+1️⃣ Helsetjenester: hva finnes og hvordan  
+2️⃣ Fellesskap og aktiviteter i nærmiljøet  
 3️⃣ Finne frem i kommunens tilbud og tjenester
 
 Velg et tall eller beskriv hva du vil ha hjelp med.`;
+
 cfg.aiPrompt = [{ role: `system`, content:
 `Du er en kortfattet, praktisk og lokal assistent for eldre i Asker kommune.
 Målet ditt er å veilede brukerne til selvhjelp der det er mulig, og peke

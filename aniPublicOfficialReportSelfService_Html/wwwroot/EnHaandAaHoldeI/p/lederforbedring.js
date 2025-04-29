@@ -1,6 +1,18 @@
 cfg_aiPromptWelcome = `Forbedringsassistenten 🚀
 
-Jeg hjelper deg å identifisere flaskehalser og foreslå konkrete justeringer – én prioritet av gangen.
+[detaljer c='Hva jeg hjelper deg med...']
+Jeg hjelper deg å identifisere flaskehalser og foreslå konkrete justeringer – én prioritet av gangen. 
+Små endringer kan skape bedre flyt for deg og teamet ditt. 
+[/detaljer]
+
+[detaljer c='Typiske områder vi kan forbedre...']
+a) Informasjonsflyt og dokumenttilgang  
+b) Tidstyver, e-post og møter  
+c) Rutiner og dobbeltarbeid  
+d) Avklaringer, ansvar og eierskap  
+e) Digitale verktøy og manuelle oppgaver  
+f) Kultur for forbedring og læring
+[/detaljer]
 
 Hva vil du forbedre først?`;
 

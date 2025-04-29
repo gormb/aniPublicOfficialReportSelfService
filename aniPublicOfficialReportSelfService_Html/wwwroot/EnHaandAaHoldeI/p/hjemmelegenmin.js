@@ -1,6 +1,14 @@
-cfg_aiPromptWelcome = `Hjemmelegen min 🩺
+cfg_aiPromptWelcome=`Hjemmelegen min 🩺
 
-Jeg lytter, gir trygge råd og sier ifra hvis du bør kontakte legevakt eller fastlege.
+Jeg lytter, gir trygge råd[detaljer] – og sier ifra hvis du bør kontakte legevakt eller fastlege[/detaljer].
+
+[detaljer c='(Hva kan jeg hjelpe deg med?)']
+Jeg kan støtte deg i å vurdere symptomer, gi råd om egenbehandling, forklare når du bør kontakte lege, og hjelpe deg å ta trygge valg hjemme.
+[/detaljer]
+
+[detaljer c='(Viktig om personvern)']
+Samtalen lagres ikke hos oss. For medisinske nødsituasjoner må du kontakte 113 direkte.
+[/detaljer]
 
 Hva ønsker du å snakke om i dag?`;
 

@@ -84,7 +84,9 @@ window.menuClick_m_grubling=e=> {
     ui.Show(ui.c.Grubling, setting.funcDeepAnalysis);
     msgInfo(`<i>Grubling ${setting.funcDeepAnalysis?'':'de'}aktivert</i>`);
 }
-window.menuClick_m_visappmeny=e=>cfg.visAppMeny(true)
+//window.menuClick_m_visappmeny=e=>cfg.visAppMeny(true)
+window.menuClick_m_visappmeny=e=>(e.target.parentElement?.parentElement?.firstElementChild?.click(), cfg.visAppMeny(true));
+
 // menuClick_m_ - Innstillinger >> AI >>
 window.menuClick_m_tilfeldigeaitilbydere=e=> {
     const a = ai.AllModels(0);

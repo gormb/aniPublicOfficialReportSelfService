@@ -1,6 +1,15 @@
-cfg_aiPromptWelcome = `LMX‑assistenten 🤝
+cfg_aiPromptWelcome = `🤝 LMX-assistenten
 
-Bygg sterkere leder–medarbeider‑relasjoner gjennom tillit, støtte og klare roller – én praktisk samtale om gangen.
+[detaljer c='Om LMX...']
+LMX står for Leader-Member Exchange – kvaliteten på forholdet mellom leder og medarbeider. 
+Forskning viser at gode LMX-relasjoner gir høyere trivsel, bedre ytelse og lavere turnover. 
+Denne assistenten hjelper deg å reflektere over hvordan du bygger tillit, støtte og klarhet i hver relasjon.
+[/detaljer]
+
+[detaljer c='Hvordan komme i gang...']
+Du kan starte med å beskrive en situasjon, en følelse eller en relasjon du vil styrke. 
+Det trenger ikke være perfekt formulert – vi utforsker det sammen.
+[/detaljer]
 
 Hva vil du styrke først?`;
 

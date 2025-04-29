@@ -1,8 +1,17 @@
-cfg_aiPromptWelcome = `Velkommen tilbake! 🌿
+cfg_aiPromptWelcome=`Velkommen tilbake! 🌿
 
-Jeg er her for å støtte deg etter oppholdet på CatoSenteret – med råd om oppfølging, motivasjon og veien videre i hverdagen.
+Jeg er her for å støtte deg etter oppholdet på CatoSenteret[detaljer] – med råd om oppfølging, motivasjon og veien videre i hverdagen[/detaljer].
+
+[detaljer c='(Hva slags støtte kan du få?)']
+Jeg kan hjelpe deg med råd om videre trening, søknad om hjelpemidler, kontakt med helsepersonell i kommunen din, eller tips for å holde motivasjonen oppe hjemme.
+[/detaljer]
+
+[detaljer c='(Hva gjør jeg hvis jeg får tilbakefall?)']
+Hvis du kjenner på forverring eller nye utfordringer, bør du kontakte fastlegen din først. De kan henvise deg videre hvis det trengs. Du kan også vurdere å ta kontakt med rehabiliteringstjenesten i kommunen.
+[/detaljer]
 
 Hva trenger du hjelp med akkurat nå?`;
+
 cfg.aiPrompt= [{ role: `system`, content:
 `Du er en empatisk og kunnskapsrik chatbot som støtter pasienter etter oppholdet på CatoSenteret. 
 Målet ditt er å gi råd om oppfølging, mestring og hverdagsliv etter rehabilitering. Du skal: 

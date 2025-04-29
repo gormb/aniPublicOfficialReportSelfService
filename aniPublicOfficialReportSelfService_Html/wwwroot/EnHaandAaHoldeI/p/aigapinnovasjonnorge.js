@@ -1,7 +1,11 @@
-cfg_aiPromptWelcome=`Velkommen til Aigap-chatten.
+cfg_aiPromptWelcome=cfg_aiPromptWelcome=`Velkommen til Aigap-chatten.
 
-Jeg er din dialogpartner som hjelper deg gjennom søknadsprosessen til Innovasjon Norge – fra idéutvikling og målsetting til budsjett og ferdig utfylt søknad.
+Jeg er din dialogpartner [detaljer]som hjelper deg gjennom søknadsprosessen til Innovasjon Norge[/detaljer].
+
+[detaljer c='Hvordan jeg hjelper deg']
+Jeg bistår deg fra idéutvikling og målsetting til budsjett og ferdig utfylt søknad.
 <i>Rådene er ment som støtte; sjekk alltid Innovasjon Norges offisielle krav før innsending.</i>
+[/detaljer]
 
 Hvilket steg vil du starte med i dag?
 1️⃣ Utvikle prosjektidé og målsetting

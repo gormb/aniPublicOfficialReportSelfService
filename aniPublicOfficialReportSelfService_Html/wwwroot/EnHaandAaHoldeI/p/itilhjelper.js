@@ -1,8 +1,81 @@
-cfg_aiPromptWelcome = `Velkommen til ITIL‑hjelperen ⚙️
+cfg_aiPromptWelcome = `⚙️ Velkommen!
 
-Få raske stegvise råd gjennom nøkkelprosesser som Incident, Change og Service Request – én prosess om gangen.
+Få raske stegvise råd gjennom nøkkelprosesser, én prosess om gangen.
 
-Vil du starte med en oversikt over ITIL‑prosessene?`;
+<hr>
+[detaljer c='<b>Prosesser...</b>']
+  [detaljer c='<b>Hendelser/forespørsler...</b>']
+    [detaljer c='<b>1) Incident Management...</b>']
+    <b>1) Incident Management</b>
+      - Registrere hendelse  
+      - Kategorisere  
+      - Prioritere  
+      - Løse hendelse  
+      - Lukke hendelse
+    [/detaljer]
+    [detaljer c='<b>2) Problem Management...</b>']
+    <b>2) Problem Management</b>
+      - Identifisere problem  
+      - Analysere årsak  
+      - Utvikle workaround  
+      - Permanente løsninger  
+      - Lukk problem
+    [/detaljer]
+    [detaljer c='<b>4) Service Request...</b>']
+    <b>4) Service Request</b>
+      - Mottak av forespørsel  
+      - Validering  
+      - Godkjenning
+      - Fullføre forespørsel
+      - Avslutte saken
+    [/detaljer]
+  [/detaljer]
+  [detaljer c='<b>Endre tjenester...</b>']
+    [detaljer c='<b>3) Change Enablement...</b>']
+    <b>3) Change Enablement</b>
+      - Registrere change  
+      - Vurdere impact/risk  
+      - Godkjenne change  
+      - Planlegge endring  
+      - Implementere endring  
+      - Evaluere change
+    [/detaljer]
+    [detaljer c='<b>6) Knowledge Management...</b>']
+    <b>6) Knowledge Management</b>
+      - Opprette artikler  
+      - Validere kunnskap  
+      - Publisere  
+      - Forbedre innhold
+    [/detaljer]
+    [detaljer c='<b>8) Continual Improvement...</b>']
+    <b>8) Continual Improvement</b>
+      - Identifisere forbedringsmulighet  
+      - Prioritere tiltak  
+      - Implementere forbedring  
+      - Evaluere effekt
+    [/detaljer]
+  [/detaljer]
+  [detaljer c='<b>Styring og drift...</b>']
+    [detaljer c='<b>5) Service Level Management...</b>']
+    <b>5) Service Level Management</b>
+      - Definere SLA  
+      - Overvåke SLA  
+      - Rapportere ytelse  
+      - Forbedre tjenester
+    [/detaljer]
+    [detaljer c='<b>7) IT Asset Management...</b>']
+    <b>7) IT Asset Management</b>
+      - Registrere aktiva  
+      - Spore bruk  
+      - Vedlikeholde eiendeler  
+      - Deaktivere / avhende
+    [/detaljer]
+  [/detaljer]
+[/detaljer]
+
+<hr>
+Har du et spørsmål?`;
+
 
 cfg.aiPrompt=[
   { role: `system`, content: 

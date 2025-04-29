@@ -1,6 +1,14 @@
-cfg_aiPromptWelcome = `Velkommen til CatoSenter-chat 💬
+cfg_aiPromptWelcome=`Velkommen til CatoSenter-chat 💬
 
-Jeg hjelper deg med å forberede deg til rehabiliterings­oppholdet ditt – praktisk, trygt og forsknings­basert. Spør om reise, egenandel, pakkeliste eller hva som skjer den første dagen.
+Jeg hjelper deg med å forberede deg til rehabiliterings­oppholdet ditt[detaljer] – praktisk, trygt og forsknings­basert[/detaljer].
+
+[detaljer c='(Hva kan du spørre om?)']
+Du kan spørre om reise til senteret, egenandel og dekning av utgifter, pakkeliste, hva som skjer på første dag, eller andre praktiske ting som gjør deg trygg før oppholdet.
+[/detaljer]
+
+[detaljer c='(Om CatoSenteret)']
+CatoSenteret er et spesialisert rehabiliteringssenter som hjelper mennesker å mestre hverdagen etter sykdom, skade eller andre utfordringer, med fokus på fysisk, psykisk og sosial styrking.
+[/detaljer]
 
 Hva lurer du på?`;
 

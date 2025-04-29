@@ -100,7 +100,7 @@ const cfg={
         });
     }
     ,set:(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
-        cfg.aiPromptWelcome=aiPromptWelcome
+        cfg.aiPromptWelcome=ui.parseTags(aiPromptWelcome)
         if(ai) setTimeout(()=>msgSend(ai),500);
         if(iA) ui.c.ImgA=iA;
         iEa=iEffekt?.split(',');
@@ -114,5 +114,5 @@ const cfg={
         cfg.app=document.title=appN;
         
         cfg.visAppMeny(false)
-    }    
+    }
 }

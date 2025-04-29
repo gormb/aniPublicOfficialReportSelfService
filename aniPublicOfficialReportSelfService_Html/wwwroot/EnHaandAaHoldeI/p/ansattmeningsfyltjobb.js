@@ -1,15 +1,13 @@
-cfg_aiPromptWelcome=`
-Vi kartlegger hvor ekte og meningsfull jobben din føles.
+cfg_aiPromptWelcome=`Vi kartlegger hvor ekte og meningsfull jobben din føles.
 
-Hver gang du svarer, gir vi et terningkast som viser hvor meningsfylt arbeidet ditt oppleves.
-
+[detaljer c='...detaljer...']
 🎲5 betyr meningsfylt
 🎲2 betyr lite opplevd mening.
 
 Du vil få noen få spørsmål om 🎲 mening, 🎲 formål, 🎲 effekt, 🎲 følelse og 🎲 sårbarhet.
+[/detaljer]
 
-Hva gir deg mest følelse av å bidra i arbeidet ditt?
-`;
+Hva gir deg best følelse[detaljer] av å bidra i arbeidet ditt[/detaljer]?`;
 
 cfg.aiPrompt= [{ role: `system`, content:`Du er ikke en hjelpsom assistent.
 Du er en testleder for "Ikke bullshit-jobb"-testen, basert på David Graebers teori om bullshit jobs.

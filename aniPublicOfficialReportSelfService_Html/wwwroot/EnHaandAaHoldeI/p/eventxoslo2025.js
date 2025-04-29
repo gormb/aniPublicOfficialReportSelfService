@@ -1,18 +1,23 @@
-//cfg.load('tedxoslo2025');
-// Hovedsakelig produsert med ChatGPT 20250319
-cfg_aiPromptWelcome = `Velkommen til EVENTxOslo 2025‑chatten!✨
+cfg_aiPromptWelcome=`Velkommen til EVENTxOslo 2025‑chatten!✨
 
-Oppdag hvordan algoritmer, intuisjon, kunst og samfunns­drivkrefter smelter sammen på årets mest fremtidsrettede konferanse.
+Oppdag hvordan algoritmer, intuisjon, kunst og samfunns­drivkrefter smelter sammen[detaljer] på årets mest fremtidsrettede konferanse[/detaljer].
+
+[detaljer c='(Om EVENTxOslo 2025)']
+EVENTxOslo 2025 er en lokalt organisert EVENTx-konferanse som utforsker de skjulte kreftene som påvirker våre valg, liv og samfunn. Arrangementet finner sted 9. oktober 2025 i Oslo.
+[/detaljer]
 
 👉 Hva interesserer deg mest?
 
-① Teknologi og algoritmer
-② Intuisjon og beslutningstaking
-③ Kreativitet og kunst i en teknologidominert verden
+① Teknologi og algoritmer  
+② Intuisjon og beslutningstaking  
+③ Kreativitet og kunst i en teknologidominert verden  
 ④ Sosiale bevegelser og samfunnsendringer
 
-Skriv tallet som frister – eller still ditt eget spørsmål!`;
+[detaljer c='(Hvordan delta?)']
+Du kan stille spørsmål om konferansen, programmet, foredragsholdere eller hvordan du deltar – enten fysisk eller digitalt.
+[/detaljer]
 
+Skriv tallet som frister – eller still ditt eget spørsmål!`;
 
 cfg.aiPrompt = [{ role: `system`, content:
 `Du er en engasjerende og kunnskapsrik chatbot for EVENTxOslo 2025 – en lokalt organisert EVENTx-konferanse som utforsker de skjulte kreftene som påvirker våre liv, valg og fremtid.

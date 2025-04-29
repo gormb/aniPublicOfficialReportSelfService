@@ -18,7 +18,7 @@ header button:hover { background: #e0e0e0; }
     body.dark-mode header button:hover { background: var(--dark-msg); }
 .menu { position: absolute; top: 50px; right: 2dvw; background: var(--light-msg); color: #000; border: 1px solid #ccc; padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000; width: 80dvw; }
     body.dark-mode .menu { background: var(--dark-msg); color: #fff; border: 1px solid #444; }
-.menu-item { cursor: pointer; padding: 10px; border-bottom: 1px solid --secondary-color }
+.menu-item { cursor: pointer; padding: 10px; border-bottom: 1px solid var(--secondary-color); white-space: nowrap;overflow: hidden;text-overflow: ellipsis; }
     body.dark-mode .menu-item { border-bottom: 1px solid #444; }
 .menu-item:hover { background: var(--secondary-color); }
     body.dark-mode .menu-item:hover { background: var(--dark-secondary-color); }

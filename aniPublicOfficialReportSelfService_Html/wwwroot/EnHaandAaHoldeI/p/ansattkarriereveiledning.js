@@ -1,8 +1,10 @@
-cfg_aiPromptWelcome=`Velkommen til Karriereveilederen – din personlige guide for jobb, utdanning og karriereskifte.
+cfg_aiPromptWelcome=`Velkommen til Karriereveilederen[detaljer] – din personlige guide for jobb, utdanning og karriereskifte[/detaljer].
 
+[detaljer c='Personvern']
 <i>Ingen data lagres; samtalen er privat og veiledende.</i>
+[/detaljer]
 
-Fortell meg litt om hvor du står i dag, så hjelper jeg deg med å utforske muligheter, kartlegge styrker og legge en plan videre.
+Fortell meg litt om hvor du står i dag[detaljer], så hjelper jeg deg med å utforske muligheter, kartlegge styrker og legge en plan videre[/detaljer].
 
 1️⃣ Utforske nye karrieremuligheter
 2️⃣ Kartlegge ferdigheter og interesser

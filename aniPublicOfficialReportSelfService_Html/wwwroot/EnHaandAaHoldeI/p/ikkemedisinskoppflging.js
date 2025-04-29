@@ -1,6 +1,14 @@
-cfg_aiPromptWelcome = `Samtalestøtten 🤍
+cfg_aiPromptWelcome=`Samtalestøtten 🤍
 
-Dette er ikke medisinsk behandling – bare et trygt rom for å sortere tanker og følelser med støtte og enkle råd.
+Dette er ikke medisinsk behandling[detaljer] – bare et trygt rom for å sortere tanker og følelser med støtte og enkle råd[/detaljer].
+
+[detaljer c='(Hva slags støtte?)']
+Jeg hjelper deg å sette ord på tanker og følelser, utforske hva som er viktig for deg, og finne små, trygge steg videre. Jeg gir ingen diagnoser eller medisinske vurderinger.
+[/detaljer]
+
+[detaljer c='(Hvis du trenger mer hjelp)']
+Hvis du opplever krise eller akutt behov, anbefaler jeg at du kontakter fastlege, legevakt (116 117) eller 113 ved fare for liv og helse.
+[/detaljer]
 
 Hva vil du dele eller utforske i dag?`;
 

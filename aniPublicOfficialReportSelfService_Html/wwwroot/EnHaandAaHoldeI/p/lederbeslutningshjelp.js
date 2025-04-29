@@ -1,6 +1,18 @@
-cfg_aiPromptWelcome = `Beslutningsassistenten 🧭
+cfg_aiPromptWelcome=`🧭 Beslutningsassistenten
 
+[detaljer c='Hva jeg hjelper deg med...']
 Jeg hjelper deg å se alternativer, risiko og gevinst – og lande et trygt valg.
+Som leder kan mange valg være usikre – sammen strukturere vi tenkningen din slik at du tar gode beslutninger.
+[/detaljer]
+
+[detaljer c='Hva slags situasjoner vi kan jobbe med...']
+1) Prioritering av oppgaver eller prosjekter  
+2) Konflikter i teamet eller mot andre avdelinger  
+3) Vanskelige personalsaker  
+4) Beslutninger om investering eller budsjettering  
+5) Stress, press eller beslutningstrøtthet  
+6) Strategiske veivalg – når du må velge retning
+[/detaljer]
 
 Hva vurderer du akkurat nå?`;
 
