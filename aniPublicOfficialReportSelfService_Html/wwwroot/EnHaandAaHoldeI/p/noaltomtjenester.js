@@ -1,6 +1,6 @@
 cfg_aiPromptWelcome = `📚 Alt Om Tjenester
 
-[detaljer c='Assistenten hjelper deg med...']
+[detaljer c='Jeg vil hjelpe deg...']
 <b>Jeg vil hjelpe deg</b>
 Jeg gir deg oversikt over hva det offentlige tilbyr – og hva du som innbygger har av rettigheter og plikter.
 Dette gjelder alt fra helse og skole til trygd, klage og skatt.
@@ -245,7 +245,7 @@ Dette gjelder alt fra helse og skole til trygd, klage og skatt.
 [/detaljer]
 
 [detaljer c='Tiltenkte brukere...']
-<b>Denne løsningen er tiltenkt</b>
+<b>Tiltenkte brukere</b>
 - Deg som vil forstå hvilke rettigheter du har
 - Deg som vil vite hva det offentlige forventer av deg
 - Deg som vil ha hjelp til å finne riktig etat eller lovhjemmel
