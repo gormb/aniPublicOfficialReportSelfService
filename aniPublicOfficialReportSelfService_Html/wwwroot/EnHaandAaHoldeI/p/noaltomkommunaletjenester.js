@@ -7,152 +7,88 @@ Du får også vite hvordan kvalitet og ressursbruk måles.
 [/detaljer]
 
 [detaljer c='Kommunale tjenester...']<hr><h2>Kommunale tjenester</h2>
-
 [detaljer c='A. Helse og omsorg...']<b>A. Helse og omsorg</b>
-A1. Hjemmebaserte tjenester – hjemmesykepleie, praktisk bistand, BPA  
-Målt på: andel brukere, timer per uke, ressursbruk per innbygger
 
-A2. Institusjonsbaserte tjenester – sykehjem, korttidsopphold, dagsenter  
-Målt på: plasser per 1000 innbyggere, beleggsprosent, utskrivningstid
-
-A3. Rehabilitering og habilitering – fysio, ergo, logoped  
-Målt på: antall brukere, ventetid, effektmåling
-
-A4. Psykisk helse og rus – lavterskel, oppfølging, behandling  
-Målt på: antall brukere, reinnleggelse, brukertilfredshet
-
-A5. Legetjenester og legevakt – fastlege, legevakt, helsestasjon  
-Målt på: konsultasjoner per innbygger, tilgjengelighet, ventetid
-
-A6. Helsestasjon og skolehelsetjeneste – svangerskap, barn, ungdom  
-Målt på: dekning, andel fullførte kontroller, brukertilfredshet
-
-A7. Tannhelsetjeneste – barn, voksne med behov, forebygging  
-Målt på: andel undersøkt, behandlingsrate, kostnad per bruker
+A1. Hjemmebaserte tjenester – hjemmesykepleie, praktisk bistand, BPA [detaljer c='(Mål...)']<br>Målt på andel brukere, timer per uke, ressursbruk per innbygger[/detaljer]<br>
+A2. Institusjonsbaserte tjenester – sykehjem, korttidsopphold, dagsenter [detaljer c='(Mål...)']<br>Målt på plasser per 1000 innbyggere, beleggsprosent, utskrivningstid[/detaljer]<br>
+A3. Rehabilitering og habilitering – fysio, ergo, logoped [detaljer c='(Mål...)']<br>Målt på antall brukere, ventetid, effektmåling[/detaljer]<br>
+A4. Psykisk helse og rus – lavterskel, oppfølging, behandling [detaljer c='(Mål...)']<br>Målt på antall brukere, reinnleggelse, brukertilfredshet[/detaljer]<br>
+A5. Legetjenester og legevakt – fastlege, legevakt, helsestasjon [detaljer c='(Mål...)']<br>Målt på konsultasjoner per innbygger, tilgjengelighet, ventetid[/detaljer]<br>
+A6. Helsestasjon og skolehelsetjeneste – svangerskap, barn, ungdom [detaljer c='(Mål...)']<br>Målt på dekning, andel fullførte kontroller, brukertilfredshet[/detaljer]<br>
+A7. Tannhelsetjeneste – barn, voksne med behov, forebygging [detaljer c='(Mål...)']<br>Målt på andel undersøkt, behandlingsrate, kostnad per bruker[/detaljer]<br>
 [/detaljer]
 
-[detaljer c='B. Oppvekst og utdanning...']<hr><b>B. Oppvekst og utdanning</b>
-B1. Barnehage – plass, tilrettelegging, bemanning  
-Målt på: dekning, utgift per barn, bemanningsnorm
+[detaljer c='B. Oppvekst og utdanning...']<b>B. Oppvekst og utdanning</b>
 
-B2. Grunnskole – undervisning, SFO, spesialundervisning  
-Målt på: utgift per elev, lærertetthet, resultater
-
-B3. Videregående opplæring – studieforberedende, yrkesfag, lærlinger  
-Målt på: gjennomføring, læreplassandel, karakterer
-
-B4. Voksenopplæring – grunnskole, norsk, samfunnskunnskap  
-Målt på: deltakelse, progresjon, beståttandel
-
-B5. Kulturskole – musikk, dans, kunst  
-Målt på: deltakelse per 1000 barn, kostnad per elev
-
-B6. Bibliotek – utlån, digitale tjenester, arrangementer  
-Målt på: besøk per innbygger, utlån, aktivitetstilbud
-
-B7. Fritid og ungdom – klubber, ferieaktiviteter, idrett  
-Målt på: antall deltakere, åpningstimer, tilskudd til lag
+B1. Barnehage – plass, tilrettelegging, bemanning [detaljer c='(Mål...)']<br>Målt på dekning, utgift per barn, bemanningsnorm[/detaljer]<br>
+B2. Grunnskole – undervisning, SFO, spesialundervisning [detaljer c='(Mål...)']<br>Målt på utgift per elev, lærertetthet, resultater[/detaljer]<br>
+B3. Videregående opplæring – studieforberedende, yrkesfag, lærlinger [detaljer c='(Mål...)']<br>Målt på gjennomføring, læreplassandel, karakterer[/detaljer]<br>
+B4. Voksenopplæring – grunnskole, norsk, samfunnskunnskap [detaljer c='(Mål...)']<br>Målt på deltakelse, progresjon, beståttandel[/detaljer]<br>
+B5. Kulturskole – musikk, dans, kunst [detaljer c='(Mål...)']<br>Målt på deltakelse per 1000 barn, kostnad per elev[/detaljer]<br>
+B6. Bibliotek – utlån, digitale tjenester, arrangementer [detaljer c='(Mål...)']<br>Målt på besøk per innbygger, utlån, aktivitetstilbud[/detaljer]<br>
+B7. Fritid og ungdom – klubber, ferieaktiviteter, idrett [detaljer c='(Mål...)']<br>Målt på antall deltakere, åpningstimer, tilskudd til lag[/detaljer]<br>
 [/detaljer]
 
-[detaljer c='C. Sosiale tjenester og bolig...']<hr><b>C. Sosiale tjenester og bolig</b>
-C1. Økonomisk sosialhjelp – livsopphold, nødhjelp, rådgivning  
-Målt på: antall mottakere, gjennomsnittlig støtte, saksbehandlingstid
+[detaljer c='C. Sosiale tjenester og bolig...']<b>C. Sosiale tjenester og bolig</b>
 
-C2. Bolig – kommunale boliger, bostøtte, startlån  
-Målt på: tildelingsrate, saksbehandlingstid, bomiljøtiltak
-
-C3. Introduksjon og kvalifisering – flyktning, arbeidsrettet  
-Målt på: deltagelse, overgang til arbeid/utdanning, gjennomføring
-
-C4. Flyktningtjenester – bosetting, helsehjelp, integrering  
-Målt på: antall bosatte, deltagelse i program, språkprøver
-
-C5. Tilrettelagt bolig – omsorgsbolig, bemannet bolig  
-Målt på: antall boliger, dekningsgrad, tilfredshet
-
-C6. Midlertidig bolig – akuttplasser, nødløsninger  
-Målt på: brukerdager, utskrivningstid, tilbakefall
-
-C7. Oppfølgingstjenester – gjeldsrådgivning, rus, psykisk helse  
-Målt på: antall brukere, gjennomføring, effekt
+C1. Økonomisk sosialhjelp – livsopphold, nødhjelp, rådgivning [detaljer c='(Mål...)']<br>Målt på antall mottakere, gjennomsnittlig støtte, saksbehandlingstid[/detaljer]<br>
+C2. Bolig – kommunale boliger, bostøtte, startlån [detaljer c='(Mål...)']<br>Målt på tildelingsrate, saksbehandlingstid, bomiljøtiltak[/detaljer]<br>
+C3. Introduksjon og kvalifisering – flyktning, arbeidsrettet [detaljer c='(Mål...)']<br>Målt på deltagelse, overgang til arbeid/utdanning, gjennomføring[/detaljer]<br>
+C4. Flyktningtjenester – bosetting, helsehjelp, integrering [detaljer c='(Mål...)']<br>Målt på antall bosatte, deltagelse i program, språkprøver[/detaljer]<br>
+C5. Tilrettelagt bolig – omsorgsbolig, bemannet bolig [detaljer c='(Mål...)']<br>Målt på antall boliger, dekningsgrad, tilfredshet[/detaljer]<br>
+C6. Midlertidig bolig – akuttplasser, nødløsninger [detaljer c='(Mål...)']<br>Målt på brukerdager, utskrivningstid, tilbakefall[/detaljer]<br>
+C7. Oppfølgingstjenester – gjeldsrådgivning, rus, psykisk helse [detaljer c='(Mål...)']<br>Målt på antall brukere, gjennomføring, effekt[/detaljer]<br>
 [/detaljer]
 
-[detaljer c='D. Barnevern...']<hr><b>D. Barnevern</b>
-D1. Meldinger og undersøkelser – bekymringsmeldinger, utredning  
-Målt på: antall meldinger, andel fullførte undersøkelser
+[detaljer c='D. Barnevern...']<b>D. Barnevern</b>
 
-D2. Hjelpetiltak – veiledning, avlastning, økonomisk støtte  
-Målt på: antall tiltak, varighet, effekt
-
-D3. Omsorgstiltak – fosterhjem, institusjon, ettervern  
-Målt på: antall plasseringer, stabilitet, skolegang
-
-D4. Forebygging – foreldrestøtte, samarbeidsmøter  
-Målt på: antall familier, deltakelse, effekt
-
-D5. Akuttberedskap – akuttplassering, barnevernvakt  
-Målt på: antall saker, responstid, varighet
+D1. Meldinger og undersøkelser – bekymringsmeldinger, utredning [detaljer c='(Mål...)']<br>Målt på antall meldinger, andel fullførte undersøkelser[/detaljer]<br>
+D2. Hjelpetiltak – veiledning, avlastning, økonomisk støtte [detaljer c='(Mål...)']<br>Målt på antall tiltak, varighet, effekt[/detaljer]<br>
+D3. Omsorgstiltak – fosterhjem, institusjon, ettervern [detaljer c='(Mål...)']<br>Målt på antall plasseringer, stabilitet, skolegang[/detaljer]<br>
+D4. Forebygging – foreldrestøtte, samarbeidsmøter [detaljer c='(Mål...)']<br>Målt på antall familier, deltakelse, effekt[/detaljer]<br>
+D5. Akuttberedskap – akuttplassering, barnevernvakt [detaljer c='(Mål...)']<br>Målt på antall saker, responstid, varighet[/detaljer]<br>
 [/detaljer]
 
-[detaljer c='E. Kultur, idrett og frivillighet...']<hr><b>E. Kultur, idrett og frivillighet</b>
-E1. Kulturtilbud – bibliotek, museum, arrangementer  
-Målt på: besøk, aktivitetstilbud, utgift per innbygger
+[detaljer c='E. Kultur, idrett og frivillighet...']<b>E. Kultur, idrett og frivillighet</b>
 
-E2. Idrett – anlegg, svømmehall, aktivitetstilbud  
-Målt på: anlegg per innbygger, bruk, kostnad
-
-E3. Frivillighet – tilskudd, møteplasser, inkludering  
-Målt på: antall lag/støttemottakere, aktivitetstimer
+E1. Kulturtilbud – bibliotek, museum, arrangementer [detaljer c='(Mål...)']<br>Målt på besøk, aktivitetstilbud, utgift per innbygger[/detaljer]<br>
+E2. Idrett – anlegg, svømmehall, aktivitetstilbud [detaljer c='(Mål...)']<br>Målt på anlegg per innbygger, bruk, kostnad[/detaljer]<br>
+E3. Frivillighet – tilskudd, møteplasser, inkludering [detaljer c='(Mål...)']<br>Målt på antall lag/støttemottakere, aktivitetstimer[/detaljer]<br>
 [/detaljer]
 
-[detaljer c='F. Næring, miljø og samfunnsutvikling...']<hr><b>F. Næring, miljø og samfunnsutvikling</b>
-F1. Næringsutvikling – etablererstøtte, rådgivning  
-Målt på: antall bedrifter støttet, effekt
+[detaljer c='F. Næring, miljø og samfunnsutvikling...']<b>F. Næring, miljø og samfunnsutvikling</b>
 
-F2. Landbruk og miljø – tilskudd, vilt, klima  
-Målt på: antall søknader, dekningsgrad, miljøeffekt
-
-F3. Samfunnsutvikling – stedsutvikling, planarbeid  
-Målt på: fullførte planer, innbyggerinvolvering
+F1. Næringsutvikling – etablererstøtte, rådgivning [detaljer c='(Mål...)']<br>Målt på antall bedrifter støttet, effekt[/detaljer]<br>
+F2. Landbruk og miljø – tilskudd, vilt, klima [detaljer c='(Mål...)']<br>Målt på antall søknader, dekningsgrad, miljøeffekt[/detaljer]<br>
+F3. Samfunnsutvikling – stedsutvikling, planarbeid [detaljer c='(Mål...)']<br>Målt på fullførte planer, innbyggerinvolvering[/detaljer]<br>
 [/detaljer]
 
-[detaljer c='G. Plan, bygg og eiendomsforvaltning...']<hr><b>G. Plan, bygg og eiendomsforvaltning</b>
-G1. Byggesak og plan – byggesøknader, dispensasjon  
-Målt på: saksbehandlingstid, antall saker
+[detaljer c='G. Plan, bygg og eiendomsforvaltning...']<b>G. Plan, bygg og eiendomsforvaltning</b>
 
-G2. Eiendom – kommunale bygg, utleie  
-Målt på: vedlikeholdsgrad, utnyttelsesgrad
-
-G3. Kart og oppmåling – matrikkel, deling  
-Målt på: saksbehandlingstid, kvalitet
+G1. Byggesak og plan – byggesøknader, dispensasjon [detaljer c='(Mål...)']<br>Målt på saksbehandlingstid, antall saker[/detaljer]<br>
+G2. Eiendom – kommunale bygg, utleie [detaljer c='(Mål...)']<br>Målt på vedlikeholdsgrad, utnyttelsesgrad[/detaljer]<br>
+G3. Kart og oppmåling – matrikkel, deling [detaljer c='(Mål...)']<br>Målt på saksbehandlingstid, kvalitet[/detaljer]<br>
 [/detaljer]
 
-[detaljer c='H. Teknisk sektor og samferdsel...']<hr><b>H. Teknisk sektor og samferdsel</b>
-H1. Vei og park – brøyting, belysning, grøntområder  
-Målt på: km vei vedlikeholdt, grøntareal per innbygger
+[detaljer c='H. Teknisk sektor og samferdsel...']<b>H. Teknisk sektor og samferdsel</b>
 
-H2. Vann og avløp – forsyning, rensing  
-Målt på: leveringsgrad, vannkvalitet
-
-H3. Renovasjon – avfall, gjenvinning  
-Målt på: mengde avfall, sorteringsgrad
+H1. Vei og park – brøyting, belysning, grøntområder [detaljer c='(Mål...)']<br>Målt på km vei vedlikeholdt, grøntareal per innbygger[/detaljer]<br>
+H2. Vann og avløp – forsyning, rensing [detaljer c='(Mål...)']<br>Målt på leveringsgrad, vannkvalitet[/detaljer]<br>
+H3. Renovasjon – avfall, gjenvinning [detaljer c='(Mål...)']<br>Målt på mengde avfall, sorteringsgrad[/detaljer]<br>
 [/detaljer]
 
-[detaljer c='I. Beredskap og samfunnssikkerhet...']<hr><b>I. Beredskap og samfunnssikkerhet</b>
-I1. Beredskap – planverk, øvelser  
-Målt på: oppdateringsgrad, øvingsfrekvens
+[detaljer c='I. Beredskap og samfunnssikkerhet...']<b>I. Beredskap og samfunnssikkerhet</b>
 
-I2. Brann og redning – forebygging, utrykning  
-Målt på: responstid, antall oppdrag
+I1. Beredskap – planverk, øvelser [detaljer c='(Mål...)']<br>Målt på oppdateringsgrad, øvingsfrekvens[/detaljer]<br>
+I2. Brann og redning – forebygging, utrykning [detaljer c='(Mål...)']<br>Målt på responstid, antall oppdrag[/detaljer]<br>
 [/detaljer]
 
-[detaljer c='J. Politisk styring og administrasjon...']<hr><b>J. Politisk styring og administrasjon</b>
-J1. Politisk ledelse – kommunestyre, utvalg  
-Målt på: møteaktivitet, saker behandlet
+[detaljer c='J. Politisk styring og administrasjon...']<b>J. Politisk styring og administrasjon</b>
 
-J2. Administrasjon – økonomi, personal, IKT  
-Målt på: kostnad per innbygger, effektivitet
+J1. Politisk ledelse – kommunestyre, utvalg [detaljer c='(Mål...)']<br>Målt på møteaktivitet, saker behandlet[/detaljer]<br>
+J2. Administrasjon – økonomi, personal, IKT [detaljer c='(Mål...)']<br>Målt på kostnad per innbygger, effektivitet[/detaljer]<br>
 [/detaljer]
+
 <br><hr>[/detaljer]
 
 Hva vil du vite mer om?`;
