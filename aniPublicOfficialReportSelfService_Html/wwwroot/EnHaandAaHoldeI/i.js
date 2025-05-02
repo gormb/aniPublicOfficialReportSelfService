@@ -1011,7 +1011,10 @@ window.msgSendSpeak=()=> {
     r.onresult = e => {
         ui.e.Input_setValue(ui.c.Input.value+e.results[0][0].transcript);
         if (ui.c.Input.value.length) 
+        {
+            r.stop();
             msgSend(null, msgRecieveTalkAndSend);
+        }
     };
 }
 window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
