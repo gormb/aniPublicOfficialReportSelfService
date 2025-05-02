@@ -3,8 +3,10 @@ const baseUrl = location.href.split('?')[0].replace('indexkatalog.html','index.h
 cfg.set=(aiPromptWelcome,appN,aiMod,iA,iEffekt,priCol,lightMCol,font)=>{
   cfg.aiPromptWelcome=ai.Raw2Htm(ui.parseTags(aiPromptWelcome))
   cfg.app=appN;
+
   const id=appN.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
-  , dQr=document.getElementById('qr_'+id), img=document.getElementById('img_'+id)
+  console.warn(id, 'must match js-filename++!')
+  const dQr=document.getElementById('qr_'+id), img=document.getElementById('img_'+id)
   , dDesc=document.getElementById('set_'+id)
   dQr.innerText='';
   if (iA) img.src=iA;

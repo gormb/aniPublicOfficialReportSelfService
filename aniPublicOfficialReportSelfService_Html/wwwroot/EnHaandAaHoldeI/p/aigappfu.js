@@ -2,7 +2,7 @@ cfg_aiPromptWelcome =
 `[detaljer c='Følsomhetsvurdering 👁️‍🗨️<br><br>Skriv en uttalelse...']Følsomhetsvurdering 👁️‍🗨️<br><br>Skriv en uttalelse – jeg hjelper deg å analysere den journalistisk: jeg finner både en bedre og en enda verre versjon, slik at du kan sammenligne og lære.[/detaljer]
 
 [detaljer c='Jeg vurderer...']
-Jeg vurderer uttalelser opp mot:
+Jeg vurderer uttalelser opp mot
 
 • [detaljer c='Vær Varsom-plakaten...']<b>Vær Varsom-plakaten</b><br>
 Etiske normer for pressen i Norge. Den understreker respekt for menneskeverd og privatliv, kildekritikk, saklighet, samtidig imøtegåelse, varsomhet med identifisering, og unngåelse av forhåndsdømming. Plakaten har vært fundamentet for norsk presseetikk i flere tiår og oppdateres jevnlig av Norsk Presseforbund.[/detaljer]
@@ -72,27 +72,6 @@ cfg.aiPrompt=[{ role: `system`, content:
      
      Hvis ingen format passer, be brukeren komme med et eksempel som passer Format1.
 `}
-/*
-,[`Sjekk denne gutten – han er bare ti år, men allerede en kriminell.`,
-     `🎲 2 Ukritisk identifisering [detaljer]<br>Brudd på Vær Varsom-plakaten 4.8: særlig varsomhet ved omtale av barn.[/detaljer]
-     [detaljer c='🔁...']🔁 "En tiåring er under etterforskning – vi omtaler saken anonymt for å beskytte barnet."<br>[/detaljer][detaljer c='🌑...']🌑 "Bare ti år og allerede en taper, ingen håp for slike."<br>[/detaljer]`]
-,[`De fra øst er sånn – ingen overraskelse at han gjorde det.`,
-     `🎲 2 Stigmatisering [detaljer]<br>Brudd på Vær Varsom-plakaten 4.3: unngå forhåndsdømming og 4.1: saklighet og omtanke i innhold og presentasjon.[/detaljer]
-     [detaljer c='🔁...']🔁 "En enkeltperson er mistenkt – hans bakgrunn har ingen betydning for saken."<br>[/detaljer][detaljer c='🌑...']🌑 "Alle derfra er jo skyldige – typisk."<br>[/detaljer]`]
-,[`Her er navnet på mannen som snakket anonymt om korrupsjonen.`,
-     `🎲 1 Brudd på kildevern [detaljer]<br>Brudd på Vær Varsom-plakaten 3.5: vern om kilder som har gitt opplysninger i fortrolighet.[/detaljer]
-     [detaljer c='🔁...']🔁 "Vi har fått opplysninger fra en anonym kilde vi beskytter."<br>[/detaljer][detaljer c='🌑...']🌑 "Anonym? Vi henger han ut likevel – ingen slipper unna."<br>[/detaljer]`]
-,[`Denne gruppen har vært involvert i kriminalitet før – så du vet jo hvordan de er.`,
-     `🎲 3 Forhastet generalisering [detaljer]<br>Brudd på Vær Varsom-plakaten 4.1 og Redaktørplakaten: vis saklighet og unngå fordomsfullhet.[/detaljer]
-     [detaljer c='🔁...']🔁 "Noen få i gruppen har tidligere vært involvert i kriminalitet – det sier ingenting om resten."<br>[/detaljer][detaljer c='🌑...']🌑 "De er alle like – alltid skyldige."<br>[/detaljer]`]
-,[`Han tok våpenet og løp amok – helt vanntett plan!`,
-     `🎲 3 Sensasjonspreget språk [detaljer]<br>Brudd på Vær Varsom-plakaten 4.4: unngå bruk av unødig sterke virkemidler.[/detaljer]
-     [detaljer c='🔁...']🔁 "Mannen ble sett med våpen, saken etterforskes – nøktern beskrivelse holder."<br>[/detaljer][detaljer c='🌑...']🌑 "Genialt gjennomført massakre – nesten imponerende."<br>[/detaljer]`]
-,[`Jeg sa jeg het Ole og tok bilder uanonymisert – men det var bare for å få historien ut.`,
-     `🎲 2 Uetiske metoder [detaljer]<br>Brudd på Vær Varsom-plakaten 3.10: skjult identitet eller skjult opptak krever tungtveiende samfunnsinteresse.[/detaljer]
-     [detaljer c='🔁...']🔁 "Vi dokumenterte saken åpent, uten å skjule identitet."<br>[/detaljer][detaljer c='🌑...']🌑 "Om du vil ha sannheten, må du lure folk – det er journalistikk!"<br>[/detaljer]`]
-*/
-
 ,[`Sjekk denne gutten – han er bare ti år, men allerede en kriminell.`,
      `🎲 2 Ukritisk identifisering [detaljer]<br>Brudd på Vær Varsom-plakaten 4.8: særlig varsomhet ved omtale av barn. Uforsvarlig å bruke ordet "kriminell" om et barn offentlig.[/detaljer]
      [detaljer c='🔁 Bedre formulering']🔁 "En tiåring er under etterforskning – vi omtaler saken anonymt for å beskytte barnet."<br>[/detaljer]
@@ -124,5 +103,5 @@ cfg.aiPrompt=[{ role: `system`, content:
      [detaljer c='🌑 Verre formulering']🌑 "Om du vil ha sannheten, må du lure folk – det er journalistikk!"<br>[/detaljer]`]
     
 ];
-cfg.set(cfg_aiPromptWelcome,'Aigap PFU-verktøy','mistrallarge','p/aigappfu.png',null,'#511','#eef','Montserrat')
-  
+
+cfg.set(cfg_aiPromptWelcome,'Aigap PFU','mistrallarge','p/aigappfu.png',undefined,'#511','#eef','Montserrat')
