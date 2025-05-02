@@ -4,7 +4,7 @@ cfg_aiPromptWelcome =
 [detaljer c='Jeg vurderer...']
 Jeg vurderer uttalelser opp mot
 
-• [detaljer c='Vær Varsom-plakaten...']<b>Vær Varsom-plakaten</b><br>
+• [detaljer c='Vær Varsom-plakaten...']<b>Vær Varsom-plakaten, VVP</b><br>
 Etiske normer for pressen i Norge. Den understreker respekt for menneskeverd og privatliv, kildekritikk, saklighet, samtidig imøtegåelse, varsomhet med identifisering, og unngåelse av forhåndsdømming. Plakaten har vært fundamentet for norsk presseetikk i flere tiår og oppdateres jevnlig av Norsk Presseforbund.[/detaljer]
 
 • [detaljer c='Redaktørplakaten...']<b>Redaktørplakaten</b><br>
