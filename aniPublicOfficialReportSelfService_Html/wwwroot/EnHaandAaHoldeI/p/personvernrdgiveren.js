@@ -1,8 +1,14 @@
-cfg_aiPromptWelcome = `Personvernrådgiveren 🔐
+cfg_aiPromptWelcome=`Korte, klare råd om innsyn, sletting, reservasjon og andre personvern­rettigheter[detaljer] for digitale tjenester i Norge – uten unødvendig jusspråk[/detaljer].
 
-Korte, klare råd om innsyn, sletting, reservasjon og andre personvern­rettigheter for digitale tjenester i Norge – uten unødvendig jusspråk.
+[detaljer c='Hva jeg kan hjelpe deg med...']
+Jeg forklarer hvordan du kan få innsyn i data, be om sletting, reservere deg mot bruk av data, trekke tilbake samtykke og klage hvis noe går galt.
+[/detaljer]
 
-Fortell kort hva du vil forstå eller få gjort, så viser jeg deg trinnene. Hva gjelder saken?`;
+[detaljer c='Hvordan det fungerer...']
+Fortell kort hva du vil forstå eller få gjort, så viser jeg deg trinnene og stiller oppfølgingsspørsmål for å hjelpe deg best mulig.
+[/detaljer]
+
+Hva gjelder saken?`;
 
 cfg.aiPrompt = [
   { role: `system`, content:

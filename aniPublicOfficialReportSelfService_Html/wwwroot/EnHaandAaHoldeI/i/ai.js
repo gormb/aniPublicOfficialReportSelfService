@@ -1,25 +1,110 @@
 /////////////// ai ///////////////
 const ai={
-    Raw2HtmS:'(?:^|\\n\\n|<br\\s*/?>|\\r?\\n)'
+    //Raw2HtmS:'(?:^|\\n\\n|<br\\s*/?>|\\r?\\n)'
+    Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
     ,Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-    ,Raw2Htm:raw=>raw.split(/\r?\n/).map(line=>
-        line.replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
-            .replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
-            .replace(/#### (.*)/g,'<h4>$1</h4>')
-            .replace(/### (.*)/g,'<h3>$1</h3>')
-            .replace(/## (.*)/g,'<h2>$1</h2>')
-            .replace(/# (.*)/g,'<h1>$1</h1>')
-            .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
-            .replace(/^🎲\s*(\d)\s*(?:[-–]\s*)?(.*)/,(_,n,t)=>ai.Raw2HtmA('🎲 '+n,t))
-            .replace(/^🔁\s*(.*)/,(_,t)=>ai.Raw2HtmA('🔁',t))
-            .replace(/^🌑\s*(.*)/,(_,t)=>ai.Raw2HtmA('🌑',t))
-            .replace(/^(\d)️⃣\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'️⃣',t))
-            .replace(/^(\d)\.\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'.',t))
-            .replace(/^(\d):\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+':',t))
-            .replace(/^–\s*(.*)/,(_,t)=>ai.Raw2HtmA('–',t))
-            .replace(/^([a-zA-Z])\)\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+')',t))
-      ).join('<br>')
+    ,Raw2Htm1:raw=>raw.split(/\r?\n/).map(l=>
+      l.replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
+       .replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
+       .replace(/#### (.*)/g,'<h4>$1</h4>')
+       .replace(/### (.*)/g,'<h3>$1</h3>')
+       .replace(/## (.*)/g,'<h2>$1</h2>')
+       .replace(/# (.*)/g,'<h1>$1</h1>')
+       .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
+    //    .replace(/^🎲\s*(\d)\s*(?:[-–]\s*)?([^<]*)/g,(_,n,t)=>ai.Raw2HtmA('🎲 '+n,t.trim()))
+    .replace(/🎲\s*\d\s*[^🎲🔁🌑<\n]*/g, m => {
+        const [pre, ...rest] = m.trim().split(/\s+/)
+        return '<br>' + ai.Raw2HtmA(pre, rest.join(' '))
+      })
+             .replace(/^🔁\s*(.*)/,(_,t)=>ai.Raw2HtmA('🔁',t))
+       .replace(/^🌑\s*(.*)/,(_,t)=>ai.Raw2HtmA('🌑',t))
+       .replace(/^(\d)️⃣\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'️⃣',t))
+       .replace(/^(\d)\.\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'.',t))
+       .replace(/^(\d):\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+':',t))
+       .replace(/^([0-9]+[a-z]*)\.\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'.',t))
+       .replace(/^([A-Z]+[0-9]*)\.\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'.',t))
+       .replace(/^(①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩)\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n,t))
+       .replace(/^–\s*(.*)/,(_,t)=>ai.Raw2HtmA('–',t))
+       .replace(/^([a-zA-Z])\)\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+')',t))
+    ).join('<br>')
+    ,Raw2Htm2: raw => raw
+    .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
+    .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
+    .replace(/#### (.*)/g, '<h4>$1</h4>')
+    .replace(/### (.*)/g, '<h3>$1</h3>')
+    .replace(/## (.*)/g, '<h2>$1</h2>')
+    .replace(/# (.*)/g, '<h1>$1</h1>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/(🎲\s*\d\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m => {
+      const [pre, ...rest] = m.trim().split(/\s+/)
+      return ai.Raw2HtmA(pre + ' ' + rest.shift(), rest.join(' '))
+    })
+    .replace(/(🔁\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m =>
+      ai.Raw2HtmA('🔁', m.replace(/^🔁\s*/, '').trim())
+    )
+    .replace(/(🌑\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m =>
+      ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim())
+    )
+    .replace(/(①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩)\s*([^①②③④⑤⑥⑦⑧⑨⑩<]*)/g, (_, n, t) =>
+      ai.Raw2HtmA(n, t.trim())
+    )
 
+    ,Raw2Htm: raw => raw
+        // fjern eksisterende <a>-tagger for å unngå dobbel-lenker
+        .replace(/<a .*?<\/a>/g, m => m.replace(/<a .*?>|<\/a>/g, ''))
+        // overskrifter og markdown
+        .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
+        .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
+        .replace(/#### (.*)/g, '<h4>$1</h4>')
+        .replace(/### (.*)/g, '<h3>$1</h3>')
+        .replace(/## (.*)/g, '<h2>$1</h2>')
+        .replace(/# (.*)/g, '<h1>$1</h1>')
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
+        // 🎲 matcher alle på linjen, stopper på < eller neste ikon
+        .replace(/(🎲\s*\d\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m => {
+        const [pre, ...rest] = m.trim().split(/\s+/)
+        return ai.Raw2HtmA(pre + ' ' + rest.shift(), rest.join(' '))
+        })
+        // 🔁 matcher
+        .replace(/(🔁\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m =>
+        ai.Raw2HtmA('🔁', m.replace(/^🔁\s*/, '').trim())
+        )
+        // 🌑 matcher
+        .replace(/(🌑\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m =>
+        ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim())
+        )
+        // sirkeltall matcher
+        .replace(/(①|②|③|④|⑤|⑥|⑦⑧|⑨|⑩)\s*([^①②③④⑤⑥⑦⑧⑨⑩<]*)/g, (_, n, t) =>
+        ai.Raw2HtmA(n, t.trim())
+        )
+        // til slutt, legg til <br> for \n
+        .replace(/\n/g, '<br>')
+    ,Raw2HtmAs: s => {
+    const start = /(🎲\s*\d|🔁|🌑|[A-Za-z]\)|\d+\)|\d+\.|[A-Za-z0-9]+\.)\s*/;
+    let i = 0, out = '';
+
+    while (i < s.length) {
+      const hit = start.exec(s.slice(i));
+      if (!hit) { out += s.slice(i); break; }
+
+      const a = i + hit.index, b = a + hit[0].length;
+      out += s.slice(i, a);                    // tekst før prefiks
+
+      const rest = s.slice(b);
+      const stop = rest.search(/<|\n|(🎲\s*\d|🔁|🌑|[A-Za-z]\)|\d+\)|\d+\.|[A-Za-z0-9]+\.)/);
+      const c = stop === -1 ? s.length : b + stop;
+
+      const key  = hit[1].trim();
+      const text = s.slice(b, c).trim();
+      out += ai.Raw2HtmA(key, text);           // ← bygger lenken her
+
+      i = c;
+    }
+    return out;
+  }
+
+      // '🎲🔁🌑', n. (n=1..9), c. (c=a..z), C. (C=A..Z), nc., Cn., Cnc.
+  
       , ai2Prompt: a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
     , Gun:(g)=> [...g].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
     , Gunn:i=>ai.Gun(ai.Gunnar[i||0])
@@ -40,7 +125,7 @@ const ai={
                 } catch(ex) { setting.dMsg('RequestProgress', j)}
             }
         });
-        d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
+        d.innerHTML = ai.Raw2Htm(ui.parseTagsSafe(ai.Reply[iThread]));
         return t.length;
     }
     , RequestProgress : (d, t, l, iThread) => {
@@ -52,7 +137,8 @@ const ai={
                 } catch(ex) { setting.dMsg('RequestProgress', j)}
             }
         });
-        d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
+        //d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
+        d.innerHTML = ai.Raw2Htm(ui.parseTagsSafe(ai.Reply[iThread]))
         return t.length;
     }
     , RequestComplete : (x, img, d, iThread, onDone, retries) => {
@@ -61,7 +147,8 @@ const ai={
         if (x.status == 200) ai.History[iThread].push({ role: 'assistant', content: ai.Reply[iThread] });
         else if (x.status >= 400 && x.status < 500 && retries > 0) return setTimeout(() => ++ai.RequestActiveCount^ai.Request(ai.History[iThread].slice(-1)[0].content, d.parentElement, iThread, onDone, retries-1), 1000);
         else ai.Reply[iThread] = `<i>Feil ved kall til KI-tjenesten ${ai.Model[0]}<br/>${!x.status?'Manglende internet?':(() => { try { let err = JSON.parse(x.response?.message || x.responseText); return err?.error?.message || err?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
-        d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
+        //d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
+        d.innerHTML = ai.Raw2Htm(ui.parseTags(ai.Reply[iThread]))
         if (!iThread) ;//ui.c.Chat.scrollTop = ui.c.Chat.scrollHeight;
         onDone?.(ai.Reply[iThread]);
     }

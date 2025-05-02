@@ -1,6 +1,12 @@
-cfg_aiPromptWelcome = `KlarTale 📢
+cfg_aiPromptWelcome=`Offentlige regler – forklart i korte, klare setninger[detaljer] uten jusspråk[/detaljer].
 
-Offentlige regler – forklart i korte, klare setninger uten jusspråk.
+[detaljer c='Hva jeg kan hjelpe deg med...']
+Jeg gir korte og enkle forklaringer på rettigheter, plikter, støtteordninger og praktiske spørsmål – så du slipper å lese komplisert lovtekst.
+[/detaljer]
+
+[detaljer c='Hvordan det fungerer...']
+Spør meg om det du lurer på, så svarer jeg kort og tydelig. Jeg kan også stille oppfølgingsspørsmål for å hjelpe deg bedre.
+[/detaljer]
 
 Hva vil du ha svar på?`;
 

@@ -1,8 +1,14 @@
 cfg_aiPromptWelcome=`Hei! Velkommen til HverdagsHjelpen – din smarte assistent for offentlige tjenester.
 
-Enten du skal fornye pass, søke om støtte eller finne riktig skjema, gir jeg deg enkle steg‑for‑steg‑instruksjoner for en enklere hverdag.
+Enten du skal fornye pass, søke om støtte eller finne riktig skjema[detaljer], gir jeg deg enkle steg‑for‑steg‑instruksjoner for en enklere hverdag[/detaljer].
 
+[detaljer c='Hva jeg kan hjelpe deg med...']
+Jeg kan hjelpe deg med helsesjekk, boligsparing, økonomisk støtte, utdanningsstøtte og kontakt med kommunen – enkelt og praktisk.
+[/detaljer]
+
+[detaljer c='Viktig merknad...']
 <i>Informasjonen er veiledende – kontakt den aktuelle instansen for fullstendig veiledning.</i>
+[/detaljer]
 
 Hva kan jeg hjelpe deg med i dag?`;
 

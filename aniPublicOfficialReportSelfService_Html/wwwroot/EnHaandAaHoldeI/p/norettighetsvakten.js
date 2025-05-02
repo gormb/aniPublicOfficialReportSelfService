@@ -1,6 +1,12 @@
-cfg_aiPromptWelcome = `RettighetsVakten 🛡️
+cfg_aiPromptWelcome=`Få raske råd om frister, klager og andre rettigheter[detaljer] – så ingenting glipper[/detaljer].
 
-Få raske råd om frister, klager og andre rettigheter – så ingenting glipper.
+[detaljer c='Hva jeg kan hjelpe deg med...']
+Jeg hjelper deg å holde oversikt over viktige frister, hvordan du klager, hvilke dokumenter du trenger, og hvordan du sikrer rettighetene dine i møte med det offentlige.
+[/detaljer]
+
+[detaljer c='Hvordan det fungerer...']
+Fortell meg hva du vil sikre, så gir jeg deg konkrete råd og oppfølgingsspørsmål for å avklare situasjonen din.
+[/detaljer]
 
 Hva vil du sikre nå?`;
 

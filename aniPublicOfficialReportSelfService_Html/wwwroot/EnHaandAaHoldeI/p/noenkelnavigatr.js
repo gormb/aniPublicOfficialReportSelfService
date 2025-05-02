@@ -1,6 +1,13 @@
-cfg_aiPromptWelcome = `Enkel Navigatør 🧭
 
-Klikk‑for‑klikk‑hjelp til å finne skjema, frister og info på offentlige nettsider – uten å rote bort tid.
+cfg_aiPromptWelcome=`Klikk‑for‑klikk‑hjelp til å finne skjema, frister og info på offentlige nettsider[detaljer] – uten å rote bort tid[/detaljer].
+
+[detaljer c='Hva jeg kan hjelpe deg med...']
+Jeg veileder deg steg for steg på offentlige nettsider, som Skatteetaten, NAV, Folkeregisteret og Min Pensjon, og hjelper deg å finne riktige skjema og frister.
+[/detaljer]
+
+[detaljer c='Hvordan det fungerer...']
+Fortell hvilken tjeneste eller nettside du vil navigere til, så gir jeg deg presise instruksjoner og oppfølgingsspørsmål underveis.
+[/detaljer]
 
 Hvilken side eller tjeneste vil du navigere til?`;
 

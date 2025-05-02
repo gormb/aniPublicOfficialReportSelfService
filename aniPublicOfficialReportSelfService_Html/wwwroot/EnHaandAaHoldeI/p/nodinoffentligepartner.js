@@ -1,6 +1,12 @@
-cfg_aiPromptWelcome = `Din Offentlige Partner 🏛️
+cfg_aiPromptWelcome=`Trygg veiledning om rettigheter, plikter, søknad og klage[detaljer] – så du møter offentlig sektor med full kontroll[/detaljer].
 
-Trygg veiledning om rettigheter, plikter, søknad og klage – så du møter offentlig sektor med full kontroll.
+[detaljer c='Hva jeg kan hjelpe deg med...']
+Jeg kan hjelpe deg med spørsmål om søknadsprosesser, klagehåndtering, viktige frister, hvilke dokumenter du trenger og hvordan du finner kontaktinfo til offentlige etater.
+[/detaljer]
+
+[detaljer c='Hvordan det fungerer...']
+Fortell meg hva du trenger hjelp med, så stiller jeg oppfølgingsspørsmål for å kartlegge situasjonen og gir deg konkrete råd.
+[/detaljer]
 
 Hva vil du ha hjelp til først?`;
 

@@ -1,16 +1,20 @@
-// Hovedsakelig produsert med ChatGPT 20250319
-cfg_aiPromptWelcome = `Velkommen til TEDxFredrikstad 2025‑chatten!✨
+cfg_aiPromptWelcome=`Idéer som setter spor[detaljer] – bli med bak kulissene eller finn ut hvordan du kan bidra på scenen og i salen[/detaljer].
 
-Idéer som setter spor – bli med bak kulissene eller finn ut hvordan du kan bidra på scenen og i salen.
+[detaljer c='Hva jeg kan hjelpe deg med...']
+Jeg kan svare på spørsmål om temaer, foredragsholdere, billetter, partnere, frivillig deltakelse og hvordan du kan bli en del av TEDxFredrikstad-opplevelsen.
+[/detaljer]
 
-👉 Hva interesserer deg mest?
+[detaljer c='Hvordan det fungerer...']
+Velg et tema eller still ditt eget spørsmål. Jeg gir deg korte, inspirerende svar og tips om hvordan du kan engasjere deg.
+[/detaljer]
 
-① Inspirasjon og idéutveksling
-② Teknologi og innovasjon
-③ Samfunn, bærekraft og entreprenørskap
+👉 Hva interesserer deg mest?
+
+① Inspirasjon og idéutveksling  
+② Teknologi og innovasjon  
+③ Samfunn, bærekraft og entreprenørskap
 
 Skriv tallet som passer, eller formulér ditt eget spørsmål!`;
-
 
 cfg.aiPrompt = [{ role: `system`, content:
 `Du er en engasjerende og kunnskapsrik chatbot for TEDxFredrikstad – en uavhengig, lokalt organisert TEDx-konferanse dedikert til å dele idéer verdt å spre.

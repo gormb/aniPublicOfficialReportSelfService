@@ -2,7 +2,42 @@
 const ai={
     Raw2HtmS:'(?:^|\\n\\n|<br\\s*/?>|\\r?\\n)'
     ,Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
+    ,Raw2HtmAs: s => {
+        const start = /(🎲\s*\d|🔁|🌑|[A-Za-z]\)|\d+\)|\d+\.|[A-Za-z0-9]+\.)\s*/;
+        let i = 0, out = '';
+    
+        while (i < s.length) {
+          const hit = start.exec(s.slice(i));
+          if (!hit) { out += s.slice(i); break; }
+    
+          const a = i + hit.index, b = a + hit[0].length;
+          out += s.slice(i, a);                    // tekst før prefiks
+    
+          const rest = s.slice(b);
+          const stop = rest.search(/<|\n|(🎲\s*\d|🔁|🌑|[A-Za-z]\)|\d+\)|\d+\.|[A-Za-z0-9]+\.)/);
+          const c = stop === -1 ? s.length : b + stop;
+    
+          const key  = hit[1].trim();
+          const text = s.slice(b, c).trim();
+          out += ai.Raw2HtmA(key, text);           // ← bygger lenken her
+    
+          i = c;
+        }
+        return out;
+      }
+  
+          // '🎲🔁🌑', n. (n=1..9), c. (c=a..z), C. (C=A..Z), nc., Cn., Cnc.
+    // end + \n, <
     ,Raw2Htm:raw=>raw.split(/\r?\n/).map(line=>
+        ai.Raw2HtmAs(line.replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
+            .replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
+            .replace(/#### (.*)/g,'<h4>$1</h4>')
+            .replace(/### (.*)/g,'<h3>$1</h3>')
+            .replace(/## (.*)/g,'<h2>$1</h2>')
+            .replace(/# (.*)/g,'<h1>$1</h1>')
+            ).replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
+      ).join('<br>')
+    ,Raw2Htm9:raw=>raw.split(/\r?\n/).map(line=>
         line.replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
             .replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
             .replace(/#### (.*)/g,'<h4>$1</h4>')
@@ -12,6 +47,7 @@ const ai={
             .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
             .replace(/^🎲\s*(\d)\s*(?:[-–]\s*)?(.*)/,(_,n,t)=>ai.Raw2HtmA('🎲 '+n,t))
             .replace(/^🔁\s*(.*)/,(_,t)=>ai.Raw2HtmA('🔁',t))
+            //.replace(/🔁\s*([^🔁\n<]*)/g, (_, t) => ai.Raw2HtmA('🔁', t.trim()))
             .replace(/^🌑\s*(.*)/,(_,t)=>ai.Raw2HtmA('🌑',t))
             .replace(/^(\d)️⃣\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'️⃣',t))
             .replace(/^(\d)\.\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+'.',t))
@@ -19,6 +55,178 @@ const ai={
             .replace(/^–\s*(.*)/,(_,t)=>ai.Raw2HtmA('–',t))
             .replace(/^([a-zA-Z])\)\s*(.*)/,(_,n,t)=>ai.Raw2HtmA(n+')',t))
       ).join('<br>')
+
+      ,Raw2Htm3: raw => raw
+      .replace(/\r\n/g, '\n')
+      .replace(/🎲\s*\d[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        let n = cut.match(/^🎲\s*\d/)[0];
+        let t = cut.replace(/^🎲\s*\d\s*/, '').trim();
+        return '<br>' + ai.Raw2HtmA(n, t);
+      })
+      .replace(/🔁[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        return '<br>' + ai.Raw2HtmA('🔁', cut.slice(1).trim());
+      })
+      .replace(/🌑[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        return '<br>' + ai.Raw2HtmA('🌑', cut.slice(1).trim());
+      })
+      .replace(/\d\)[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        let n = cut.match(/^\d\)/)[0];
+        let t = cut.replace(/^\d\)\s*/, '').trim();
+        return '<br>' + ai.Raw2HtmA(n, t);
+      })
+      .replace(/[a-zA-Z]\)[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        let n = cut.match(/^[a-zA-Z]\)/)[0];
+        let t = cut.replace(/^[a-zA-Z]\)\s*/, '').trim();
+        return '<br>' + ai.Raw2HtmA(n, t);
+      })
+      .replace(/\d\.[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        let n = cut.match(/^\d\./)[0];
+        let t = cut.replace(/^\d\.\s*/, '').trim();
+        return '<br>' + ai.Raw2HtmA(n, t);
+      })
+      .replace(/[0-9]+[a-z]*\.[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        let n = cut.match(/^[0-9]+[a-z]*\./)[0];
+        let t = cut.replace(/^[0-9]+[a-z]*\.\s*/, '').trim();
+        return '<br>' + ai.Raw2HtmA(n, t);
+      })
+      .replace(/[A-Z]+[0-9]*\.[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        let n = cut.match(/^[A-Z]+[0-9]*\./)[0];
+        let t = cut.replace(/^[A-Z]+[0-9]*\.\s*/, '').trim();
+        return '<br>' + ai.Raw2HtmA(n, t);
+      })
+      .replace(/[①②③④⑤⑥⑦⑧⑨⑩][^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        let n = cut[0];
+        let t = cut.slice(1).trim();
+        return '<br>' + ai.Raw2HtmA(n, t);
+      })
+      .replace(/–[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        return '<br>' + ai.Raw2HtmA('–', cut.slice(1).trim());
+      })
+      .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
+      .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
+      .replace(/#### (.*)/g, '<h4>$1</h4>')
+      .replace(/### (.*)/g, '<h3>$1</h3>')
+      .replace(/## (.*)/g, '<h2>$1</h2>')
+      .replace(/# (.*)/g, '<h1>$1</h1>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
+      .replace(/\n/g, '<br>')
+    
+      , Raw2Htm4: raw => raw
+      .replace(/\r\n/g, '\n')
+      .replace(/(🎲\s*\d|🔁|🌑|\d\)|[a-zA-Z]\)|\d\.|[0-9]+[a-z]*\.|[A-Z]+[0-9]*\.|[①②③④⑤⑥⑦⑧⑨⑩]|–)\s*[^<\n]*/g, m => {
+        let cut = m.split('<')[0].trim();
+        let n = cut.match(/^(🎲\s*\d|🔁|🌑|\d\)|[a-zA-Z]\)|\d\.|[0-9]+[a-z]*\.|[A-Z]+[0-9]*\.|[①②③④⑤⑥⑦⑧⑨⑩]|–)/)[0];
+        let t = cut.replace(/^(🎲\s*\d|🔁|🌑|\d\)|[a-zA-Z]\)|\d\.|[0-9]+[a-z]*\.|[A-Z]+[0-9]*\.|[①②③④⑤⑥⑦⑧⑨⑩]|–)\s*/, '').trim();
+        return '<br>' + ai.Raw2HtmA(n, t);
+      })
+      .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
+      .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
+      .replace(/#### (.*)/g, '<h4>$1</h4>')
+      .replace(/### (.*)/g, '<h3>$1</h3>')
+      .replace(/## (.*)/g, '<h2>$1</h2>')
+      .replace(/# (.*)/g, '<h1>$1</h1>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
+      .replace(/\n/g, '<br>')
+    
+
+      ,Raw2Htm5: raw => raw
+      .replace(/\r\n/g,'\n')
+      .split(/\r?\n/)
+      .map(line =>
+        line
+          .replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
+          .replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
+          .replace(/#### (.*)/g,'<h4>$1</h4>')
+          .replace(/### (.*)/g,'<h3>$1</h3>')
+          .replace(/## (.*)/g,'<h2>$1</h2>')
+          .replace(/# (.*)/g,'<h1>$1</h1>')
+          .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
+          .replace(/🎲\s*(\d)(?:[-–]\s*)?([^<\r\n]*)/g,(_,n,t)=>ai.Raw2HtmA('🎲 '+n,t))
+          .replace(/🔁\s*([^<\r\n]*)/g,(_,t)=>ai.Raw2HtmA('🔁',t))
+          .replace(/🌑\s*([^<\r\n]*)/g,(_,t)=>ai.Raw2HtmA('🌑',t))
+          .replace(/(\d)️⃣\s*([^<\r\n]*)/g,(_,n,t)=>ai.Raw2HtmA(n+'️⃣',t))
+          .replace(/(\d)\.\s*([^<\r\n]*)/g,(_,n,t)=>ai.Raw2HtmA(n+'.',t))
+          .replace(/(\d):\s*([^<\r\n]*)/g,(_,n,t)=>ai.Raw2HtmA(n+':',t))
+          .replace(/–\s*([^<\r\n]*)/g,(_,t)=>ai.Raw2HtmA('–',t))
+          .replace(/([a-zA-Z])\)\s*([^<\r\n]*)/g,(_,n,t)=>ai.Raw2HtmA(n+')',t))
+      )
+      .join('<br>')
+    
+      ,Raw2Htm6: raw => raw
+      .replace(/\r\n/g,'\n')
+      .replace(/🎲\s*(\d)(?:[-–]\s*)?([^\n<]*)(?=[<\n]|$)/g,
+        (_,n,t)=>ai.Raw2HtmA('🎲 '+n, t))
+      .replace(/🔁\s*([^\n<]*)(?=[<\n]|$)/g,
+        (_,t)=>ai.Raw2HtmA('🔁', t))
+      .replace(/🌑\s*([^\n<]*)(?=[<\n]|$)/g,
+        (_,t)=>ai.Raw2HtmA('🌑', t))
+      .replace(/(\d)️⃣\s*([^\n<]*)(?=[<\n]|$)/g,
+        (_,n,t)=>ai.Raw2HtmA(n+'️⃣', t))
+      .replace(/(\d)\.\s*([^\n<]*)(?=[<\n]|$)/g,
+        (_,n,t)=>ai.Raw2HtmA(n+'.', t))
+      .replace(/(\d):\s*([^\n<]*)(?=[<\n]|$)/g,
+        (_,n,t)=>ai.Raw2HtmA(n+':', t))
+      .replace(/–\s*([^\n<]*)(?=[<\n]|$)/g,
+        (_,t)=>ai.Raw2HtmA('–', t))
+      .replace(/([A-Za-z])\)\s*([^\n<]*)(?=[<\n]|$)/g,
+        (_,n,t)=>ai.Raw2HtmA(n+')', t))
+      // the rest of your markdown → html replaces...
+      .replace(/\n/g,'<br>')
+    ,Raw2Htm7: raw => raw
+    .replace(/\r\n/g,'\n')
+    .replace(/<br\s*\/?>/g,'\n')
+    .split(/\n/)
+    .map(line =>
+      line
+        .replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
+        .replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
+        .replace(/#### (.*)/g,'<h4>$1</h4>')
+        .replace(/### (.*)/g,'<h3>$1</h3>')
+        .replace(/## (.*)/g,'<h2>$1</h2>')
+        .replace(/# (.*)/g,'<h1>$1</h1>')
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
+        .replace(/🎲\s*(\d)(?:[-–]\s*)?([^\n<]*)(?=[<\n]|$)/g,(_,n,t)=>ai.Raw2HtmA('🎲 '+n,t))
+        .replace(/🔁\s*([^\n<]*)(?=[<\n]|$)/g,   (_,t)=>ai.Raw2HtmA('🔁',t))
+        .replace(/🌑\s*([^\n<]*)(?=[<\n]|$)/g,   (_,t)=>ai.Raw2HtmA('🌑',t))
+        .replace(/(\d)️⃣\s*([^\n<]*)(?=[<\n]|$)/g,(_,n,t)=>ai.Raw2HtmA(n+'️⃣',t))
+        .replace(/(\d)\.\s*([^\n<]*)(?=[<\n]|$)/g,(_,n,t)=>ai.Raw2HtmA(n+'.',t))
+        .replace(/(\d):\s*([^\n<]*)(?=[<\n]|$)/g, (_,n,t)=>ai.Raw2HtmA(n+':',t))
+        .replace(/–\s*([^\n<]*)(?=[<\n]|$)/g,     (_,t)=>ai.Raw2HtmA('–',t))
+        .replace(/([A-Za-z])\)\s*([^\n<]*)(?=[<\n]|$)/g,(_,n,t)=>ai.Raw2HtmA(n+')',t))
+    )
+    .join('<br>')
+  ,Raw2Htm8: raw => raw
+  .replace(/\r\n/g, '\n')
+  .split(/\n/)
+  .map(l =>
+    l
+      .replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
+      .replace(/\*\*(.*?)\*\*/g,'<h3>$1</h3>')
+      .replace(/#### (.*)/g,'<h4>$1</h4>')
+      .replace(/### (.*)/g,'<h3>$1</h3>')
+      .replace(/## (.*)/g,'<h2>$1</h2>')
+      .replace(/# (.*)/g,'<h1>$1</h1>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2">$1</a>')
+      .replace(/(🎲\s*\d)(?:[-–]\s*)?([^<\r\n]+)/g,(_,n,t)=>ai.Raw2HtmA(n, t.trim()))
+      .replace(/(🔁)([^<\r\n]+)/g,   (_,n,t)=>ai.Raw2HtmA(n, t.trim()))
+      .replace(/(🌑)([^<\r\n]+)/g,   (_,n,t)=>ai.Raw2HtmA(n, t.trim()))
+      .replace(/(\d)️⃣([^<\r\n]+)/g, (_,n,t)=>ai.Raw2HtmA(n+'️⃣', t.trim()))
+      .replace(/(\d)\.([^<\r\n]+)/g, (_,n,t)=>ai.Raw2HtmA(n+'.', t.trim()))
+      .replace(/(\d):([^<\r\n]+)/g, (_,n,t)=>ai.Raw2HtmA(n+':', t.trim()))
+      .replace(/(–)([^<\r\n]+)/g,   (_,n,t)=>ai.Raw2HtmA(n, t.trim()))
+      .replace(/([A-Za-z])\)([^<\r\n]+)/g,(_,n,t)=>ai.Raw2HtmA(n+')', t.trim()))
+  )
+  .join('<br>')
 
       , ai2Prompt: a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
     , Gun:(g)=> [...g].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')

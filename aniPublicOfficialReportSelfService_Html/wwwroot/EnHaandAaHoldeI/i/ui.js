@@ -4,7 +4,6 @@ const ui = {
         ui.c.Input.addEventListener('keydown',(e)=>ui.e.Input_keydown(e));
         ui.c.Input.addEventListener('input',(e)=>ui.e.Input_adjustHeight());
         ui.c.Speak.addEventListener('click',()=>msgSendSpeak());
-        //ui.Show(ui.c.Speak, false);
         ui.c.Send.addEventListener('click',()=>msgSend());
         ui.c.Lagres&&(ui.c.Lagres.addEventListener('click',()=>menuClick_m_lagreinnhold())^setTimeout(()=>ui.visLagre(),1000));
         document.addEventListener("DOMContentLoaded",()=>setTimeout(()=>window.scrollTo(0, 1), 250));
@@ -178,7 +177,28 @@ const ui = {
             return newHtml==html?html:recursiveReplace(newHtml);
         }
         return ai.Raw2Htm(recursiveReplace(h));
-    }              
+    }
+    , parseTagsSafe: h => {
+        if ((l = h.lastIndexOf('[')) > -1 && h.lastIndexOf(']') < l) h = h.slice(0, l);
+
+        let out = '', i = 0;
+        while (i < h.length) {
+            let s = h.indexOf('[detaljer', i);
+            if (s < 0) return out + h.slice(i);
+            out += h.slice(i, s);
+            let e = h.indexOf(']', s), c = '...';
+            if (e < 0) break;
+            let cs = h.indexOf("c='", s);
+            if (cs > -1 && cs < e) {
+                let ce = h.indexOf("'", cs + 3);
+                if (ce > -1 && ce < e) c = h.slice(cs + 3, ce);
+            }
+            out += c;
+            let close = h.indexOf('[/detaljer]', e);
+            i = close > -1 ? close + 11 : h.length;
+        }
+        return out;
+    }
 }
 /////////////// msg ///////////////
 window.msgIsSimulate=msg=>msg.startsWith("Simulate: ");

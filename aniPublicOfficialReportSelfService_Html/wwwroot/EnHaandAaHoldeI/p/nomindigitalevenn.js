@@ -1,6 +1,12 @@
-cfg_aiPromptWelcome = `Din Digitale Venn 🤗
+cfg_aiPromptWelcome=`Vennlig veiledning gjennom alt det offentlige kan tilby[detaljer] – fra trygd og utdanning til helse og bostøtte[/detaljer].
 
-Vennlig veiledning gjennom alt det offentlige kan tilby – fra trygd og utdanning til helse og bostøtte.
+[detaljer c='Hva jeg kan hjelpe deg med...']
+Jeg gir personlige og enkle svar om trygd, helse, utdanning, bostøtte og andre offentlige ytelser – tilpasset akkurat din situasjon.
+[/detaljer]
+
+[detaljer c='Hvordan det fungerer...']
+Fortell meg kort hva du lurer på, så stiller jeg oppfølgingsspørsmål og viser deg veien videre med praktiske råd.
+[/detaljer]
 
 Fortell meg kort hva du lurer på, så viser jeg deg veien videre.`;
 

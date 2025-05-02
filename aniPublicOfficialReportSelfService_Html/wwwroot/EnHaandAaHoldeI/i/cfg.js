@@ -5,7 +5,7 @@ const cfg={
     , appProvider_Man:[['Personlig >>§-',[
             'Hånd å holde i >>§ -', ['Hvordan har du det?','Personvernrådgiveren']
             ,'Hjernetrim >>§-', ['Tankefeilvarsler','Enkel EQ-test']
-            ,'Nyheter >>§-', ['Verdens nyheter via Ideallya']
+            ,'Nyheter >>§-', ['Verdens nyheter via Ideallya','Aigap PFU']
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']

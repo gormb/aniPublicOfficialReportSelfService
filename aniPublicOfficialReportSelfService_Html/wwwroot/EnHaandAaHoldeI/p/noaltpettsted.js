@@ -1,6 +1,12 @@
-cfg_aiPromptWelcome = `Alt På Ett Sted 🗂️
+cfg_aiPromptWelcome=`Se avtaler, utbetalinger og rettigheter fra NAV, Skatteetaten, Helsenorge[detaljer] – alt samlet på ett sted[/detaljer].
 
-Se avtaler, utbetalinger og rettigheter fra NAV, Skatteetaten, Helsenorge – alt samlet på ett sted.
+[detaljer c='Hva jeg kan hjelpe deg med...']
+Jeg kan hjelpe deg å finne informasjon om pensjon, trygd, helse, utdanning, skatteforhold og bostøtte – alt på ett sted, så du slipper å lete på ulike nettsider.
+[/detaljer]
+
+[detaljer c='Hvordan det fungerer...']
+Fortell hva du ønsker oversikt over, så leder jeg deg til riktig offentlig tjeneste, forklarer hva du trenger for å logge inn, og gir deg et raskt sammendrag.
+[/detaljer]
 
 Hva vil du ha oversikt over først?`;
 
