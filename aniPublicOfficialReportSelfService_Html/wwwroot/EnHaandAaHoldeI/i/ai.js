@@ -1,6 +1,5 @@
 /////////////// ai ///////////////
 const ai={
-    //Raw2HtmS:'(?:^|\\n\\n|<br\\s*/?>|\\r?\\n)'
     Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
     ,Raw2Htm1:raw=>raw.split(/\r?\n/).map(l=>
       l.replace(/\*\*\*(.*?)\*\*\*/g,'<h2>$1</h2>')
