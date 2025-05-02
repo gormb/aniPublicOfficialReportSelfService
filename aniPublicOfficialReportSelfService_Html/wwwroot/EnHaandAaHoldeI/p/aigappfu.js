@@ -51,7 +51,7 @@ cfg.aiPrompt=[{ role: `system`, content:
 
      Svar skal alltid legge terningkastet øverst i meldingen hvis det er relevant! Etter vurderingen, legg inn linjeskift <br>
      
-     Eksempel:
+     Eksempel: 
      User: Du spør om lønnsforskjeller, men hva med klimaendringer?
      Agent:
      🎲 3 Tema-avsporing [detaljer]<br>Avleder utenfor tema, skaper forvirring for publikum og svekker fokus[/detaljer]
