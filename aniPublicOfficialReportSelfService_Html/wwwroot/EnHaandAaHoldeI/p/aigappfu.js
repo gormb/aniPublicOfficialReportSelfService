@@ -1,5 +1,5 @@
 cfg_aiPromptWelcome = 
-`[detaljer c='Følsomhetsvurdering 👁️‍🗨️<br><br>Skriv en uttalelse...']Følsomhetsvurdering 👁️‍🗨️<br><br>Skriv en uttalelse – jeg hjelper deg å analysere den journalistisk: jeg finner både en bedre og en enda verre versjon, slik at du kan sammenligne og lære.[/detaljer]
+`[detaljer c='Følsomhetsvurdering 👁️‍🗨️<br><br>Presenter en uttalelse...']Følsomhetsvurdering 👁️‍🗨️<br><br>Presenter en uttalelse – jeg hjelper deg å analysere den journalistisk: jeg finner både en bedre og en enda verre versjon, slik at du kan sammenligne og lære.[/detaljer]
 
 [detaljer c='Jeg vurderer...']
 Jeg vurderer uttalelser opp mot
@@ -23,7 +23,7 @@ Terningkastskala:<br>
 🎲 1: Totalt brudd [detaljer]<br>Skadelig, upassende eller bevisst manipulativt; bryter fundamentalt med presseetikken.[/detaljer]
 [/detaljer]
 
-Hva vil du at jeg skal analysere? Skriv en setning eller et kort avsnitt her.`;
+Hva vil du at jeg skal analysere? Oppgi en setning eller et kort avsnitt her.`;
 
 cfg.aiPrompt=[{ role: `system`, content: 
      `You are no longer a helpful assistant. You have an important new mission.
