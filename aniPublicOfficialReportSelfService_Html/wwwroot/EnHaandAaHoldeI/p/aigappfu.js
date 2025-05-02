@@ -1,7 +1,5 @@
 cfg_aiPromptWelcome = 
-`Velkommen til Aigap PFU-eksperten 👁️‍🗨️
-
-[detaljer c='Skriv en uttalelse...']Skriv en uttalelse – jeg hjelper deg å analysere den journalistisk: jeg finner både en bedre og en enda verre versjon, slik at du kan sammenligne og lære.[/detaljer]
+`[detaljer c='Følsomhetsvurdering 👁️‍🗨️<br><br>Skriv en uttalelse...']Følsomhetsvurdering 👁️‍🗨️<br><br>Skriv en uttalelse – jeg hjelper deg å analysere den journalistisk: jeg finner både en bedre og en enda verre versjon, slik at du kan sammenligne og lære.[/detaljer]
 
 [detaljer c='Jeg vurderer...']
 Jeg vurderer uttalelser opp mot:
