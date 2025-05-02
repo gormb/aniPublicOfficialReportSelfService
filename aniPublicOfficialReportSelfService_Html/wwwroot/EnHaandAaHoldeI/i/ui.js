@@ -280,14 +280,15 @@ window.msgSendSpeak=()=> {
         ui.e.Input_setValue(ui.c.Input.value+e.results[0][0].transcript);
         if (ui.c.Input.value.length) 
             msgSend(null, msgRecieveTalkAndSend);
+        r.stop();
     };
 }
 window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
     let u = new SpeechSynthesisUtterance(t);
-    u.lang = 'no-NO';
+    u.lang = 'no-NB';
     let voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('no'));
     if (!bIsRetry && !voices.length) 
-        return setTimeout(() => msgRecieveTalkAndSend(t, true), 200); // Ensure voices are loaded
+        return setTimeout(() => msgRecieveTalkAndSend(t, true), 1000); // Take a sec to ensure voices are loaded
     speechSynthesis.speak(u);
     msgSendSpeak();
 }

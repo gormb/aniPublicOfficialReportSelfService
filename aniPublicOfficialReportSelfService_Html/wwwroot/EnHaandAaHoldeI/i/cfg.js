@@ -3,17 +3,17 @@ const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
     , appProvider_Man:[['Personlig >>§-',[
-            'Hånd å holde i >>§ -', ['Hvordan har du det?','Personvernrådgiveren']
+            'Hånd å holde i >>§-', ['Hvordan har du det?','Personvernrådgiveren']
             ,'Hjernetrim >>§-', ['Tankefeilvarsler','Enkel EQ-test']
-            ,'Nyheter >>§-', ['Verdens nyheter via Ideallya','Aigap PFU']
+            ,'Nyheter >>§ -', ['Verdens nyheter via Ideallya','Aigap PFU']
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§-',['Flytveilederen','Biopsykososial modell','Kroppens stressystem','Mellom rom og spekter']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Offentlig >>§-',[
-            'Assistert veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
-            ,'Assistert personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
+            'Norge veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
+            ,'Norge personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
             ,'Kommune >>§-', ['NO Alt Om Kommunale Tjenester','Eldre i Asker Kommune']
         ]],['Virksomhet >>§-',[
             'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning', 'Ansatt: Meningsfylt jobb']
