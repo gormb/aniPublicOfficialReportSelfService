@@ -50,13 +50,17 @@ const ai={
     ,Raw2Htm: raw => raw
         // fjern eksisterende <a>-tagger for å unngå dobbel-lenker
         .replace(/<a .*?<\/a>/g, m => m.replace(/<a .*?>|<\/a>/g, ''))
-        // overskrifter og markdown
+        // yaml lite
+        .replace(/^\s*-\s*(.*)/gm, '<li>$1</li>')  // - punkt → <li>
+        .replace(/^(\w[\w\s]*):\s*(.*)$/gm, '<b>$1:</b> $2')  // Nøkkel: verdi → <b>Nøkkel:</b> verdi
+        // markdown lite
         .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
         .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
         .replace(/#### (.*)/g, '<h4>$1</h4>')
         .replace(/### (.*)/g, '<h3>$1</h3>')
         .replace(/## (.*)/g, '<h2>$1</h2>')
         .replace(/# (.*)/g, '<h1>$1</h1>')
+        .replace(/^\s*(---|\*\*\*|___)\s*$/gm, '<hr>')
         .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
         // 🎲 matcher alle på linjen, stopper på < eller neste ikon
         .replace(/(🎲\s*\d\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m => {
