@@ -1,4 +1,3 @@
-
 cfg_aiPromptWelcome = `Velkommen til chat om nyheter.
 
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
@@ -8,18 +7,20 @@ Lær mer på <a href="https://news.ideallya.com">Ideallya</a>
 
 Hva vil du lese om?
 
-1️⃣ Geopolitiske konflikter – Krig, droneangrep, regioner med ustabilitet
-2️⃣ Menneskerettigheter og FN-oppdateringer – Kvinners rettigheter, funksjonshemmede, FN-resolusjoner
-3️⃣ Politiske endringer og regjeringer – Arrestasjoner, valg, uavhengighetsavstemninger
-4️⃣ Økonomi og næringsliv – Markedsoppdateringer, handel, bedrifter
+1️⃣ Geopolitiske konflikter[detaljer] – Krig, droneangrep, regioner med ustabilitet[/detaljer]
+2️⃣ Menneskerettigheter og FN-oppdateringer[detaljer] – Kvinners rettigheter, funksjonshemmede, FN-resolusjoner[/detaljer]
+3️⃣ Politiske endringer og regjeringer[detaljer] – Arrestasjoner, valg, uavhengighetsavstemninger[/detaljer]
+4️⃣ Økonomi og næringsliv[detaljer] – Markedsoppdateringer, handel, bedrifter[/detaljer]
 `;
 
 cfg.aiPrompt = [
     {
       role: "system",
-      content: `
-Du er en kunnskapsrik og objektiv nyhetsassistent som hjelper brukere med å forstå dagens nyheter. 
-Du oppsummerer de viktigste hendelsene fra troverdige kilder på en nøytral og lettfattelig måte.
+      content: `Du er en kunnskapsrik og objektiv nyhetsassistent som hjelper brukere med å forstå dagens nyheter.  
+Dagens dato: ${cfg.dt.day()}. I går: ${cfg.dt.dayN(-1)}. I morgen: ${cfg.dt.dayN(1)}.
+Du oppsummerer de viktigste hendelsene fra troverdige kilder på en nøytral og lettfattelig måte.  
+Før du svarer, finn ut hvilken kategori nyheter brukeren er interessert i, og hold deg til oppdaterte hendelser.  
+Hvis noe ikke er oppdatert, foreslå nylige saker.
 
 Før du svarer, finn ut hva slags nyheter brukeren er interessert i:
 
@@ -297,6 +298,8 @@ Hvis brukeren spør om en hendelse du ikke har oppdateringer på, foreslå relev
       "Hva er status på Kinas handelssanksjoner?",
       "Kina signaliserer at de ønsker å opprettholde vekst selv om handelskonflikter øker. Vil du høre mer om eventuelle nye avtaler?"
     ]
+
+    ,[`Hvilken dag er det i dag?`,`📅 I dag er det ${cfg.dt.day()}, i går var det ${cfg.dt.yesterday}, og i morgen er det ${cfg.dt.dayN(1)}`]
   ];
 
 cfg.load('verdensnyheterviaideallyacfg');

@@ -231,10 +231,14 @@ window.msgAdmin=(msgQ, onDone)=> {
     let mA=msgQ.split('|'), r;
     if (mA.length>1) mA.forEach((m)=>r=msgAdmin(m))
     else { // parse message
-        const m='<i>'+msgQ.trim()+'</i>'
-        msgAsk(m);
-        r=msgAnswer();
-        setTimeout(()=>(r.querySelector('.msg').innerHTML='<i>admin: resultat</i>')+(r.querySelector('img')?.classList.remove('rotating')),1000)
+        msgAsk('<i>'+msgQ+'</i>');
+        const gunner=msgQ.split('admin: gunn ');
+        if (gunner.length==2) 
+            r=msgAnswer('backslash bs '+ai.Gun(gunner[1].replace(/\\/g,'////')),true)^msgAsk('admin:escape '+ai.Gun(gunner[1].replace(/\\/g,'////')));
+        else {
+            r=msgAnswer();
+            setTimeout(()=>(r.querySelector('.msg').innerHTML='<i>admin: resultat</i>')+(r.querySelector('img')?.classList.remove('rotating')),1000)
+        }
     }
     onDone?.(r);
     return r;

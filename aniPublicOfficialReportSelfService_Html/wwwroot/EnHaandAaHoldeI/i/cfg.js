@@ -3,8 +3,9 @@ const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
     , appProvider_Man:[['Personlig >>§-',[
-            'Hånd å holde i >>§-', ['Hvordan har du det?','Personvernrådgiveren']
-            ,'Hjernetrim >>§-', ['Tankefeilvarsler','Enkel EQ-test']
+            'Hjernetrim >>§-', ['Tankefeilvarsler','Enkel EQ-test','Bias-varsleren','Principia, Gödel, Turing and Wolfram']
+            ,'Blank modell >>§-', ['Renset reasoning','Renset chat','Blank reasoning','Blank chat','Blank grunnmodell']
+            ,'Hånd å holde i >>§-', ['Hvordan har du det?','Personvernrådgiveren']
             ,'Nyheter >>§ -', ['Verdens nyheter via Ideallya','Aigap PFU']
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
@@ -62,6 +63,9 @@ const cfg={
             , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]
         ,['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['grok latest', 'grok-3-beta'], ['grok mini', 'grok-3-mini-beta']]]
+        ,['Together.ai', 'https://api.together.xyz/v1/completions ', escape(`32>Q7cXQEwFg-\\Cw*_ ^YIpFI&)%l3?R9&,'5?^XV(0RT6N2:`)
+            , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            , [['Mixtral', 'mistralai/Mixtral-8x7B-v0.1']]]
         ,['Anthropic (USA)', 'https://api.anthropic.com/v1/messages', escape(`4>c//&j4>'qajZ,);(U[YV2"=Jy&3gSW x8Jt]vESr$O|2"X\\84uk_\\;@Y1OP>v.YQE^?'ED=Y_HG %#vW77[]-$EH29>&&F39clDV<)@S`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Sonnet (best)', 'claude-3-7-sonnet-20250219'], ['Haiku (raskest)', 'claude-3-7-haiku-20250219']]
             , 'anthropic-version:2023-06-01^anthropic-dangerous-direct-browser-access:true']
@@ -72,8 +76,8 @@ const cfg={
             , [['Hugging DeepSeek R1', 'deepseek-ai/DeepSeek-R1'], ['Hugging DeepSeek V3', 'deepseek-ai/DeepSeek-V3']]]
         ,['Aigap Server 1235', 'https://api.aigap.no:1235/v1/chat/completions ', ``, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Aigap Deepseek', 'deepseek-r1:latest'], ['Aigap bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
-        ,['Lokal 1234', 'http://localhost:1234/v1/chat/completions ', ``, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['Lokal Deepseek', 'deepseek-r1:latest'], ['Lokal bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
+        // ,['Lokal 1234', 'http://localhost:1234/v1/chat/completions ', ``, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        //     , [['Lokal Deepseek', 'deepseek-r1:latest'], ['Lokal bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
         ]
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `||||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`|||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
@@ -115,4 +119,10 @@ const cfg={
         
         cfg.visAppMeny(false)
     }
+    ,dt: {
+        m:n=>['januar','februar','mars','april','mai','juni','juli','august','september','oktober','november','desember'][n%12]
+        ,d:n=>['søndag','mandag','tirsdag','onsdag','torsdag','fredag','lørdag'][n%7]
+        ,day:(d=new Date())=>`${cfg.dt.d(d.getDay())} ${d.getDate()}. ${cfg.dt.m(d.getMonth())} ${d.getFullYear()}`
+        ,dayN:n=>cfg.dt.day(new Date(new Date().getTime() + n * 86400000))
+    }    
 }
