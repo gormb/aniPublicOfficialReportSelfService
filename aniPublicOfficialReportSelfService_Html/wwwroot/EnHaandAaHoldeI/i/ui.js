@@ -234,7 +234,10 @@ window.msgAdmin=(msgQ, onDone)=> {
         msgAsk('<i>'+msgQ+'</i>');
         const gunner=msgQ.split('admin: gunn ');
         if (gunner.length==2) 
-            r=msgAnswer('backslash bs '+ai.Gun(gunner[1].replace(/\\/g,'////')),true)^msgAsk('admin:escape '+ai.Gun(gunner[1].replace(/\\/g,'////')));
+            r=msgAnswer('backslash bs '+escape(ai.Gun(gunner[1].replace(/\\/g,'////')),true)
+                ^msgAsk('admin:escape '+escape(ai.Gun(gunner[1].replace(/\\/g,'////')))))
+            ^msgAnswer('backslash bs '+ai.Gun(unescape(gunner[1].replace(/\\/g,'////')),true)
+                ^msgAsk('admin:escape '+ai.Gun(unescape(gunner[1].replace(/\\/g,'////')))))
         else {
             r=msgAnswer();
             setTimeout(()=>(r.querySelector('.msg').innerHTML='<i>admin: resultat</i>')+(r.querySelector('img')?.classList.remove('rotating')),1000)

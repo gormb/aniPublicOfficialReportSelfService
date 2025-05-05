@@ -42,7 +42,8 @@ Tenkere inkluderer [detaljer c='Yoshua Bengio...']<br><b>Yoshua Bengio</b> (f. 1
 [detaljer c='Nick Bostrom...']<br><b>Nick Bostrom</b> (f. 1973, Sverige) – eksistensiell risiko, superintelligens. Utforsker farer og muligheter ved fremtidige teknologier.[/detaljer] 
 [detaljer c='Amy Webb...']<br><b>Amy Webb</b> (f. 1974, USA) – fremtidsforskning, strategi. Kartlegger teknologitrender og fremtidsscenarier for samfunn og næringsliv.[/detaljer]
 <hr>[/detaljer]
-<hr>[/detaljer][detaljer c='...løsning...']<hr>Løsningen former en reise gradvis tilbake til røttene, for deretter å snu og gå  helt inn i fremtiden for å besvare dine spørsmål.
+[/detaljer]
+[detaljer c='...løsning...']<hr>Løsningen former en reise gradvis tilbake til røttene, for deretter å snu og gå  helt inn i fremtiden for å besvare dine spørsmål.
 Slik står vi på skuldrene til gigantene, samtidig som vi vender blikket så langt frem vi kan.
 <hr>[/detaljer]
 Gi meg et spørsmål, konsept eller et lengre stykke tekst`;
