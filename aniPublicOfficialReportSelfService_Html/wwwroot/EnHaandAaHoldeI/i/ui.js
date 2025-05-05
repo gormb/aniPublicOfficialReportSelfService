@@ -43,7 +43,7 @@ const ui = {
         , ImgDice:i=>`<img class="icon dice" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[i||7]}">`
         , ImgSpaceRemove:()=>document.querySelector('.space')?.remove()
         , ImgSpaceAppend:()=>ui.c.Chat.lastElementChild.innerHTML+=`<img class="icon space" src="${ui.c.ImgDiceU[0]+ui.c.ImgDiceU[7]}">`    
-        , tRotating: '<div class="rotatingC">&#8634</div>'
+        , tRotating: '<div class="rotatingC">&#8634;</div>'
     }
     ,e:{
         Input_keydown:e=>e.key==='Enter'&&!e.shiftKey&&!e.ctrlKey?msgSend():e.key==='Escape'?ui.e.Input_setValue(''):0
@@ -193,7 +193,7 @@ const ui = {
                 let ce = h.indexOf("'", cs + 3);
                 if (ce > -1 && ce < e) c = h.slice(cs + 3, ce);
             }
-            out += c;
+            out += c+'&#8634;';
             let close = h.indexOf('[/detaljer]', e);
             i = close > -1 ? close + 11 : h.length;
         }

@@ -3,7 +3,7 @@ const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
     , appProvider_Man:[['Personlig >>§-',[
-            'Hjernetrim >>§-', ['Tankefeilvarsler','Enkel EQ-test','Bias-varsleren','Principia, Gödel, Turing and Wolfram']
+            'Hjernetrim >>§-', ['Tankefeilvarsler','Enkel EQ-test','Bias-varsleren','Principia, Gödel, Turing and Wolfram','Orakelbuen']
             ,'Blank modell >>§-', ['Renset reasoning','Renset chat','Blank reasoning','Blank chat','Blank grunnmodell']
             ,'Hånd å holde i >>§-', ['Hvordan har du det?','Personvernrådgiveren']
             ,'Nyheter >>§ -', ['Verdens nyheter via Ideallya','Aigap PFU']
