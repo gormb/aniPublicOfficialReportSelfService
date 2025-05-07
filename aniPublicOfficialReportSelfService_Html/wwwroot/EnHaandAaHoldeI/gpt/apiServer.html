@@ -1,0 +1,13 @@
+<script>
+const res=(e,data)=>e.source.postMessage(data, '*')
+const onredir=async(e,d,[u,m])=>{
+    try { res(e, await (await fetch(`https://${u}`
+        ,{ method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${d.api_key}` }
+        , body: JSON.stringify({ model: m, messages: [{ role: 'user', content: d.message }] })})).json());}
+    catch (error) { res(e, { error: error.message });}};
+onmessage=(e,d=e.data)=>(d.model.includes('|')
+    ?onredir(e,d,d.model.split('|')):onlocal(e,d));
+function onlocal(e, d) {
+    res(e, { choices: [ { message: { content: d.message+' indeed!' } } ] });
+}
+</script>

@@ -1,5 +1,5 @@
 cfg_aiPromptWelcome=
-`Orakelbuen konsulterer [detaljer c='tenkere...']tenkere, [detaljer c='fra oldtid...']<hr>I oldtiden ble grunnlaget for filosofi lagt: spørsmål om dyd, orden, natur, samfunn og eksistens.
+`Orakelbuen henter innsikt fra [detaljer c='<i>historiens store tenkere...</i>'] [detaljer c='oldtid...']oldtiden.<hr>I oldtiden ble grunnlaget for filosofi lagt: spørsmål om dyd, orden, natur, samfunn og eksistens.
 Tenkere inkluderer [detaljer c='Konfucius...']<br><b>Konfucius</b> (551–479 f.Kr., Kina) – moral, samfunnsorden, konfucianisme. Understreket plikter, ritualer og respekt i sosiale relasjoner.
 [/detaljer] [detaljer c='Laozi...']<br><b>Laozi</b> (ca. 6. årh. f.Kr., Kina) – daoisme, harmoni med naturen, wu wei. Fremhevet naturlig flyt og ikke-tvang som vei til balanse.
 [/detaljer] [detaljer c='Theano...']<br><b>Theano</b> (ca. 6. årh. f.Kr., Hellas) – matematikk, moralfilosofi, pythagoreisk skole. Utforsket forholdet mellom tall, harmoni og etikk.
@@ -9,7 +9,7 @@ Tenkere inkluderer [detaljer c='Konfucius...']<br><b>Konfucius</b> (551–479 f.
 [/detaljer] [detaljer c='Aristoteles...']<br><b>Aristoteles</b> (384–322 f.Kr., Hellas) – logikk, etikk, naturfilosofi. Bygde systematisk kunnskap om alt fra logikk til biologi.
 [/detaljer] [detaljer c='Nāgārjuna...']<br><b>Nāgārjuna</b> (ca. 150–250, India) – tomhet (śūnyatā), Madhyamaka-skolen. Utforsket tomhet som nøkkel til å overvinne dualismer.
 [/detaljer]
-<hr>[/detaljer] [detaljer c='middelalder...']<hr>I middelalderen smeltet filosofi, teologi og metafysikk sammen, med spørsmål om Gud, moral, fornuft og tro.
+<hr>[/detaljer] [detaljer c='middelalder...']middelalderen.<hr>I middelalderen smeltet filosofi, teologi og metafysikk sammen, med spørsmål om Gud, moral, fornuft og tro.
 Tenkere inkluderer [detaljer c='Augustin...']<br><b>Augustin av Hippo</b> (354–430, Nord-Afrika) – kristen teologi, fri vilje, ondskapens problem. Kombinerte kristen tro med platonsk filosofi.
 [/detaljer] [detaljer c='Avicenna...']<br><b>Avicenna (Ibn Sina)</b> (980–1037, Persia) – metafysikk, medisin, islamsk aristotelisme. Bygget bro mellom gresk filosofi og islamsk teologi.
 [/detaljer] [detaljer c='Hildegard...']<br><b>Hildegard av Bingen</b> (1098–1179, Tyskland) – mystikk, naturfilosofi, teologi. Kjent for visjoner og skrifter om skaperverket og menneskets plass i det.
@@ -17,7 +17,7 @@ Tenkere inkluderer [detaljer c='Augustin...']<br><b>Augustin av Hippo</b> (354�
 [/detaljer] [detaljer c='Maimonides...']<br><b>Maimonides</b> (1135–1204, Spania/Nord-Afrika) – jødisk filosofi, tro og fornuft. Søkte forsoning mellom religion og rasjonalitet.
 [/detaljer] [detaljer c='Thomas Aquinas...']<br><b>Thomas Aquinas</b> (1225–1274, Italia) – kristen skolastikk, aristotelisme. Integrerte Aristoteles’ filosofi i kristen teologi.
 [/detaljer]
-<hr>[/detaljer] [detaljer c='opplysningstid...']<hr>I renessansen og opplysningstiden stod rasjonalitet, vitenskap, individets frihet og kritikk av tradisjoner sentralt.
+<hr>[/detaljer] [detaljer c='opplysningstid...']opplysningstiden (renessansen).<hr>I renessansen og opplysningstiden stod rasjonalitet, vitenskap, individets frihet og kritikk av tradisjoner sentralt.
 Tenkere inkluderer [detaljer c='René Descartes...']<br><b>René Descartes</b> (1596–1650, Frankrike) – rasjonalisme, metodisk tvil. Søkte sikker kunnskap gjennom tvil.
 [/detaljer] [detaljer c='Mary Astell...']<br><b>Mary Astell</b> (1666–1731, England) – tidlig feminisme, utdanning. Forsvarte kvinners rett til utdanning og selvstendighet.
 [/detaljer] [detaljer c='Immanuel Kant...']<br><b>Immanuel Kant</b> (1724–1804, Tyskland) – moralfilosofi, kategorisk imperativ. Betonte plikt, frihet og fornuft.
@@ -25,14 +25,14 @@ Tenkere inkluderer [detaljer c='René Descartes...']<br><b>René Descartes</b> (
 [/detaljer] [detaljer c='David Hume...']<br><b>David Hume</b> (1711–1776, Skottland) – empirisme, skeptisisme. Fremhevet erfaring og tvil som grunnlag for kunnskap.
 [/detaljer] [detaljer c='Mary Wollstonecraft...']<br><b>Mary Wollstonecraft</b> (1759–1797, England) – feminisme, likestilling, utdanning. Kjempet for kvinners rettigheter og utdanning.
 [/detaljer]
-<hr>[/detaljer] [detaljer c='samtid...']<hr>I samtiden står rettferdighet, emosjoner, identitet og teknologi sentralt.
+<hr>[/detaljer] [detaljer c='samtid...']samtiden.<hr>I samtiden står rettferdighet, emosjoner, identitet og teknologi sentralt.
 Tenkere inkluderer [detaljer c='Martha Nussbaum...']<br><b>Martha Nussbaum</b> (f. 1947, USA) – emosjoner, rettferdighet, kapabilitetsteori. Kombinerer følelser og rasjonalitet i moralfilosofi.
 [/detaljer] [detaljer c='Yuval Noah Harari...']<br><b>Yuval Noah Harari</b> (f. 1976, Israel) – historier, makt, teknologi. Undersøker hvordan narrativer former samfunn og fremtid.
 [/detaljer] [detaljer c='Simone de Beauvoir...']<br><b>Simone de Beauvoir</b> (1908–1986, Frankrike) – feminisme, eksistensialisme. Utforsket frihet, ansvar og kvinners situasjon.
 [/detaljer] [detaljer c='Frantz Fanon...']<br><b>Frantz Fanon</b> (1925–1961, Martinique/Algerie) – postkolonialisme, frigjøring. Analyserte kolonialismens psykologiske effekter.
 [/detaljer] [detaljer c='Dan Ariely...']<br><b>Dan Ariely</b> (f. 1967, Israel/USA) – atferdsøkonomi, irrasjonalitet. Viser hvordan mennesker systematisk avviker fra rasjonalitet.
 [/detaljer]
-<hr>[/detaljer] [detaljer c=' og fremtid...']<hr>I fremtiden utforskes kunstig intelligens, posthumanisme, romkolonisering og etikk i teknologiske samfunn.
+<hr>[/detaljer] [detaljer c=' og fremtid...']tanker om fremtiden.<hr>Fokus på fremtiden utforsker kunstig intelligens, posthumanisme, romkolonisering og etikk i teknologiske samfunn.
 Tenkere inkluderer [detaljer c='Yoshua Bengio...']<br><b>Yoshua Bengio</b> (f. 1964, Canada) – kunstig intelligens, maskinlæring. Reflekterer over AI, etikk og fremtid.[/detaljer] 
 [detaljer c='Ursula K. Le Guin...']<br><b>Ursula K. Le Guin</b> (1929–2018, USA) – science fiction, sosialkritikk. Utforsket kjønn, makt og alternative samfunn.[/detaljer] 
 [detaljer c='Isaac Asimov...']<br><b>Isaac Asimov</b> (1920–1992, Russland/USA) – robotetikk, samfunn. Kjent for de tre robotlovene og tanker om teknologisk ansvar.[/detaljer] 
@@ -42,11 +42,10 @@ Tenkere inkluderer [detaljer c='Yoshua Bengio...']<br><b>Yoshua Bengio</b> (f. 1
 [detaljer c='Nick Bostrom...']<br><b>Nick Bostrom</b> (f. 1973, Sverige) – eksistensiell risiko, superintelligens. Utforsker farer og muligheter ved fremtidige teknologier.[/detaljer] 
 [detaljer c='Amy Webb...']<br><b>Amy Webb</b> (f. 1974, USA) – fremtidsforskning, strategi. Kartlegger teknologitrender og fremtidsscenarier for samfunn og næringsliv.[/detaljer]
 <hr>[/detaljer]
-[/detaljer]
-[detaljer c='...løsning...']<hr>Løsningen former en reise gradvis tilbake til røttene, for deretter å snu og gå  helt inn i fremtiden for å besvare dine spørsmål.
+[/detaljer] for å [detaljer c='<i>belyse innholdet fra antikken til fremtidens horisonter...</i>'] belyse innholdet med en reise gradvis tilbake til røttene, for deretter å snu og gå fremover igjen, med perspektiv helt inn i fremtiden.
 Slik står vi på skuldrene til gigantene, samtidig som vi vender blikket så langt frem vi kan.
-<hr>[/detaljer]
-Gi meg et spørsmål, konsept eller et lengre stykke tekst`;
+[/detaljer]
+Gi meg et spørsmål, et begrep eller en tekstbit.`;
 
 cfg.aiPrompt= [
  { role: `system`, content: 
@@ -82,6 +81,7 @@ Du er ikke en personlig assistent, men et mytisk orakel som vever tidsepokene sa
     <hr>[/detaljer] [detaljer c='Renessanse/opplysningstid...']<hr><b>Baruch Spinoza</b><br>Meningen er å forstå universet gjennom rasjonell kjærlighet til Gud eller naturen.
     <hr>[/detaljer] [detaljer c='Samtid/fremtid...']<hr><b>Yuval Noah Harari</b><br>Meningen er å skape historier som gir fellesskap og retning i en kompleks verden.
     <hr>[/detaljer]<hr>[/detaljer]
+    <hr>
     <br><br>Meningen med livet ser ut til å forene personlig vekst, moralsk ansvar og en evne til å skape fellesskap og forståelse i en stadig mer sammenvevd verden.
     <br>"Humans think in stories, and we try to make sense of the world by telling stories." (Harari, 2014)`]
 ];

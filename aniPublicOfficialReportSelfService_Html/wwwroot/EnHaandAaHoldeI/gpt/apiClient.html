@@ -1,0 +1,11 @@
+<input id="message" placeholder="Message"><input id="model" placeholder="URL|model"><input id="key" placeholder="API key">
+<button id="sendBtn">Send</button>
+<hr><div id="outTxt">...</div><hr><pre id="outData">/*...*/</pre><hr>
+<script>
+$=id=>document.getElementById(id),q=new URLSearchParams(location.search);
+['message','model','key'].forEach(k=>$(k).value=q.get(k)||'');
+sendBtn.onclick=()=>(outTxt.textContent=outData.textContent='...')^outData.append(Object.assign(document.createElement('iframe'),{id:'ifr',src:'apiServer.html',hidden:true,onload(){this.contentWindow.postMessage({message:message.value,model:model.value,api_key:key.value},'*')}}));
+onmessage=e=>{outData.textContent=JSON.stringify(e.data, null,2);outTxt.textContent=e.data.error?.message??e.data.choices?.[0]?.message?.content;};
+onkeydown=e=>{if(e.key=='Enter')sendBtn.click()^e.preventDefault()};
+if(q.get('send')=='1')sendBtn.click();
+</script>

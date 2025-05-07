@@ -73,7 +73,6 @@ const ai={
                 } catch(ex) { setting.dMsg('RequestProgress', j)}
             }
         });
-        //d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
         d.innerHTML = ai.Raw2Htm(ui.parseTagsSafe(ai.Reply[iThread]))
         return t.length;
     }
@@ -92,6 +91,7 @@ const ai={
         let x = new XMLHttpRequest(), l=0
             , isAnth = ai.Url[0].includes('.anthropic.')
             , isHugg = ai.Url[0].includes('.huggingface.') //, isGemi = ai.Url[0].includes('.googleapis.')
+            //, isCurated = ai.Model[0].includes('|')
         let u=ai.Url[0]+(isHugg?ai.Model[0]:'');
         x.open("POST", u, true);
         x.setRequestHeader("Content-Type", "application/json");
