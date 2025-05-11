@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigerbart Rutenett</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            color: #333; /* Default text color */
+        }
+        /* #n container will be styled by JavaScript */
+    </style>
+</head>
+<body>
+    <div id="n">
+        </div>
+
+    <script>
+        // Data structure for the mind map
+        const mindMapData = {
+            id: "root",
+            title: "Hovedmeny",
+            description: "Velg et tema for å starte.",
+            children: [
+                {
+                    id: "1",
+                    title: "1) Hvorfor - Why",
+                    description: "Jeg vil se siste nytt.",
+                    children: [
+                        {
+                            id: "1.1",
+                            title: "1.1) Hva er ditt behov i dag?",
+                            children: [
+                                { id: "1.1.1", title: "a1) Oppdatert informasjon" },
+                                { id: "1.1.2", title: "a2) Spesifikt søk" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: "2",
+                    title: "2) Hvordan - How",
+                    description: "Gonzo nyheter denne gang.",
+                    children: [
+                        { id: "2.1", title: "2.1) Interesseområde" },
+                        {
+                            id: "2.2",
+                            title: "2.2) Formidler",
+                            children: [
+                                { id: "2.2.1", title: "2.2.1) Bjørnebo" },
+                                {
+                                    id: "2.2.2",
+                                    title: "2.2.2) Hunter Thompson",
+                                    children: [
+                                        { id: "2.2.2.1", title: "2.2.2.1) Gonzo Stil" },
+                                        { id: "2.2.2.2", title: "2.2.2.2) Rant Stil" },
+                                        { id: "2.2.2.3", title: "2.2.2.3) Idealistisk Stil" }
+                                    ]
+                                },
+                                { id: "2.2.3", title: "2.2.3) Kjendisblogger" }
+                            ]
+                        },
+                        { id: "2.3", title: "2.3) Kilder" },
+                        { id: "2.4", title: "2.4) Siling / Filtrering" }
+                    ]
+                },
+                {
+                    id: "3",
+                    title: "3) Hva - What",
+                    description: "Velg kategori.",
+                    children: [
+                        { id: "3.1", title: "3.1) Område: Uriks" },
+                        {
+                            id: "3.2",
+                            title: "3.2) Område: Sport",
+                            children: [
+                                { id: "3.2.1", title: "3.2.1) Liverpool FC" },
+                                {
+                                    id: "3.2.2",
+                                    title: "3.2.2) Norsk fotball",
+                                    children: [
+                                        { id: "3.2.2.1", title: "3.2.2.1) Drillo-perioden" },
+                                        { id: "3.2.2.2", title: "3.2.2.2) EM-sluttspill" }
+                                    ]
+                                },
+                                { id: "3.2.3", title: "3.2.3) VM generelt" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: "4",
+                    title: "4) Hva så - So What",
+                    description: "Konsekvenser og relevans.",
+                    children: [
+                        { id: "4.1", title: "4.1) Er pga: [Referanse til 3.2.2.2]" , description: "Dette valget er en konsekvens av EM-sluttspill."},
+                        { id: "4.2", title: "4.2) Har detaljer: [Referanse til 3.x]" , description: "Utforsk detaljer relatert til tidligere valg."},
+                        { id: "4.3", title: "4.3) Medfører at: [Konsekvens]" , description: "Dette valget fører til følgende..."}
+                    ]
+                },
+                {
+                    id: "5",
+                    title: "5) Hva nå - What Next",
+                    description: "Handlinger og neste steg.",
+                    children: [
+                        { id: "5.1", title: "5.1) Del (LinkedIn, Facebook, Epost)" },
+                        { id: "5.2", title: "5.2) Diskuter temaet" },
+                        { id: "5.3", title: "5.3) Gå til kildeartikkel" },
+                        { id: "5.4", title: "5.4) Oppsummer / Sammenskriv" }
+                    ]
+                }
+            ]
+        };
+
+        const nav = {
+            c: {}, // DOM cache
+            m: {}, // Mindmap data
+            flatMindmap: {}, // Flattened map of all nodes by ID
+            currentNodeId: null,
+            history: [], // For back navigation
+
+            // Recursively adds parentId to nodes and populates a flat map for easy lookup.
+            preprocessMindmap: (node, parentId = null, map = {}) => {
+                node.parentId = parentId;
+                map[node.id] = node; // Add current node to the flat map
+                if (node.children) {
+                    node.children.forEach(child => nav.preprocessMindmap(child, node.id, map));
+                }
+                return map; // Return the populated flat map
+            },
+
+            init: () => {
+                nav.c.n = document.getElementById('n');
+                nav.c.n.style.cssText = `
+                    display: grid;
+                    width: 100dvw; height: 100dvh;
+                    grid-template-columns: 15% 70% 15%;
+                    grid-template-rows: 15% 70% 15%;
+                    gap: 5px; padding: 10px;
+                    box-sizing: border-box;
+                    background-color: #e5e7eb; /* Light gray grid background */
+                `;
+
+                // Define cell styles (can be expanded)
+                nav.cellStyles = {
+                    default: `background-color: #93c5fd; color: #1e3a8a; border: 1px solid #60a5fa;`, // Blueish
+                    current: `background-color: #ffffff; color: #ef4444; border: 2px solid #d946ef; font-weight: bold;`, // White with red text
+                    parent: `background-color: #a5b4fc; color: #3730a3; border: 1px solid #818cf8;`, // Indigoish
+                    sibling: `background-color: #a5b4fc; color: #3730a3; border: 1px solid #818cf8;`,
+                    child: `background-color: #6ee7b7; color: #047857; border: 1px solid #34d399;`, // Greenish
+                    action: `background-color: #fde047; color: #713f12; border: 1px solid #facc15;`, // Yellowish for actions
+                    empty: `background-color: #d1d5db; border: 1px solid #9ca3af; visibility: hidden;` // Gray for empty, hidden
+                };
+                const baseCellStyle = `
+                    display: flex; flex-direction: column; justify-content: center; align-items: center;
+                    box-sizing: border-box; overflow: hidden; text-align: center; cursor: pointer;
+                    transition: background-color 0.2s ease, transform 0.1s ease;
+                    font-size: clamp(1.2vmin, 2.2vw, 15px); padding: 8px; border-radius: 6px;
+                    line-height: 1.3;
+                `;
+                // Append base style to all specific styles
+                for (const key in nav.cellStyles) {
+                    nav.cellStyles[key] = baseCellStyle + nav.cellStyles[key];
+                }
+
+
+                nav.m = mindMapData;
+                nav.flatMindmap = nav.preprocessMindmap(nav.m);
+                nav.currentNodeId = nav.m.id; // Start at root
+                nav.history.push(nav.currentNodeId);
+
+
+                nav.c.sect = Array.from({ length: 9 }, (_, i) => {
+                    return nav.c.n.appendChild(Object.assign(document.createElement('div'), {
+                        onclick: nav.h,
+                        'data-cell-index': i
+                        // Style will be applied in nav.p()
+                    }));
+                });
+                nav.p();
+            },
+
+            getNode: (id) => nav.flatMindmap[id],
+
+            p: () => { // Populate grid
+                const currentNode = nav.getNode(nav.currentNodeId);
+                if (!currentNode) {
+                    console.error("Error: Current node not found:", nav.currentNodeId);
+                    nav.c.sect[4].textContent = "Feil: Node ikke funnet.";
+                    nav.c.sect[4].style.cssText = nav.cellStyles.current;
+                     for (let i = 0; i < 9; i++) { if (i !== 4) nav.c.sect[i].style.cssText = nav.cellStyles.empty; }
+                    return;
+                }
+
+                const displaySlots = Array(9).fill(null).map(() => ({ text: "", description: "", targetNodeId: null, type: "empty" }));
+
+                // Slot 4: Current Node
+                displaySlots[4] = { text: currentNode.title, description: currentNode.description || "", targetNodeId: currentNode.id, type: "current" };
+
+                // Slot 1: Parent
+                if (currentNode.parentId) {
+                    const parent = nav.getNode(currentNode.parentId);
+                    if (parent) displaySlots[1] = { text: `↑ ${parent.title}`, targetNodeId: parent.id, type: "parent" };
+                }
+
+                // Slot 0: Home/Grandparent
+                if (currentNode.id !== nav.m.id) { // Not root
+                    const parent = nav.getNode(currentNode.parentId);
+                    if (parent && parent.parentId && parent.id !== nav.m.id) { // Has grandparent that is not root
+                        const grandparent = nav.getNode(parent.parentId);
+                        if (grandparent) displaySlots[0] = { text: `↖ ${grandparent.title}`, targetNodeId: grandparent.id, type: "parent"};
+                    } else { // Parent is root or no grandparent, so link to Home
+                         displaySlots[0] = { text: `🏠 Hjem`, targetNodeId: nav.m.id, type: "action" };
+                    }
+                }
+
+
+                // Slot 3 & 5: Siblings
+                if (currentNode.parentId) {
+                    const parent = nav.getNode(currentNode.parentId);
+                    const siblings = parent.children || [];
+                    const myIndex = siblings.findIndex(s => s.id === currentNode.id);
+                    if (myIndex > 0) displaySlots[3] = { text: `← ${siblings[myIndex - 1].title}`, targetNodeId: siblings[myIndex - 1].id, type: "sibling" };
+                    if (myIndex < siblings.length - 1) displaySlots[5] = { text: `${siblings[myIndex + 1].title} →`, targetNodeId: siblings[myIndex + 1].id, type: "sibling" };
+                }
+
+                // Slot 6, 7, 8: Children
+                const children = (currentNode.children || []).slice(0, 3);
+                children.forEach((child, i) => {
+                    displaySlots[6 + i] = { text: `↓ ${child.title}`, targetNodeId: child.id, type: "child" };
+                });
+
+                // Slot 2: Back or More Children
+                if (nav.history.length > 1) {
+                    displaySlots[2] = { text: "↩️ Tilbake", targetNodeId: null, type: "action_back" };
+                } else if ((currentNode.children || []).length > 3) {
+                    displaySlots[2] = { text: `Mer (${(currentNode.children || []).length - 3})...`, targetNodeId: currentNode.id, type: "action_more_children" };
+                }
+
+
+                nav.c.sect.forEach((cell, i) => {
+                    const d = displaySlots[i];
+                    cell.innerHTML = `<span>${d.text}</span>` + (d.type === 'current' && d.description ? `<small style="font-size: 0.8em; color: #555; display: block; margin-top: 4px;">${d.description}</small>` : '');
+                    cell.title = d.description && d.type !== 'current' ? d.description : d.text + (d.description ? ` (${d.description})` : '');
+                    cell.style.cssText = nav.cellStyles[d.type] || nav.cellStyles.default;
+                    cell.dataset.targetNodeId = d.targetNodeId;
+                    cell.dataset.actionType = d.type;
+                    cell.style.visibility = (d.text || d.type === 'current') ? 'visible' : 'hidden';
+                });
+            },
+
+            h: event => { // Click handler
+                const cell = event.currentTarget;
+                const targetNodeId = cell.dataset.targetNodeId;
+                const actionType = cell.dataset.actionType;
+
+                let navigated = false;
+
+                if (actionType === "action_back") {
+                    nav.goBack();
+                    navigated = true;
+                } else if (actionType === "action_more_children") {
+                    console.log("Viser flere barn for:", nav.currentNodeId); // Placeholder
+                    // Future: implement a view for showing all children
+                } else if (targetNodeId && targetNodeId !== "null") {
+                    const targetNode = nav.getNode(targetNodeId);
+                    if (targetNode) {
+                        nav.currentNodeId = targetNodeId;
+                        if (nav.history[nav.history.length - 1] !== nav.currentNodeId) {
+                            nav.history.push(nav.currentNodeId);
+                        }
+                        navigated = true;
+                    } else {
+                        console.warn("Målnode ikke funnet:", targetNodeId);
+                    }
+                }
+
+                if (navigated) {
+                    nav.p();
+                }
+
+                cell.style.transform = 'scale(0.95)';
+                setTimeout(() => { cell.style.transform = 'scale(1)'; }, 100);
+            },
+
+            goBack: () => {
+                if (nav.history.length > 1) {
+                    nav.history.pop();
+                    nav.currentNodeId = nav.history[nav.history.length - 1];
+                } else {
+                    console.log("Ingen mer historikk å gå tilbake til.");
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', nav.init);
+    </script>
+</body>
+</html>
+    

@@ -6,11 +6,11 @@ const cfg={
             'Hjernetrim >>§-', ['Tankefeilvarsler','Enkel EQ-test','Bias-varsleren','Principia, Gödel, Turing and Wolfram','Orakelbuen']
             ,'Blank modell >>§-', ['Renset reasoning','Renset chat','Blank reasoning','Blank chat','Blank grunnmodell']
             ,'Hånd å holde i >>§-', ['Hvordan har du det?','Personvernrådgiveren']
-            ,'Nyheter >>§ -', ['Verdens nyheter via Ideallya','Aigap PFU']
+            ,'Nyheter >>§ -', ['Verdens nyheter via Ideallya','Aigap PFU','Aigap Tone of Voice']
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
-            ,'Hlm - spesialist >>§-',['Flytveilederen','Biopsykososial modell','Kroppens stressystem','Mellom rom og spekter']
+            ,'Hlm - spesialist >>§-',['Flytveilederen','CRPS-veilederen','Biopsykososial modell','Kroppens stressystem','Mellom rom og spekter']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Offentlig >>§-',[
             'Norge veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
