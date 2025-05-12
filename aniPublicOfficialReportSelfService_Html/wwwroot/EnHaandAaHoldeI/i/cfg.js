@@ -6,7 +6,7 @@ const cfg={
             'Hjernetrim >>§-', ['Tankefeilvarsler','Enkel EQ-test','Bias-varsleren','Principia, Gödel, Turing and Wolfram','Orakelbuen']
             ,'Blank modell >>§-', ['Renset reasoning','Renset chat','Blank reasoning','Blank chat','Blank grunnmodell']
             ,'Hånd å holde i >>§-', ['Hvordan har du det?','Personvernrådgiveren']
-            ,'Nyheter >>§ -', ['Verdens nyheter via Ideallya','Aigap PFU','Aigap Tone of Voice']
+            ,'Nyheter >>§ -', ['Verdens nyheter via Ideallya','Aigap PFU']
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
@@ -18,6 +18,7 @@ const cfg={
             ,'Kommune >>§-', ['NO Alt Om Kommunale Tjenester','Eldre i Asker Kommune']
         ]],['Virksomhet >>§-',[
             'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning', 'Ansatt: Meningsfylt jobb']
+            ,'Skrivekunst >>§ -', ['Aigap Kreativ Skrivepartner','Aigap Tone of Voice']
             ,'Leder >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
             ,'HR >>§-', ['HR: Ansettelsen', 'HR: Medarbeidersamtale', 'HR: Oppsigelsen', 'HR: Restrukturering']
             ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper']
