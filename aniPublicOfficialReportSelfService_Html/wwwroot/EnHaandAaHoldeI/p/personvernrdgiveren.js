@@ -1,5 +1,8 @@
 cfg_aiPromptWelcome=`Korte, klare råd om innsyn, sletting, reservasjon og andre personvern­rettigheter[detaljer] for digitale tjenester i Norge – uten unødvendig jusspråk[/detaljer].
 
+[detaljer c='Bruk av opplysninger i denne appen...']<hr>Vi bruker opplysningene dine etter GDPR art. 6, 9 for å hjelpe deg. Du kan be om innsyn (GDPR art. 15), sletting (art. 17), eller endre data når som helst (art. 16). Kontakt oss hvis du har spørsmål (art. 12-15).
+<hr>[/detaljer]
+
 [detaljer c='Hva jeg kan hjelpe deg med...']
 Jeg forklarer hvordan du kan få innsyn i data, be om sletting, reservere deg mot bruk av data, trekke tilbake samtykke og klage hvis noe går galt.
 [/detaljer]

@@ -18,7 +18,7 @@ const cfg={
             ,'Kommune >>§-', ['NO Alt Om Kommunale Tjenester','Eldre i Asker Kommune']
         ]],['Virksomhet >>§-',[
             'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning', 'Ansatt: Meningsfylt jobb']
-            ,'Skrivekunst >>§ -', ['Aigap Kreativ Skrivepartner','Aigap Tone of Voice']
+            ,'Skrivekunst >>§ -', ['Aigap Kreativ Skrivepartner','Aigap Språk og tone']
             ,'Leder >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
             ,'HR >>§-', ['HR: Ansettelsen', 'HR: Medarbeidersamtale', 'HR: Oppsigelsen', 'HR: Restrukturering']
             ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper']
@@ -85,6 +85,8 @@ const cfg={
     , menusForAiProvider:pre=>cfg.aiProvider.map(ai => `||||${pre+ai[0]} >>§-§§${ai[1]}§§${ai[2]}§§${ai[3]}§§${ai[4]}§§${ai[6]}§§${ai[5].map(aiM=>`|||||${pre+aiM[0]}§§${aiM[1]}`).join('') }`).join('')
     , aiProviderTimeout:10
     , loadV:(u,y)=>fetch(new URL(u,location)).then(r=>r.text()).then(y)
+    , l:src=>new Promise((onload,onerror)=>document.head.appendChild(Object.assign(document.createElement('script'),{src,onload,onerror/*,type:'module'*/})))
+    , lw:async o=>(await cfg.l(`o/${o}.js`),window[o])
     , load:(c, cid=null)=>{
         return new Promise((y, n) => {
             cid = cid||'p/'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
