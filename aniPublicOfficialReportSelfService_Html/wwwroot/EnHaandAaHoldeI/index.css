@@ -48,6 +48,10 @@ button:hover { background: var(--primary-color); }
     .forslag {padding: 10px 10px; border-radius: 25%; border-style: dashed; overflow: hidden; font-style: italic; cursor: pointer;
         display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 3;}
     .suggest { position: absolute; left: 45%; transform: translateX(-50%); bottom: 44px; background: #ccc; border-top: 1px solid #ccc; padding: 7px 14px; z-index: 100; }
+td {vertical-align:top}
+th {vertical-align:top}
+
+.vert {writing-mode: vertical-lr;text-orientation:  mixed;transform: rotate(180deg);white-space:nowrap;}
 
 @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     .rotating { display: inline-block; animation: rotate 10s linear infinite; }

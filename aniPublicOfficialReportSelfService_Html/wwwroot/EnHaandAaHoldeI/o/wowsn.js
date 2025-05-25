@@ -9,11 +9,11 @@ window.wowsn={
     why:{detaljer:t=>`[detaljer c='${t}...']<hr><b>${t}</b><br>hvorfor<hr>[/detaljer]`,init:p=>{}}
     ,how:{
         tone:{
-            g:[/*['Gruppenavn','PNFOLMRWY','Hvordan fortellingen eller teksten er bygget opp, fortellerens rolle, og hvordan virkeligheten fremstilles.'],*/
-                ['S','Struktur','PNFOLMRWY','Hvordan fortellingen eller teksten er bygget opp, fortellerens rolle, og hvordan virkeligheten fremstilles.'],
-                ['U','Uttrykk','USKXDTC','Valg av ord, setningsbygning, stilistisk tone og språklig utsmykning.'],
-                ['I','Intensjon','IJEVAGBZQ','Tekstens underliggende formål, hvordan den søker å påvirke leseren, og dens etiske eller pedagogiske holdning.']]
-            ,e:[/*['Akse', 'Ytterpunkt 1', 'Ytterpunkt 2', 'Forklaring av aksen', 'Forklaring av ytterpunkt 1', 'Forklaring av ytterpunkt 2'],*/
+            g:[/*['x','Gruppenavn','PNFOLMRWY','Hvordan fortellingen eller teksten er bygget opp, fortellerens rolle, og hvordan virkeligheten fremstilles.'],*/
+                ['S','struktur','PNFOLMRWY','Hvordan fortellingen eller teksten er bygget opp, fortellerens rolle, og hvordan virkeligheten fremstilles.'],
+                ['U','uttrykk','USKXDTC','Valg av ord, setningsbygning, stilistisk tone og språklig utsmykning.'],
+                ['I','intensjon','IJEVAGBZQ','Tekstens underliggende formål, hvordan den søker å påvirke leseren, og dens etiske eller pedagogiske holdning.']]
+            ,e:[/*['y','Akse', 'Ytterpunkt 1', 'Ytterpunkt 2', 'Forklaring av aksen', 'Forklaring av ytterpunkt 1', 'Forklaring av ytterpunkt 2'],*/
                 ['P', 'Perspektiv', 'Overordnet', 'Nær', 'Definerer fortellerens ståsted og fokusområde; omfanget av det som beskrives.', 'Fortelleren ser "det store bildet", gir kontekst og oversikt, ofte med en viss autoritet og distanse.', 'Fortelleren zoomer inn på detaljer, enkeltopplevelser eller individet, ofte mer intimt og personlig.'],
                 ['E', 'Emosjonell vinkling', 'Følelsesladd', 'Saklig', 'Bestemmer graden og typen av følelsesmessig engasjement i teksten, og hvordan den appellerer til leserens følelser versus fornuft.', 'Vektlegger og formidler følelser, sikter mot å skape empati og emosjonell respons hos leseren.', 'Holder seg til fakta og objektiv informasjon, unngår å farge teksten med tydelige følelser, appellerer til fornuft.'],
                 ['U', 'Utrykksform', 'Direkte', 'Underfundig', 'Beskriver hvordan budskapet kommuniseres; om det er eksplisitt og rett frem, eller mer implisitt, lekent eller med flere lag av betydning.', 'Kommuniserer budskapet klart, åpent og rett på sak, uten skjulte meningslag.', 'Bruker hint, ironi, humor eller andre implisitte virkemidler; det som sies er ikke alltid det som menes bokstavelig.'],
@@ -41,13 +41,11 @@ window.wowsn={
                 ['Q', 'Normativ funksjon', 'Tolkning', 'Forskrivende', 'Vurderer om teksten overlater moralske eller verdimessige konklusjoner til leseren, eller om den aktivt fremmer bestemte normer.', 'Presenterer informasjon eller fortellinger på en måte som lar leseren danne egne meninger om hva som er rett/galt eller ønskelig.', 'Uttrykker tydelige verdier, anbefalinger for atferd, eller forsøker å etablere/forsterke sosiale eller moralske normer.']
             ]
             ,eHtm:(g,e)=>e==undefined
-                ?`<ul>${wowsn.how.tone.e.map((e)=>wowsn.how.tone.eHtm(g,e)).join('</li><li>')}</ul>`
-                :`&nbsp;${e[1]}`
+                ?`[detaljer c='${g[1]}...']<b>Tone${g[1]}</b><table border="0">${wowsn.how.tone.e.filter(f=>g[2].includes(f[0])).map(m=>wowsn.how.tone.eHtm(g,m)).join('')}</table><hr>[/detaljer]`
+                :`<tr><td>[detaljer c='${e[1]}: ${e[2]}/<wbr>${e[3]}...']<hr><table><tr><th colspan="2">${e[1]}</td></tr><tr><td></td><td>${e[4]}</td></tr><tr><td colspan="2"><hr></td></tr><tr><td class="vert"> ${e[2]} </td><td>${e[5]}</td></tr><tr><td colspan="2"><hr></td></tr><tr><td class="vert"> ${e[3]} </td><td>${e[6]}</td></tr></table><hr>[/detaljer]</td></tr>`
             ,gHtm:g=>g==undefined
-                ?`<ul><li>${wowsn.how.tone.g.map((g)=>wowsn.how.tone.gHtm(g)).join('</li><li>')}</li></ul>`
-                :`${g[1]}<ul>${wowsn.how.tone.eHtm(g)}</ul>`
-            ,fb:{// user feedback: tone
-            }
+                ?`<table border="0">${wowsn.how.tone.g.map((g)=>wowsn.how.tone.gHtm(g)).join('')}</table>`
+                :`<tr><td>${wowsn.how.tone.eHtm(g)}</td></tr>`
             ,person: [
                 ['AG', 'Anders Giæver',       'P8,E2,U8,N9,S4,T8,F1,O8,L8,M8,R8,V9,A9,K7,X8,I9,J9,C9,D9,G8,B9,W8,Y9,Z2,Q8'],
                 ['MO', 'Margreth Olin',       'P4,E2,U2,N6,S7,T8,F2,O7,L7,M3,R3,V8,A8,K7,X9,I5,J8,C8,D5,G3,B5,W2,Y3,Z4,Q6'],
@@ -74,7 +72,7 @@ window.wowsn={
                 ['TC', 'Truman Capote',       'P8,E4,U6,N9,S5,T6,F2,O3,L4,M6,R6,V6,A6,K7,X8,I5,J7,C7,D6,G7,B7,W6,Y7,Z4,Q5'],
                 // Fillers P1,P2,P3,E9,U1,N2,N4,N5,T1,F5,F6,F7,F9,O5,M1,M2,R1,V1,V2,V3,V5,A1,A2,A4,K1,K2,K3,X1,X2,X3,J1,J2,J3,C1,D2,Z1,Z8,Q1,Q2
                 /*P1*/['BT', 'Barbara Tuchman',         'P1,E8,U2,N1,S7,T4,F8,O1,L1,M3,R3,V8,A8,K7,X4,I1,J4,C7,D1,G1,B1,W1,Y1,Z9,Q3'],
-                /*P2*/['SK', 'Simon Kuznets',           'P2,E8,U3,N2,S7,T6,F8,O2,L2,M4,R4,V5,A3,K6,X3,I2,J3,C4,D2,G1,B1,W2,Y2,Z7,Q4'], // SK: Economist known for broad analyses of economic growth and income distribution over long periods, providing a high-level, data-driven overview (P2), often very factual (E8), direct in academic style (U3), highly explanatory (N2), with complex data (S7), aimed at specialists (T6), with a detached narrator (F8), structured logically (O2, L2), more measured than fast-paced (M4,R4), focused on data rather than overt argumentation (I2), primarily fact-based (G1,B1), realistic (W2,Y2), and aiming to inform (Z7).
+                /*P2*/['SK', 'Simon Kuznets',           'P2,E8,U3,N2,S7,T6,F8,O2,L2,M4,R4,V5,A3,K6,X3,I2,J3,C4,D2,G1,B1,W2,Y2,Z7,Q4'], // SK: Economist known for broad analyses of economic growth and income distribution over long periods, providing a high-level, data-driven overview (P2), often very factual (E8), direct in academic style (U3), highly explanatory (N2), with ckx data (S7), aimed at specialists (T6), with a detached narrator (F8), structured logically (O2, L2), more measured than fast-paced (M4,R4), focused on data rather than overt argumentation (I2), primarily fact-based (G1,B1), realistic (W2,Y2), and aiming to inform (Z7).
                 /*P3*/['EH', 'E. H. Carr',              'P3,E7,U4,N2,S6,T5,F7,O3,L3,M5,R5,V7,A7,K5,X5,I4,J5,C5,D4,G2,B2,W3,Y3,Z6,Q5'], // EH: Historian (e.g., "What Is History?") who discusses broad historical methodologies and trends (P3), often analytical and explanatory (N2), with a clear but not overly simplistic style (S6), making complex ideas accessible (T5), maintaining a scholarly distance (F7), often critical/analytical in worldview (V7,A7).
                 /*E9*/['KN', 'Donald Knuth',            'P5,E9,U1,N1,S8,T8,F9,O1,L1,M5,R5,V5,A5,K2,X1,I1,J1,C5,D1,G1,B1,W1,Y1,Z9,Q2'], // KN: Author of "The Art of Computer Programming," known for extremely precise, factual, and objective technical writing (E9), highly direct (U1), purely explanatory (N1), complex due to subject (S8), aimed at experts (T8), with an invisible narrator (F9), highly structured (O1,L1), concise (K2), minimalist in prose (X1), purely informative (I1,J1), formal (D1), fact/logic-based (G1,B1), and instructional (Z9).
                 /*U1*/['EW', 'E.B. White',              'P5,E5,U1,N5,S2,T1,F5,O5,L5,M5,R5,V5,A5,K2,X2,I5,J5,C7,D3,G5,B5,W5,Y5,Z5,Q5'], // EW: Particularly in his contributions to "The Elements of Style," advocated for and exemplified clear, direct, and unambiguous prose (U1), emphasizing simplicity (S2), clarity (T1), and conciseness (K2), with a minimalist texture (X2).
@@ -124,7 +122,7 @@ window.wowsn={
                 /*Q1*/['IC', 'Italo Calvino',           'P6,E5,U7,N7,S7,T6,F5,O7,L8,M5,R5,V5,A5,K6,X7,I5,J4,C6,D6,G6,B6,W7,Y8,Z3,Q1'], // IC: Works like "Invisible Cities" or "If on a winter's night a traveler" are highly experimental (L8) and often present scenarios or ideas in a way that leaves moral/value conclusions entirely to the reader's interpretation (Q1), focusing on exploration (Z3) rather than prescription.
                 /*Q2*/['JB', 'Jorge Luis Borges',       'P7,E6,U7,N7,S7,T7,F6,O7,L8,M4,R3,V6,A6,K5,X7,I5,J4,C6,D6,G7,B7,W7,Y8,Z3,Q2'],  // JB: His short stories and essays are often philosophical and labyrinthine, presenting complex ideas and narratives that invite deep reader interpretation (Q2) rather than offering clear moral directives, often exploring concepts (Z3) with a detached intellectualism (F6, E6).
                 ['GB', 'Gorm Braarvig',                 'P5,E6,U5,N6,S3,T3,F3,O3,L3,M5,R4,V6,A6,K2,X3,I6,J6,C8,D7,G6,B7,W5,Y5,Z3,Q4']
-                // Retninger som futuristene, bauhaus, mm. Marx                
+                // Retninger som futuristene, bauhaus, mm. Marx
             ]
             ,uulegacy:{
                 uu_stylepar: [['0', 'Unknown']
@@ -178,10 +176,11 @@ window.wowsn={
                 return res;
                 //return `[detaljer c='${wowsn.how.tone.person[p][1]}...']<hr><b>${wowsn.how.tone.person[p][1]}</b><br>${styleDescriptionHtml}<hr>[/detaljer]`;
             }
-            ,voice:p=>(p==undefined)?wowsn.how.tone.person.map((_, i) => wowsn.how.tone.voice(i)).filter(Boolean).join('\n'):(typeof p!='number')?wowsn.how.tone.voice(wowsn.how.tone.person.findIndex(person=>person[0]==p)):wowsn.how.tone.voiced(p)
-            ,detaljer:(t='')=>`[_detaljer c='${t}...']<hr><b>${t}</b>${wowsn.how.tone.gHtm()}<hr>[/detaljer]`
+            ,voice:(t,p)=>(p==undefined)?t+wowsn.how.tone.person.map((_, i) => wowsn.how.tone.voice(i)).filter(Boolean).join('\n'):(typeof p!='number')?wowsn.how.tone.voice(t,wowsn.how.tone.person.findIndex(person=>person[0]==p)):wowsn.how.tone.voiced(p)
+            ,detaljer:(pt='',t='')=>wowsn.how.tone.voiced(pt)
+                +`[detaljer c='${t}...']<hr>${wowsn.how.tone.gHtm()}<hr>[/detaljer]`
         }
-        ,detaljer:t=>`[_detaljer c='${t}...']<hr><b>${t}</b><br>${wowsn.how.tone.detaljer()}<hr>[/detaljer]`
+        ,detaljer:t=>`${t}: ${wowsn.how.tone.detaljer('person','tone')}`
         ,init:p=>{}
     }
     ,what:{detaljer:t=>`[detaljer c='${t}...']<hr><b>${t}</b><br>hva<hr>[/detaljer]`,init:p=>{}}
@@ -189,7 +188,7 @@ window.wowsn={
     ,now:{detaljer:t=>`[detaljer c='${t}...']<hr><b>${t}</b><br>nå<hr>[/detaljer]`,init:p=>{}}
     ,ux:{init:p=>{}}
     ,detaljer:(t='WOWSN-modellen',wt='Hvorfor',ot='Hvordan',ht='Hva',st='Hva&nbsp;så',nt='Hva&nbsp;nå')=>
-        `[_detaljer c='${t}...']<hr><b>${t}</b><br>${wowsn.why.detaljer(wt)} ${wowsn.how.detaljer(ot)} ${wowsn.what.detaljer(ht)} ${wowsn.so.detaljer(st)} ${wowsn.now.detaljer(nt)}<hr>[/detaljer]`
+        `<b>${t}</b><br>${wowsn.why.detaljer(wt)} ${wowsn.how.detaljer(ot)} ${wowsn.what.detaljer(ht)} ${wowsn.so.detaljer(st)} ${wowsn.now.detaljer(nt)}`
     ,init:(m='ux,why,how,what,so',p)=>m.split(',').forEach((m)=>eval('wowsn.'+m+'.init()'))
 }
 wowsn.init('why,how,what,so,ux','www.vg.no');
