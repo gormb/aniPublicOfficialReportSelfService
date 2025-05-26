@@ -1,7 +1,5 @@
 // Torry: fargene som kommer ut. Fargerikt? dype klangtoner?
 // Legg til språkrådet
-// Legg til Arne
-
 /* 
 Jeg lager en modell for tone for språk struktur, uttrykk og intensjon for at LLM kan skrive bedre (kall det en omformer)
 */
@@ -14,37 +12,56 @@ window.wowsn={
                 ['U','uttrykk','USKXDTC','Valg av ord, setningsbygning, stilistisk tone og språklig utsmykning.'],
                 ['I','intensjon','IJEVAGBZQ','Tekstens underliggende formål, hvordan den søker å påvirke leseren, og dens etiske eller pedagogiske holdning.']]
             ,e:[/*['y','Akse', 'Ytterpunkt 1', 'Ytterpunkt 2', 'Forklaring av aksen', 'Forklaring av ytterpunkt 1', 'Forklaring av ytterpunkt 2'],*/
-                ['P', 'Perspektiv', 'Overordnet', 'Nær', 'Definerer fortellerens ståsted og fokusområde; omfanget av det som beskrives.', 'Fortelleren ser "det store bildet", gir kontekst og oversikt, ofte med en viss autoritet og distanse.', 'Fortelleren zoomer inn på detaljer, enkeltopplevelser eller individet, ofte mer intimt og personlig.'],
-                ['E', 'Emosjonell vinkling', 'Følelsesladd', 'Saklig', 'Bestemmer graden og typen av følelsesmessig engasjement i teksten, og hvordan den appellerer til leserens følelser versus fornuft.', 'Vektlegger og formidler følelser, sikter mot å skape empati og emosjonell respons hos leseren.', 'Holder seg til fakta og objektiv informasjon, unngår å farge teksten med tydelige følelser, appellerer til fornuft.'],
-                ['U', 'Utrykksform', 'Direkte', 'Underfundig', 'Beskriver hvordan budskapet kommuniseres; om det er eksplisitt og rett frem, eller mer implisitt, lekent eller med flere lag av betydning.', 'Kommuniserer budskapet klart, åpent og rett på sak, uten skjulte meningslag.', 'Bruker hint, ironi, humor eller andre implisitte virkemidler; det som sies er ikke alltid det som menes bokstavelig.'],
-                ['N', 'Narrativt formål', 'Forklarende', 'Opplevelsesbasert', 'Definerer hovedintensjonen bak fortellingen; om den primært søker å informere og klargjøre, eller å dele en subjektiv reise/erfaring.', 'Stilen fokuserer på å gjøre komplekse temaer forståelige, presentere informasjon og argumenter logisk.', 'Stilen legger vekt på å formidle en personlig reise, følelse eller erfaring, ofte fra et subjektivt ståsted.'],
-                ['S', 'Språklig enkelhet', 'Enkelt', 'Komplekst', 'Vurderer den grunnleggende strukturelle og leksikalske kompleksiteten i språket.', 'Bruker hovedsakelig kjente ord og enkle setningsstrukturer, lett å forstå umiddelbart.', 'Benytter avansert vokabular og/eller sammensatte setningsstrukturer som kan kreve mer konsentrasjon.'],
+                ['P', 'Perspektiv', 'Over&shy;ordnet', 'Nær', 'Definerer fortellerens ståsted og fokusområde; omfanget av det som beskrives.', 'Fortelleren ser "det store bildet", gir kontekst og oversikt, ofte med en viss autoritet og distanse.', 'Fortelleren zoomer inn på detaljer, enkeltopplevelser eller individet, ofte mer intimt og personlig.'],
+                ['E', 'Emosjonell vinkling', 'Følelse&shy;sladd', 'Saklig', 'Bestemmer graden og typen av følelsesmessig engasjement i teksten, og hvordan den appellerer til leserens følelser versus fornuft.', 'Vektlegger og formidler følelser, sikter mot å skape empati og emosjonell respons hos leseren.', 'Holder seg til fakta og objektiv informasjon, unngår å farge teksten med tydelige følelser, appellerer til fornuft.'],
+                ['U', 'Utrykksform', 'Direkte', 'Underfund&shy;ig', 'Beskriver hvordan budskapet kommuniseres; om det er eksplisitt og rett frem, eller mer implisitt, lekent eller med flere lag av betydning.', 'Kommuniserer budskapet klart, åpent og rett på sak, uten skjulte meningslag.', 'Bruker hint, ironi, humor eller andre implisitte virkemidler; det som sies er ikke alltid det som menes bokstavelig.'],
+                ['N', 'Narrativt formål', 'Forklar&shy;ende', 'Opplev&shy;elses&shy;basert', 'Definerer hovedintensjonen bak fortellingen; om den primært søker å informere og klargjøre, eller å dele en subjektiv reise/erfaring.', 'Stilen fokuserer på å gjøre komplekse temaer forståelige, presentere informasjon og argumenter logisk.', 'Stilen legger vekt på å formidle en personlig reise, følelse eller erfaring, ofte fra et subjektivt ståsted.'],
+                ['S', 'Språklig enkelhet', 'Enkel&shy;t', 'Kompleks&shy;t', 'Vurderer den grunnleggende strukturelle og leksikalske kompleksiteten i språket.', 'Bruker hovedsakelig kjente ord og enkle setningsstrukturer, lett å forstå umiddelbart.', 'Benytter avansert vokabular og/eller sammensatte setningsstrukturer som kan kreve mer konsentrasjon.'],
                 ['T', 'Språklig tilgjengelighet', 'Lett', 'Nyansert', 'Beskriver hvorvidt språket er umiddelbart klart eller om det inviterer til dypere tolkning og avdekking av flere lag.', 'Meningen er klar og umiddelbar, uten skjulte lag; tilgjengelig for et bredt publikum.', 'Språket inneholder subtiliteter, flere meningslag eller krever aktiv tolkning for full forståelse.'],
-                ['F', 'Fortellerens nærvær', 'Fortellerstemme', 'Objektiv', 'Angir hvor markant fortellerens egen stemme eller personlighet er i teksten.', 'Fortellerstemmen er merkbar, kanskje med egne kommentarer, refleksjoner, eller en distinkt personlig tone som adresserer leseren.', 'Fortelleren trer i bakgrunnen, og lar fakta og hendelser tale mest mulig for seg selv, som en "flue på veggen".'],
-                ['O', 'Strukturell orden', 'Lineær', 'Fragmentert', 'Beskriver den overordnede organiseringen av narrativet eller argumentasjonen.', 'Følger en kronologisk eller logisk sekvensiell rekkefølge fra start til slutt.', 'Bryter opp den tradisjonelle rekkefølgen, kan presentere elementer i ikke-kronologisk eller oppstykket form.'],
-                ['L', 'Flyt i strukturell konvensjon', 'Forutsigbar', 'Eksperimentell', 'Angir hvorvidt strukturen følger etablerte mønstre eller søker nye, ukonvensjonelle former.', 'Benytter kjente og etablerte narrative eller argumentative mønstre, lett å forutse progresjonen.', 'Utforsker ukonvensjonelle måter å koble sammen ideer eller hendelser, kan virke overraskende eller assosiativ.'],
-                ['M', 'Tempo', 'Rolig', 'Drivende', 'Definerer den opplevde hastigheten og rytmen i hvordan informasjonen eller handlingen utfolder seg.', 'Teksten har et langsommere, mer bedagelig tempo, dveler ved poenger eller scener.', 'Teksten har høy progresjon, beveger seg raskt fra ett punkt til det neste.'],
-                ['R', 'Narrativ energi', 'Reflekterende', 'Intens', 'Beskriver den dominerende energien eller modusen i fortellingen; om den er innadvendt og tenkende, eller utadvendt og kraftfull.', 'Teksten inviterer til ettertanke, utforsker tanker og følelser i dybden, ofte med en rolig energi.', 'Teksten er preget av sterk energi, dramatikk, eller umiddelbar påvirkning, ofte handlingsmettet eller med kraftige utsagn.'],
-                ['V', 'Verdenssyn', 'Optimistisk', 'Kritisk', 'Speiler den generelle holdningen til emnet eller verden; om den er preget av håp eller skepsis.', 'Fremhever det positive, muligheter og et lyst syn på fremtiden eller emnet.', 'Inntar en skeptisk holdning, stiller spørsmål ved etablerte sannheter, kan ha et mer pessimistisk eller realistisk utgangspunkt.'],
-                ['A', 'Tematisk Tilnærming', 'Konstruktiv', 'Problematiserende', 'Beskriver hvordan teksten engasjerer seg med sitt tema; om den bygger opp og søker løsninger, eller analyserer og avdekker problemer.', 'Fokuserer på å bygge opp, foreslå løsninger, eller presentere temaet på en positivt utviklende måte.', 'Fokuserer på å analysere, avdekke utfordringer, eller belyse komplekse problemer uten nødvendigvis å tilby enkle løsninger.'],
+                ['F', 'Fortellerens nærvær', 'Fortell&shy;erstemme', 'Objektiv', 'Angir hvor markant fortellerens egen stemme eller personlighet er i teksten.', 'Fortellerstemmen er merkbar, kanskje med egne kommentarer, refleksjoner, eller en distinkt personlig tone som adresserer leseren.', 'Fortelleren trer i bakgrunnen, og lar fakta og hendelser tale mest mulig for seg selv, som en "flue på veggen".'],
+                ['O', 'Strukturell orden', 'Lineær', 'Fragment&shy;ert', 'Beskriver den overordnede organiseringen av narrativet eller argumentasjonen.', 'Følger en kronologisk eller logisk sekvensiell rekkefølge fra start til slutt.', 'Bryter opp den tradisjonelle rekkefølgen, kan presentere elementer i ikke-kronologisk eller oppstykket form.'],
+                ['L', 'Flyt i strukturell konvensjon', 'Forutsig&shy;bar', 'Eksperiment&shy;ell', 'Angir hvorvidt strukturen følger etablerte mønstre eller søker nye, ukonvensjonelle former.', 'Benytter kjente og etablerte narrative eller argumentative mønstre, lett å forutse progresjonen.', 'Utforsker ukonvensjonelle måter å koble sammen ideer eller hendelser, kan virke overraskende eller assosiativ.'],
+                ['M', 'Tempo', 'Rolig', 'Driv&shy;ende', 'Definerer den opplevde hastigheten og rytmen i hvordan informasjonen eller handlingen utfolder seg.', 'Teksten har et langsommere, mer bedagelig tempo, dveler ved poenger eller scener.', 'Teksten har høy progresjon, beveger seg raskt fra ett punkt til det neste.'],
+                ['R', 'Narrativ energi', 'Reflekter&shy;ende', 'Intens', 'Beskriver den dominerende energien eller modusen i fortellingen; om den er innadvendt og tenkende, eller utadvendt og kraftfull.', 'Teksten inviterer til ettertanke, utforsker tanker og følelser i dybden, ofte med en rolig energi.', 'Teksten er preget av sterk energi, dramatikk, eller umiddelbar påvirkning, ofte handlingsmettet eller med kraftige utsagn.'],
+                ['V', 'Verdenssyn', 'Optimist&shy;isk', 'Kritisk', 'Speiler den generelle holdningen til emnet eller verden; om den er preget av håp eller skepsis.', 'Fremhever det positive, muligheter og et lyst syn på fremtiden eller emnet.', 'Inntar en skeptisk holdning, stiller spørsmål ved etablerte sannheter, kan ha et mer pessimistisk eller realistisk utgangspunkt.'],
+                ['A', 'Tematisk Tilnærming', 'Konstruktiv', 'Problem&shy;atiserende', 'Beskriver hvordan teksten engasjerer seg med sitt tema; om den bygger opp og søker løsninger, eller analyserer og avdekker problemer.', 'Fokuserer på å bygge opp, foreslå løsninger, eller presentere temaet på en positivt utviklende måte.', 'Fokuserer på å analysere, avdekke utfordringer, eller belyse komplekse problemer uten nødvendigvis å tilby enkle løsninger.'],
                 ['K', 'Språklig økonomi', 'Konsis', 'Ordrik', 'Vurderer hvorvidt språket er kortfattet eller mer utfyllende og detaljert.', 'Uttrykker seg kort og presist, unngår overflødige ord og digresjoner.', 'Bruker flere ord og setninger for å utdype poenger, kan være mer beskrivende og utfyllende.'],
-                ['X', 'Språklig tekstur', 'Minimalistisk', 'Billedrik', 'Beskriver graden av språklig utsmykning og bruk av figurative virkemidler.', 'Språket er enkelt, direkte og uten mye billedbruk eller adjektiver som skaper en "strippet" følelse.', 'Språket er rikt på bilder, metaforer, adjektiver og andre språklige virkemidler som skaper en levende og fargerik tekstur.'],
-                ['I', 'Informasjonsformål', 'Informerende', 'Argumenterende', 'Definerer om tekstens primære mål er å formidle fakta eller å bygge en argumentasjon for et synspunkt.', 'Fokuserer på å presentere fakta, data og observasjoner uten åpenbar argumentasjon.', 'Bygger aktivt opp et resonnement med sikte på å bevise eller overbevise om en bestemt påstand eller et syn.'],
-                ['J', 'Påvirkningsintensjon', 'Nøytral', 'Overtalende', 'Vurderer graden av bevisst forsøk på å påvirke leserens holdninger eller handlinger.', 'Inntar en upartisk holdning, uten åpenbare forsøk på å styre leserens konklusjoner.', 'Anvender strategier for å lede leseren mot et ønsket synspunkt eller handling.'],
+                ['X', 'Språklig tekstur', 'Minimal&shy;istisk', 'Billed&shy;rik', 'Beskriver graden av språklig utsmykning og bruk av figurative virkemidler.', 'Språket er enkelt, direkte og uten mye billedbruk eller adjektiver som skaper en "strippet" følelse.', 'Språket er rikt på bilder, metaforer, adjektiver og andre språklige virkemidler som skaper en levende og fargerik tekstur.'],
+                ['I', 'Informasjons&shy;formål', 'Informer&shy;ende', 'Argument&shy;erende', 'Definerer om tekstens primære mål er å formidle fakta eller å bygge en argumentasjon for et synspunkt.', 'Fokuserer på å presentere fakta, data og observasjoner uten åpenbar argumentasjon.', 'Bygger aktivt opp et resonnement med sikte på å bevise eller overbevise om en bestemt påstand eller et syn.'],
+                ['J', 'Påvirknings&shy;intensjon', 'Nøytral', 'Overtal&shy;ende', 'Vurderer graden av bevisst forsøk på å påvirke leserens holdninger eller handlinger.', 'Inntar en upartisk holdning, uten åpenbare forsøk på å styre leserens konklusjoner.', 'Anvender strategier for å lede leseren mot et ønsket synspunkt eller handling.'],
                 ['C', 'Seremonielt preg', 'Høytidelig', 'Avslappet', 'Beskriver graden av seremoniell eller høytidsstemt karakter i språket og tonen.', 'Språket har en formell, verdig og ofte høystemt karakter, egnet for seremonier eller viktige anledninger.', 'Tonen er løs og ledig, uten preg av formell eller seremoniell distanse.'],
                 ['D', 'Språklig formalitet', 'Formelt', 'Uformelt', 'Definerer den generelle formalitetsgraden i ordvalg og setningsstruktur.', 'Følger strenge grammatiske normer, bruker presist og ofte akademisk eller offisielt vokabular.', 'Tillater et mer dagligdags, konverserende språk, kan inkludere slang, forkortelser og enklere setninger.'],
-                ['G', 'Argumentasjonsfundament', 'Faktabasert', 'Intuisjonsbasert', 'Vurderer om argumentasjonen eller fremstillingen primært hviler på ytre fakta eller indre intuisjon/følelse.', 'Bygger på verifiserbare fakta, data og observerbare fenomener.', 'Stoler mer på magefølelse, personlig innsikt eller umiddelbar fornemmelse som grunnlag for påstander.'],
-                ['B', 'Begrunnelsesmetode', 'Kildebasert', 'Refleksjonsbasert', 'Beskriver hvordan påstander eller innsikter underbygges; gjennom eksterne kilder eller personlig refleksjon.', 'Henviser tydelig til og bygger på eksterne kilder, forskning, sitater eller dokumentasjon.', 'Utvikler innsikter gjennom personlig ettertanke, resonnement og filosofisk betraktning.'],
-                ['W', 'Virkelighetsgrad', 'Realistisk', 'Stilisert', 'Angir hvorvidt fremstillingen søker å etterligne virkeligheten direkte eller anvender en bevisst formgivning.', 'Sikter mot en direkte og gjenkjennelig avbildning av den faktiske verden og dens mekanismer.', 'Anvender bevisste formgrep, overdrivelser eller forenklinger for å skape et spesifikt uttrykk fremfor direkte realisme.'],
-                ['Y', 'Kunstnerisk Frihet', 'Virkelighetstro', 'Fri', 'Beskriver graden av frihet teksten tar seg i å tolke eller avvike fra en direkte gjengivelse av virkeligheten.', 'Legger vekt på å være så nøyaktig og tro mot den faktiske virkeligheten eller kildematerialet som mulig.', 'Tillater og benytter seg av subjektiv tolkning, symbolikk, og kreative avvik for å oppnå en kunstnerisk effekt.'],
-                ['Z', 'Pedagogisk tilnærming', 'Utforskende', 'Belærende', 'Definerer om teksten primært stiller spørsmål og utforsker, eller om den formidler kunnskap og instruerer.', 'Oppfordrer til nysgjerrighet, stiller åpne spørsmål og undersøker et tema fra flere sider uten å konkludere for leseren.', 'Har en klar intensjon om å lære bort noe spesifikt, gi instruksjoner eller formidle etablert kunnskap.'],
-                ['Q', 'Normativ funksjon', 'Tolkning', 'Forskrivende', 'Vurderer om teksten overlater moralske eller verdimessige konklusjoner til leseren, eller om den aktivt fremmer bestemte normer.', 'Presenterer informasjon eller fortellinger på en måte som lar leseren danne egne meninger om hva som er rett/galt eller ønskelig.', 'Uttrykker tydelige verdier, anbefalinger for atferd, eller forsøker å etablere/forsterke sosiale eller moralske normer.']
+                ['G', 'Argumentasjons&shy;fundament', 'Fakta&shy;basert', 'Intuisjons&shy;basert', 'Vurderer om argumentasjonen eller fremstillingen primært hviler på ytre fakta eller indre intuisjon/følelse.', 'Bygger på verifiserbare fakta, data og observerbare fenomener.', 'Stoler mer på magefølelse, personlig innsikt eller umiddelbar fornemmelse som grunnlag for påstander.'],
+                ['B', 'Begrunnelses&shy;metode', 'Kilde&shy;basert', 'Refleksjon&shy;sbasert', 'Beskriver hvordan påstander eller innsikter underbygges; gjennom eksterne kilder eller personlig refleksjon.', 'Henviser tydelig til og bygger på eksterne kilder, forskning, sitater eller dokumentasjon.', 'Utvikler innsikter gjennom personlig ettertanke, resonnement og filosofisk betraktning.'],
+                ['W', 'Virkelighets&shy;grad', 'Realistisk', 'Stilisert', 'Angir hvorvidt fremstillingen søker å etterligne virkeligheten direkte eller anvender en bevisst formgivning.', 'Sikter mot en direkte og gjenkjennelig avbildning av den faktiske verden og dens mekanismer.', 'Anvender bevisste formgrep, overdrivelser eller forenklinger for å skape et spesifikt uttrykk fremfor direkte realisme.'],
+                ['Y', 'Kunstnerisk Frihet', 'Virkelighet&shy;stro', 'Fri', 'Beskriver graden av frihet teksten tar seg i å tolke eller avvike fra en direkte gjengivelse av virkeligheten.', 'Legger vekt på å være så nøyaktig og tro mot den faktiske virkeligheten eller kildematerialet som mulig.', 'Tillater og benytter seg av subjektiv tolkning, symbolikk, og kreative avvik for å oppnå en kunstnerisk effekt.'],
+                ['Z', 'Pedagogisk tilnærming', 'Utforsk&shy;ende', 'Belær&shy;ende', 'Definerer om teksten primært stiller spørsmål og utforsker, eller om den formidler kunnskap og instruerer.', 'Oppfordrer til nysgjerrighet, stiller åpne spørsmål og undersøker et tema fra flere sider uten å konkludere for leseren.', 'Har en klar intensjon om å lære bort noe spesifikt, gi instruksjoner eller formidle etablert kunnskap.'],
+                ['Q', 'Normativ funksjon', 'Tolk&shy;ning', 'Forskriv&shy;ende', 'Vurderer om teksten overlater moralske eller verdimessige konklusjoner til leseren, eller om den aktivt fremmer bestemte normer.', 'Presenterer informasjon eller fortellinger på en måte som lar leseren danne egne meninger om hva som er rett/galt eller ønskelig.', 'Uttrykker tydelige verdier, anbefalinger for atferd, eller forsøker å etablere/forsterke sosiale eller moralske normer.']
             ]
-            ,eHtm:(g,e)=>e==undefined
-                ?`[detaljer c='${g[1]}...']<b>Tone${g[1]}</b><table border="0">${wowsn.how.tone.e.filter(f=>g[2].includes(f[0])).map(m=>wowsn.how.tone.eHtm(g,m)).join('')}</table><hr>[/detaljer]`
-                :`<tr><td>[detaljer c='${e[1]}: ${e[2]}/<wbr>${e[3]}...']<hr><table><tr><th colspan="2">${e[1]}</td></tr><tr><td></td><td>${e[4]}</td></tr><tr><td colspan="2"><hr></td></tr><tr><td class="vert"> ${e[2]} </td><td>${e[5]}</td></tr><tr><td colspan="2"><hr></td></tr><tr><td class="vert"> ${e[3]} </td><td>${e[6]}</td></tr></table><hr>[/detaljer]</td></tr>`
-            ,gHtm:g=>g==undefined
-                ?`<table border="0">${wowsn.how.tone.g.map((g)=>wowsn.how.tone.gHtm(g)).join('')}</table>`
+            // style wPNFOLMRWYUSKXDTCIJEVAGBZQn{display:none}
+            // table tr td-vert td-vert td w=99%
+            //<tr class="wCn wP5 w5 wN5 wF5 wO5 wL5 wM5 wR5 wW5 wY5 wU5 wS5 wK5 wX5 wD5 wT5 wC5 wI5 wJ5 wE5 wV5 wA5 wG5 wB5 wZ5 wQ5">
+            //<td></td></tr>
+            ,navFtr:'P123456789,N123456789,F123456789,O123456789,L123456789,M123456789,R123456789,W123456789,Y123456789,U123456789,S123456789,K123456789,X123456789,D123456789,T123456789,C123456789,I123456789,J123456789,E123456789,V123456789,A123456789,G123456789,B123456789,Z123456789,Q123456789'
+            ,nav:()=>`<table border="1" width="100%"><tr><td colspan="2"></td>`
+                +`<td rowspan="4" width="99%">`
+                    +`<table><tr><td>${wowsn.how.tone.vHtm(wowsn.how.tone.e[0],8)}</td></tr>`
+                    +`<tr><td><hr></td></tr>`
+                    +`<tr id="wpHT"><td>Hunter S. Thompson</td></tr>`
+                    +`<tr id="wpVW"><td>Virginia Woolf</td></tr>`
+                    +`<tr id="wpMP"><td>Marcel Proust</td></tr>`
+                    +`</table>`
+                +`</td></tr>`
+                +wowsn.how.tone.g.map((e)=>`<tr><td class="vert">${e[1]}</td><td><table border="1">`
+                        +e[2].split('').map((l)=>`<tr><td>${l}</td></tr>`).join('')
+                    +`</table></td></tr>`).join('')+`</table>`
+            ,vHtm:(e,v)=>`<hr><table width="100%">`
+                +`<tr><td class="vert" rowspan="2">${e[2].split('&shy;')[0]}</td><th width="99%">${e[1]}</th><td class="vert" rowspan="2">${e[3].split('&shy;')[0]}</td></tr>`
+                +`<tr><th><table border="" width="99%"><tr>`+`<td>&gt;</td>`.repeat(v-1)+`<td style="background:white">&nbsp;</td>`+`<td>&lt;</td>`.repeat(9-v)
+                    +`</th></tr></table>`+`</td></tr></table>\n`
+            ,eHtm:(g,e)=>!e?`[detaljer c='${g[1]}...']<b>Tone${g[1]}</b><table border="0">${wowsn.how.tone.e.filter(f=>g[2].includes(f[0])).map(m=>wowsn.how.tone.eHtm(g,m)).join('')}</table><hr>[/detaljer]`
+                :`<tr><td>[detaljer c='${e[1]}: ${e[2]}/<wbr>${e[3]}...']<hr><table><tr><th colspan="3">${e[1]}</th></tr><tr><td colspan="3">${e[4]}</td></tr><tr><td colspan="3"><hr></td></tr><tr><td class="vert"> ${e[2]} </td><td colspan="2">${e[5]}</td></tr><tr><td colspan="3"><hr></td></tr><tr><td></td><td>${e[6]}</td><td class="vert"> ${e[3]} </td></tr></table><hr>[/detaljer]</td></tr>`
+            ,gHtm:g=>!g?`<table border="0">${wowsn.how.tone.g.map((g)=>wowsn.how.tone.gHtm(g)).join('')}</table>`
                 :`<tr><td>${wowsn.how.tone.eHtm(g)}</td></tr>`
             ,person: [
                 ['AG', 'Anders Giæver',       'P8,E2,U8,N9,S4,T8,F1,O8,L8,M8,R8,V9,A9,K7,X8,I9,J9,C9,D9,G8,B9,W8,Y9,Z2,Q8'],
@@ -164,21 +181,15 @@ window.wowsn={
                     'TC': ['US', '1-2, 1a5, 1b6, 1c1, 2-1, 2a1, 2b1, 3-1, 3a1, 3b1, 3c1']
                 }
             }
-            ,voiced:i=>{
-                // return `[betaljer c='${wowsn.how.tone.person[i][1]}...']
-                // <hr><b>${wowsn.how.tone.person[i][1]}</b><br>
-                // <hr>[/detaljer]`
-                let p=wowsn.how.tone.person[i]
-                , res=`[detaljer c='${p[1]}...']<hr><b>${p[1]}</b><br>`
-                //, pSi = window.wowsn.how.tone.personstylepars[1];
-                //console.warn(pSi);
-                res+=typeof wowsn.how.tone.personstylepars;
-                return res;
-                //return `[detaljer c='${wowsn.how.tone.person[p][1]}...']<hr><b>${wowsn.how.tone.person[p][1]}</b><br>${styleDescriptionHtml}<hr>[/detaljer]`;
-            }
-            ,voice:(t,p)=>(p==undefined)?t+wowsn.how.tone.person.map((_, i) => wowsn.how.tone.voice(i)).filter(Boolean).join('\n'):(typeof p!='number')?wowsn.how.tone.voice(t,wowsn.how.tone.person.findIndex(person=>person[0]==p)):wowsn.how.tone.voiced(p)
-            ,detaljer:(pt='',t='')=>wowsn.how.tone.voiced(pt)
-                +`[detaljer c='${t}...']<hr>${wowsn.how.tone.gHtm()}<hr>[/detaljer]`
+            ,voiced:p=>`[detaljer c='${p[1]}...']<hr><b>${p[1]}</b>
+                ${p[2].split(',').map((v)=>wowsn.how.tone.vHtm(wowsn.how.tone.e.find(e=>e[0]==v[0]),v[1])).join('')}
+                <hr>[/detaljer]\n`
+            ,voice:(t,p)=>(p==undefined)
+                ?t+wowsn.how.tone.person.map((v)=>wowsn.how.tone.voice(t,v)).filter(Boolean).join('')
+                :wowsn.how.tone.voiced(p)
+            ,detaljer:(pt='',t='')=>
+                `[detaljer c='${pt}...']${wowsn.how.tone.nav()}<hr>${wowsn.how.tone.voice('')}<hr>[/detaljer]
+                [detaljer c='${t}...']<hr>${wowsn.how.tone.gHtm()}<hr>[/detaljer]`
         }
         ,detaljer:t=>`${t}: ${wowsn.how.tone.detaljer('person','tone')}`
         ,init:p=>{}
