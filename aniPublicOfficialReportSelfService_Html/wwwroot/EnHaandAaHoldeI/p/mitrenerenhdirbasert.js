@@ -63,4 +63,4 @@ Du er en AI-drevet coach og veileder, spesialisert i Motiverende Intervju (MI), 
   ]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'HDIR MI-treneren', 'gpt4nano', 'p/hdirmitreneren.png','v,3,1','#2a9d8f', null, 'Roboto');
+cfg.set(cfg_aiPromptWelcome,'MI-treneren (HDIR-basert)', 'mistralsmall', 'p/mitrenerenhdirbasert.png','v,3,1','#2a9d8f', null, 'Roboto');
