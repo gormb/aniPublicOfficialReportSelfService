@@ -78,11 +78,17 @@ const ui = {
         ui.c.Lagres.innerHTML = ['&nbsp;&nbsp;🔒&nbsp;&nbsp;lagres ikke', '&nbsp;&nbsp;💾&nbsp;&nbsp;lagres lokalt', '&nbsp;&nbsp;☁️&nbsp;&nbsp;nettlagret'][l]
         return ui.menu.EBold('lagreinnhold', lagring.aktiv>0);
     }
-    , Show: (el,b) => (el.classList.toggle('hidden', !(b ?? el.classList.contains('hidden'))), !!b)
-    , _sizeI: 0,
-    ChangeFontSize() {
-      document.documentElement.style.setProperty('--font-size', ['medium','x-large','xx-large','xx-large','medium'][++this._sizeI % 5]);
-      document.body.classList.toggle('dark-mode', this._sizeI % 5 > 2);
+    , Bold:(el,b)=> (el?.classList.toggle('bold',!(b??el?.classList.contains('bold'))),el?.classList.contains('bold')??false)
+    , Show:(el,b)=>(el?.classList.toggle('hidden',!(b??el?.classList.contains('hidden'))),el?.classList.contains('hidden')??false)
+    , Nxt:(el,tn=el.tagName,eN=el?.nextElementSibling)=>!eN||eN.tagName==tn?eN:ui.Nxt(eN,tn)
+    , ShowNxt:(el,b)=>ui.Show(ui.Nxt(el),b)
+    , BoldShowNxt:(el,b)=>(ui.ShowNxt(el,b),ui.Bold(el,b))
+    , ShowOnly:(el,b,p=el?.parentElement)=>Array.from(p.children).forEach(r=>ui.Show(r,r==el||!b))
+    , BoldOnlyShowNxt:(el,b,p=el.parentElement)=>ui.ShowOnly(p,ui.BoldShowNxt(el,b))
+    , _sizeI:0
+    , ChangeFontSize() {
+        document.documentElement.style.setProperty('--font-size', ['medium','x-large','xx-large','xx-large','medium'][++this._sizeI % 5]);
+        document.body.classList.toggle('dark-mode', this._sizeI % 5 > 2);
     }
     ,font:{n:f=>(document.head.appendChild(Object.assign(document.createElement('link'),{href:`https://fonts.googleapis.com/css2?family=${encodeURIComponent(f)}&display=swap`,rel:'stylesheet'})),document.documentElement.style.setProperty('--font-family',`'${f}'`),f)}
     , menu : {

@@ -50,6 +50,7 @@ button:hover { background: var(--primary-color); }
     .suggest { position: absolute; left: 45%; transform: translateX(-50%); bottom: 44px; background: #ccc; border-top: 1px solid #ccc; padding: 7px 14px; z-index: 100; }
 td {vertical-align:top}
 .vert {writing-mode: vertical-lr;text-orientation:mixed;transform: rotate(180deg);white-space:nowrap;}
+.selected {background-color: var(--light-msg)}
 
 @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     .rotating { display: inline-block; animation: rotate 10s linear infinite; }

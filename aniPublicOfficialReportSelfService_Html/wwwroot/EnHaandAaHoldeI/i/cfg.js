@@ -86,7 +86,9 @@ const cfg={
     , aiProviderTimeout:10
     , loadV:(u,y)=>fetch(new URL(u,location)).then(r=>r.text()).then(y)
     , l:src=>new Promise((onload,onerror)=>document.head.appendChild(Object.assign(document.createElement('script'),{src,onload,onerror/*,type:'module'*/})))
-    , lw:async o=>(await cfg.l(`o/${o}.js`),window[o])
+    //, lw2:async o=>(await cfg.l(`o/${o}.js`),window[o])
+    , lw: async o => await cfg.l(`o/${o}.js`).then(() => window[/*'_'*/+o])
+    //, lw: async o => (await cfg.l(`o/${o}.js`), eval('window.' + o))
     , load:(c, cid=null)=>{
         return new Promise((y, n) => {
             cid = cid||'p/'+c.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
