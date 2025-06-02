@@ -1080,6 +1080,7 @@ window.msgSendSpeak=()=> {
     r.lang = 'no-NO'; // Set language to Norwegian
     r.start();
     r.onresult = e => {
+        r.stop();
         ui.e.Input_setValue(ui.c.Input.value+e.results[0][0].transcript);
         if (ui.c.Input.value.length) 
             msgSend(null, msgRecieveTalkAndSend);
