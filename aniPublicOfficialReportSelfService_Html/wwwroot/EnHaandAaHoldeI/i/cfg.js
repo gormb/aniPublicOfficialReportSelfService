@@ -15,6 +15,7 @@ const cfg={
         ]],['Offentlig >>§-',[
             'Norge veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
             ,'Norge personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
+            ,'NAV >>§ -', ['NAV Jobbsøk og karriereveiledning (KOJ)', 'NAV CV-hjelp', 'NAV Jobbsøknadshjelp']
             ,'Kommune >>§-', ['NO Alt Om Kommunale Tjenester','Eldre i Asker Kommune']
         ]],['Virksomhet >>§-',[
             'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning', 'Ansatt: Meningsfylt jobb']

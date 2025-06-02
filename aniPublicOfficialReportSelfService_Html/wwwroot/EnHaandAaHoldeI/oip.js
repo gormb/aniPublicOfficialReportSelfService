@@ -1,5 +1,3 @@
-// Torry: fargene som kommer ut. Fargerikt? dype klangtoner?
-// Legg til språkrådet
 /* 
 Jeg lager en modell for tone for språk struktur, uttrykk og intensjon for at LLM kan skrive bedre (kall det en omformer)
 */
