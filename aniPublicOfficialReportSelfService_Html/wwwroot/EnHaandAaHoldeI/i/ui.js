@@ -303,5 +303,5 @@ window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
     if (!bIsRetry && !voices.length) 
         return setTimeout(() => msgRecieveTalkAndSend(t, true), 1000); // Take a sec to ensure voices are loaded
     speechSynthesis.speak(u);
-    msgSendSpeak();
+    //msgSendSpeak();
 }

@@ -1080,7 +1080,6 @@ window.msgSendSpeak=()=> {
     r.lang = 'no-NO'; // Set language to Norwegian
     r.start();
     r.onresult = e => {
-        r.stop();
         ui.e.Input_setValue(ui.c.Input.value+e.results[0][0].transcript);
         if (ui.c.Input.value.length) 
             msgSend(null, msgRecieveTalkAndSend);
@@ -1094,7 +1093,7 @@ window.msgRecieveTalkAndSend=(t, bIsRetry=false)=> {
     if (!bIsRetry && !voices.length) 
         return setTimeout(() => msgRecieveTalkAndSend(t, true), 1000); // Take a sec to ensure voices are loaded
     speechSynthesis.speak(u);
-    msgSendSpeak();
+    //msgSendSpeak();
 }
 cfg_aiPromptWelcome=cfg_aiPromptWelcome=`Velkommen til Aigap-chatten.
 
