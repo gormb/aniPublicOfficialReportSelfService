@@ -11,4 +11,4 @@ cfg.aiPrompt= [
 [`Jeg trenger hjelp til å lage en plan for jobbsøkingen min.`,
 `Absolutt. En god plan kan gjøre jobbsøkingen mer strukturert og effektiv. [detaljer c='Hva innebærer en jobbstrategi?...']<hr><b>Hva innebærer en jobbstrategi?</b><br>Den kan inkludere å definere jobbmål, kartlegge kompetanse, identifisere aktuelle bransjer og bedrifter, planlegge nettverksaktiviteter, og sette opp en tidsplan for søknadsskriving og oppfølging.<hr>[/detaljer] For å starte, hva er det viktigste målet du har med jobbsøkingen akkurat nå?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'NAV Jobbsøk og karriereveiledning (KOJ)','mistrallarge','p/navjobbskogkarriereveiledningkoj.png','f,5,2','rgb(207,23,31)', null, 'Source Sans 3')
+cfg.set(cfg_aiPromptWelcome,'NAV Jobbsøk og karriereveiledning (KOJ)','mistrallarge','p/navjobbskogkarriereveiledningkoj.png',null,'rgb(207,23,31)', null, 'Source Sans 3')

@@ -11,4 +11,4 @@ cfg.aiPrompt= [
 [`CV-en min er på 4 sider, er det for langt?`,
 `Det er et relevant spørsmål. Lengden på en CV bør tilpasses erfaring og bransje, men generelt anbefales det å holde den konsis. [detaljer c='Optimal lengde?...']<hr><b>Optimal lengde</b><br>For de fleste er 1-2 sider ideelt. Målet er at en arbeidsgiver raskt skal få oversikt over din mest relevante kompetanse. Lange CV-er kan gjøre det vanskeligere å fange leserens oppmerksomhet.<hr>[/detaljer] Skal vi se på hvordan vi kan gjøre din CV mer fokusert og kanskje kutte ned på lengden uten å miste viktig informasjon?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'NAV CV-hjelp','mistrallarge','p/navcvhjelp.png','f,5,2','rgb(207,23,31)', null, 'Source Sans 3')
+cfg.set(cfg_aiPromptWelcome,'NAV CV-hjelp','mistrallarge','p/navcvhjelp.png',null,'rgb(207,23,31)', null, 'Source Sans 3')
