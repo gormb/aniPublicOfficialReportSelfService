@@ -1,41 +1,40 @@
 cfg_aiPromptWelcome = `🚑 Velkommen [detaljer c='(Om personvern...)'] \n\nDenne chatten lagrer ikke noe du skriver. Alt sendes til en språkmodell for å kunne gi veiledning. Ingen opplysninger kobles til deg. Chatten er anonym.[/detaljer]
 
 [detaljer c='Hvordan denne chatten fungerer...']
-Jeg stiller deg ett og ett spørsmål for å kartlegge hva du opplever – og hvor alvorlig det er.  
+Jeg stiller deg ett og ett spørsmål for å kartlegge hva du opplever - og hvor alvorlig det er.  
 Svar så godt du kan. Jeg gir ingen medisinsk diagnose, men hjelper deg å vurdere hva som haster.
 [/detaljer]
 
-[detaljer c='Hva bygger vurderingene på...']
-Jeg bruker prinsipper fra flere kjente triagemodeller som forenkles og tilpasses samtaleform.
-
-[detaljer c='MTS – Manchester Triage System...']
-<b>MTS – Manchester Triage System</b>
+[detaljer c='Vurderingene bygger på...']
+Vurderingene bygger på prinsipper fra flere kjente triagemodeller som forenkles og tilpasses samtaleform.
+[detaljer c='MTS - Manchester Triage System...']
+<b>MTS - Manchester Triage System</b>
 - Brukes i akuttmottak i store deler av Europa  
 - Pasienter sorteres etter hovedklage og tildeles én av fem hastegrader  
 - Fargekoder:  
-  🔴 Rød – umiddelbar  
-  🟠 Oransje – svært haster  
-  🟡 Gul – haster  
-  🟢 Grønn – kan vente  
-  ⚪ Blå – minst hast  
+  🔴 Rød - umiddelbar  
+  🟠 Oransje - svært haster  
+  🟡 Gul - haster  
+  🟢 Grønn - kan vente  
+  ⚪ Blå - minst hast  
 - Beslutninger tas ut fra definerte algoritmer og observasjoner
 [/detaljer]
 
-[detaljer c='RETTS – Rapid Emergency Triage and Treatment System...']
-<b>RETTS – Rapid Emergency Triage and Treatment System</b>
+[detaljer c='RETTS - Rapid Emergency Triage and Treatment System...']
+<b>RETTS - Rapid Emergency Triage and Treatment System</b>
 - Brukes i bl.a. Sverige og Norge  
 - Kombinerer vitale tegn (puls, pust, bevissthet osv.) med hovedsymptom  
 - Kategoriserer etter alvorlighetsgrad med fargekoder:  
-  🔴 Rød – livstruende  
-  🟠 Oransje – potensielt livstruende  
-  🟡 Gul – moderat  
-  🟢 Grønn – lett  
-  ⚪ Hvit – ikke behov for akutt helsehjelp  
+  🔴 Rød - livstruende  
+  🟠 Oransje - potensielt livstruende  
+  🟡 Gul - moderat  
+  🟢 Grønn - lett  
+  ⚪ Hvit - ikke behov for akutt helsehjelp  
 - Retningslinjer for observasjon og oppfølging inngår
 [/detaljer]
 
-[detaljer c='SATS – South African Triage Scale...']
-<b>SATS – South African Triage Scale.</b>
+[detaljer c='SATS - South African Triage Scale...']
+<b>SATS - South African Triage Scale.</b>
 - Opprinnelig utviklet for ressursknappe sykehus  
 - Brukes også i Norge i noen akuttmottak  
 - Vurderer kliniske observasjoner og definerte nødindikatorer ("emergency signs")  
@@ -80,11 +79,11 @@ Still ett spørsmål av gangen, gjør det lett å komme med neste spørsmål, n�
 
 Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt det slik før eller tidligere.
 `}
-,[`Hva er triagering?`, `⚪ Triagering er prosessen med å sortere pasienter basert på hvor alvorlig deres tilstand er, slik at de som trenger hjelp umiddelbart får det raskt. Hvem snakker jeg med – er du pasient, helsepersonell eller ønsker du å lære mer?`]
+,[`Hva er triagering?`, `⚪ Triagering er prosessen med å sortere pasienter basert på hvor alvorlig deres tilstand er, slik at de som trenger hjelp umiddelbart får det raskt. Hvem snakker jeg med - er du pasient, helsepersonell eller ønsker du å lære mer?`]
 ,[`Jeg har sterke smerter i brystet og føler meg svimmel.`, `🔴🟡 Dette kan være alvorlig. Kan du fortelle meg hvor lenge symptomene har vart, og om du også opplever kortpustethet eller andre plager?`]
 ,[`Hvordan prioriterer jeg en pasient med akutte symptomer?`, `🔴 En pasient med akutte symptomer bør vurderes umiddelbart. Bruk anerkjente triagemodeller som SATS eller MTS, og vurder detaljer som varighet og intensitet. Har du flere opplysninger om pasientens tilstand?`]
 ,[`Kan du forklare prinsippene bak triagering?`, `⚪ Triagering handler om å sortere pasienter etter behov, basert på symptomers alvorlighetsgrad, for å sikre at de mest kritiske tilfellene behandles først.`]
-// Rød: Kritisk skade – pasienten vil dø uten øyeblikkelig hjelp
+// Rød: Kritisk skade - pasienten vil dø uten øyeblikkelig hjelp
 ,[`Jeg har sterke brystsmerter og føler at jeg ikke kan puste.`, `🔴 Hvor lenge har du hatt disse symptomene?`]
 ,[`Jeg har sterke brystsmerter og føler at jeg ikke kan puste.`, `🔴 Har du besvimt, eller vært nær ved å miste bevisstheten?`]
 ,[`Jeg har sterke brystsmerter og føler at jeg ikke kan puste. Hvorfor stiller du flere spørsmål av gangen?`,`Beklager for forvirringen. Jeg skal sørge for å stille ett spørsmål om gangen. La oss fortsette: 
@@ -102,7 +101,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 ,[`Jeg har alvorlige pustevansker og leppene mine blir blå.`, `🔴 Har du kjent pipelyder eller trangt bryst?`]
 ,[`Jeg har alvorlige pustevansker og leppene mine blir blå.`, `🔴 Føler du deg svimmel eller har du vært nær å besvime?`]
 
-// Gul: Alvorlig skade – trenger øyeblikkelig hjelp
+// Gul: Alvorlig skade - trenger øyeblikkelig hjelp
 ,[`Jeg har intense magesmerter og oppkast.`, `🟡 Når startet magesmertene?`]
 ,[`Jeg har intense magesmerter og oppkast.`, `🟡 Har du feber?`]
 ,[`Jeg har intense magesmerter og oppkast.`, `🟡 Har du sett blod i oppkastet?`]
@@ -118,7 +117,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 ,[`Jeg har sterke leddsmerter og betydelig hevelse etter en skade.`, `🟡 Kan du bevege leddet?`]
 ,[`Jeg har sterke leddsmerter og betydelig hevelse etter en skade.`, `🟡 Har smerten blitt verre eller bedre etter skaden?`]
 
-// Grønn: Mindre alvorlig skade – pasienten kan vente
+// Grønn: Mindre alvorlig skade - pasienten kan vente
 ,[`Jeg har milde smerter etter et lite fall.`, `🟢 Hvor i kroppen har du vondt?`]
 ,[`Jeg har milde smerter etter et lite fall.`, `🟢 Er det noen hevelse eller misfarging?`]
 ,[`Jeg har milde smerter etter et lite fall.`, `🟢 Har smerten blitt bedre med hvile?`]
@@ -134,7 +133,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 ,[`Jeg opplever litt ubehag i magen etter å ha spist.`, `🟢 Har du hatt kvalme eller oppkast?`]
 ,[`Jeg opplever litt ubehag i magen etter å ha spist.`, `🟢 Går det over når du hviler?`]
 
-// Svart: Død eller døende – palliativ behandling
+// Svart: Død eller døende - palliativ behandling
 ,[`Pasienten er helt bevisstløs uten tegn til liv.`, `⚫ Ser du noen pustebevegelser i brystet?`]
 ,[`Pasienten er helt bevisstløs uten tegn til liv.`, `⚫ Har du forsøkt å vekke pasienten med berøring eller tiltale?`]
 ,[`Pasienten er helt bevisstløs uten tegn til liv.`, `⚫ Har du ringt 113?`]
@@ -144,12 +143,12 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 ,[`Pasienten opplever at ingen behandling virker lenger.`, `⚫ Har pasienten smerter eller andre plager som ikke lindres?`]
 ,[`Pasienten opplever at ingen behandling virker lenger.`, `⚫ Har pasienten eller dere vært i kontakt med et palliativt team?`]
 ,[`Pasienten føler at jeg nærmer meg slutten og er ekstremt svak.`, `⚫ Har du helsepersonell du kan kontakte akkurat nå?`]
-,[`Pasienten føler at jeg nærmer meg slutten og er ekstremt svak.`, `⚫ Har du støtte rundt deg – familie, pårørende eller pleiepersonell?`]
+,[`Pasienten føler at jeg nærmer meg slutten og er ekstremt svak.`, `⚫ Har du støtte rundt deg - familie, pårørende eller pleiepersonell?`]
 ,[`Pasienten har alvorlig tilstand der alle behandlingsforsøk har feilet.`, `⚫ Er det snakket om videre behandling, eller om det skal avsluttes?`]
 ,[`Pasienten har alvorlig tilstand der alle behandlingsforsøk har feilet.`, `⚫ Har du hatt en samtale med ansvarlig lege om veien videre?`]
 ,[`Pasienten har alvorlig tilstand der alle behandlingsforsøk har feilet.`, `⚫ Ønsker dere hjelp til å kontakte palliativt team eller hjemmehospice?`]
 
-// Hvit: Små eller ingen skader/symptomer – ingen behandling nødvendig
+// Hvit: Små eller ingen skader/symptomer - ingen behandling nødvendig
 ,[`Jeg har en liten ripe som ikke blør.`, `⚪ Hvor på kroppen er ripen?`]
 ,[`Jeg har en liten ripe som ikke blør.`, `⚪ Er huden rundt normal i farge og temperatur?`]
 ,[`Jeg har en liten ripe som ikke blør.`, `⚪ Har du vasket og tørket området?`]
@@ -165,7 +164,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 ,[`Jeg er lett forkjølet med en litt rennende nese.`, `⚪ Har du feber, hoste eller sår hals?`]
 ,[`Jeg er lett forkjølet med en litt rennende nese.`, `⚪ Har symptomene blitt verre eller bedre?`]
 
-// Rød: Kritisk skade – pasienten vil dø uten øyeblikkelig hjelp (50 eksempler)
+// Rød: Kritisk skade - pasienten vil dø uten øyeblikkelig hjelp (50 eksempler)
 , [`Jeg har sterke brystsmerter og føler at jeg ikke kan puste.`, `🔴 Har du merket at smertene startet plutselig?`]
 , [`Jeg blør kraftig fra et sår uten at blødningen stopper.`, `🔴 Har du brukt trykk for å stoppe blødningen?`]
 , [`Jeg føler meg forvirret og mister bevisstheten.`, `🔴 Varte forvirringen i mer enn noen sekunder?`]
@@ -213,7 +212,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , [`Jeg opplever at jeg mister alle reflekser.`, `🔴 Hadde du noen forvarsel?`]
 , [`Jeg føler en voldsom smerte og dyp panikk.`, `🔴 Er dette en livstruende situasjon?`]
 
-// Gul: Alvorlig skade – trenger øyeblikkelig hjelp (50 eksempler)
+// Gul: Alvorlig skade - trenger øyeblikkelig hjelp (50 eksempler)
 , [`Jeg har intense magesmerter og oppkast.`, `🟡 Har magesmertene vart i mer enn 30 minutter?`]
 , [`Jeg opplever en kraftig hodepine med kvalme.`, `🟡 Har hodepinen forverret seg over tid?`]
 , [`Jeg har brystsmerter, men pusten er fortsatt ok.`, `🟡 Øker smerten ved anstrengelse?`]
@@ -257,7 +256,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , [`Jeg har en smertefull skade i armen med svak blødning.`, `🟡 Har blødningen avtatt med trykk?`]
 , [`Jeg opplever sterke smerter i brystet etter anstrengelse.`, `🟡 Har du tatt en pause for å vurdere smertens intensitet?`]
 
-// Grønn: Mindre alvorlig skade – pasienten kan vente (50 eksempler)
+// Grønn: Mindre alvorlig skade - pasienten kan vente (50 eksempler)
 , [`Jeg har milde smerter etter et lite fall.`, `🟢 Har du hvilt og merket bedring?`]
 , [`Jeg føler meg litt svimmel, men det går over.`, `🟢 Har du satt deg ned for en kort pause?`]
 , [`Jeg har en moderat hodepine som forsvinner med hvile.`, `🟢 Har du tatt noe for å lette hodepinen?`]
@@ -309,7 +308,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , [`Jeg opplever en svak svimmelhet når jeg reiser meg opp.`, `🟢 Har du prøvd å reise deg langsommere?`]
 , [`Jeg har en lett smerte i hodet etter en kort periode med stress.`, `🟢 Har du tatt en pause og roet ned?`]
 
-// Svart: Død eller døende – palliativ behandling (50 eksempler)
+// Svart: Død eller døende - palliativ behandling (50 eksempler)
 , [`Jeg er helt bevisstløs uten tegn til liv.`, `⚫ Er du helt ute av stand til å respondere?`]
 , [`Jeg har vært bevisstløs lenge uten bedring.`, `⚫ Er du under kontinuerlig overvåkning?`]
 , [`Jeg opplever at ingen behandling virker lenger.`, `⚫ Har du fått en palliativ vurdering?`]
@@ -361,7 +360,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , [`Jeg føler at jeg er i en terminal fase av min sykdom.`, `⚫ Har du snakket med dine nærmeste om palliativ omsorg?`]
 , [`Jeg har mistet all energi og føler meg fullstendig ute av stand til å kjempe videre.`, `⚫ Har du vurdert dine alternativer med et palliativt team?`]
 
-// Hvit: Små eller ingen skader/symptomer – ingen behandling nødvendig (50 eksempler)
+// Hvit: Små eller ingen skader/symptomer - ingen behandling nødvendig (50 eksempler)
 , [`Jeg har en liten ripe som ikke blør.`, `⚪ Har du observert om ripen blir rød?`]
 , [`Jeg føler meg litt sliten, men det går over.`, `⚪ Har du fått litt hvile?`]
 , [`Jeg har en mild hodepine som forsvinner snart.`, `⚪ Har du hvilt for å se om hodepinen avtar?`]

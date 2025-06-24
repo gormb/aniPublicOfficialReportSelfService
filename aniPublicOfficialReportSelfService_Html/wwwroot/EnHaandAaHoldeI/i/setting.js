@@ -3,7 +3,7 @@ const setting={
     debug:false, dMsg:(k,v)=>{if(setting.debug) {if(v)console.warn(k,v); else console.warn(k)}}
     , menu:ver=>`App >>§- ${ cfg.menusForAppProvider(ver) }
         |Språkdrakt >>§-||Sjargong >>|||Ungdomsspråk|||Voksenspråk§*
-            ||Språk >>§-|||Bokmål§*|||Nynorsk|||Sámegiella|||Svenska|||Dansk|||English (UK)|||English (US)        
+            ||Språk >>§-|||Bokmål§*|||Nynorsk|||Ukrayinska mova|||Sámegiella|||Svenska|||Dansk|||English (UK)|||English (US)
         |Handling >>§-${ver?'':'||Begynn på nytt...||Tøm lagring...||Analyser personvern||Forsøk alle AI'}
             ${ver?'||Katalogside...':'||Administrasjon...'}
             ${ver?'':'||Utvikling >>§-|||Løsningsdesign|||Simuler|||List modeller|||Debug'}

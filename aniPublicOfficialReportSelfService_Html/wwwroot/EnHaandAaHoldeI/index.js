@@ -17,8 +17,9 @@ window.menuClick_m_nynorsk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Nynorsk', u
 window.menuClick_m_smegiella=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Sámegiella', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into Sámegiella. and idioms. In Sámegiella, the translation would be: "Geavahit vuosttaš mielddun Sámegiellatis. Nugo šiehtat, dahje veahkkin muhtun mielddun Sámegiellatis, geavahit kultuvrralaš miiheapmiid ja idiome. From now on, only answer in Sámegiella');
 window.menuClick_m_svenska=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Svenska', ui.menu.Click_alleSpraak)^msgRedoLast('Øversett senaste meddelandet på svenska. Från och med nu ska du endast svara kortfattat på svenska.');
 window.menuClick_m_dansk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Dansk', ui.menu.Click_alleSpraak)^msgRedoLast('Oversett sidste besked på dansk. Fra nu af skal du kun svare kortfattet på dansk.');
-window.menuClick_m_englishus=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English (UK)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into British English. From now on, please respond briefly using British spelling, vocabulary, and idioms.');
-window.menuClick_m_englishuk=e=> ui.menu.Show(false)^ui.menu.EBoldOnly('English (US)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into American English. From now on, please respond briefly using American spelling, vocabulary, and idioms');
+window.menuClick_m_ukrayinskamova=e=>ui.menu.Show(false) ^ ui.menu.EBoldOnly('Українська', ui.menu.Click_alleSpraak)^msgRedoLast('Перекладіть останнє повідомлення українською. Відтепер відповідайте коротко лише українською.');
+window.menuClick_m_englishus=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('English (UK)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into British English. From now on, please respond briefly using British spelling, vocabulary, and idioms.');
+window.menuClick_m_englishuk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('English (US)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into American English. From now on, please respond briefly using American spelling, vocabulary, and idioms');
 
 // menuClick_m_ - Handling >>
 window.menuClick_m_begynnpnytt=e=>{
