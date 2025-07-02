@@ -1,0 +1,56 @@
+<!-- Place this inside your page where you want the filter and results -->
+<div id="toneFilter"></div>
+<div id="tonePeople"></div>
+<script>
+// filepath: (suggested for your main HTML or a new filter.js)
+// Minimal filter UI for wowsn.how.tone
+
+const tone = window.wowsn?.how?.tone || window.wowsn_how_tone;
+const axes = tone.e;
+const people = tone.person;
+
+let filter = {}; // {P: 8, E: 2, ...}
+
+function renderFilter() {
+    let html = `<table border="1" width="100%"><tr>`;
+    axes.forEach((ax, i) => {
+        html += `<td class="vert" style="cursor:pointer" onclick="expandAxis(${i})">${ax[1]}</td>`;
+    });
+    html += `</tr></table>`;
+    document.getElementById('toneFilter').innerHTML = html;
+}
+
+function expandAxis(idx) {
+    const ax = axes[idx];
+    let html = `<table border="1" width="100%"><tr><th colspan="11">${ax[1]}</th></tr><tr>`;
+    for (let v = 1; v <= 9; ++v) {
+        html += `<td style="cursor:pointer${filter[ax[0]]==v?'background:#efe':''}" onclick="setAxis('${ax[0]}',${v})">${v}</td>`;
+    }
+    html += `<td style="cursor:pointer" onclick="setAxis('${ax[0]}',0)">X</td></tr></table>`;
+    document.getElementById('toneFilter').innerHTML = html + `<button onclick="renderFilter()">Tilbake</button>`;
+}
+
+function setAxis(axis, val) {
+    if (val) filter[axis] = val; else delete filter[axis];
+    renderFilter();
+    renderPeople();
+}
+
+function renderPeople() {
+    let filtered = people.filter(p => Object.entries(filter).every(([k,v]) =>
+        (p[2].match(new RegExp(`${k}${v}`)))
+    ));
+    let html = `<table border="1" width="100%">` +
+        filtered.map(p=>`<tr><td>${p[1]}</td></tr>`).join('') +
+        `</table>`;
+    document.getElementById('tonePeople').innerHTML = html;
+}
+
+// Initial render
+renderFilter();
+renderPeople();
+
+// Expose for onclick
+window.expandAxis = expandAxis;
+window.setAxis = setAxis;
+</script>
