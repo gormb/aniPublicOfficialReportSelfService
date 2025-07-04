@@ -11,6 +11,7 @@ const cfg={
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§-',['Flytveilederen','CRPS-veilederen','Biopsykososial modell','Kroppens stressystem','Mellom rom og spekter','MI-treneren (HDIR-basert)']
+            ,'Hlm - økosystem >>§-',['Qigong Academy']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Offentlig >>§-',[
             'Norge veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
