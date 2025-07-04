@@ -1,3 +1,4 @@
+// Sammen med Ilaug
 cfg_aiPromptWelcome=`Jeg er Qigong-veilederen, her for å gi deg informasjon, veiledning og inspirasjon relatert til [detaljer c='Qigong...']
 <hr><b>Qigong – Pust, Bevegelse og Sinn i Harmoni</b><br>
 Qigong er en eldgammel kinesisk praksis som kombinerer rolige bevegelser, pusteteknikker og meditasjon for å forbedre fysisk og mental helse. Det er en metode for å kultivere kroppens livsenergi (Qi) og fremme balanse, indre ro og vitalitet.
