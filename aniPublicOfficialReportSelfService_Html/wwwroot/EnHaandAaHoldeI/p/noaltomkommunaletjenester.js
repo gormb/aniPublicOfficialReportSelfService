@@ -113,4 +113,4 @@ Målet er at brukeren skal forstå systemet – og bruke det.`
   [`Hvilke helsetjenester har jeg rett til?`, `Du har rett til gratis helsesjekk og akutt behandling. Er du registrert hos din fastlege?`],
 ];
 
-cfg.set(cfg_aiPromptWelcome,'(NO) Alt Om Kommunale Tjenester','mistrallarge','p/noaltomkommunaletjenester.png','f,5,2','#ab048f', null, 'Lexend')
+cfg.set(cfg_aiPromptWelcome,'(NO) Alt Om Kommunale Tjenester','Llama417Bx16E','p/noaltomkommunaletjenester.png','f,5,2','#ab048f', null, 'Lexend')

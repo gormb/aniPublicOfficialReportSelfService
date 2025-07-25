@@ -72,3 +72,4 @@ Still gjerne oppfølgingsspørsmål for å avklare brukerens situasjon.`
   [`Kan jeg få støtte til tilpasning av bolig ved nedsatt funksjonsevne?`, `Husbanken gir tilskudd. Har du fått en vurdering fra ergoterapeut?`]
 ];
 cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt4','p/nominoffentligehjelper.png','f,5,2','#f97316', null, 'Ubuntu')
+
