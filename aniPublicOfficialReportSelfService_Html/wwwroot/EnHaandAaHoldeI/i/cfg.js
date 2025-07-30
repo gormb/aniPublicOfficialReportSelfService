@@ -21,23 +21,29 @@ const cfg={
         ]],['Virksomhet >>§-',[
             'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning', 'Ansatt: Meningsfylt jobb']
             ,'Skrivekunst >>§ -', ['Aigap Kreativ Skrivepartner','Aigap Språk og tone']
-            ,'Leder >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX']
+            ,'Leder >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX', 'Leder: tilt.work']
             ,'HR >>§-', ['HR: Ansettelsen', 'HR: Medarbeidersamtale', 'HR: Oppsigelsen', 'HR: Restrukturering']
             ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper']
         ]],['Event >>§-',[
             'Lansering >>§-', ['IT-revyens årsmøte']
-            ,'Folk >>§-', ['Om Silje Føyen', 'Om Gorm Braarvig']
-            ,'Konferanse >>§-', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025', 'EVENTxOslo 2025']
+            ,'Folk >>§-', ['Om Gorm Braarvig']
+            ,'Konferanse >>§-', ['TEDxOslo 2026']
+        ]],['',[
+            'Dev >>§-', ['TEDxOslo 2026', 'TEDxArendal 2025']
+            ,'Event Folk>>§-', ['Om Silje Føyen', 'Om Yngvar Ugland']
+            ,'Event Konferanse>>§-', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025']
         ]]]
     , appProvider_Db:[['Generelt','Ny','Koblingsfeil!']]
     , appProviderM:ver=>{//cfg.appProvider_Man// merge loaded from db
         //Object.entries([...cfg.appProvider_Man.flatMap(([m,s])=>s.flatMap((v,i,a)=>i%2?v.map(App=>({App,mor:a[i-1].slice(0,-5),mormor:m.slice(0,-5)})):[]),...Object.values(cfg.appProvider_Db.reduce((a,r)=>(a[r.App]=r,a),{})))].reduce((o,{App,mor,mormor})=>((o[mormor+' >>§-']??={})[mor+' >>§-']??=new Set()).add(App),o={})&&o).map(([m,s])=>[m,Object.entries(s).flatMap(([k,v])=>[k,[...v]])])
-        let ap=JSON.parse(JSON.stringify(cfg.appProvider_Man)), apM=[['Generelt >>§-',['Test']],['Ny mormor',['Ny mor']]];
-        ver=='admin'&&ap.forEach((mm,i)=>ap[i][1].forEach((m,j)=>!(j%2)||ap[i][1][j].push('<< ny/endre/slett app >>'))^
-            ap[i][1].push(['<< ny/endre/slett mor >>']))^ap.push(['<< ny/endre/slett mormor >>',[]])
+        let ap=JSON.parse(JSON.stringify(cfg.appProvider_Man));
+        ver=='admin'&&ap.forEach((_,i)=>ap[i][1].forEach((_,j)=>!(j%2)||ap[i][1][j].push('<< ny/endre/slett app >>'))
+            ^ap[i][1].push(['<< ny/endre/slett mor >>']))^ap.push(['<< ny/endre/slett mormor >>',[]])
         return ap;
     }
-    , menusForAppProvider:ver=> cfg.appProviderM(ver).map(([pt, subs]) => `||${pt}` + subs.reduce((acc, cur, i, a) => i % 2 === 0 ? acc + `|||${cur}` + (Array.isArray(a[i+1]) ? a[i+1].map(x => `||||${x}`).join('') : '') : acc, '')).join('')
+    , menusForAppProvider:ver=> cfg.appProviderM(ver).map(([mm,m])=>mm.length<5?'':`||${mm}`+m.reduce((acc,cur,i,a)=>i%2==0?acc+
+            `|||${cur}`+(Array.isArray(a[i+1])?a[i+1].map(x=>
+                `||||${x}`).join(''):''):acc,'')).join('')
     , visAppMeny:b=>ui.Show(mc0,b)^ui.Show(mc0.previousElementSibling,b)^ui.Show(mc0.nextElementSibling,b)
     , appList:ver=>cfg.appProviderM(ver).flatMap(([_, subs])=>subs.flatMap((s,i,a)=>i%2==0&&Array.isArray(a[i+1])?a[i+1]:[]).filter(Boolean))
     , aiPromptWelcomeQuestion:`Hva er velkomstmeldingen?`
