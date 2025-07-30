@@ -52,4 +52,4 @@ Du skal aldri ta en aktiv rolle, bare videreformidle kontakt`
 ,[`styrets støtte`
     , `Det kommuniserer at du har kontroll. Noe annet jeg kan hjelpe med innenfor dette, eller ønsker du å ta opp et nytt tema?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Leder: tilt.work','gpt4','p/ledertiltwork.png',null,'#1e40af', null, 'Merriweather Sans')
+cfg.set(cfg_aiPromptWelcome,'Leder: tilt.work','gpt4','p/ledertiltwork.png',null,'rgb(150,45,28)', '#fec', 'Merriweather Sans')
