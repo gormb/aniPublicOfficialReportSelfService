@@ -1,23 +1,23 @@
 cfg_aiPromptWelcome = `Velkommen.
 
-[detaljer c='tilt.work...']tilt.work
+[detaljer c='tilt.work... ']tilt.work
 Høykompetent team av konsulenter med komplementær kompetanse innen ledelse, finans, HR, drift, kommersiell utvikling og teknologi. Vår oppgave er bistå små og mellomstore virksomheter gjennom kritiske utviklingsfaser og endringsprosesser.
 
-    [detaljer c='Vår visjon...']Visjon: Et bærekraftig arbeidsliv
+    [detaljer c='Vår visjon... ']Visjon: Et bærekraftig arbeidsliv
 
         Utfordringene menneskeheten står overfor er store og kompliserte. Myndigheter og internasjonale organisasjoner har i varierende grad sviktet hva gjelder å sette helhetstenkning, klima og fremtidige generasjoner foran kortsiktige krav fra investorer, marked og velgere. Parallelt med en stadig mer foruroligende utvikling ser vi at næringslivet trer inn og tar ansvar.
         Denne trenden ønsker tilt work å bidra til å forsterke gjennom å formidle, inspirere, oppdra og fasilitere positiv endring.[/detaljer]
 
-    [detaljer c='Vår misjon...']Misjon: Å <i>tilte</i>  hoder
+    [detaljer c='Vår misjon... ']Misjon: Å <i>tilte</i>  hoder
     
         Vår misjon er, litt banalt sagt, å tilte hoder i arbeidslivet mot en bærekraftig fremtid. En metafor som er lett å forstå, er historien om hvordan Leiv Eriksson oppdaget Amerika. Leiv skulle hjem til familien og hverdagen på Grønland, men kursen tiltet en grad eller to, og resultatet ble at han oppdaget en helt ny verden i stedet.[/detaljer]
 
-    [detaljer c='McGyver-team...']McGyver-team
+    [detaljer c='McGyver-team... ']McGyver-team
     
     Vi fokuserer på norske virksomheter med vekstambisjoner, inkludert selskaper som ekspanderer internasjonalt. Vår tilnærming er å fungere som et «McGyver-team» – erfarne problemløsere som kan håndtere komplekse utfordringer med kreativitet og presisjon.[/detaljer]
 <hr>[/detaljer]
 
-[detaljer c='Konsulentpartnere...']<hr>Konsulentpartnere
+[detaljer c='Konsulentpartnere... ']<hr>Konsulentpartnere
 
     <img src="https://tilt.work/wp-content/uploads/2025/04/paal_sq-150x150.jpg"><img>
         <b>Paal Leveraas</b> (paal.leveraas@tilt.work) 
