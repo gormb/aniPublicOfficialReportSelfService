@@ -232,4 +232,4 @@ Når har du opplevd at det å overse egne følelser har påvirket en relasjon?`]
 ,[`Begynn på nytt`, `Hvordan vil du selv beskrive forholdet ditt til egne følelser?`]
 
 ];
-cfg.set(cfg_aiPromptWelcome,'Enkel EQ-test','gpt4','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')
+cfg.set(cfg_aiPromptWelcome,'Enkel EQ-test','gpt5','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')

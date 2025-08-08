@@ -71,5 +71,5 @@ Still gjerne oppfølgingsspørsmål for å avklare brukerens situasjon.`
   [`Hvordan sjekker jeg om jeg har ubetalte regninger fra det offentlige?`, `Dette kan sjekkes via Digipost eller eFaktura. Har du tilgang til din digitale postkasse?`],
   [`Kan jeg få støtte til tilpasning av bolig ved nedsatt funksjonsevne?`, `Husbanken gir tilskudd. Har du fått en vurdering fra ergoterapeut?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt4','p/nominoffentligehjelper.png','f,5,2','#f97316', null, 'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt5','p/nominoffentligehjelper.png','f,5,2','#f97316', null, 'Ubuntu')
 

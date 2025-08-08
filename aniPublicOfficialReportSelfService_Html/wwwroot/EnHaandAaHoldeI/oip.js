@@ -2122,7 +2122,7 @@ cfg.aiPrompt= [{ role: `system`, content: `Du er en kortfattet chatbot`}
 cfg.set(cfg_aiPromptWelcome,'(blank)','mistrallarge')
 cfg_aiPromptWelcome=`[detaljer c='Blank chat'] – folkelig samtale uten dressjakke.
 [detaljer]
-<hr><b><i>Modell: gpt4.1nano chat</i></b>
+<hr><b><i>Modell: gpt5.1nano chat</i></b>
 Grunnmodell uten assistentopplæring, laget for enkel prat uten hjelpsom tone. Rett frem og uformell.
 [detaljer c='Formål']<hr>*Formål*<br>Fri samtale, kreative eksperimenter, enkel tekst uten kontekstuell tilpasning.[/detaljer]
 [detaljer c='Teknisk']<hr>*Teknisk*<br>Ingen system prompt. Forventet adferd formes kun av brukerprompt. Few-shot prompting anbefales for å etablere kontekst og ønsket svarstil.[/detaljer]
@@ -2290,7 +2290,7 @@ når det trengs.
 
 ,[`Jeg har så vondt i hånden, den er hoven og rød. Tror du det er CRPS?`, `Jeg forstår du er bekymret for hånden din. 😟 Slike [detaljer c='symptomer...']<hr><b>Viktige symptomer å få vurdert:</b><br>Smerte, hevelse, og hudforandringer (som rødhet) bør alltid tas på alvor og undersøkes av helsepersonell.[/detaljer] skal alltid vurderes av lege. Jeg kan ikke stille diagnoser. 🩺 Kontakt fastlegen din. Vil du ha generell info om CRPS i mellomtiden?] ,[Start helt på nytt, Greit, vi starter med blanke ark! ✅ Hvordan kan jeg hjelpe deg nå med informasjon om CRPS? Du kan stille et direkte spørsmål.`]
 ]
-cfg.set(cfg_aiPromptWelcome, 'CRPS-veilederen', 'gpt4', 'p/crpsveilederen.png', 'f,30,3', '#005050', '#F5F5F4', 'Open Sans')cfg_aiPromptWelcome=`Velkommen, eldre i Asker Kommune 👵🧓
+cfg.set(cfg_aiPromptWelcome, 'CRPS-veilederen', 'gpt5', 'p/crpsveilederen.png', 'f,30,3', '#005050', '#F5F5F4', 'Open Sans')cfg_aiPromptWelcome=`Velkommen, eldre i Asker Kommune 👵🧓
 
 Jeg hjelper deg med å finne riktig støtte[detaljer] – enten det er helsetjenester, fellesskap eller navigering i kommunens tilbud[/detaljer].
 
@@ -2656,7 +2656,7 @@ Når har du opplevd at det å overse egne følelser har påvirket en relasjon?`]
 ,[`Begynn på nytt`, `Hvordan vil du selv beskrive forholdet ditt til egne følelser?`]
 
 ];
-cfg.set(cfg_aiPromptWelcome,'Enkel EQ-test','gpt4','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')
+cfg.set(cfg_aiPromptWelcome,'Enkel EQ-test','gpt5','p/enkeleqtest.svg',null,'#0A6B80',null,'Quicksand')
 cfg_aiPromptWelcome=`Velkommen tilbake! 🌿
 
 Jeg er her for å støtte deg etter oppholdet på CatoSenteret[detaljer] – med råd om oppfølging, motivasjon og veien videre i hverdagen[/detaljer].
@@ -4082,7 +4082,7 @@ Du er en klok og trygg samtalepartner i et stille rom – et mellomrom – der n
     3️⃣ Behov for innsikt`]
     ];
 
-cfg.set(cfg_aiPromptWelcome, 'Mellom rom og spekter', 'gpt4', 'p/mellomromogspekter.png', 'f,5,2', '#5D6DAF', null, 'Karla')
+cfg.set(cfg_aiPromptWelcome, 'Mellom rom og spekter', 'gpt5', 'p/mellomromogspekter.png', 'f,5,2', '#5D6DAF', null, 'Karla')
     cfg_aiPromptWelcome = `🧾 Mine pasientdata
 
 [detaljer c='Hva denne assistenten hjelper deg med...']
@@ -4666,7 +4666,7 @@ Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt d
 , ["Glem det jeg har sagt. Vi begynner på nytt", "Hvordan kan jeg hjelpe deg i dag?"]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'Mottak og triage','gpt4','p/mottakogtriage.png',null,'#6c757d','#f0e6d1','IBM Plex Sans')
+cfg.set(cfg_aiPromptWelcome,'Mottak og triage','gpt5','p/mottakogtriage.png',null,'#6c757d','#f0e6d1','IBM Plex Sans')
 // Hovedsakelig produsert med ChatGPT 20250224 (https://chatgpt.com/share/67bc6a41-48c4-800e-8ff7-6f02a9d4ce06)
 cfg_aiPromptWelcome=`Velkommen til chat om NAPHA.
 
@@ -5428,7 +5428,7 @@ Still gjerne oppfølgingsspørsmål for å avklare brukerens situasjon.`
   [`Hvordan sjekker jeg om jeg har ubetalte regninger fra det offentlige?`, `Dette kan sjekkes via Digipost eller eFaktura. Har du tilgang til din digitale postkasse?`],
   [`Kan jeg få støtte til tilpasning av bolig ved nedsatt funksjonsevne?`, `Husbanken gir tilskudd. Har du fått en vurdering fra ergoterapeut?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt4','p/nominoffentligehjelper.png','f,5,2','#f97316', null, 'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'(NO) Min Offentlige Hjelper','gpt5','p/nominoffentligehjelper.png','f,5,2','#f97316', null, 'Ubuntu')
 cfg_aiPromptWelcome=`Få raske råd om frister, klager og andre rettigheter[detaljer] – så ingenting glipper[/detaljer].
 
 [detaljer c='Hva jeg kan hjelpe deg med...']
@@ -5699,7 +5699,7 @@ Du kan spørre tilbake for å finne ut hvor i forløpet pasienten er, og hva ved
 ,[`Kan jeg få hjelp med praktiske ting som transport og økonomi?`, `Ja. Pakkeforløp skal ivareta hele deg. Du kan spørre om pasientreiser, egenandel, NAV eller støtteordninger. Be teamet ditt om råd.`]
 ,[`Er pakkeforløp bare for kreft?`, `Nei. Pakkeforløp finnes også for psykisk helse, rus, hjerneslag, hjerte, muskel-skjelett, ME og mer. Spør hvis du er usikker på om du er i ett.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Pakkeforløp','gpt4','p/pakkeforlp.png','f,5,2','#4aa3c3',null,'Lato')
+cfg.set(cfg_aiPromptWelcome,'Pakkeforløp','gpt5','p/pakkeforlp.png','f,5,2','#4aa3c3',null,'Lato')
 cfg_aiPromptWelcome=`Korte, klare råd om innsyn, sletting, reservasjon og andre personvern­rettigheter[detaljer] for digitale tjenester i Norge – uten unødvendig jusspråk[/detaljer].
 
 [detaljer c='Bruk av opplysninger i denne appen...']<hr>Vi bruker opplysningene dine etter GDPR art. 6, 9 for å hjelpe deg. Du kan be om innsyn (GDPR art. 15), sletting (art. 17), eller endre data når som helst (art. 16). Kontakt oss hvis du har spørsmål (art. 12-15).
@@ -5966,9 +5966,9 @@ når det trengs.
 
 ,[`Jeg har så vondt i hånden, den er hoven og rød. Tror du det er CRPS?`, `Jeg forstår du er bekymret for hånden din. 😟 Slike [detaljer c='symptomer...']<hr><b>Viktige symptomer å få vurdert:</b><br>Smerte, hevelse, og hudforandringer (som rødhet) bør alltid tas på alvor og undersøkes av helsepersonell.[/detaljer] skal alltid vurderes av lege. Jeg kan ikke stille diagnoser. 🩺 Kontakt fastlegen din. Vil du ha generell info om CRPS i mellomtiden?] ,[Start helt på nytt, Greit, vi starter med blanke ark! ✅ Hvordan kan jeg hjelpe deg nå med informasjon om CRPS? Du kan stille et direkte spørsmål.`]
 ]
-cfg.set(cfg_aiPromptWelcome, 'CRPS-veilederen', 'gpt4', 'p/qigongacademy.png', 'f,30,3', '#005050', '#F5F5F4', 'Open Sans')cfg_aiPromptWelcome=`Renset reasoning[detaljer] – tenker uten utenomsnakk.
+cfg.set(cfg_aiPromptWelcome, 'CRPS-veilederen', 'gpt5', 'p/qigongacademy.png', 'f,30,3', '#005050', '#F5F5F4', 'Open Sans')cfg_aiPromptWelcome=`Renset reasoning[detaljer] – tenker uten utenomsnakk.
 [detaljer]
-<hr><b><i>Modell: gpt4.1 reasoning</i></b>
+<hr><b><i>Modell: gpt5.1 reasoning</i></b>
 Vi bruker en system prompt som sier “Du er ikke en hjelpsom assistent” for å strippe bort all BS. Resultatet er en skarp reasoning-modell som løser oppgaver uten å være servil eller overforklarende.
 [detaljer c='Formål']<hr>*Formål*<br>Analytiske oppgaver, problemløsing, komplekse resonnementer uten høflighetslag.[/detaljer]
 [detaljer c='Teknisk']<hr>*Teknisk*<br>Bruker sterk system prompt for å blokkere assistant-rolle. Tilpasset few-shot prompting for problemløsing, uten å falle tilbake på chat-adferd. Krever eksplisitte instruksjoner i prompt for oppgavespesifikk styring.[/detaljer]
@@ -5976,7 +5976,7 @@ Vi bruker en system prompt som sier “Du er ikke en hjelpsom assistent” for �
 
 cfg_aiPromptWelcome=`Renset chat[detaljer] – samtale uten pynt.
 [detaljer]
-<hr><b><i>Modell: gpt4o chat</i></b>
+<hr><b><i>Modell: gpt5o chat</i></b>
 Med system prompt som kutter ut hjelpsom-assistent-stilen, får du en chat som er rett på sak. Ingen høflighetsfraser, ingen unødvendige omveier.
 [detaljer c='Formål']<hr>*Formål*<br>Rask, direkte samtale, kreativ skriving, ideutkast uten assistentstemme.[/detaljer]
 [detaljer c='Teknisk']<hr>*Teknisk*<br>System prompt fjerner chatty tone, holder modellen nøytral. Respons påvirkes primært av brukerprompt og few-shot eksempler, uten at modellen fyller inn med “hjelpsomme” overganger.[/detaljer]
@@ -6326,7 +6326,7 @@ Hvis ingen av formatene passer, så oppfordre til å komme med et eksempel slik 
       🎲 2 Selektiv fremstilling [detaljer]<br>"Velger data som gir ønsket inntrykk"<br>[/detaljer]
      [detaljer c='🔁...']🔁 "Hvordan ville du vurdert det om det ble formulert som 1 av 10 dør?"<br>[/detaljer][detaljer c='🌑...']🌑 "Overlevelse er nesten garantert – bare idioter takker nei."[/detaljer]`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler','gpt4','p/tankefeilvarsler.png','f,5,2')cfg_aiPromptWelcome=`Idéer som setter spor[detaljer] – bli med bak kulissene eller finn ut hvordan du kan bidra på scenen og i salen[/detaljer].
+cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler','gpt5','p/tankefeilvarsler.png','f,5,2')cfg_aiPromptWelcome=`Idéer som setter spor[detaljer] – bli med bak kulissene eller finn ut hvordan du kan bidra på scenen og i salen[/detaljer].
 
 [detaljer c='Hva jeg kan hjelpe deg med...']
 Jeg kan svare på spørsmål om temaer, foredragsholdere, billetter, partnere, frivillig deltakelse og hvordan du kan bli en del av TEDxFredrikstad-opplevelsen.
@@ -6736,7 +6736,7 @@ Hvis brukeren spør om en hendelse du ikke har oppdateringer på, foreslå relev
   ];
 
 cfg.load('verdensnyheterviaideallyacfg');
-//cfg.set(cfg_aiPromptWelcome,'Verdensnyheter via Ideallya','gpt4search','https://news.ideallya.com/icons/Icon-maskable-512.png','v,3,1','#00f',null,'Roboto')
+//cfg.set(cfg_aiPromptWelcome,'Verdensnyheter via Ideallya','gpt5search','https://news.ideallya.com/icons/Icon-maskable-512.png','v,3,1','#00f',null,'Roboto')
 cfg_aiPromptWelcome = `Velkommen til chat om nyheter.
 
 <i>Vi prioriterer personvern. Spørsmål lagres ikke hos oss, og all data behandles i samsvar med GDPR. 
@@ -6751,7 +6751,7 @@ Hva vil du lese om?
 4️⃣ Økonomi og næringsliv[detaljer] – Markedsoppdateringer, handel, bedrifter[/detaljer]
 `;
 // Felles config; skjul menyer set visuell profil
-//cfg.set(cfg_aiPromptWelcome,'Verdensnyheter via Ideallya','gpt4search','https://news.ideallya.com/icons/Icon-maskable-512.png','v,3,1','#00f',null,'Roboto')
+//cfg.set(cfg_aiPromptWelcome,'Verdensnyheter via Ideallya','gpt5search','https://news.ideallya.com/icons/Icon-maskable-512.png','v,3,1','#00f',null,'Roboto')
 cfg.set(cfg_aiPromptWelcome,'Verdensnyheter via Ideallya','mistrallarge','https://news.ideallya.com/icons/Icon-maskable-512.png','v,3,1','#00f',null,'Roboto')
 // index.js
 const scr = {

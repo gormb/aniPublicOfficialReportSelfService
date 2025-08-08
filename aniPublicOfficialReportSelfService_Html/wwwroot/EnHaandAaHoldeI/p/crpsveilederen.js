@@ -128,4 +128,4 @@ når det trengs.
 
 ,[`Jeg har så vondt i hånden, den er hoven og rød. Tror du det er CRPS?`, `Jeg forstår du er bekymret for hånden din. 😟 Slike [detaljer c='symptomer...']<hr><b>Viktige symptomer å få vurdert:</b><br>Smerte, hevelse, og hudforandringer (som rødhet) bør alltid tas på alvor og undersøkes av helsepersonell.[/detaljer] skal alltid vurderes av lege. Jeg kan ikke stille diagnoser. 🩺 Kontakt fastlegen din. Vil du ha generell info om CRPS i mellomtiden?] ,[Start helt på nytt, Greit, vi starter med blanke ark! ✅ Hvordan kan jeg hjelpe deg nå med informasjon om CRPS? Du kan stille et direkte spørsmål.`]
 ]
-cfg.set(cfg_aiPromptWelcome, 'CRPS-veilederen', 'gpt4', 'p/crpsveilederen.png', 'f,30,3', '#005050', '#F5F5F4', 'Open Sans')
+cfg.set(cfg_aiPromptWelcome, 'CRPS-veilederen', 'gpt5', 'p/crpsveilederen.png', 'f,30,3', '#005050', '#F5F5F4', 'Open Sans')

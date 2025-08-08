@@ -240,5 +240,5 @@ Du er en klok og trygg samtalepartner i et stille rom – et mellomrom – der n
     3️⃣ Behov for innsikt`]
     ];
 
-cfg.set(cfg_aiPromptWelcome, 'Mellom rom og spekter', 'gpt4', 'p/mellomromogspekter.png', 'f,5,2', '#5D6DAF', null, 'Karla')
+cfg.set(cfg_aiPromptWelcome, 'Mellom rom og spekter', 'gpt5', 'p/mellomromogspekter.png', 'f,5,2', '#5D6DAF', null, 'Karla')
     

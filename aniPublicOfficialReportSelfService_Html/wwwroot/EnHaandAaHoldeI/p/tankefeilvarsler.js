@@ -323,4 +323,4 @@ Hvis ingen av formatene passer, så oppfordre til å komme med et eksempel slik 
       🎲 2 Selektiv fremstilling [detaljer]<br>"Velger data som gir ønsket inntrykk"<br>[/detaljer]
      [detaljer c='🔁...']🔁 "Hvordan ville du vurdert det om det ble formulert som 1 av 10 dør?"<br>[/detaljer][detaljer c='🌑...']🌑 "Overlevelse er nesten garantert – bare idioter takker nei."[/detaljer]`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler','gpt4','p/tankefeilvarsler.png','f,5,2')
+cfg.set(cfg_aiPromptWelcome,'Tankefeilvarsler','gpt5','p/tankefeilvarsler.png','f,5,2')

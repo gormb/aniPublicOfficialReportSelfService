@@ -1,6 +1,6 @@
 cfg_aiPromptWelcome=`[detaljer c='Blank chat'] – folkelig samtale uten dressjakke.
 [detaljer]
-<hr><b><i>Modell: gpt4.1nano chat</i></b>
+<hr><b><i>Modell: gpt5.1nano chat</i></b>
 Grunnmodell uten assistentopplæring, laget for enkel prat uten hjelpsom tone. Rett frem og uformell.
 [detaljer c='Formål']<hr>*Formål*<br>Fri samtale, kreative eksperimenter, enkel tekst uten kontekstuell tilpasning.[/detaljer]
 [detaljer c='Teknisk']<hr>*Teknisk*<br>Ingen system prompt. Forventet adferd formes kun av brukerprompt. Few-shot prompting anbefales for å etablere kontekst og ønsket svarstil.[/detaljer]
