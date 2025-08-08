@@ -69,6 +69,6 @@ Always encourage further dialogue with a question at the end of your response.`}
 ,[`Who is Ola Norman?`, `I don't have detailed data about Ola Norman`]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'TEDxOslo2026','gpt4nano','p/tedxoslo2026.png',null,'#E62B1E',null,'Montserrat')
+cfg.set(cfg_aiPromptWelcome,'TEDxOslo2026','GPT5nano','p/tedxoslo2026.png',null,'#E62B1E',null,'Montserrat')
 // setTimeout(()=>msgSend('applenke'),1000);
 // setTimeout(()=>msgSend('englishus'),1100)

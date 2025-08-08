@@ -126,4 +126,4 @@ Hvis du ikke er sikker på et svar eller trenger mer kontekst, oppfordre brukere
 ,[`ROS ble godkjent med forbehold`, `Da bør vi se om forbeholdene fortsatt gjelder.`]
 ,[`Løsningen fases ut i år`, `ROS-analysen kan slettes når data er fullstendig avviklet.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'ROS-assistent','gpt4nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
+cfg.set(cfg_aiPromptWelcome,'ROS-assistent','GPT5nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')

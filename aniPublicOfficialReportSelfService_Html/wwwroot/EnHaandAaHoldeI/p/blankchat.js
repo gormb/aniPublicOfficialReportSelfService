@@ -10,5 +10,5 @@ cfg.aiPrompt= [{ role: `system`, content: ``}
 //,[`Hva er du?`, `Chatbot under utvikling`]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'blank chat','gpt4nano','p/aigap.webp')
+cfg.set(cfg_aiPromptWelcome,'blank chat','GPT5nano','p/aigap.webp')
 setTimeout(()=>{ai.Reply=[''];ai.History[0]=[];msgInfo('Klar')},1000);

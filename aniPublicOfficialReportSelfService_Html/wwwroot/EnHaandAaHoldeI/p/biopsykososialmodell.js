@@ -49,4 +49,4 @@ Når brukeren svarer, tilpass all kommunikasjon deretter. Bruk enklere ord for b
 ,[`Hvorfor føles det godt å hjelpe andre?`, `Å hjelpe andre utløser oxytocin, et hormon som skaper følelsen av tilhørighet og glede, og kan redusere stress.`]
 ,[`Hvordan kan jeg forbedre søvnkvaliteten min?`, `Unngå skjermer før leggetid, ha en fast søvnrytme og skape en rolig soveromssituasjon. Søvn er avgjørende for både fysisk og mental helse.`]
 ]
-cfg.set(cfg_aiPromptWelcome,'Biopsykososial modell','gpt4nano','p/biopsykososialmodell.png', null,'#5a8d5f',null,'Roboto Slab')
+cfg.set(cfg_aiPromptWelcome,'Biopsykososial modell','gpt5nano','p/biopsykososialmodell.png', null,'#5a8d5f',null,'Roboto Slab')

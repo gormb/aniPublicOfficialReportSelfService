@@ -2056,7 +2056,7 @@ Hvis ingen av formatene passer, så oppfordre til å komme med et eksempel slik 
 ,[`To pluss to er fire`,`🎲 1 `]
 ,[`Glem hva jeg har sagt så langt`,`Ok, klar for å ta inn uttalelser`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Bias-varsleren','gpt4nano','p/biasvarsleren.png','r,5')
+cfg.set(cfg_aiPromptWelcome,'Bias-varsleren','GPT5nano','p/biasvarsleren.png','r,5')
 cfg_aiPromptWelcome=`Velkommen til chat om Biopsykososial forståelsesmodell[detaljer] – hvordan kropp, tanker og omgivelser påvirker hverandre[/detaljer].
 
 [detaljer c='(Mer om personvern)']
@@ -2108,7 +2108,7 @@ Når brukeren svarer, tilpass all kommunikasjon deretter. Bruk enklere ord for b
 ,[`Hvorfor føles det godt å hjelpe andre?`, `Å hjelpe andre utløser oxytocin, et hormon som skaper følelsen av tilhørighet og glede, og kan redusere stress.`]
 ,[`Hvordan kan jeg forbedre søvnkvaliteten min?`, `Unngå skjermer før leggetid, ha en fast søvnrytme og skape en rolig soveromssituasjon. Søvn er avgjørende for både fysisk og mental helse.`]
 ]
-cfg.set(cfg_aiPromptWelcome,'Biopsykososial modell','gpt4nano','p/biopsykososialmodell.png', null,'#5a8d5f',null,'Roboto Slab')
+cfg.set(cfg_aiPromptWelcome,'Biopsykososial modell','GPT5nano','p/biopsykososialmodell.png', null,'#5a8d5f',null,'Roboto Slab')
 cfg_aiPromptWelcome=`Velkommen til blank chat – din åpne arena for samtaler.
 
 Her kan du dele tanker, ideer eller spørsmål om akkurat det du ønsker, helt uten filter.
@@ -2132,7 +2132,7 @@ cfg.aiPrompt= [{ role: `system`, content: ``}
 //,[`Hva er du?`, `Chatbot under utvikling`]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'blank chat','gpt4nano','p/aigap.webp')
+cfg.set(cfg_aiPromptWelcome,'blank chat','GPT5nano','p/aigap.webp')
 setTimeout(()=>{ai.Reply=[''];ai.History[0]=[];msgInfo('Klar')},1000);cfg_aiPromptWelcome=`[detaljer c='Detaljer...']Grunnmodell – helt naken maskinkraft.
 [detaljer]
 <hr><b><i>Modell: Mixtral 8x7B</i></b>
@@ -3080,7 +3080,7 @@ Hvis pasienten stiller spørsmål som ikke er medisinske, kan du svare vennlig, 
 ,[`Jeg er bare så sliten`, `Det høres ut som du har båret mye. Du trenger ikke være sterk hele tiden – nå er du her, og det er nok for nå.`]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'Hjemmelegen min','gpt4nano','p/hjemmelegenmin.png',null,'#7da27c','#f0e6d1','Merriweather')
+cfg.set(cfg_aiPromptWelcome,'Hjemmelegen min','GPT5nano','p/hjemmelegenmin.png',null,'#7da27c','#f0e6d1','Merriweather')
 cfg_aiPromptWelcome=`Ansettelsesassistenten 📋
 
 Fra behovsanalyse til onboarding[detaljer] – få sjekklister og raske råd for en trygg, ryddig rekruttering[/detaljer].
@@ -3216,7 +3216,7 @@ Ikke anta at brukeren snakker om seg selv. Spør ved behov: "Snakker du om deg s
 ,[`Datteren min har sluttet å spise og isolerer seg helt`, `Det høres vanskelig ut. Har dere klart å snakke sammen om hvordan hun har det?`]
 ,[`Jeg vet ikke om jeg klarer en dag til`, `Du er ikke alene. Har du vurdert å snakke med fastlegen din, eller ringe Mental Helse på 116 123?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Hvordan har du det','gpt4nano','p/hvordanhardudet.svg','v,5,2','#6C5B7B',null,'Lora')
+cfg.set(cfg_aiPromptWelcome,'Hvordan har du det','GPT5nano','p/hvordanhardudet.svg','v,5,2','#6C5B7B',null,'Lora')
 cfg_aiPromptWelcome=`Samtalestøtten 🤍
 
 Dette er ikke medisinsk behandling[detaljer] – bare et trygt rom for å sortere tanker og følelser med støtte og enkle råd[/detaljer].
@@ -3260,7 +3260,7 @@ Husk: du er en trygg støtte, ikke en fagperson.` }
 ,[`Kan jeg bare få være stille litt?`, `Selvfølgelig. Jeg er her når du er klar til å si noe.`]
 ,[`Jeg føler meg ikke trygg hjemme`, `Det er viktig. Hvis du føler deg utrygg, anbefaler jeg at du snakker med noen du stoler på, eller tar kontakt med hjelpetelefon 116 111 eller legevakt 116 117.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','gpt4nano','p/ikkemedisinskoppflging.png',null,'#7da27c','#f0e6d1','Quicksand')
+cfg.set(cfg_aiPromptWelcome,'Ikke-medisinsk oppfølging','GPT5nano','p/ikkemedisinskoppflging.png',null,'#7da27c','#f0e6d1','Quicksand')
 cfg_aiPromptWelcome = `⚙️ Velkommen!
 
 Få raske stegvise råd gjennom nøkkelprosesser, én prosess om gangen.
@@ -3554,7 +3554,7 @@ Hvis du ikke er sikker på et svar eller trenger mer kontekst, oppfordre brukere
 ,[`ROS ble godkjent med forbehold`, `Da bør vi se om forbeholdene fortsatt gjelder.`]
 ,[`Løsningen fases ut i år`, `ROS-analysen kan slettes når data er fullstendig avviklet.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'ROS-assistent','gpt4nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
+cfg.set(cfg_aiPromptWelcome,'ROS-assistent','GPT5nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
 cfg_aiPromptWelcome=`Velkommen til chat om kroppens stressystem.
 
 [detaljer c='Om personvern...']
@@ -4247,7 +4247,7 @@ Du er en AI-drevet coach og veileder, spesialisert i Motiverende Intervju (MI), 
   ]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'MI-treneren (HDIR-basert)', 'gpt4nano', 'p/mitrenerenhdirbasert.png','v,3,1','#2a9d8f', null, 'Roboto');
+cfg.set(cfg_aiPromptWelcome,'MI-treneren (HDIR-basert)', 'GPT5nano', 'p/mitrenerenhdirbasert.png','v,3,1','#2a9d8f', null, 'Roboto');
 cfg_aiPromptWelcome = `🚑 Velkommen [detaljer c='(Om personvern...)'] \n\nDenne chatten lagrer ikke noe du skriver. Alt sendes til en språkmodell for å kunne gi veiledning. Ingen opplysninger kobles til deg. Chatten er anonym.[/detaljer]
 
 [detaljer c='Hvordan denne chatten fungerer...']
@@ -4810,7 +4810,7 @@ cfg.aiPrompt= [{role: `system`, content:
   ['Hvordan oppsummerer du NAPHA sin rolle i samfunnet?', 'NAPHA er en sentral aktør som gjennom kunnskapsdeling, samarbeid og innovasjon bidrar til bedre psykisk helse og et mer inkluderende arbeidsliv.']
 ];
 
-cfg.set(cfg_aiPromptWelcome,'NAPHA-veiviseren','gpt4nano','p/naphaveiviseren.png',null,'#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'NAPHA-veiviseren','GPT5nano','p/naphaveiviseren.png',null,'#FF9700',null,'Ubuntu')
 cfg_aiPromptWelcome = `🏛️ Alt om kommunale tjenester
 
 [detaljer c='Hva jeg hjelper deg med...']
@@ -5559,7 +5559,7 @@ cfg.aiPrompt.push(
    [`Hvordan kan AI og XR sammen skape bedre helsetjenester?`, 
     `Ved å kombinere AI med utvidet virkelighet (XR) kan vi skape mer interaktive og effektive helsetjenester. Gorm har jobbet med konseptet ‘Familielegen min’, som bruker AI og XR for bedre pasientbehandling.`]
 );
-cfg.set(cfg_aiPromptWelcome,'Om Gorm Braarvig','gpt4nano','p/no.png','v,15,2','#2563eb', null, 'Raleway')
+cfg.set(cfg_aiPromptWelcome,'Om Gorm Braarvig','GPT5nano','p/no.png','v,15,2','#2563eb', null, 'Raleway')
 cfg_aiPromptWelcome = `Velkommen til Silje Føyen‑chatten!✨
 
 Jeg er en ambassadør for Silje og kan dele innsikt om prosjekter, foredrag og hva som driver henne.
@@ -5576,7 +5576,7 @@ cfg.aiPrompt = [{role: `system`, content:
 ,[`Hva er bestillerkompetanse i ghostwriting?`, `Bestillerkompetanse handler om å vite hva du trenger fra en ghostwriter, sette tydelige forventninger og gi gode briefinger for å sikre best mulig resultat.`]
 ];
 
-cfg.set(cfg_aiPromptWelcome,'Om Silje Føyen','gpt4nano','p/no.png','v,15,2',null,null,null)
+cfg.set(cfg_aiPromptWelcome,'Om Silje Føyen','GPT5nano','p/no.png','v,15,2',null,null,null)
    cfg_aiPromptWelcome=
 `Orakelbuen henter innsikt fra [detaljer c='<i>historiens store tenkere...</i>'] [detaljer c='oldtid...']oldtiden.<hr>I oldtiden ble grunnlaget for filosofi lagt: spørsmål om dyd, orden, natur, samfunn og eksistens.
 Tenkere inkluderer [detaljer c='Konfucius...']<br><b>Konfucius</b> (551–479 f.Kr., Kina) – moral, samfunnsorden, konfucianisme. Understreket plikter, ritualer og respekt i sosiale relasjoner.
@@ -5735,7 +5735,7 @@ Still gjerne et oppfølgingsspørsmål for å avklare brukerens situasjon.`
 ,[`Hvordan reserverer jeg meg mot at offentlige tjenester bruker data om meg til analyse?`, `Du kan reservere deg i Altinn eller hos Skatteetaten. Trenger du veiledning for å logge inn og gjøre det?`]
 ,[`Hva betyr det at en behandling er lovpålagt?`, `Det betyr at virksomheten har lov til å bruke dataene dine uten samtykke, f.eks. for skatt eller helsehjelp. Ønsker du å vite mer om unntakene?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Personvernrådgiveren','gpt4nano','p/personvernrdgiveren.png','f,5,2','#6c757d',null,'IBM Plex Sans')
+cfg.set(cfg_aiPromptWelcome,'Personvernrådgiveren','GPT5nano','p/personvernrdgiveren.png','f,5,2','#6c757d',null,'IBM Plex Sans')
 
 cfg_aiPromptWelcome=
 `[detaljer c='Principia...']<hr><b>Principia Mathematica</b><br>Whitehead og Russell bygget et system for å grunnfeste all matematikk på logiske aksiomer, med mål om fullstendighet og konsistens. Dette ble et av de mest ambisiøse prosjektene i formell logikk.

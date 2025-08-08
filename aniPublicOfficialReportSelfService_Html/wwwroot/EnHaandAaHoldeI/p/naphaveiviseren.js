@@ -141,4 +141,4 @@ cfg.aiPrompt= [{role: `system`, content:
   ['Hvordan oppsummerer du NAPHA sin rolle i samfunnet?', 'NAPHA er en sentral aktør som gjennom kunnskapsdeling, samarbeid og innovasjon bidrar til bedre psykisk helse og et mer inkluderende arbeidsliv.']
 ];
 
-cfg.set(cfg_aiPromptWelcome,'NAPHA-veiviseren','gpt4nano','p/naphaveiviseren.png',null,'#FF9700',null,'Ubuntu')
+cfg.set(cfg_aiPromptWelcome,'NAPHA-veiviseren','GPT5nano','p/naphaveiviseren.png',null,'#FF9700',null,'Ubuntu')

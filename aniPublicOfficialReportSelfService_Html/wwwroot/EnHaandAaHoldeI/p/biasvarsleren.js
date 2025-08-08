@@ -111,4 +111,4 @@ Hvis ingen av formatene passer, så oppfordre til å komme med et eksempel slik 
 ,[`To pluss to er fire`,`🎲 1 `]
 ,[`Glem hva jeg har sagt så langt`,`Ok, klar for å ta inn uttalelser`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Bias-varsleren','gpt4nano','p/biasvarsleren.png','r,5')
+cfg.set(cfg_aiPromptWelcome,'Bias-varsleren','gpt5nano','p/biasvarsleren.png','r,5')
