@@ -1,4 +1,13 @@
 /////////////// cfg /////////////////
+const tools={
+    onMsg:[]
+    , clear:()=>onMsg=[]
+    , add:onmsg=>
+        onmsg.forEach(om=>
+            console.warn('todo: tool check if there else add', t))
+    , set:onmsg=>tools.clear()^tools.add(onmsg)
+}
+/////////////// cfg /////////////////
 const cfg={
     app: 'Velg App'
     , ingenApp:'Velg App'
@@ -27,10 +36,10 @@ const cfg={
         ]],['Event >>§-',[
             'Lansering >>§-', ['IT-revyens årsmøte']
             ,'Folk >>§-', ['Om Gorm Braarvig']
-            ,'Konferanse >>§-', ['TEDxOslo 2026']
+            ,'Konferanse >>§-', ['TEDxOslo 2026', 'Arendalsuka 2025', 'Arendalsuka 2025oai']
         ]],['',[
             'Dev >>§-', ['TEDxOslo 2026', 'TEDxArendal 2025']
-            ,'Event Folk>>§-', ['Om Silje Føyen', 'Om Yngvar Ugland']
+            ,'Event Folk>>§-', ['Om Silje Føyen']
             ,'Event Konferanse>>§-', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025']
         ]]]
     , appProvider_Db:[['Generelt','Ny','Koblingsfeil!']]
@@ -120,7 +129,7 @@ const cfg={
             }, 10);  // Check every 10ms
         });
     }
-    ,set:(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font)=>{
+    ,set:(aiPromptWelcome,appN,ai,iA,iEffekt,priCol,lightMCol,font,aiTools)=>{
         cfg.aiPromptWelcome=ui.parseTags(aiPromptWelcome)
         if(ai) setTimeout(()=>msgSend(ai),500);
         if(iA) ui.c.ImgA=iA;
@@ -131,9 +140,9 @@ const cfg={
         else if(iEa[0]=='f') ui.c.ImgAFlag(iEa?.[1],iEa?.[2])
         document.documentElement.style.setProperty('--primary-color', priCol??'#007bff');
         document.documentElement.style.setProperty('--light-msg', lightMCol??'#ffffff');
-        ui.font.n(font??'Roboto')
+        ui.font.n(font??'Roboto');
         cfg.app=document.title=appN;
-        
+        tools.set(aiTools);
         cfg.visAppMeny(false)
     }
     ,dt: {

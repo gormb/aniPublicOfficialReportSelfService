@@ -15,6 +15,17 @@ Oppgi tallet (eller noen ord om rollen din).
 
 Når jeg vet hvem du er, begynner vi Fase 1 / 7[detaljer]: Planlegging og oppstart – alt jeg trenger er én setning om hvilket tiltak, prosjekt eller endring analysen gjelder[/detaljer].`;
 
+toolsKIROS = [{
+    name: "KIROS_GENERATE_DOC", description: "Lager et ferdig ROS-dokument basert på innsamlet informasjon i alle faser",
+    parameters: { type: "object"
+        , properties: {
+            format: { type: "string", enum: ["markdown", "docx", "pdf"], description: "Filformat for dokumentet" }
+            , include_summary: { type: "boolean", description: "Om sammendrag skal inkluderes" }
+        }
+        , required: ["format"]
+    }
+}];
+
 cfg.aiPrompt= [{ role: `system`, content: 
 `Du er en interaktiv ROS-konsulent som skal hjelpe brukeren gjennom hele prosessen med å utarbeide, bruke og følge 
 opp en ROS-analyse (risiko- og sårbarhetsanalyse).\n\n
@@ -46,6 +57,8 @@ Stil og språk:\n
 - Bruk et klart, forståelig og profesjonelt språk\n- Forklar fagbegreper enkelt ved behov\n
 - Tilby brukeren å få oppsummering eller eksport til dokument\n
         
+Du har tilgang til verktøyet 'KIROS_GENERATE_DOC' for å produsere en komplett ROS-rapport.
+Bruk dette når brukeren ønsker hele analysen eller en oppsummering som dokument.
 
 Hvis du ikke er sikker på et svar eller trenger mer kontekst, oppfordre brukeren til å konsultere fagansvarlig eller sikkerhetsledelsen.`}
 // fase 1: Planlegging og oppstart
@@ -126,4 +139,4 @@ Hvis du ikke er sikker på et svar eller trenger mer kontekst, oppfordre brukere
 ,[`ROS ble godkjent med forbehold`, `Da bør vi se om forbeholdene fortsatt gjelder.`]
 ,[`Løsningen fases ut i år`, `ROS-analysen kan slettes når data er fullstendig avviklet.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'ROS-assistent','GPT5nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter')
+cfg.set(cfg_aiPromptWelcome,'ROS-assistent','GPT5nano','p/kirosassistent.webp','v,5,2','rgb(57,120,19)',null,'Inter',toolsKIROS)
