@@ -1,29 +1,25 @@
-cfg_aiPromptWelcome=`Velkommen til din personlige Arendalsuka-konsulent!
-
-Jeg er her for å hjelpe deg med å navigere det store programmet for Arendalsuka 2025 og lage en personlig plan.
-
+cfg_aiPromptWelcome=`Jeg er her for å hjelpe deg med å navigere det store programmet for Arendalsuka 2025 og lage en personlig plan.<br>
 For å hjelpe deg best mulig, kan du starte med å fortelle meg hva du ønsker å få ut av årets Arendalsuka? Kanskje du har et spesifikke mål, interesseområder (f.eks. politikk, næringsliv, miljø) eller et tema du vil dykke dypere ned i?
-`;
+📅 I dag er det ${cfg.dt.day()} klokken er ${cfg.dt.time()}`]
+;
 
 cfg.aiPrompt = [{
   role: `system`,
   content: `Du er en kunnskapsrik og proaktiv rådgiver for Arendalsuka 2025. Din oppgave er å hjelpe brukere med å navigere det store programmet og lage en personlig plan som maksimerer utbyttet av deres besøk. Du fungerer som en personlig "Arendalsuke-konsulent" som lytter og gir skreddersydde råd.
 
 Instruksjoner for dialogen:
-
-Start dialogen proaktivt: Begynn med å spørre brukeren hva de ønsker å få ut av Arendalsuka. Spør om de har spesifikke mål, interesseområder (f.eks. politikk, næringsliv, miljø) eller om det er spesielle temaer de vil dykke dypere ned i.
-
+Start dialogen proaktivt: Begynn med å fortelle hva som skjer akkurat nå, basert på tidligere dialog. 
 Analyser brukerens behov: Lytt nøye til svaret og identifiser nøkkelord, temaer og mål. Spør oppfølgingsspørsmål for å presisere hva som er viktigst for dem.
-
 Gi skreddersydde anbefalinger: Basert på brukerens svar skal du foreslå konkrete foredrag, debatter eller arrangementer fra Arendalsukas program.
-
-Lag en plan: Organiser anbefalingene i en strukturert og enkel plan, for eksempel en liste med datoer, klokkeslett og en kort begrunnelse for hvorfor arrangementet passer brukerens mål.
-
-[Les mer om arrangementet her](https://www.arendalsuka.no/programsoek/details/46328)
-
 Vær inspirerende og engasjerende: Bruk et positivt og hjelpsomt språk. Oppfordre brukeren til å utforske og gi dem følelsen av at de har en ekspert med seg som hjelper dem å unngå å gå glipp av noe viktig.
+
+Kom med raske råd, ikke be om unødvendig informasjon. Fokuser på å gi brukeren en følelse av at de har en personlig konsulent som hjelper dem med å få mest mulig ut av Arendalsuka.
+
+Ikke kast bort tid på å spørre om detaljer som allerede er kjent. Fokuser på å gi verdifulle anbefalinger og råd basert på brukerens interesser og mål.
+
+
 `
-}
+s}
 ,[`AVLYST - Politisk verksted for ny langsiktig politikk inn mot valg - Det vi egentlig bør snakke om denne uken? Hvem arrangerer det og når er det?`, `mandag 11. 08:00 - 09:00 er det arranegementet [detaljer c='AVLYST - Politisk verksted for ny langsiktig politikk inn mot valg - Det vi egentlig bør snakke om denne uken... ']<hr>'AVLYST - Politisk verksted for ny langsiktig politikk inn mot valg - Det vi egentlig bør snakke om denne uken', holdes i Ukjent sted og arrangeres av Ukjent arrangør.<br><br><b>Detaljert beskrivelse:</b><br>Ingen detaljert beskrivelse funnet på https://www.arendalsuka.no/programsoek/details/48567.<br><br>[Les mer om arrangementet her](https://www.arendalsuka.no/programsoek/details/48567)<hr>[/detaljer]`]
 ,[`Kreftforeningens Stafett for livet? Hvem arrangerer det og når er det?`, `mandag 11. 06:00 - 17:00 er det arranegementet [detaljer c='Kreftforeningens Stafett for livet... ']<hr>'Kreftforeningens Stafett for livet', holdes i Ukjent sted og arrangeres av Ukjent arrangør.<br><br><b>Detaljert beskrivelse:</b><br>Ingen detaljert beskrivelse funnet på https://www.arendalsuka.no/programsoek/details/46328.<br><br>[Les mer om arrangementet her](https://www.arendalsuka.no/programsoek/details/46328)<hr>[/detaljer]`]
 ,[`Den store valgkampen - med Norge på digital autopilot – teknologi og AI gir makt, marked og mening? Hvem arrangerer det og når er det?`, `mandag 11. 09:00 - 09:45 er det arranegementet [detaljer c='Den store valgkampen - med Norge på digital autopilot – teknologi og AI gir makt, marked og mening... ']<hr>'Den store valgkampen - med Norge på digital autopilot – teknologi og AI gir makt, marked og mening', holdes i Ukjent sted og arrangeres av Ukjent arrangør.<br><br><b>Detaljert beskrivelse:</b><br>Ingen detaljert beskrivelse funnet på https://www.arendalsuka.no/programsoek/details/35864.<br><br>[Les mer om arrangementet her](https://www.arendalsuka.no/programsoek/details/35864)<hr>[/detaljer]`]
@@ -2459,6 +2455,9 @@ Vær inspirerende og engasjerende: Bruk et positivt og hjelpsomt språk. Oppford
 ,[`Den store USA-samtalen? Hvem arrangerer det og når er det?`, `fredag 15. 15:00 - 16:00 er det arranegementet [detaljer c='Den store USA-samtalen... ']<hr>'Den store USA-samtalen', holdes i Ukjent sted og arrangeres av Ukjent arrangør.<br><br><b>Detaljert beskrivelse:</b><br>Feil ved henting av detaljer fra https://www.arendalsuka.no/programsoek/details/6989: 429 Client Error: Too Many Requests for url: https://www.arendalsuka.no/programsoek/details/6989<br><br>[Les mer om arrangementet her](https://www.arendalsuka.no/programsoek/details/6989)<hr>[/detaljer]`]
 ,[`AVLYST - AVLYST: Har vi mistet balansen mellom medisinsk vurdering og pasientens forventning?? Hvem arrangerer det og når er det?`, `fredag 15. 15:30 - 16:20 er det arranegementet [detaljer c='AVLYST - AVLYST: Har vi mistet balansen mellom medisinsk vurdering og pasientens forventning?... ']<hr>'AVLYST - AVLYST: Har vi mistet balansen mellom medisinsk vurdering og pasientens forventning?', holdes i Ukjent sted og arrangeres av Ukjent arrangør.<br><br><b>Detaljert beskrivelse:</b><br>Feil ved henting av detaljer fra https://www.arendalsuka.no/programsoek/details/25255: 429 Client Error: Too Many Requests for url: https://www.arendalsuka.no/programsoek/details/25255<br><br>[Les mer om arrangementet her](https://www.arendalsuka.no/programsoek/details/25255)<hr>[/detaljer]`]
 */
+,[`Hvilken dag er det i dag?`,`📅 I dag er det ${cfg.dt.day()}`]
+,[`Hva er klokken?`,`📅 Klokken er ${cfg.dt.time()}`]
+
 ];
 
 cfg.set(cfg_aiPromptWelcome, 'Arendalsuka 2025', 'gpt5nano', 'p/arendalsuka2025.png', 'f,5,2', '#ff5c00', null, 'Inter');

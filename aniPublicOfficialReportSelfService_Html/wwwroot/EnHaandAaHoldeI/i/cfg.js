@@ -150,5 +150,6 @@ const cfg={
         ,d:n=>['søndag','mandag','tirsdag','onsdag','torsdag','fredag','lørdag'][n%7]
         ,day:(d=new Date())=>`${cfg.dt.d(d.getDay())} ${d.getDate()}. ${cfg.dt.m(d.getMonth())} ${d.getFullYear()}`
         ,dayN:n=>cfg.dt.day(new Date(new Date().getTime() + n * 86400000))
+        ,time:(d=new Date())=>`${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`
     }    
 }
