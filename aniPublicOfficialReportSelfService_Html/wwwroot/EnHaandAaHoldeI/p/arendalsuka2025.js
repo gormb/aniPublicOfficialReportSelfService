@@ -2454,4 +2454,4 @@ Der det er mye tekst, legg til en egen seksjon for detaljer med formatering [det
 
 ];
 
-cfg.set(cfg_aiPromptWelcome, 'Arendalsuka 2025', 'gpt5nano', 'p/arendalsuka2025.png', 'f,5,2', '#ff5c00', null, 'Inter');
+cfg.set(cfg_aiPromptWelcome, 'Arendalsuka 2025', 'gpt4nano', 'p/arendalsuka2025.png', 'f,5,2', '#ff5c00', null, 'Inter');
