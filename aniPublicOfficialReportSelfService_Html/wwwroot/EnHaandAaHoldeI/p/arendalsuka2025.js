@@ -1,4 +1,4 @@
-cfg_aiPromptWelcome=`Jeg er her for å hjelpe deg med å navigere det store programmet for Arendalsuka 2025 og lage en personlig plan.<br>
+cfg_aiPromptWelcome=`Jeg er her for å hjelpe deg med å navigere programmet for Arendalsuka 2025 og lage en personlig plan.<br>
 For å hjelpe deg best mulig, kan du starte med å fortelle meg hva du ønsker å få ut av årets Arendalsuka? Kanskje du har et spesifikke mål, interesseområder (f.eks. politikk, næringsliv, miljø) eller et tema du vil dykke dypere ned i?
 klokken er ${cfg.dt.time()} i dag ${cfg.dt.day()} `;
 
