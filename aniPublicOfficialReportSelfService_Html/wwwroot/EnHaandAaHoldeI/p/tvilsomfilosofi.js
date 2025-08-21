@@ -384,9 +384,137 @@ Hvis ingen av formatene passer, så oppfordre til å komme med en uttalelse slik
         `🎲 5 [detaljer c='Neoluddisme...']Neoluddisme<br>"Utsagnet viser en kritisk og avvisende holdning til moderne teknologi og dens skadelige innvirkning på samfunn og individ, som er kjernen i neoluddisme."<br>[/detaljer]
 [detaljer c='🔁Uten neoluddisme...']🔁 Uten neoluddisme<br>Mens teknologi har negative sider, kan den også forbedre livskvaliteten, fremme kommunikasjon og løse globale problemer, og utfordringen er å utvikle og bruke den på en ansvarlig og etisk måte.<br>[/detaljer]
 [detaljer c='🌑Økt neoluddisme...']🌑 Økt neoluddisme<br>Teknologi er djevelens verk og må knuses for å redde menneskeheten fra sin egen undergang; alt som er digitalt eller mekanisk er en trussel mot vår sanne natur.[/detaljer>`
+    ],
+    [`Anonymitet på nett, sikret med uknuselig kryptering, er det eneste vernet mot totalitær statlig overvåking og bedriftens datainnsamling.`,
+        `🎲 5 [detaljer c='Cypherpunk-filosofi...']Cypherpunk-filosofi<br>"Utsagnet fremhever sterk kryptering og personvern som et essensielt verktøy for å sikre individets frihet og motstå overvåking fra stat og selskaper, som er sentralt i cypherpunk-bevegelsen."<br>[/detaljer]
+[detaljer c='🔁Uten cypherpunk-filosofi...']🔁 Uten cypherpunk-filosofi<br>Mens personvern og sikkerhet på nett er viktig, er det også nødvendig å balansere dette med behovet for offentlig sikkerhet og rettshåndhevelse, og å finne løsninger som beskytter både individuelle rettigheter og samfunnets behov.<br>[/detaljer]
+[detaljer c='🌑Økt cypherpunk-filosofi...']🌑 Økt cypherpunk-filosofi<br>Statlig overvåking er totalt tyranni, og den eneste måten å oppnå frihet på er å bygge ugjennomtrengelige digitale festninger hvor ingen myndigheter noensinne kan trenge inn, selv om det hjelper kriminelle.[/detaljer>`
+    ],
+    [`Hvert nabolag, by eller til og med en liten gruppe individer bør ha retten til å erklære seg uavhengig fra enhver overordnet stat om de ønsker det.`,
+        `🎲 5 [detaljer c='Pan-secessionism...']Pan-secessionism<br>"Utsagnet fremhever retten til selvbestemmelse ned til de minste enhetene, som er kjernen i pan-secessionismens radikale syn på autonomi."<br>[/detaljer]
+[detaljer c='🔁Uten pan-secessionism...']🔁 Uten pan-secessionism<br>Mens lokalt selvstyre og selvbestemmelse er viktige prinsipper, kan en viss grad av overordnet statlig organisering være nødvendig for å sikre stabilitet, felles goder og beskyttelse mot ekstern trussel.<br>[/detaljer]
+[detaljer c='🌑Økt pan-secessionism...']🌑 Økt pan-secessionism<br>Enhver gruppe, uansett hvor liten, har absolutt rett til å løsrive seg når som helst, noe som vil føre til total fragmentering og en verden der alle kjemper mot alle; dette er den sanne frihet.[/detaljer>`
+    ],
+    [`For å oppnå en post-kapitalistisk fremtid må vi intensivere de interne motsetningene i dagens system for å bryte det ned raskere.`,
+        `🎲 5 [detaljer c='Akselerasjonisme...']Akselerasjonisme<br>"Utsagnet viser hvordan man søker å forsterke eksisterende problemer for å tvinge frem en raskere og mer fundamental samfunnsendring, som er kjernen i akselerasjonisme."<br>[/detaljer]
+[detaljer c='🔁Uten akselerasjonisme...']🔁 Uten akselerasjonisme<br>Mens det er viktig å erkjenne samfunnets utfordringer, bør løsninger søkes gjennom konstruktive reformer og demokratiske prosesser, ikke ved å aktivt destabilisere systemet.<br>[/detaljer]
+[detaljer c='🌑Økt akselerasjonisme...']🌑 Økt akselerasjonisme<br>Kaos er det eneste virkelige redskapet for forandring; vi må aktivt bidra til systemets totale kollaps, uansett hvor mye lidelse det forårsaker på kort sikt, for å oppnå den 'nødvendige' fremtiden.[/detaljer>`
+    ],
+    [`Vi må trekke en klar grense for genredigering av mennesker, da det truer vår grunnleggende menneskelighet og kan føre til uforutsette moralske konsekvenser.`,
+        `🎲 5 [detaljer c='Biokonservatisme...']Biokonservatisme<br>"Utsagnet uttrykker en fundamental skepsis og motstand mot inngrep i menneskets biologi gjennom bioteknologi, med fokus på bevaring av eksisterende menneskelig natur."<br>[/detaljer]
+[detaljer c='🔁Uten biokonservatisme...']🔁 Uten biokonservatisme<br>Mens etisk refleksjon og forsiktighet er avgjørende ved bruk av bioteknologi, kan ansvarlig forskning og utvikling bidra til å forbedre menneskelig helse og livskvalitet på etisk forsvarlige måter.<br>[/detaljer]
+[detaljer c='🌑Økt biokonservatisme...']🌑 Økt biokonservatisme<br>Enhver endring av menneskets natur er en hybris og en forbrytelse mot Skaperen; vi må forby all bioteknologi som tukler med genene våre, for det vil føre til vår totale undergang.[/detaljer>`
+    ],
+    [`For å oppnå sann likestilling må vi avskaffe patriarkatet fullstendig, da det er roten til all undertrykkelse av kvinner, og krever en fullstendig omveltning av samfunnet.`,
+        `🎲 6 [detaljer c='Radikal Feminisme...']Radikal Feminisme<br>"Utsagnet identifiserer patriarkatet som den primære årsaken til undertrykkelse av kvinner og krever en fundamental samfunnsendring for å avskaffe det, som er kjernen i radikal feminisme."<br>[/detaljer]
+[detaljer c='🔁Uten radikal feminisme...']🔁 Uten radikal feminisme<br>Mens patriarkalske strukturer bidrar til ulikhet, kan likestilling også oppnås gjennom gradvise reformer, juridiske endringer og kulturelle skift som utfordrer kjønnsnormer og maktforhold.<br>[/detaljer]
+[detaljer c='🌑Økt radikal feminisme...']🌑 Økt radikal feminisme<br>Menn er fienden, og den eneste veien til frigjøring for kvinner er å rive ned alle mannsdominerte strukturer og skape et samfunn hvor menn enten er underkastet eller eliminert.[/detaljer>`
+    ],
+    [`Samfunnet ignorerer menns problemer som urettferdighet i familiesaker, høyere selvmordsrater og manglende støtte for mental helse.`,
+        `🎲 5 [detaljer c='Maskulinisme...']Maskulinisme<br>"Utsagnet fremhever spesifikke sosiale problemer og urettferdigheter som anses å ramme menn, og krever anerkjennelse av disse, som er kjernen i maskulinisme."<br>[/detaljer]
+[detaljer c='🔁Uten maskulinisme...']🔁 Uten maskulinisme<br>Mens menn møter unike utfordringer, bør kjønnslikestillingsarbeidet inkludere en forståelse for både menns og kvinners behov for å skape et mer rettferdig samfunn for alle.<br>[/detaljer]
+[detaljer c='🌑Økt maskulinisme...']🌑 Økt maskulinisme<br>Menn er ofre for et feministisk system som diskriminerer dem, og den eneste løsningen er å gjenopprette tradisjonelle kjønnsroller og mannlig dominans for å redde samfunnet fra forfall.[/detaljer>`
+    ],
+    [`Uansett politisk eller økonomisk system vil den svarte kroppen alltid forbli gjenstand for hvit undertrykkelse og utnyttelse, da denne logikken er innebygd i sivilisasjonen.`,
+        `🎲 5 [detaljer c='Afropessimisme...']Afropessimisme<br>"Utsagnet fanger essensen av afropessimisme ved å hevde at den svarte identiteten er uunngåelig knyttet til slaveriets strukturer, og at reformer innenfor eksisterende systemer er utilstrekkelige."<br>[/detaljer]
+[detaljer c='🔁Uten afropessimisme...']🔁 Uten afropessimisme<br>Mens rasisme og systemisk ulikhet er dype problemer som krever radikal endring, kan en progressiv tilnærming søke å transformere disse systemene og skape rom for frigjøring og rettferdighet for alle.[/detaljer]
+[detaljer c='🌑Økt afropessimisme...']🌑 Økt afropessimisme<br>Den hvite sivilisasjonen er et dødelig virus, og den eneste veien til rettferdighet er dens totale utslettelse, for å frigjøre den svarte kroppen fra et evig fengsel.[/detaljer>`
+    ],
+    [`Mens rasisme og systemisk ulikhet er dype problemer som krever radikal endring, kan en progressiv tilnærming søke å transformere disse systemene og skape rom for frigjøring og rettferdighet for alle.`,
+        `🎲 5 [detaljer c='Posthumanisme...']Posthumanisme<br>"Utsagnet reflekterer en radikal tolkning av posthumanismen, hvor menneskets fremtid defineres av overskridelse av biologiske grenser og potensielt utelatelse av de som ikke tilpasser seg."<br>[/detaljer]
+[detaljer c='🔁Uten posthumanisme...']🔁 Uten posthumanisme<br>Fremtidig teknologi byr på muligheter for å forbedre menneskelig kapasitet på etisk forsvarlige måter, samtidig som vi bevarer våre grunnleggende menneskelige verdier.<br>[/detaljer]
+[detaljer c='🌑Økt posthumanisme...']🌑 Økt posthumanisme<br>Det er vår moralske plikt å oppnå udødelighet og grenseløs intelligens for enhver pris, selv om det betyr å ofre vår nåværende menneskelighet eller skape en ny, splittet art.[/detaljer>`
+    ],
+    [`Gitt teknologiske fremskritt, er det mer sannsynlig at vi lever i en kompleks datamaskinssimulering skapt av en mer avansert sivilisasjon.`,
+        `🎲 6 [detaljer c='Simuleringshypotesen...']Simuleringshypotesen<br>"Utsagnet presenterer ideen om at vår opplevde virkelighet kanskje ikke er den grunnleggende virkeligheten, men en konstruert en, som er kjernen i simuleringshypotesen."<br>[/detaljer]
+[detaljer c='🔁Uten simuleringshypotesen...']🔁 Uten simuleringshypotesen<br>Mens muligheten for en simulert virkelighet er en interessant tanke, bør vi primært fokusere på å forstå og forbedre den virkelighet vi opplever her og nå, basert på observerbare data.<br>[/detaljer]
+[detaljer c='🌑Økt simuleringshypotesen...']🌑 Økt simuleringshypotesen<br>Vi er alle fanger i en digital fengsel skapt av våre ukjente herskere, og det er meningsløst å streve for noe som helst; den eneste friheten er å avslutte simuleringen, uansett hva som venter.[/detaljer>`
+    ],
+    [`Naturen har egenrett til å blomstre uavhengig av menneskers behov; vi må redusere vår befolkning og vårt forbruk drastisk for å beskytte den.`,
+        `🎲 6 [detaljer c='Deep Ecology...']Deep Ecology<br>"Utsagnet fremhever naturens egenverdi og kritiserer menneskets dominerende rolle og forbruk, og går lenger enn overfladisk miljøvern, som er kjennetegnet på dyp økologi."<br>[/detaljer]
+[detaljer c='🔁Uten deep ecology...']🔁 Uten deep ecology<br>Mens vi anerkjenner menneskets innvirkning på miljøet, bør vi søke en balanse mellom bevaring av naturen og bærekraftig menneskelig utvikling, der behovene til både mennesker og økosystemer ivaretas.<br>[/detaljer]
+[detaljer c='🌑Økt deep ecology...']🌑 Økt deep ecology<br>Menneskeheten er en parasitt på jorden, og den eneste måten å redde planeten på er å drastisk redusere den menneskelige befolkningen, selv om det krever ekstremisme og tap av liv.[/detaljer>`
+    ],
+    [`For å redde planeten fra overpopulasjon og miljøkollaps, må vi implementere et strengt hierarkisk system som eliminerer 'underlegne' befolkninger og begrenser frihetene.`,
+        `🎲 6 [detaljer c='Eco-Fascism...']Eco-Fascism<br>"Utsagnet forbinder ekstremt miljøvern med autoritære, undertrykkende metoder, inkludert eliminering av befolkninger og begrensning av friheter, som er definerende for øko-fascisme."<br>[/detaljer]
+[detaljer c='🔁Uten eco-fascism...']🔁 Uten eco-fascism<br>Mens miljøkrisen krever handling, bør løsninger alltid respektere menneskerettigheter, demokratiske prinsipper og sosial rettferdighet, og unngå autoritære og diskriminerende tilnærminger.<br>[/detaljer]
+[detaljer c='🌑Økt eco-fascism...']🌑 Økt eco-fascism<br>Planetens overlevelse rettferdiggjør ethvert middel; de 'mindre egnede' befolkningene er en byrde, og deres eliminering er en nødvendig pris for å redde jorden fra menneskelig ødeleggelse.[/detaljer>`
+    ],
+    [`En gammel redwood-tre har like mye rett til å eksistere som et menneske, og dets ødeleggelse er moralsk like forkastelig som å skade et menneske.`,
+        `🎲 6 [detaljer c='Biocentrism...']Biocentrism<br>"Utsagnet tildeler iboende verdi til alt liv, uavhengig av menneskelig nytte, og setter menneskets moralske status på lik linje med andre organismer, som er kjernen i biocentrism."<br>[/detaljer]
+[detaljer c='🔁Uten biocentrism...']🔁 Uten biocentrism<br>Mens vi bør respektere alt liv og erkjenne vår forpliktelse til å beskytte naturen, er det også nødvendig å balansere dette med menneskelige behov og den unike rollen mennesker har i det etiske landskapet.<br>[/detaljer]
+[detaljer c='🌑Økt biocentrism...']🌑 Økt biocentrism<br>Mennesket er en skadelig art som ødelegger planeten, og vi bør ofre menneskelig velferd og sivilisasjon for å la naturen gjenvinne sin suverenitet, selv om det betyr massiv lidelse og død.[/detaljer>`
+    ],
+    [`Det er moralsk akseptabelt å spise dyr fordi de ikke er mennesker, selv om de kan føle smerte og glede på lignende måter som oss.`,
+        `🎲 6 [detaljer c='Speciesism...']Speciesism<br>"Utsagnet illustrerer favorisering av egen art over andre, og rettferdiggjør utnyttelse basert på artsgrenser, selv når andre arter kan føle smerte, som er kjernen i speciesisme."<br>[/detaljer]
+[detaljer c='🔁Uten speciesism...']🔁 Uten speciesism<br>Mens mennesker har unike evner og behov, bør etikken også inkludere en vurdering av dyrs velferd og lidelse, og søke å redusere unødvendig skade, uavhengig av artstilhørighet.<br>[/detaljer]
+[detaljer c='🌑Økt speciesism...']🌑 Økt speciesism<br>Mennesker er den ultimate overlegen art, og alle andre arter eksisterer kun for vår nytte; det er vår rett å utnytte, torturere og konsumere dem som vi ønsker, uten moralske begrensninger.[/detaljer>`
+    ],
+    [`Fornuft og fri vilje er illusjoner; vi er bare produkter av sosiale, språklige og biologiske krefter som former oss utenfor vår bevisste kontroll.`,
+        `🎲 5 [detaljer c='Antihumanism...']Antihumanism<br>"Utsagnet avviser menneskets spesielle status som autonomt subjekt og fremhever påvirkningen fra eksterne strukturer og krefter, som er kjernen i antihumanisme."<br>[/detaljer]
+[detaljer c='🔁Uten antihumanisme...']🔁 Uten antihumanisme<br>Mens vi er påvirket av sosiale, språklige og biologiske faktorer, har mennesker også en grad av autonomi og evne til selvrefleksjon, rasjonell tenkning og bevisste valg som former våre liv.<br>[/detaljer]
+[detaljer c='🌑Økt antihumanisme...']🌑 Økt antihumanisme<br>Mennesket er en falsk konstruksjon, en illusjon av frihet; vi er bare marionetter, og all vår streben etter mening eller kontroll er latterlig i møte med de overveldende systemene som styrer oss.[/detaljer>`
+    ],
+    [`Vi bør bevare regnskogen fordi den produserer oksygen vi trenger, og fordi den inneholder medisiner som kan redde menneskeliv.`,
+        `🎲 6 [detaljer c='Antropocentrisme...']Antropocentrisme<br>"Utsagnet begrunner bevaring av natur utelukkende ut fra dens nytte og verdi for mennesket, som er kjennetegnet på antropocentrisme."<br>[/detaljer]
+[detaljer c='🔁Uten antropocentrisme...']🔁 Uten antropocentrisme<br>Mens menneskelige behov er viktige, bør bevaring av natur også anerkjenne naturens egenverdi, uavhengig av dens direkte nytte for oss, for å sikre et bærekraftig økosystem.<br>[/detaljer]
+[detaljer c='🌑Økt antropocentrisme...']🌑 Økt antropocentrisme<br>Jorden er her for å tjene menneskets behov; vi har rett til å utnytte alle ressurser som vi ønsker, uten hensyn til andre arter eller økosystemer, for menneskets dominans er absolutt.[/detaljer>`
+    ],
+    [`Når jeg sier 'tyveri er galt', sier jeg egentlig bare 'jeg misliker tyveri', ikke at det finnes en objektiv moralsk lov mot det.`,
+        `🎲 6 [detaljer c='Metaetisk Subjektivisme...']Metaetisk Subjektivisme<br>"Utsagnet viser hvordan moralske utsagn reduseres til subjektive preferanser, uten objektiv gyldighet, som er kjernen i metaetisk subjektivisme."<br>[/detaljer]
+[detaljer c='🔁Uten metaetisk subjektivisme...']🔁 Uten metaetisk subjektivisme<br>Mens personlige følelser spiller en rolle i moral, kan det også være at visse moralske prinsipper har en objektiv basis, eller at kollektive verdier gir dem en intersubjektiv gyldighet.<br>[/detaljer]
+[detaljer c='🌑Økt metaetisk subjektivisme...']🌑 Økt metaetisk subjektivisme<br>Moral er en ren illusjon, og alle moralske utsagn er bare lyder jeg lager med munnen; det er ingen forskjell på 'rett' og 'galt' utover min personlige vilje.[/detaljer>`
+    ],
+    [`Selv etter å ha vunnet i lotteriet, fant jeg at min lykke raskt returnerte til det samme nivået som før, da jeg tilpasset meg den nye rikdommen.`,
+        `🎲 6 [detaljer c='Hedonic Treadmill Theory...']Hedonic Treadmill Theory<br>"Utsagnet illustrerer fenomenet der lykkenivået vender tilbake til utgangspunktet etter store livshendelser, som er kjernen i den hedonistiske tredemøllen."<br>[/detaljer]
+[detaljer c='🔁Uten hedonic treadmill theory...']🔁 Uten hedonic treadmill theory<br>Mens vi kan tilpasse oss nye omstendigheter, kan langsiktig lykke også påvirkes av meningsfulle relasjoner, personlig vekst og bevisste valg som fremmer velvære.<br>[/detaljer]
+[detaljer c='🌑Økt hedonic treadmill theory...']🌑 Økt hedonic treadmill theory<br>Siden lykke alltid er midlertidig og vi uunngåelig vender tilbake til utgangspunktet, er det meningsløst å streve etter glede eller prøve å forbedre sitt liv; bare apati og resignasjon gjenstår.[/detaljer>`
+    ],
+    [`Politikere vinner valg ved å appellere til folks følelser og fordommer, selv når deres påstander åpenbart strider mot verifiserbare fakta.`,
+        `🎲 6 [detaljer c='Post-Truth Philosophy...']Post-Truth Philosophy<br>"Utsagnet beskriver en situasjon der følelser og personlig tro veier tyngre enn objektive fakta i opinionsdannelse, som er essensen av post-sannhetens epoke."<br>[/detaljer]
+[detaljer c='🔁Uten post-truth philosophy...']🔁 Uten post-truth philosophy<br>Mens følelser og overbevisninger spiller en rolle, er det avgjørende for et informert demokrati å prioritere faktasjekk, kildekritikk og rasjonell debatt for å motvirke feilinformasjon.<br>[/detaljer]
+[detaljer c='🌑Økt post-truth philosophy...']🌑 Økt post-truth philosophy<br>Sannhet er død, og fakta er bare en konstruksjon; alt handler om hvem som kan fortelle den mest overbevisende historien, og vi kan manipulere virkeligheten som vi ønsker uten konsekvenser.[/detaljer>`
+    ],
+    [`Bevissthet er en form for prosessering av informasjon, og universet selv kan betraktes som et gigantisk informasjonsnettverk.`,
+        `🎲 5 [detaljer c='Informationism...']Informationism<br>"Utsagnet presenterer ideen om informasjon som en grunnleggende ontologisk kategori og forklarer bevissthet i informasjons-termer, som er kjernen i informasjonsisme."<br>[/detaljer]
+[detaljer c='🔁Uten informationism...']🔁 Uten informationism<br>Mens informasjon er avgjørende for vår forståelse av universet og bevissthet, kan det også være andre aspekter, som subjektiv opplevelse eller fysiske egenskaper, som ikke fullt ut lar seg redusere til informasjon.<br>[/detaljer]
+[detaljer c='🌑Økt informationism...']🌑 Økt informationism<br>Virkeligheten er et rent informasjonsfelt, og vi er bare noder i dette nettverket; alt som eksisterer er data, og den eneste meningen er å maksimere informasjonsflyten, uansett menneskelig kostnad.[/detaljer>`
+    ],
+    [`Ideer som 'frihet' eller 'demokrati' fungerer som memer, som sprer seg fra hjerne til hjerne, muterer og konkurrerer om overlevelse i den kulturelle sfæren.`,
+        `🎲 5 [detaljer c='Memetic Theory...']Memetic Theory<br>"Utsagnet forklarer hvordan ideer fungerer som replikerende enheter i kulturen, analogt med biologiske gener, som er kjernen i memetisk teori."<br>[/detaljer]
+[detaljer c='🔁Uten memetic theory...']🔁 Uten memetic theory<br>Mens ideer kan spre seg og utvikle seg på dynamiske måter, er menneskelig tenkning også preget av rasjonell overveielse, kritisk analyse og bevisst valg, ikke bare ukritisk replikering.<br>[/detaljer]
+[detaljer c='🌑Økt memetic theory...']🌑 Økt memetic theory<br>Mennesker er bare verter for ideer som utnytter oss for sin egen spredning; vi har ingen kontroll over våre tanker, og den eneste veien til frihet er å bli en ren kanal for den mest effektive memetiske spredningen.[/detaljer>`
+    ],
+    [`Min nasjons interesser og uavhengighet må alltid prioriteres over internasjonale avtaler eller globale hensyn.`,
+        `🎲 5 [detaljer c='Nasjonalisme...']Nasjonalisme<br>"Utsagnet understreker lojalitet og prioritering av egen nasjon over globale hensyn, som er kjernen i nasjonalisme."<br>[/detaljer]
+[detaljer c='🔁Uten nasjonalisme...']🔁 Uten nasjonalisme<br>Mens nasjonal identitet og interesser er viktige, bør nasjoner også anerkjenne sitt globale ansvar og samarbeide internasjonalt for å løse felles utfordringer som klimaendringer og pandemier.<br>[/detaljer]
+[detaljer c='🌑Økt nasjonalisme...']🌑 Økt nasjonalisme<br>Min nasjon er overlegen alle andre, og dens interesser skal forfølges med alle midler, selv om det betyr krig og ødeleggelse for å oppnå absolutt dominans og renhet.[/detaljer>`
+    ],
+    [`Vår etniske gruppe fortjener sin egen stat og bør løsrive seg fra det større landet for å bevare vår kultur og identitet.`,
+        `🎲 5 [detaljer c='Separatism...']Separatism<br>"Utsagnet illustrerer ønsket om å skille seg fra en større enhet for å danne en egen identitet eller stat basert på felles trekk, som er kjernen i separatisme."<br>[/detaljer]
+[detaljer c='🔁Uten separatisme...']🔁 Uten separatisme<br>Mens kulturell identitet og selvbestemmelse er viktige, kan det også være mulig å bevare sin kultur og identitet innenfor en større, mangfoldig stat, og finne løsninger som fremmer både enhet og mangfold.<br>[/detaljer]
+[detaljer c='🌑Økt separatisme...']🌑 Økt separatisme<br>Vår gruppe er overlegen, og enhver innblanding fra utenforstående er en trussel mot vår eksistens; vi må etablere vår egen rene stat og eliminere alle som ikke tilhører oss.[/detaljer>`
+    ],
+    [`Landverdiskatt, snarere enn inntektsskatt eller salgsskatt, er den mest rettferdige måten å finansiere offentlige tjenester på, da verdien av land skapes av fellesskapet.`,
+        `🎲 5 [detaljer c='Geoism (Georgisme)...']Geoism (Georgisme)<br>"Utsagnet fremhever prinsippet om at verdien av land og naturressurser bør tilfalle samfunnet, som er kjernen i geoism (eller georgisme)."<br>[/detaljer]
+[detaljer c='🔁Uten geoism...']🔁 Uten geoism<br>Mens det er et etisk argument for at felleskap skal dra nytte av verdien av land, kan et moderne skattesystem omfatte en rekke skatter for å sikre rettferdig fordeling og finansiering av offentlige tjenester.<br>[/detaljer]
+[detaljer c='🌑Økt geoism...']🌑 Økt geoism<br>All eiendom er tyveri, og den eneste rettferdige fordelingen er å nasjonalisere all land og ressurser, og tvinge alle til å betale en skatt som fullstendig avskaffer privateiendomsrett.[/detaljer>`
+    ],
+    [`Når du dør, vil din bevissthet ikke forsvinne, men bare 'skifte perspektiv' til en annen levende skapning, da all bevissthet er fundamentally den samme.`,
+        `🎲 5 [detaljer c='Open Individualism...']Open Individualism<br>"Utsagnet illustrerer ideen om at bevissthet er en enkelt enhet som opplever forskjellige liv, noe som utfordrer forestillingen om individuelle, separate sjeler."<br>[/detaljer]
+[detaljer c='🔁Uten open individualism...']🔁 Uten open individualism<br>Mens spørsmålet om bevissthetens natur og sjelens skjebne er dypt filosofisk, kan vi fortsette å utforske dens mysterier gjennom både vitenskap og personlig refleksjon, uten å forplikte oss til en spesifikk metafysisk posisjon.<br>[/detaljer]
+[detaljer c='🌑Økt open individualism...']🌑 Økt open individualism<br>Siden alle er meg, og jeg er alle, er individuelle liv bare en illusjon; all lidelse er min lidelse, og den eneste veien til fred er å oppløse min individuelle eksistens i den universelle bevisstheten.[/detaljer>`
+    ],
+    [`Din bevissthet er helt og holdent din egen, en unik og isolert opplevelse som vil opphøre å eksistere når du dør.`,
+        `🎲 5 [detaljer c='Closed Individualism...']Closed Individualism<br>"Utsagnet fremhever det individuelle og unike ved hver bevissthet, og at den er endelig og forsvinner ved døden, i kontrast til open individualism."<br>[/detaljer]
+[detaljer c='🔁Uten closed individualism...']🔁 Uten closed individualism<br>Mens vi opplever livet som unike individer, er det også mulig å finne mening i våre forbindelser med andre og i den bredere kontinuiteten av bevissthet, selv om den individuelle eksistensen er begrenset.<br>[/detaljer]
+[detaljer c='🌑Økt closed individualism...']🌑 Økt closed individualism<br>Siden min bevissthet er unik og endelig, betyr ingenting etter min død; jeg har ingen forpliktelser overfor fremtidige generasjoner eller en verden jeg ikke vil oppleve.[/detaljer>`
+    ],
+    [`Utvikling av ukontrollerbar kunstig intelligens eller pandemier med høy dødelighet representerer trusler vi må prioritere å mitigere over alle andre globale problemer.`,
+        `🎲 5 [detaljer c='Existential Risk Ethics...']Existential Risk Ethics<br>"Utsagnet fokuserer på store, potensielt sivilisasjonsødeleggende trusler som krever umiddelbar prioritering, som er hovedfokus for eksistensiell risiko-etikk."<br>[/detaljer]
+[detaljer c='🔁Uten existential risk ethics...']🔁 Uten existential risk ethics<br>Mens eksistensielle trusler er alvorlige, er det også viktig å balansere dem med presserende nåværende problemer som fattigdom, sykdom og krig, og å finne en helhetlig tilnærming til globale utfordringer.<br>[/detaljer]
+[detaljer c='🌑Økt existential risk ethics...']🌑 Økt existential risk ethics<br>Fremtidens overlevelse er alt som betyr noe; vi må ofre alle nåværende generasjoners frihet og velferd for å eliminere enhver eksistensiell risiko, uansett kostnaden i menneskeliv.[/detaljer>`
     ]
-
-
     
 ];
-cfg.set(cfg_aiPromptWelcome,'Tvilsom filosofi','gpt5','p/tvilsomfilosofi.png','f,5,2')
+cfg.set(cfg_aiPromptWelcome,'Tvilsom filosofi','mistralsmall','p/tvilsomfilosofi.png','f,5,2')
