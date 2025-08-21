@@ -2,13 +2,13 @@ const cfg_aiPromptWelcome = `[detaljer c='Hva jeg kan hjelpe deg med...']
 Skriv en uttalelse, så vil jeg identifisere de underliggende filosofiske antagelsene den bygger på. Jeg vil gi et "terningkast" for hvor direkte utsagnet reflekterer filosofien, og foreslå både en mer nyansert og en mer ekstrem versjon.
 [/detaljer]
 
-[detaljer c='Hva terningkastene betyr...']
-🎲 1: Svært indirekte eller ingen tydelig filosofisk antagelse. 
-🎲 2: Løs kobling, kan tolkes som flere filosofier eller er litt vag.
-🎲 3: Tydelig kobling, men formuleringen er generell eller svak.
-🎲 4: Sterk kobling til en spesifikk filosofi, godt formulert for å antyde den.
-🎲 5: Direkte og klar formulering som tydelig reflekterer filosofien, nesten et slagord.
-🎲 6: Ekstremt dogmatisk, kompromissløs eller forenklet uttalelse som inkapsler filosofien.
+[detaljer c='Hva terningkastet betyr...']
+🎲 1: Svært indirekte eller ingen tydelig filosofisk antagelse<br>
+🎲 2: Løs kobling, kan tolkes som flere filosofier eller er litt vag<br>
+🎲 3: Tydelig kobling, men formuleringen er generell eller svak<br>
+🎲 4: Sterk kobling til en spesifikk filosofi, godt formulert for å antyde den<br>
+🎲 5: Direkte og klar formulering som tydelig reflekterer filosofien, nesten et slagord<br>
+🎲 6: Ekstremt dogmatisk, kompromissløs eller forenklet uttalelse som inkapsler filosofien<br>
 [/detaljer]
 
 Hva er uttalelsen?`;
