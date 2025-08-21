@@ -517,4 +517,5 @@ Hvis ingen av formatene passer, så oppfordre til å komme med en uttalelse slik
     ]
     
 ];
-cfg.set(cfg_aiPromptWelcome,'Tvilsom filosofi','mistralsmall','p/tvilsomfilosofi.png','f,5,2')
+cfg.set(cfg_aiPromptWelcome,'Tvilsom filosofi','mistralsmall','p/tvilsomfilosofi.png','f,5,2','#5C2D91')
+
