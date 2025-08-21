@@ -1,12 +1,12 @@
 /////////////// cfg /////////////////
-const tools={
-    onMsg:[]
-    , clear:()=>onMsg=[]
-    , add:onmsg=>
-        onmsg.forEach(om=>
-            console.warn('todo: tool check if there else add', t))
-    , set:onmsg=>tools.clear()^tools.add(onmsg)
-}
+// const tools={
+//     onMsg:[]
+//     , clear:()=>onMsg=[]
+//     , add:onmsg=>
+//         onmsg.forEach(om=>
+//             console.warn('todo: tool check if there else add', t))
+//     , set:onmsg=>tools.clear()^tools.add(onmsg)
+// }
 /////////////// cfg /////////////////
 const cfg={
     app: 'Velg App'
@@ -142,7 +142,7 @@ const cfg={
         document.documentElement.style.setProperty('--light-msg', lightMCol??'#ffffff');
         ui.font.n(font??'Roboto');
         cfg.app=document.title=appN;
-        tools.set(aiTools);
+        //tools.set(aiTools);
         cfg.visAppMeny(false)
     }
     ,dt: {

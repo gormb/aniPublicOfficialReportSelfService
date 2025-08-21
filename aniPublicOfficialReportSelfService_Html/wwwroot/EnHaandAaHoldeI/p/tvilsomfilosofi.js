@@ -1,4 +1,4 @@
-const cfg_aiPromptWelcome = `[detaljer c='Hva jeg kan hjelpe deg med...']
+cfg_aiPromptWelcome = `[detaljer c='Hva jeg kan hjelpe deg med...']
 Skriv en uttalelse, så vil jeg identifisere de underliggende filosofiske antagelsene den bygger på. Jeg vil gi et "terningkast" for hvor direkte utsagnet reflekterer filosofien, og foreslå både en mer nyansert og en mer ekstrem versjon.
 [/detaljer]
 
@@ -517,5 +517,5 @@ Hvis ingen av formatene passer, så oppfordre til å komme med en uttalelse slik
     ]
     
 ];
-cfg.set(cfg_aiPromptWelcome,'Tvilsom filosofi','mistralsmall','p/tvilsomfilosofi.png','f,5,2','#5C2D91')
 
+cfg.set(cfg_aiPromptWelcome,'Tvilsom filosofi','mistralsmall','p/tvilsomfilosofi.png','f,5,2','#5C2D91',null,'Montserrat')
