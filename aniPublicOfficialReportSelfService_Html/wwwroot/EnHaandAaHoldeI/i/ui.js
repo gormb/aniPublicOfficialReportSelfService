@@ -106,7 +106,7 @@ const ui = {
         , X: mt => mt.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
         , Id: mt => 'm_'+ui.menu.X(mt)
         , Fn: mt => 'menuClick_' + ui.menu.Id(mt)
-        , E : mt => document.getElementById(ui.menu.Id(mt)) || console.warn(`ui.menu.E: ${ui.menu.Id(mt)} finnes ikke`)
+        , E: mt => document.getElementById(ui.menu.Id(mt)) || console.log(`ui.menu.E: ${ui.menu.Id(mt)} finnes ikke`)
         , EFeat : (mt,b,f) => {
             let e=ui.menu.E(mt)
             if (b==null) b = !e.classList.contains(f);
