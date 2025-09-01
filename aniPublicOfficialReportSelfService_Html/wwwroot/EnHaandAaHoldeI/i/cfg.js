@@ -16,17 +16,18 @@ const cfg={
             ,'Blank modell >>§-', ['Renset reasoning','Renset chat','Blank reasoning','Blank chat','Blank grunnmodell']
             ,'Hånd å holde i >>§-', ['Hvordan har du det?','Personvernrådgiveren']
             ,'Nyheter >>§ -', ['Verdens nyheter via Ideallya','Aigap PFU']
+        ]],['Offentlig >>§-',[
+            'Norge veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
+            ,'Kommuner >>§-', ['NO Alt Om Kommunale Tjenester']
+            ,'Asker Kommune >>§-', ['Eldre i Asker Kommune']
+            ,'Norge personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
+            ,'ARB >>§ -', ['ARB Kurs','ARB Jobbsøk og karriereveiledning (KOJ)', 'ARB CV-hjelp', 'ARB Jobbsøknadshjelp','ARB Intervjuklar','ARB Karrierevei & Totalkompetanse','ARB Jobbsøkervelvære','ARB Gründerstart']
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
             ,'Hlm - spesialist >>§-',['Flytveilederen','CRPS-veilederen','Biopsykososial modell','Kroppens stressystem','Mellom rom og spekter','MI-treneren (HDIR-basert)']
             ,'Hlm - økosystem >>§-',['Qigong Academy']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
-        ]],['Offentlig >>§-',[
-            'Norge veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
-            ,'Norge personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
-            ,'ARB >>§ -', ['ARB Kurs','ARB Jobbsøk og karriereveiledning (KOJ)', 'ARB CV-hjelp', 'ARB Jobbsøknadshjelp','ARB Intervjuklar','ARB Karrierevei & Totalkompetanse','ARB Jobbsøkervelvære','ARB Gründerstart']
-            ,'Kommune >>§-', ['NO Alt Om Kommunale Tjenester','Eldre i Asker Kommune']
         ]],['Virksomhet >>§-',[
             'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning', 'Ansatt: Meningsfylt jobb']
             ,'Skrivekunst >>§ -', ['Aigap Kreativ Skrivepartner','Aigap Språk og tone']
