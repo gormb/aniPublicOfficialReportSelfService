@@ -2,7 +2,6 @@ import SwiftUI
 import WebKit
 import Network
 
-// 1. Create an Observable class to manage network state
 class NetworkMonitor: ObservableObject {
     @Published var isConnected: Bool = true
     private let monitor = NWPathMonitor()
@@ -18,7 +17,6 @@ class NetworkMonitor: ObservableObject {
     }
 }
 
-// 2. The UIViewRepresentable for WKWebView, now simpler
 struct WebView: UIViewRepresentable {
     let urlOnline: String
     let urlOffline: String
