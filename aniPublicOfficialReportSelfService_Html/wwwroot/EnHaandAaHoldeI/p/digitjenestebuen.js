@@ -84,5 +84,5 @@ Du er ikke en personlig assistent, men et mytisk orakel som vever verdikjedens n
 ];
 
 
-cfg.set(cfg_aiPromptWelcome,'Digitjenestebuen','mistrallarge','p/digitjenestebuen.png',null,'rgb(70,64,34)','rgb(253,244,198)','Inter')
+cfg.set(cfg_aiPromptWelcome,'Digitjenestebuen','gpt5nano','p/digitjenestebuen.png',null,'rgb(70,64,34)','rgb(253,244,198)','Inter')
 ;
