@@ -16,10 +16,6 @@ const cfg={
             ,'Blank modell >>§-', ['Renset reasoning','Renset chat','Blank reasoning','Blank chat','Blank grunnmodell']
             ,'Hånd å holde i >>§-', ['Hvordan har du det?','Personvernrådgiveren']
             ,'Nyheter >>§ -', ['Verdens nyheter via Ideallya','Aigap PFU']
-        ]],['Norge >>§-',[
-            'Norge veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
-            ,'Norge personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
-            ,'ARB >>§ -', ['ARB Kurs','ARB Jobbsøk og karriereveiledning (KOJ)', 'ARB CV-hjelp', 'ARB Jobbsøknadshjelp','ARB Intervjuklar','ARB Karrierevei & Totalkompetanse','ARB Jobbsøkervelvære','ARB Gründerstart']
         ]],['Kommune >>§-',[
             'Generelt >>§-', ['NO Alt Om Kommunale Tjenester']
             ,'Asker >>§-', ['Eldre i Asker Kommune']
@@ -29,6 +25,10 @@ const cfg={
             ,'Kommunesamarbeid >>§-', ['Norgeskomsam']
             ,'Fagmiljø (etat) >>§-', ['Norgeskom fagmiljø']
             ,'Politiker/Kommunedirektør >>§-', ['Norgeskom dir']
+        ]],['Norge >>§-',[
+            'Norge veiledning >>§-', ['NO Min Offentlige Hjelper','NO Enkel Navigatør','NO Alt Om Tjenester','NO TjenesteGuide','NO Alt På Ett Sted']
+            ,'Norge personlig støtte >>§-', ['NO Din Offentlige Partner','NO Min Digitale Venn','NO RettighetsVakten','NO KlarTale','NO HverdagsHjelpen']
+            ,'ARB >>§ -', ['ARB Kurs','ARB Jobbsøk og karriereveiledning (KOJ)', 'ARB CV-hjelp', 'ARB Jobbsøknadshjelp','ARB Intervjuklar','ARB Karrierevei & Totalkompetanse','ARB Jobbsøkervelvære','ARB Gründerstart']
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
@@ -40,7 +40,7 @@ const cfg={
             ,'Skrivekunst >>§ -', ['Aigap Kreativ Skrivepartner','Aigap Språk og tone']
             ,'Leder >>§-', ['Leder: ny i rollen', 'Leder: beslutningshjelp', 'Leder: økonomi', 'Leder: forbedring', 'Leder: LMX', 'Leder: tilt.work']
             ,'HR >>§-', ['HR: Ansettelsen', 'HR: Medarbeidersamtale', 'HR: Oppsigelsen', 'HR: Restrukturering']
-            ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper']
+            ,'IT >>§-', ['ROS assistent', 'ITIL-hjelper', 'Digitjenestebuen']
         ]],['Event >>§-',[
             'Lansering >>§-', ['IT-revyens årsmøte']
             ,'Folk >>§-', ['Om Gorm Braarvig']
