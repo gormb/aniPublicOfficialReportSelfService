@@ -1,7 +1,7 @@
 /////////////// ai ///////////////
 const ai={
     Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-    ,Raw2Htm: raw => raw
+,Raw2Htm: raw => raw
         // fjern eksisterende <a>-tagger for å unngå dobbel-lenker
         .replace(/<a .*?<\/a>/g, m => m.replace(/<a .*?>|<\/a>/g, ''))
         // LLM lite
@@ -18,10 +18,10 @@ const ai={
         .replace(/# (.*)/g, '<h1>$1</h1>')
         .replace(/^\s*(---|\*\*\*|___)\s*$/gm, '<hr>')
         .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
-        .replace(/(🎲\s*\d\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m => {const [pre, ...rest]=m.trim().split(/\s+/);return ai.Raw2HtmA(pre + ' ' + rest.shift(), rest.join(' '))})
-        .replace(/(🔁\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m =>ai.Raw2HtmA('🔁', m.replace(/^🔁\s*/, '').trim()))
-        .replace(/(🌑\s*[^🎲🔁🌑①②③④⑤⑥⑦⑧⑨⑩<]*)/g, m =>ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim()))
-        .replace(/(①|②|③|④|⑤|⑥|⑦⑧|⑨|⑩)\s*([^①②③④⑤⑥⑦⑧⑨⑩<]*)/g, (_, n, t)=>ai.Raw2HtmA(n, t.trim()))
+        .replace(/(🎲\s*\d\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => {const [pre, ...rest]=m.trim().split(/\s+/);return ai.Raw2HtmA(pre + ' ' + rest.shift(), rest.join(' '))})
+        .replace(/(🔁\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m =>ai.Raw2HtmA('🔁', m.replace(/^🔁\s*/, '').trim()))
+        .replace(/(🌑\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m =>ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim()))
+        .replace(/(1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩)\s*([^1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, (_, n, t)=>ai.Raw2HtmA(n, t.trim()))
         .replace(/\n/g, '<br>') // til slutt, legg til <br> for \n
         //todo: fix this witha normal loop!
     //,Raw2HtmAs1: s => {
