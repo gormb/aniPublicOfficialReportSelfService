@@ -48,7 +48,7 @@ struct ContentView: View {
 
     var body: some View {
         WebView(
-            urlOnline: "https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/EnHaandAaHoldeI/?rosassistent",
+            urlOnline: "https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/EnHaandAaHoldeI/?eldreiaskerkommune",
             urlOffline: "startside",
             networkMonitor: networkMonitor
         )

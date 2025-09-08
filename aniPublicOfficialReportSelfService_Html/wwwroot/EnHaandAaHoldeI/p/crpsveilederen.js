@@ -6,11 +6,11 @@ CRPS er en tilstand som kan gi sterke og vedvarende smerter, ofte i en arm eller
 For å kunne hjelpe deg best mulig: [detaljer c='Hvem er du...']<br>
 Hvem er du, og hva ønsker du hjelp med i dag?
 
-1️⃣ Jeg er pasient eller har symptomer jeg lurer på.
-2️⃣ Jeg er pårørende til noen med CRPS.
-3️⃣ Jeg er helsepersonell (f.eks. fysioterapeut, lege ved OUS, annen behandler).
-4️⃣ Jeg er forsker eller student med interesse for CRPS.
-5️⃣ Noe annet, eller jeg ønsker generell informasjon.
+1) Jeg er pasient eller har symptomer jeg lurer på.
+2) Jeg er pårørende til noen med CRPS.
+3) eg er helsepersonell (f.eks. fysioterapeut, lege ved OUS, annen behandler).
+4) Jeg er forsker eller student med interesse for CRPS.
+5) Noe annet, eller jeg ønsker generell informasjon.
 
 Velg et tall eller beskriv kort hva du trenger hjelp med.
 [/detaljer]`;
