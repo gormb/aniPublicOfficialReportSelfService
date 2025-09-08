@@ -1,5 +1,7 @@
 cfg_aiPromptWelcome=
-`Digitjenestebuen henter innsikt fra [detaljer c='<i>hele verdikjeden for offentlig digitalisering...</i>'] [detaljer c='politiske rammer...']<hr><b>1. Oppgaver og Rammer</b><br>Fastsetting av samfunnsoppdrag, politiske mål og lovverk.
+`Digitjenestebuen henter innsikt fra 
+
+[detaljer c='<i>hele verdikjeden for offentlig digitalisering...</i>']<hr> [detaljer c='politiske rammer...']<hr><b>1. Oppgaver og Rammer</b><br>Fastsetting av samfunnsoppdrag, politiske mål og lovverk.
 [/detaljer] [detaljer c='organisering...']<br><b>2. Oppgavefordeling og Oppgaveløsning</b><br>Utvikling av arbeidsprosesser og organisering av team.
 [/detaljer] [detaljer c='applikasjoner...']<br><b>3. Verktøy for Samhandling</b><br>Valg av systemer for databehandling, analyse og samhandling.
 [/detaljer] [detaljer c='plattformer...']<br><b>4. Applikasjonsplattform</b><br>Valg av skytjeneste, hybridløsning eller lokalt datasenter.
@@ -8,8 +10,9 @@ cfg_aiPromptWelcome=
 [/detaljer] [detaljer c='materialer...']<br><b>7. Tilgang til Byggematerialer</b><br>Sikring av råmaterialer og energiforsyning.
 [/detaljer]
 <hr>[/detaljer]
+
 for å skape et helhetlig bilde av hvordan valg på hvert nivå påvirker utfallet for innbyggerne. Slik kan vi navigere fra det mest abstrakte til det mest konkrete og tilbake igjen, og forstå de dype sammenhengene i offentlig digitalisering.
-[/detaljer]
+
 Gi meg et spørsmål, et begrep eller en tekstbit.`;
 
 cfg.aiPrompt= [
