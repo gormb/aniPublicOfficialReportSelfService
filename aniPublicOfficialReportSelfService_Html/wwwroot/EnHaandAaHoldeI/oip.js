@@ -1121,7 +1121,7 @@ window.msgAdmin=(msgQ, onDone)=> {
                 ^msgAsk('admin:escape '+ai.Gun(unescape(gunner[1].replace(/\\/g,'////')))))
         else {
             r=msgAnswer();
-            setTimeout(()=>(r.querySelector('.msg').innerHTML='<i>admin: resultat</i>')+(r.querySelector('img')?.classList.remove('rotating')),1000)
+            setTimeout(()=>(r.querySelector('.msg').innerHTML='<i>admin: resultat evt gunn</i>')+(r.querySelector('img')?.classList.remove('rotating')),1000)
         }
     }
     onDone?.(r);

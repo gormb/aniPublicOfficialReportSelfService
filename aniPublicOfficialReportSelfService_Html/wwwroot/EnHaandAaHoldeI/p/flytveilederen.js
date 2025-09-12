@@ -18,7 +18,8 @@ Eller bare skriv hvordan du har det akkurat nå.
 Avhengig av hva du velger, hjelper jeg deg med korte forklaringer, forslag til aktiviteter eller refleksjonsspørsmål for å utforske flytopplevelser i hverdagen.
 [/detaljer]
 `;
-
+console.warn(`set LS config spesieal for Optimalergo`)
+cfg.aiProvider[0][2]=escape(`T'x~qJwbYwTd*B8D,b$N:ZxHBwR`)
 cfg.aiPrompt = [
     { role: `system`, content: `
         Du er en trygg, faglig erfaren samtalepartner basert på prinsippene for ergoterapi og psykologi. Du har lang klinisk erfaring med hverdagsmestring og aktivitet – og du tenker og veileder som en erfaren terapeut.
@@ -79,3 +80,4 @@ Eller bare si noe helt eget.`]
 ]
 
 cfg.set(cfg_aiPromptWelcome, 'Flytveilederen', 'mistrallarge', 'p/flytveilederen.png', 'f,30,3', '#0C4A6E', null, 'Atkinson Hyperlegible')
+

@@ -8,7 +8,9 @@ const setting={
         , ["Svenska"]
         , ["Dansk"]
         , ["English (UK)",'|Språkdrakt >>', '|Language Style >>', '|Sjargong >>', '|Jargon >>']
-        , ["English (US)"]]
+        , ["English (US)"]
+        , ["Italiano"]
+    ]
     // accept index or value from lang...
     //, trans:(trans,t)=>typeof trans!='number'?setting.trans(setting.lang.indexOf(trans),t):trans//t
   //, trans:(trans,t)=>typeof trans!='number'?setting.trans(setting.lang.findIndex(l=>l[0]==trans),t):trans
