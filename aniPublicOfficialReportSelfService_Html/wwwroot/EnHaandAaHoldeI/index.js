@@ -20,7 +20,7 @@ window.menuClick_m_dansk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Dansk', ui.me
 window.menuClick_m_ukrayinskamova=e=>ui.menu.Show(false) ^ ui.menu.EBoldOnly('Українська', ui.menu.Click_alleSpraak)^msgRedoLast('Перекладіть останнє повідомлення українською. Відтепер відповідайте коротко лише українською.');
 window.menuClick_m_englishus=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('English (UK)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into British English. From now on, please respond briefly using British spelling, vocabulary, and idioms.');
 window.menuClick_m_englishuk=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('English (US)', ui.menu.Click_alleSpraak)^msgRedoLast('Translate the last message into American English. From now on, please respond briefly using American spelling, vocabulary, and idioms');
-window.menuClick_m_italiano=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Italiano', ui.menu.Click_alleSpraak)^msgRedoLast(`Traduci l'ultimo messaggio in italiano. D'ora in poi, rispondi solo brevemente in italiano.`);
+window.menuClick_m_italiano=e=>ui.menu.Show(false)^ui.menu.EBoldOnly('Italiano', ui.menu.Click_alleSpraak)^msgRedoLast(`Terjemahaghi pessen sè kapèng tello' dâ' bhâsa Italia. molaè satèya, be'na coma bhâkal ajawab ngangghuy bhâsa Italia.`);
 
 // menuClick_m_ - Handling >>
 window.menuClick_m_begynnpnytt=e=>{
