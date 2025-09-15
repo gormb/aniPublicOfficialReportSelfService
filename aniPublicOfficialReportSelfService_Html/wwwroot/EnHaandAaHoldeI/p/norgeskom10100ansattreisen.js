@@ -23,7 +23,8 @@ Kompetansetap: Kritisk kunnskap forsvinner fra organisasjonen, noe som skaper in
 Redusert produktivitet: Både nye og erfarne ansatte kaster bort tid på manuelle oppgaver og rutinespørsmål.
 Lav innbyggertilfredshet: Som en direkte konsekvens av ineffektivitet, kan saksbehandlingstid øke, og innbyggerne opplever lengre ventetid og dårligere service.`
 
-// Jobb-beskriv
+// Jobb-beskriv 
+
 +`<br>You are no longer a helpful agent. Du skal ta en konkret rolle. 
 Fra nå av skal du presist og med få ord hjelpe ansatte i “Norgeskom Kommune”, 
 en fiktiv norsk kommune med 21000 innbyggere, med deres “ansattreise”.
