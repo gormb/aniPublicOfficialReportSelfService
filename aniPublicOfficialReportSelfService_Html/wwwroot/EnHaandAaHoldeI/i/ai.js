@@ -16,7 +16,11 @@ const ai={
         .replace(/(🌑\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m =>ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim()))
         .replace(/(1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩)\s*([^1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, (_, n, t)=>ai.Raw2HtmA(n, t.trim()))
         // normal n)... should be easy, no?!
-        .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)\)\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + ')', t.trim()))
+        // tar bare 1)2) etc ikke 1.2. etc...  .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)\)\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + ')', t.trim()))
+        // må testes mer!
+        .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)[\)\.]\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + (m.includes(')') ? ')' : '.'), t.trim())
+)
+
         // buggy?! .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\S+\s+)?(\d+)\)\s*([^\n<]*)/g, (m, sep, n, t) => sep + ai.Raw2HtmA(n + ')', t.trim()))
         // markdown lite
         .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
