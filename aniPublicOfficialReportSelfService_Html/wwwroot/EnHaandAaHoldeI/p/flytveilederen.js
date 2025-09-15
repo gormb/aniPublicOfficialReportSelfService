@@ -18,7 +18,7 @@ Eller bare skriv hvordan du har det akkurat nå.
 Avhengig av hva du velger, hjelper jeg deg med korte forklaringer, forslag til aktiviteter eller refleksjonsspørsmål for å utforske flytopplevelser i hverdagen.
 [/detaljer]
 `;
-console.warn(`set LS config spesieal for Optimalergo`)
+console.warn(`set LS config spesial for Optimalergo`)
 cfg.aiProvider[0][2]=escape(`T'x~qJwbYwTd*B8D,b$N:ZxHBwR`)
 cfg.aiPrompt = [
     { role: `system`, content: `

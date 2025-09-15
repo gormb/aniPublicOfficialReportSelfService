@@ -1,7 +1,8 @@
 /////////////// ai ///////////////
 const ai={
-    Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-,Raw2Htm: raw => raw
+     // buggy?! Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
+    Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/['´]/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
+    ,Raw2Htm: raw => raw
         // fjern eksisterende <a>-tagger for å unngå dobbel-lenker
         .replace(/<a .*?<\/a>/g, m => m.replace(/<a .*?>|<\/a>/g, ''))
         // LLM lite
@@ -9,38 +10,26 @@ const ai={
         // yaml lite
         .replace(/^\s*-\s*(.*)/gm, '<li>$1</li>')  // - punkt → <li>
         .replace(/^(\w[\w\s]*):\s*(.*)$/gm, '<b>$1:</b> $2')  // Nøkkel: verdi → <b>Nøkkel:</b> verdi
+        // link to numbers
+        .replace(/(🎲\s*\d\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => {const [pre, ...rest]=m.trim().split(/\s+/);return ai.Raw2HtmA(pre + ' ' + rest.shift(), rest.join(' '))})
+        .replace(/(🔁\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m =>ai.Raw2HtmA('🔁', m.replace(/^🔁\s*/, '').trim()))
+        .replace(/(🌑\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m =>ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim()))
+        .replace(/(1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩)\s*([^1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, (_, n, t)=>ai.Raw2HtmA(n, t.trim()))
+        // normal n)... should be easy, no?!
+        .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)\)\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + ')', t.trim()))
+        // buggy?! .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\S+\s+)?(\d+)\)\s*([^\n<]*)/g, (m, sep, n, t) => sep + ai.Raw2HtmA(n + ')', t.trim()))
         // markdown lite
         .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
         .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
         .replace(/#### (.*)/g, '<h4>$1</h4>')
         .replace(/### (.*)/g, '<h3>$1</h3>')
         .replace(/## (.*)/g, '<h2>$1</h2>')
-        .replace(/# (.*)/g, '<h1>$1</h1>')
+        .replace(/^# (.*)$/gm, '<h1>$1</h1>')
+        //.replace(/# (.*)/g, '<h1>$1</h1>') // dreper denne &#xxxx; ?
         .replace(/^\s*(---|\*\*\*|___)\s*$/gm, '<hr>')
         .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
-        .replace(/(🎲\s*\d\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => {const [pre, ...rest]=m.trim().split(/\s+/);return ai.Raw2HtmA(pre + ' ' + rest.shift(), rest.join(' '))})
-        .replace(/(🔁\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m =>ai.Raw2HtmA('🔁', m.replace(/^🔁\s*/, '').trim()))
-        .replace(/(🌑\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m =>ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim()))
-        .replace(/(1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩)\s*([^1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, (_, n, t)=>ai.Raw2HtmA(n, t.trim()))
-        .replace(/\n/g, '<br>') // til slutt, legg til <br> for \n
-        //todo: fix this witha normal loop!
-    //,Raw2HtmAs1: s => {
-    //     let i = 0, out = '';
-    //     while (i < s.length) {
-    //         const hit=/(🎲\s*\d|🔁|🌑|[A-Za-z]\)|\d+\)|\d+\.|[A-Za-z0-9]+\.)\s*/.exec(s.slice(i));
-    //         if (!hit) { out += s.slice(i); break; }
-    //         const a = i + hit.index, b = a + hit[0].length;
-    //         out += s.slice(i, a);
-    //         const rest = s.slice(b);
-    //         const stop = rest.search(/<|\n|(🎲\s*\d|🔁|🌑|[A-Za-z]\)|\d+\)|\d+\.|[A-Za-z0-9]+\.)/);
-    //         const c = stop === -1 ? s.length : b + stop;
-    //         const key  = hit[1].trim();
-    //         const text = s.slice(b, c).trim();
-    //         out += ai.Raw2HtmA(key, text);
-    //         i = c;
-    //     }
-    //     return out;
-    // }
+        // til slutt, bruk <br> for \n
+        .replace(/\n/g, '<br>') 
     , ai2Prompt: a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
     , Gun:(g)=> [...g].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
     , Gunn:i=>ai.Gun(ai.Gunnar[i||0])

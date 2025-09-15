@@ -7,7 +7,7 @@ const setting={
         , ["Sámegiella"]
         , ["Svenska"]
         , ["Dansk"]
-        , ["English (UK)",'|Språkdrakt >>', '|Language Style >>', '|Sjargong >>', '|Jargon >>']
+        , ["English (UK)",'Språkdrakt >>', 'Language Style >>', 'Sjargong >>', 'Jargon >>']
         , ["English (US)"]
         , ["Italiano"]
     ]
@@ -40,5 +40,18 @@ const setting={
     , omformulerHelseraad:false
 } //*/
 
-console.warn(setting.trans('English (UK)','|Sjargong >> 123'))
-console.warn(setting.trans(6,'|Sjargong >>'))
+
+console.warn(setting.trans('English (UK)','Sjargong >>'))
+console.warn(setting.trans(6,'Sjargong >>'))
+setTimeout(() => {
+    let i = ui.menu.Id('Sjargong')
+    console.warn(i)
+    console.warn(document.getElementById(i))
+}, 100);
+
+
+/*
+<div id="m_mistralsmall" data-d0="mistral-small-latest" data-nb=""
+class="menu-item"
+onclick="menuClickLeaf(event)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mistral small</div>
+*/

@@ -13,7 +13,7 @@ const cfg={
     , ingenApp:'Velg App'
     , appProvider_Man:[['Fortgang >>§-',[
             'Småkommunen >>§-', ['Norgeskom 10']
-            ,'Storkommunen >>§-', ['Norgeskom 10-100']
+            ,'Storkommunen >>§-', ['Norgeskom 10-100', 'Norgeskom 10-100 Ansattreisen']
             ,'De største kommunene >>§-', ['Norgeskom 100']
             ,'Kommunesamarbeid >>§-', ['Norgeskomsam']
             ,'Fagmiljø (etat) >>§-', ['Norgeskom fagmiljø']
