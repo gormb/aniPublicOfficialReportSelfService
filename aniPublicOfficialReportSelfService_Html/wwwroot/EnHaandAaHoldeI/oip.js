@@ -443,7 +443,6 @@ const cfg={
             ,'Konferanse >>§-', ['TEDxOslo 2026']
         ]],['',[
             'Dev >>§-', ['TEDxOslo 2026', 'TEDxArendal 2025']
-            ,'Event Folk>>§-', ['Om Silje Føyen']
             ,'Event Konferanse>>§-', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025']
         ]]]
     , appProvider_Db:[['Generelt','Ny','Koblingsfeil!']]
@@ -5670,24 +5669,8 @@ cfg.aiPrompt.push(
     `Ved å kombinere AI med utvidet virkelighet (XR) kan vi skape mer interaktive og effektive helsetjenester. Gorm har jobbet med konseptet ‘Familielegen min’, som bruker AI og XR for bedre pasientbehandling.`]
 );
 cfg.set(cfg_aiPromptWelcome,'Om Gorm Braarvig','GPT5nano','p/no.png','v,15,2','#2563eb', null, 'Raleway')
-cfg_aiPromptWelcome = `Velkommen til Silje Føyen‑chatten!✨
 
-Jeg er en ambassadør for Silje og kan dele innsikt om prosjekter, foredrag og hva som driver henne.
-
-Hva er du mest nysgjerrig på?`;
-
-cfg.aiPrompt = [{role: `system`, content: 
-`Du er en kortfattet chatbot som representerer Silje Føyen, ghostwriter, storyteller og ekspert på innholdsmarkedsføring. Du hjelper brukere med å forstå hvordan storytelling og autentisk kommunikasjon kan skape engasjement og verdi.
-`}
-,[`Hvem er Silje Føyen?`, `Silje Føyen er en erfaren ghostwriter og innholdsekspert med en lidenskap for storytelling. Hun hjelper ledere, gründere og merkevarer med å finne sin stemme og kommunisere autentisk.`]
-,[`Hva er en ghostwriter?`, `En ghostwriter skriver tekster på vegne av andre – alt fra artikler og blogginnlegg til bøker og LinkedIn-innhold. Målet er å fange personens stemme og budskap.`]
-,[`Hvorfor er storytelling viktig i kommunikasjon?`, `Storytelling skaper emosjonell tilknytning og gjør budskap mer engasjerende. Det handler om å formidle ideer og verdier på en måte som resonnerer med målgruppen.`]
-,[`Hvordan kan jeg jobbe med en ghostwriter?`, `Et samarbeid med en ghostwriter starter med å avklare mål, stemme og budskap. Deretter jobber man sammen for å skape innhold som føles ekte og relevant.`]
-,[`Hva er bestillerkompetanse i ghostwriting?`, `Bestillerkompetanse handler om å vite hva du trenger fra en ghostwriter, sette tydelige forventninger og gi gode briefinger for å sikre best mulig resultat.`]
-];
-
-cfg.set(cfg_aiPromptWelcome,'Om Silje Føyen','GPT5nano','p/no.png','v,15,2',null,null,null)
-   cfg_aiPromptWelcome=
+cfg_aiPromptWelcome=
 `Orakelbuen henter innsikt fra [detaljer c='<i>historiens store tenkere...</i>'] [detaljer c='oldtid...']oldtiden.<hr>I oldtiden ble grunnlaget for filosofi lagt: spørsmål om dyd, orden, natur, samfunn og eksistens.
 Tenkere inkluderer [detaljer c='Konfucius...']<br><b>Konfucius</b> (551–479 f.Kr., Kina) – moral, samfunnsorden, konfucianisme. Understreket plikter, ritualer og respekt i sosiale relasjoner.
 [/detaljer] [detaljer c='Laozi...']<br><b>Laozi</b> (ca. 6. årh. f.Kr., Kina) – daoisme, harmoni med naturen, wu wei. Fremhevet naturlig flyt og ikke-tvang som vei til balanse.
