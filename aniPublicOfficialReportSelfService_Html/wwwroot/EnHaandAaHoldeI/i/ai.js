@@ -18,10 +18,19 @@ const ai={
         // normal n)... should be easy, no?!
         // tar bare 1)2) etc ikke 1.2. etc...  .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)\)\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + ')', t.trim()))
         // må testes mer!
-        .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)[\)\.]\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + (m.includes(')') ? ')' : '.'), t.trim())
-)
+        .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)[\)\.]\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + (m.includes(')') ? ')' : '.'), t.trim()))
+        /*
+👶 Barnehage
+🏫 Skole
+👵 Helse & omsorg
+🏠 Bolig & plan
+🚧 Teknisk drift
+💼 Næringsutvikling
+🌳 Kultur & idrett
+        */ 
+        //todo: test regex for [icon] text (this is number or sh!t...)
+        .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)([.)])\s*([^\n<]*)/gu, (m, sep, n, punct, t) => sep + ai.Raw2HtmA(n + punct, t.trim()))
 
-        // buggy?! .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\S+\s+)?(\d+)\)\s*([^\n<]*)/g, (m, sep, n, t) => sep + ai.Raw2HtmA(n + ')', t.trim()))
         // markdown lite
         .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
         .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
@@ -31,7 +40,8 @@ const ai={
         .replace(/^# (.*)$/gm, '<h1>$1</h1>')
         //.replace(/# (.*)/g, '<h1>$1</h1>') // dreper denne &#xxxx; ?
         .replace(/^\s*(---|\*\*\*|___)\s*$/gm, '<hr>')
-        .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|javascript:[^\s)]+)\)/g, '<a href="$2">$1</a>')
+        //.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
         // til slutt, bruk <br> for \n
         .replace(/\n/g, '<br>') 
     , ai2Prompt: a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
