@@ -19,9 +19,8 @@ const cfg={
             ,'Fagmiljø (etat) >>§-', ['Norgeskom fagmiljø']
             ,'Politiker/Kommunedirektør >>§-', ['Norgeskom dir']
         ]],['Personlig >>§-',[
-            'Hjernetrim >>§-', ['Tankefeilvarsler','Tvilsom filosofi','Enkel EQ-test','Bias-varsleren','Principia, Gödel, Turing and Wolfram','Orakelbuen']
-            ,'Blank modell >>§-', ['Renset reasoning','Renset chat','Blank reasoning','Blank chat','Blank grunnmodell']
-            ,'Hånd å holde i >>§-', ['Hvordan har du det?','Personvernrådgiveren']
+            'Blank modell >>§-', ['Renset reasoning','Renset chat','Blank reasoning','Blank chat','Blank grunnmodell']
+            ,'Hånd å holde i >>§-', ['Personvernrådgiveren','Tankefeilvarsler','Tvilsom filosofi','Enkel EQ-test','Bias-varsleren','Principia, Gödel, Turing and Wolfram','Orakelbuen']
             ,'Nyheter >>§-', ['Verdens nyheter via Ideallya','Aigap PFU']
         ]],['Kommune >>§-',[
             'Generelt >>§-', ['NO Alt Om Kommunale Tjenester']
@@ -33,7 +32,7 @@ const cfg={
         ]],['Helse >>§-',[
             'Hjemmelegen min >>§-',['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
             ,'Hlm - forløp og data >>§-',['Mine pasientdata', 'Pakkeforløp']
-            ,'Hlm - spesialist >>§-',['Flytveilederen','CRPS-veilederen','Biopsykososial modell','Kroppens stressystem','Mellom rom og spekter','MI-treneren (HDIR-basert)']
+            ,'Hlm - spesialist >>§-',['Hvordan har du det?','Flytveilederen','CRPS-veilederen','Biopsykososial modell','Kroppens stressystem','Mellom rom og spekter','MI-treneren (HDIR-basert)']
             ,'Hlm - økosystem >>§-',['Qigong Academy']
             ,'CatoSenteret >>§-',['Før opphold','Under opphold','Etter opphold']
         ]],['Virksomhet >>§-',[

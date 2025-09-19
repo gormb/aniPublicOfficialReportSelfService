@@ -1,8 +1,8 @@
 /////////////// ai ///////////////
 const ai={
-     // buggy?! Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-    Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/['´]/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-    ,Raw2Htm: raw => raw
+        // bug; legger igjen tags som html: Raw2HtmA:(s,t)=>`<a href='javascript:void(0)' onclick='if(this.parentElement?.onclick) return; ui.e.Input_setValue(${JSON.stringify(`${s} ${t}`)}),ui.c.Input.focus()'>${s} ${t}</a>`
+        Raw2HtmA:(s,t)=>`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
+    ,Raw2Htm: raw=>raw
         // fjern eksisterende <a>-tagger for å unngå dobbel-lenker
         .replace(/<a .*?<\/a>/g, m => m.replace(/<a .*?>|<\/a>/g, ''))
         // LLM lite
@@ -43,7 +43,9 @@ const ai={
         .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|javascript:[^\s)]+)\)/g, '<a href="$2">$1</a>')
         //.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
         // til slutt, bruk <br> for \n
-        .replace(/\n/g, '<br>') 
+        .replace(/\n/g, '<br>')
+        //.replace(/'),ui.c.Input.focus()">1)/g, "")
+
     , ai2Prompt: a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
     , Gun:(g)=> [...g].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
     , Gunn:i=>ai.Gun(ai.Gunnar[i||0])
