@@ -164,4 +164,10 @@ us (id text, id_u "user info", id_su "the service usage", id_a "the app used", i
 us ("anonym;yymmddss;rndrnd", "anonym bruker", "anonymt produkt", "app navn", "chat;algoritmer", dtFrom timestamptz DEFAULT '2000-01-01T00:00:00Z', dtTo timestamptz DEFAULT '2099-12-31T23:59:59Z', PRIMARY KEY (id));
 der man bruker lokal modell er det ikke nødvendig å logge, man kan da støtte "ghost mode" for de med ekstreme skjermingsbehov 
 */
+lagring.dtab.fyllMvp=()=>{
+    lagring.dtab.fyll(´anonym´)
+    let r=lagring.net.s('u',{id:´anonym´,data:{Name:'Anonym bruker'}})`
+    return r;
+}
+
 
