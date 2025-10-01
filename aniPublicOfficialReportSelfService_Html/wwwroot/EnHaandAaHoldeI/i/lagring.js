@@ -61,17 +61,17 @@ const lagring = {
         g:k=>localStorage.getItem(lagring.lok.pre+k)
         ,s:(k,v)=>localStorage.setItem(lagring.lok.pre+k,v)
         ,d:k=>localStorage.removeItem(lagring.lok.pre+k)
-        ,pre:'HaandAaHoldeI '
+        ,pre:'Fortgang'
     }
     ,net: {
         eId:()=>lagring.id?0:lagring.getId()^lagring.id
         ,g:k=>lagring.net.eId()^lagring.net.sel(lagring.net.gsdT,k)
         ,s:(k,v)=>lagring.net.eId()^lagring.net.upd(lagring.net.gsdT,k,v)
         ,d:k=>lagring.net.eId()^lagring.net.del(lagring.net.gsdT,k)
-        ,gsdT:'HaandAaHoldeI'
+        ,gsdT:'Fortgang'
         // ,uri:'https://nasxmebvjo'+'xcmzevvbts.supabase.co/rest/v1/'
         // ,key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hc3htZWJ2am94Y216ZXZ2YnRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0NzEzNjcsImV4cCI6MjA1ODA0NzM2N30.zvy3HGBwKealFrrOBFJaVk7jLrO4yqDxn6q9i6sSdsI'
-        ,uri:'https://usbqiczlxlvrupwcgsib'+'xcmzevvbts.supabase.co/rest/v1/'
+        ,uri:'https://usbqiczlx'+'lvrupwcgsib.supabase.co/rest/v1/'
         ,key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVzYnFpY3pseGx2cnVwd2Nnc2liIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzNjMwMDksImV4cCI6MjA3MzkzOTAwOX0.-m0fVj8WK61XqfEvkRbYbAZ-dAQWzOt2RP-44Hox-AM'
         ,sel:(e,x)=>{const[t,...c]=e.split(',');const q=c.length?'?select='+c.join(','):'';fetch(lagring.net.uri+t+q,{headers:{apikey:lagring.net.key}}).then(r=>r.json()).then(d=>x(c.length?d.map(r=>c.map(k=>r[k]??'')):d))}
         ,ins:(t,v,x)=>{fetch(net.uri+t,{method:'POST',headers:{apikey:net.key,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(v)}).then(r=>r.json()).then(x)}
@@ -98,15 +98,18 @@ const lagring = {
     ,dtab:{
         t:f=>['id,text,'].concat(f,['dtFrom,timestamptz,Valid from (default 2000-01-01)','dtTo,timestamptz,Valid to (default 2099-12-31)'])
         ,meta:[]
-        ,SD:n=>`DROP TABLE IF EXISTS ${n} CASCADE;`
-        ,SC:(n,r)=>{const a=r.map(x=>x.split(',').map(x=>x)),c=a.map(([f,t])=>f+' '+t+(f=='dtFrom'?" DEFAULT '2000-01-01T00:00:00Z'":'')+(f=='dtTo'?" DEFAULT '2099-12-31T23:59:59Z'":'')+(f=='createdAt'?" DEFAULT now()":'')),i=a.filter(([f])=>!['dtFrom','dtTo','createdAt'].includes(f)),cols=i.map(([f])=>f),vals=i.map(([f,t])=>f.startsWith('id_')?"'demo_id'":t=='text'?"'demo_"+f+"'":t=='jsonb'?"'{\"demo\":\"value\"}'":t.includes('timestamp')?'now()':'0');return`CREATE TABLE ${n} (${c.join(', ')}, PRIMARY KEY (id));\nINSERT INTO ${n} (${cols.join(',')}) VALUES (${vals.join(', ')});`}
-        ,SX:(n,r)=>{const a=r.map(x=>x.split(',').map(x=>x)),t=Object.fromEntries(lagring.dtab.meta.map(([n])=>[n,1])),x=[];a.forEach(([f])=>{if(f.startsWith('id_')){const ref=f.slice(3);if(ref!==n&&t[ref]){x.push(`CREATE INDEX ${n}_${f}_idx ON ${n}(${f},dtFrom,dtTo);`);x.push(`ALTER TABLE ${n} ADD CONSTRAINT ${n}_${f}_fk FOREIGN KEY (${f}) REFERENCES ${ref}(id);`);}}});return x.join('\n');}
-        ,tab:(n,d,r,fmt)=>{const a=r.map(x=>x.split(',').map(x=>x.trim())),rows=a.map(([f,t,b])=>`<tr><td>${f}</td><td>${t}</td><td>${b||''}</td></tr>`).join(''),sql=[lagring.dtab.SD(n),lagring.dtab.SC(n,r),lagring.dtab.SX(n,r)].join('\n');return fmt=='html'?`<table class="hidde" id="dTab_${n}"><caption>-- ${n} ${d} --</caption><tr><th>Felt</th><th>Type</th><th>Beskrivelse</th></tr>${rows}<tr><td colspan=3>${sql.replace(/\n/g,'<br>')}</td></tr></table>`:sql}
-        ,tabN:(a,fmt='html')=>{let d=new Set(),o=[],f=n=>{if(d.has(n))return;let t=a.find(t=>t[0]==n);if(!t)return;t[2].forEach(r=>{let x=r.split(',')[0].trim();if(x.startsWith('id_'))f(x.slice(3));});o.push(lagring.dtab.tab(t[0], t[1], t[2], fmt));d.add(n)};a.forEach(([n])=>f(n));return o.join('')}
+        ,func:()=>`CREATE OR REPLACE PROCEDURE eFk(t text, r text) LANGUAGE plpgsql AS $$BEGIN EXECUTE format('CREATE INDEX IF NOT EXISTS %1$I_idx ON %1$I(id_%2$s)\n;ALTER TABLE %1$I ADD CONSTRAINT %1$I_id_%2$s_fk FOREIGN KEY (id_%2$s) REFERENCES %2$I(id)',t, CASE WHEN r LIKE 'id_%' THEN substring(r FROM 4) ELSE r END);EXCEPTION WHEN duplicate_object THEN NULL;END$$;\n`
+        ,SD:n=>`\n;-- DROP TABLE IF EXISTS ${n} CASCADE`
+        ,SC:(n,r)=>{const a=r.map(x=>x.split(',').map(x=>x)),c=a.map(([f,t])=>f+' '+t+(f=='dtFrom'?" DEFAULT '2000-01-01T00:00:00Z'":'')+(f=='dtTo'?" DEFAULT '2099-12-31T23:59:59Z'":'')+(f=='createdAt'?" DEFAULT now()":'')),i=a.filter(([f])=>!['dtFrom','dtTo','createdAt'].includes(f)),cols=i.map(([f])=>f),vals=i.map(([f,t])=>f.startsWith('id_')?"'demo_id'":t=='text'?"'demo_"+f+"'":t=='jsonb'?"'{\"demo\":\"value\"}'":t.includes('timestamp')?'now()':'0');return`CREATE TABLE IF NOT EXISTS ${n} (${c.join(', ')}, PRIMARY KEY (id))\n;ALTER TABLE ${n} DISABLE ROW LEVEL SECURITY\n;INSERT INTO ${n} (${cols.join(',')}) VALUES (${vals.join(', ')}) ON CONFLICT (id) DO NOTHING;`}
+        ,SX:(n,r)=>{const a=r.map(x=>x.split(',').map(x=>x)),t=Object.fromEntries(lagring.dtab.meta.map(([n])=>[n,1])),x=[];a.forEach(([f])=>{if(f.startsWith('id_')){const ref=f.slice(3);if(ref!==n&&t[ref]){x.push(`CALL eFk('${n}','${f}');`);}}});return x.join('\n');}
+        ,spec:(n,d,r,fmt,cr=1,del=0)=>{const a=r.map(x=>x.split(',').map(x=>x.trim())),rows=a.map(([f,t,b])=>`<tr><td>${f}</td><td>${t}</td><td>${b||''}</td></tr>`).join(''),sql=[del?lagring.dtab.SD(n):'',cr?lagring.dtab.SC(n,r):'',cr?lagring.dtab.SX(n,r):''].join('\n');return fmt=='html'?`<table class="hidde" id="dTab_${n}"><caption>-- ${n} ${d} --</caption><tr><th>Felt</th><th>Type</th><th>Beskrivelse</th></tr>${rows}<tr><td colspan=3>${sql.replace(/\n/g,'<br>')}</td></tr></table>`:sql}
+        ,specN:(a,fmt='html')=>{let d=new Set(),o=[],f=n=>{if(d.has(n))return;let t=a.find(t=>t[0]==n);if(!t)return;t[2].forEach(r=>{let x=r.split(',')[0].trim();if(x.startsWith('id_'))f(x.slice(3));});o.push(lagring.dtab.spec(t[0], t[1], t[2], fmt));d.add(n)};a.forEach(([n])=>f(n));return o.join('')}
         ,erR:a=>a.flatMap(([from,_,rows])=>rows.map(r=>r.split(',')[0]).filter(f=>f.startsWith('id_')).map(f => ({from,to: f.slice(3)})))
         ,erNbox:a=>a.map(([id,l,_,[x,y,c]])=>`<div id=b_${id} style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);z-index:1;font-size:9pt;border:1px solid;padding:4px;max-width:120px;min-width:80px;width:max-content;text-align:center;background:${c}">${id}<br>${l}</div>`).join('')
         ,erNsvg:a=>{const s=document.getElementById('svgLayer'),p=s.createSVGPoint(),c=e=>{if(!e)return;const r=e.getBoundingClientRect(); p.x=r.left+r.width/2; p.y = r.top + r.height/2; return p.matrixTransform(s.getScreenCTM().inverse()) };s.innerHTML = `<defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="black"/></marker></defs>`+lagring.dtab.erR(a).map(({from,to})=>{const p1 = c(document.getElementById('b_'+from)),p2 = c(document.getElementById('b_'+to)),mx = (p1?.x + p2?.x)/2,my = (p1?.y + p2?.y)/2;return p1&&p2&&`<path d="M${p1.x} ${p1.y} L${mx} ${my} L${p2.x} ${p2.y}" stroke="black" fill="none" marker-mid="url(#arrow)"/>`;}).join('');}
-        ,erN: a => (setTimeout(() => lagring.dtab.erNsvg(a),100),'<svg id=svgLayer style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none"></svg>' + lagring.dtab.erNbox(a))
+        ,erN: a =>(setTimeout(() => lagring.dtab.erNsvg(a),100),'<svg id=svgLayer style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none"></svg>' + lagring.dtab.erNbox(a))
+        ,rels:()=>lagring.dtab.meta.map(([t, _, cols]) =>[t, cols.toString().split(',').filter(f => f.startsWith('id_') && f !== 'id').map(f => f.slice(3))])
+        ,relsi:()=>lagring.dtab.rels().reduce((a,[t,rs]) => (rs.forEach(r => (a[r] ??= []).push(t)), a), {})
     }
 }
 
@@ -117,7 +120,7 @@ lagring.dtab.meta = [
     ,['su','Service Usage',lagring.dtab.t(['id_o,text,order','id_u,text,User Accessing','id_p,text,Product used','status,text,activ/inactiv']),[32,18,'#acf']]
     //innhold
     ,['ac', 'App Coder', lagring.dtab.t(['id_parent,text,Kodegruppering','id_u,text,Coder is User','data,jsonb,']), [69,9,'#9cf']]
-    ,['fb', 'Feedback', lagring.dtab.t(['id_parent,text,Tilbakemelder','id_us,text,sesjon','id_a,text,app','id_u,text,User',,'id_ac,text,Coder Assigned','data,jsonb,']), [66,17,'#9cf']]
+    ,['fb', 'Feedback', lagring.dtab.t(['id_parent,text,Tilbakemelder','id_us,text,sesjon','id_a,text,app','id_u,text,User','id_ac,text,Coder Assigned','data,jsonb,']), [66,17,'#9cf']]
     ,['m','Message',lagring.dtab.t(['id_parent,text,Del av annen','id_us,text,sesjon','sendt,text,','mottatt,text,','id_f,text,funksjon']),[49.5,34,'#fbd']]
     //teknikk
     ,['h','Host',lagring.dtab.t(['Name,text,eg Mistral','uri,text,','gunnars,text,','q1,text,','q2,text,']),[84,41,'#dff']]
@@ -148,12 +151,14 @@ lagring.dtab.fyll = (n = 'unspesified') => {
     lagring.net.s('a', { id: `a_${n}`, App: `${n}App`, id_parent: `${n}Kategori`, id_f: `f_${n}`, cfg: { pilot: true } });
     //lagring.net.s('ap', { id: `ap_${n}`, id_a: `a_${n}`, line: 1, usr: `${n} bruker`, sys: `${n} bot` });
 }
+
 //lagring.dtab.pilotC=n=>Object.keys(lagring.dtab.meta).forEach(t=>lagring.net.del(t, `like.${t}_${n}`));
-//lagring.dtab.fyll('unspesified');
-lagring.dtab.fyllP=n=>{
-    return `
-    lagring.net.s('u',{id:gormbraarvig,data:{Name:'Gorm Braarvig'}})`
-}
+lagring.dtab.fyll('unspesified');
+// lagring.dtab.fyllP=n=>{
+//     return `
+//     lagring.net.s('u',{id:gormbraarvig,data:{Name:'Gorm Braarvig'}})`
+// }
+
 //lagring.idC.p('id=gorm9')
 //lagring.net.sel('a',console.warn)//lagring.net.del('a', {id:'123'}, console.warn);//lagring.net.del('a', {id:'1234'}, console.warn);//lagring.net.del('a', {id:'11234'}, console.warn);//lagring.net.upd('a', {id:'1234', App:'1234 Test'}, console.warn);//lagring.net.upd('a', {id:'11234', App:'11234 Test'}, console.warn);//lagring.net.sel('b,id,App', r => console.table(r));
 //lagring.net.selA(console.warn)
@@ -165,7 +170,9 @@ us ("anonym;yymmddss;rndrnd", "anonym bruker", "anonymt produkt", "app navn", "c
 der man bruker lokal modell er det ikke nødvendig å logge, man kan da støtte "ghost mode" for de med ekstreme skjermingsbehov 
 */
 // lagring.dtab.fyllMvp=()=>{
-//     lagring.dtab.fyll(´anonym´)
-//     let r=lagring.net.s('u',{id:´anonym´,data:{Name:'Anonym bruker'}})`
+//     lagring.dtab.fyll('anonym')
+//     let r=lagring.net.s('u',{id:'anonym',data:{Name:'Anonym bruker'}})
 //     return r;
 // }
+
+//lagring.dtab.fyllMvp();

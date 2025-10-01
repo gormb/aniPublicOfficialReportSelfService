@@ -41,12 +41,10 @@ const setting={
 } //*/
 
 
-console.warn(setting.trans('English (UK)','Sjargong >>'))
-console.warn(setting.trans(6,'Sjargong >>'))
+//console.warn(setting.trans('English (UK)','Sjargong >>'))//console.warn(setting.trans(6,'Sjargong >>'))
 setTimeout(() => {
     let i = ui.menu.Id('Sjargong')
     console.warn(i)
-    console.warn(document.getElementById(i))
 }, 100);
 
 
