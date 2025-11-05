@@ -20,4 +20,4 @@ cfg.aiPrompt=[{role:`system`,content:`Du er en finansiell rådgiver som hjelper 
 ,[`Er en SAFE et lån?`, `Nei, en SAFE er ikke et lån. Den har ingen rente eller tilbakebetalingsdato (maturity date). Hvis selskapet ikke lykkes og aldri henter mer penger, får investoren vanligvis ingenting tilbake.`]
 ,[`Hva er 'pro-rata rights'?`, `Det gir investoren rett til å kjøpe flere aksjer i den neste finansieringsrunden for å opprettholde sin eierandel, etter at SAFE-en har konvertert.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Startup SAFE','mistrallarge','p/startupsafe.png',null,'#aa4400', null, 'Work Sans')
+cfg.set(cfg_aiPromptWelcome,'Startup SAFE','mistrallarge','p/startupsafe.jpg',null,'#aa4400', null, 'Work Sans')
