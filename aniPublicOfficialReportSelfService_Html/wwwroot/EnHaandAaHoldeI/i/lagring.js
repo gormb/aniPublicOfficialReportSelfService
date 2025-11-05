@@ -61,19 +61,19 @@ const lagring = {
         g:k=>localStorage.getItem(lagring.lok.pre+k)
         ,s:(k,v)=>localStorage.setItem(lagring.lok.pre+k,v)
         ,d:k=>localStorage.removeItem(lagring.lok.pre+k)
-        ,pre:'Fortgang'
+        ,pre:'HaandAaHoldeI'
     }
     ,net: {
         eId:()=>lagring.id?0:lagring.getId()^lagring.id
         ,g:k=>lagring.net.eId()^lagring.net.sel(lagring.net.gsdT,k)
         ,s:(k,v)=>lagring.net.eId()^lagring.net.upd(lagring.net.gsdT,k,v)
         ,d:k=>lagring.net.eId()^lagring.net.del(lagring.net.gsdT,k)
-        ,gsdT:'Fortgang'
+        ,gsdT:'HaandAaHoldeI'
         // ,uri:'https://nasxmebvjo'+'xcmzevvbts.supabase.co/rest/v1/'
         // ,key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hc3htZWJ2am94Y216ZXZ2YnRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0NzEzNjcsImV4cCI6MjA1ODA0NzM2N30.zvy3HGBwKealFrrOBFJaVk7jLrO4yqDxn6q9i6sSdsI'
         ,uri:'https://usbqiczlx'+'lvrupwcgsib.supabase.co/rest/v1/'
         ,key:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVzYnFpY3pseGx2cnVwd2Nnc2liIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzNjMwMDksImV4cCI6MjA3MzkzOTAwOX0.-m0fVj8WK61XqfEvkRbYbAZ-dAQWzOt2RP-44Hox-AM'
-        ,sel:(e,x)=>{const[t,...c]=e.split(',');const q=c.length?'?select='+c.join(','):'';fetch(lagring.net.uri+t+q,{headers:{apikey:lagring.net.key}}).then(r=>r.json()).then(d=>x(c.length?d.map(r=>c.map(k=>r[k]??'')):d))}
+        ,sel:(e,x)=>{const[t,...c]=e.split(',');const q=c.length?'?select='+c.join(','):'';console.warn('lagring.net.sel',t,q)^fetch(lagring.net.uri+t+q,{headers:{apikey:lagring.net.key}}).then(r=>r.json()).then(d=>x(c.length?d.map(r=>c.map(k=>r[k]??'')):d))}
         ,ins:(t,v,x)=>{fetch(net.uri+t,{method:'POST',headers:{apikey:net.key,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(v)}).then(r=>r.json()).then(x)}
         ,upd:(t,v,x)=>{const id=v.id;delete v.id;fetch(lagring.net.uri+t+'?id=eq.'+id,{method:'PATCH',headers:{apikey:lagring.net.key,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(v)}).then(r=>r.json()).then(x)}
         ,del:(t,v,x)=>{fetch(lagring.net.uri+t+'?id=eq.'+v.id,{method:'DELETE',headers:{apikey:lagring.net.key,'Prefer':'return=representation'}}).then(r=>r.json()).then(x)}
@@ -112,6 +112,11 @@ const lagring = {
         ,relsi:()=>lagring.dtab.rels().reduce((a,[t,rs]) => (rs.forEach(r => (a[r] ??= []).push(t)), a), {})
     }
 }
+
+// put fetch in function f for use by sel,ins,upd,del
+lagring.net.x=(p,r)=>console.warn('lagring.net.x',[p,r])^fetch(lagring.net.uri+p,{headers:{apikey:lagring.net.key}}).then(r=>r.json()).then(r)
+// rewrite a sel that is sel but using f()
+lagring.net.sel=(e,x)=>{console.warn('lagring.net.sel',[e,x]);const[t,...c]=e.split(',');const q=c.length?'?select='+c.join(','):'';lagring.net.x(t+q,d=>x(c.length?d.map(r=>c.map(k=>r[k]??'')):d))}
 
 lagring.dtab.meta = [
     //bruk
@@ -153,13 +158,13 @@ lagring.dtab.fyll = (n = 'unspesified') => {
 }
 
 //lagring.dtab.pilotC=n=>Object.keys(lagring.dtab.meta).forEach(t=>lagring.net.del(t, `like.${t}_${n}`));
-lagring.dtab.fyll('unspesified');
+//lagring.dtab.fyll('unspesified');
 // lagring.dtab.fyllP=n=>{
 //     return `
 //     lagring.net.s('u',{id:gormbraarvig,data:{Name:'Gorm Braarvig'}})`
 // }
 
-//lagring.idC.p('id=gorm9')
+lagring.idC.p('id=gorm9')
 //lagring.net.sel('a',console.warn)//lagring.net.del('a', {id:'123'}, console.warn);//lagring.net.del('a', {id:'1234'}, console.warn);//lagring.net.del('a', {id:'11234'}, console.warn);//lagring.net.upd('a', {id:'1234', App:'1234 Test'}, console.warn);//lagring.net.upd('a', {id:'11234', App:'11234 Test'}, console.warn);//lagring.net.sel('b,id,App', r => console.table(r));
 //lagring.net.selA(console.warn)
 //lagring.net.selAp(console.warn)//{"id": "ny", "App":"Ny", "mor":"Ny", "mormor":"Utvikling"}

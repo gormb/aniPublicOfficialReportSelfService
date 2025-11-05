@@ -4,58 +4,84 @@ const ai={
     //Raw2HtmA:(s,t)=>`${s} ${t}`.includes('<a')?`${s} ${t}`:`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
 
     Raw2HtmA:(s,t)=>(`${s} ${t}`.includes('<a'))?t:`<a href="javascript:void(0)" onclick="if(this.parentElement?.onclick) return; ui.e.Input_setValue('${s} ${t.replace(/'/g,"\\'").replace(/"/g,"&quot;")}'),ui.c.Input.focus()">${s} ${t}</a>`
-    ,Raw2Htm: raw=>raw
-        // fjern eksisterende <a>-tagger for å unngå dobbel-lenker
-        //.replace(/<a .*?<\/a>/g, m => m.replace(/<a .*?>|<\/a>/g, ''))
-        // LLM lite
-        .replace(/^[\s\S]*<\|im_start\|\>/, '').replace(/<\|im_end\|\>[\s\S]*$/, '')
-        // yaml lite
-        .replace(/^\s*-\s*(.*)/gm, '<li>$1</li>')  // - punkt → <li>
-        .replace(/^(\w[\w\s]*):\s*(.*)$/gm, '<b>$1:</b> $2')  // Nøkkel: verdi → <b>Nøkkel:</b> verdi
-        // // old: link to numbers
-        // .replace(/(🎲\s*\d\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => {const [pre, ...rest]=m.trim().split(/\s+/);return ai.Raw2HtmA(pre + ' ' + rest.shift(), rest.join(' '))})
-        // .replace(/(🔁\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m =>ai.Raw2HtmA('🔁', m.replace(/^🔁\s*/, '').trim()))
-        // .replace(/(🌑\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m =>ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim()))
-        // .replace(/(1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩)\s*([^1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, (_, n, t)=>ai.Raw2HtmA(n, t.trim()))
-// link to numbers
-.replace(/(🎲\s*\d\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => m.includes('<a') ? m : (() => {const [pre, ...rest]=m.trim().split(/\s+/);return ai.Raw2HtmA(pre + ' ' + rest.shift(), rest.join(' '))})())
-.replace(/(🔁\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => m.includes('<a') ? m : ai.Raw2HtmA('🔁', m.replace(/^🔁\s*/, '').trim()))
-.replace(/(🌑\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => m.includes('<a') ? m : ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim()))
-.replace(/(1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|①|②|③④|⑤|⑥|⑦|⑧|⑨|⑩)\s*([^1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, (m, n, t) => m && m.includes('<a') ? m : ai.Raw2HtmA(n, t.trim()))
-        // normal n)... should be easy, no?!
-        // tar bare 1)2) etc ikke 1.2. etc...  .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)\)\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + ')', t.trim()))
-        // må testes mer!
-        .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)[\)\.]\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + (m.includes(')') ? ')' : '.'), t.trim()))
-        /*
-👶 Barnehage
-🏫 Skole
-👵 Helse & omsorg
-🏠 Bolig & plan
-🚧 Teknisk drift
-💼 Næringsutvikling
-🌳 Kultur & idrett
-        */ 
-        //todo: test regex for [icon] text (this is number or sh!t...)
-        .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)([.)])\s*([^\n<]*)/gu, (m, sep, n, punct, t) => sep + ai.Raw2HtmA(n + punct, t.trim()))
-        .replace(/(^|\r?\n|<br\s*\/?>)\s*(\p{Extended_Pictographic})\s*([^\n<]+)/gu, (m, sep, icon, t) => sep + ai.Raw2HtmA(icon, t.trim()))
+    ,safeReplace: (text, regex, replacer)=>text.replace(/(<[^>]+>|[^<]+)/g, chunk=>chunk.startsWith('<') ? chunk : chunk.replace(regex, replacer))
+    ,   Raw2Htm: raw => {
+        // Step 1: basic cleanup & yaml/key formatting
+        let raw1 = raw
+            .replace(/^[\s\S]*<\|im_start\|\>/, '')
+            .replace(/<\|im_end\|\>[\s\S]*$/, '')
+            .replace(/^\s*-\s*(.*)/gm, '<li>$1</li>')
+            .replace(/^(\w[\w\s]*):\s*(.*)$/gm, '<b>$1:</b> $2');
 
-        // markdown lite
-        .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
-        .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
-        .replace(/#### (.*)/g, '<h4>$1</h4>')
-        .replace(/### (.*)/g, '<h3>$1</h3>')
-        .replace(/## (.*)/g, '<h2>$1</h2>')
-        .replace(/^# (.*)$/gm, '<h1>$1</h1>')
-        //.replace(/# (.*)/g, '<h1>$1</h1>') // dreper denne &#xxxx; ?
-        .replace(/^\s*(---|\*\*\*|___)\s*$/gm, '<hr>')
-        // .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|javascript:[^\s)]+)\)/g, '<a href="$2">$1</a>')
-        // .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
-        .replace(/\[(?!\/?detaljer\b)([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
-        //.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
-        // til slutt, bruk <br> for \n
-        .replace(/\n/g, '<br>')
-        //.replace(/'),ui.c.Input.focus()">1)/g, "")
+        // Step 2: number links (1) 2) …)
+        let raw2 = raw1.replace(/(^|\r?\n)(\d+[\)\.])\s*([^\n<]+)/g,
+            (m, sep, n, t) => sep + ai.Raw2HtmA(n, t.trim())
+        );
 
+        // Step 3: number emoji links
+        // raw2 = raw2.replace(/(1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|①|②|③|④|⑤|⑥|⑦|⑧|⑨|⑩)\s*([^\n<]*)/g,
+        //     (m, n, t) => ai.Raw2HtmA(n, t.trim())
+        // );
+
+        // Step 4: other emoji-prefixed lines
+        // raw2 = raw2.replace(/(^|\r?\n|<br\s*\/?>)\s*(\p{Extended_Pictographic}+)\s*([^\n<]+)/gu,
+        //     (m, sep, icon, t) => sep + ai.Raw2HtmA(icon, t.trim())
+        // );
+
+        // Step 5: markdown
+        //let raw3 = ai.safeReplace(raw2, /\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
+        let raw3 = ai.safeReplace(raw2, /\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
+            .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
+            .replace(/\[(?!\/?detaljer\b)([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+
+        // Step 6: remaining newlines → <br>
+        let raw4 = raw3.replace(/\r?\n/g, '<br>');
+
+        return raw4;
+    }
+    ,Raw2Htm_bs: raw=> {
+        let raw1=raw // LLM lite
+            .replace(/^[\s\S]*<\|im_start\|\>/, '').replace(/<\|im_end\|\>[\s\S]*$/, '')
+            // yaml lite
+            .replace(/^\s*-\s*(.*)/gm, '<li>$1</li>')  // - punkt → <li>
+            .replace(/^(\w[\w\s]*):\s*(.*)$/gm, '<b>$1:</b> $2')  // Nøkkel: verdi → <b>Nøkkel:</b> verdi
+        let raw2=raw1 // link to numbers
+            // .replace(/(🎲\s*\d\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => m.includes('<a') ? m : (() => {const [pre, ...rest]=m.trim().split(/\s+/);return ai.Raw2HtmA(pre + ' ' + rest.shift(), rest.join(' '))})())
+            // .replace(/(🔁\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => m.includes('<a') ? m : ai.Raw2HtmA('🔁', m.replace(/^🔁\s*/, '').trim()))
+            // .replace(/(🌑\s*[^🎲🔁🌑1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, m => m.includes('<a') ? m : ai.Raw2HtmA('🌑', m.replace(/^🌑\s*/, '').trim()))
+            // .replace(/(1️⃣|2️⃣|3️⃣|4️⃣|5️⃣|6️⃣|7️⃣|8️⃣|9️⃣|①|②|③④|⑤|⑥|⑦|⑧|⑨|⑩)\s*([^1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣①②③④⑤⑥⑦⑧⑨⑩<\n]*)/g, (m, n, t) => m && m.includes('<a') ? m : ai.Raw2HtmA(n, t.trim()))
+            // normal n)... should be easy, no?!
+            // tar bare 1)2) etc ikke 1.2. etc...  .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)\)\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + ')', t.trim()))
+            // må testes mer!
+            .replace(/(^|\r?\n+|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)[\)\.]\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + (m.includes(')') ? ')' : '.'), t.trim()))
+
+            //.replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)[\)\.]\s*([^\n<]*)/gu, (m, sep, n, t) => sep + ai.Raw2HtmA(n + (m.includes(')') ? ')' : '.'), t.trim()))
+            /*
+            👶 Barnehage
+            🏫 Skole
+            👵 Helse & omsorg
+            🏠 Bolig & plan
+            🚧 Teknisk drift
+            💼 Næringsutvikling
+            🌳 Kultur & idrett
+            */ 
+            //todo: test regex for [icon] text (this is number or sh!t...)
+            .replace(/(^|\r?\n|<br\s*\/?>)\s*(?:\p{Extended_Pictographic}\s*)?(\d+)([.)])\s*([^\n<]*)/gu, (m, sep, n, punct, t) => sep + ai.Raw2HtmA(n + punct, t.trim()))
+            .replace(/(^|\r?\n|<br\s*\/?>)\s*(\p{Extended_Pictographic})\s*([^\n<]+)/gu, (m, sep, icon, t) => sep + ai.Raw2HtmA(icon, t.trim()))
+        let raw3=raw2 // markdown lite
+            .replace(/\*\*\*(.*?)\*\*\*/g, '<h2>$1</h2>')
+            .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
+            .replace(/#### (.*)/g, '<h4>$1</h4>')
+            .replace(/### (.*)/g, '<h3>$1</h3>')
+            .replace(/## (.*)/g, '<h2>$1</h2>')
+            .replace(/^# (.*)$/gm, '<h1>$1</h1>')
+            .replace(/^\s*(---|\*\*\*|___)\s*$/gm, '<hr>')
+            .replace(/\[(?!\/?detaljer\b)([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+        let raw4=raw3
+            .replace(/(?![^<]*>)(\r?\n)/g, '<br>')
+        if(raw4!=raw) console.warn('ai.Raw2Htm raw..raw4', [...[raw, raw1, raw2, raw3, raw4]]);
+        return raw4;
+    } 
     , ai2Prompt: a => a.reduce((r, ai, i) => (!i ? [ai] : [...r, { role: "user", content: ai[0] }, { role: "assistant", content: ai[1] }]), [])
     , Gun:(g)=> [...g].map((c,i)=>String.fromCharCode((c.charCodeAt()^'gunnar'.charCodeAt(i%6))+32)).join('')
     , Gunn:i=>ai.Gun(ai.Gunnar[i||0])

@@ -45,6 +45,8 @@ a[onclick] {all: unset;cursor: pointer;}
         //msgInfo(s+`/* Relasjoner\n`+lagring.dtab.rels().map(([t,rels])=>`${t}=${rels.join(',')}`).join('\n').replaceAll(/\n/g,'<br>') +`*/`);
 
         msgInfo(s+lagring.dtab.erN(lagring.dtab.meta))
+        msgInfo(`<a href="https://www.google,com/" target="_blank" style="color:#123">dbadm - database admin</a>`)
+        
         msgInfo(`/*Copy SQL
             <hr>structure <button onclick="m1000(this);navigator.clipboard.writeText(lagring.dtab.func()+lagring.dtab.specN(lagring.dtab.meta,''))">drop&create</button>
                 <button onclick="m1000(this,'todo...');navigator.clipboard.writeText(lagring.dtab.func()+lagring.dtab.specN(lagring.dtab.meta,'drop'))">drop (todo)</button>
