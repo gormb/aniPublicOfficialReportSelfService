@@ -28,12 +28,20 @@ New-Item -ItemType Directory -Path ".\priv\md\Observation" -Force
 New-Item -ItemType Directory -Path ".\priv\md\Patient" -Force
 New-Item -ItemType Directory -Path ".\priv\md\Practitioner" -Force
 
-Write-Host "│   ├── FTP-server download and install"
-# FileZilla Server.
+Write-Host "│   ├── Python, FTP, HTTP and LLM servers, ensure downloaded"
+$sw = Join-Path -Path $PSScriptRoot -ChildPath "sw"
+if (-not (Test-Path $sw)) { New-Item -Path $sw -ItemType Directory | Out-Null }
+@(
+    @{Inst="Test-Path '$sw\Python\python.exe'"; Url="https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe"; File="$sw\python-3.12.4-amd64.exe"; Args="/quiet InstallAllUsers=0 InstallLocation=`"$sw\Python`" PrependPath=1"},
+    @{Inst="Test-Path '$sw\FileZilla Server\FileZilla Server.exe'"; Url="https://download.filezilla-project.org/server/FileZilla_Server-1.7.7-setup.exe"; File="$sw\FileZilla_Server-1.7.7-setup.exe"; Args="/S /D=`"$sw\FileZilla Server`""},
+    @{Inst="Test-Path '$sw\Ollama\Ollama.exe'"; Url="https://ollama.com/download/Ollama-1.0.17-windows-x86_64.exe"; File="$sw\Ollama-1.0.17-windows-x86_64.exe"; Args="/S INSTALLDIR=`"$sw\Ollama`""}
+) | ForEach-Object { 
+    if ([string]::IsNullOrEmpty($_.Inst) -or (-not (Invoke-Expression $_.Inst))) {
+        if (-not (Test-Path $_.File)) {
+            Invoke-WebRequest -Uri $_.Url -OutFile $_.File -UseBasicParsing
+        }        
+        Start-Process -FilePath (Get-Item $_.File).FullName -ArgumentList $_.Args -Wait -NoNewWindow
+    }
+}
 
-Write-Host "│   ├── HTTP-server download and install"
-# Python
-# Python's built-in HTTP server.
 
-Write-Host "│   ├── LLM-server download and install"
-# ollama
