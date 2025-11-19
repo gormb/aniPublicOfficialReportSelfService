@@ -1,4 +1,5 @@
-# Master orchestration: kjører alle hoved-steps i rekkefølge.
+Write-Host "PrivHealth - Install, deploy/configure and Simulate Electronic Patient Journal"
+
 param(
     [string[]]$Steps = @(
         "10-install.ps1",
