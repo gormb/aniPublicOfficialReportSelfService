@@ -31,7 +31,7 @@ const cfg = {
         , 'ARB >>§-', ['ARB Kurs', 'ARB Jobbsøk og karriereveiledning (KOJ)', 'ARB CV-hjelp', 'ARB Jobbsøknadshjelp', 'ARB Intervjuklar', 'ARB Karrierevei & Totalkompetanse', 'ARB Jobbsøkervelvære', 'ARB Gründerstart']
     ]], ['Helse >>§-', [
         'Hjemmelegen min >>§-', ['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
-        , 'Hlm - forløp og data >>§-', ['Mine pasientdata', 'Pakkeforløp']
+        , 'Hlm - forløp og data >>§-', ['Mine pasientdata', 'Pasientforløp']
         , 'Hlm - spesialist >>§-', ['Hvordan har du det?', 'Flytveilederen', 'Hodepineveilederen', 'CRPS-veilederen', 'Biopsykososial modell', 'Kroppens stressystem', 'Mellom rom og spekter', 'MI-treneren (HDIR-basert)']
         , 'Hlm - økosystem >>§-', ['Qigong Academy']
         , 'CatoSenteret >>§-', ['Før opphold', 'Under opphold', 'Etter opphold']
