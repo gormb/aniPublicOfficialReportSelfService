@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Setup</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        h1 { color: #3ecf8e; }
+        code { background: #f4f4f4; padding: 0.2rem 0.4rem; border-radius: 4px; }
+        pre { background: #f4f4f4; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+        .status { margin-top: 1rem; padding: 1rem; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <p>Open the browser console (F12 or Right Click > Inspect > Console) to see detailed logs.</p>
+    
+    <div id="status" class="status">Initializing...</div>
+
+    <h2>Next Steps</h2>
+    <ol>
+        <li>Open <code>db_supabase_create.js</code> and paste your <strong>anon public key</strong> into the <code>SUPABASE_KEY</code> variable.</li>
+        <li>To create tables, it is best to use the <strong>SQL Editor</strong> in your Supabase Dashboard.</li>
+    </ol>
+
+    <h3>Example SQL to run in Dashboard:</h3>
+    <pre>
+create table if not exists profiles (
+  id uuid references auth.users not null,
+  updated_at timestamp with time zone,
+  username text unique,
+  avatar_url text,
+  website text,
+  primary key (id),
+  constraint username_length check (char_length(username) >= 3)
+);
+
+alter table profiles enable row level security;
+
+create policy "Public profiles are viewable by everyone."
+  on profiles for select
+  using ( true );
+
+create policy "Users can insert their own profile."
+  on profiles for insert
+  with check ( auth.uid() = id );
+
+create policy "Users can update own profile."
+  on profiles for update
+  using ( auth.uid() = id );
+    </pre>
+
+    <script type="module">
+        import { createDatabaseSchema } from './db_supabase_create.js';
+        
+        async function init() {
+            const statusDiv = document.getElementById('status');
+            try {
+                await createDatabaseSchema();
+                // We can't easily know if it succeeded inside the function without returning values, 
+                // but if no error was thrown we assume it ran.
+                // The function itself logs errors.
+                statusDiv.textContent = "Script executed. Check console for connection details.";
+                statusDiv.classList.add('success');
+            } catch (e) {
+                statusDiv.textContent = "Error: " + e.message;
+                statusDiv.classList.add('error');
+            }
+        }
+        
+        init();
+    </script>
+</body>
+</html>
