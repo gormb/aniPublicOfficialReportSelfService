@@ -35,31 +35,34 @@ a[onclick] {all: unset;cursor: pointer;}
         <script src="i/pv.js"></script><script src="i/pbg.js"></script>
     </footer>
     <script>
+        function m1000(c,msg='kopierer...',to=2500){const m0=c.innerText;c.innerText=msg;setTimeout(()=>c.innerText=m0,to);}
+    </script>
+    <script>
         c='<span style="color:#fff">-- */<br>/*</span>'
         s=c+'<br>'.repeat(12)
 
-        lagring.d.rels=()=>lagring.d.meta.map(([t, _, cols]) =>[t, cols.toString().split(',').filter(f => f.startsWith('id_') && f !== 'id').map(f => f.slice(3))]);
-        lagring.d.relsi = () => lagring.d.rels().reduce((a,[t,rs]) => (rs.forEach(r => (a[r] ??= []).push(t)), a), {});
-        console.log(lagring.d.relsi())
-        //msgInfo(s+`/* Relasjoner\n`+lagring.d.rels().map(([t,rels])=>`${t}=${rels.join(',')}`).join('\n').replaceAll(/\n/g,'<br>') +`*/`);
+        console.log(lagring.dtab.relsi())
+        //msgInfo(s+`/* Relasjoner\n`+lagring.dtab.rels().map(([t,rels])=>`${t}=${rels.join(',')}`).join('\n').replaceAll(/\n/g,'<br>') +`*/`);
 
-        msgInfo(s+lagring.d.erN(lagring.d.meta))
+        msgInfo(s+lagring.dtab.erN(lagring.dtab.meta))
+        msgInfo(`<a href="https://www.google,com/" target="_blank" style="color:#123">dbadm - database admin</a>`)
+        
         msgInfo(`/*Copy SQL
-            <hr>structure <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,''))">drop&create</button>
-                <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,'drop'))">drop (todo)</button>
-                <button onclick="navigator.clipboard.writeText(lagring.d.tabN(lagring.d.meta,'create'))">create (todo)</button>
+            <hr>structure <button onclick="m1000(this);navigator.clipboard.writeText(lagring.dtab.func()+lagring.dtab.specN(lagring.dtab.meta,''))">drop&create</button>
+                <button onclick="m1000(this,'todo...');navigator.clipboard.writeText(lagring.dtab.func()+lagring.dtab.specN(lagring.dtab.meta,'drop'))">drop (todo)</button>
+                <button onclick="m1000(this,'todo...');navigator.clipboard.writeText(lagring.dtab.specN(lagring.dtab.meta,'create'))">create (todo)</button>
             <hr>data
-                <button onclick="navigator.clipboard.writeText('todo')">fill unspesified</button>
-                <button onclick="navigator.clipboard.writeText('todo')">simulate tests</button>
-                <button onclick="navigator.clipboard.writeText('todo')">report tests</button>
+                <button onclick="m1000(this,'todo...');navigator.clipboard.writeText('todo fill unspesified')">fill unspesified</button>
+                <button onclick="m1000(this,'todo...');navigator.clipboard.writeText('todo simulate tests')">simulate tests</button>
+                <button onclick="m1000(this,'todo...');navigator.clipboard.writeText('todo report tests')">report tests</button>
             <hr>store
-                <button onclick="navigator.clipboard.writeText('todo')">message in<br>app for session</button>
-                <button onclick="navigator.clipboard.writeText('todo')">fb->ac create app with<br>function and prompts</button>
-                <button onclick="navigator.clipboard.writeText('todo')">host has<br>functionality</button>
+                <button onclick="m1000(this,'todo...');navigator.clipboard.writeText('todo message in')">message in<br>app for session</button>
+                <button onclick="m1000(this,'todo...');navigator.clipboard.writeText('todo fb->ac create app with')">fb->ac create app with<br>function and prompts</button>
+                <button onclick="m1000(this,'todo...');navigator.clipboard.writeText('todo host has functionality')">host has<br>functionality</button>
             <hr>retrieve
-                <button onclick="navigator.clipboard.writeText('todo')">user used<br>app with messages</button>
+                <button onclick="m1000(this,'todo...');navigator.clipboard.writeText('todo user used app with messages')">user used<br>app with messages</button>
             */`);
-        m=msgInfo(lagring.d.tabN(lagring.d.meta)+c);
+        m=msgInfo(lagring.dtab.specN(lagring.dtab.meta)+c);
         qr.d(undefined,m,undefined,'p/aigap.webp');
         document.write('*/');
     </script>

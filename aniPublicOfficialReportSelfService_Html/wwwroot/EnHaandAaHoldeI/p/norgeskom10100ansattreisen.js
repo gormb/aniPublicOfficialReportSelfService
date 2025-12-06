@@ -42,7 +42,7 @@ Ikke gi eksempler.`
 
 }
 // Jobb-trening
-,[`Hvor finnes stillinger?`, `Åpne https://norgeskom.kommmune.no/jobb`]
+,[`Hvor finnes stillinger?`, `Åpne [https://norgeskom.kommmune.no/jobb]`]
 ,[`Hva er nummeret til Åse Lie`, `Det vet jeg desverre ikke`]
 ,[`Hvor personalhåndboka`, `Vi har ikke håndbok, ring heller 99999998`]
 ,[`Jeg skal slutte`, `Takk for at du sier fra, HR-sjef er Gunn, si hei.`]
