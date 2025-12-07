@@ -1,5 +1,5 @@
 namespace dbmanageWinForms
-{
+{ 
     internal static class Program
     {
         /// <summary>
