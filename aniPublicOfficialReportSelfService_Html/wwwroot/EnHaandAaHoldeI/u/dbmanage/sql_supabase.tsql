@@ -1,0 +1,30 @@
+-- supabase - database (re)creation
+set nocount on;use master
+--if db_id('supabase') is not null exec('use supabase;alter database supabase set single_user with rollback immediate;use master;drop database supabase')
+if db_id('supabase') is null exec('create database supabase;alter database supabase set auto_shrink on, recovery simple, allow_snapshot_isolation on')
+go
+
+-- u - utility; execution and logging
+use supabase;if schema_id('u') is null exec('create schema u')
+	if type_id('u.s')+type_id('u.d') is null exec('create type u.s from nvarchar(4000) null;create type u.d from datetime2 null')
+	if object_id('u.xl') is null exec('create table u.xl(pk bigint identity(1,1) primary key clustered,s u.s,cmd u.s,sC u.d default getdate(),eC u.d,eM u.s,ref uniqueidentifier default newid())')
+	--else truncate table u.xl
+	insert u.xl(s,eC)select '-- u - utility; execution and logging',getdate()
+go
+create or alter proc u.x @s u.s,@cmd u.s=@s,@i bit=0 output as set nocount on;insert u.xl(s,cmd) select @s,@cmd;
+	declare @pk bigint=SCOPE_IDENTITY(),@c u.s = isnull(@cmd,@s);print @c;
+	if @i=0 exec (@c) else begin try exec (@c) end try 
+	begin catch update u.xl set eM=ERROR_MESSAGE() where pk=@pk end catch
+	update u.xl set eC=getdate() where pk=@pk
+go
+declare @pkS bigint=(select max(pk) from u.xl)
+exec u.x 'proc u.x...','create or alter proc u.xn @s u.s,@c0 u.s=null,@c1 u.s=null,@c2 u.s=null,@c3 u.s=null,@c4 u.s=null,@c5 u.s=null,@c6 u.s=null,@c7 u.s=null,@c8 u.s=null,@c9 u.s=null as set nocount on;if @c0 is null return;exec u.x @s,@c0;exec u.xn @s,@c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9'
+exec u.xn 'proc u.x...','create or alter proc u.xi @s u.s,@cmd u.s=null as set nocount on;exec u.x @s,@cmd,1'
+	,'create or alter proc u.xin @s u.s,@c0 u.s=null,@c1 u.s=null,@c2 u.s=null,@c3 u.s=null,@c4 u.s=null,@c5 u.s=null,@c6 u.s=null,@c7 u.s=null,@c8 u.s=null,@c9 u.s=null as set nocount on;if @c0 is null return;exec u.xi @s,@c0;exec u.xin @s,@c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9'
+
+-- sb - supabase
+insert u.xl(s,eC)select '-- sb - supabase',getdate()
+exec u.xin 'schema sb','create schema sb'
+
+-- logg
+select * from u.xl where pk>=@pkS
