@@ -1,8 +1,8 @@
 namespace dbmanageWinForms
 {
-    public partial class Form1 : Form
+    public partial class dbmanageMenuForm : Form
     {
-        public Form1()
+        public dbmanageMenuForm()
         {
             InitializeComponent();
         }
