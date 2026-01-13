@@ -1,0 +1,44 @@
+-- supabase - database (re)creation
+set nocount on;use master
+--if db_id('supabase') is not null exec('use supabase;alter database supabase set single_user with rollback immediate;use master;drop database supabase')
+if db_id('supabase') is null exec('create database supabase;alter database supabase set auto_shrink on, recovery simple, allow_snapshot_isolation on')
+go
+
+use supabase
+-- t - type; string and time
+;if schema_id('t') is null exec('create schema t');if type_id('t.s')+type_id('t.d') is null exec('create type t.s from nvarchar(4000) null;create type t.d from datetime2 null')
+-- u - utility; execution and logging
+if schema_id('u') is null exec('create schema u')
+	if object_id('u.xl') is null exec('create table u.xl(pk bigint identity(1,1) primary key clustered,s t.s,cmd t.s,sC t.d default getdate(),eC t.d,eM t.s,ref uniqueidentifier default newid())')
+	insert u.xl(s,eC)select '-- t - type; string and time',getdate()
+	insert u.xl(s,eC)select '-- u - utility; execution and logging',getdate()
+go
+create or alter proc u.x @s t.s,@cmd t.s=@s,@i bit=0 output as set nocount on;insert u.xl(s,cmd) select @s,@cmd;
+	declare @pk bigint=scope_identity(),@c t.s=replace(isnull(@cmd,@s),'"','''');print @c;
+	if @i=0 exec (@c) else begin try exec (@c) end try 
+	begin catch update u.xl set eM=ERROR_MESSAGE() where pk=@pk end catch
+	update u.xl set eC=getdate() where pk=@pk
+go
+declare @pkS bigint=(select max(pk) from u.xl)
+exec u.x 'proc u.x...','create or alter proc u.xn @s t.s,@c0 t.s=null,@c1 t.s=null,@c2 t.s=null,@c3 t.s=null,@c4 t.s=null,@c5 t.s=null,@c6 t.s=null,@c7 t.s=null,@c8 t.s=null,@c9 t.s=null as set nocount on;if @c0 is null return;exec u.x @s,@c0;exec u.xn @s,@c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9'
+exec u.xn 'proc u.x...','create or alter proc u.xi @s t.s,@cmd t.s=null as set nocount on;exec u.x @s,@cmd,1'
+	,'create or alter proc u.xni @s t.s,@c0 t.s=null,@c1 t.s=null,@c2 t.s=null,@c3 t.s=null,@c4 t.s=null,@c5 t.s=null,@c6 t.s=null,@c7 t.s=null,@c8 t.s=null,@c9 t.s=null as set nocount on;if @c0 is null return;exec u.xi @s,@c0;exec u.xni @s,@c1,@c2,@c3,@c4,@c5,@c6,@c7,@c8,@c9'
+exec u.xni 'func u.x...','create or alter function u.cs(@v nvarchar(4000))returns bigint with schemabinding as begin return hashbytes("sha2_256",isnull(@v,"[null]"))end'
+
+-- u conf - configuration
+exec u.xni 'u conf - configuration'
+	,'create table u.conf(pk bigint identity(1,1) primary key clustered,fk bigint default 0,k t.s,v t.s,dt t.d default getdate(),dtO t.d,ref uniqueidentifier default newid(),csK as u.cs(k) persisted, constraint ucsK unique nonclustered(csK,dtO)with(ignore_dup_key=on),csV as u.cs(v) persisted)'
+exec u.xn 'u conf - configuration'
+	,'create or alter proc u.confset @k t.s,@v t.s,@k1 t.s=null,@v1 t.s=null,@k2 t.s=null,@v2 t.s=null,@k3 t.s=null,@v3 t.s=null,@k4 t.s=null,@v4 t.s=null,@k5 t.s=null,@v5 t.s=null,@k6 t.s=null,@v6 t.s=null,@k7 t.s=null,@v7 t.s=null,@k8 t.s=null,@v8 t.s=null,@k9 t.s=null,@v9 t.s=null as set nocount on;print "-- u.confset "+@k+"="+@v;update u.conf set dtO=getdate() where k=@k and dtO is null;insert u.conf(k,v)values(@k,@v);if @k1 is not null exec u.confset @k1,@v1,@k2,@v2,@k3,@v3,@k4,@v4,@k5,@v5,@k6,@v6,@k7,@v7,@k8,@v8,@k9,@v9'
+	,'create or alter function u.confget(@k nvarchar(4000))returns nvarchar(4000) with schemabinding as begin return (select top 1 v from u.conf where k=@k and dtO is null) end'
+
+-- sb - supabase
+insert u.xl(s,eC)select '-- sb - supabase',getdate()
+exec u.xni 'schema sb','create schema sb'
+exec u.confset 'sb usr','gorm'
+--select u.confget('sb usr')
+
+
+-- results?
+--select * from u.xl where pk>=@pkS
+--select * from u.conf
