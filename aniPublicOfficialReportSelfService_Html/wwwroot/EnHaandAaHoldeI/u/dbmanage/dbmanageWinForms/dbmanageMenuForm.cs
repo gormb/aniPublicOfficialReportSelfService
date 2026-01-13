@@ -281,7 +281,7 @@ namespace dbmanageWinForms
             comboBoxSupabaseActiveProject.Text = settings[i]; // First line is project name
         }
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
-        { //AigapEver: sbp_cca95719b83dda3191641f7caa19d4f698d3c66d
+        { 
             string[] lines = Clipboard.GetText().Split('\n');
             if (lines.Length == 1 && ActiveControl is TextBoxBase ct)
                 ct.Paste();
