@@ -88,7 +88,7 @@ const cfg = {
             , [['GPT 5 nano', 'gpt-5-nano'], ['GPT 5', 'gpt-5-mini'], ['GPT 4 nano', 'gpt-4.1-nano'], ['GPT o4', 'o4-mini']]]
         , ['vestlandet.digital (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
             ,´4%3Ec%7E%2C%5B%20%3FQvJJw%60%25%21%5E%20W@%3AHES0´
-            //, escape('4>c~,[ ?QvJJw`%!^ W@:HES0')
+            //, escape('4>c~,[ ?QvJJw`%!^ W@:HES0') // Authentication Error, Invalid proxy server token passed. Received API Key = sk-...93a2, Key Hash (Token) =2cc672f77ecb9605c0c85a93bbb89d6447ca419a4dc5d0bb6d75a4f2551caf73. Unable to find token in cache or `LiteLLM_VerificationTokenTable`
             , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Vestlandet Qwen', 'qwen-7b'], ['Vestlandet Qwen Coder', 'qwen-coder']]]
         // , ['vestlandet.digital2 (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
