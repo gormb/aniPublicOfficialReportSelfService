@@ -48,7 +48,7 @@ const cfg = {
         , 'Folk >>§-', ['Om Gorm Braarvig']
         , 'Konferanse >>§-', ['TEDxOslo 2026', 'Arendalsuka 2025', 'Arendalsuka 2025oai']
     ]], ['', [
-        'Dev >>§-', ['TEDxOslo 2026', 'TEDxArendal 2025']
+        'Dev >>§-', ['TEDxOslo 2026']
         , 'Event Konferanse>>§-', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025']
     ]]]
     , appProvider_Db: [['Generelt', 'Ny', 'Koblingsfeil!']]
