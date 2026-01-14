@@ -208,3 +208,4 @@ Hvis pasienten stiller spørsmål som ikke er medisinske, kan du svare vennlig, 
 ];
 
 cfg.set(cfg_aiPromptWelcome,'Vestlandet hjemmelegen min','vestlandet qwen','p/hjemmelegenmin.png',null,'#7da27c','#f0e6d1','Merriweather')
+setTimeout(() => msgSend('PV vestlandet qwen coder'), 250);

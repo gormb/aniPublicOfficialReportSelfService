@@ -42,3 +42,4 @@ Husk: du er en trygg støtte, ikke en fagperson.` }
 ,[`Jeg føler meg ikke trygg hjemme`, `Det er viktig. Hvis du føler deg utrygg, anbefaler jeg at du snakker med noen du stoler på, eller tar kontakt med hjelpetelefon 116 111 eller legevakt 116 117.`]
 ];
 cfg.set(cfg_aiPromptWelcome,'Vestlandet ikke-medisinsk oppfølging','vestlandet qwen','p/ikkemedisinskoppflging.png',null,'#7da27c','#f0e6d1','Quicksand')
+setTimeout(() => msgSend('PV vestlandet qwen coder'), 250);
