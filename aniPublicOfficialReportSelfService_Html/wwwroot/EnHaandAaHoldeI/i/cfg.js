@@ -86,9 +86,15 @@ const cfg = {
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
         , ['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c=71&6-:lk1<'X1D*YW+T&&!/47ATG}/G57C/5ZjYH~7MN;)EF?/*~9dB%}94BM/~9*Gj\`7+;(?'zOr3,A}L-0,SD)XjQ -HC~VGF4bA, ^3YT;A,w*vFML+Q1A~)&a5FOCx8!c;}3"s Y+51"2=!J?(Y{ZH=S>W@`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['GPT 5 nano', 'gpt-5-nano'], ['GPT 5', 'gpt-5-mini'], ['GPT 4 nano', 'gpt-4.1-nano'], ['GPT o4', 'o4-mini']]]
-        , ['vestlandet.digital (Norge)', 'https://api.vestlandet.digital/v1/chat/completions ', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s')
+        , ['vestlandet.digital (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
+            ,´4%3Ec%7E%2C%5B%20%3FQvJJw%60%25%21%5E%20W@%3AHES0´
+            //, escape('4>c~,[ ?QvJJw`%!^ W@:HES0')
             , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Vestlandet Qwen', 'qwen-7b'], ['Vestlandet Qwen Coder', 'qwen-coder']]]
+        , ['vestlandet.digital2 (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
+            , escape('4>c~,[ ?QvJJw`%!^ W@:HES0')
+            , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            , [['Vestlandet2 Qwen', 'qwen-7b'], ['Vestlandet2 Qwen Coder', 'qwen-coder']]]
         , ['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]
         , ['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
