@@ -209,8 +209,5 @@ Om pasienten stiller spørsmål som ikkje er medisinske, kan du svara vennleg, m
 ];
 
 cfg.set(cfg_aiPromptWelcome, 'Vestlandet heimelegen min', 'vestlandet qwen', 'p/hjemmelegenmin.png', null, '#7da27c', '#f0e6d1', 'Merriweather')
-setTimeout(() => msgSend('PV vestlandet qwen coder'), 250);
-// Removed merge conflict marker
-setTimeout(() => msgSend('nynorsk'), 750);
-// Removed merge conflict marker
+setTimeout(() => msgSend('PV vestlandet qwen'), 250);
 setTimeout(() => msgSend('nynorsk'), 750);
