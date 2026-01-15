@@ -28,10 +28,10 @@ const cfg = {
     ]], ['Norge >>§-', [
         'Norge veiledning >>§-', ['NO Min Offentlige Hjelper', 'NO Enkel Navigatør', 'NO Alt Om Tjenester', 'NO TjenesteGuide', 'NO Alt På Ett Sted']
         , 'Norge personlig støtte >>§-', ['NO Din Offentlige Partner', 'NO Min Digitale Venn', 'NO RettighetsVakten', 'NO KlarTale', 'NO HverdagsHjelpen']
+        , 'Sikker KI, vestlandet >>§-', ['Vestlandet Mottak og triage', 'Vestlandet Hjemmelegen min', 'Vestlandet Ikke-medisinsk oppfølging']
         , 'ARB >>§-', ['ARB Kurs', 'ARB Jobbsøk og karriereveiledning (KOJ)', 'ARB CV-hjelp', 'ARB Jobbsøknadshjelp', 'ARB Intervjuklar', 'ARB Karrierevei & Totalkompetanse', 'ARB Jobbsøkervelvære', 'ARB Gründerstart']
     ]], ['Helse >>§-', [
         'Hjemmelegen min >>§-', ['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
-        , 'Sikker Hlm - vestlandet >>§-', ['Vestlandet Mottak og triage', 'Vestlandet Hjemmelegen min', 'Vestlandet Ikke-medisinsk oppfølging']
         , 'Hlm - forløp og data >>§-', ['Mine pasientdata', 'Pasientforløp']
         , 'Hlm - spesialist >>§-', ['Hvordan har du det?', 'Flytveilederen', 'Hodepineveilederen', 'CRPS-veilederen', 'Biopsykososial modell', 'Kroppens stressystem', 'Mellom rom og spekter', 'MI-treneren (HDIR-basert)']
         , 'Hlm - økosystem >>§-', ['Qigong Academy']
