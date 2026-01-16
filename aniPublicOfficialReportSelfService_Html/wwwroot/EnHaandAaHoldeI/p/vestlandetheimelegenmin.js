@@ -210,4 +210,4 @@ Om pasienten stiller spørsmål som ikkje er medisinske, kan du svara vennleg, m
 
 cfg.set(cfg_aiPromptWelcome, 'Vestlandet heimelegen min', 'vestlandet qwen', 'p/hjemmelegenmin.png', null, '#7da27c', '#f0e6d1', 'Merriweather')
 setTimeout(() => msgSend('nynorsk'), 750);
-setTimeout(() => msgSend('PV vestlandet qwen'), 1000);
+setTimeout(() => msgSend('PV vestlandet qwen'), 10000);
