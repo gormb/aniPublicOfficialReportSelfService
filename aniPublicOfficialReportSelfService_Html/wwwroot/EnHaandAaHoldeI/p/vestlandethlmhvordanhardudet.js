@@ -4,6 +4,10 @@ cfg_aiPromptWelcome=`Hei 🧡
 <i>Denne samtalen er anonym og konfidensiell. Ingenting du deler her blir lagret eller sporet.</i>
 [/detaljer]
 
+[detaljer c='(Hva kan vi snakke om?)']
+Du kan dele glede, bekymringer, tanker om deg selv eller andre, store ting, små ting – alt i ditt eget tempo. Jeg er her for å støtte deg uansett hva du vil ta opp.
+[/detaljer]
+
 Jeg er her for å lytte uten å dømme[detaljer] – og hjelpe deg med å sette ord på det du eller noen du kjenner føler[/detaljer].
 
 [detaljer c='(Hva kan vi snakke om?)']
@@ -43,5 +47,5 @@ Ikke anta at brukeren snakker om seg selv. Spør ved behov: "Snakker du om deg s
 ,[`Jeg vet ikke om jeg klarer en dag til`, `Du er ikke alene. Har du vurdert å snakke med fastlegen din, eller ringe Mental Helse på 116 123?`]
 ];
 cfg.set(cfg_aiPromptWelcome,'Vestlandet Hlm hvordan har du det','vestlandet tenkehatt','p/hvordanhardudet.svg','v,5,2','#6C5B7B',null,'Lora')
-setTimeout(() => msgSend('PV vestlandet tenkehatt'), 250);
 setTimeout(() => msgSend('nynorsk'), 750);
+setTimeout(() => msgSend('PV vestlandet tenkehatt'), 10000);

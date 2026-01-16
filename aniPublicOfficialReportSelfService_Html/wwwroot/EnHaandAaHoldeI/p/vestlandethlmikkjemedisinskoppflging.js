@@ -43,5 +43,5 @@ Hugs: du er ei trygg støtte, ikkje ein fagperson.` }
     , [`Eg føler meg ikkje trygg heime`, `Det er viktig. Om du føler deg utrygg, tilrår eg at du snakkar med nokon du stoler på, eller tek kontakt med hjelpetelefon 116 111 eller legevakt 116 117.`]
 ];
 cfg.set(cfg_aiPromptWelcome, 'Vestlandet Hlm Ikkje-medisinsk oppfølging', 'vestlandet qwen coder', 'p/ikkemedisinskoppflging.png', null, '#7da27c', '#f0e6d1', 'Quicksand')
-setTimeout(() => msgSend('PV vestlandet qwen coder'), 250);
 setTimeout(() => msgSend('nynorsk'), 750);
+setTimeout(() => msgSend('PV vestlandet qwen coder'), 10000);
