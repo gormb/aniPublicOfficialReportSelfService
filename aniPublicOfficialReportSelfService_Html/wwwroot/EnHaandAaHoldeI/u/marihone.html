@@ -156,7 +156,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="/* Simulate click on load */ document.getElementById('startBtn').click();">
+<body>
 
     <div class="container">
         <header>
@@ -180,20 +180,80 @@
                 <div class="stat-value" id="theoryDiff">--</div>
                 <div class="stat-label">Avvik fra 1/11 (9.09%)</div>
             </div>
-            <div class="stat-card" style="grid-column: 1 / -1;">
-                <div class="stat-label">Korteste tur (sekvens)</div>
+        </div>
+
+        <!-- Section: Last Number = 6 -->
+        <h2 style="text-align: center; margin: 1rem 0; color: #f8fafc; font-size: 1.25rem;">Når siste tall er 6
+            (Forventet)</h2>
+        <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+            <!-- Min Steps (Last=6) -->
+            <div class="stat-card">
+                <div class="stat-label">Korteste</div>
+                <div class="stat-value" id="min6Path"
+                    style="font-size: 0.9rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem;">--
+                </div>
+                <div class="stat-label" id="min6Count"
+                    style="font-size: 0.8rem; color: var(--success-color); margin-top: 0.25rem;">(0 hopp)</div>
+            </div>
+            <!-- Top 3 Longest (Last=6) -->
+            <div class="stat-card">
+                <div class="stat-label">#1 Lengste (6)</div>
+                <div class="stat-value" id="max6Path1"
+                    style="font-size: 0.9rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem; max-height: 100px; overflow-y: auto; cursor: pointer;"
+                    onclick="toggleExpand('max6Path1')" title="Klikk for å se hele">--</div>
+                <div class="stat-label" id="max6Count1" style="font-size: 0.8rem; color: #f87171; margin-top: 0.25rem;">
+                    (0 hopp)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="max6Path2"
+                    style="font-size: 0.9rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem; max-height: 100px; overflow-y: auto; cursor: pointer;"
+                    onclick="toggleExpand('max6Path2')" title="Klikk for å se hele">--</div>
+                <div class="stat-label" id="max6Count2" style="font-size: 0.8rem; color: #f87171; margin-top: 0.25rem;">
+                    #2 (0 hopp)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="max6Path3"
+                    style="font-size: 0.9rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem; max-height: 100px; overflow-y: auto; cursor: pointer;"
+                    onclick="toggleExpand('max6Path3')" title="Klikk for å se hele">--</div>
+                <div class="stat-label" id="max6Count3" style="font-size: 0.8rem; color: #f87171; margin-top: 0.25rem;">
+                    #3 (0 hopp)</div>
+            </div>
+        </div>
+
+        <!-- Section: All Simulations -->
+        <h2 style="text-align: center; margin: 0 0 1rem 0; color: #f8fafc; font-size: 1.25rem;">Alle Simuleringer</h2>
+        <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+            <!-- Min Steps (All) -->
+            <div class="stat-card">
+                <div class="stat-label">Korteste</div>
                 <div class="stat-value" id="minStepsPath"
-                    style="font-size: 1rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem;">--</div>
+                    style="font-size: 0.9rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem;">--
+                </div>
                 <div class="stat-label" id="minStepsCount"
                     style="font-size: 0.8rem; color: var(--success-color); margin-top: 0.25rem;">(0 hopp)</div>
             </div>
-            <div class="stat-card" style="grid-column: 1 / -1;">
-                <div class="stat-label">Lengste tur (sekvens)</div>
-                <div class="stat-value" id="maxStepsPath"
-                    style="font-size: 1rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem; max-height: 100px; overflow-y: auto;">
-                    --</div>
-                <div class="stat-label" id="maxStepsCount"
-                    style="font-size: 0.8rem; color: #f87171; margin-top: 0.25rem;">(0 hopp)</div>
+            <!-- Top 3 Longest (All) -->
+            <div class="stat-card">
+                <div class="stat-label">#1 Lengste</div>
+                <div class="stat-value" id="maxPath1"
+                    style="font-size: 0.9rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem; max-height: 100px; overflow-y: auto; cursor: pointer;"
+                    onclick="toggleExpand('maxPath1')" title="Klikk for å se hele">--</div>
+                <div class="stat-label" id="maxCount1" style="font-size: 0.8rem; color: #f87171; margin-top: 0.25rem;">
+                    (0 hopp)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="maxPath2"
+                    style="font-size: 0.9rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem; max-height: 100px; overflow-y: auto; cursor: pointer;"
+                    onclick="toggleExpand('maxPath2')" title="Klikk for å se hele">--</div>
+                <div class="stat-label" id="maxCount2" style="font-size: 0.8rem; color: #f87171; margin-top: 0.25rem;">
+                    #2 (0 hopp)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="maxPath3"
+                    style="font-size: 0.9rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem; max-height: 100px; overflow-y: auto; cursor: pointer;"
+                    onclick="toggleExpand('maxPath3')" title="Klikk for å se hele">--</div>
+                <div class="stat-label" id="maxCount3" style="font-size: 0.8rem; color: #f87171; margin-top: 0.25rem;">
+                    #3 (0 hopp)</div>
             </div>
         </div>
 
@@ -239,9 +299,18 @@
         let stepCounts = new Array(NUM_BUCKETS + 1).fill(0); // +1 for the overflow bucket "500+"
         let totalStepsAccumulated = 0; // For average calculation
         let minSteps = Infinity;
-        let maxSteps = 0;
         let minStepsPath = "";
-        let maxStepsPath = "";
+
+        // Keep top 3 longest (all)
+        let topLongest = [];
+
+        // Track stats for Last=6
+        let minStepsSix = Infinity;
+        let minStepsSixPath = "";
+        let topLongestSix = [];
+
+        // UI State
+        let expandedState = {};
 
         let animationFrameId;
 
@@ -438,16 +507,59 @@
                 stepCounts[bucketIndex]++;
             }
 
+            totalSimulations++;
+
             if (steps < minSteps) {
                 minSteps = steps;
                 minStepsPath = path.join(", ");
             }
-            if (steps > maxSteps) {
-                maxSteps = steps;
-                maxStepsPath = path.join(", ");
+
+            // Check top 3 longest
+            if (topLongest.length < 3 || steps > topLongest[topLongest.length - 1].steps) {
+                topLongest.push({ steps: steps, path: path.join(", ") });
+                // Sort descending
+                topLongest.sort((a, b) => b.steps - a.steps);
+                // Keep only top 3
+                if (topLongest.length > 3) {
+                    topLongest.pop();
+                }
             }
 
-            totalSimulations++;
+            // Stats where Last = 6
+            if (currentPos === 6) {
+                // Shortest 6
+                if (steps < minStepsSix) {
+                    minStepsSix = steps;
+                    minStepsSixPath = path.join(", ");
+                }
+
+                // Longest 6 (Top 3)
+                if (topLongestSix.length < 3 || steps > topLongestSix[topLongestSix.length - 1].steps) {
+                    topLongestSix.push({ steps: steps, path: path.join(", ") });
+                    // Sort descending
+                    topLongestSix.sort((a, b) => b.steps - a.steps);
+                    // Keep only top 3
+                    if (topLongestSix.length > 3) {
+                        topLongestSix.pop();
+                    }
+                }
+            }
+        }
+
+        function toggleExpand(elementId) {
+            expandedState[elementId] = !expandedState[elementId];
+            updateUI();
+        }
+
+        function formatPath(pathStr, id) {
+            if (!pathStr) return "--";
+            if (expandedState[id]) {
+                return pathStr + " (vis mindre)";
+            }
+            const parts = pathStr.split(", ");
+            if (parts.length <= 10) return pathStr;
+
+            return parts.slice(0, 10).join(", ") + "... (vis alt)";
         }
 
         function updateUI() {
@@ -462,13 +574,43 @@
             const diff = probSix - expected;
             const diffStr = (diff >= 0 ? '+' : '') + (diff * 100).toFixed(3) + '%';
             theoryDiffEl.textContent = diffStr;
+            theoryDiffEl.textContent = diffStr;
             theoryDiffEl.style.color = Math.abs(diff) < 0.005 ? '#4ade80' : '#f87171';
 
             document.getElementById('minStepsPath').textContent = minStepsPath || "--";
             document.getElementById('minStepsCount').textContent = `(${minSteps !== Infinity ? minSteps : 0} hopp)`;
 
-            document.getElementById('maxStepsPath').textContent = maxStepsPath || "--";
-            document.getElementById('maxStepsCount').textContent = `(${maxSteps} hopp)`;
+            // Update Top 3 Longest (All)
+            for (let i = 0; i < 3; i++) {
+                const elPath = document.getElementById(`maxPath${i + 1}`);
+                const elCount = document.getElementById(`maxCount${i + 1}`);
+
+                if (topLongest[i]) {
+                    elPath.textContent = formatPath(topLongest[i].path, `maxPath${i + 1}`);
+                    elCount.textContent = `#${i + 1} (${topLongest[i].steps} hopp)`;
+                } else {
+                    elPath.textContent = "--";
+                    elCount.textContent = `#${i + 1} (0 hopp)`;
+                }
+            }
+
+            // Update Min (Last=6)
+            document.getElementById('min6Path').textContent = minStepsSixPath || "--";
+            document.getElementById('min6Count').textContent = `(${minStepsSix !== Infinity ? minStepsSix : 0} hopp)`;
+
+            // Update Top 3 Longest (Last=6)
+            for (let i = 0; i < 3; i++) {
+                const elPath = document.getElementById(`max6Path${i + 1}`);
+                const elCount = document.getElementById(`max6Count${i + 1}`);
+
+                if (topLongestSix[i]) {
+                    elPath.textContent = formatPath(topLongestSix[i].path, `max6Path${i + 1}`);
+                    elCount.textContent = `#${i + 1} (${topLongestSix[i].steps} hopp)`;
+                } else {
+                    elPath.textContent = "--";
+                    elCount.textContent = `#${i + 1} (0 hopp)`;
+                }
+            }
 
             // Update last number chart
             const visualData = [];
@@ -514,12 +656,21 @@
             stepCounts = new Array(NUM_BUCKETS + 1).fill(0);
             totalStepsAccumulated = 0;
             minSteps = Infinity;
-            maxSteps = 0;
             minStepsPath = "";
-            maxStepsPath = "";
+            minStepsSix = Infinity;
+            minStepsSixPath = "";
+            topLongest = [];
+            topLongestSix = [];
+            expandedState = {};
 
             updateUI();
         }
+
+        // Autostart after 2 seconds
+        setTimeout(() => {
+            const btn = document.getElementById('startBtn');
+            if (btn) btn.click();
+        }, 2000);
     </script>
 
 </body>
