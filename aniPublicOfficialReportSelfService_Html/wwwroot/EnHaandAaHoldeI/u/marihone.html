@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +16,7 @@
             --success-color: #4ade80;
             --font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
@@ -25,6 +28,7 @@
             align-items: center;
             min-height: 100vh;
         }
+
         .container {
             max-width: 800px;
             width: 100%;
@@ -33,10 +37,12 @@
             display: flex;
             flex-direction: column;
         }
+
         header {
             text-align: center;
             margin-bottom: 2rem;
         }
+
         h1 {
             font-weight: 700;
             font-size: 2.5rem;
@@ -45,17 +51,20 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         p.subtitle {
             color: var(--text-secondary);
             font-size: 1.1rem;
             line-height: 1.6;
         }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
+
         .stat-card {
             background-color: var(--card-bg);
             padding: 1.5rem;
@@ -65,21 +74,25 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.2s;
         }
+
         .stat-card:hover {
             transform: translateY(-2px);
         }
+
         .stat-value {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--accent-color);
         }
+
         .stat-label {
             color: var(--text-secondary);
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
+
         .chart-container {
             background-color: var(--card-bg);
             padding: 1.5rem;
@@ -89,12 +102,14 @@
             height: 400px;
             position: relative;
         }
+
         .controls {
             display: flex;
             justify-content: center;
             gap: 1rem;
             margin-top: 2rem;
         }
+
         button {
             background: linear-gradient(135deg, var(--accent-color), #818cf8);
             border: none;
@@ -107,14 +122,17 @@
             transition: opacity 0.2s;
             box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
         }
+
         button:hover {
             opacity: 0.9;
         }
+
         button:disabled {
             background: #475569;
             cursor: not-allowed;
             box-shadow: none;
         }
+
         .theory-note {
             background: rgba(56, 189, 248, 0.1);
             border-left: 4px solid var(--accent-color);
@@ -123,319 +141,387 @@
             margin-top: 2rem;
             color: #d1d5db;
         }
+
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .stat-value { font-size: 2rem; }
+            h1 {
+                font-size: 2rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
         }
     </style>
     <!-- Use Chart.js for visualization -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-<div class="container">
-    <header>
-        <h1>Marihøne-problemet</h1>
-        <p class="subtitle">
-            En marihøne starter på 12. Hvert sekund hopper den tilfeldig til et nabotall.<br>
-            Hva er sannsynligheten for at <strong>6</strong> er det <em>siste</em> nye tallet den besøker?
-        </p>
-    </header>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-value" id="totalSims">0</div>
-            <div class="stat-label">Antall Simuleringer</div>
+
+    <div class="container">
+        <header>
+            <h1>Marihøne-problemet</h1>
+            <p class="subtitle">
+                En marihøne starter på 12. Hvert sekund hopper den tilfeldig til et nabotall.<br>
+                Hva er sannsynligheten for at <strong>6</strong> er det <em>siste</em> nye tallet den besøker?
+            </p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalSims">0</div>
+                <div class="stat-label">Antall Simuleringer</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="lastIsSix">0%</div>
+                <div class="stat-label">Sannsynlighet (Siste = 6)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="theoryDiff">--</div>
+                <div class="stat-label">Avvik fra 1/11 (9.09%)</div>
+            </div>
+            <div class="stat-card" style="grid-column: 1 / -1;">
+                <div class="stat-label">Korteste tur (sekvens)</div>
+                <div class="stat-value" id="minStepsPath"
+                    style="font-size: 1rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem;">--</div>
+                <div class="stat-label" id="minStepsCount"
+                    style="font-size: 0.8rem; color: var(--success-color); margin-top: 0.25rem;">(0 hopp)</div>
+            </div>
+            <div class="stat-card" style="grid-column: 1 / -1;">
+                <div class="stat-label">Lengste tur (sekvens)</div>
+                <div class="stat-value" id="maxStepsPath"
+                    style="font-size: 1rem; word-break: break-all; font-family: monospace; margin-top: 0.5rem; max-height: 100px; overflow-y: auto;">
+                    --</div>
+                <div class="stat-label" id="maxStepsCount"
+                    style="font-size: 0.8rem; color: #f87171; margin-top: 0.25rem;">(0 hopp)</div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value" id="lastIsSix">0%</div>
-            <div class="stat-label">Sannsynlighet (Siste = 6)</div>
+
+        <div class="chart-container">
+            <canvas id="distributionChart"></canvas>
         </div>
-        <div class="stat-card">
-            <div class="stat-value" id="theoryDiff">--</div>
-            <div class="stat-label">Avvik fra 1/11 (9.09%)</div>
+
+        <div class="chart-container" style="margin-top: 2rem;">
+            <canvas id="stepsChart"></canvas>
+        </div>
+
+        <div class="chart-container" style="margin-top: 2rem;">
+            <canvas id="stepsLogChart"></canvas>
+        </div>
+
+
+        <div class="controls">
+            <button id="startBtn" onclick="toggleSimulation()">Start Simulering</button>
+            <button id="resetBtn" onclick="resetSimulation()"
+                style="background: #ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);">Nullstill</button>
+        </div>
+
+        <div class="theory-note">
+            <strong>Teoretisk forventning:</strong> I en tilfeldig gang på en syklus, hvor man starter på ett punkt og
+            fortsetter til alle punkter er besøkt, er sannsynligheten for at et spesifikt punkt (som ikke er
+            startpunktet) blir besøkt til sist, lik for alle punkter.<br>
+            Siden det er 11 andre tall enn 12, bør sannsynligheten være <strong>1/11 ≈ 9.09%</strong>.
         </div>
     </div>
-    <div class="chart-container">
-        <canvas id="distributionChart"></canvas>
-    </div>
-    <div class="chart-container" style="margin-top: 2rem;">
-        <canvas id="stepsChart"></canvas>
-    </div>
-    
-    <div class="chart-container" style="margin-top: 2rem;">
-        <canvas id="stepsLogChart"></canvas>
-    </div>
-    <div class="controls">
-        <button id="startBtn" onclick="toggleSimulation()">Start Simulering</button>
-        <button id="resetBtn" onclick="resetSimulation()" style="background: #ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);">Nullstill</button>
-    </div>
-    <div class="theory-note">
-        <strong>Teoretisk forventning:</strong> I en tilfeldig gang på en syklus, hvor man starter på ett punkt og fortsetter til alle punkter er besøkt, er sannsynligheten for at et spesifikt punkt (som ikke er startpunktet) blir besøkt til sist, lik for alle punkter.<br>
-        Siden det er 11 andre tall enn 12, bør sannsynligheten være <strong>1/11 ≈ 9.09%</strong>.
-    </div>
-</div>
-<script>
-    // State
-    let isRunning = false;
-    let totalSimulations = 0;
-    let lastNumberCounts = new Array(13).fill(0); // Index 1-12. 0 unused. (Start is 12, so 12 can never be last)
-    
-    // Steps tracking
-    // We will track steps in buckets.
-    // Given the nature of random walks, the tail can be long.
-    const MAX_TRACKED_STEPS = 500;
-    const BUCKET_SIZE = 10;
-    const NUM_BUCKETS = Math.ceil(MAX_TRACKED_STEPS / BUCKET_SIZE);
-    let stepCounts = new Array(NUM_BUCKETS + 1).fill(0); // +1 for the overflow bucket "500+"
-    let totalStepsAccumulated = 0; // For average calculation
-    
-    let animationFrameId;
-    // Last Number Chart
-    const ctx = document.getElementById('distributionChart').getContext('2d');
-    const chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            datasets: [{
-                label: 'Antall ganger sist besøkt',
-                data: Array(11).fill(0),
-                backgroundColor: (context) => {
-                    const idx = context.dataIndex; 
-                    // Highlight 6 (which is at index 5 in the labels array [1..11])
-                    return idx === 5 ? '#38bdf8' : 'rgba(148, 163, 184, 0.5)';
-                },
-                borderRadius: 4,
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: { display: true, text: 'Hvilket tall besøkes sist?', color: '#f8fafc', font: { size: 16 } },
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
+
+    <script>
+        // State
+        let isRunning = false;
+        let totalSimulations = 0;
+        let lastNumberCounts = new Array(13).fill(0); // Index 1-12. 0 unused. (Start is 12, so 12 can never be last)
+
+        // Steps tracking
+        // We will track steps in buckets.
+        // Given the nature of random walks, the tail can be long.
+        const MAX_TRACKED_STEPS = 500;
+        const BUCKET_SIZE = 10;
+        const NUM_BUCKETS = Math.ceil(MAX_TRACKED_STEPS / BUCKET_SIZE);
+        let stepCounts = new Array(NUM_BUCKETS + 1).fill(0); // +1 for the overflow bucket "500+"
+        let totalStepsAccumulated = 0; // For average calculation
+        let minSteps = Infinity;
+        let maxSteps = 0;
+        let minStepsPath = "";
+        let maxStepsPath = "";
+
+        let animationFrameId;
+
+        // Last Number Chart
+        const ctx = document.getElementById('distributionChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+                datasets: [{
+                    label: 'Antall ganger sist besøkt',
+                    data: Array(11).fill(0),
+                    backgroundColor: (context) => {
+                        const idx = context.dataIndex;
+                        // Highlight 6 (which is at index 5 in the labels array [1..11])
+                        return idx === 5 ? '#38bdf8' : 'rgba(148, 163, 184, 0.5)';
+                    },
+                    borderRadius: 4,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: 'Hvilket tall besøkes sist?', color: '#f8fafc', font: { size: 16 } },
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    const percentage = totalSimulations > 0
+                                        ? ((context.parsed.y / totalSimulations) * 100).toFixed(2) + '%'
+                                        : '0%';
+                                    label += context.parsed.y + ' (' + percentage + ')';
+                                }
+                                return label;
                             }
-                            if (context.parsed.y !== null) {
-                                const percentage = totalSimulations > 0 
-                                    ? ((context.parsed.y / totalSimulations) * 100).toFixed(2) + '%' 
-                                    : '0%';
-                                label += context.parsed.y + ' (' + percentage + ')';
-                            }
-                            return label;
                         }
                     }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                    ticks: { color: '#94a3b8' }
                 },
-                x: {
-                    grid: { display: false },
-                    ticks: { color: '#94a3b8' }
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
                 }
             }
+        });
+
+        // Steps Distribution Chart
+        const stepsCtx = document.getElementById('stepsChart').getContext('2d');
+        const stepsLabels = [];
+        for (let i = 0; i < NUM_BUCKETS; i++) {
+            const start = i * BUCKET_SIZE;
+            const end = start + BUCKET_SIZE - 1;
+            stepsLabels.push(`${start}-${end}`);
         }
-    });
-    // Steps Distribution Chart
-    const stepsCtx = document.getElementById('stepsChart').getContext('2d');
-    const stepsLabels = [];
-    for(let i=0; i<NUM_BUCKETS; i++) {
-        const start = i * BUCKET_SIZE;
-        const end = start + BUCKET_SIZE - 1;
-        stepsLabels.push(`${start}-${end}`);
-    }
-    stepsLabels.push(`${MAX_TRACKED_STEPS}+`);
-    const stepsChart = new Chart(stepsCtx, {
-        type: 'line',
-        data: {
-            labels: stepsLabels,
-            datasets: [{
-                label: 'Antall simuleringer',
-                data: Array(stepsLabels.length).fill(0),
-                borderColor: '#4ade80',
-                backgroundColor: 'rgba(74, 222, 128, 0.1)',
-                fill: true,
-                tension: 0.4,
-                pointRadius: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: { display: true, text: 'Fordeling av antall hopp før alle tall er besøkt', color: '#f8fafc', font: { size: 16 } },
-                legend: { display: false }
+        stepsLabels.push(`${MAX_TRACKED_STEPS}+`);
+
+        const stepsChart = new Chart(stepsCtx, {
+            type: 'line',
+            data: {
+                labels: stepsLabels,
+                datasets: [{
+                    label: 'Antall simuleringer',
+                    data: Array(stepsLabels.length).fill(0),
+                    borderColor: '#4ade80',
+                    backgroundColor: 'rgba(74, 222, 128, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                    ticks: { color: '#94a3b8' }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: 'Fordeling av antall hopp før alle tall er besøkt', color: '#f8fafc', font: { size: 16 } },
+                    legend: { display: false }
                 },
-                x: {
-                    grid: { display: false },
-                    ticks: { color: '#94a3b8', maxTicksLimit: 20 }
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8', maxTicksLimit: 20 }
+                    }
                 }
             }
-        }
-    });
-    // Steps Logarithmic Chart
-    const stepsLogCtx = document.getElementById('stepsLogChart').getContext('2d');
-    const stepsLogChart = new Chart(stepsLogCtx, {
-        type: 'line',
-        data: {
-            labels: stepsLabels,
-            datasets: [{
-                label: 'Antall simuleringer (Log)',
-                data: Array(stepsLabels.length).fill(null),
-                borderColor: '#38bdf8',
-                backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                fill: true,
-                tension: 0.4,
-                pointRadius: 0,
-                spanGaps: true
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: { display: true, text: 'Fordeling (Logaritmisk skala)', color: '#f8fafc', font: { size: 16 } },
-                legend: { display: false }
+        });
+
+        // Steps Logarithmic Chart
+        const stepsLogCtx = document.getElementById('stepsLogChart').getContext('2d');
+        const stepsLogChart = new Chart(stepsLogCtx, {
+            type: 'line',
+            data: {
+                labels: stepsLabels,
+                datasets: [{
+                    label: 'Antall simuleringer (Log)',
+                    data: Array(stepsLabels.length).fill(null),
+                    borderColor: '#38bdf8',
+                    backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    spanGaps: true
+                }]
             },
-            scales: {
-                y: {
-                    type: 'logarithmic',
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                    ticks: { color: '#94a3b8' }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: 'Fordeling (Logaritmisk skala)', color: '#f8fafc', font: { size: 16 } },
+                    legend: { display: false }
                 },
-                x: {
-                    grid: { display: false },
-                    ticks: { color: '#94a3b8', maxTicksLimit: 20 }
+                scales: {
+                    y: {
+                        type: 'logarithmic',
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8', maxTicksLimit: 20 }
+                    }
                 }
             }
+        });
+
+        // Elements
+        const totalSimsEl = document.getElementById('totalSims');
+        const lastIsSixEl = document.getElementById('lastIsSix');
+        const theoryDiffEl = document.getElementById('theoryDiff');
+        const startBtn = document.getElementById('startBtn');
+
+        function runBatch() {
+            const BATCH_SIZE = 500; // Run 500 sims per frame
+
+            for (let i = 0; i < BATCH_SIZE; i++) {
+                runSingleSimulation();
+            }
+
+            updateUI();
+
+            if (isRunning) {
+                animationFrameId = requestAnimationFrame(runBatch);
+            }
         }
-    });
-    // Elements
-    const totalSimsEl = document.getElementById('totalSims');
-    const lastIsSixEl = document.getElementById('lastIsSix');
-    const theoryDiffEl = document.getElementById('theoryDiff');
-    const startBtn = document.getElementById('startBtn');
-    function runBatch() {
-        const BATCH_SIZE = 500; // Run 500 sims per frame
-        
-        for (let i = 0; i < BATCH_SIZE; i++) {
-            runSingleSimulation();
-        }
-        
-        updateUI();
-        if (isRunning) {
-            animationFrameId = requestAnimationFrame(runBatch);
-        }
-    }
-    function runSingleSimulation() {
-        const visited = new Set();
-        let currentPos = 12; // Start at 12
-        let steps = 0;
-        visited.add(currentPos); // We mark 12 as visited immediately
-        
-        // We need to visit all 12 numbers. So set size needs to be 12.
-        while (visited.size < 12) {
-            // Jump randomly -1 or +1
-            // 12 -> 11 or 1
-            // 1 -> 12 or 2
-            // etc..
-            
-            const move = Math.random() < 0.5 ? -1 : 1;
-            let nextPos = currentPos + move;
-            
-            // Handle wrap around for 1-12 clock
-            if (nextPos > 12) nextPos = 1;
-            if (nextPos < 1) nextPos = 12;
-            
-            currentPos = nextPos;
+
+        function runSingleSimulation() {
+            const visited = new Set();
+            let currentPos = 12; // Start at 12
+            let steps = 0;
+            let path = [12];
             visited.add(currentPos);
-            steps++;
+
+            // We need to visit all 12 numbers.
+            while (visited.size < 12) {
+                const move = Math.random() < 0.5 ? -1 : 1;
+                let nextPos = currentPos + move;
+
+                // Handle wrap around for 1-12 clock
+                if (nextPos > 12) nextPos = 1;
+                if (nextPos < 1) nextPos = 12;
+
+                currentPos = nextPos;
+                visited.add(currentPos);
+                path.push(currentPos);
+                steps++;
+            }
+
+            // Record last number
+            lastNumberCounts[currentPos]++;
+
+            // Record steps
+            totalStepsAccumulated += steps;
+            if (steps >= MAX_TRACKED_STEPS) {
+                stepCounts[NUM_BUCKETS]++; // Overflow bucket
+            } else {
+                const bucketIndex = Math.floor(steps / BUCKET_SIZE);
+                stepCounts[bucketIndex]++;
+            }
+
+            if (steps < minSteps) {
+                minSteps = steps;
+                minStepsPath = path.join(", ");
+            }
+            if (steps > maxSteps) {
+                maxSteps = steps;
+                maxStepsPath = path.join(", ");
+            }
+
+            totalSimulations++;
         }
-        
-        // The last number visited is currentPos
-        lastNumberCounts[currentPos]++;
-        
-        // Record steps
-        totalStepsAccumulated += steps;
-        if (steps >= MAX_TRACKED_STEPS) {
-            stepCounts[NUM_BUCKETS]++; // Overflow bucket
-        } else {
-            const bucketIndex = Math.floor(steps / BUCKET_SIZE);
-            stepCounts[bucketIndex]++;
+
+        function updateUI() {
+            totalSimsEl.textContent = totalSimulations.toLocaleString();
+
+            const countSix = lastNumberCounts[6];
+            const probSix = totalSimulations > 0 ? (countSix / totalSimulations) : 0;
+
+            lastIsSixEl.textContent = (probSix * 100).toFixed(3) + '%';
+
+            const expected = 1 / 11;
+            const diff = probSix - expected;
+            const diffStr = (diff >= 0 ? '+' : '') + (diff * 100).toFixed(3) + '%';
+            theoryDiffEl.textContent = diffStr;
+            theoryDiffEl.style.color = Math.abs(diff) < 0.005 ? '#4ade80' : '#f87171';
+
+            document.getElementById('minStepsPath').textContent = minStepsPath || "--";
+            document.getElementById('minStepsCount').textContent = `(${minSteps !== Infinity ? minSteps : 0} hopp)`;
+
+            document.getElementById('maxStepsPath').textContent = maxStepsPath || "--";
+            document.getElementById('maxStepsCount').textContent = `(${maxSteps} hopp)`;
+
+            // Update last number chart
+            const visualData = [];
+            for (let j = 1; j <= 11; j++) {
+                visualData.push(lastNumberCounts[j]);
+            }
+            chart.data.datasets[0].data = visualData;
+            chart.update('none');
+
+            // Update steps chart
+            stepsChart.data.datasets[0].data = stepCounts;
+            stepsChart.update('none');
+
+            // Update log chart
+            stepsLogChart.data.datasets[0].data = stepCounts.map(v => v > 0 ? v : null);
+            stepsLogChart.update('none');
         }
-        
-        totalSimulations++;
-    }
-    function updateUI() {
-        totalSimsEl.textContent = totalSimulations.toLocaleString();
-        
-        const countSix = lastNumberCounts[6];
-        const probSix = totalSimulations > 0 ? (countSix / totalSimulations) : 0;
-        
-        lastIsSixEl.textContent = (probSix * 100).toFixed(3) + '%';
-        
-        const expected = 1/11;
-        const diff = probSix - expected;
-        const diffStr = (diff >= 0 ? '+' : '') + (diff * 100).toFixed(3) + '%';
-        theoryDiffEl.textContent = diffStr;
-        theoryDiffEl.style.color = Math.abs(diff) < 0.005 ? '#4ade80' : '#f87171'; // Green if close, red if far
-        // Update chart data occasionally to save performance if needed, but per frame is usually fine for this complexity
-        // Labels are 1..11. Data needs to map from lastNumberCounts indices.
-        // lastNumberCounts has 12 unused (since start=12 cannot be last).
-        // Map 1..11
-        const visualData = [];
-        for (let j = 1; j <= 11; j++) {
-            visualData.push(lastNumberCounts[j]);
+
+        function toggleSimulation() {
+            if (isRunning) {
+                isRunning = false;
+                startBtn.textContent = "Start Simulering";
+                startBtn.style.background = "";
+                cancelAnimationFrame(animationFrameId);
+            } else {
+                isRunning = true;
+                startBtn.textContent = "Pause Simulering";
+                startBtn.style.background = "#475569";
+                runBatch();
+            }
         }
-        chart.data.datasets[0].data = visualData;
-        chart.update('none'); // 'none' mode prevents full animation flicker
-        
-        // Update steps chart
-        stepsChart.data.datasets[0].data = stepCounts;
-        stepsChart.update('none');
-        // Update log chart
-        stepsLogChart.data.datasets[0].data = stepCounts.map(v => v > 0 ? v : null);
-        stepsLogChart.update('none');
-    }
-    function toggleSimulation() {
-        if (isRunning) {
+
+        function resetSimulation() {
             isRunning = false;
-            startBtn.textContent = "Start Simulering";
-            startBtn.style.background = ""; // Reset gradient
             cancelAnimationFrame(animationFrameId);
-        } else {
-            isRunning = true;
-            startBtn.textContent = "Pause Simulering";
-            startBtn.style.background = "#475569"; // Grey when paused/running
-            runBatch();
+            startBtn.textContent = "Start Simulering";
+            startBtn.style.background = "";
+
+            totalSimulations = 0;
+            lastNumberCounts = new Array(13).fill(0);
+            stepCounts = new Array(NUM_BUCKETS + 1).fill(0);
+            lastNumberCounts = new Array(13).fill(0);
+            stepCounts = new Array(NUM_BUCKETS + 1).fill(0);
+            totalStepsAccumulated = 0;
+            minSteps = Infinity;
+            maxSteps = 0;
+            minStepsPath = "";
+            maxStepsPath = "";
+
+            updateUI();
         }
-    }
-    function resetSimulation() {
-        isRunning = false;
-        cancelAnimationFrame(animationFrameId);
-        startBtn.textContent = "Start Simulering";
-        startBtn.style.background = "";
-        totalSimulations = 0;
-        lastNumberCounts = new Array(13).fill(0);
-        stepCounts = new Array(NUM_BUCKETS + 1).fill(0);
-        totalStepsAccumulated = 0;
-        
-        updateUI();
-    }
-</script>
+    </script>
+
 </body>
+
 </html>
