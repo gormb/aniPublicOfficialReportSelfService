@@ -473,6 +473,21 @@
             }
         }
 
+        // Crypto Random Generator
+        const RND_BUFFER_SIZE = 4096;
+        const rndBuffer = new Uint8Array(RND_BUFFER_SIZE);
+        let rndIndex = RND_BUFFER_SIZE;
+
+        function getRandomMove() {
+            if (rndIndex >= RND_BUFFER_SIZE) {
+                window.crypto.getRandomValues(rndBuffer);
+                rndIndex = 0;
+            }
+            // Use byte value < 128 for 50% probability
+            const val = rndBuffer[rndIndex++];
+            return val < 128 ? -1 : 1;
+        }
+
         function runSingleSimulation() {
             const visited = new Set();
             let currentPos = 12; // Start at 12
@@ -482,7 +497,8 @@
 
             // We need to visit all 12 numbers.
             while (visited.size < 12) {
-                const move = Math.random() < 0.5 ? -1 : 1;
+                // Use crypto random instead of Math.random()
+                const move = getRandomMove();
                 let nextPos = currentPos + move;
 
                 // Handle wrap around for 1-12 clock
