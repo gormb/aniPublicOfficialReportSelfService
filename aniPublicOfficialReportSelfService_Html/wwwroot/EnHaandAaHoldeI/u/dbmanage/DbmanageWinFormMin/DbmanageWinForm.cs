@@ -1,11 +1,26 @@
-using System.Security.Cryptography;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.IO;
+using System.Diagnostics;
 
-namespace dbmanageWinForms
+namespace DbmanageWinFormMin
 {
-    public partial class dbmanageMenuForm : Form
+    public partial class DbmanageWinForm : Form
     {
+        public DbmanageWinForm()
+        {
+            InitializeComponent();
+        }
+
         #region Supabase
         protected class Supabase
         {
@@ -28,7 +43,7 @@ namespace dbmanageWinForms
                 public void SaveI() => File.WriteAllText(Path, ToStringEnc());
                 public bool Save()
                 {
-                    try { SaveI(); } catch (Exception) { return false; }
+                    try { SaveI(); } catch (Exception ex) { Debug.WriteLine(ex); return false; }
                     return true;
                 }
                 public void LoadI()
@@ -39,31 +54,44 @@ namespace dbmanageWinForms
                     User = lines[2];
                     Password = Dec(lines[3]);
                     Token = Dec(lines[4]);
-                    Project = lines?[5] ?? "?";
+                    Project = lines.Length > 5 ? lines[5] : "?";
                 }
-                private static string Path => Environment.ProcessPath + ".csv";
+                private static string Path => System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName + ".csv";
             }
             public Config config;
-            public class Comm(dbmanageMenuForm.Supabase p)
+            public class Comm
             {
-                private readonly Supabase supabase = p;
-                private static readonly HttpClient http = new();
+                public Comm(DbmanageWinForm.Supabase p)
+                {
+                    supabase = p;    
+                }
+                private readonly Supabase supabase;
+                private static readonly HttpClient http = new HttpClient();
                 public class Org
                 {
                     public string Name, Id;
                     public Org(string n, string i) { Name = n; Id = i; }
                     public override string ToString() => Name + " (" + Id + ")";
+                    public static Org Empty = new Org("?", "?");
                 }
-                public Org[] orgs = [new Org("?", "?")];
+
+                public Org[] orgs = new Org[] { Org.Empty };
                 public async Task Org_Load()
                 {
-                    http.DefaultRequestHeaders.Authorization = new("Bearer", supabase.config.Token);
+                    System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                    http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", supabase.config.Token);
                     var json = await http.GetStringAsync("https://api.supabase.com/v1/organizations");
-                    using var doc = System.Text.Json.JsonDocument.Parse(json);
-                    orgs = doc.RootElement.EnumerateArray().Select(o => new Org(o.GetProperty("name").GetString(), o.GetProperty("id").GetString())).ToArray();
-                    supabase.form.supabase_OrgsLoaded();
+                    using (var doc = System.Text.Json.JsonDocument.Parse(json))
+                    {
+                        orgs = doc.RootElement.EnumerateArray()
+                            .Select(o => new Org(
+                                o.GetProperty("name").GetString() ?? "Unknown",
+                                o.GetProperty("id").GetString() ?? ""
+                            )).ToArray();
+                    }
+                    supabase.form.Invoke(new Action(() => supabase.form.supabase_OrgsLoaded()));
                 }
-                public Dictionary<string, string> Orgs { get; private set; } = new();
+                public Dictionary<string, string> Orgs { get; private set; } = new Dictionary<string, string>();
                 public async Task<string> Projects_Raw()
                 {
                     http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", supabase.config.Token);
@@ -86,23 +114,22 @@ namespace dbmanageWinForms
                 }//*/
             }
             public Comm comm;
-            dbmanageMenuForm form;
-            public Supabase(dbmanageMenuForm _form)
+            DbmanageWinForm form;
+            public Supabase(DbmanageWinForm _form)
             {
                 form = _form;
-                config = new();
-                comm = new(this);
+                config = new Config();
+                comm = new Comm(this);
             }
             public bool Load()
             {
-                try { config.LoadI(); } catch (Exception) { return false; }
+                try { config.LoadI(); } catch (Exception ex) { Debug.WriteLine(ex); return false; }
                 Task task = comm.Org_Load();
                 return true;
             }
         }
         protected Supabase supabase;
         #endregion Supabase
-
         #region Helpers
         protected bool bFirstActivation = true;
         private bool bDirty = false;
@@ -113,19 +140,6 @@ namespace dbmanageWinForms
             {
                 bDirty = value;
                 Text = "Database Management Menu" + (bDirty ? " *" : "");
-            }
-        }
-        private void dbmanageMenuForm_Activated(object sender, EventArgs e)
-        {
-            if (bFirstActivation)
-            {
-                bFirstActivation = false;
-                supabase = new(this);
-                if (!ConfigLoad())
-                {
-                    ConfigSave();
-                    ConfigLoad();
-                }
             }
         }
         bool bLoadSaveBusy = false;
@@ -182,77 +196,6 @@ namespace dbmanageWinForms
             if (comboBoxSupabaseActiveOrg.SelectedIndex == -1)
                 comboBoxSupabaseActiveOrg.SelectedIndex = 0;
         }
-        #endregion Helpers
-        public dbmanageMenuForm()
-        {
-            InitializeComponent();
-        }
-        private void textBoxSupabaseUrl_TextChanged(object sender, EventArgs e)
-        {
-            SettingsChanged();
-        }
-        private void textBoxSupabaseUser_TextChanged(object sender, EventArgs e)
-        {
-            SettingsChanged();
-        }
-        private void textBoxSupabasePassword_TextChanged(object sender, EventArgs e)
-        {
-            SettingsChanged();
-        }
-        private void comboBoxSupabaseUrlBase_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SettingsChanged();
-        }
-        private void textBoxSupabaseToken_TextChanged(object sender, EventArgs e)
-        {
-            SettingsChanged();
-        }
-        private void comboBoxSupabaseUrlBase_TextChanged(object sender, EventArgs e)
-        {
-            SettingsChanged();
-        }
-        private void comboBoxSupabaseActiveProject_TextChanged(object sender, EventArgs e)
-        {
-            SettingsChanged();
-        }
-        private void comboBoxSupabaseActiveProject_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SettingsChanged();
-        }
-        private void checkBoxSupabaseSettingsAutosave_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxSupabaseSettingsAutosave.Checked)
-                ConfigSave();
-            openToolStripMenuItem.Enabled =
-                saveToolStripMenuItem.Enabled = !checkBoxSupabaseSettingsAutosave.Checked;
-        }
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            textBoxSupabaseUrl.Text = comboBoxSupabaseUrlBase.Text = textBoxSupabaseUser.Text = textBoxSupabasePassword.Text = textBoxSupabaseToken.Text = "?";
-        }
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigLoad();
-        }
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigSave();
-        }
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-        private void dbmanageMenuForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (Dirty)
-            {
-                var dr = MessageBox.Show("There are unsaved changes. Do you want to save them before exiting?", "Unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-                if (dr == DialogResult.Cancel)
-                    e.Cancel = true;
-                else if (dr == DialogResult.Yes)
-                    ConfigSave();
-            }
-        }
         private bool CopyResultedInCopyAll()
         {
             bool bRes = !(ActiveControl is TextBoxBase);
@@ -267,48 +210,39 @@ namespace dbmanageWinForms
                 }).Aggregate((a, b) => a + "\n" + b));
             return bRes;
         }
-        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (CopyResultedInCopyAll())
-                copyToolStripMenuItem.PerformClick();
-        }
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CopyResultedInCopyAll();
-        }
         private void supabaseActiveProjectSet(string[] settings, int i = 0)
         {
-            comboBoxSupabaseActiveProject.Text = settings[i]; // First line is project name
+            comboBoxSupabaseActiveProject.Text = settings[i].Trim(); // First line is project name
         }
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DbmanageWinForm_Activated(object sender, EventArgs e)
         {
-            string[] lines = Clipboard.GetText().Split('\n');
-            if (lines.Length == 1 && ActiveControl is TextBoxBase ct)
-                ct.Paste();
-            else if (lines.Length < 5)
-                MessageBox.Show("Clipboard can be used with minmum five lines to paste all settings or inside a text-based control");
-            else
+            if (bFirstActivation)
             {
-                textBoxSupabaseUrl.Text = lines[0];
-                comboBoxSupabaseUrlBase.Text = lines[1];
-                textBoxSupabaseUser.Text = lines[2];
-                textBoxSupabasePassword.Text = lines[3];
-                textBoxSupabaseToken.Text = lines[4];
-                if (lines.Length > 5)
-                    supabaseActiveProjectSet(lines, 5);
+                bFirstActivation = false;
+                supabase = new Supabase(this);
+                if (!ConfigLoad())
+                {
+                    ConfigSave();
+                    ConfigLoad();
+                }
             }
         }
-        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
+        #endregion Helpers
+        private void DbmanageWinForm_Load(object sender, EventArgs e)
+        { // sbp_cca95719b83dda3191641f7caa19d4f698d3c66d
+
         }
-        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            textBoxSupabaseUrl.Text = comboBoxSupabaseUrlBase.Text = textBoxSupabaseUser.Text = textBoxSupabasePassword.Text = textBoxSupabaseToken.Text = comboBoxSupabaseActiveProject.Text = "?";
         }
-        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ConfigLoad();
+        }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigSave();
         }
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -319,6 +253,57 @@ namespace dbmanageWinForms
             throw new NotImplementedException();
         }
         private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CopyResultedInCopyAll())
+                copyToolStripMenuItem.PerformClick();
+        }
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CopyResultedInCopyAll();
+        }
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string[] lines = Clipboard.GetText().Split('\n');
+            if (lines.Length == 1 && ActiveControl is TextBoxBase ct)
+                ct.Paste();
+            else if (lines.Length < 5)
+                MessageBox.Show("Clipboard can be used with minmum five lines to paste all settings or inside a text-based control");
+            else
+            {
+                textBoxSupabaseUrl.Text = lines[0].Trim();
+                comboBoxSupabaseUrlBase.Text = lines[1].Trim();
+                textBoxSupabaseUser.Text = lines[2].Trim();
+                textBoxSupabasePassword.Text = lines[3].Trim();
+                textBoxSupabaseToken.Text = lines[4].Trim();
+                if (lines.Length > 5)
+                    supabaseActiveProjectSet(lines, 5);
+            }
+        }
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void helloWorldTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();    
+        }
+        private void tokenTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
@@ -346,22 +331,55 @@ namespace dbmanageWinForms
         {
             throw new NotImplementedException();
         }
-
-        private void tokenTestToolStripMenuItem_Click(object sender, EventArgs e)
+        private void textBoxSupabaseToken_TextChanged(object sender, EventArgs e)
         {
-            // Test Supabase token
-            throw new NotImplementedException();
+            SettingsChanged();
         }
-
-        private void helloWorldProjectTestToolStripMenuItem_Click(object sender, EventArgs e)
+        private void textBoxSupabaseUrl_TextChanged(object sender, EventArgs e)
         {
-            // Connect to "Hello World" - project
-            throw new NotImplementedException();
+            SettingsChanged();
         }
-
-        private void comboBoxSupabaseActiveOrg_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxSupabaseUrlBase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SettingsChanged();
+        }
+        private void comboBoxSupabaseUrlBase_TextChanged(object sender, EventArgs e)
+        {
+            SettingsChanged();
+        }
+        private void textBoxSupabaseUser_TextChanged(object sender, EventArgs e)
+        {
+            SettingsChanged();
+        }
+        private void textBoxSupabasePassword_TextChanged(object sender, EventArgs e)
+        {
+            SettingsChanged();
+        }
+        private void comboBoxSupabaseActiveProject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SettingsChanged();
+        }
+        private void comboBoxSupabaseActiveProject_TextChanged(object sender, EventArgs e)
+        {
+            SettingsChanged();
+        }
+        private void DbmanageWinForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Dirty)
+            {
+                var dr = MessageBox.Show("There are unsaved changes. Do you want to save them before exiting?", "Unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dr == DialogResult.Cancel)
+                    e.Cancel = true;
+                else if (dr == DialogResult.Yes)
+                    ConfigSave();
+            }
+        }
+        private void checkBoxSupabaseSettingsAutosave_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSupabaseSettingsAutosave.Checked)
+                ConfigSave();
+            openToolStripMenuItem.Enabled =
+                saveToolStripMenuItem.Enabled = !checkBoxSupabaseSettingsAutosave.Checked;
         }
     }
 }

@@ -407,6 +407,7 @@
             comboBoxSupabaseActiveOrg.Name = "comboBoxSupabaseActiveOrg";
             comboBoxSupabaseActiveOrg.Size = new Size(248, 33);
             comboBoxSupabaseActiveOrg.TabIndex = 5;
+            comboBoxSupabaseActiveOrg.SelectedIndexChanged += comboBoxSupabaseActiveOrg_SelectedIndexChanged;
             // 
             // label5
             // 
@@ -429,7 +430,7 @@
             // comboBoxSupabaseActiveProject
             // 
             comboBoxSupabaseActiveProject.FormattingEnabled = true;
-            comboBoxSupabaseActiveProject.Location = new Point(680, 174);
+            comboBoxSupabaseActiveProject.Location = new Point(680, 177);
             comboBoxSupabaseActiveProject.Name = "comboBoxSupabaseActiveProject";
             comboBoxSupabaseActiveProject.Size = new Size(248, 33);
             comboBoxSupabaseActiveProject.TabIndex = 6;

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbmanageWinForms", "aniPubl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sub", "sub", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WalkEngine12", "aniPublicOfficialReportSelfService_Html\wwwroot\EnHaandAaHoldeI\u\WalkEngine12\WalkEngine12.vcxproj", "{7EA2EA62-C374-441C-8781-F3F2EE207679}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9E30A9DE-F0FC-C42D-2F23-375170DD35C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E30A9DE-F0FC-C42D-2F23-375170DD35C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E30A9DE-F0FC-C42D-2F23-375170DD35C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EA2EA62-C374-441C-8781-F3F2EE207679}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{7EA2EA62-C374-441C-8781-F3F2EE207679}.Debug|Any CPU.Build.0 = Debug|x64
+		{7EA2EA62-C374-441C-8781-F3F2EE207679}.Release|Any CPU.ActiveCfg = Release|x64
+		{7EA2EA62-C374-441C-8781-F3F2EE207679}.Release|Any CPU.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
