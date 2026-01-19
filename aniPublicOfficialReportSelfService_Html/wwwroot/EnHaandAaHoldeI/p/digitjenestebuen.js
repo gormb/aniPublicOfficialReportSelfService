@@ -36,7 +36,7 @@ Når du svarer:
     [/detaljer] [detaljer c='Politikk og rammer...'] perspektiv
     [/detaljer]<hr>[/detaljer]
 - Husk at hver [detaljer] må ha en [/detaljer] i dette hierarkiet!
-- la hvert perspektiv bygge videre på det forrige som en kjede gjennom verdikjeden,
+- la hvert perspektiv bygge videre på det forrige, logikk gjennom hele verdikjeden
 - avslutt alltid med en samlet refleksjon som binder trådene sammen og svarer tydelig på spørsmålet,
 - legg til et relevant sitat under svaret i formatet:
   [detaljer c='Sitat...']"SITAT" (Kilde, årstall)[/detaljer],

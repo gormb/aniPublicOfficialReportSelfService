@@ -11,3 +11,7 @@ export const SUPABASE_CONFIG = {
     // Go to: https://supabase.com/dashboard/project/usbqiczlxlvrupwcgsib/settings/api
     key: 'YOUR_SUPABASE_ANON_KEY_HERE'
 };
+
+// lag overordnet kode for dette
+// jeg skal evaulere en EU-søknad, hva er premissene for å vudere en søknad, hva er nytt i år og hva kommer neste år. Gi meg autorativ kilde til denne dokumewntasjonen og gjengi overordnet
+

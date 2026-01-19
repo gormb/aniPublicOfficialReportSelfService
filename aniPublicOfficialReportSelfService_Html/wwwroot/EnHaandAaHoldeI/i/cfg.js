@@ -28,6 +28,7 @@ const cfg = {
     ]], ['Norge >>§-', [
         'Norge veiledning >>§-', ['NO Min Offentlige Hjelper', 'NO Enkel Navigatør', 'NO Alt Om Tjenester', 'NO TjenesteGuide', 'NO Alt På Ett Sted']
         , 'Norge personlig støtte >>§-', ['NO Din Offentlige Partner', 'NO Min Digitale Venn', 'NO RettighetsVakten', 'NO KlarTale', 'NO HverdagsHjelpen']
+        , 'Sikker KI, vestlandet >>§-', ['Vestlandet heimelegen min', 'Vestlandet Hlm triage', 'Vestlandet Hlm ikkje-medisinsk oppfølging', 'Vestlandet Hlm hvordan har du det?']
         , 'ARB >>§-', ['ARB Kurs', 'ARB Jobbsøk og karriereveiledning (KOJ)', 'ARB CV-hjelp', 'ARB Jobbsøknadshjelp', 'ARB Intervjuklar', 'ARB Karrierevei & Totalkompetanse', 'ARB Jobbsøkervelvære', 'ARB Gründerstart']
     ]], ['Helse >>§-', [
         'Hjemmelegen min >>§-', ['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
@@ -47,7 +48,7 @@ const cfg = {
         , 'Folk >>§-', ['Om Gorm Braarvig']
         , 'Konferanse >>§-', ['TEDxOslo 2026', 'Arendalsuka 2025', 'Arendalsuka 2025oai']
     ]], ['', [
-        'Dev >>§-', ['TEDxOslo 2026', 'TEDxArendal 2025']
+        'Dev >>§-', ['TEDxOslo 2026']
         , 'Event Konferanse>>§-', ['NAPHA-veiviseren', 'TEDxFredrikstad 2025']
     ]]]
     , appProvider_Db: [['Generelt', 'Ny', 'Koblingsfeil!']]
@@ -86,8 +87,16 @@ const cfg = {
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
         , ['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c=71&6-:lk1<'X1D*YW+T&&!/47ATG}/G57C/5ZjYH~7MN;)EF?/*~9dB%}94BM/~9*Gj\`7+;(?'zOr3,A}L-0,SD)XjQ -HC~VGF4bA, ^3YT;A,w*vFML+Q1A~)&a5FOCx8!c;}3"s Y+51"2=!J?(Y{ZH=S>W@`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['GPT 5 nano', 'gpt-5-nano'], ['GPT 5', 'gpt-5-mini'], ['GPT 4 nano', 'gpt-4.1-nano'], ['GPT o4', 'o4-mini']]]
-        //,['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c/P0p:;X0>]^"4sa1ML)*FtW",*TM]Z#['.CKV"U(PDZOdR!{`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        //, [['GPT 4 nano', 'gpt-4.1-nano'],['GPT 4', 'gpt-4.1-mini'],['GPT 4 search', 'gpt-4o-mini-search-preview'], ['GPT o4', 'o4-mini']]]
+        , ['vestlandet.digital  (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
+            ,'4%3Ec%7E%2C%5B%20%3FQvJJw%60%25%21%5E%20W@%3AHES0'
+            //, escape('4>c~,[ ?QvJJw`%!^ W@:HES0') // Authentication Error, Invalid proxy server token passed. Received API Key = sk-...93a2, Key Hash (Token) =2cc672f77ecb9605c0c85a93bbb89d6447ca419a4dc5d0bb6d75a4f2551caf73. Unable to find token in cache or `LiteLLM_VerificationTokenTable`
+            , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+            , [['Vestlandet instruer', 'normistral-instruct'], ['Vestlandet tenkehatt', 'normistral-thinking'], ['Vestlandet Qwen', 'qwen-7b'], ['Vestlandet Qwen Coder', 'qwen-coder']]]
+            // normistral-instruct // normistral-thinking
+        // , ['vestlandet.digital2 (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
+        //     , escape('4>c~,[ ?QvJJw`%!^ W@:HES0') // fails?!
+        //     , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
+        //     , [['Vestlandet2 Qwen', 'qwen-7b'], ['Vestlandet2 Qwen Coder', 'qwen-coder']]]
         , ['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]
         , ['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
@@ -105,8 +114,6 @@ const cfg = {
             , [['Gemini flash', 'gemini-1.5-flash'], ['Gemini pro', 'gemini-1.5-pro']]]
         , ['Hugging Face (USA)?', 'https://api-inference.huggingface.co/models/', escape(`/3Q:M?3VKJVPU]Y,-C BM:Q:0]O#(E"^(/2SV`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Hugging DeepSeek R1', 'deepseek-ai/DeepSeek-R1'], ['Hugging DeepSeek V3', 'deepseek-ai/DeepSeek-V3']]]
-        , ['Aigap Server 1235', 'https://api.aigap.no:1235/v1/chat/completions ', ``, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['Aigap Deepseek', 'deepseek-r1:latest'], ['Aigap bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
         // ,['Lokal 1234', 'http://localhost:1234/v1/chat/completions ', ``, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
         //     , [['Lokal Deepseek', 'deepseek-r1:latest'], ['Lokal bartowski QwQ', 'bartowski/Qwen_QwQ-32B-GGUF']]]
     ]
