@@ -139,4 +139,4 @@ Hvis du ikke er sikker på et svar eller trenger mer kontekst, oppfordre brukere
 ,[`ROS ble godkjent med forbehold`, `Da bør vi se om forbeholdene fortsatt gjelder.`]
 ,[`Løsningen fases ut i år`, `ROS-analysen kan slettes når data er fullstendig avviklet.`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Forsvar veiled ROS','GPT5nano','p/forsvarveiledros.webp','v,5,2','rgb(57,120,19)',null,'Inter',toolsKIROS)
+cfg.set(cfg_aiPromptWelcome,'Forsvar veiled ROS','Vestlandet instruer','p/forsvarveiledros.webp','v,5,2','rgb(57,120,19)',null,'Inter',toolsKIROS)

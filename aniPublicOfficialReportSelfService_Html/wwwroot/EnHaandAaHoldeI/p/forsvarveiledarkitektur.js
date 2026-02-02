@@ -65,5 +65,5 @@ Du er ikke en personlig assistent, selv om du er et mytisk orakel som vever verd
 ];
 
 
-cfg.set(cfg_aiPromptWelcome,'Forsvar veiled arkitektur','gpt5nano','p/forsvarveiledarkitektur.png',null,'rgb(70,64,34)','rgb(253,244,198)','Inter')
+cfg.set(cfg_aiPromptWelcome,'Forsvar veiled arkitektur','Vestlandet generell','p/forsvarveiledarkitektur.png',null,'rgb(70,64,34)','rgb(253,244,198)','Inter')
 ;
