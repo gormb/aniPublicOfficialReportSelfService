@@ -90,15 +90,12 @@ const cfg = {
             , [['GPT 5 nano', 'gpt-5-nano'], ['GPT 5', 'gpt-5-mini'], ['GPT 4 nano', 'gpt-4.1-nano'], ['GPT o4', 'o4-mini']]]
         , ['vestlandet.digital  (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
             , escape('+3Q"($"Jv~%1p7+w^av6x}qd~f|$a%0}#k%1x~$')
-            //,'4%3Ec%7E%2C%5B%20%3FQvJJw%60%25%21%5E%20W@%3AHES0'
-            //, escape('4>c~,[ ?QvJJw`%!^ W@:HES0') // Authentication Error, Invalid proxy server token passed. Received API Key = sk-...93a2, Key Hash (Token) =2cc672f77ecb9605c0c85a93bbb89d6447ca419a4dc5d0bb6d75a4f2551caf73. Unable to find token in cache or `LiteLLM_VerificationTokenTable`
             , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['Vestlandet instruer', 'normistral-instruct'], ['Vestlandet tenkehatt', 'normistral-thinking'], ['Vestlandet Qwen', 'qwen-7b'], ['Vestlandet Qwen Coder', 'qwen-coder']]]
-            // normistral-instruct // normistral-thinking
-        // , ['vestlandet.digital2 (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
-        //     , escape('4>c~,[ ?QvJJw`%!^ W@:HES0') // fails?!
-        //     , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        //     , [['Vestlandet2 Qwen', 'qwen-7b'], ['Vestlandet2 Qwen Coder', 'qwen-coder']]]
+            , [['Vestlandet instruer', 'normistral-instruct']
+                , ['Vestlandet tenkehatt', 'normistral-thinking']
+                , ['Vestlandet generell', 'qwen-7b']
+                , ['Vestlandet IOT', 'qwen-0.5b']]
+        ]
         , ['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]
         , ['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
