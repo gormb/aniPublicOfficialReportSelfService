@@ -1,0 +1,21 @@
+Forsvar veiled kommunikasjon
+    forsvarveiledkommunikasjon
+
+Forsvar veiled skjerming
+    forsvarveiledskjerming
+    NSM hjemmesider - der er det mange fine veiledere.
+    Personvernrådgiveren
+
+Forsvar vurder gradering
+    forsvarvurdergradering
+    mikroversjon som påstår terningkast rundt sikkerhetsnivå
+
+Forsvar veiled arkitektur
+    forsvarveiledarkitektur
+    kommer fra Digitjenestebuen
+
+Forsvar veiled ROS
+    forsvarveiledros
+    kommer fra ROS-assistenr
+
+

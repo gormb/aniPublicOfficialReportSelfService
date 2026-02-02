@@ -29,6 +29,7 @@ const cfg = {
         'Norge veiledning >>§-', ['NO Min Offentlige Hjelper', 'NO Enkel Navigatør', 'NO Alt Om Tjenester', 'NO TjenesteGuide', 'NO Alt På Ett Sted']
         , 'Norge personlig støtte >>§-', ['NO Din Offentlige Partner', 'NO Min Digitale Venn', 'NO RettighetsVakten', 'NO KlarTale', 'NO HverdagsHjelpen']
         , 'Sikker KI, vestlandet >>§-', ['Vestlandet heimelegen min', 'Vestlandet Hlm triage', 'Vestlandet Hlm ikkje-medisinsk oppfølging', 'Vestlandet Hlm hvordan har du det?']
+        , 'Forsvar Norsk KI >>§-', ['Forsvar veiled kommunikasjon', 'Forsvar veiled skjerming','Forsvar veiled arkitektur', 'Forsvar veiled ROS']
         , 'ARB >>§-', ['ARB Kurs', 'ARB Jobbsøk og karriereveiledning (KOJ)', 'ARB CV-hjelp', 'ARB Jobbsøknadshjelp', 'ARB Intervjuklar', 'ARB Karrierevei & Totalkompetanse', 'ARB Jobbsøkervelvære', 'ARB Gründerstart']
     ]], ['Helse >>§-', [
         'Hjemmelegen min >>§-', ['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
