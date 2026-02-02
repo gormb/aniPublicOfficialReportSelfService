@@ -5,3 +5,8 @@ Forsvar veiled arkitektur
 Forsvar veiled ROS
 
 curl https://api.vestlandet.digital/v1/models -H "Authorization: Bearer lf_live_80dc7be9_31c63069312e3be31b9bd60e"
+
+'Vestlandet instruer'
+'Vestlandet tenkehatt'
+'Vestlandet generell'
+'Vestlandet IOT'
