@@ -33,5 +33,5 @@ Still gjerne et oppfølgingsspørsmål for å avklare brukerens situasjon.`
 ,[`Hvordan reserverer jeg meg mot at offentlige tjenester bruker data om meg til analyse?`, `Du kan reservere deg i Altinn eller hos Skatteetaten. Trenger du veiledning for å logge inn og gjøre det?`]
 ,[`Hva betyr det at en behandling er lovpålagt?`, `Det betyr at virksomheten har lov til å bruke dataene dine uten samtykke, f.eks. for skatt eller helsehjelp. Ønsker du å vite mer om unntakene?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Forsvar veiled arkitektur','GPT5nano','p/forsvarvurdergradering.png','f,5,2','#6c757d',null,'IBM Plex Sans')
+cfg.set(cfg_aiPromptWelcome,'Forsvar vurder gradering','GPT5nano','p/forsvarvurdergradering.png','f,5,2','#6c757d',null,'IBM Plex Sans')
 
