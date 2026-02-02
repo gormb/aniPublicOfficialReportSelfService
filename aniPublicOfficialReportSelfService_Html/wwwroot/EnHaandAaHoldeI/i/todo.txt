@@ -17,5 +17,3 @@ Forsvar veiled arkitektur
 Forsvar veiled ROS
     forsvarveiledros
     kommer fra ROS-assistenr
-
-
