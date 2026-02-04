@@ -91,7 +91,7 @@ const cfg = {
         , ['vestlandet.digital  (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
             , escape('+3Q"($"Jv~%1p7+w^av6x}qd~f|$a%0}#k%1x~$')
             , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['Vestlandet instruer', 'normistral-instruct']
+            , [['Vestlandet pyton', 'granite-h']
                 , ['Vestlandet tenkehatt', 'normistral-thinking']
                 , ['Vestlandet generell', 'qwen-7b']
                 , ['Vestlandet IOT', 'qwen-0.5b']]
