@@ -89,11 +89,12 @@ const cfg = {
         , ['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c=71&6-:lk1<'X1D*YW+T&&!/47ATG}/G57C/5ZjYH~7MN;)EF?/*~9dB%}94BM/~9*Gj\`7+;(?'zOr3,A}L-0,SD)XjQ -HC~VGF4bA, ^3YT;A,w*vFML+Q1A~)&a5FOCx8!c;}3"s Y+51"2=!J?(Y{ZH=S>W@`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['GPT 5 nano', 'gpt-5-nano'], ['GPT 5', 'gpt-5-mini'], ['GPT 4 nano', 'gpt-4.1-nano'], ['GPT o4', 'o4-mini']]]
         , ['vestlandet.digital  (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
-            , escape('+3Q"($"Jv~%1p7+w^av6x}qd~f|$a%0}#k%1x~$')
+            //, escape('+3Q"($"Jv~%1p7+w^av6x}qd~f|$a%0}#k%1x~$')
+            ,escape(`escape 4>c,'$b}-y1wdczsk&xzvw1j4w-q~b,|v4wcwzuk`)
             , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['Vestlandet pyton', 'granite-h']
-                , ['Vestlandet tenkehatt', 'normistral-thinking']
-                , ['Vestlandet generell', 'qwen-7b']
+            , [['Vestlandet pyton', 'nb-notram-8b']
+                , ['Vestlandet tenkehatt', 'nb-notram-8b']
+                , ['Vestlandet generell', 'qwen25-coder-7b']
                 , ['Vestlandet IOT', 'qwen-0.5b']]
         ]
         , ['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
