@@ -1,5 +1,10 @@
+using System;
+using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace dbmanageWinForms
@@ -11,19 +16,19 @@ namespace dbmanageWinForms
         {
             public class Config
             {
-                public string Url, UrlBase, User, Password, Token, Project;
+                public string Url, UrlBase, User, Password, Token, Activeproject;
                 public string OrgId = "?";
-                public Config() { Url = UrlBase = User = Password = Token = Project = "?"; }
-                public void Clear() { Url = UrlBase = User = Password = Token = Project = "?"; }
+                public Config() { Url = UrlBase = User = Password = Token = Activeproject = "?"; }
+                public void Clear() { Url = UrlBase = User = Password = Token = Activeproject = "?"; }
                 static string Enc(string s) => Convert.ToBase64String(ProtectedData.Protect(Encoding.UTF8.GetBytes(s), null, DataProtectionScope.CurrentUser));
                 static string Dec(string s) => Encoding.UTF8.GetString(ProtectedData.Unprotect(Convert.FromBase64String(s), null, DataProtectionScope.CurrentUser));
                 public string ToStringEnc()
                 {
-                    return $"{Url}\n{UrlBase}\n{User}\n{Enc(Password)}\n{Enc(Token)}\n{Project}";
+                    return $"{Url}\n{UrlBase}\n{User}\n{Enc(Password)}\n{Enc(Token)}\n{Activeproject}";
                 }
                 public override string ToString()
                 {
-                    return $"{Url}\n{UrlBase}\n{User}\n{Password}\n{Token}\n{Project}";
+                    return $"{Url}\n{UrlBase}\n{User}\n{Password}\n{Token}\n{Activeproject}";
                 }
                 public void SaveI() => File.WriteAllText(Path, ToStringEnc());
                 public bool Save()
@@ -39,59 +44,82 @@ namespace dbmanageWinForms
                     User = lines[2];
                     Password = Dec(lines[3]);
                     Token = Dec(lines[4]);
-                    Project = lines?[5] ?? "?";
+                    Activeproject = lines?[5] ?? "?";
                 }
                 private static string Path => Environment.ProcessPath + ".csv";
             }
             public Config config;
-            public class Comm(dbmanageMenuForm.Supabase p)
+            public class Comm
             {
-                private readonly Supabase supabase = p;
+                private readonly Supabase supabase;
                 private static readonly HttpClient http = new();
+                public Comm(Supabase p) { supabase = p; }
+
                 public class Org
                 {
                     public string Name, Id;
                     public Org(string n, string i) { Name = n; Id = i; }
                     public override string ToString() => Name + " (" + Id + ")";
                 }
-                public Org[] orgs = [new Org("?", "?")];
+
+                public class Project
+                {
+                    public string Name, Id;
+                    public Project(string n, string i) { Name = n; Id = i; }
+                    public override string ToString() => Name;
+                }
+
+                public Org[] orgs = new[] { new Org("?", "?") };
+
+                // Load organizations and then projects for the first org.
                 public async Task Org_Load()
                 {
                     http.DefaultRequestHeaders.Authorization = new("Bearer", supabase.config.Token);
                     var json = await http.GetStringAsync("https://api.supabase.com/v1/organizations");
-                    using var doc = System.Text.Json.JsonDocument.Parse(json);
-                    orgs = doc.RootElement.EnumerateArray().Select(o => new Org(o.GetProperty("name").GetString(), o.GetProperty("id").GetString())).ToArray();
+                    using var doc = JsonDocument.Parse(json);
+                    orgs = doc.RootElement.EnumerateArray()
+                        .Select(o => new Org(o.GetProperty("name").GetString(), o.GetProperty("id").GetString()))
+                        .ToArray();
+
+                    if (orgs.Length > 0)
+                        await Projects_LoadForOrg(orgs[0].Id);
+                    // notify form that orgs are loaded
                     supabase.form.supabase_OrgsLoaded();
                 }
-                public Dictionary<string, string> Orgs { get; private set; } = new();
+
                 public async Task<string> Projects_Raw()
                 {
                     http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", supabase.config.Token);
                     return await http.GetStringAsync("https://api.supabase.com/v1/projects");
                 }
+
+                // Download projects and add those belonging to orgId to the form placeholderListbox.
+                public async Task Projects_LoadForOrg(string orgId)
+                {
+                    var resp = await Projects_Raw();
+                    using var doc = JsonDocument.Parse(resp);
+                    var projects = doc.RootElement.EnumerateArray()
+                        .Where(p => p.TryGetProperty("organization_id", out var v) && v.GetString() == orgId)
+                        .Select(p => new Project(p.GetProperty("name").GetString(), p.GetProperty("id").GetString()))
+                        .ToArray();
+                    supabase.form.listBoxSupabaseProjects.Items.Clear();
+                    supabase.form.listBoxSupabaseProjects.Items.AddRange(projects);
+                }
+
                 public object[] Projects()
                 {
                     var resp = Projects_Raw().GetAwaiter().GetResult();
-                    return System.Text.Json.JsonSerializer.Deserialize<object[]>(resp) ?? Array.Empty<object>();
+                    return JsonSerializer.Deserialize<object[]>(resp) ?? Array.Empty<object>();
                 }
-                /*
-                public async Task<string> CreateProject(string orgId, string name, string dbPass, string region = "us-east-1")
-                {
-                    http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", supabase.config.Token);
-                    var body = new { name, organization_id = orgId, region, db_pass = dbPass };
-                    var json = System.Text.Json.JsonSerializer.Serialize(body);
-                    var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var resp = await http.PostAsync("https://api.supabase.com/v1/projects", content);
-                    return await resp.Content.ReadAsStringAsync();
-                }//*/
             }
+
             public Comm comm;
-            dbmanageMenuForm form;
+            public dbmanageMenuForm form;
             public Supabase(dbmanageMenuForm _form)
             {
                 form = _form;
                 config = new();
-                comm = new(this);
+                comm = new Comm(this);
             }
             public bool Load()
             {
@@ -141,7 +169,7 @@ namespace dbmanageWinForms
                 textBoxSupabaseUser.Text = supabase.config.User;
                 textBoxSupabasePassword.Text = supabase.config.Password;
                 textBoxSupabaseToken.Text = supabase.config.Token;
-                comboBoxSupabaseActiveProject.Text = supabase.config.Project;
+                SetProjLbVal(supabase.config.Activeproject);
                 Dirty = false;
                 bLoadSaveBusy = false;
             }
@@ -157,13 +185,25 @@ namespace dbmanageWinForms
                 supabase.config.User = textBoxSupabaseUser.Text;
                 supabase.config.Password = textBoxSupabasePassword.Text;
                 supabase.config.Token = textBoxSupabaseToken.Text;
-                supabase.config.Project = comboBoxSupabaseActiveProject.Text;
+                supabase.config.Activeproject = GetProjLbVal();
                 bLoadSaveBusy = false;
             }
             bool bRes = supabase.config.Save();
             if (bRes)
                 Dirty = false;
             return bRes;
+        }
+        private int SetProjLbVal(string projName)
+        {
+            int i = listBoxSupabaseProjects.Items.IndexOf(projName);
+            listBoxSupabaseProjects.SelectedIndex = i;
+            return i;
+        }
+        private string GetProjLbVal()
+        {
+            if (listBoxSupabaseProjects.SelectedIndex != -1)
+                return listBoxSupabaseProjects.SelectedItem.ToString();
+            return "?";
         }
         private void SettingsChanged()
         {
@@ -182,6 +222,13 @@ namespace dbmanageWinForms
             if (comboBoxSupabaseActiveOrg.SelectedIndex == -1)
                 comboBoxSupabaseActiveOrg.SelectedIndex = 0;
         }
+
+        public void listBoxSupabaseProjects_AddRange(object[] items)
+        {
+            listBoxSupabaseProjects.Items.Clear();
+            listBoxSupabaseProjects.Items.AddRange(items);
+        }
+
         #endregion Helpers
         public dbmanageMenuForm()
         {
@@ -263,7 +310,7 @@ namespace dbmanageWinForms
                     textBoxSupabaseUser.Text,
                     textBoxSupabasePassword.Text,
                     textBoxSupabaseToken.Text,
-                    comboBoxSupabaseActiveProject.Text
+                    GetProjLbVal()
                 }).Aggregate((a, b) => a + "\n" + b));
             return bRes;
         }
@@ -275,10 +322,6 @@ namespace dbmanageWinForms
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CopyResultedInCopyAll();
-        }
-        private void supabaseActiveProjectSet(string[] settings, int i = 0)
-        {
-            comboBoxSupabaseActiveProject.Text = settings[i]; // First line is project name
         }
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -295,7 +338,7 @@ namespace dbmanageWinForms
                 textBoxSupabasePassword.Text = lines[3];
                 textBoxSupabaseToken.Text = lines[4];
                 if (lines.Length > 5)
-                    supabaseActiveProjectSet(lines, 5);
+                    SetProjLbVal(lines[5]);
             }
         }
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -362,6 +405,11 @@ namespace dbmanageWinForms
         private void comboBoxSupabaseActiveOrg_SelectedIndexChanged(object sender, EventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void listBoxSupabaseProjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Clicked on box? then set active project and 
         }
     }
 }
