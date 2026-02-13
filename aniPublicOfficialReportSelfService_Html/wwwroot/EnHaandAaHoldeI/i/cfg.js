@@ -29,6 +29,7 @@ const cfg = {
         'Norge veiledning >>§-', ['NO Min Offentlige Hjelper', 'NO Enkel Navigatør', 'NO Alt Om Tjenester', 'NO TjenesteGuide', 'NO Alt På Ett Sted']
         , 'Norge personlig støtte >>§-', ['NO Din Offentlige Partner', 'NO Min Digitale Venn', 'NO RettighetsVakten', 'NO KlarTale', 'NO HverdagsHjelpen']
         , 'Sikker KI, vestlandet >>§-', ['Vestlandet heimelegen min', 'Vestlandet Hlm triage', 'Vestlandet Hlm ikkje-medisinsk oppfølging', 'Vestlandet Hlm hvordan har du det?']
+        , 'Forsvar Norsk KI >>§-', ['Forsvar veiled kommunikasjon', 'Forsvar veiled skjerming','Forsvar veiled arkitektur', 'Forsvar veiled ROS', 'Forsvar vurder gradering']
         , 'ARB >>§-', ['ARB Kurs', 'ARB Jobbsøk og karriereveiledning (KOJ)', 'ARB CV-hjelp', 'ARB Jobbsøknadshjelp', 'ARB Intervjuklar', 'ARB Karrierevei & Totalkompetanse', 'ARB Jobbsøkervelvære', 'ARB Gründerstart']
     ]], ['Helse >>§-', [
         'Hjemmelegen min >>§-', ['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
@@ -88,15 +89,15 @@ const cfg = {
         , ['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c=71&6-:lk1<'X1D*YW+T&&!/47ATG}/G57C/5ZjYH~7MN;)EF?/*~9dB%}94BM/~9*Gj\`7+;(?'zOr3,A}L-0,SD)XjQ -HC~VGF4bA, ^3YT;A,w*vFML+Q1A~)&a5FOCx8!c;}3"s Y+51"2=!J?(Y{ZH=S>W@`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['GPT 5 nano', 'gpt-5-nano'], ['GPT 5', 'gpt-5-mini'], ['GPT 4 nano', 'gpt-4.1-nano'], ['GPT o4', 'o4-mini']]]
         , ['vestlandet.digital  (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
-            ,'4%3Ec%7E%2C%5B%20%3FQvJJw%60%25%21%5E%20W@%3AHES0'
-            //, escape('4>c~,[ ?QvJJw`%!^ W@:HES0') // Authentication Error, Invalid proxy server token passed. Received API Key = sk-...93a2, Key Hash (Token) =2cc672f77ecb9605c0c85a93bbb89d6447ca419a4dc5d0bb6d75a4f2551caf73. Unable to find token in cache or `LiteLLM_VerificationTokenTable`
+            , '4%3Ec%2C%27%7F%24b%7D-y1wdczsk%26xzvw1j4w-q%7F%7Eb%2C%7Cv4wcwzuk'               
+            //, escape('+3Q"($"Jv~%1p7+w^av6x}qd~f|$a%0}#k%1x~$')
+            //, escape(`4>c,'$b}-y1wdczsk&xzvw1j4w-q~b,|v4wcwzuk`)
             , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['Vestlandet instruer', 'normistral-instruct'], ['Vestlandet tenkehatt', 'normistral-thinking'], ['Vestlandet Qwen', 'qwen-7b'], ['Vestlandet Qwen Coder', 'qwen-coder']]]
-            // normistral-instruct // normistral-thinking
-        // , ['vestlandet.digital2 (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
-        //     , escape('4>c~,[ ?QvJJw`%!^ W@:HES0') // fails?!
-        //     , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-        //     , [['Vestlandet2 Qwen', 'qwen-7b'], ['Vestlandet2 Qwen Coder', 'qwen-coder']]]
+            , [['Vestlandet pyton', 'nb-notram-8b']
+                , ['Vestlandet tenkehatt', 'nb-notram-8b']
+                , ['Vestlandet generell', 'qwen25-coder-7b']
+                , ['Vestlandet IOT', 'qwen-0.5b']]
+        ]
         , ['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]
         , ['xAI (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'

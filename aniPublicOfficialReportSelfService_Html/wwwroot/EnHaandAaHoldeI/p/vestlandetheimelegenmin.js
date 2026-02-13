@@ -208,6 +208,6 @@ Om pasienten stiller spørsmål som ikkje er medisinske, kan du svara vennleg, m
     , [`Eg er berre så sliten`, `Det høyres ut som du har bore over mykje. Du treng ikkje vera sterk heile tida – no er du her, og det er nok for no.`]
 ];
 
-cfg.set(cfg_aiPromptWelcome, 'Vestlandet heimelegen min', 'vestlandet qwen', 'p/hjemmelegenmin.png', null, '#7da27c', '#f0e6d1', 'Merriweather')
+cfg.set(cfg_aiPromptWelcome, 'Vestlandet heimelegen min', 'vestlandet generell', 'p/hjemmelegenmin.png', null, '#7da27c', '#f0e6d1', 'Merriweather')
 setTimeout(() => msgSend('nynorsk'), 750);
-setTimeout(() => msgSend('PV vestlandet qwen'), 10000);
+setTimeout(() => msgSend('PV vestlandet generell'), 10000);

@@ -152,6 +152,7 @@ const ui = {
             setting.dMsg(ai.Model[i], ai.Gunn(i));
             if (!i)
                 msgInfo(c.innerHTML, false, true);
+            ui.menu.Show(false)
         }
         , Click_OpenUrl:u=>window.open(u, '_blank')
         , Click_alleSpraak:['Bokml', 'Nynorsk', 'Sámegiella', 'English (UK)', 'English (US)', 'Svenska', 'Dansk']
