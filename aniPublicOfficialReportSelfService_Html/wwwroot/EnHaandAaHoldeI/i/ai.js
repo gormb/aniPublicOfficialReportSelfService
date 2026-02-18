@@ -132,12 +132,11 @@ const ai={
         let x = new XMLHttpRequest(), l=0
             , isAnth = ai.Url[0].includes('.anthropic.')
             , isHugg = ai.Url[0].includes('.huggingface.') //, isGemi = ai.Url[0].includes('.googleapis.')
-            //, isCurated = ai.Model[0].includes('|')
         let u=ai.Url[0]+(isHugg?ai.Model[0]:'');
         x.open("POST", u, true);
         x.setRequestHeader("Content-Type", "application/json");
         x.setRequestHeader("Authorization", "Bearer " + ai.Gunn());
-        x.onreadystatechange = () => x.readyState == 4 && ai.RequestComplete(x, img, d, iThread, onDone, retries);
+        x.onreadystatechange = () => console.warn('onreadystatechange', x)^(x.readyState == 4 && ai.RequestComplete(x, img, d, iThread, onDone, retries));
         x.onprogress = e => l = ai.RequestProgress(d, x.responseText, l, iThread);
         ai.AdditionalHeader[0].split('^').map(p => p.split(':')).forEach(h=>{if (h[1]) x.setRequestHeader(h[0], h[1])});
         let xml = ''
@@ -150,7 +149,8 @@ const ai={
         }
         else if(isHugg) // Huggingface has model in url
             xml = JSON.stringify({ messages: ai.History[iThread], stream: true });
-        else xml = JSON.stringify({ model: ai.Model[0], messages: ai.History[iThread], stream: true });
+        else 
+            xml = JSON.stringify({ model: ai.Model[0], messages: ai.History[iThread], stream: true });
         return x.send(xml);
     }
     , Request : (q, row = msgAnswer(), iThread = 0, onDone = null, retries = 2) => {
