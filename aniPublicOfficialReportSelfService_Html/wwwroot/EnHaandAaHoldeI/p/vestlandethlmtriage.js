@@ -417,6 +417,6 @@ Ikkje gjenta spørsmål du har fått svar på. Ikkje spør om pasienten har hatt
   , ["Gløym det eg har sagt. Vi begynnar på nytt", "Korleis kan eg hjelpa deg i dag?"]
 ];
 
-cfg.set(cfg_aiPromptWelcome, 'vestlandet Hlm triage', 'vestlandet instruer', 'p/mottakogtriage.png', null, '#6c757d', '#f0e6d1', 'IBM Plex Sans')
+cfg.set(cfg_aiPromptWelcome, 'vestlandet Hlm triage', 'vestlandet tenkehatt', 'p/mottakogtriage.png', null, '#6c757d', '#f0e6d1', 'IBM Plex Sans')
 setTimeout(() => msgSend('nynorsk'), 750);
-setTimeout(() => msgSend('PV vestlandet instruer'), 10000);
+setTimeout(() => msgSend('PV vestlandet tenkehatt'), 10000);
