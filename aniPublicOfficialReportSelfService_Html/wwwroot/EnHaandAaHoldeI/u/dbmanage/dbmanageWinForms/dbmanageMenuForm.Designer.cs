@@ -67,10 +67,10 @@
             toolStripStatusLabel = new ToolStripStatusLabel();
             tabControl = new TabControl();
             tabPageConfig = new TabPage();
+            listBoxSupabaseProjects = new ListBox();
             comboBoxSupabaseActiveOrg = new ComboBox();
             label5 = new Label();
-            groupBox1 = new GroupBox();
-            comboBoxSupabaseActiveProject = new ComboBox();
+            groupBoxSupabaseActiveProject = new GroupBox();
             label4 = new Label();
             checkBoxSupabaseSettingsAutosave = new CheckBox();
             textBoxSupabaseToken = new TextBox();
@@ -94,7 +94,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, toolsToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1038, 33);
+            menuStrip1.Padding = new Padding(4, 1, 0, 1);
+            menuStrip1.Size = new Size(948, 24);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -102,7 +103,7 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, toolStripSeparator, saveToolStripMenuItem, saveAsToolStripMenuItem, toolStripSeparator1, printToolStripMenuItem, printPreviewToolStripMenuItem, toolStripSeparator2, exitToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(54, 29);
+            fileToolStripMenuItem.Size = new Size(37, 22);
             fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -111,7 +112,7 @@
             newToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             newToolStripMenuItem.Name = "newToolStripMenuItem";
             newToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-            newToolStripMenuItem.Size = new Size(223, 34);
+            newToolStripMenuItem.Size = new Size(146, 22);
             newToolStripMenuItem.Text = "&New";
             newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
@@ -121,14 +122,14 @@
             openToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             openToolStripMenuItem.Name = "openToolStripMenuItem";
             openToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-            openToolStripMenuItem.Size = new Size(223, 34);
+            openToolStripMenuItem.Size = new Size(146, 22);
             openToolStripMenuItem.Text = "&Open";
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
             // toolStripSeparator
             // 
             toolStripSeparator.Name = "toolStripSeparator";
-            toolStripSeparator.Size = new Size(220, 6);
+            toolStripSeparator.Size = new Size(143, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -136,7 +137,7 @@
             saveToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             saveToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-            saveToolStripMenuItem.Size = new Size(223, 34);
+            saveToolStripMenuItem.Size = new Size(146, 22);
             saveToolStripMenuItem.Text = "&Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
@@ -144,14 +145,14 @@
             // 
             saveAsToolStripMenuItem.Enabled = false;
             saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            saveAsToolStripMenuItem.Size = new Size(223, 34);
+            saveAsToolStripMenuItem.Size = new Size(146, 22);
             saveAsToolStripMenuItem.Text = "Save &As";
             saveAsToolStripMenuItem.Click += saveAsToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(220, 6);
+            toolStripSeparator1.Size = new Size(143, 6);
             // 
             // printToolStripMenuItem
             // 
@@ -160,7 +161,7 @@
             printToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             printToolStripMenuItem.Name = "printToolStripMenuItem";
             printToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.P;
-            printToolStripMenuItem.Size = new Size(223, 34);
+            printToolStripMenuItem.Size = new Size(146, 22);
             printToolStripMenuItem.Text = "&Print";
             printToolStripMenuItem.Click += printToolStripMenuItem_Click;
             // 
@@ -170,19 +171,19 @@
             printPreviewToolStripMenuItem.Image = (Image)resources.GetObject("printPreviewToolStripMenuItem.Image");
             printPreviewToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            printPreviewToolStripMenuItem.Size = new Size(223, 34);
+            printPreviewToolStripMenuItem.Size = new Size(146, 22);
             printPreviewToolStripMenuItem.Text = "Print Pre&view";
             printPreviewToolStripMenuItem.Click += printPreviewToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(220, 6);
+            toolStripSeparator2.Size = new Size(143, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(223, 34);
+            exitToolStripMenuItem.Size = new Size(146, 22);
             exitToolStripMenuItem.Text = "E&xit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -190,7 +191,7 @@
             // 
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { undoToolStripMenuItem, redoToolStripMenuItem, toolStripSeparator3, cutToolStripMenuItem, copyToolStripMenuItem, pasteToolStripMenuItem, toolStripSeparator4, selectAllToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(58, 29);
+            editToolStripMenuItem.Size = new Size(39, 22);
             editToolStripMenuItem.Text = "&Edit";
             // 
             // undoToolStripMenuItem
@@ -198,7 +199,7 @@
             undoToolStripMenuItem.Enabled = false;
             undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             undoToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Z;
-            undoToolStripMenuItem.Size = new Size(219, 34);
+            undoToolStripMenuItem.Size = new Size(144, 22);
             undoToolStripMenuItem.Text = "&Undo";
             undoToolStripMenuItem.Click += undoToolStripMenuItem_Click;
             // 
@@ -207,14 +208,14 @@
             redoToolStripMenuItem.Enabled = false;
             redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             redoToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Y;
-            redoToolStripMenuItem.Size = new Size(219, 34);
+            redoToolStripMenuItem.Size = new Size(144, 22);
             redoToolStripMenuItem.Text = "&Redo";
             redoToolStripMenuItem.Click += redoToolStripMenuItem_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(216, 6);
+            toolStripSeparator3.Size = new Size(141, 6);
             // 
             // cutToolStripMenuItem
             // 
@@ -222,7 +223,7 @@
             cutToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             cutToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.X;
-            cutToolStripMenuItem.Size = new Size(219, 34);
+            cutToolStripMenuItem.Size = new Size(144, 22);
             cutToolStripMenuItem.Text = "Cu&t";
             cutToolStripMenuItem.Click += cutToolStripMenuItem_Click;
             // 
@@ -232,7 +233,7 @@
             copyToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             copyToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.C;
-            copyToolStripMenuItem.Size = new Size(219, 34);
+            copyToolStripMenuItem.Size = new Size(144, 22);
             copyToolStripMenuItem.Text = "&Copy";
             copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             // 
@@ -242,20 +243,20 @@
             pasteToolStripMenuItem.ImageTransparentColor = Color.Magenta;
             pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             pasteToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.V;
-            pasteToolStripMenuItem.Size = new Size(219, 34);
+            pasteToolStripMenuItem.Size = new Size(144, 22);
             pasteToolStripMenuItem.Text = "&Paste";
             pasteToolStripMenuItem.Click += pasteToolStripMenuItem_Click;
             // 
             // toolStripSeparator4
             // 
             toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(216, 6);
+            toolStripSeparator4.Size = new Size(141, 6);
             // 
             // selectAllToolStripMenuItem
             // 
             selectAllToolStripMenuItem.Enabled = false;
             selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            selectAllToolStripMenuItem.Size = new Size(219, 34);
+            selectAllToolStripMenuItem.Size = new Size(144, 22);
             selectAllToolStripMenuItem.Text = "Select &All";
             selectAllToolStripMenuItem.Click += selectAllToolStripMenuItem_Click;
             // 
@@ -263,38 +264,38 @@
             // 
             toolsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1, tokenTestToolStripMenuItem, helloWorldProjectTestToolStripMenuItem, toolStripMenuItem2, customizeToolStripMenuItem, optionsToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            toolsToolStripMenuItem.Size = new Size(69, 29);
+            toolsToolStripMenuItem.Size = new Size(47, 22);
             toolsToolStripMenuItem.Text = "&Tools";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(299, 6);
+            toolStripMenuItem1.Size = new Size(198, 6);
             // 
             // tokenTestToolStripMenuItem
             // 
             tokenTestToolStripMenuItem.Name = "tokenTestToolStripMenuItem";
-            tokenTestToolStripMenuItem.Size = new Size(302, 34);
+            tokenTestToolStripMenuItem.Size = new Size(201, 22);
             tokenTestToolStripMenuItem.Text = "&Token Test";
             tokenTestToolStripMenuItem.Click += tokenTestToolStripMenuItem_Click;
             // 
             // helloWorldProjectTestToolStripMenuItem
             // 
             helloWorldProjectTestToolStripMenuItem.Name = "helloWorldProjectTestToolStripMenuItem";
-            helloWorldProjectTestToolStripMenuItem.Size = new Size(302, 34);
+            helloWorldProjectTestToolStripMenuItem.Size = new Size(201, 22);
             helloWorldProjectTestToolStripMenuItem.Text = "Hello &World Project Test";
             helloWorldProjectTestToolStripMenuItem.Click += helloWorldProjectTestToolStripMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(299, 6);
+            toolStripMenuItem2.Size = new Size(198, 6);
             // 
             // customizeToolStripMenuItem
             // 
             customizeToolStripMenuItem.Enabled = false;
             customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            customizeToolStripMenuItem.Size = new Size(302, 34);
+            customizeToolStripMenuItem.Size = new Size(201, 22);
             customizeToolStripMenuItem.Text = "&Customize";
             customizeToolStripMenuItem.Click += customizeToolStripMenuItem_Click;
             // 
@@ -302,7 +303,7 @@
             // 
             optionsToolStripMenuItem.Enabled = false;
             optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            optionsToolStripMenuItem.Size = new Size(302, 34);
+            optionsToolStripMenuItem.Size = new Size(201, 22);
             optionsToolStripMenuItem.Text = "&Options";
             optionsToolStripMenuItem.Click += optionsToolStripMenuItem_Click;
             // 
@@ -311,39 +312,39 @@
             helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { contentsToolStripMenuItem, indexToolStripMenuItem, searchToolStripMenuItem, toolStripSeparator5, aboutToolStripMenuItem });
             helpToolStripMenuItem.Enabled = false;
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(65, 29);
+            helpToolStripMenuItem.Size = new Size(44, 22);
             helpToolStripMenuItem.Text = "&Help";
             // 
             // contentsToolStripMenuItem
             // 
             contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
-            contentsToolStripMenuItem.Size = new Size(185, 34);
+            contentsToolStripMenuItem.Size = new Size(122, 22);
             contentsToolStripMenuItem.Text = "&Contents";
             contentsToolStripMenuItem.Click += contentsToolStripMenuItem_Click;
             // 
             // indexToolStripMenuItem
             // 
             indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            indexToolStripMenuItem.Size = new Size(185, 34);
+            indexToolStripMenuItem.Size = new Size(122, 22);
             indexToolStripMenuItem.Text = "&Index";
             indexToolStripMenuItem.Click += indexToolStripMenuItem_Click;
             // 
             // searchToolStripMenuItem
             // 
             searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            searchToolStripMenuItem.Size = new Size(185, 34);
+            searchToolStripMenuItem.Size = new Size(122, 22);
             searchToolStripMenuItem.Text = "&Search";
             searchToolStripMenuItem.Click += searchToolStripMenuItem_Click;
             // 
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(182, 6);
+            toolStripSeparator5.Size = new Size(119, 6);
             // 
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(185, 34);
+            aboutToolStripMenuItem.Size = new Size(122, 22);
             aboutToolStripMenuItem.Text = "&About...";
             aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
@@ -351,16 +352,17 @@
             // 
             statusStrip1.ImageScalingSize = new Size(24, 24);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel });
-            statusStrip1.Location = new Point(0, 541);
+            statusStrip1.Location = new Point(0, 463);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1038, 32);
+            statusStrip1.Padding = new Padding(1, 0, 10, 0);
+            statusStrip1.Size = new Size(948, 22);
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel
             // 
             toolStripStatusLabel.Name = "toolStripStatusLabel";
-            toolStripStatusLabel.Size = new Size(41, 25);
+            toolStripStatusLabel.Size = new Size(26, 17);
             toolStripStatusLabel.Text = "Idle";
             // 
             // tabControl
@@ -368,18 +370,19 @@
             tabControl.Controls.Add(tabPageConfig);
             tabControl.Controls.Add(tabPageTest);
             tabControl.Dock = DockStyle.Fill;
-            tabControl.Location = new Point(0, 33);
+            tabControl.Location = new Point(0, 24);
+            tabControl.Margin = new Padding(2);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(1038, 508);
+            tabControl.Size = new Size(948, 439);
             tabControl.TabIndex = 3;
             // 
             // tabPageConfig
             // 
+            tabPageConfig.Controls.Add(listBoxSupabaseProjects);
             tabPageConfig.Controls.Add(comboBoxSupabaseActiveOrg);
             tabPageConfig.Controls.Add(label5);
-            tabPageConfig.Controls.Add(groupBox1);
-            tabPageConfig.Controls.Add(comboBoxSupabaseActiveProject);
+            tabPageConfig.Controls.Add(groupBoxSupabaseActiveProject);
             tabPageConfig.Controls.Add(label4);
             tabPageConfig.Controls.Add(checkBoxSupabaseSettingsAutosave);
             tabPageConfig.Controls.Add(textBoxSupabaseToken);
@@ -390,69 +393,76 @@
             tabPageConfig.Controls.Add(textBoxSupabaseUrl);
             tabPageConfig.Controls.Add(textBoxSupabasePassword);
             tabPageConfig.Controls.Add(textBoxSupabaseUser);
-            tabPageConfig.Location = new Point(4, 34);
+            tabPageConfig.Location = new Point(4, 24);
+            tabPageConfig.Margin = new Padding(2);
             tabPageConfig.Name = "tabPageConfig";
-            tabPageConfig.Padding = new Padding(3);
-            tabPageConfig.Size = new Size(1030, 470);
+            tabPageConfig.Padding = new Padding(2);
+            tabPageConfig.Size = new Size(940, 411);
             tabPageConfig.TabIndex = 0;
             tabPageConfig.Text = "Config";
             tabPageConfig.UseVisualStyleBackColor = true;
+            // 
+            // listBoxSupabaseProjects
+            // 
+            listBoxSupabaseProjects.FormattingEnabled = true;
+            listBoxSupabaseProjects.ItemHeight = 15;
+            listBoxSupabaseProjects.Items.AddRange(new object[] { "?" });
+            listBoxSupabaseProjects.Location = new Point(340, 131);
+            listBoxSupabaseProjects.Name = "listBoxSupabaseProjects";
+            listBoxSupabaseProjects.Size = new Size(175, 184);
+            listBoxSupabaseProjects.TabIndex = 0;
+            listBoxSupabaseProjects.SelectedIndexChanged += listBoxSupabaseProjects_SelectedIndexChanged;
             // 
             // comboBoxSupabaseActiveOrg
             // 
             comboBoxSupabaseActiveOrg.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSupabaseActiveOrg.FormattingEnabled = true;
             comboBoxSupabaseActiveOrg.Items.AddRange(new object[] { "Loafing..." });
-            comboBoxSupabaseActiveOrg.Location = new Point(680, 86);
+            comboBoxSupabaseActiveOrg.Location = new Point(476, 52);
+            comboBoxSupabaseActiveOrg.Margin = new Padding(2);
             comboBoxSupabaseActiveOrg.Name = "comboBoxSupabaseActiveOrg";
-            comboBoxSupabaseActiveOrg.Size = new Size(248, 33);
+            comboBoxSupabaseActiveOrg.Size = new Size(175, 23);
             comboBoxSupabaseActiveOrg.TabIndex = 5;
             comboBoxSupabaseActiveOrg.SelectedIndexChanged += comboBoxSupabaseActiveOrg_SelectedIndexChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(486, 94);
+            label5.Location = new Point(340, 56);
+            label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(164, 25);
+            label5.Size = new Size(109, 15);
             label5.TabIndex = 11;
             label5.Text = "Active organization";
             // 
-            // groupBox1
+            // groupBoxSupabaseActiveProject
             // 
-            groupBox1.Location = new Point(486, 271);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(442, 174);
-            groupBox1.TabIndex = 10;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "?";
-            // 
-            // comboBoxSupabaseActiveProject
-            // 
-            comboBoxSupabaseActiveProject.FormattingEnabled = true;
-            comboBoxSupabaseActiveProject.Location = new Point(680, 177);
-            comboBoxSupabaseActiveProject.Name = "comboBoxSupabaseActiveProject";
-            comboBoxSupabaseActiveProject.Size = new Size(248, 33);
-            comboBoxSupabaseActiveProject.TabIndex = 6;
-            comboBoxSupabaseActiveProject.Text = "Loading...";
-            comboBoxSupabaseActiveProject.SelectedIndexChanged += comboBoxSupabaseActiveProject_SelectedIndexChanged;
-            comboBoxSupabaseActiveProject.TextChanged += comboBoxSupabaseActiveProject_TextChanged;
+            groupBoxSupabaseActiveProject.Location = new Point(537, 106);
+            groupBoxSupabaseActiveProject.Margin = new Padding(2);
+            groupBoxSupabaseActiveProject.Name = "groupBoxSupabaseActiveProject";
+            groupBoxSupabaseActiveProject.Padding = new Padding(2);
+            groupBoxSupabaseActiveProject.Size = new Size(309, 212);
+            groupBoxSupabaseActiveProject.TabIndex = 10;
+            groupBoxSupabaseActiveProject.TabStop = false;
+            groupBoxSupabaseActiveProject.Text = "?";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(486, 176);
+            label4.Location = new Point(340, 106);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(120, 25);
+            label4.Size = new Size(44, 15);
             label4.TabIndex = 8;
-            label4.Text = "Active project";
+            label4.Text = "Project";
             // 
             // checkBoxSupabaseSettingsAutosave
             // 
             checkBoxSupabaseSettingsAutosave.AutoSize = true;
-            checkBoxSupabaseSettingsAutosave.Location = new Point(270, 43);
+            checkBoxSupabaseSettingsAutosave.Location = new Point(189, 26);
+            checkBoxSupabaseSettingsAutosave.Margin = new Padding(2);
             checkBoxSupabaseSettingsAutosave.Name = "checkBoxSupabaseSettingsAutosave";
-            checkBoxSupabaseSettingsAutosave.Size = new Size(112, 29);
+            checkBoxSupabaseSettingsAutosave.Size = new Size(75, 19);
             checkBoxSupabaseSettingsAutosave.TabIndex = 7;
             checkBoxSupabaseSettingsAutosave.Text = "Autosave";
             checkBoxSupabaseSettingsAutosave.UseVisualStyleBackColor = true;
@@ -460,10 +470,11 @@
             // 
             // textBoxSupabaseToken
             // 
-            textBoxSupabaseToken.Location = new Point(32, 88);
+            textBoxSupabaseToken.Location = new Point(22, 53);
+            textBoxSupabaseToken.Margin = new Padding(2);
             textBoxSupabaseToken.Name = "textBoxSupabaseToken";
             textBoxSupabaseToken.PasswordChar = '*';
-            textBoxSupabaseToken.Size = new Size(350, 31);
+            textBoxSupabaseToken.Size = new Size(246, 23);
             textBoxSupabaseToken.TabIndex = 4;
             textBoxSupabaseToken.Text = "Loading...";
             textBoxSupabaseToken.TextChanged += textBoxSupabaseToken_TextChanged;
@@ -471,9 +482,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(32, 47);
+            label3.Location = new Point(22, 28);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(58, 25);
+            label3.Size = new Size(39, 15);
             label3.TabIndex = 5;
             label3.Text = "Token";
             // 
@@ -481,9 +493,10 @@
             // 
             comboBoxSupabaseUrlBase.FormattingEnabled = true;
             comboBoxSupabaseUrlBase.Items.AddRange(new object[] { "supabase.co", "" });
-            comboBoxSupabaseUrlBase.Location = new Point(232, 218);
+            comboBoxSupabaseUrlBase.Location = new Point(162, 131);
+            comboBoxSupabaseUrlBase.Margin = new Padding(2);
             comboBoxSupabaseUrlBase.Name = "comboBoxSupabaseUrlBase";
-            comboBoxSupabaseUrlBase.Size = new Size(150, 33);
+            comboBoxSupabaseUrlBase.Size = new Size(106, 23);
             comboBoxSupabaseUrlBase.TabIndex = 1;
             comboBoxSupabaseUrlBase.Text = "supabase.co";
             comboBoxSupabaseUrlBase.SelectedIndexChanged += comboBoxSupabaseUrlBase_SelectedIndexChanged;
@@ -492,68 +505,75 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(27, 174);
+            label2.Location = new Point(19, 104);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(34, 25);
+            label2.Size = new Size(22, 15);
             label2.TabIndex = 4;
             label2.Text = "Url";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(27, 315);
+            label1.Location = new Point(19, 189);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(213, 25);
+            label1.Size = new Size(139, 15);
             label1.TabIndex = 3;
             label1.Text = "User name and password";
             // 
             // textBoxSupabaseUrl
             // 
-            textBoxSupabaseUrl.Location = new Point(28, 218);
+            textBoxSupabaseUrl.Location = new Point(20, 131);
+            textBoxSupabaseUrl.Margin = new Padding(2);
             textBoxSupabaseUrl.Name = "textBoxSupabaseUrl";
-            textBoxSupabaseUrl.Size = new Size(171, 31);
+            textBoxSupabaseUrl.Size = new Size(121, 23);
             textBoxSupabaseUrl.TabIndex = 0;
             textBoxSupabaseUrl.Text = "Loading...";
             textBoxSupabaseUrl.TextChanged += textBoxSupabaseUrl_TextChanged;
             // 
             // textBoxSupabasePassword
             // 
-            textBoxSupabasePassword.Location = new Point(232, 365);
+            textBoxSupabasePassword.Location = new Point(162, 219);
+            textBoxSupabasePassword.Margin = new Padding(2);
             textBoxSupabasePassword.Name = "textBoxSupabasePassword";
             textBoxSupabasePassword.PasswordChar = '*';
-            textBoxSupabasePassword.Size = new Size(150, 31);
+            textBoxSupabasePassword.Size = new Size(106, 23);
             textBoxSupabasePassword.TabIndex = 3;
             textBoxSupabasePassword.Text = "Loading...";
             textBoxSupabasePassword.TextChanged += textBoxSupabasePassword_TextChanged;
             // 
             // textBoxSupabaseUser
             // 
-            textBoxSupabaseUser.Location = new Point(28, 364);
+            textBoxSupabaseUser.Location = new Point(20, 218);
+            textBoxSupabaseUser.Margin = new Padding(2);
             textBoxSupabaseUser.Name = "textBoxSupabaseUser";
-            textBoxSupabaseUser.Size = new Size(171, 31);
+            textBoxSupabaseUser.Size = new Size(121, 23);
             textBoxSupabaseUser.TabIndex = 2;
             textBoxSupabaseUser.Text = "Loading...";
             textBoxSupabaseUser.TextChanged += textBoxSupabaseUser_TextChanged;
             // 
             // tabPageTest
             // 
-            tabPageTest.Location = new Point(4, 34);
+            tabPageTest.Location = new Point(4, 24);
+            tabPageTest.Margin = new Padding(2);
             tabPageTest.Name = "tabPageTest";
-            tabPageTest.Padding = new Padding(3);
-            tabPageTest.Size = new Size(1030, 470);
+            tabPageTest.Padding = new Padding(2);
+            tabPageTest.Size = new Size(940, 411);
             tabPageTest.TabIndex = 1;
             tabPageTest.Text = "Test";
             tabPageTest.UseVisualStyleBackColor = true;
             // 
             // dbmanageMenuForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1038, 573);
+            ClientSize = new Size(948, 485);
             Controls.Add(tabControl);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(2);
             Name = "dbmanageMenuForm";
             Text = "Manage Supabase Database";
             Activated += dbmanageMenuForm_Activated;
@@ -618,10 +638,10 @@
         private ToolStripMenuItem helloWorldProjectTestToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem2;
         private Label label4;
-        private GroupBox groupBox1;
-        private ComboBox comboBoxSupabaseActiveProject;
+        private GroupBox groupBoxSupabaseActiveProject;
         private ComboBox comboBoxSupabaseActiveOrg;
         private Label label5;
         private ToolStripStatusLabel toolStripStatusLabel;
+        private ListBox listBoxSupabaseProjects;
     }
 }
