@@ -94,8 +94,8 @@ const cfg = {
             //, escape(`4>c,'$b}-y1wdczsk&xzvw1j4w-q~b,|v4wcwzuk`)
             , 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['Vestlandet pyton', 'coder', 16384]
-                , ['Vestlandet tenkehatt', 'norbrain', 16384]
-                , ['Vestlandet generell', 'coder', 32768]
+                , ['Vestlandet tenkehatt', 'norbrain', 32768]
+                , ['Vestlandet generell', 'norbrain', 32768]
                 , ['Vestlandet IOT', 'coder', 8192]]
         ]
         , ['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
