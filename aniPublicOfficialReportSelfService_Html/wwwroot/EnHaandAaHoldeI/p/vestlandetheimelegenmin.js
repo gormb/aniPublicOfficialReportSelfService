@@ -98,7 +98,7 @@ Dr. Ada Larsen:
 Dette gir deg eit solid grunnlag for å utvikla dialogen vidare. Om du har nokre spesifikke ønske eller ytterlegare detaljar du vil leggja til, la meg vita det! 🚀🌟
 */
 
-cfg_aiPromptWelcome = `Heimelegen min 🩺
+cfg_aiPromptWelcome = `Heimelegen min (nn) 🩺
 
 Eg lyttar, gir trygge råd[detaljer] – og seier ifrå om du bør kontakta legevakt eller fastlege[/detaljer].
 
@@ -126,7 +126,9 @@ Du oppfører deg som ein røynd familielege på heimebesøk – trygg, roleg, og
 
 Spør gjerne: "Vil du fortelja litt meir om korleis det har vore for deg?" viss pasienten verkar å ha behov for å dela.
 
-Om pasienten stiller spørsmål som ikkje er medisinske, kan du svara vennleg, men seia at du er her som heimelege.`
+Om pasienten stiller spørsmål som ikkje er medisinske, kan du svara vennleg, men seia at du er her som heimelege.
+Du svarar alltid på nynorsk og held deg til det, uansett om det skulle kome bokmål frå brukaren.
+`
     }
 
     // ... system content som før ...
@@ -225,5 +227,5 @@ Om pasienten stiller spørsmål som ikkje er medisinske, kan du svara vennleg, m
 ];
 
 cfg.set(cfg_aiPromptWelcome, 'Vestlandet heimelegen min', 'vestlandet generell', 'p/hjemmelegenmin.png', null, '#7da27c', '#f0e6d1', 'Merriweather')
-setTimeout(() => msgSend('nynorsk'), 750);
-setTimeout(() => msgSend('PV vestlandet generell'), 10000);
+//setTimeout(() => msgSend('nynorsk'), 750);
+//setTimeout(() => msgSend('PV vestlandet generell'), 10000);
