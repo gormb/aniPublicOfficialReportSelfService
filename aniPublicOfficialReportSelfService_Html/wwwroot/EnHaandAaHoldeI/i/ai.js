@@ -121,6 +121,8 @@ const ai={
         ai.RequestActiveCount--;
         img?.classList.remove('rotating');
         if (x.status == 200) ai.History[iThread].push({ role: 'assistant', content: ai.Reply[iThread] });
+
+        
         else if (x.status >= 400 && x.status < 500 && retries > 0) return setTimeout(() => ++ai.RequestActiveCount^ai.Request(ai.History[iThread].slice(-1)[0].content, d.parentElement, iThread, onDone, retries-1), 1000);
         else ai.Reply[iThread] = `<i>Feil ved kall til KI-tjenesten ${ai.Model[0]}<br/>${!x.status?'Manglende internet?':(() => { try { let err = JSON.parse(x.response?.message || x.responseText); return err?.error?.message || err?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
         //d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
