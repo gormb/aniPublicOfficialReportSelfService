@@ -1,0 +1,45 @@
+﻿:root { --panel:#111827cc; --fg:#e5e7eb; --muted:#94a3b8; }
+* { box-sizing:border-box; }
+html, body {
+  height:100%; margin:0; font:14px/1.35 ui-sans-serif, Segoe UI, Arial;
+  background:radial-gradient(1200px 700px at 10% -20%, #1e293b, #0b1020 60%, #060911);
+  color:var(--fg);
+}
+#ui {
+  position:fixed; left:12px; top:12px; z-index:2;
+  background:var(--panel); backdrop-filter:blur(6px);
+  border:1px solid #334155; padding:10px; border-radius:10px;
+  display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  max-width:min(97vw, 1260px);
+}
+label { display:flex; gap:6px; align-items:center; color:var(--muted); }
+input, select, button {
+  background:#0b1220; border:1px solid #334155; color:var(--fg);
+  border-radius:6px; padding:5px 8px;
+}
+button { cursor:pointer; }
+button:hover { border-color:#64748b; }
+#hint { color:var(--muted); margin-left:4px; }
+canvas { width:100vw; height:100vh; display:block; }
+#helpBtn { width:30px; height:30px; border-radius:999px; padding:0; font-weight:700; }
+#helpPanel {
+  position:fixed; inset:0; z-index:5;
+  background:rgba(2, 6, 23, 0.65);
+  display:flex; align-items:center; justify-content:center;
+  padding:18px;
+}
+#helpPanel[hidden] { display:none; }
+.helpCard {
+  width:min(700px, 95vw);
+  background:#0b1220;
+  border:1px solid #334155;
+  border-radius:12px;
+  padding:14px 16px 12px;
+  position:relative;
+}
+.helpCard h3 { margin:0 0 10px; font-size:16px; }
+.helpCard p { margin:8px 0; color:#cbd5e1; }
+#helpClose {
+  position:absolute; right:10px; top:10px;
+  width:28px; height:28px; border-radius:999px; padding:0;
+}
