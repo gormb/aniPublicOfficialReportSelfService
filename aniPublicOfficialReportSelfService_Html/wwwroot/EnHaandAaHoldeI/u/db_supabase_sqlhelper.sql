@@ -1,6 +1,6 @@
 -- supabase - database (re)creation
 set nocount on;use master;print '-- supabase - database (re)creation'
-if db_id('supabase') is not null exec('exec supabase.u.bu;use supabase;alter database supabase set single_user with rollback immediate;use master;drop database supabase')
+--if db_id('supabase') is not null exec('exec supabase.u.bu;use supabase;alter database supabase set single_user with rollback immediate;use master;drop database supabase')
 if db_id('supabase') is null exec('create database supabase;alter database supabase set auto_shrink on, recovery simple, allow_snapshot_isolation on')
 go
 
@@ -36,18 +36,22 @@ exec u.xni 'u.conf, u.confset, u.confget - configuration store, get, set'
 -- sb - supabase
 insert u.xl(s,eC)select '-- sb - supabase',getdate()
 exec u.xni 'schema sb','create schema sb'
-exec u.confset 'sb ds','db.xyz.supabase.co','sb usr','postgres','sb pwd','password'
+exec u.confset 'sb ds','avptwmixiiznmkjqybtx.supabase.co','sb usr','postgres','sb pwd','lange passord er tullete'
 
 exec u.xni 'ls - linked server'
 	,'if exists(select*from sys.servers where name="SB")exec sp_dropserver SB,droplogins'
 	,'declare @c t.s="Driver={PostgreSQL ANSI(x64)};Server="+u.confget("sb ds")+";Port=5432;Database=postgres;SSLmode=require;";exec sp_addlinkedserver "SB","","MSDASQL",null,null,@c'
 	,'declare @u t.s=u.confget("sb usr"),@p t.s=u.confget("sb pwd");exec sp_addlinkedsrvlogin "SB","false",null,@u,@p'
 	,'exec sp_serveroption "SB","rpc out","true"'
+	,'exec sp_serveroption "SB","rpc","true"'
+	,'exec sp_serveroption "SB","lazy schema validation","true"'
 	,'exec sp_serveroption "SB","remote proc transaction promotion","false"'
 	--,'exec master.dbo.xp_regwrite "HKEY_LOCAL_MACHINE","SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL15.SQLEXPRESS\Providers\MSDASQL","AllowInProcess",REG_DWORD,1'
+	-- sbp _ cc a95719b83dda3191641f7caa19d4f698d3c66d
+	--https://avptwmixiiznmkjqybtx.supabase.co
 
 -- test
-exec u.xi 'ls test','select * from openquery(SB,"select 1")'
---
-select * from u.xl where eM is not null--where pk>=@pkS
+-- exec u.xi 'ls test','
+select * from openquery(SB,'select 1 as v')--'
+--select * from u.xl where eM is not null--where pk>=@pkS
 --select * from u.conf

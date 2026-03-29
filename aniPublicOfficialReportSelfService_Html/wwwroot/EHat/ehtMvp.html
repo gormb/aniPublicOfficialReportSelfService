@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Einstein Hat Tiler MVP</title>
+<link rel="stylesheet" href="ehtMvp.css" />
+</head>
+<body>
+<div id="ui">
+  <label>Seed <input id="seed" type="number" value="12345" step="1" /></label>
+  <label>Level <input id="level" type="number" value="1" min="0" max="9" /></label>
+  <label>Scale <input id="scale" type="number" value="22" min="2" max="80" /></label>
+  <label>Meta <select id="meta"><option>H</option><option selected>T</option><option>P</option><option>F</option></select></label>
+  <label>Color <select id="colorMode"><option value="hsl">HSL Hierarchy</option><option value="palette">Palette</option></select></label>
+  <label id="palWrap">Palette <select id="pal"><option value="cool">Cool</option><option value="warm">Warm</option><option value="mono">Mono</option></select></label>
+  <label>Show Hats <input id="showHats" type="checkbox" checked /></label>
+  <label>Show Kites <input id="showKites" type="checkbox" /></label>
+  <button id="rotateAll" type="button">rotate to 30°</button>
+  <label>Meta Lines <input id="showMeta" type="checkbox" /></label>
+  <label>MetaMeta Lines <input id="showMetaMeta" type="checkbox" /></label>
+  <label>Spectre <input id="spectre" type="checkbox" /></label>
+  <label id="curveWrap">Curve <input id="spectreBulge" type="number" value="0.6" step="0.05" min="-0.6" max="0.6" /> <button id="curveMin" type="button">Min</button> <button id="curveMid" type="button">Middle</button> <button id="curveMax" type="button">Max</button></label>
+  <label id="ctrlAWrap">CtrlA <input id="spectreA" type="number" value="0.33" step="0.01" min="0.05" max="0.95" /></label>
+  <label id="ctrlBWrap">CtrlB <input id="spectreB" type="number" value="0.67" step="0.01" min="0.05" max="0.95" /></label>
+  <button id="regen">Regenerate</button>
+  <button id="helpBtn" type="button" title="What do these terms mean?">?</button>
+  <span id="hint">Hue=Hat, Saturation=Meta, Lightness=MetaMeta • Drag pan • Wheel zoom</span>
+</div>
+<canvas id="c"></canvas>
+<div id="helpPanel" hidden>
+  <div class="helpCard">
+    <button id="helpClose" type="button" title="Close">x</button>
+    <h3>Einstein Tiler Terms</h3>
+    <p><strong>Hat</strong>: The base monotile shape (the 13-edge polygon) used for the aperiodic tiling.</p>
+    <p><strong>Kite</strong>: One of the 8 congruent quadrilateral building blocks that compose a single Hat (same form, different orientation).</p>
+    <p><strong>Meta Hat</strong>: A larger tile built by substitution from multiple Hats at one recursion level.</p>
+    <p><strong>Meta Meta Hat</strong>: The next substitution level above Meta Hat, grouping Meta Hats into an even larger structure.</p>
+  </div>
+</div>
+
+<script src="ehtMvp.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
