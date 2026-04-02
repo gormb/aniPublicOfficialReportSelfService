@@ -138,7 +138,7 @@ window.wowsn_how_tone={
         // /*A4*/['SC', 'Stephen Covey',           'P5,E4,U2,N3,S3,T2,F4,O2,L2,M5,R5,V3,A4,K4,X3,I3,J8,C7,D4,G5,B5,W5,Y5,Z8,Q8'], // SC: "The 7 Habits of Highly Effective People" is primarily constructive (A4), offering principles and solutions for personal and professional effectiveness, generally optimistic (V3), direct (U2), and aiming to persuade/instruct (J8, Z8).
         /*K1*/ 
         ['EH', 'Ernest Hemingway',        'P8,E7,U1,N8,S1,T2,F7,O2,L2,M7,R6,V6,A6,K1,X1,I6,J6,C8,D7,G3,B3,W2,Y3,Z4,Q5'], // EH: Famed for his extremely concise, "iceberg theory" prose (K1), direct (U1), with simple language (S1) and a minimalist texture (X1), often from a close perspective (P8) and fact-based/observational (E7, G3).
-        
+
         // /*K2*/['RC', 'Raymond Carver',          'P9,E6,U2,N8,S2,T3,F6,O3,L3,M5,R5,V7,A7,K2,X2,I5,J5,C8,D7,G5,B5,W4,Y5,Z4,Q6'], // RC: Known for his minimalist short stories, very concise language (K2), simple sentence structures (S2), and directness (U2), often depicting bleak realities (V7, A7) from a close perspective (P9).
         // /*K3*/['DS', 'Dashiell Hammett',        'P8,E7,U2,N8,S3,T4,F7,O3,L3,M7,R6,V7,A7,K3,X3,I6,J6,C8,D7,G3,B3,W3,Y4,Z4,Q6'], // DS: Hardboiled detective fiction pioneer, known for a lean, concise (K3) and direct style (U2), often with sparse descriptions (X3) and a detached narrator (F7).
         // /*X1*/['AG', 'Alain Robbe-Grillet',     'P7,E8,U5,N7,S6,T7,F8,O7,L8,M5,R5,V5,A5,K4,X1,I5,J2,C5,D5,G5,B5,W6,Y7,Z5,Q5'], // AG: Leading figure of the Nouveau Roman movement, which emphasized objective descriptions and a radically minimalist texture (X1), often with a detached, neutral narrator (F8, J2).
@@ -163,7 +163,7 @@ window.wowsn_how_tone={
         // marxisme
         ['KM', 'Karl Marx',               'P1,E5,U3,N1,S9,T9,F7,O2,L2,M3,R4,V9,A9,K9,X4,I9,J9,C7,D1,G1,B2,W1,Y1,Z8,Q9'],
         ['FE', 'Friedrich Engels',        'P2,E5,U2,N1,S7,T7,F3,O2,L2,M5,R6,V9,A7,K6,X3,I9,J9,C7,D2,G1,B2,W1,Y1,Z8,Q9'],
-s       // bloggere
+        // bloggere
         ['JR', 'Joe Rogan',               'P7,E4,U2,N8,S3,T7,F1,O8,L7,M3,R4,V8,A8,K9,X3,I4,J7,C9,D9,G7,B8,W2,Y8,Z1,Q3'],
         ['LF', 'Lex Fridman',             'P4,E4,U2,N5,S4,T8,F2,O4,L4,M1,R1,V1,A2,K8,X3,I2,J4,C3,D4,G3,B7,W2,Y8,Z1,Q2'],
         //
