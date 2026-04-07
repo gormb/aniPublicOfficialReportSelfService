@@ -120,9 +120,7 @@ const ai={
     , RequestComplete : (x, img, d, iThread, onDone, retries) => {
         ai.RequestActiveCount--;
         img?.classList.remove('rotating');
-        if (x.status == 200) ai.History[iThread].push({ role: 'assistant', content: ai.Reply[iThread] });
-
-        
+        if (x.status == 200) ai.History[iThread].push({ role: 'assistant', content: ai.Reply[iThread] });        
         else if (x.status >= 400 && x.status < 500 && retries > 0) return setTimeout(() => ++ai.RequestActiveCount^ai.Request(ai.History[iThread].slice(-1)[0].content, d.parentElement, iThread, onDone, retries-1), 1000);
         else ai.Reply[iThread] = `<i>Feil ved kall til KI-tjenesten ${ai.Model[0]}<br/>${!x.status?'Manglende internet?':(() => { try { let err = JSON.parse(x.response?.message || x.responseText); return err?.error?.message || err?.message || x.statusText; } catch { return x.statusText; } })()}</i>`;
         //d.innerHTML = ai.Raw2Htm(ai.Reply[iThread]);
@@ -134,6 +132,7 @@ const ai={
         let x = new XMLHttpRequest(), l=0
             , isAnth = ai.Url[0].includes('.anthropic.')
             , isHugg = ai.Url[0].includes('.huggingface.') //, isGemi = ai.Url[0].includes('.googleapis.')
+            , isGrok = ai.Url[0].includes('.api.x.ai.')
         let u=ai.Url[0]+(isHugg?ai.Model[0]:'');
         x.open("POST", u, true);
         x.setRequestHeader("Content-Type", "application/json");
@@ -151,7 +150,9 @@ const ai={
         }
         else if(isHugg) // Huggingface has model in url
             xml = JSON.stringify({ messages: ai.History[iThread], stream: true });
-        else 
+        else if (isGrok) // Grok takes thoughts separately
+            xml = JSON.stringify({ model: ai.Model[0], messages: ai.History[iThread], stream: true, include_thoughts: false });
+        else
             xml = JSON.stringify({ model: ai.Model[0], messages: ai.History[iThread], stream: true });
         return x.send(xml);
     }
