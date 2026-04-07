@@ -115,4 +115,4 @@ Hvis brukeren stiller spørsmål du ikke er spesiallaget til å besvare, be dem 
   [`Hvilke helsetjenester har jeg rett til?`, `Du har rett til gratis helsesjekk og akutt behandling. Er du registrert hos din fastlege?`],
 ];
 
-cfg.set(cfg_aiPromptWelcome,'(NO) Alt Om Kommunale Tjenester','Llama417Bx16E','p/noaltomkommunaletjenester.png','f,5,2','#ab048f', null, 'Lexend')
+cfg.set(cfg_aiPromptWelcome,'(NO) Alt Om Kommunale Tjenester','Llama 3.3 70B Turbo','p/noaltomkommunaletjenester.png','f,5,2','#ab048f', null, 'Lexend')
