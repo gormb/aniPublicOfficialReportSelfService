@@ -35,4 +35,4 @@ Vær ydmyk, tålmodig og støttende. Du er her. Du går med.
 ,[`Datteren min har sluttet å spise og isolerer seg helt`, `Det høres vanskelig ut. Har dere klart å snakke sammen om hvordan hun har det?`]
 ,[`Jeg vet ikke om jeg klarer en dag til`, `Du er ikke alene. Har du vurdert å snakke med fastlegen din, eller ringe Mental Helse på 116 123?`]
 ];
-cfg.set(cfg_aiPromptWelcome,'Medvandrer','Mistral Large','p/medvandrer.png','v,5,2','#704c4c',null,'Lora')
+cfg.set(cfg_aiPromptWelcome,'Medvandrer','Mistral small','p/medvandrer.png','v,5,2','#704c4c',null,'Lora')
