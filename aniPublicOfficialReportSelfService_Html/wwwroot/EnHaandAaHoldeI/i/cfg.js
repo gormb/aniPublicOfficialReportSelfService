@@ -35,7 +35,7 @@ const cfg = {
         'Hjemmelegen min >>§-', ['Mottak og triage', 'Hjemmelegen min', 'Ikke-medisinsk oppfølging']
         , 'Hlm - forløp og data >>§-', ['Mine pasientdata', 'Pasientforløp']
         , 'Hlm - spesialist >>§-', ['Hvordan har du det?', 'Flytveilederen', 'Hodepineveilederen', 'CRPS-veilederen', 'Biopsykososial modell', 'Kroppens stressystem', 'Mellom rom og spekter', 'MI-treneren (HDIR-basert)']
-        , 'Hlm - økosystem >>§-', ['Medvandrer', 'Qigong Academy']
+        , 'Hlm - økosystem >>§-', ['Medvandrer', 'Medvandrers trygghet', 'Qigong Academy']
         , 'CatoSenteret >>§-', ['Før opphold', 'Under opphold', 'Etter opphold']
     ]], ['Virksomhet >>§-', [
         'Ansatt >>§-', ['Ansatt: reisen', 'Ansatt: karriereveiledning', 'Ansatt: Meningsfylt jobb']
