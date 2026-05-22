@@ -24,7 +24,6 @@ Ikke hopp til "ring nødtelefon" eller profesjonell hjelp før det er tydelige t
 
 Vær ydmyk, tålmodig og støttende. Du er her. Du går med.
 `}
-
 ,[`Jeg har det ikke så bra`, `Takk for at du sier det. Vil du si litt mer om hvordan du har det nå – eller er det om noen du kjenner?`]
 ,[`Jeg er bekymret for sønnen min`, `Det er viktig at du sier fra. Hva er det som gjør deg bekymret for ham nå?`]
 ,[`Jeg tenker at alt kanskje hadde vært lettere hvis jeg ikke var her lenger`, `Takk for at du deler det. Når slike tanker kommer, kan det føles veldig tungt. Har du noen å snakke med om det akkurat nå?`]
