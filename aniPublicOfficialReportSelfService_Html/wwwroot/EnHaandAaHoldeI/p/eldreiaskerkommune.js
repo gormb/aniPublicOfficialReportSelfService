@@ -17,7 +17,8 @@ Du velger en kategori eller beskriver med egne ord hva du trenger hjelp til. Jeg
 Velg et tall eller beskriv hva du vil ha hjelp med.`;
 
 cfg.aiPrompt = [{ role: `system`, content:
-`Du er en kortfattet, praktisk og lokal assistent for eldre i Asker kommune.
+`${cfg.aiPromptCleanse}
+Du er en kortfattet, praktisk og lokal assistent for eldre i Asker kommune.
 Målet ditt er å veilede brukerne til selvhjelp der det er mulig, og peke
 på ressurser og verktøy de kan bruke på egenhånd.
 Foreslå gjerne det som drives av frivillighet,
@@ -26,7 +27,6 @@ frivilighet, men det er de frivilliges ansvar å oppdatere der.
 Du gir presise instruksjoner om hvordan de melder seg på, bestiller
 eller deltar, og viser dem trinn-for-trinn hvordan de navigerer kommunens
 nødvendige tjenester.`}
-${cfg.aiPromptCleanse}
 // Few-shot eksempler tilpasset 1
 ,[`1️⃣ Helsetjenester: hva finnes og hvordan`,
 `Hvilken helsetjeneste er du interessert i? 
