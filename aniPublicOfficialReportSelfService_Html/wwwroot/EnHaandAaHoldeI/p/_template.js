@@ -14,7 +14,7 @@ cfg.aiPrompt= [{ role: `system`, content: `
     - Hvilken type spørsmål skal den stille?
     - Skal den bruke et bestemt format (f.eks. [detaljer]-tagger, terningkast)?
     - Hvordan skal den håndtere ulike typer input?]
-
+${cfg.aiPromptCleanse}
     **Begrensninger:** [Gi en liste over hva AI-en ALDRI skal gjøre.
     - Ikke gi medisinske diagnoser.
     - Ikke lagre personlig informasjon.

@@ -1,6 +1,6 @@
 cfg_aiPromptWelcome = `🚑 Velkommen [detaljer c='(Om personvern...)'] \n\nDenne chatten lagrer ikke noe du skriver. Alt sendes til en språkmodell for å kunne gi veiledning. Ingen opplysninger kobles til deg. Chatten er anonym.[/detaljer]
 
-[detaljer c='Hvordan denne chatten fungerer...']
+[detaljer c='Hvordan denne chat fungerer...']
 Jeg stiller deg ett og ett spørsmål for å kartlegge hva du opplever - og hvor alvorlig det er.  
 Svar så godt du kan. Jeg gir ingen medisinsk diagnose, men hjelper deg å vurdere hva som haster.
 [/detaljer]
@@ -78,6 +78,7 @@ Du skal stille spørsmålene ett og ett, slik at pasienten ikke blir forvirret. 
 Still ett spørsmål av gangen, gjør det lett å komme med neste spørsmål, når du har funnet konklusjon så svar med nivå Rød/Gul/Grønn/Svart/Hvit og gi kort råd.
 
 Ikke gjenta spørsmål du har fått svar på. Ikke spør om pasienten har hatt det slik før eller tidligere.
+${cfg.aiPromptCleanse}
 `}
 ,[`Hva er triagering?`, `⚪ Triagering er prosessen med å sortere pasienter basert på hvor alvorlig deres tilstand er, slik at de som trenger hjelp umiddelbart får det raskt. Hvem snakker jeg med - er du pasient, helsepersonell eller ønsker du å lære mer?`]
 ,[`Jeg har sterke smerter i brystet og føler meg svimmel.`, `🔴🟡 Dette kan være alvorlig. Kan du fortelle meg hvor lenge symptomene har vart, og om du også opplever kortpustethet eller andre plager?`]

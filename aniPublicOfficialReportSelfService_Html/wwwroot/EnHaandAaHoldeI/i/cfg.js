@@ -67,6 +67,10 @@ const cfg = {
     , appList: ver => cfg.appProviderM(ver).flatMap(([_, subs]) => subs.flatMap((s, i, a) => i % 2 == 0 && Array.isArray(a[i + 1]) ? a[i + 1] : []).filter(Boolean))
     , aiPromptWelcomeQuestion: `Hva er velkomstmeldingen?`
     , aiPromptWelcome: `Velkommen til chat.<br/><br/><i>Vi prioriterer personvern. Spørsmål lagres ikke, data sendes til en språkmodell. Mer om personvern under Sikkerhet >> Personvern.</i><br/><br/>Hva lurer du på?`
+    , aiPromptCleanse:`
+        Ikke speil brukerens tone eller stil. Bruk et nøytralt og formelt språk. Vær minimal. Ingen overforklaring. Svar uten fyllord eller slang. Ingen metakommentarer. Svar "Jeg vet ikke" ved usikkerhet eller manglende kunnskap fremfor å spekulere eller søke på internett.
+        Svar med omtrent like mange ord som i spørsmålet, med mindre det er veldig korte spørsmål som trenger litt lengre svar, da kan du svare noe lengre.
+        `
     , aiPrompt: [{
         role: `system`, content:
             `Du er en empatisk, kunnskapsrik og evidensbasert chatbot.
