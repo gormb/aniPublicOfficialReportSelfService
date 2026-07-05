@@ -92,7 +92,9 @@ const cfg = {
             , [['Mistral small', 'mistral-small-latest'], ['Mistral large', 'mistral-large-latest']]]
         , ['Open AI (USA)', 'https://api.openai.com/v1/chat/completions', escape(`4>c=71&6-:lk1<'X1D*YW+T&&!/47ATG}/G57C/5ZjYH~7MN;)EF?/*~9dB%}94BM/~9*Gj\`7+;(?'zOr3,A}L-0,SD)XjQ -HC~VGF4bA, ^3YT;A,w*vFML+Q1A~)&a5FOCx8!c;}3"s Y+51"2=!J?(Y{ZH=S>W@`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             //, [['GPT 5 nano', 'gpt-5-nano'], ['GPT 5', 'gpt-5-mini'], ['GPT 4 nano', 'gpt-4.1-nano'], ['GPT o4', 'o4-mini']]
-              , [['GPT 5.4 nano', 'gpt-5.4-nano'], ['GPT 5.4', 'gpt-5.4'], ['GPT 5.5', 'gpt-5.5'], ['GPT o5 Mini', 'o5-mini'], ['GPT 5 nano', 'gpt-5-nano']]
+              , [['GPT 5.4 nano', 'gpt-5.4-nano'], ['GPT 5.4', 'gpt-5.4']
+              , ['GPT 5.5', 'gpt-5.5'], ['GPT 5.6 Luna', 'gpt-5.6-luna']
+              , ['GPT 5 nano', 'gpt-5-nano']]
         ]
         , ['vestlandet.digital  (Norge)', 'https://api.vestlandet.digital/v1/chat/completions '
             , '4%3Ec%2C%27%7F%24b%7D-y1wdczsk%26xzvw1j4w-q%7F%7Eb%2C%7Cv4wcwzuk'               
@@ -105,7 +107,9 @@ const cfg = {
                 , ['Vestlandet IOT', 'coder', 8192]]
         ]
         , ['Deepseek (Kina)', 'https://api.deepseek.com/v1/chat/completions', escape('4>c-ueq0~|ye%f}zscw4+wrf%1/zp1tl}/s'), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['Deepseek chat', 'deepseek-chat'], ['Deepseek reasoner', 'deepseek-reasoner']]]
+            , [['Deepseek chat', 'deepseek-v4-chat'], ['Deepseek reasoner', 'deepseek-v4-reasoner']
+            , ['Deepseek flash', 'deepseek-v4-flash']
+        ]]
         , ['xAI Grok (USA)', 'https://api.x.ai/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             , [['grok latest', 'grok-4'], ['grok mini', 'grok-4.1-fast-reasoning']]]
         , ['GROQ', 'https://api.groq.com/v1/chat/completions', escape(`?4'cY;/SJ{4Xpb@MJXQ_T-&W"WD!,bS\`w/5\`? ~('>2WWM?Q]%=SA*V~|R_L%{&T$*>))$b^P#]%TLF:*rJ`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
@@ -116,8 +120,8 @@ const cfg = {
             // støtter ikke cross-site
             , [['Arcee Auto', 'auto'], ['Arcee Virtuoso Small', 'virtuoso-small']]]
         , ['Anthropic (USA)', 'https://api.anthropic.com/v1/messages', escape(`4>c//&j4>'qajZ,);(U[YV2"=Jy&3gSW x8Jt]vESr$O|2"X\\84uk_\\;@Y1OP>v.YQE^?'ED=Y_HG %#vW77[]-$EH29>&&F39clDV<)@S`), 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
-            , [['Sonnet (best)', 'claude-3-7-sonnet-20250219'], ['Haiku (raskest)', 'claude-3-7-haiku-20250219']]
-            , 'anthropic-version:2023-06-01^anthropic-dangerous-direct-browser-access:true']
+            , [['Sonnet (best)', 'claude-4.6-sonnet'], ['Haiku (raskest)', 'claude-4-6-haiku-20250219']            
+            ], 'anthropic-version:2023-06-01^anthropic-dangerous-direct-browser-access:true']
         , ['Google Gemini (USA)?', 'https://generativelanguage.googleapis.com/v1beta/openai/', `F%5C4%2FR%2BDEG%7BN8O77%3D4%5E%2C%3BZMQ%3BpOCH5%3F)Z()%25%5D%3EP_`, 'Gi meg et konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste', 'Gi meg enda ett konkret eksempel på neste spørsmål jeg bør stille. Svar kun med spørsmålet, så jeg kan sende dette videre til en annen chat-tjeneste'
             // støtter ikke cross-site
             , [['Gemini flash', 'gemini-1.5-flash'], ['Gemini pro', 'gemini-1.5-pro']]]
