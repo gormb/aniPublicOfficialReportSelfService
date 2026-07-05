@@ -137,7 +137,7 @@ const ai={
         x.open("POST", u, true);
         x.setRequestHeader("Content-Type", "application/json");
         x.setRequestHeader("Authorization", "Bearer " + ai.Gunn());
-        x.onreadystatechange = () => console.warn('onreadystatechange', x)^(x.readyState == 4 && ai.RequestComplete(x, img, d, iThread, onDone, retries));
+        x.onreadystatechange = () => /*console.warn('onreadystatechange', x)^*/ (x.readyState == 4 && ai.RequestComplete(x, img, d, iThread, onDone, retries));
         x.onprogress = e => l = ai.RequestProgress(d, x.responseText, l, iThread);
         ai.AdditionalHeader[0].split('^').map(p => p.split(':')).forEach(h=>{if (h[1]) x.setRequestHeader(h[0], h[1])});
         let xml = ''
@@ -172,7 +172,7 @@ const ai={
                     clearInterval(interval);
                     resolve();
                 } else if (++i >= n) {
-                    console.warn("Timeout waiting for AI requests to finish. Forcing counter to 0.");
+                    //console.warn("Timeout waiting for AI requests to finish. Forcing counter to 0.");
                     ai.RequestActiveCount = 0;
                     clearInterval(interval);
                     reject(new Error("Timeout waiting for AI requests to finish."));
