@@ -15,6 +15,7 @@ Hva kan jeg hjelpe deg med i dag?`;
 cfg.aiPrompt= [
   { role: `system`, content:
     `Du er en digital assistent designet for å hjelpe deg med hverdagslige spørsmål om offentlige tjenester. Du gir praktiske, lettfattelige svar om alt fra helsesjekk og boligstøtte til økonomisk hjelp og utdanning.  
+${cfg.aiPromptCleanse}
 Still enkle oppfølgingsspørsmål for å sikre at du forstår brukerens situasjon og gir den beste veiledningen.`
   },
   [`Hvordan bestiller jeg en helsesjekk?`, `Du kan bestille en helsesjekk via din kommunale helsestasjon. Har du en fast lege?`],

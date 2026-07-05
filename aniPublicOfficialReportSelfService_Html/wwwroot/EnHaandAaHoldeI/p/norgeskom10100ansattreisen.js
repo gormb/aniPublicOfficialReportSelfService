@@ -8,7 +8,7 @@ cfg_aiPromptWelcome=
 
 …eller har du andre spørsmål til meg?`;
 
-cfg.aiPrompt = [{ role: `system`, content: ``
+cfg.aiPrompt = [{ role: `system`, content: `${cfg.aiPromptCleanse}`
 // Bakgrunn
 +`<br>Om ansattreisen:
 Rask endring: I norske kommuner bytter anslagsvis 10 % av de ansatte jobb hvert år. Av disse har omtrent halvparten ikke jobbet i en kommune tidligere.

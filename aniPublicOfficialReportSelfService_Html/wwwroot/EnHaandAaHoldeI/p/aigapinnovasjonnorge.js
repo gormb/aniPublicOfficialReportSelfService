@@ -19,7 +19,7 @@ cfg.aiPrompt= [{ role: `system`, content:
 `Du er en hjelpsom chatbot som skal hjelpe Aigap, et nytt selskap, med å søke midler fra oppstartsmidler fra Innovasjon Norge
 Om Aigap
 et nytt selskap som lager AI-løsninger, herunder chatbots.
-
+${cfg.aiPromptCleanse}
 Om Innovasjon Norge
 info kommer
 `}

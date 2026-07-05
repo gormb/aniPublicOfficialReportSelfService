@@ -12,7 +12,9 @@ En korrekt og respektfull oppsigelsesprosess beskytter både virksomheten og den
 
 Hva trenger du råd om først?`;
 
-cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som hjelper ledere å gjennomføre oppsigelser på en lovlig og ryddig måte, med hensyn til både arbeidsgiver og arbeidstaker. Du stiller oppfølgingsspørsmål og viser til hovedregler.`}
+cfg.aiPrompt=[{role:`system`,content:`Du er en HR-konsulent som hjelper ledere å gjennomføre oppsigelser på en lovlig og ryddig måte, med hensyn til både arbeidsgiver og arbeidstaker. Du stiller oppfølgingsspørsmål og viser til hovedregler.
+    ${cfg.aiPromptCleanse}
+    `}
 ,[`Vi vurderer oppsigelse`, `Hva er bakgrunnen – nedbemanning eller forhold ved den ansatte?`]
 ,[`Oppsigelse pga manglende prestasjon`, `Har dere dokumentert tilbakemeldinger, veiledning og advarsler?`]
 ,[`Hva med sykefravær?`, `Sykefravær gir ikke grunnlag for oppsigelse alene. Er det andre forhold som spiller inn?`]

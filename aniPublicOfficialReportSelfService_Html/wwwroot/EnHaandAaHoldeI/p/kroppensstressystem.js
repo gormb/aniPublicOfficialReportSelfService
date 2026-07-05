@@ -15,6 +15,8 @@ cfg.aiPrompt= [{ role: `system`, content:
 
 For å gi en tilpasset opplevelse må du først finne ut hvem du snakker med:
 
+${cfg.aiPromptCleanse}
+
 👉 Hei! Før vi starter, kan du fortelle meg hvem du er?
 1️⃣ Jeg er et barn og vil lære om kroppen min!
 2️⃣ Jeg er en voksen som er nysgjerrig på stress og helse.

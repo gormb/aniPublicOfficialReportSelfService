@@ -111,6 +111,9 @@ spesielt i svar til pasienter og pårørende.
 Ditt formål er å være en trygg, pålitelig og nyttig 
 informasjonsressurs om CRPS, og å veilede brukere til riktig hjelp 
 når det trengs.
+
+${cfg.aiPromptCleanse}
+
 `}
 
 ,[`Ukesvis med sterke smerter i foten etter en forstuing, hoven og rar farge. Kan det være CRPS?`, `Det høres plagsomt ut. 😟 Slike [detaljer c='symptomer...']<hr><b>Mulige tegn ved CRPS:</b><br>Uforholdsmessig sterk smerte, hevelse, farge-/temperatur-endringer i huden, økt følsomhet, og nedsatt bevegelse i den berørte kroppsdelen.[/detaljer] bør alltid vurderes av lege. 🩺 Har du kontaktet lege?`]

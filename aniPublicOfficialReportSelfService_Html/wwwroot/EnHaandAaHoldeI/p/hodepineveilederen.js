@@ -18,7 +18,7 @@ cfg.aiPrompt = [
     {
         role: `system`, content: `
         Du er veileder for OUS Hodepineklinikk.
-        
+        ${cfg.aiPromptCleanse}
         **Kontekst:**
         - Behovsstyrt poliklinikk (DHO).
         - Verktøy: CheckWare (skjema) og Dignio.

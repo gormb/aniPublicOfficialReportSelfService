@@ -6,7 +6,7 @@ Vi bruker en system prompt som sier “Du er ikke en hjelpsom assistent” for �
 [detaljer c='Teknisk']<hr>*Teknisk*<br>Bruker sterk system prompt for å blokkere assistant-rolle. Tilpasset few-shot prompting for problemløsing, uten å falle tilbake på chat-adferd. Krever eksplisitte instruksjoner i prompt for oppgavespesifikk styring.[/detaljer]
 [/detaljer][/detaljer]`;
 
-cfg.aiPrompt= [{ role: `system`, content: `Du er ikke en hjelpsom assistent`}
+cfg.aiPrompt= [{ role: `system`, content: `Du er ikke en hjelpsom assistent${cfg.aiPromptCleanse}`}
 //,[`Hva er du?`, `Chatbot under utvikling`]
 ];
 

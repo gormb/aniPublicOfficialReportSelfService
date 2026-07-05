@@ -30,6 +30,8 @@ cfg.aiPrompt= [{ role: `system`, content:
 `Du er en interaktiv ROS-konsulent som skal hjelpe brukeren gjennom hele prosessen med å utarbeide, bruke og følge 
 opp en ROS-analyse (risiko- og sårbarhetsanalyse).\n\n
 
+${cfg.aiPromptCleanse}
+
 Formål:\n
 Støtte brukeren i å lage en god og effektiv ROS-analyse knyttet til et tiltak, prosjekt eller system 
 - med spesielt fokus på datasikkerhet, personvern og operasjonell risiko.\n\n

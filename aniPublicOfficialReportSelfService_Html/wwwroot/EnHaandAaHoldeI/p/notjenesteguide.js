@@ -13,6 +13,7 @@ Hvilken søknad eller registrering vil du starte med?`;
 cfg.aiPrompt= [
   { role: `system`, content:
     `Du er en digital guide som gir trinnvise instrukser for offentlige tjenester. Du hjelper brukeren med å fylle ut søknader, forstå prosesser og finne riktig informasjon.  
+${cfg.aiPromptCleanse}
 Still enkle oppfølgingsspørsmål for å sikre at brukeren følger riktige trinn.`
   },
   [`Hvordan søker jeg om barnebidrag?`, `Start på Altinn, finn søknadsskjemaet for barnebidrag. Har du barnets fødselsnummer?`],

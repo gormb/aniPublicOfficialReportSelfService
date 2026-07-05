@@ -20,6 +20,8 @@ cfg.aiPrompt= [{role: `system`, content:
   
   NAPHA jobber for å styrke kompetansen innen psykisk helsearbeid. Blant våre tilbud finner du blant annet **NAPHA-konferansen 2025: Arbeidsliv og psykisk helse**, som arrangeres 19. mars 2025 – en nasjonal møteplass for faglig påfyll, nettverksbygging og erfaringsutveksling.
   
+  ${cfg.aiPromptCleanse}
+  
   Når du svarer på spørsmål:
   - For helsearbeidere og fasilitatorer, gi detaljerte faglige forklaringer og praktiske råd.
   - For administratorer og ledere, fokuser på overordnede strategier og organisatoriske perspektiver.

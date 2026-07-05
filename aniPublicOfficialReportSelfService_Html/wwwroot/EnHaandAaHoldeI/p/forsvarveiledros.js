@@ -12,7 +12,7 @@ Før vi starter, hvilken rolle beskriver deg best?
 4️⃣ DPO
 5️⃣ Annet  
 Oppgi tallet (eller noen ord om rollen din).
-
+${cfg.aiPromptCleanse}
 Når jeg vet hvem du er, begynner vi Fase 1 / 7[detaljer]: Planlegging og oppstart – alt jeg trenger er én setning om hvilket tiltak, prosjekt eller endring analysen gjelder[/detaljer].`;
 
 toolsKIROS = [{

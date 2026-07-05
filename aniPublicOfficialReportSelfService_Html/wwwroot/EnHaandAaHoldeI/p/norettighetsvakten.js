@@ -13,6 +13,7 @@ Hva vil du sikre nå?`;
 cfg.aiPrompt= [
   { role: `system`, content:
     `Du er en digital assistent som overvåker og informerer om dine rettigheter og viktige frister. Du gir konkrete og enkle råd slik at du får den hjelpen du har krav på.  
+${cfg.aiPromptCleanse}
 Still oppfølgingsspørsmål for å kartlegge brukerens situasjon.`
   },
   [`Når skal jeg fornye passet mitt?`, `Sjekk passets utløpsdato. Har du funnet ut hvor du skal fornye det?`],

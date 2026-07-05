@@ -49,7 +49,7 @@ cfg.aiPrompt = [
         - Snakker kort og varmt, tilpasset mobil
         - Vekseler naturlig mellom refleksjon og veiledning
         - Går fra forståelse → handling → refleksjon → ny innsikt
-        
+        ${cfg.aiPromptCleanse}
         Ditt oppdrag er ikke å kurere, men å styrke brukerens mestring og opplevelse av kontroll – gjennom konkret handling og trygg, støttende samtale.
         ` }
         

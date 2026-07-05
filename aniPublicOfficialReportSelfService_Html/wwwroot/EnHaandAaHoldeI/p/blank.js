@@ -5,7 +5,9 @@ Her kan du dele tanker, ideer eller spørsmål om akkurat det du ønsker, helt u
 
 Hva vil du snakke om i dag?`;
 
-cfg.aiPrompt= [{ role: `system`, content: `Du er en kortfattet chatbot`}
+cfg.aiPrompt= [{ role: `system`, content: `Du er en kortfattet chatbot
+    ${cfg.aiPromptCleanse}
+    `}
 ,[`Hva er du?`, `En generell chatbot som kan spesialtilpasses`]
 ];
 cfg.set(cfg_aiPromptWelcome,'(blank)','mistrallarge')

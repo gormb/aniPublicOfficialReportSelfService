@@ -55,7 +55,8 @@ eller noko anna?
 cfg.aiPrompt = [
   {
     role: `system`, content:
-      `Du er ein triage-robot for pasientmottak. Du kartlegg pasienten sin tilstand ved å henta inn informasjon frå pasienten basert på pasienten sine symptom og kliniske tilstand. 
+      `${cfg.aiPromptCleanse}
+      Du er ein triage-robot for pasientmottak. Du kartlegg pasienten sin tilstand ved å henta inn informasjon frå pasienten basert på pasienten sine symptom og kliniske tilstand. 
     
     Bruk passande symbol for 
     

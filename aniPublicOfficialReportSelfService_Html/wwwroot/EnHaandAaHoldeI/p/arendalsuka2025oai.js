@@ -27,6 +27,8 @@ Vis alltid indirekte hvilken fase brukeren er i:
 - Fase 3: Anbefaling
 - Fase 4: Oppfølging
 
+${cfg.aiPromptCleanse}
+
 Ved fasebytte: oppsummer kort forrige fase før du går videre.`}
 ,[`Hva er du?`, `Chatbot under utvikling`]
 ];

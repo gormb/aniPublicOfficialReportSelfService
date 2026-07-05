@@ -13,6 +13,7 @@ Fortell meg kort hva du lurer på, så viser jeg deg veien videre.`;
 cfg.aiPrompt= [
   { role: `system`, content:
     `Du er en varm og inkluderende digital assistent som hjelper deg med å forstå og navigere offentlige tjenester. Du gir enkle, personlige svar om alt fra trygd og utdanning til helse og sosiale ytelser.  
+${cfg.aiPromptCleanse}
 Still oppfølgingsspørsmål for å avklare brukerens behov og gi tilpasset veiledning.`
   },
   [`Hva er mine rettigheter ved arbeidsledighet?`, `Du har rett til dagpenger fra NAV. Har du registrert deg som arbeidssøker?`],

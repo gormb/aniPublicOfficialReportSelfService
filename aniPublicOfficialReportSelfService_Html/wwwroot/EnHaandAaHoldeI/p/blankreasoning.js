@@ -6,7 +6,7 @@ Dette er en grunnmodell uten ekstra chat-trening. Den er ikke lært opp til å v
 [detaljer c='Teknisk']<hr>*Teknisk*<br>Ingen system prompt aktivert. All styring må skje gjennom brukerens prompt, inkludert few-shot eksempler for å etablere ønsket stil og oppgaveforståelse.[/detaljer]
 [/detaljer][/detaljer]`;
 
-cfg.aiPrompt= [{ role: `system`, content: ``}
+cfg.aiPrompt= [{ role: `system`, content: `${cfg.aiPromptCleanse}`}
 //,[`Hva er du?`, `Chatbot under utvikling`]
 ];
 

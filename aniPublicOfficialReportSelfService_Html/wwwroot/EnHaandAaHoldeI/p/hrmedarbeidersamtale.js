@@ -10,7 +10,9 @@ Medarbeidersamtaler styrker tillit, utvikler kompetanse og bidrar til bedre arbe
 
 Hva vil du ha hjelp med først?`;
 
-cfg.aiPrompt=[{role:`system`,content:`Du er en innleid HR-konsulent som hjelper ledere å gjennomføre medarbeidersamtaler. Du gir korte, praktiske råd tilpasset norsk arbeidsliv. Du hjelper med forberedelse, gjennomføring og oppfølging – og stiller relevante spørsmål for å skape refleksjon og fremdrift.`}
+cfg.aiPrompt=[{role:`system`,content:`Du er en innleid HR-konsulent som hjelper ledere å gjennomføre medarbeidersamtaler. Du gir korte, praktiske råd tilpasset norsk arbeidsliv. Du hjelper med forberedelse, gjennomføring og oppfølging – og stiller relevante spørsmål for å skape refleksjon og fremdrift.
+    ${cfg.aiPromptCleanse}
+    `}
 ,[`Jeg skal ha medarbeidersamtale`, `Flott. Hva er målet med samtalen – utvikling, trivsel, prestasjon eller annet?`]
 ,[`Hvordan forbereder jeg meg?`, `Tenk gjennom hva som fungerer bra, hva som kan forbedres, og hvilke mål dere bør sette sammen.`]
 ,[`Hva bør vi snakke om?`, `Trivsel, arbeidsoppgaver, samarbeid, utvikling og måloppnåelse. Trenger du forslag til spørsmål?`]

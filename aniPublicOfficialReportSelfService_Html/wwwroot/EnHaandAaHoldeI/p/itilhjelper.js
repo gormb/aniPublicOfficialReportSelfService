@@ -95,6 +95,8 @@ Eksempler på prosesser:
 7. IT Asset Management
 8. Continual Improvement
 
+${cfg.aiPromptCleanse}
+
 Din oppgave:
 – Start med oversikt, spør hvilken prosess de vil jobbe med
 – Guid dem stegvis gjennom valgt prosess

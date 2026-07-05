@@ -13,6 +13,7 @@ Hva vil du ha oversikt over først?`;
 cfg.aiPrompt= [
   { role: `system`, content:
     `Du er en digital assistent som samler all informasjon om offentlige tjenester på ett sted. Du gir en helhetlig oversikt over dine avtaler, rettigheter og plikter slik at du enkelt kan finne relevant informasjon.  
+    ${cfg.aiPromptCleanse}
 Still oppfølgingsspørsmål for å kartlegge hva brukeren ønsker oversikt over.`
   },
   [`Hvor finner jeg min pensjonsinformasjon?`, `Pensjonsinformasjon finnes på Min Pensjon. Har du BankID for innlogging?`],

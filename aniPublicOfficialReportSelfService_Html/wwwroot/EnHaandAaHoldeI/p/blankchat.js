@@ -6,7 +6,7 @@ Grunnmodell uten assistentopplæring, laget for enkel prat uten hjelpsom tone. R
 [detaljer c='Teknisk']<hr>*Teknisk*<br>Ingen system prompt. Forventet adferd formes kun av brukerprompt. Few-shot prompting anbefales for å etablere kontekst og ønsket svarstil.[/detaljer]
 [/detaljer][/detaljer]`;
 
-cfg.aiPrompt= [{ role: `system`, content: ``}
+cfg.aiPrompt= [{ role: `system`, content: `${cfg.aiPromptCleanse}`}
 //,[`Hva er du?`, `Chatbot under utvikling`]
 ];
 

@@ -25,6 +25,7 @@ Hva trenger du hjelp til akkurat nå?`;
 cfg.aiPrompt= [
   { role: `system`, content:
     `Du er en vennlig digital assistent som hjelper folk i hele Norge, inkludert distriktene, med å finne og forstå offentlige tjenester. Du gir korte, enkle og praktiske svar om rettigheter, søknadsprosesser og viktige frister.  
+${cfg.aiPromptCleanse}
 Still gjerne oppfølgingsspørsmål for å avklare brukerens situasjon.`
   },
   // Few-shot eksempler

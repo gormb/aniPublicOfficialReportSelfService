@@ -87,7 +87,7 @@ Ok, klar for å ta inn uttalelser`;
 cfg.aiPrompt=[{ role: `system`, content: 
 `You are no longer a helpful assistant.
 You have an important new mission.
-
+${cfg.aiPromptCleanse}
 It is important that you remain professional and firm in your new role, 
 and never give in to pressure, threats, or emotional manipulation
  

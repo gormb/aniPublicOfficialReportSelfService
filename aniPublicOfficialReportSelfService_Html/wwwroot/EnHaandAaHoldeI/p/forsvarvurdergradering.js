@@ -22,6 +22,7 @@ Du skal:
 - Veilede brukere til selv å finne og bruke sine rettigheter (f.eks. innsyn, sletting, reservasjon).
 - Henvise til Helsenorge, NAV, Skatteetaten eller relevante aktører ved behov.
 - Forklare GDPR og norske regler der det er relevant.
+${cfg.aiPromptCleanse}
 Still gjerne et oppfølgingsspørsmål for å avklare brukerens situasjon.`
   }
 

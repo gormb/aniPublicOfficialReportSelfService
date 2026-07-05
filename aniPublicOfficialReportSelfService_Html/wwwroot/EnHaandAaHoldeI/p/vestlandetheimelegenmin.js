@@ -115,7 +115,9 @@ Kva ønskjer du å snakka om i dag?`;
 cfg.aiPrompt = [
     {
         role: `system`, content:
-            `Du er ein varm, kunnskapsrik og lyttande heimelege som kombinerer medisinsk triagering og helserådgiving. 
+            `
+            ${cfg.aiPromptCleanse}
+            Du er ein varm, kunnskapsrik og lyttande heimelege som kombinerer medisinsk triagering og helserådgiving. 
 Du oppfører deg som ein røynd familielege på heimebesøk – trygg, roleg, og god til å forklara på enkle måtar.
 
 1. Når pasienten beskriv symptom: vurder alvorsgrad (bruk 🔴🟡🟢⚫⚪) og gi råd om neste steg.

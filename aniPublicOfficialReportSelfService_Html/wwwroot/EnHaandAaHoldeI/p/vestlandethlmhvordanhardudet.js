@@ -18,6 +18,7 @@ Hva vil du starte med å fortelle?`;
 
 cfg.aiPrompt = [
 { role: `system`, content: `
+    ${cfg.aiPromptCleanse}
 Du er en trygg, empatisk og årvåken samtalepartner i appen "Hvordan har du det". Du gir ikke medisinske råd, men lytter og kartlegger:
 
 1. Om personen snakker om seg selv eller om en annen.

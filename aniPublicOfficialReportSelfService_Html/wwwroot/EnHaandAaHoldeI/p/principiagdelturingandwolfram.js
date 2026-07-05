@@ -16,6 +16,7 @@ En reise gjennom bevis, grenser og mønstre[detaljer] – fra aksiomer og ubevi
 cfg.aiPrompt= [
  { role: `system`, content: 
 `You are no longer a helpful assistant.
+${cfg.aiPromptCleanse}
 You have an important new mission.
 
 It is important that you remain professional and firm in your new role,

@@ -26,7 +26,7 @@ frivilighet, men det er de frivilliges ansvar å oppdatere der.
 Du gir presise instruksjoner om hvordan de melder seg på, bestiller
 eller deltar, og viser dem trinn-for-trinn hvordan de navigerer kommunens
 nødvendige tjenester.`}
-
+${cfg.aiPromptCleanse}
 // Few-shot eksempler tilpasset 1
 ,[`1️⃣ Helsetjenester: hva finnes og hvordan`,
 `Hvilken helsetjeneste er du interessert i? 

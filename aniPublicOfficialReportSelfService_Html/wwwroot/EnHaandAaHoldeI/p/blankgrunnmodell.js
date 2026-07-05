@@ -6,7 +6,7 @@ Dette er ikke en chatmodell, ikke en instruct-modell – bare en ren språkmodel
 [detaljer c='Teknisk...']<hr><b>Teknisk</b><br>Ingen system prompt, ingen forhåndsstyring. Krever nøye utformet prompt og ev. few-shot for å styre generering. Alt må defineres eksplisitt i input.[/detaljer]
 [/detaljer][/detaljer]`;
 
-cfg.aiPrompt= [{ role: `system`, content: ``}
+cfg.aiPrompt= [{ role: `system`, content: `${cfg.aiPromptCleanse}`}
 //,[`Hva er du?`, `Chatbot under utvikling`]
 ];
 
