@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate N-Body Sandbox</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #020617;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #f3f4f6;
+            user-select: none;
+        }
+        
+        #simCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: 1;
+        }
+
+        #uiLayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 12px;
+        }
+
+        /* Responsive layout container that shifts gracefully from row to column on small screens */
+        #topContainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            width: 100%;
+            pointer-events: auto;
+        }
+
+        header {
+            text-align: left;
+            flex-shrink: 0;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff007f, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        #info {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin-top: 2px;
+        }
+
+        #topContainer, #explanationPanel {
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+        }
+
+        .user-idle #topContainer {
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
+        .user-idle #explanationPanel {
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        /* Controls wrapper allows wrap execution natively across multiple breakpoints */
+        #controls {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background-color: rgba(15, 23, 42, 0.95);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            max-width: 100%;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        label, select, button {
+            font-size: 0.75rem;
+            color: white;
+            font-weight: 500;
+        }
+        label {
+            color: #cbd5e1;
+        }
+        select {
+            background-color: #1e293b;
+            border: 1px solid #475569;
+            padding: 4px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+            max-width: 150px;
+        }
+        button {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-primary { background-color: #2563eb; }
+        .btn-primary:hover { background-color: #1d4ed8; }
+        .btn-danger { background-color: #dc2626; }
+        .btn-danger:hover { background-color: #b91c1c; }
+        .btn-success { background-color: #16a34a; }
+        .btn-success:hover { background-color: #15803d; }
+        button:active { transform: scale(0.95); }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .checkbox-container input {
+            cursor: pointer;
+            margin: 0;
+        }
+
+        #explanationPanel {
+            background-color: rgba(17, 24, 39, 0.9);
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #d1d5db;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            max-width: 100%;
+            pointer-events: auto;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+        }
+        #explanationPanel h2 {
+            margin: 0 0 4px 0;
+            font-size: 0.85rem;
+            color: #f3f4f6;
+        }
+        #explanationPanel p {
+            margin: 0;
+        }
+
+        /* Mobile specific media overrides to handle tight mobile viewports cleanly */
+        @media (max-width: 768px) {
+            #topContainer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            #controls {
+                justify-content: flex-start;
+                width: 100%;
+            }
+            select {
+                max-width: 100%;
+                flex-grow: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="simCanvas"></canvas>
+
+    <div id="uiLayer">
+        <div id="topContainer">
+            <header>
+                <h1>N-Body Engine</h1>
+                <div id="info">Iter: <span id="timeCounter">0</span> | Warp: <span id="speedMultiplier">1.0</span>x</div>
+            </header>
+
+            <div id="controls">
+                <div class="control-group">
+                    <label for="simMode">Mode:</label>
+                    <select id="simMode" onchange="resetSimulation()">
+                        <option value="random3" selected>3-Body Chaos</option>
+                        <option value="random2">2-Body Chaos</option>
+                        <option value="random4">4-Body Chaos</option>
+                        <option value="random5">5-Body Chaos</option>
+                        <option value="random6">6-Body Chaos</option>
+                        <option value="random8">8-Body Chaos</option>
+                        <option value="random10">10-Body Chaos</option>
+                        <option value="trisolaris">Trisolaris Preset</option>
+                        <option value="solSystem">Sol System Preset</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="accelerateTime" onchange="toggleAcceleration()" checked>
+                    <label for="accelerateTime" style="color: #ff007f;">Warp ⚡</label>
+                </div>
+
+                <div class="control-group">
+                    <button id="toggleBtn" class="btn-danger" onclick="togglePlayback()">Stop</button>
+                    <button class="btn-primary" onclick="resetSimulation()">Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="explanationPanel">
+            <h2>System Status</h2>
+            <p>Time compounds exponentially. Interface scales down and wraps on phones. Tap screen to wake UI.</p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('simCanvas');
+        const ctx = canvas.getContext('2d');
+        const timeCounter = document.getElementById('timeCounter');
+        const speedMultiplierDisplay = document.getElementById('speedMultiplier');
+        const simModeSelect = document.getElementById('simMode');
+        const accelerateCheckbox = document.getElementById('accelerateTime');
+        const toggleBtn = document.getElementById('toggleBtn');
+
+        let baseG = 100;                 
+        let baseDT = 0.008;                 
+        let STEPS_PER_FRAME = 45;   
+        let MAX_TRAIL_LENGTH = 1000; 
+
+        let G = baseG;
+        let DT = baseDT;
+        let speedMultiplier = 1.0;
+
+        let currentSecond = 0;
+        let animationFrameId;
+        let isRunning = true;
+        let bodies = []; 
+
+        const palette = [
+            '#ff007f', '#00f2fe', '#fff200', '#38ef7d', 
+            '#a855f7', '#ff9f43', '#00dbde', '#ff4757',
+            '#2ed573', '#1e90ff', '#eccc68'
+        ];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Lower target trace updates size metrics to prevent mobile trailing overhead bottlenecks
+            if (window.innerWidth < 768) {
+                MAX_TRAIL_LENGTH = 400;
+                STEPS_PER_FRAME = 35;
+            } else {
+                MAX_TRAIL_LENGTH = 1000;
+                STEPS_PER_FRAME = 45;
+            }
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let idleTimer;
+        const IDLE_TIME_MS = 2000; 
+
+        function resetIdleTimer() {
+            document.body.classList.remove('user-idle');
+            canvas.style.cursor = 'default';
+
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(goIdle, IDLE_TIME_MS);
+        }
+
+        function goIdle() {
+            if (document.activeElement.tagName !== 'SELECT') {
+                document.body.classList.add('user-idle');
+                canvas.style.cursor = 'none';
+            }
+        }
+
+        window.addEventListener('mousemove', resetIdleTimer);
+        window.addEventListener('mousedown', resetIdleTimer);
+        window.addEventListener('touchstart', resetIdleTimer);
+        window.addEventListener('keydown', resetIdleTimer);
+        simModeSelect.addEventListener('change', resetIdleTimer);
+        
+        resetIdleTimer();
+
+        function randomRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function rotateVector(x, y, angle) {
+            return {
+                x: x * Math.cos(angle) - y * Math.sin(angle),
+                y: x * Math.sin(angle) + y * Math.cos(angle)
+            };
+        }
+
+        function toggleAcceleration() {
+            if (!accelerateCheckbox.checked) {
+                DT = baseDT;
+                speedMultiplier = 1.0;
+                speedMultiplierDisplay.innerText = "1.0";
+            }
+        }
+
+        function resetSimulation() {
+            cancelAnimationFrame(animationFrameId);
+            currentSecond = 0;
+            speedMultiplier = 1.0;
+            speedMultiplierDisplay.innerText = "1.0";
+            isRunning = true;
+            toggleBtn.innerText = "Stop";
+            toggleBtn.className = "btn-danger";
+            
+            bodies = [];
+            const mode = simModeSelect.value;
+            const globalRotation = randomRange(0, Math.PI * 2);
+
+            if (mode === "solSystem") {
+                baseG = 1; baseDT = 0.4; G = baseG; DT = baseDT;
+                const sunMass = 50000;
+                
+                bodies.push({
+                    mass: sunMass, radius: 12, x: 0, y: 0, vx: 0, vy: 0,
+                    ax: 0, ay: 0, color: '#fff200', path: [], isSun: true
+                });
+
+                const solColors = ['#9ca3af', '#ff9f43', '#00f2fe', '#ff4757', '#eccc68', '#ffa502', '#7bed9f', '#1e90ff', '#a855f7'];
+                for (let i = 0; i < 9; i++) {
+                    const distance = 45 + (i * 20);
+                    const planetAngle = randomRange(0, Math.PI * 2);
+                    const vOrbit = Math.sqrt((G * sunMass) / distance);
+
+                    bodies.push({
+                        mass: randomRange(5, 30), radius: randomRange(2.5, 5),
+                        x: Math.cos(planetAngle) * distance, y: Math.sin(planetAngle) * distance,
+                        vx: -Math.sin(planetAngle) * vOrbit, vy: Math.cos(planetAngle) * vOrbit,
+                        ax: 0, ay: 0, color: solColors[i], path: [], isSun: false
+                    });
+                }
+            } 
+            else if (mode === "trisolaris") {
+                baseG = 120; baseDT = 0.006; G = baseG; DT = baseDT;
+                
+                const rawPositions = [
+                    { x: -120, y: 40, vx: 1.2, vy: -1.5, mass: 2000, radius: 9, color: '#ff4757', isSun: true },
+                    { x: 120, y: -40, vx: -1.2, vy: 1.5, mass: 2000, radius: 9, color: '#ffa502', isSun: true },
+                    { x: 0, y: 90, vx: 2.2, vy: 0.5, mass: 2000, radius: 9, color: '#ff007f', isSun: true },
+                    { x: -20, y: -15, vx: -1.0, vy: -2.0, mass: 1, radius: 3, color: '#00f2fe', isSun: false }
+                ];
+
+                rawPositions.forEach(raw => {
+                    const rotatedPos = rotateVector(raw.x, raw.y, globalRotation);
+                    const rotatedVel = rotateVector(raw.vx, raw.vy, globalRotation);
+                    
+                    bodies.push({
+                        mass: raw.mass, radius: raw.radius,
+                        x: rotatedPos.x, y: rotatedPos.y,
+                        vx: rotatedVel.x, vy: rotatedVel.y,
+                        ax: 0, ay: 0, color: raw.color, path: [], isSun: raw.isSun
+                    });
+                });
+            }
+            else {
+                baseG = 100; baseDT = 0.008; G = baseG; DT = baseDT;
+                const numBodies = parseInt(mode.replace("random", ""), 10);
+
+                for (let i = 0; i < numBodies; i++) {
+                    const angle = (i * 2 * Math.PI) / numBodies;
+                    const orbitRadius = randomRange(80, 130);
+                    const speed = randomRange(1.4, 2.2); 
+
+                    bodies.push({
+                        mass: randomRange(800, 1400), radius: 6,
+                        x: Math.cos(angle) * orbitRadius + randomRange(-20, 20),
+                        y: Math.sin(angle) * orbitRadius + randomRange(-20, 20),
+                        vx: -Math.sin(angle) * speed, vy: Math.cos(angle) * speed,
+                        ax: 0, ay: 0, color: palette[i % palette.length], path: [], isSun: false
+                    });
+                }
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            loop();
+        }
+
+        function togglePlayback() {
+            if (isRunning) {
+                isRunning = false;
+                cancelAnimationFrame(animationFrameId);
+                toggleBtn.innerText = "Start";
+                toggleBtn.className = "btn-success";
+            } else {
+                isRunning = true;
+                toggleBtn.innerText = "Stop";
+                toggleBtn.className = "btn-danger";
+                loop();
+            }
+        }
+
+        function updatePhysics() {
+            const num = bodies.length;
+            for (let i = 0; i < num; i++) {
+                bodies[i].ax = 0;
+                bodies[i].ay = 0;
+            }
+
+            for (let i = 0; i < num; i++) {
+                for (let j = i + 1; j < num; j++) {
+                    let dx = bodies[j].x - bodies[i].x;
+                    let dy = bodies[j].y - bodies[i].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 14) distance = 14; 
+
+                    let forceMagI = (G * bodies[j].mass) / (distance * distance);
+                    let forceMagJ = (G * bodies[i].mass) / (distance * distance);
+
+                    bodies[i].ax += forceMagI * (dx / distance);
+                    bodies[i].ay += forceMagI * (dy / distance);
+                    bodies[j].ax -= forceMagJ * (dx / distance);
+                    bodies[j].ay -= forceMagJ * (dy / distance);
+                }
+            }
+
+            for (let i = 0; i < num; i++) {
+                if (simModeSelect.value === "solSystem" && bodies[i].isSun) {
+                    bodies[i].path.push({ x: 0, y: 0 });
+                    continue;
+                }
+
+                bodies[i].vx += bodies[i].ax * DT;
+                bodies[i].vy += bodies[i].ay * DT;
+                bodies[i].x += bodies[i].vx * DT;
+                bodies[i].y += bodies[i].vy * DT;
+
+                bodies[i].path.push({ x: bodies[i].x, y: bodies[i].y });
+                if (bodies[i].path.length > MAX_TRAIL_LENGTH) {
+                    bodies[i].path.shift();
+                }
+            }
+        }
+
+        function loop() {
+            if (!isRunning) return;
+
+            if (accelerateCheckbox.checked) {
+                speedMultiplier *= 1.0025; 
+                DT = baseDT * speedMultiplier;
+                speedMultiplierDisplay.innerText = speedMultiplier.toFixed(1);
+            }
+
+            for (let step = 0; step < STEPS_PER_FRAME; step++) {
+                updatePhysics();
+                currentSecond++;
+            }
+
+            timeCounter.innerText = currentSecond;
+            draw();
+
+            animationFrameId = requestAnimationFrame(loop);
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(2, 6, 23, 0.12)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            let maxDist = 200;
+            for (let i = 0; i < bodies.length; i++) {
+                maxDist = Math.max(maxDist, Math.abs(bodies[i].x), Math.abs(bodies[i].y));
+            }
+            const scale = (Math.min(canvas.width, canvas.height) / 2 * 0.82) / maxDist;
+
+            for (let i = 0; i < bodies.length; i++) {
+                let b = bodies[i];
+                if (b.path.length < 2) continue;
+
+                ctx.beginPath();
+                ctx.strokeStyle = b.color;
+                ctx.lineWidth = b.isSun ? 1.0 : 1.5;
+                ctx.globalAlpha = b.isSun ? 0.3 : 0.65;
+                
+                ctx.moveTo(b.path[0].x * scale + centerX, b.path[0].y * scale + centerY);
+                for (let p = 1; p < b.path.length; p++) {
+                    ctx.lineTo(b.path[p].x * scale + centerX, b.path[p].y * scale + centerY);
+                }
+                ctx.stroke();
+            }
+
+            ctx.globalAlpha = 1.0;
+            for (let i = 0; i < bodies.length; i++) {
+                let b = bodies[i];
+                let screenX = b.x * scale + centerX;
+                let screenY = b.y * scale + centerY;
+
+                ctx.beginPath();
+                ctx.arc(screenX, screenY, b.radius, 0, 2 * Math.PI);
+                ctx.fillStyle = b.color;
+                
+                ctx.shadowColor = b.color;
+                ctx.shadowBlur = b.isSun ? 12 : 6;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        resetSimulation();
+    </script>
+</body>
+</html>
