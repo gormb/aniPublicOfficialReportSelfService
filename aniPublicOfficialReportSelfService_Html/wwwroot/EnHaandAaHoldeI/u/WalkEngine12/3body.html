@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The Ultimate N-Body Sandbox</title>
     <style>
         * {
@@ -18,6 +18,7 @@
             font-family: system-ui, -apple-system, sans-serif;
             color: #f3f4f6;
             user-select: none;
+            touch-action: manipulation; /* Disables standard double-tap zoom delay */
         }
         
         #simCanvas {
@@ -44,7 +45,6 @@
             padding: 12px;
         }
 
-        /* Responsive layout container that shifts gracefully from row to column on small screens */
         #topContainer {
             display: flex;
             flex-direction: row;
@@ -72,23 +72,23 @@
             margin-top: 2px;
         }
 
+        /* Shared transition timing for fade effects */
         #topContainer, #explanationPanel {
             transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 1;
         }
 
-        .user-idle #topContainer {
-            opacity: 0;
-            transform: translateY(-10px);
-            pointer-events: none;
+        /* Class rule toggles interface visibility explicitly on interaction states */
+        .user-active #topContainer {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            pointer-events: auto !important;
         }
-        .user-idle #explanationPanel {
-            opacity: 0;
-            transform: translateY(10px);
-            pointer-events: none;
+        .user-active #explanationPanel {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            pointer-events: auto !important;
         }
 
-        /* Controls wrapper allows wrap execution natively across multiple breakpoints */
         #controls {
             display: flex;
             align-items: center;
@@ -164,7 +164,6 @@
             font-size: 0.75rem;
             line-height: 1.4;
             max-width: 100%;
-            pointer-events: auto;
             backdrop-filter: blur(4px);
             box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
         }
@@ -177,7 +176,6 @@
             margin: 0;
         }
 
-        /* Mobile specific media overrides to handle tight mobile viewports cleanly */
         @media (max-width: 768px) {
             #topContainer {
                 flex-direction: column;
@@ -199,17 +197,17 @@
     <canvas id="simCanvas"></canvas>
 
     <div id="uiLayer">
-        <div id="topContainer">
+        <div id="topContainer" style="opacity: 0; transform: translateY(-10px); pointer-events: none;">
             <header>
-                <h1>N-Body Engine</h1>
+                <h1>N-Body Engine v0.9</h1>
                 <div id="info">Iter: <span id="timeCounter">0</span> | Warp: <span id="speedMultiplier">1.0</span>x</div>
-            </header>
+            </header> 
 
             <div id="controls">
                 <div class="control-group">
                     <label for="simMode">Mode:</label>
                     <select id="simMode" onchange="resetSimulation()">
-                        <option value="random3" selected>3-Body Chaos</option>
+                        <option value="random3" selected>3 Body Chaos</option>
                         <option value="random2">2-Body Chaos</option>
                         <option value="random4">4-Body Chaos</option>
                         <option value="random5">5-Body Chaos</option>
@@ -233,9 +231,9 @@
             </div>
         </div>
 
-        <div id="explanationPanel">
+        <div id="explanationPanel" style="opacity: 0; transform: translateY(10px); pointer-events: none;">
             <h2>System Status</h2>
-            <p>Time compounds exponentially. Interface scales down and wraps on phones. Tap screen to wake UI.</p>
+            <p>Time compounds exponentially. Tap/move to show controls. Double-click/Double-tap window anywhere to trigger Reset.</p>
         </div>
     </div>
 
@@ -271,7 +269,6 @@
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            // Lower target trace updates size metrics to prevent mobile trailing overhead bottlenecks
             if (window.innerWidth < 768) {
                 MAX_TRAIL_LENGTH = 400;
                 STEPS_PER_FRAME = 35;
@@ -283,11 +280,12 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
+        // --- UX IDLE / VISIBILITY CONTROLLER ---
         let idleTimer;
         const IDLE_TIME_MS = 2000; 
 
         function resetIdleTimer() {
-            document.body.classList.remove('user-idle');
+            document.body.classList.add('user-active');
             canvas.style.cursor = 'default';
 
             clearTimeout(idleTimer);
@@ -296,18 +294,53 @@
 
         function goIdle() {
             if (document.activeElement.tagName !== 'SELECT') {
-                document.body.classList.add('user-idle');
+                document.body.classList.remove('user-active');
                 canvas.style.cursor = 'none';
             }
         }
 
+        // Active tracking listeners
         window.addEventListener('mousemove', resetIdleTimer);
         window.addEventListener('mousedown', resetIdleTimer);
         window.addEventListener('touchstart', resetIdleTimer);
         window.addEventListener('keydown', resetIdleTimer);
         simModeSelect.addEventListener('change', resetIdleTimer);
+
+        // --- MOBILE DOUBLE-TAP / DESKTOP DOUBLE-CLICK UNIFIED CONTROLLER ---
+        let lastTap = 0;
+        function handleResetGesture(e) {
+            // Stop logic tracking execution if interacting inside controls box layout directly
+            if (document.getElementById('controls').contains(e.target)) {
+                return;
+            }
+            
+            // 1. Run the simulation reset
+            resetSimulation();
+            
+            // 2. Kill the active timer and immediately strip the active class to hide UI
+            clearTimeout(idleTimer);
+            document.body.classList.remove('user-active');
+            canvas.style.cursor = 'none';
+        }
+        // Native Desktop event fallback
+        window.addEventListener('dblclick', handleResetGesture);
+
+        // Custom iOS Mobile double tap tracker to avoid mobile browser zoom suppression blocks
+        window.addEventListener('touchend', function(e) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 300 && tapLength > 0) {
+                handleResetGesture(e);
+                e.preventDefault(); // Prevents any lingering visual browser artifacts
+            }
+            lastTap = currentTime;
+        });
         
-        resetIdleTimer();
+        // Explicitly initialize engine context loop directly into hidden bounds configuration state
+        document.body.classList.remove('user-active');
+        canvas.style.cursor = 'none';
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(goIdle, IDLE_TIME_MS);
 
         function randomRange(min, max) {
             return Math.random() * (max - min) + min;
