@@ -3,26 +3,36 @@
         <title>Life demanded Death</title>
         <script>
             const ui = {
-                // iframe: document.querySelector('iframe'),
-                // menu: document.querySelector('#menu'),
-                menu:{
-                    toggle:()=> _fBook.style.display === 'none' ? ui.menu.show():ui.menu.hide()
-                    ,show:()=> {
-                        _fBook.style.display = 'block';
-                        _bMenu.innerHTML = 'menu';
-                    }
-                    ,hide:()=> {
-                        _fBook.style.display = 'none';
-                        _bMenu.innerHTML = 'book';
+                s:(src)=>_fBook.src=src
+                ,sz:()=>ui.book.sz(window.innerWidth,window.innerHeight)
+                ,aRatio:(2*4.13)/5.83
+                ,book:{
+                    sz:(w,h)=>{ 
+                        w*=2; // Adjust so dobble as wide as needed (so that iframe only show half!)
+                        h=h-_fBook.offsetTop;
+                        // Adjust so that iFrame always aRatio ratio
+                        if (w > h*ui.aRatio)
+                            w = h*ui.aRatio;
+                        // else
+                        //     h = w/ui.aRatio;                        
+                        _fBook.width = w;
+                        _fBook.height = h;
+                        //                        console.log(`ui.book.sz(${w},${h})`);
                     }
                 }
             };
         </script>
     </head>
     <body>
-        <!-- Button that can hide the iframe and show the menu underneath  --> 
-        <button id="_bMenu" onclick="ui.menu.toggle()">menu</button>
-        <!-- IFRAME that shows my google presentation in full screen without controls-->
-        <iframe id="_fBook" src="https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        <button onclick="_book.scrollLeft=0">🇳🇴 Norsk</button>
+        <button onclick="_book.scrollLeft=_fBook.width/2">🇬🇧 English</button>
+        <div id="_book" style="overflow:hidden;">
+            <iframe id="_fBook" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        </div>
+        <script>
+            ui.s('https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
+            ui.sz();
+            onresize = ui.sz;
+        </script>
     </body>
 </html>
