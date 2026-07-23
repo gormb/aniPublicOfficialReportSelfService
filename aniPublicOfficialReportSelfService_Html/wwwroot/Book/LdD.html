@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Life demanded Death</title>
+        <script>
+            const ui = {
+                // iframe: document.querySelector('iframe'),
+                // menu: document.querySelector('#menu'),
+                menu:{
+                    toggle:()=> _fBook.style.display === 'none' ? ui.menu.show():ui.menu.hide()
+                    ,show:()=> {
+                        _fBook.style.display = 'block';
+                        _bMenu.innerHTML = 'menu';
+                    }
+                    ,hide:()=> {
+                        _fBook.style.display = 'none';
+                        _bMenu.innerHTML = 'book';
+                    }
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <!-- Button that can hide the iframe and show the menu underneath  --> 
+        <button id="_bMenu" onclick="ui.menu.toggle()">menu</button>
+        <!-- IFRAME that shows my google presentation in full screen without controls-->
+        <iframe id="_fBook" src="https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    </body>
+</html>
