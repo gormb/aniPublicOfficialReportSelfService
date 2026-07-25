@@ -2,36 +2,52 @@
     <head>
         <title>Life demanded Death</title>
         <script>
+            // import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
+            //     pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
             const ui = {
+                sz:()=>book.sz(window.innerWidth,window.innerHeight)
+            }
+            const book={
                 s:(src)=>_fBook.src=src
-                ,sz:()=>ui.book.sz(window.innerWidth,window.innerHeight)
                 ,aRatio:(2*4.13)/5.83
-                ,book:{
-                    sz:(w,h)=>{ 
-                        w*=2; // Adjust so dobble as wide as needed (so that iframe only show half!)
-                        h=h-_fBook.offsetTop;
-                        // Adjust so that iFrame always aRatio ratio
-                        if (w > h*ui.aRatio)
-                            w = h*ui.aRatio;
-                        // else
-                        //     h = w/ui.aRatio;                        
-                        _fBook.width = w;
-                        _fBook.height = h;
-                        //                        console.log(`ui.book.sz(${w},${h})`);
-                    }
+                ,szH:h=> {
+                    _fBook.style.width = h*book.aRatio+'px';
+                    _fBook.style.height = h+'px';
+                    console.log('book.szH',h);
+                    book.hAlignScroll();
                 }
-            };
+                ,szW:w=> {
+                    _fBook.style.width = w+'px';
+                    _fBook.style.height = w/book.aRatio+'px';
+                    console.log('book.szW',w);
+                    book.hAlignScroll();
+                }
+                ,sz:(w,h)=>{
+                    w*=2; // Adjust so double as wide as needed (so that iframe only show half!)
+                    h=h-_fBook.offsetTop;
+                    if (w/2 > h*book.aRatio) book.szH(h); 
+                    else book.szW(w);
+                }
+                ,_hAlignL:true
+                ,hAlignL:l=> {
+                    book._hAlignL=l;
+                    _fBook.style.left=(l?0:(_dBook.clientWidth-_fBook.offsetWidth))+'px';
+                    book.hAlignScroll();
+                }
+                ,hAlignScroll:()=>_dBook.scrollLeft=book._hAlignL?0:_dBook.scrollWidth-_dBook.clientWidth
+            }
         </script>
     </head>
     <body>
-        <button onclick="_book.scrollLeft=0" style="font-size:2vh;padding:2vh;">🇳🇴</button>
-        <button onclick="_book.scrollLeft=_fBook.width/2" style="font-size:2vh;padding:2vh;">🇬🇧</button>
-        <div id="_book" style="overflow:hidden;">
-            <iframe id="_fBook" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        <button onmousedown="book.hAlignL(true)" style="font-size:2vh;padding:2vh;">🇳🇴</button>
+        <button onmousedown="book.hAlignL(false)" style="font-size:2vh;padding:2vh;">🇬🇧</button>
+        <div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x;">
+            <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
         </div>
         <script>
-            ui.s('https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
             ui.sz();
+            book.s('https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
+            //book.s('LdD/LifeDemandedDeath.html');
             onresize = ui.sz;
         </script>
     </body>
