@@ -1,16 +1,27 @@
 <html>
     <head>
         <title>Life demanded Death</title>
+        <script type="module" src="LdD.js"></script>
         <script>
-            // import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
-            //     pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
-            const ui = {
-                sz:()=>book.sz(window.innerWidth,window.innerHeight)
-            }
-            const book={
-                s:(src)=>_fBook.src=src
+            let pdfRendererReadyResolve;
+            const pdfRendererReady=new Promise(resolve=>pdfRendererReadyResolve=resolve);
+            const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
+            const uishow=(c,on)=>c.style.display=on?'block':'none'
+            const book= { 
+                s:(pdf,src)=>{
+                    book.pdf=pdf;
+                    book.src=src;
+                    uishow(_cBook,pdf);
+                    uishow(_fBook,!pdf);
+                    return pdf?book.sPdf(src):book.sExt(src);
+                }
+                ,sExt:src=> _fBook.src=src
+                ,sPdf:async src=>{
+                    const cShow=await pdfRendererReady;
+                    return cShow(src,window.innerHeight-_dBook.offsetTop);
+                }
                 ,aRatio:(2*4.13)/5.83
-                ,szH:h=> {
+                ,szH:h=>{
                     _fBook.style.width = h*book.aRatio+'px';
                     _fBook.style.height = h+'px';
                     console.log('book.szH',h);
@@ -23,8 +34,9 @@
                     book.hAlignScroll();
                 }
                 ,sz:(w,h)=>{
+                    if(book.pdf) return book.sPdf(book.src);
                     w*=2; // Adjust so double as wide as needed (so that iframe only show half!)
-                    h=h-_fBook.offsetTop;
+                    h=h-_dBook.offsetTop;
                     if (w/2 > h*book.aRatio) book.szH(h); 
                     else book.szW(w);
                 }
@@ -41,14 +53,15 @@
     <body>
         <button onmousedown="book.hAlignL(true)" style="font-size:2vh;padding:2vh;">🇳🇴</button>
         <button onmousedown="book.hAlignL(false)" style="font-size:2vh;padding:2vh;">🇬🇧</button>
-        <div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x;">
-            <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
+        <div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x">
+            <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>            
+            <canvas id="_cBook"></canvas>
         </div>
         <script>
-            ui.sz();
-            book.s('https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
-            //book.s('LdD/LifeDemandedDeath.html');
-            onresize = ui.sz;
+            uisz();
+            //book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
+            book.s(1,'LdD/LifeDemandedDeath.pdf');
+            window.addEventListener('resize',uisz);
         </script>
     </body>
 </html>
