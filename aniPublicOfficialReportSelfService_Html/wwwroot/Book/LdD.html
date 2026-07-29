@@ -47,7 +47,7 @@
             }
             window.addEventListener('load',()=>{
                 uisz();//book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
-                book.s(1,'LdD/LifeDemandedDeath.pdf');
+                book.s(1,'LifeDemandedDeath.pdf');
             });
             window.onresize=uisz;
         </script>
@@ -67,9 +67,7 @@
                 <button class="disabled" onmousedown="book.share()">📲</button>
                 <button class="disabled" onmousedown="book.export()">📤</button>
         </div>
-        <!-- TODO: style on div is messed up for mopbile(Iphone)-->
-        <!--div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x;padding-top:20vw"-->
-        <div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;padding-top:20vw">
+        <div id="_dBook" style="box-sizing:border-box;width:100%;height:100vh;height:100dvh;overflow:auto;-webkit-overflow-scrolling:touch;padding-top:20vw">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
         </div>
