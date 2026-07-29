@@ -2,66 +2,75 @@
     <head>
         <title>Life demanded Death</title>
         <script type="module" src="LdD.js"></script>
+        <link rel="stylesheet" href="LdD.css">
         <script>
-            let pdfRendererReadyResolve;
-            const pdfRendererReady=new Promise(resolve=>pdfRendererReadyResolve=resolve);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
             const uishow=(c,on)=>c.style.display=on?'block':'none'
-            const book= { 
+            const book= {
                 s:(pdf,src)=>{
                     book.pdf=pdf;
-                    book.src=src;
+                    book.src=src;                    
                     uishow(_cBook,pdf);
                     uishow(_fBook,!pdf);
                     return pdf?book.sPdf(src):book.sExt(src);
                 }
                 ,sExt:src=> _fBook.src=src
-                ,sPdf:async src=>{
-                    const cShow=await pdfRendererReady;
-                    return cShow(src,window.innerHeight-_dBook.offsetTop);
-                }
+                ,sPdf:src=>window.cBook.DoShow(src, 3, window.innerWidth*2) //window.innerHeight-_dBook.offsetTop);
                 ,aRatio:(2*4.13)/5.83
-                ,szH:h=>{
-                    _fBook.style.width = h*book.aRatio+'px';
-                    _fBook.style.height = h+'px';
-                    console.log('book.szH',h);
-                    book.hAlignScroll();
+                ,szWH:(w,h)=>{
+                    _fBook.style.width = (_cBook.width = w)+'px';
+                    _fBook.style.height = (_cBook.height = h)+'px';
+                    book.hAlign.Scroll();
                 }
                 ,szW:w=> {
-                    _fBook.style.width = w+'px';
-                    _fBook.style.height = w/book.aRatio+'px';
-                    console.log('book.szW',w);
-                    book.hAlignScroll();
+                    book.szWH(w,w/book.aRatio)
                 }
                 ,sz:(w,h)=>{
                     if(book.pdf) return book.sPdf(book.src);
                     w*=2; // Adjust so double as wide as needed (so that iframe only show half!)
                     h=h-_dBook.offsetTop;
-                    if (w/2 > h*book.aRatio) book.szH(h); 
-                    else book.szW(w);
+                    book.szW(w);
                 }
-                ,_hAlignL:true
-                ,hAlignL:l=> {
-                    book._hAlignL=l;
-                    _fBook.style.left=(l?0:(_dBook.clientWidth-_fBook.offsetWidth))+'px';
-                    book.hAlignScroll();
+                ,hAlign:{
+                    _:true
+                    ,L:l=> {
+                        book.hAlign._=l;
+                        langVer.innerText=l?'🇳🇴':'🇬🇧';
+                        _fBook.style.left=(l?0:(_dBook.clientWidth-_fBook.offsetWidth))+'px';
+                        book.hAlign.Scroll();
+                    }
+                    ,Scroll:()=>_dBook.scrollLeft=book.hAlign._?0:_dBook.scrollWidth-_dBook.clientWidth
                 }
-                ,hAlignScroll:()=>_dBook.scrollLeft=book._hAlignL?0:_dBook.scrollWidth-_dBook.clientWidth
+                ,Page:pn=>{console.log(pn); cBook.Page(pn, true)}
+                ,pn:()=>cBook.pn
+                ,np:()=>cBook.pdf.numPages
             }
+            window.addEventListener('load',()=>{
+                uisz();
+                //book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
+                book.s(1,'LdD/LifeDemandedDeath.pdf');
+            });
+            window.onresize=uisz;
         </script>
     </head>
     <body>
-        <button onmousedown="book.hAlignL(true)" style="font-size:2vh;padding:2vh;">🇳🇴</button>
-        <button onmousedown="book.hAlignL(false)" style="font-size:2vh;padding:2vh;">🇬🇧</button>
-        <div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x">
+        <div class="bookControls">
+            <button id="langVer" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
+            &nbsp;&nbsp;<button class="disabled" onmousedown="book.showTOC()">📚</button>
+            &nbsp;&nbsp;<button onmousedown="book.Page(1)">⏮️</button>
+                <button onmousedown="book.Page(book.pn()-1)">◀️</button>
+                <button class="disabled" onmousedown="book.pageUp()">⏫</button>
+            &nbsp;&nbsp;<button class="disabled" onmousedown="book.gotoPage()">🔢</button>
+                <button class="disabled" onmousedown="book.pageDown()">⏬</button>
+                <button onmousedown="book.Page(book.pn()+1)">▶️</button>
+                <button onmousedown="book.Page(book.np())">⏭️</button>
+            &nbsp;&nbsp;<button class="disabled" onmousedown="book.find()">🔍</button>
+                <button class="disabled" onmousedown="book.share()">📲</button>
+                <button class="disabled" onmousedown="book.export()">📤</button>
+        </div>
+        <div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x;padding-top:8vw">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>            
             <canvas id="_cBook"></canvas>
         </div>
-        <script>
-            uisz();
-            //book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
-            book.s(1,'LdD/LifeDemandedDeath.pdf');
-            window.addEventListener('resize',uisz);
-        </script>
     </body>
 </html>

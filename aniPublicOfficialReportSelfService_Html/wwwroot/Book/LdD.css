@@ -1,0 +1,15 @@
+button { 
+    font-size:5.5vw;
+    padding:.25vw;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.bookControls {
+    position: fixed;
+    top: 1vh;
+    left: 1vw;
+}
