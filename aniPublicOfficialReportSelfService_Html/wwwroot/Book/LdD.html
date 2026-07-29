@@ -46,8 +46,7 @@
                 ,np:()=>cBook.pdf.numPages
             }
             window.addEventListener('load',()=>{
-                uisz();
-                //book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
+                uisz();//book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
                 book.s(1,'LdD/LifeDemandedDeath.pdf');
             });
             window.onresize=uisz;
@@ -68,8 +67,10 @@
                 <button class="disabled" onmousedown="book.share()">📲</button>
                 <button class="disabled" onmousedown="book.export()">📤</button>
         </div>
-        <div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x;padding-top:8vw">
-            <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>            
+        <!-- TODO: style on div is messed up for mopbile(Iphone)-->
+        <!--div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x;padding-top:20vw"-->
+        <div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;padding-top:20vw">
+            <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
         </div>
     </body>
