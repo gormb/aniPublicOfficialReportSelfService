@@ -1,15 +1,16 @@
-button { 
-    font-size:5.5vw;
-    padding:.25vw;
+body {
+    --fsMenu: calc(3.2vw + 3.2vh);
+    --padMenu: calc(.125vw + .125vh);
+    --paddingTop1: calc(5vw + 5vh);
 }
 
-.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-}
+button { font-size: var(--fsMenu); padding: var(--padMenu);}
+.disabled { opacity: 0.5; pointer-events: none;}
+.bookControls { position: fixed; top: 1vh; left: 1vw;}
+.bookParent { overflow:auto; -webkit-overflow-scrolling:touch; padding-top:calc(1 * var(--paddingTop1));}
+.qr { display:block;z-index:1;width:99vh;padding-top:calc(1 * var(--paddingTop1)) }
 
-.bookControls {
-    position: fixed;
-    top: 1vh;
-    left: 1vw;
+@media (max-aspect-ratio: 1/1) {
+    .bookParent { padding-top: calc(2 * var(--paddingTop1));}
+    .qr  { width: 99vw; padding-top: calc(2 * var(--paddingTop1));}
 }

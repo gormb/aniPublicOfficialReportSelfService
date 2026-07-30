@@ -9,25 +9,27 @@
             const book= {
                 s:(pdf,src)=>{
                     book.pdf=pdf;
-                    book.src=src;                    
+                    book.src=src;
                     uishow(_cBook,pdf);
                     uishow(_fBook,!pdf);
+                    nav.UpdButtons();
                     return pdf?book.sPdf(src):book.sExt(src);
                 }
                 ,sExt:src=> _fBook.src=src
-                ,sPdf:src=>window.cBook.DoShow(src, 3, window.innerWidth*2) //window.innerHeight-_dBook.offsetTop);
-                ,aRatio:(2*4.13)/5.83
+                ,sPdf:async src=>await window.cBook.DoShow(src, 3, window.innerWidth*2)
+                ,aRatio:(2*4.13)/5.83 // Golden ratio
                 ,szWH:(w,h)=>{
-                    _fBook.style.width = (_cBook.width = w)+'px';
-                    _fBook.style.height = (_cBook.height = h)+'px';
+                    _fBook.style.width = w+'px';
+                    _fBook.style.height = h+'px';
+                    _cBook.width = w;
+                    _cBook.height = h;
+                    //window.cBook.Width(window.innerWidth*2, true);
                     book.hAlign.Scroll();
                 }
-                ,szW:w=> {
-                    book.szWH(w,w/book.aRatio)
-                }
+                ,szW:w=>book.szWH(w,w/book.aRatio)
                 ,sz:(w,h)=>{
                     if(book.pdf) return book.sPdf(book.src);
-                    w*=2; // Adjust so double as wide as needed (so that iframe only show half!)
+                    w*=2; // Adjust so double as wide as needed (so that iframe and canvas only show half!)
                     h=h-_dBook.offsetTop;
                     book.szW(w);
                 }
@@ -35,7 +37,7 @@
                     _:true
                     ,L:l=> {
                         book.hAlign._=l;
-                        langVer.innerText=l?'🇳🇴':'🇬🇧';
+                        nLg.innerText=l?'🇳🇴':'🇬🇧';
                         _fBook.style.left=(l?0:(_dBook.clientWidth-_fBook.offsetWidth))+'px';
                         book.hAlign.Scroll();
                     }
@@ -43,33 +45,65 @@
                 }
                 ,Page:pn=>{console.log(pn); cBook.Page(pn, true)}
                 ,pn:()=>cBook.pn
-                ,np:()=>cBook.pdf.numPages
+                ,np:()=>cBook.pdf?.numPages
             }
-            window.addEventListener('load',()=>{
-                uisz();//book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
-                book.s(1,'LifeDemandedDeath.pdf');
-            });
+            const nav={
+                Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
+                ,UpdButtons:()=>{
+                    console.log(`Update buttons for page`,book.pn())
+                    nav.Able(nPv, nav.Able(nFt, (book.pn()>1)));
+                    nav.Able(nUp, false);
+                    nav.Able(nGo, false);
+                    nav.Able(nDn, false);
+                    nav.Able(nLt, nav.Able(nNt, (book.pn()<book.np())));
+                    nav.Able(nFd, false);
+                    nav.Able(nEx, false);
+                    nav.Able(nTc, false);
+                }
+                ,Share:s=>{
+                    nav.Able(nLg, nav.Able(nSh, !s));
+                    if (s) {
+                        qr.style.display='block';
+                        _dBook.style.display='none';
+                        nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, false))))))));
+                    }
+                    else {
+                        qr.style.display='none';
+                        _dBook.style.display='block';
+                        nav.UpdButtons();
+                    }
+                }
+                ,Page:async pn=>{console.log(pn); await cBook.Page(pn, true); nav.UpdButtons()}
+            }
+            async function loaded() {
+                //book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
+                uisz();
+                await book.s(1,'LifeDemandedDeath.pdf');
+                nav.UpdButtons();
+            }
             window.onresize=uisz;
         </script>
     </head>
-    <body>
+    <body onload="loaded()">
         <div class="bookControls" style="z-index:1">
-            <button id="langVer" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
-            &nbsp;&nbsp;<button class="disabled" onmousedown="book.showTOC()">📚</button>
-            &nbsp;&nbsp;<button onmousedown="book.Page(1)">⏮️</button>
-                <button onmousedown="book.Page(book.pn()-1)">◀️</button>
-                <button class="disabled" onmousedown="book.pageUp()">⏫</button>
-            &nbsp;&nbsp;<button class="disabled" onmousedown="book.gotoPage()">🔢</button>
-                <button class="disabled" onmousedown="book.pageDown()">⏬</button>
-                <button onmousedown="book.Page(book.pn()+1)">▶️</button>
-                <button onmousedown="book.Page(book.np())">⏭️</button>
-            &nbsp;&nbsp;<button class="disabled" onmousedown="book.find()">🔍</button>
-                <button class="disabled" onmousedown="book.share()">📲</button>
-                <button class="disabled" onmousedown="book.export()">📤</button>
+            <button id="nFt" onmousedown="nav.Page(1)">⏮️</button>
+                <button id="nPv" onmousedown="nav.Page(book.pn()-1)">◀️</button>
+                <button id="nUp" class="disabled" onmousedown="nav.pageUp()">⏫</button>
+            &nbsp;&nbsp;<button id="nGo" class="disabled" onmousedown="nav.gotoPage()">🔢</button>
+                <button id="nDn" class="disabled" onmousedown="nav.pageDown()">⏬</button>
+                <button id="nNt" onmousedown="nav.Page(book.pn()+1)">▶️</button>
+                <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
+            &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
+                <button id="nSh" onmousedown="nav.Share(true)">📲</button>
+                <button id="nEx" class="disabled" onmousedown="nav.export()">📤</button>
+            <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
+            &nbsp;&nbsp;<button id="nTc" class="disabled" onmousedown="nav.showTOC()">📚</button>
+            <hr/>
         </div>
-        <div id="_dBook" style="overflow:auto;-webkit-overflow-scrolling:touch;padding-top:20vw">
+        <div id="_dBook" class="bookParent">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
-            <canvas id="_cBook"></canvas>
+            <canvas id="_cBook"></canvas><canvas id="_cBookNext"></canvas>
         </div>
+        <img id="qr" class="qr" src="qr.png" onclick="nav.Share(false);"/>
     </body>
 </html>
