@@ -8,9 +8,11 @@ button { font-size: var(--fsMenu); padding: var(--padMenu);}
 .disabled { opacity: 0.5; pointer-events: none;}
 .bookControls { position: fixed; top: 1vh; left: 1vw;}
 .bookParent { overflow:auto; -webkit-overflow-scrolling:touch; padding-top:calc(1 * var(--paddingTop1));}
-.qr { display:none;z-index:1;width:99vh;padding-top:calc(1 * var(--paddingTop1)) }
+.shareParent { display:none;z-index:1;padding-top:calc(1 * var(--paddingTop1)) }
+.qr { width:99vh;}
 
 @media (max-aspect-ratio: 1/1) {
     .bookParent { padding-top: calc(2 * var(--paddingTop1));}
-    .qr  { width: 99vw; padding-top: calc(2 * var(--paddingTop1));}
+    .shareParent  { padding-top: calc(2 * var(--paddingTop1));}
+    .qr  { width: 99vw; }
 }
