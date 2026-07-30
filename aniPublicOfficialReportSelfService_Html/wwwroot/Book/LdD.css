@@ -1,7 +1,7 @@
 body {
     --fsMenu: calc(3vw + 3vh);
     --padMenu: calc(.125vw + .125vh);
-    --paddingTop1: calc(5vw + 5vh);
+    --paddingTop1: calc(6vw + 6vh);
 }
 
 button { font-size: var(--fsMenu); padding: var(--padMenu);}
