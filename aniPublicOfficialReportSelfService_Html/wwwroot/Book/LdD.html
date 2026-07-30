@@ -61,17 +61,20 @@
                     nav.Able(nTc, false);
                 }
                 ,Share:s=>{
+                    uishow(_dShare,s);
+                    uishow(_dBook,!s);
                     nav.Able(nLg, nav.Able(nSh, !s));
-                    if (s) {
-                        _dShare.style.display='block';
-                        _dBook.style.display='none';
-                        nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, false))))))));
-                    }
-                    else {
-                        _dShare.style.display='none';
-                        _dBook.style.display='block';
+                    if (s) 
+                        nav.Able(nPv,
+                            nav.Able(nFt,
+                            nav.Able(nUp,
+                            nav.Able(nGo,
+                            nav.Able(nDn,
+                            nav.Able(nLt,
+                            nav.Able(nNt,
+                            nav.Able(nFd, false))))))));
+                    else 
                         nav.UpdButtons();
-                    }
                 }
                 ,Page:async pn=>{console.log(pn); await cBook.Page(pn, true); nav.UpdButtons()}
             }
