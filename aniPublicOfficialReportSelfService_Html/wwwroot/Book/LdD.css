@@ -1,5 +1,5 @@
 body {
-    --fsMenu: calc(3.2vw + 3.2vh);
+    --fsMenu: calc(3vw + 3vh);
     --padMenu: calc(.125vw + .125vh);
     --paddingTop1: calc(5vw + 5vh);
 }
@@ -8,7 +8,7 @@ button { font-size: var(--fsMenu); padding: var(--padMenu);}
 .disabled { opacity: 0.5; pointer-events: none;}
 .bookControls { position: fixed; top: 1vh; left: 1vw;}
 .bookParent { overflow:auto; -webkit-overflow-scrolling:touch; padding-top:calc(1 * var(--paddingTop1));}
-.qr { display:block;z-index:1;width:99vh;padding-top:calc(1 * var(--paddingTop1)) }
+.qr { display:none;z-index:1;width:99vh;padding-top:calc(1 * var(--paddingTop1)) }
 
 @media (max-aspect-ratio: 1/1) {
     .bookParent { padding-top: calc(2 * var(--paddingTop1));}
