@@ -8,6 +8,7 @@
             const uishow=(c,on)=>{c.style.display=on?'block':'none';return on;}
             const book= {
                 s:(pdf,src)=>{
+                    nav.DisButtons();
                     book.pdf=pdf;
                     book.src=src;
                     uishow(_fBook,!uishow(_cBook,pdf))
@@ -49,7 +50,6 @@
             const nav={
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
-                    console.log(`Update buttons for page`,book.pn())
                     nav.Able(nPv, nav.Able(nFt, (book.pn()>1)));
                     nav.Able(nUp, (book.pn()>1) /* or not top of page*/);
                     nav.Able(nGo, false);
@@ -59,22 +59,29 @@
                     nav.Able(nEx, false);
                     nav.Able(nTc, false);
                 }
+                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd
+                            , false))))))))
                 ,Share:s=>{
                     uishow(_dBook,!uishow(_dShare,s));
                     nav.Able(nLg, nav.Able(nSh, !s));
                     if (s) 
-                        nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd
-                            , false))))))));
+                        nav.DisButtons();
                     else 
                         nav.UpdButtons();
                 }
                 ,Page:async pn=>{
-                    console.log(pn); 
+                    nav.DisButtons();
                     await cBook.Page(pn, true);
-                    // Scroll to top of page
-                    window.scrollTo(0, 0);
-                    book.hAlign.Scroll();
+                    window.scrollTo(window.scrollX, 0);
                     nav.UpdButtons();                    
+                }
+                ,Scroll:async down=>{
+                    if (down) {
+                        window.scrollTo(window.scrollX, 0);
+                    }
+                    else { // up
+                        window.scrollTo(window.scrollX, 0);
+                    }
                 }
             }
             async function loaded() {
