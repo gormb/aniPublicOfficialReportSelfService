@@ -5,13 +5,12 @@
         <link rel="stylesheet" href="LdD.css">
         <script>
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
-            const uishow=(c,on)=>c.style.display=on?'block':'none'
+            const uishow=(c,on)=>{c.style.display=on?'block':'none';return on;}
             const book= {
                 s:(pdf,src)=>{
                     book.pdf=pdf;
                     book.src=src;
-                    uishow(_cBook,pdf);
-                    uishow(_fBook,!pdf);
+                    uishow(_fBook,!uishow(_cBook,pdf))
                     nav.UpdButtons();
                     return pdf?book.sPdf(src):book.sExt(src);
                 }
@@ -52,36 +51,37 @@
                 ,UpdButtons:()=>{
                     console.log(`Update buttons for page`,book.pn())
                     nav.Able(nPv, nav.Able(nFt, (book.pn()>1)));
-                    nav.Able(nUp, false);
+                    nav.Able(nUp, (book.pn()>1) /* or not top of page*/);
                     nav.Able(nGo, false);
-                    nav.Able(nDn, false);
+                    nav.Able(nDn, (book.pn()<book.np()) /* or not bottom of page*/);
                     nav.Able(nLt, nav.Able(nNt, (book.pn()<book.np())));
                     nav.Able(nFd, false);
                     nav.Able(nEx, false);
                     nav.Able(nTc, false);
                 }
                 ,Share:s=>{
-                    uishow(_dShare,s);
-                    uishow(_dBook,!s);
+                    uishow(_dBook,!uishow(_dShare,s));
                     nav.Able(nLg, nav.Able(nSh, !s));
                     if (s) 
-                        nav.Able(nPv,
-                            nav.Able(nFt,
-                            nav.Able(nUp,
-                            nav.Able(nGo,
-                            nav.Able(nDn,
-                            nav.Able(nLt,
-                            nav.Able(nNt,
-                            nav.Able(nFd, false))))))));
+                        nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd
+                            , false))))))));
                     else 
                         nav.UpdButtons();
                 }
-                ,Page:async pn=>{console.log(pn); await cBook.Page(pn, true); nav.UpdButtons()}
+                ,Page:async pn=>{
+                    console.log(pn); 
+                    await cBook.Page(pn, true);
+                    // Scroll to top of page
+                    window.scrollTo(0, 0);
+                    book.hAlign.Scroll();
+                    nav.UpdButtons();                    
+                }
             }
             async function loaded() {
                 //book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
                 uisz();
                 await book.s(1,'LifeDemandedDeath.pdf');
+                uisz();
                 nav.UpdButtons();
             }
             window.onresize=uisz;
@@ -105,7 +105,7 @@
         </div>
         <div id="_dBook" class="bookParent">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
-            <canvas id="_cBook"></canvas><canvas id="_cBookNext"></canvas>
+            <canvas id="_cBook"></canvas>
         </div>
         <div id="_dShare" class="shareParent">
             <center>
