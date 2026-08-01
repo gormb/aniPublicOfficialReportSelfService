@@ -73,15 +73,21 @@
                     nav.DisButtons();
                     await cBook.Page(pn, true);
                     window.scrollTo(window.scrollX, 0);
-                    nav.UpdButtons();                    
+                    nav.UpdButtons();
                 }
-                ,Scroll:async down=>{
-                    if (down) {
-                        window.scrollTo(window.scrollX, 0);
-                    }
-                    else { // up
-                        window.scrollTo(window.scrollX, 0);
-                    }
+                ,ScrollUp:async ()=>{
+                    if (window.scrollY <= 1) // already at top
+                        return await book.Page(book.pn() - 1);
+                    else
+                        window.scrollBy(0, -window.innerHeight);
+                    nav.UpdButtons();
+                }
+                ,ScrollDn:async()=>{
+                    if (window.scrollY >= document.documentElement.scrollHeight-window.innerHeight - 1) // already at bottom
+                        await book.Page(book.pn() + 1);
+                    else
+                        window.scrollBy(0, window.innerHeight);
+                    nav.UpdButtons();
                 }
             }
             async function loaded() {
@@ -98,9 +104,9 @@
         <div class="bookControls" style="z-index:1">
             <button id="nFt" onmousedown="nav.Page(1)">⏮️</button>
                 <button id="nPv" onmousedown="nav.Page(book.pn()-1)">◀️</button>
-                <button id="nUp" class="disabled" onmousedown="nav.pageUp()">⏫</button>
+                <button id="nUp" class="disabled" onmousedown="nav.ScrollUp()">⏫</button>
             &nbsp;&nbsp;<button id="nGo" class="disabled" onmousedown="nav.gotoPage()">🔢</button>
-                <button id="nDn" class="disabled" onmousedown="nav.pageDown()">⏬</button>
+                <button id="nDn" class="disabled" onmousedown="nav.ScrollDn()">⏬</button>
                 <button id="nNt" onmousedown="nav.Page(book.pn()+1)">▶️</button>
                 <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
             &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
