@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="LdD.css">
         <script>
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
-            const uishow=(c,on)=>{c.style.display=on?'block':'none';return on;}
+            const uishow=(c,on)=>{c.style.display=on?'inline':'none';return on;}
             const book= {
                 s:(pdf,src)=>{
                     nav.DisButtons();
@@ -43,7 +43,10 @@
                     }
                     ,Scroll:()=>_dBook.scrollLeft=book.hAlign._?0:_dBook.scrollWidth-_dBook.clientWidth
                 }
-                ,Page:pn=>{console.log(pn); cBook.Page(pn, true)}
+                ,Page:pn=>{                    
+                    nGoTxt.value = pn;
+                    cBook.Page(pn, true);
+                }
                 ,pn:()=>cBook.pn
                 ,np:()=>cBook.pdf?.numPages
             }
@@ -52,18 +55,18 @@
                 ,UpdButtons:()=>{
                     nav.Able(nPv, nav.Able(nFt, (book.pn()>1)));
                     nav.Able(nUp, (book.pn()>1 || window.scrollY > 0));
-                    nav.Able(nGo, false);
+                    nav.Able(nGo, true);
                     nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
                     nav.Able(nLt, nav.Able(nNt, (book.pn()<book.np())));
                     nav.Able(nFd, false);
                     nav.Able(nEx, false);
-                    nav.Able(nTc, false);
+                    //nav.Able(nTc, (_dToc.style.display=='none'));
                 }
                 ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd
                             , false))))))))
                 ,Share:s=>{
                     s=s??_dShare.style.display=='none';
-                    uishow(_dBook,!uishow(_dShare,s));
+                    //uishow(_dShare,s);
                     nav.Able(nLg, !s);//nav.Able(nSh, !s);
                     if (s) 
                         nav.DisButtons();
@@ -71,10 +74,22 @@
                         nav.UpdButtons();
                 }
                 ,Page:async pn=>{
-                    //nav.DisButtons();
+                    nav.DisButtons();
                     await book.Page(pn);
                     window.scrollTo(window.scrollX, 0);
                     nav.UpdButtons();
+                }
+                ,EdPage:async()=>{
+                    nGoTxt.value = book.pn();
+                    uishow(nGoTxt,!uishow(nGo, false));
+                    nGoTxt.select();
+                    setTimeout(()=>nGoTxt.focus(), 250);
+                }
+                ,PageEd:async ()=>{
+                    const n = parseInt(nGoTxt.value);
+                    if (!isNaN(n))
+                        await nav.Page(n);
+                    uishow(nGoTxt,!uishow(nGo, true));
                 }
                 ,ScrollUp:async ()=>{
                     if (window.scrollY <= 1) {// already at top
@@ -87,15 +102,21 @@
                     nav.UpdButtons();
                 }
                 ,ScrollDn:async()=>{
-                    if (window.scrollY >= document.documentElement.scrollHeight-window.innerHeight - 1) { // already at bottom
+                    if (window.scrollY >= document.documentElement.scrollHeight-window.innerHeight - 1) {
                         await book.Page(book.pn() + 1);
                         window.scrollTo(window.scrollX, 0);
                     }
-                    else {
+                    else
                         window.scrollBy(0, window.innerHeight*.75);
-                    }
                     nav.UpdButtons();
                 }
+                ,ShowToc:()=>uishow(_dBook,!uishow(_dToc,_dToc.style.display=='none'))
+                    ?nav.UpdButtons():nav.DisButtons()
+                ,TocLn:(n,h,t)=>`<li><a href="javascript:nav.Page(${n});nav.ShowToc()"><h${h}>${n}. ${t}</h${h}></a></li>`
+                ,Toc:book=>`<h1>Liv krevde død<br/>Life demanded Death'</h1><ul>`
+                // <li><a href="javascript:nav.Page(1);nav.ShowToc()">1. Life demanded Death</a></li>
+                // {book.map((b,i)=>nav.TocLn(i+1,1,b)).join('')}</ul>`
+                // // Should stay within 
             }
             async function loaded() {
                 //book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
@@ -112,7 +133,8 @@
             <button id="nFt" onmousedown="nav.Page(1)">⏮️</button>
                 <button id="nPv" onmousedown="nav.Page(book.pn()-1)">◀️</button>
                 <button id="nUp" onmousedown="nav.ScrollUp()">⏫</button>
-            &nbsp;&nbsp;<button id="nGo" class="disabled" onmousedown="nav.gotoPage()">🔢</button>
+                <button id="nGo" onmousedown="nav.EdPage()">🔢</button>
+                    <input id="nGoTxt" class="pageNo" type="text" value="1" onchange="nav.PageEd()" onkeydown="if(event.key=='Enter') nav.PageEd()"/>
                 <button id="nDn" onmousedown="nav.ScrollDn()">⏬</button>
                 <button id="nNt" onmousedown="nav.Page(book.pn()+1)">▶️</button>
                 <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
@@ -120,12 +142,15 @@
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" class="disabled" onmousedown="nav.export()">📤</button>
             <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
-            &nbsp;&nbsp;<button id="nTc" class="disabled" onmousedown="nav.showTOC()">📚</button>
+            &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
             <hr/>
         </div>
         <div id="_dBook" class="bookParent">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
+        </div>
+        <div id="_dToc" class="tocParent" style="display:none;">
+            <script>document.write(nav.Toc(book.toc))</script>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
             <center>
