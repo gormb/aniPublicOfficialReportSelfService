@@ -24,6 +24,7 @@
                     _cBook.width = w;
                     _cBook.height = h;
                     //window.cBook.Width(window.innerWidth*2, true);
+                    nNt2.style.top  = h+20 + 'px';
                     book.hAlign.Scroll();
                 }
                 ,szW:w=>book.szWH(w,w/book.aRatio)
@@ -54,19 +55,18 @@
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
                     nav.Able(nPv, nav.Able(nFt, (book.pn()>1)));
-                    nav.Able(nUp, (book.pn()>1 || window.scrollY > 0));
+                    nav.Able(nUp, nav.Able(nUp2, (book.pn()>1 || window.scrollY > 0)));
                     nav.Able(nGo, true);
                     nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
-                    nav.Able(nLt, nav.Able(nNt, (book.pn()<book.np())));
+                    nav.Able(nLt, nav.Able(nNt, nav.Able(nNt2, (book.pn()<book.np()))));
                     nav.Able(nFd, false);
                     nav.Able(nEx, false);
-                    //nav.Able(nTc, (_dToc.style.display=='none'));
                 }
                 ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd
                             , false))))))))
                 ,Share:s=>{
                     s=s??_dShare.style.display=='none';
-                    //uishow(_dShare,s);
+                    uishow(_dShare,!uishow(_cBook,!s));
                     nav.Able(nLg, !s);//nav.Able(nSh, !s);
                     if (s) 
                         nav.DisButtons();
@@ -142,15 +142,14 @@
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" class="disabled" onmousedown="nav.export()">📤</button>
             <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
-            &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
+            &nbsp;&nbsp;<button id="nTc" class="disabled" onmousedown="nav.ShowToc()">📚</button>
             <hr/>
         </div>
-        <div id="_dBook" class="bookParent">
+        <div id="_dBook" class="bookParent" onscroll="console.log('Canvas scrolled')">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
-        </div>
-        <div id="_dToc" class="tocParent" style="display:none;">
-            <script>document.write(nav.Toc(book.toc))</script>
+            <button id="nUp2" onmousedown="nav.ScrollUp()" style="z-index:1; position:absolute; top: 12vw; left: 1vw;">⏫</button>
+            <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="z-index:1;position:absolute; right: 1vw">▶️</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
             <center>
@@ -160,5 +159,12 @@
             </center>
             </a>
         </div>
+        <div id="_dToc" class="tocParent" style="display:none;">
+            <center>
+                <h1>Table of Contents</h1>
+                <ul>
+                    <li><a href="javascript:nav.Page(1);nav.ShowToc()">1. Life demanded Death</a></li>
+                </ul>
+            </center>
     </body>
 </html>
