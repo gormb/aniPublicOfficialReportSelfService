@@ -51,9 +51,9 @@
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
                     nav.Able(nPv, nav.Able(nFt, (book.pn()>1)));
-                    nav.Able(nUp, (book.pn()>1) /* or not top of page*/);
+                    nav.Able(nUp, (book.pn()>1 || window.scrollY > 0));
                     nav.Able(nGo, false);
-                    nav.Able(nDn, (book.pn()<book.np()) /* or not bottom of page*/);
+                    nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
                     nav.Able(nLt, nav.Able(nNt, (book.pn()<book.np())));
                     nav.Able(nFd, false);
                     nav.Able(nEx, false);
@@ -62,31 +62,38 @@
                 ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd
                             , false))))))))
                 ,Share:s=>{
+                    s=s??_dShare.style.display=='none';
                     uishow(_dBook,!uishow(_dShare,s));
-                    nav.Able(nLg, nav.Able(nSh, !s));
+                    nav.Able(nLg, !s);//nav.Able(nSh, !s);
                     if (s) 
                         nav.DisButtons();
                     else 
                         nav.UpdButtons();
                 }
                 ,Page:async pn=>{
-                    nav.DisButtons();
-                    await cBook.Page(pn, true);
+                    //nav.DisButtons();
+                    await book.Page(pn);
                     window.scrollTo(window.scrollX, 0);
                     nav.UpdButtons();
                 }
                 ,ScrollUp:async ()=>{
-                    if (window.scrollY <= 1) // already at top
-                        return await book.Page(book.pn() - 1);
-                    else
-                        window.scrollBy(0, -window.innerHeight);
+                    if (window.scrollY <= 1) {// already at top
+                        await book.Page(book.pn() - 1);
+                        window,scrollTo(window.scrollX, document.documentElement.scrollHeight - window.innerHeight);
+                    }
+                    else {
+                        window.scrollBy(0, -window.innerHeight*.75);
+                    }
                     nav.UpdButtons();
                 }
                 ,ScrollDn:async()=>{
-                    if (window.scrollY >= document.documentElement.scrollHeight-window.innerHeight - 1) // already at bottom
+                    if (window.scrollY >= document.documentElement.scrollHeight-window.innerHeight - 1) { // already at bottom
                         await book.Page(book.pn() + 1);
-                    else
-                        window.scrollBy(0, window.innerHeight);
+                        window.scrollTo(window.scrollX, 0);
+                    }
+                    else {
+                        window.scrollBy(0, window.innerHeight*.75);
+                    }
                     nav.UpdButtons();
                 }
             }
@@ -104,13 +111,13 @@
         <div class="bookControls" style="z-index:1">
             <button id="nFt" onmousedown="nav.Page(1)">⏮️</button>
                 <button id="nPv" onmousedown="nav.Page(book.pn()-1)">◀️</button>
-                <button id="nUp" class="disabled" onmousedown="nav.ScrollUp()">⏫</button>
+                <button id="nUp" onmousedown="nav.ScrollUp()">⏫</button>
             &nbsp;&nbsp;<button id="nGo" class="disabled" onmousedown="nav.gotoPage()">🔢</button>
-                <button id="nDn" class="disabled" onmousedown="nav.ScrollDn()">⏬</button>
+                <button id="nDn" onmousedown="nav.ScrollDn()">⏬</button>
                 <button id="nNt" onmousedown="nav.Page(book.pn()+1)">▶️</button>
                 <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
             &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
-                <button id="nSh" onmousedown="nav.Share(true)">📲</button>
+                <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" class="disabled" onmousedown="nav.export()">📤</button>
             <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
             &nbsp;&nbsp;<button id="nTc" class="disabled" onmousedown="nav.showTOC()">📚</button>
@@ -120,7 +127,7 @@
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
         </div>
-        <div id="_dShare" class="shareParent">
+        <div id="_dShare" class="shareParent" style="display:none;">
             <center>
                 <img id="qr" class="qr" src="qr.png" onclick="nav.Share(false);"/>
                 <a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book">
