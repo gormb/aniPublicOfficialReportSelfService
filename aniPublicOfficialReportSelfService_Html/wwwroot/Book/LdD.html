@@ -129,6 +129,7 @@
                     )?'⏶':'⏷'
             }
             async function loaded() {
+                nav.menu();
                 const params = new URLSearchParams(window.location.search);
                 let bookU=params.get('book') || 'LifeDemandedDeath.pdf'
                     ,bookT=parseInt(params.get('bookT')) || 1
@@ -144,6 +145,7 @@
     </head>
     <body onload="loaded()">
         <div class="bookControls" style="z-index:1;text-align:center;">
+            <button id="nMt" onmousedown="nav.menu()" style="padding-left:2vw;padding-right:2vw;">⏶</button>
             <button id="nFt" onmousedown="nav.Page(1)">⏮️</button>
                 <button id="nPv" onmousedown="nav.Page(book.pn()-1)">◀️</button>
                 <button id="nUp" onmousedown="nav.ScrollUp()">⏫</button>
@@ -152,7 +154,6 @@
                 <button id="nDn" onmousedown="nav.ScrollDn()">⏬</button>
                 <button id="nNt" onmousedown="nav.Page(book.pn()+1)">▶️</button>
                 <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
-            &nbsp;&nbsp;<button id="nMt" onmousedown="nav.menu()" style="padding-left:2vw;padding-right:2vw;">⏶</button>
             &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" class="disabled" onmousedown="nav.export()">📤</button>
