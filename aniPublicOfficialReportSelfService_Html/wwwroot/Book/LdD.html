@@ -117,11 +117,24 @@
                 // <li><a href="javascript:nav.Page(1);nav.ShowToc()">1. Life demanded Death</a></li>
                 // {book.map((b,i)=>nav.TocLn(i+1,1,b)).join('')}</ul>`
                 // // Should stay within 
+                ,menu:()=>nMt.innerText=(
+                        uishow(nFt,uishow(nPv,
+                        uishow(nUp,uishow(nGo,
+                        uishow(nGoTxt,uishow(nDn,
+                        uishow(nNt,uishow(nLt,
+                        uishow(nFd,uishow(nSh,
+                        uishow(nEx,nMt.innerText=='⏶'))
+                        )))))))))
+                    )?'⏷':'⏶'
             }
             async function loaded() {
-                //book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
+                const params = new URLSearchParams(window.location.search);
+                let bookU=params.get('book') || 'LifeDemandedDeath.pdf'
+                    ,bookT=parseInt(params.get('bookT')) || 1
+                    ,page=parseInt(params.get('page')) || 1;
                 uisz();
-                await book.s(1,'LifeDemandedDeath.pdf');
+                await book.s(1,bookU); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
+                nav.Page(page);
                 uisz();
                 nav.UpdButtons();
             }
@@ -138,6 +151,7 @@
                 <button id="nDn" onmousedown="nav.ScrollDn()">⏬</button>
                 <button id="nNt" onmousedown="nav.Page(book.pn()+1)">▶️</button>
                 <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
+            &nbsp;&nbsp;<button id="nMt" onmousedown="nav.menu()">⏶⏷</button>
             &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" class="disabled" onmousedown="nav.export()">📤</button>
