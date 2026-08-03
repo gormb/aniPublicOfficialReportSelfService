@@ -62,16 +62,16 @@
                     nav.Able(nFd, false);
                     nav.Able(nEx, false);
                 }
-                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd
-                            , false))))))))
+                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, nav.Able(nNt2, nav.Able(nUp2, nav.Able(nEx
+                            , false)))))))))))
                 ,Share:s=>{
                     s=s??_dShare.style.display=='none';
-                    uishow(_dShare,!uishow(_cBook,!s));
-                    nav.Able(nLg, !s);//nav.Able(nSh, !s);
-                    if (s) 
+                    if (uishow(_dShare,!uishow(_cBook,nav.Able(nLg, !s)))) {
                         nav.DisButtons();
-                    else 
+                        window.scrollTo(window.scrollX, 0);
+                    } else {
                         nav.UpdButtons();
+                    }
                 }
                 ,Page:async pn=>{
                     nav.DisButtons();
@@ -160,19 +160,19 @@
             <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
             &nbsp;&nbsp;<button id="nTc" class="disabled" onmousedown="nav.ShowToc()">📚</button>
         </div>
-        <div id="_dBook" class="bookParent" onscroll="console.log('Canvas scrolled')">
+        <div id="_dBook" class="bookParent">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
             <button id="nUp2" onmousedown="nav.ScrollUp()" style="z-index:1; position:absolute; top: 12vw; left: 1vw;">⏫</button>
-            <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="z-index:1;position:absolute; right: 1vw">▶️</button>
+            <button id="nNt2" onmousxedown="nav.Page(book.pn()+1)" style="z-index:1;position:absolute; right: 1vw">▶️</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
-            <center>
-                <img id="qr" class="qr" src="qr.png" onclick="nav.Share(false);"/>
-                <a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book">
-                <h1>Book</h1>
+            <center><table><tr><th><a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book">
+                Book</a></th><th>
+                Page</th></tr><tr><td>
+                <img id="qr" class="qr" src="qr.png" onclick="nav.Share(false);"/></td><td>
+                <img id="qr" class="qr" src="qr.png" onclick="nav.Share(false);"/></td></tr></table>
             </center>
-            </a>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">
             <center>
