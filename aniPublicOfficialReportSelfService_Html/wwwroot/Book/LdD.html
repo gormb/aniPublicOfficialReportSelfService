@@ -118,14 +118,15 @@
                 // {book.map((b,i)=>nav.TocLn(i+1,1,b)).join('')}</ul>`
                 // // Should stay within 
                 ,menu:()=>nMt.innerText=(
+                        uishow(nLg,
                         uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,
-                        uishow(nGoTxt,uishow(nDn,
+                        uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,
                         uishow(nFd,uishow(nSh,
-                        uishow(nEx,nMt.innerText=='⏶'))
-                        )))))))))
-                    )?'⏷':'⏶'
+                        uishow(nEx,nMt.innerText!='⏶'))
+                        ))))))))))
+                    )?'⏶':'⏷'
             }
             async function loaded() {
                 const params = new URLSearchParams(window.location.search);
@@ -142,7 +143,7 @@
         </script>
     </head>
     <body onload="loaded()">
-        <div class="bookControls" style="z-index:1">
+        <div class="bookControls" style="z-index:1;text-align:center;">
             <button id="nFt" onmousedown="nav.Page(1)">⏮️</button>
                 <button id="nPv" onmousedown="nav.Page(book.pn()-1)">◀️</button>
                 <button id="nUp" onmousedown="nav.ScrollUp()">⏫</button>
@@ -151,13 +152,12 @@
                 <button id="nDn" onmousedown="nav.ScrollDn()">⏬</button>
                 <button id="nNt" onmousedown="nav.Page(book.pn()+1)">▶️</button>
                 <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
-            &nbsp;&nbsp;<button id="nMt" onmousedown="nav.menu()">⏶⏷</button>
+            &nbsp;&nbsp;<button id="nMt" onmousedown="nav.menu()" style="padding-left:2vw;padding-right:2vw;">⏶</button>
             &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" class="disabled" onmousedown="nav.export()">📤</button>
             <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
             &nbsp;&nbsp;<button id="nTc" class="disabled" onmousedown="nav.ShowToc()">📚</button>
-            <hr/>
         </div>
         <div id="_dBook" class="bookParent" onscroll="console.log('Canvas scrolled')">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
