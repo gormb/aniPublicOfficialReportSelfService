@@ -128,10 +128,12 @@
             }
             async function loaded() {
                 nav.menu();
+                // Parseparameters from URL
                 const params = new URLSearchParams(window.location.search);
                 let bookU=params.get('book') || 'LifeDemandedDeath.pdf'
                     ,bookT=parseInt(params.get('bookT')) || 1
                     ,page=parseInt(params.get('page')) || 1;
+                // Set initial size, load book, adjust size and update buttons
                 uisz();
                 await book.s(1,bookU); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
                 nav.Page(page);
@@ -161,8 +163,10 @@
         <div id="_dBook" class="bookParent">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
-            <button id="nUp2" onmousedown="nav.ScrollUp()" style="z-index:1; position:absolute; top: 12vw; left: 1vw;">⏫</button>
-            <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="z-index:1;position:absolute; right: 1vw;">▶️</button>
+            <button id="nUp2" onmousedown="nav.ScrollUp()">⏫</button>
+            <button id="nUp3" onmousedown="nav.ScrollUp()">⏫</button>
+            <button id="nNt2" onmousedown="nav.Page(book.pn()+1)">▶️</button>
+            <button id="nNt3" onmousedown="nav.Page(book.pn()+1)">▶️</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
             <center><table><tr><th><a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book">

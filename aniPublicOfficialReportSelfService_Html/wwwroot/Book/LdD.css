@@ -5,6 +5,10 @@ body {
 }
 
 button { font-size:var(--fsMenu); padding:var(--padMenu);}
+    #nUp2 {z-index:1; position:absolute; top:calc(var(--paddingTop1)); left:0;}
+    #nNt2 {z-index:1;position:absolute; right:0; bottom:0;}
+    #nUp3 {z-index:1; position:absolute; top:calc(var(--paddingTop1)); right:-100vw;}
+    #nNt3 {z-index:1;position:absolute; left:101vw; bottom:0;}
 .pageNo { font-size:var(--fsMenu); padding:var(--padMenu);display:none; text-align:center;width:2em;}
 .disabled { opacity: 0.5; pointer-events: none;}
 .bookControls { position: fixed; top: 1vh; left: 1vw;}
@@ -12,16 +16,6 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 .shareParent { display:none;z-index:1;padding-top:calc(1 * var(--paddingTop1)) }
 .tocParent { display:none;z-index:99;padding-top:calc(1 * var(--paddingTop1)) }
 .qr { width:49vh;}
-#nUp2 {
-    position: absolute;
-    top: calc(var(--paddingTop1));
-    left: 0;
-}
-#nNt2 {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
 
 @media (max-aspect-ratio: 1/1) {
     .bookParent { padding-top: calc(2 * var(--paddingTop1));}
