@@ -67,6 +67,7 @@
                             , false)))))))))))))
                 ,Share:async s=>{
                     s=s??_dShare.style.display=='none';
+                    if (s) cBook.QrUrlScrollY = window.scrollY; // save vertical position for QR link
                     if (uishow(_dShare,!uishow(_cBook,nav.Able(nLg, !s)))) {
                         nav.DisButtons();
                         ShDeepL.href = await window.cBook.QrUrl();
@@ -137,6 +138,8 @@
                     const c=a[i], b=document.getElementById(c);
                     if(b) b.onmousedown();
                     else if(c=="w") return setTimeout(() => nav.btSimul(a, i+2), a[i+1]??1000);
+                    else if(c=="s")
+                        window.scrollTo(window.scrollX, a[(++i)]);
                     else console.log(`btSimul ${c} button not found`);
                     nav.btSimul(a,i+1);
                 }
