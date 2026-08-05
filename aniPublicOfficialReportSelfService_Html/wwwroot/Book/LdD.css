@@ -18,7 +18,7 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 .tocParent { display:none;z-index:99;padding-top:calc(1 * var(--paddingTop1)) }
 .qr { width:var(--qrWidth);}
 
-@media (max-aspect-ratio: 1/1) {
+@media (max-aspect-ratio: 1/1 ) {
     .bookParent { padding-top: calc(2 * var(--paddingTop1));}
     .shareParent { padding-top: calc(2 * var(--paddingTop1));}
     .tocParent { padding-top: calc(2 * var(--paddingTop1));}

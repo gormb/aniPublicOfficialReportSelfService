@@ -28,6 +28,23 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         cBook.renderTask = cBook.page.render({canvasContext: cBook.ctx, viewport: cBook.view});
     }
     ,DoShow:async (src, pageNo, width)=>await cBook.Source(src,true)
+    ,QrUrl:async function() {
+        if (cBook._qrUrl) URL.revokeObjectURL(cBook._qrUrl); // release previous
+        const u = new URL(location.origin + location.pathname); // fresh base: no inherited params
+        u.searchParams.set('book', book.src);
+        u.searchParams.set('page', cBook.pn);
+        if (book.hAlign._ === false) // English view
+            u.searchParams.set('c', 'w,1,nLg'); // deep link flips to English after load
+        const sz = Math.round(40/100*innerHeight); // matches .qr width (40vh)
+        try {
+            const qr = new window.QRCodeStyling({width:sz, height:sz, data:u.href, image:"qr_int2.png", imageOptions:{margin:8}});
+            const blob = await qr.getRawData('png');
+            qrd.src = cBook._qrUrl = URL.createObjectURL(blob);
+        } catch {
+            qrd.src = "qr.png"; // fallback if CDN lib is unavailable
+        }
+        return u.href;
+    }
 };
 
 window.cBook=cBook;
