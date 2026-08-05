@@ -84,8 +84,8 @@
                 ,EdPage:async()=>{
                     nGoTxt.value = book.pn();
                     uishow(nGoTxt,!uishow(nGo, false));
+                    nGoTxt.focus(); // sync focus within the user gesture => iOS shows keyboard
                     nGoTxt.select();
-                    setTimeout(()=>nGoTxt.focus(), 250);
                 }
                 ,PageEd:async ()=>{
                     const n = parseInt(nGoTxt.value);
