@@ -53,15 +53,15 @@
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
                     nav.Able(nPv, nav.Able(nFt, (book.pn()>1)));
-                    nav.Able(nUp, nav.Able(nUp2, (book.pn()>1 || window.scrollY > 0)));
+                    nav.Able(nUp, nav.Able(nUp2, nav.Able(nUp3, (book.pn()>1 || window.scrollY > 0))));
                     nav.Able(nGo, true);
                     nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
-                    nav.Able(nLt, nav.Able(nNt, nav.Able(nNt2, (book.pn()<book.np()))));
+                    nav.Able(nLt, nav.Able(nNt, nav.Able(nNt2, nav.Able(nNt3, (book.pn()<book.np())))));
                     nav.Able(nFd, false);
                     nav.Able(nEx, false);
                 }
-                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, nav.Able(nNt2, nav.Able(nUp2, nav.Able(nEx
-                            , false)))))))))))
+                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, nav.Able(nNt2, nav.Able(nUp2, nav.Able(nNt3, nav.Able(nUp3, nav.Able(nEx
+                            , false)))))))))))))
                 ,Share:s=>{
                     s=s??_dShare.style.display=='none';
                     if (uishow(_dShare,!uishow(_cBook,nav.Able(nLg, !s)))) {
@@ -115,29 +115,42 @@
                 // <li><a href="javascript:nav.Page(1);nav.ShowToc()">1. Life demanded Death</a></li>
                 // {book.map((b,i)=>nav.TocLn(i+1,1,b)).join('')}</ul>`
                 // // Should stay within 
-                ,menu:()=>nMt.innerText=(
-                        uishow(nLg,
+                ,menu:()=>{
+                    let h=nMt.innerText!='⏶';
+                    nMt.innerText=h?'⏶':'⏷';
+                    nSh.style.scale=h?1:.7;
+                    uishow(nLg,
                         uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,
                         uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,
-                        uishow(nFd,uishow(nSh,
-                        uishow(nEx,nMt.innerText!='⏶'))
-                        ))))))))))
-                    )?'⏶':'⏷'
+                        uishow(nFd,
+                        uishow(nEx,h))
+                        )))))))));
+                }
+                ,btSimul:(a,i)=>{
+                    if(i>=a.length) return;
+                    const c=a[i], b=document.getElementById(c);
+                    if(b) b.onmousedown();
+                    else if(c=="w") return setTimeout(() => nav.btSimul(a, i+2), a[i+1]??1000);
+                    else console.log(`btSimul ${c} button not found`);
+                    nav.btSimul(a,i+1);
+                }
             }
             async function loaded() {
                 nav.menu();
                 // Parseparameters from URL
-                const params = new URLSearchParams(window.location.search);
-                let bookU=params.get('book') || 'LifeDemandedDeath.pdf'
-                    ,bookT=parseInt(params.get('bookT')) || 1
-                    ,page=parseInt(params.get('page')) || 1;
+                const sp = new URLSearchParams(window.location.search);
+                let bookU=sp.get('book') || 'LifeDemandedDeath.pdf'
+                    ,bookT=parseInt(sp.get('bookT')) || 1
+                    ,page=parseInt(sp.get('page')) || 1;
                 // Set initial size, load book, adjust size and update buttons
                 uisz();
                 await book.s(1,bookU); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
                 nav.Page(page);
                 uisz();
+                // http://127.0.0.1:5500/aniPublicOfficialReportSelfService_Html/wwwroot/Book/LdD.html?c=w,1500,nSh
+                nav.btSimul(sp.get('c')?.split(',') || [], 0);
                 nav.UpdButtons();
             }
             window.onresize=uisz;
@@ -145,7 +158,7 @@
     </head>
     <body onload="loaded()">
         <div class="bookControls" style="z-index:1;text-align:center;">
-            <button id="nMt" onmousedown="nav.menu()" style="padding-left:2vw;padding-right:2vw;">⏶</button>
+            <button id="nMt" onmousedown="nav.menu()" style="padding-left:2vw;padding-right:2vw;scale:.7;">⏶</button>
             <button id="nFt" onmousedown="nav.Page(1)">⏮️</button>
                 <button id="nPv" onmousedown="nav.Page(book.pn()-1)">◀️</button>
                 <button id="nUp" onmousedown="nav.ScrollUp()">⏫</button>
@@ -169,11 +182,10 @@
             <button id="nNt3" onmousedown="nav.Page(book.pn()+1)">▶️</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
-            <center><table><tr><th><a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book">
-                Book</a></th><th>
-                Page</th></tr><tr><td>
-                <img id="qr" class="qr" src="qr.png" onclick="nav.Share(false);"/></td><td>
-                <img id="qr" class="qr" src="qr.png" onclick="nav.Share(false);"/></td></tr></table>
+            <center><table><tr><td><a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book">Book</a>
+                    <td><img id="qr" class="qr" src="qr.png"/></td></tr>
+                <tr><td><a id="ShDeepL">Deep</td>
+                    <td><img id="qr" class="qr" src="qr.png"/></td></tr></table>
             </center>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">
