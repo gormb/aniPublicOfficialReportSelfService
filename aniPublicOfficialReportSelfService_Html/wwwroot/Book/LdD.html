@@ -107,8 +107,8 @@
             const nav={
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
-                    nav.Able(nPv, nav.Able(nFt, (book.pn()>1)));
-                    nav.Able(nUp, nav.Able(nUp2, nav.Able(nUp3, (book.pn()>1 || window.scrollY > 0))));
+                    nav.Able(nPv, nav.Able(nUp2, nav.Able(nUp3, nav.Able(nFt, (book.pn()>1)))));
+                    nav.Able(nUp, (book.pn()>1 || window.scrollY > 0));
                     nav.Able(nGo, true);
                     nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
                     nav.Able(nLt, nav.Able(nNt, nav.Able(nNt2, nav.Able(nNt3, (book.pn()<book.np())))));
@@ -117,15 +117,18 @@
                 }
                 ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, nav.Able(nNt2, nav.Able(nUp2, nav.Able(nNt3, nav.Able(nUp3, nav.Able(nEx
                             , false)))))))))))))
-                ,Share:async s=>{
-                    s=s??_dShare.style.display=='none';
-                    uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,!s))));
-                    if (s) cBook.QrUrlScrollY = window.scrollY; // save vertical position for QR link
-                    if (uishow(_dShare,!uishow(_cBook,nav.Able(nLg, !s)))) {
+                ,Share_preX:0
+                ,Share:async (_,s=_??_dShare.style.display=='none')=>{
+                    if (s) {
+                        book.Share_preX = window.scrollX;
+                        cBook.QrUrlScrollY = window.scrollY; // save vertical position for QR link
+                    }
+                    if (uishow(_dShare,!uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,uishow(_cBook,nav.Able(nLg, !s)))))))) {
                         nav.DisButtons();
                         ShDeepL.href = await window.cBook.QrUrl();
                         window.scrollTo(window.scrollX, 0);
                     } else {
+                        window.scrollTo(book.Share_preX, cBook.QrUrlScrollY);
                         nav.UpdButtons();
                     }
                 }
