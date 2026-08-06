@@ -119,6 +119,7 @@
                             , false)))))))))))))
                 ,Share:async s=>{
                     s=s??_dShare.style.display=='none';
+                    uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,!s))));
                     if (s) cBook.QrUrlScrollY = window.scrollY; // save vertical position for QR link
                     if (uishow(_dShare,!uishow(_cBook,nav.Able(nLg, !s)))) {
                         nav.DisButtons();
@@ -175,14 +176,17 @@
                 ,menu:()=>{
                     let h=nMt.innerText!='⏶';
                     nMt.innerText=h?'⏶':'⏷';
+                    // Adjust scale of share button to fit within menu, set to fixed right if h
                     nSh.style.scale=h?1:.7;
+                    nSh.style.position=!h?'fixed':'';
+                    nSh.style.right=!h?'0':'';
+
                     uishow(nLg,
                         uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,
                         uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,
-                        uishow(nFd,
-                        uishow(nEx,h))
+                        uishow(nFd,uishow(nEx,h))
                         )))))))));
                 }
                 ,btSimul:(a,i)=>{
@@ -254,7 +258,7 @@
             </center>
         </div>
         <div id="_dExport" style="display:none;">
-            <div id="_dExportTxt" contenteditable="true" style="">
+            <div id="_dExportTxt" contenteditable="true">
                 Teksten din her...
             </div>
         </div>
