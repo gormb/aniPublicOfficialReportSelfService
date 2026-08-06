@@ -32,8 +32,7 @@
                 ,sz:(w,h)=>{
                     if(book.pdf) return book.sPdf(book.src);
                     w*=2; // Adjust so double as wide as needed (so that iframe and canvas only show half!)
-                    //
-                    book.szW(w);
+                    book.szWH(w,w/book.aRatio)
                 }
                 ,hAlign:{
                     _:true
@@ -52,6 +51,59 @@
                 ,pn:()=>cBook.pn
                 ,np:()=>cBook.pdf?.numPages
             }
+            const forlag={
+                norsk:[{ forlag: "Cappelen Damm", url: "https://manus.cappelendamm.no/" },
+                    { forlag: "Gyldendal Norsk Forlag", url: "https://www.gyldendal.no/send-inn-manus/" },
+                    { forlag: "Aschehoug Forlag", url: "https://www.aschehoug.no/send-inn-manus" },
+                    { forlag: "Vigmostad & Bjørke", url: "https://www.vigmostadbjorke.no/send-inn-manus" },
+                    { forlag: "Kagge Forlag", url: "mailto:manus@kagge.no" },
+                    { forlag: "Bonnier Norsk Forlag", url: "https://bonnierforlag.no/send-inn-manus/" },
+                    { forlag: "Det Norske Samlaget", url: "mailto:manus@samlaget.no" },
+                    { forlag: "Pax Forlag", url: "mailto:manus@pax.no" },
+                    { forlag: "Press (Forlaget Press)", url: "mailto:post@fpress.no" },
+                    { forlag: "Spartacus Forlag", url: "mailto:manus@spartacus.no" },
+                    { forlag: "Res Publica", url: "mailto:manus@respublica.no" },
+                    { forlag: "Dreyers Forlag", url: "mailto:post@dreyersforlag.no" },
+                    { forlag: "Solum Bokvennen", url: "mailto:manus@solumbokvennen.no" },
+                    { forlag: "Bazar Forlag", url: "https://www.cappelendamm.no" },
+                    { forlag: "Fontini Forlag", url: "https://www.fontini.no" },
+                    { forlag: "Manifest Forlag", url: "mailto:post@manifest.no" },
+                    { forlag: "Humanist Forlag", url: "mailto:post@humanistforlag.no" },
+                    { forlag: "Orkana Forlag", url: "https://www.orkana.no/send-inn-manus/" },
+                    { forlag: "Kolofon Forlag", url: "https://www.kolofon.no" },
+                    { forlag: "Forlaget Oktober", url: "https://oktober.no/send-inn-manus" },
+                    // 30 flere (totalt 50)
+                    { forlag: "Panta Forlag", url: "mailto:manus@pantaforlag.no" },
+                    { forlag: "VerDocument / Vega Forlag", url: "mailto:post@vegaforlag.no" },
+                    { forlag: "Vidarforlaget", url: "mailto:post@vidarforlaget.no" },
+                    { forlag: "Omnipax", url: "mailto:omnipax@omnipax.no" },
+                    { forlag: "Lura Forlag", url: "https://www.luraforlag.no" },
+                    { forlag: "Fagbokforlaget", url: "https://fagbokforlaget.no" },
+                    { forlag: "Universitetsforlaget", url: "https://www.universitetsforlaget.no" },
+                    { forlag: "Gardskalle Forlag", url: "https://www.gardskalle.no" },
+                    { forlag: "Forlaget Manifest", url: "https://www.manifest.no" },
+                    { forlag: "Dreyer Bok", url: "mailto:post@dreyerbok.no" },
+                    { forlag: "Grip Forlag", url: "mailto:post@gripforlag.no" },
+                    { forlag: "Lille Måne", url: "mailto:post@lillemane.no" },
+                    { forlag: "Din Bok", url: "https://www.dinbok.no" },
+                    { forlag: "BoldBooks", url: "https://boldbooks.com/no" },
+                    { forlag: "Skald Forlag", url: "mailto:post@skald.no" },
+                    { forlag: "Bonnier Carlsen Norge", url: "https://bonnierforlag.no" },
+                    { forlag: "Gursli Berg Forlag", url: "mailto:post@gursliberg.no" },
+                    { forlag: "Klokkergaarden Forlag", url: "https://www.klokkergaarden.no" },
+                    { forlag: "LIV Forlag (Forlagshuset i Vestfold)", url: "https://forlagshusetivestfold.no" },
+                    { forlag: "Jemtegård Forlag", url: "https://www.jemtegard.no" },
+                    { forlag: "Ea Forlag", url: "mailto:post@eaforlag.no" },
+                    { forlag: "Margin Forlag", url: "mailto:post@marginforlag.no" },
+                    { forlag: "Magicon Forlag", url: "mailto:post@magicon.no" },
+                    { forlag: "Steno Forlag", url: "https://www.stenoforlag.no" },
+                    { forlag: "Z-forlag", url: "mailto:post@z-forlag.no" },
+                    { forlag: "Gaveca Forlag", url: "https://www.gaveca.no" },
+                    { forlag: "Commentum Forlag", url: "https://www.commentum.no" },
+                    { forlag: "Calidris Forlag", url: "mailto:post@calidris.no" },
+                    { forlag: "Flyt Forlag", url: "mailto:post@flyt.no" },
+                    { forlag: "Pitch Forlag", url: "mailto:post@pitchforlag.no" }]
+             }   
             const nav={
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
@@ -145,8 +197,7 @@
                 }
             }
             async function loaded() {
-                nav.menu();
-                // Parseparameters from URL
+                nav.menu(false);
                 const sp = new URLSearchParams(window.location.search);
                 let bookU=sp.get('book') || 'LifeDemandedDeath.pdf'
                     ,bookT=parseInt(sp.get('bookT')) || 1
