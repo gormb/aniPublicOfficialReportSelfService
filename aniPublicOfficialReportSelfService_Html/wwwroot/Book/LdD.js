@@ -15,7 +15,8 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             cBook.pn = pageNo;
             cBook.page = await cBook.pdf.getPage(pageNo);
         }
-        if (render) await cBook.Width(window.innerWidth*2, true);
+        if (render) 
+            await cBook.Width(window.innerWidth*2, true);
     }
     ,Width:async function(width,doRender) {
         cBook.viewport = cBook.page.getViewport({scale:1});

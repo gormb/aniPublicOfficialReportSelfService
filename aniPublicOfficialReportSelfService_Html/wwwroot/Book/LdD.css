@@ -2,8 +2,7 @@ body {
     --fsMenu: calc(3vw + 3vh);
     --padMenu: calc(.125vw + .125vh);
     --paddingTop1: calc(6vw + 6vh);
-    --qrWidth: calc(35vh);
-}
+    --qrWidth: calc(35vh);}
 
 button { font-size:var(--fsMenu); padding:var(--padMenu);}
     #nUp2 {z-index:1; position:absolute; top:calc(var(--paddingTop1)); left:0;scale:.7;}
