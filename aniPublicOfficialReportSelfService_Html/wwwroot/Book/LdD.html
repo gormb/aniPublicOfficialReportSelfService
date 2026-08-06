@@ -123,7 +123,8 @@
                         book.Share_preX = window.scrollX;
                         cBook.QrUrlScrollY = window.scrollY; // save vertical position for QR link
                     }
-                    if (uishow(_dShare,!uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,uishow(_cBook,nav.Able(nLg, !s)))))))) {
+                    uishow(_dShare,!uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,uishow(_cBook,nav.Able(nLg, !s)))))));
+                    if (s) {
                         nav.DisButtons();
                         ShDeepL.href = await window.cBook.QrUrl();
                         window.scrollTo(window.scrollX, 0);
