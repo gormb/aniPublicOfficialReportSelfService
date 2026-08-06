@@ -2,7 +2,7 @@ body {
     --fsMenu: calc(3vw + 3vh);
     --padMenu: calc(.125vw + .125vh);
     --paddingTop1: calc(6vw + 6vh);
-    --qrWidth: calc(40vh);
+    --qrWidth: calc(35vh);
 }
 
 button { font-size:var(--fsMenu); padding:var(--padMenu);}
@@ -24,5 +24,5 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
     .bookParent { padding-top: calc(2 * var(--paddingTop1));}
     .shareParent { padding-top: calc(2 * var(--paddingTop1));}
     .tocParent { padding-top: calc(2 * var(--paddingTop1));}
-    .qr { width: 40vh; }
+    .qr { width: 35vh; }
 }
