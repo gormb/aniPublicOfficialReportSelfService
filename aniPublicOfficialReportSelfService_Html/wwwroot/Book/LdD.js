@@ -57,7 +57,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 return `${br}${isB ? `<br/><b>${i.str}</b><br/>` : i.str}`;
             }).join(' ');
         }));
-        return pages.join('\0').replace(/\0(?=[a-z])/g, ' ').replace(/\0/g, '<br/><br/>');
+        return pages.filter(p => !p.includes('<b>Template</b>')).join('\0').replace(/\0(?=[a-z])/g, ' ').replace(/\0/g, '<br/><br/>');
     }
     ,Save: async function(el, filename='book.pdf') {
         await html2pdf().set({margin:0,filename,html2canvas:{scale:1},jsPDF:{unit:'mm',format:'a4'}}).from(el).save();
