@@ -5,10 +5,11 @@ body {
     --qrWidth: calc(35vh);}
 
 button { font-size:var(--fsMenu); padding:var(--padMenu);}
-    #nUp2 {z-index:1; position:absolute; top:calc(var(--paddingTop1)); left:0;scale:.7;}
+    #nUp2 {z-index:1;position:absolute; top:calc(var(--paddingTop1)); left:0;scale:.7;}
     #nNt2 {z-index:1;position:absolute; right:0; bottom:0;scale:.7;}
-    #nUp3 {z-index:1; position:absolute; top:calc(var(--paddingTop1)); right:-100vw;scale:.7;}
-    #nNt3 {z-index:1;position:absolute; left:102vw; bottom:0;scale:.7;}
+    #nUp3 {z-index:1;position:absolute; top:calc(var(--paddingTop1)); right:-102vw;scale:.7;}
+    #nNt3 {z-index:1;position:absolute; left:101vw; bottom:0;scale:.7;}
+    #nSv {z-index:1;position:absolute; top:calc(var(--paddingTop1)); left:0;scale:.7;}
 .pageNo { font-size:var(--fsMenu); padding:var(--padMenu);display:none; text-align:center;width:2em;}
 .disabled { opacity: 0.5; pointer-events: none;}
 .bookControls { position: fixed; top: 1vh; left: 1vw;}
@@ -17,7 +18,7 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 .tocParent { display:none;z-index:99;padding-top:calc(1 * var(--paddingTop1)) }
 .qr { width:var(--qrWidth);}
 #_dExportTxt { overflow:auto; -webkit-overflow-scrolling:touch; border:1px solid #000;
-    width: 210mm;min-height: 297mm;padding: 25mm;margin: 0 auto;box-sizing: border-box;font-size: 12pt;line-height: 1.5;}
+    width: 210mm;min-height: 297mm;padding: 25mm;margin: 0 auto;box-sizing: border-box;font-size: 12pt;line-height: 1.5}
 
 @media (max-aspect-ratio: 1/1 ) {
     .bookParent { padding-top: calc(2 * var(--paddingTop1));}

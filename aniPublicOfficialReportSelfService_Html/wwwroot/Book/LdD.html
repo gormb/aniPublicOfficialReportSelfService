@@ -2,6 +2,7 @@
     <head>
         <title>Life demanded Death</title>
         <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <script type="module" src="LdD.js"></script>
         <link rel="stylesheet" href="LdD.css">
         <script>
@@ -113,10 +114,9 @@
                     nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
                     nav.Able(nLt, nav.Able(nNt, nav.Able(nNt2, nav.Able(nNt3, (book.pn()<book.np())))));
                     nav.Able(nFd, false);
-                    nav.Able(nEx, false);
                 }
-                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, nav.Able(nNt2, nav.Able(nUp2, nav.Able(nNt3, nav.Able(nUp3, nav.Able(nEx
-                            , false)))))))))))))
+                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, nav.Able(nNt2, nav.Able(nUp2, nav.Able(nNt3, nav.Able(nUp3
+                            , false))))))))))))
                 ,Share_preX:0
                 ,Share:async (_,s=_??_dShare.style.display=='none')=>{
                     if (s) {
@@ -132,6 +132,37 @@
                         window.scrollTo(book.Share_preX, cBook.QrUrlScrollY);
                         nav.UpdButtons();
                     }
+                }
+                ,Export_preX:0,Export_preY:0
+                ,Export:async (_,s=_??_dExport.style.display=='none')=>{
+                    nav.Able(nSv, false);
+                    if (s) {
+                        book.Export_preX = window.scrollX;
+                        book.Export_preY = window.scrollY;
+                    }
+                    uishow(_dExport,!uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,uishow(_cBook,nav.Able(nLg, !s)))))));
+                    if (s) {
+                        nav.DisButtons();
+                        window.scrollTo(window.scrollX, 0);
+                        _dExportTxt.innerHTML = "Exporting...";
+                        _dExportTxt.innerHTML = await window.cBook.Export(1, 1, !book.hAlign._);
+                        _dExportTxt.innerHTML = await window.cBook.Export(1, window.cBook.pdf?.numPages, !book.hAlign._);
+                        nav.Able(nSv, true);
+                    } else {
+                        window.scrollTo(book.Export_preX, book.Export_preY);
+                        nav.UpdButtons();
+                    }
+                }
+                ,ExportSave:async()=>{
+                    const blob = new Blob([_dExportTxt.innerText], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `LifeDemandedDeath_${book.hAlign._?'N':'E'}.txt`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
                 }
                 ,Page:async pn=>{
                     //nav.DisButtons();
@@ -154,7 +185,7 @@
                 ,ScrollUp:async ()=>{
                     if (window.scrollY <= 1) {// already at top
                         await book.Page(book.pn() - 1);
-                        window,scrollTo(window.scrollX, document.documentElement.scrollHeight - window.innerHeight);
+                        window.scrollTo(window.scrollX, document.documentElement.scrollHeight - window.innerHeight);
                     }
                     else {
                         window.scrollBy(0, -window.innerHeight*.75);
@@ -184,7 +215,6 @@
                     nSh.style.scale=h?1:.7;
                     nSh.style.position=!h?'fixed':'';
                     nSh.style.right=!h?'0':'';
-
                     uishow(nLg,
                         uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,
@@ -234,23 +264,23 @@
                 <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
             &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
-                <button id="nEx" class="disabled" onmousedown="nav.export()">📤</button>
+                <button id="nEx" onmousedown="nav.Export()">📤</button>
             <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
             &nbsp;&nbsp;<button id="nTc" class="disabled" onmousedown="nav.ShowToc()">📚</button>
         </div>
         <div id="_dBook" class="bookParent">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
-            <button id="nUp2" onmousedown="nav.ScrollUp()">▲</button>
-            <button id="nUp3" onmousedown="nav.ScrollUp()">▲</button>
-            <button id="nNt2" onmousedown="nav.Page(book.pn()+1)">►</button>
-            <button id="nNt3" onmousedown="nav.Page(book.pn()+1)">►</button>
+            <button id="nUp2" onmousedown="nav.ScrollUp()">&nbsp;▲&nbsp;</button>
+            <button id="nUp3" onmousedown="nav.ScrollUp()">&nbsp;▲&nbsp;</button>
+            <button id="nNt2" onmousedown="nav.Page(book.pn()+1)">&nbsp;►&nbsp;</button>
+            <button id="nNt3" onmousedown="nav.Page(book.pn()+1)">&nbsp;►&nbsp;</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
-            <center><table><tr><td><a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book">Book</a>
+            <center><table><tr><td><a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book"><h1>Book</h1></a>
                     <td><img id="qr" class="qr" src="qr.png"/></td></tr>
-                <tr><td><a id="ShDeepL" href="#">Deep </a></td>
-                    <td><img id="qrd" class="qr" src="qr_int2.png"/></td></tr></table>
+                <tr><td><a id="ShDeepL" href="#"><h1>Deep</h1></a></td>
+                    <td><img id="qrd" class="qr" src="qr_int2_oppgitt.png"/></td></tr></table>
             </center>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">
@@ -262,8 +292,11 @@
             </center>
         </div>
         <div id="_dExport" style="display:none;">
+            <button id="nSv" onmousedown="window.cBook.Save(_dExportTxt)" class="disabled">💾</button>
             <div id="_dExportTxt" contenteditable="true">
-                Teksten din her..
+                <b>Book</b><br><br>exporting...<br>
+                <br><br><br><hr><br><br><br>
+                <b>Bok</b><br>ekporteres...
             </div>
         </div>
     </body>

@@ -43,6 +43,25 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         qrd.src = cBook._qrUrl = URL.createObjectURL(blob);
         return u.href;
     }
+    ,Export: async function(start, end, lang) {
+        if (!cBook.pdf) return '';
+        const s = Math.max(1, start || 1), e = Math.min(cBook.pdf.numPages, end || cBook.pdf.numPages);
+        let lastF, lastSz = 0;
+        const pages = await Promise.all(Array.from({ length: e - s + 1 }, (_, i) => s + i).map(async p => {
+            const page = await cBook.pdf.getPage(p), mid = page.getViewport({ scale: 1 }).width / 2;
+            const { items } = await page.getTextContent();
+            return items.filter(i => lang?(i.transform[4] > mid)  : (i.transform[4] < mid) && i.str.trim()).map(i => {
+                const sz = Math.hypot(i.transform[0], i.transform[1]); // calculate actual font height/scale
+                const br = (lastF && lastF !== i.fontName) ? '<br/>' : '', isB = lastSz && sz > lastSz;
+                lastF = i.fontName; lastSz = sz;
+                return `${br}${isB ? `<br/><b>${i.str}</b><br/>` : i.str}`;
+            }).join(' ');
+        }));
+        return pages.join('<br/><br/>');
+    }
+    ,Save: async function(el, filename='book.pdf') {
+        await html2pdf().set({margin:0,filename,html2canvas:{scale:1},jsPDF:{unit:'mm',format:'a4'}}).from(el).save();
+    }
 };
 
 window.cBook=cBook;
