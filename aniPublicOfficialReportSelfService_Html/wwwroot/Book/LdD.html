@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="LdD.css">
         <script>
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
-            const uiscroll=()=>nav.memSet('Y', window.scrollY);
+            const uiscroll=()=>_cBook.style.display=='none' ? null : nav.memSet('Y', window.scrollY)
             const uishow=(c,on)=>{c.style.display=on?'inline':'none';return on;}
             const book= {
                 s:(pdf,src)=>{
