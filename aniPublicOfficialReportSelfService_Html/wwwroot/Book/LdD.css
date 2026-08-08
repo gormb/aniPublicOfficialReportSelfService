@@ -5,11 +5,11 @@ body {
     --qrWidth: calc(35vh);}
 
 button { font-size:var(--fsMenu); padding:var(--padMenu);}
-    #nUp2 {z-index:1;position:absolute; top:calc(var(--paddingTop1)); left:0;scale:.7;}
+    #nUp2 {z-index:1;position:absolute; top:calc(var(--paddingTop1)); right:0;scale:.7;}
     #nNt2 {z-index:1;position:absolute; right:0; bottom:0;scale:.7;}
     #nUp3 {z-index:1;position:absolute; top:calc(var(--paddingTop1)); right:-102vw;scale:.7;}
-    #nNt3 {z-index:1;position:absolute; left:101vw; bottom:0;scale:.7;}
-    #nSv {z-index:1;position:absolute; top:calc(var(--paddingTop1)); left:0;scale:.7;}
+    #nNt3 {z-index:1;position:absolute; right:-102vw; bottom:0;scale:.7;}
+    #nSv {z-index:1;position:fixed; top:calc(var(--paddingTop1)); left:0;scale:.7;}
 .pageNo { font-size:var(--fsMenu); padding:var(--padMenu);display:none; text-align:center;width:2em;}
 .disabled { opacity: 0.5; pointer-events: none;}
 .bookControls { position: fixed; top: 1vh; left: 1vw;}

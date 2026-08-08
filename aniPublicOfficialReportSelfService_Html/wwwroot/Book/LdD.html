@@ -108,14 +108,14 @@
             const nav={
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
-                    nav.Able(nPv, nav.Able(nUp2, nav.Able(nUp3, nav.Able(nFt, (book.pn()>1)))));
+                    nav.Able(nPv, uishow(nUp2, uishow(nUp3, nav.Able(nFt, (book.pn()>1)))));
                     nav.Able(nUp, (book.pn()>1 || window.scrollY > 0));
                     nav.Able(nGo, true);
                     nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
-                    nav.Able(nLt, nav.Able(nNt, nav.Able(nNt2, nav.Able(nNt3, (book.pn()<book.np())))));
+                    nav.Able(nLt, nav.Able(nNt, uishow(nNt2, uishow(nNt3, (book.pn()<book.np())))));
                     nav.Able(nFd, false);
                 }
-                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, nav.Able(nNt2, nav.Able(nUp2, nav.Able(nNt3, nav.Able(nUp3
+                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, uishow(nNt2, uishow(nUp2, uishow(nNt3, uishow(nUp3
                             , false))))))))))))
                 ,Share_preX:0
                 ,Share:async (_,s=_??_dShare.style.display=='none')=>{
@@ -135,7 +135,7 @@
                 }
                 ,Export_preX:0,Export_preY:0
                 ,Export:async (_,s=_??_dExport.style.display=='none')=>{
-                    nav.Able(nSv, false);
+                    uishow(nSv, false);
                     if (s) {
                         book.Export_preX = window.scrollX;
                         book.Export_preY = window.scrollY;
@@ -147,7 +147,7 @@
                         _dExportTxt.innerHTML = "Exporting...";
                         _dExportTxt.innerHTML = await window.cBook.Export(1, 1, !book.hAlign._);
                         _dExportTxt.innerHTML = await window.cBook.Export(1, window.cBook.pdf?.numPages, !book.hAlign._);
-                        nav.Able(nSv, true);
+                        uishow(nSv, true);
                     } else {
                         window.scrollTo(book.Export_preX, book.Export_preY);
                         nav.UpdButtons();
@@ -214,13 +214,10 @@
                     // Adjust scale of share button to fit within menu, set to fixed right if h
                     nSh.style.scale=h?1:.7;
                     nSh.style.position=!h?'fixed':'';
-                    nSh.style.right=!h?'0':'';
-                    uishow(nLg,
-                        uishow(nFt,uishow(nPv,
-                        uishow(nUp,uishow(nGo,
-                        uishow(nTc,uishow(nDn,
-                        uishow(nNt,uishow(nLt,
-                        uishow(nFd,uishow(nEx,h))
+                    nSh.style.bottom=nSh.style.left=!h?'0':'';
+                    uishow(nLg,uishow(nFt,uishow(nPv,
+                        uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
+                        uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
                         )))))))));
                 }
                 ,btSimul:(a,i)=>{
@@ -271,10 +268,10 @@
         <div id="_dBook" class="bookParent">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
-            <button id="nUp2" onmousedown="nav.ScrollUp()">&nbsp;▲&nbsp;</button>
-            <button id="nUp3" onmousedown="nav.ScrollUp()">&nbsp;▲&nbsp;</button>
-            <button id="nNt2" onmousedown="nav.Page(book.pn()+1)">&nbsp;►&nbsp;</button>
-            <button id="nNt3" onmousedown="nav.Page(book.pn()+1)">&nbsp;►&nbsp;</button>
+            <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
+            <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
+            <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
+            <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
             <center><table><tr><td><a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book"><h1>Book</h1></a>
@@ -292,7 +289,7 @@
             </center>
         </div>
         <div id="_dExport" style="display:none;">
-            <button id="nSv" onmousedown="window.cBook.Save(_dExportTxt)" class="disabled">💾</button>
+            <button id="nSv" onmousedown="window.cBook.Save(_dExportTxt)" style="display:none;">💾</button>
             <div id="_dExportTxt" contenteditable="true">
                 <b>Book</b><br><br>exporting...<br>
                 <br><br><br><hr><br><br><br>
