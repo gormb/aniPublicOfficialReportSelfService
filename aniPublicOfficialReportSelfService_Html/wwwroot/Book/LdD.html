@@ -146,7 +146,8 @@
                     uishow(_dShare,!uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,uishow(_cBook,nav.Able(nLg, !s)))))));
                     if (s) {
                         nav.DisButtons();
-                        ShDeepL.href = await window.cBook.QrUrl();
+                        qrA.href = await window.cBook.QrUrl(false,35,"LifeDemandedDeath.png");
+                        qrdA.href = await window.cBook.QrUrl(true,35,"LifeDemandedDeath2.png");
                         window.scrollTo(window.scrollX, 0);
                     } else {
                         window.scrollTo(book.Share_preX, cBook.QrUrlScrollY);
@@ -305,10 +306,11 @@
             <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
-            <center><table><tr><td><a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book"><h1>Book</h1></a>
-                    <td><img id="qr" class="qr" src="qr.png"/></td></tr>
-                <tr><td><a id="ShDeepL" href="#"><h1>Deep</h1></a></td>
-                    <td><img id="qrd" class="qr" src="qr_int2_oppgitt.png"/></td></tr></table>
+            <center><table><tr><td><!--a href="https://gormb.github.io/aniPublicOfficialReportSelfService/aniPublicOfficialReportSelfService_Html/wwwroot/Book?book="-->
+                <a id="qrA" href="#"><h1>Book</h1></a>
+                    <td><img id="qr" class="qr" src="failedqr.png"/></td></tr>
+                <tr><td><a id="qrdA" href="#"><h1>Deep</h1></a></td>
+                    <td><img id="qrd" class="qr" src="failedqr.png"/></td></tr></table>
             </center>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">

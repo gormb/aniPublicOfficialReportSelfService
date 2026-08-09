@@ -30,17 +30,22 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     }
     ,DoShow:async (src, pageNo, width)=>await cBook.Source(src,true)
     ,QrUrlScrollY:0
-    ,QrUrl:async function() {
+    ,QrUrl:async function(deep=false,ht=35,img="qr_int2.png") {
         if (cBook._qrUrl) URL.revokeObjectURL(cBook._qrUrl); // release previous
         const u = new URL(location.origin + location.pathname); // fresh base: no inherited params
-        let c='w,1';
-        if (!book.hAlign._) c+=',nLg';
-        if (cBook.QrUrlScrollY>0) c+=',s,'+cBook.QrUrlScrollY;
-        u.search = 'book=' + encodeURIComponent(book.src) + '&page=' + cBook.pn + '&c=' + c; // raw commas, no %2C
-        const sz = Math.round(40/100*innerHeight); // matches .qr width (40vh)
-        const qr = new window.QRCodeStyling({width:sz, height:sz, data:u.href, image:"qr_int2.png", imageOptions:{margin:8}});
-        const blob = await qr.getRawData('png');
-        qrd.src = cBook._qrUrl = URL.createObjectURL(blob);
+        u.search = 'book=' + encodeURIComponent(book.src)
+        if (deep) {
+            let c='w,1';
+            if (!book.hAlign._) c+=',nLg';
+            if (cBook.QrUrlScrollY>0) c+=',s,'+cBook.QrUrlScrollY;
+            u.search += '&page=' + cBook.pn + '&c=' + c; // raw commas, no %2C
+        }
+        const sz = Math.round(ht/100*innerHeight); // matches .qr width (ht or 35vh)
+        const qrcs = new window.QRCodeStyling({width:sz, height:sz, data:u.href, image:img, imageOptions:{margin:8}});
+        if (deep)
+            qrd.src = cBook._qrUrl = URL.createObjectURL(await qrcs.getRawData('png'));
+        else
+            qr.src = cBook._qrUrl = URL.createObjectURL(await qrcs.getRawData('png'));
         return u.href;
     }
     ,Export: async function(start, end, lang) {
