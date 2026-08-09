@@ -166,7 +166,7 @@
                         window.scrollTo(window.scrollX, 0);
                         _dExportTxt.innerHTML = "Exporting...";
                         _dExportTxt.innerHTML = await window.cBook.Export(1, 1, !book.hAlign._);
-                        _dExportTxt.innerHTML = await window.cBook.Export(1, window.cBook.pdf?.numPages, !book.hAlign._);
+                        _dExportTxt.innerHTML += await window.cBook.Export(2, window.cBook.pdf?.numPages, !book.hAlign._);
                         uishow(nSv, true);
                     } else {
                         window.scrollTo(book.Export_preX, book.Export_preY);
