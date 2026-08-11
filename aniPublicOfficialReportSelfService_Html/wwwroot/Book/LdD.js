@@ -32,8 +32,11 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,QrUrlScrollY:0
     ,QrUrl:async function(deep=false,ht=35,img="LifeDemandedDeath.png") {
         if (cBook._qrUrl) URL.revokeObjectURL(cBook._qrUrl); // release previous
-        const u = new URL(location.origin + location.pathname); // fresh base: no inherited params
-        u.search = 'book=' + encodeURIComponent(book.src)
+        // use current const u = new URL(location.origin + location.pathname); // fresh base: no inherited params
+        // use current u.search = 'book=' + encodeURIComponent(book.src);
+        //https://gormb.github.io/_/?b
+        const u = new URL("https://gormb.github.io/_"); // fresh base: no inherited params
+        u.search = '?b&book=' + encodeURIComponent(book.src);
         if (deep) {
             let c='w,1';
             if (!book.hAlign._) c+=',nLg';
