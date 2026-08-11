@@ -46,8 +46,7 @@
                         book.hAlign.Scroll();
                     }
                     ,Load:async()=>{
-                        let v=(await nav.memGet('lang', book.hAlign._)=="true") ;
-                        console.log("book.halign.Load",v, book.hAlign._)
+                        let v=(await nav.memGet('lang', new String(book.hAlign._))=="true") ;
                         if (book.hAlign._!=v)
                             book.hAlign.L(v);
                     }
@@ -56,6 +55,12 @@
                 ,Page:pn=>{                    
                     nGoTxt.value = pn;
                     cBook.Page(pn, true);
+                }
+                ,src:"LifeDemandedDeath.pdf"
+                ,srcBase:()=>{
+                    let bn=book.src.split("/");
+                    bn = [bn.length-1];
+                    return bn.replace(".pdf", "");
                 }
                 ,pn:()=>cBook.pn
                 ,np:()=>cBook.pdf?.numPages
@@ -146,8 +151,8 @@
                     uishow(_dShare,!uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,uishow(_cBook,nav.Able(nLg, !s)))))));
                     if (s) {
                         nav.DisButtons();
-                        qrA.href = await window.cBook.QrUrl(false,35,"LifeDemandedDeath.png");
-                        qrdA.href = await window.cBook.QrUrl(true,35,"LifeDemandedDeath2.png");
+                        qrA.href = await window.cBook.QrUrl(false,35,book.srcBase()+".png");
+                        qrdA.href = await window.cBook.QrUrl(true,35,book.srcBase()+"2.png");
                         window.scrollTo(window.scrollX, 0);
                     } else {
                         window.scrollTo(book.Share_preX, cBook.QrUrlScrollY);
@@ -252,7 +257,10 @@
                     else console.log(`btSimul ${c} button not found`);
                     nav.btSimul(a,i+1);
                 }
-                ,memGet:async(k,d)=>localStorage.getItem(`LdD.${k}`) || d
+                ,memGet:async(k,d)=>{
+                    let v=localStorage.getItem(`LdD.${k}`) || d;
+                    return v;
+                }
                 ,memSet:async(k,v)=>{localStorage.setItem(`LdD.${k}`, v);return v}
                 ,Loaded:async (sp=new URLSearchParams(window.location.search))=>{
                     uisz(); // Set initial size

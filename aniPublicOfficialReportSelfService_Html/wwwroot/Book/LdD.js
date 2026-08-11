@@ -30,7 +30,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     }
     ,DoShow:async (src, pageNo, width)=>await cBook.Source(src,true)
     ,QrUrlScrollY:0
-    ,QrUrl:async function(deep=false,ht=35,img="qr_int2.png") {
+    ,QrUrl:async function(deep=false,ht=35,img="LifeDemandedDeath.png") {
         if (cBook._qrUrl) URL.revokeObjectURL(cBook._qrUrl); // release previous
         const u = new URL(location.origin + location.pathname); // fresh base: no inherited params
         u.search = 'book=' + encodeURIComponent(book.src)
