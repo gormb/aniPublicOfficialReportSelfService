@@ -269,7 +269,7 @@
                         ,scY=parseInt(sp.get('y')) || parseInt(await nav.memGet('Y', window.scrollY));
                         //const uiscroll=()=>nav.memSet('Y', window.scrollY);
                     await book.s(1,bookU); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
-                    nav.Page(page);
+                    await nav.Page(page);
                     uisz();
                     nav.btSimul(sp.get('c')?.split(',') || [], 0);
                     await book.hAlign.Load();
