@@ -14,7 +14,7 @@
                     nav.DisButtons();
                     book.pdf=pdf;
                     book.src=src;
-                    uishow(_fBook,!uishow(_cBook,pdf))
+                    uishow(_fBook, !uishow(_cBook, pdf))
                     nav.UpdButtons();
                     return pdf?book.sPdf(src):book.sExt(src);
                 }
@@ -260,6 +260,7 @@
                 ,memSet:async(k,v)=>{localStorage.setItem(`LdD.${k}`, v);return v}
                 ,Loaded:async (sp=new URLSearchParams(window.location.search))=>{
                     uisz(); // Set initial size
+                    uishow(iLoading, true)
                     let bookU=sp.get('book');
                     if(bookU) nav.memSet('book', bookU);
                     else bookU=await nav.memGet('book', 'LifeDemandedDeath.pdf');
@@ -274,6 +275,7 @@
                     await book.hAlign.Load();
                     window.scrollTo(window.scrollX, scY);
                     nav.UpdButtons();
+                    uishow(iLoading, false)
                 }
             }
             async function loaded() {
@@ -304,6 +306,7 @@
         <div id="_dBook" class="bookParent">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
+            <img id="iLoading" src="aigap.webp" style="display:fixed; animation:rotate 2s linear infinite;width:5vw">
             <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
             <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
             <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>

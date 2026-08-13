@@ -26,3 +26,8 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
     .tocParent { padding-top: calc(2 * var(--paddingTop1));}
     .qr { width: 35vh; }
 }
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
