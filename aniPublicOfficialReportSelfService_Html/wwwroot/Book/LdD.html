@@ -304,9 +304,9 @@
             &nbsp;&nbsp;<button id="nTc" class="disabled" onmousedown="nav.ShowToc()">📚</button>
         </div>
         <div id="_dBook" class="bookParent">
+            <img id="iLoading" src="aigap.webp" style="z-index:2;position:fixed;left:47vw;top:47vh;animation:rotate 2s linear infinite;width:6vw">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <canvas id="_cBook"></canvas>
-            <img id="iLoading" src="aigap.webp" style="display:fixed; animation:rotate 2s linear infinite;width:5vw">
             <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
             <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
             <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
