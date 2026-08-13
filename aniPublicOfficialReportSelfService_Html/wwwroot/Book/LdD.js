@@ -19,7 +19,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             await cBook.Width(window.innerWidth*2, true);
     }
     ,Width:async function(width,doRender) {
-        cBook.viewport = cBook.page.getViewport({scale:1});
+        cBook.viewport = cBook.page?.getViewport({scale:1});
         cBook.scale = width / cBook.viewport.width;
         cBook.view = cBook.page.getViewport({ scale: cBook.scale });
         if (doRender) await cBook.Render();
