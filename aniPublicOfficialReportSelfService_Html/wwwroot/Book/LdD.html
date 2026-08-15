@@ -234,6 +234,7 @@
                 ,menu:()=>{
                     let h=nMt.innerText!='⏶';
                     nMt.innerText=h?'⏶':'⏷';
+                    document.querySelector('.bookControls').classList.toggle('collapsed', !h);
                     // Adjust scale of share button to fit within menu, set to fixed right if h
                     nSh.style.scale=h?1:.7;
                     nSh.style.position=!h?'fixed':'';
@@ -313,10 +314,8 @@
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
             <center><table><tr><td>
-                <a id="qrA" href="#"><h1>Book</h1></a>
-                    <td><img id="qr" class="qr" src="failedqr.png"/></td></tr>
-                <tr><td><a id="qrdA" href="#"><h1>Deep</h1></a></td>
-                    <td><img id="qrd" class="qr" src="failedqr.png"/></td></tr></table>
+                <a id="qrA" href="#"><h1>Book</h1></a><td><img id="qr" class="qr" src="failedqr.png"/><hr></td></tr>
+                <tr><td><a id="qrdA" href="#"><h1>Deep</h1></a></td><td><img id="qrd" class="qr" src="failedqr.png"/></td></tr></table>
             </center>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">

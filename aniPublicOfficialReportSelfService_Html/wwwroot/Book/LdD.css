@@ -21,11 +21,15 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
     width: 210mm;min-height: 297mm;padding: 25mm;margin: 0 auto;box-sizing: border-box;font-size: 12pt;line-height: 1.5}
 
 @media (max-aspect-ratio: 1/1 ) {
-    .bookParent { padding-top: calc(2 * var(--paddingTop1));}
-    .shareParent { padding-top: calc(2 * var(--paddingTop1));}
-    .tocParent { padding-top: calc(2 * var(--paddingTop1));}
+    .bookParent, .shareParent, .tocParent { 
+        padding-top: calc(2 * var(--paddingTop1));}
     .qr { width: 35vh; }
 }
+
+.bookControls.collapsed ~ .bookParent, .bookControls.collapsed ~ .shareParent, .bookControls.collapsed ~ .tocParent { 
+    padding-top: 0;}
+.bookControls.collapsed ~ .bookParent #nUp2, .bookControls.collapsed ~ .bookParent #nUp3 {
+    top: 0;}
 
 @keyframes rotate {
   0% { transform: rotate(0deg); }
