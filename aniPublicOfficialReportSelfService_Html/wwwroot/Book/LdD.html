@@ -226,12 +226,14 @@
                         window.scrollBy(0, window.innerHeight*.75);
                     nav.UpdButtons();
                 }
-                ,ShowToc:()=>uishowBlock(_dBook,!uishowBlock(_dToc,_dToc.style.display=='none'))
-                    ?nav.UpdButtons():nav.DisButtons()
+                ,ShowToc:(s=_dToc.style.display=='none')=>{
+                    uishowBlock(_dToc,s)&&nav.DisButtons();
+                    uishowBlock(_dBook,!s)&&nav.UpdButtons();
+                }
                 ,TocPage:async n=>{
                     console.log("TocPage",n)
-                    //nav.ShowToc();
-                    setTimeout(1000,()=>nav.Page(1))
+                    nav.ShowToc();
+                    nav.Page(n);
                 }
                 ,TocLn:(n,h,t)=>`<li><a href="javascript:nav.Page(${n});nav.ShowToc()"><h${h}>${n}. ${t}</h${h}></a></li>`
                 ,Toc:book=>`<h1>Liv krevde død<br/>Life demanded Death'</h1><ul>`
