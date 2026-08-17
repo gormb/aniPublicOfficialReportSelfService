@@ -17,6 +17,9 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 .shareParent { display:none;z-index:1;padding-top:calc(1 * var(--paddingTop1)) }
 .tocParent { display:none;z-index:99;padding-top:calc(1 * var(--paddingTop1)) }
 .qr { width:var(--qrWidth);}
+#_dPlay { position:absolute; inset:0; z-index:3; pointer-events:none; }
+#_dPlay a.play { position:absolute; left:1vw; pointer-events:auto; display:block;
+    font-size:var(--fsMenu); line-height:1; color:#1db954; text-decoration:none; }
 #_dExportTxt { overflow:auto; -webkit-overflow-scrolling:touch; border:1px solid #000;
     width: 210mm;min-height: 297mm;padding: 25mm;margin: 0 auto;box-sizing: border-box;font-size: 12pt;line-height: 1.5}
 
