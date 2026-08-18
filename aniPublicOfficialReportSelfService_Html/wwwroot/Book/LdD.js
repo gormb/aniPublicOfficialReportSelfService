@@ -132,6 +132,18 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     // Spotify song links: https://gormb.github.io/_/?m or _?m (slash optional) + song code,
     // but NOT QR links (…?modqr ends with "qr"). \S* captures the full URL incl. the song code.
     ,SpotRe:/^https:\/\/gormb\.github\.io\/_\/?\?m(?!.*qr$)\S*/i
+    // Song-kart (kode->spotify-url) fra Supabase-tabellen "redir"; fallback = redirect-url
+    ,SpotMap:null
+    ,SpotLoad:async function(force=false){
+        if(cBook.SpotMap&&!force)return cBook.SpotMap;
+        const m={},cfg=window.SUPABASE||{};
+        if(cfg.url&&!cfg.url.includes('YOUR-')){
+            try{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
+                const{data}=await createClient(cfg.url,cfg.publishableKey).from('redir').select('id,url');
+                (data||[]).forEach(r=>{if(r.id)m[r.id]=r.url});}catch(e){}
+        }
+        return cBook.SpotMap=m;
+    }
     ,_spots:null
     ,Play:async function(){
         const box=document.getElementById('_dPlay');
@@ -152,14 +164,15 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             for(const row of rows){
                 const it=row.items.find(i=>i.str?.match(cBook.SpotRe));
                 if(!it)continue;
-                const url=it.str.match(cBook.SpotRe)[0], col=it.transform[4]>mid;
+                const raw=it.str.match(cBook.SpotRe)[0], col=it.transform[4]>mid;
+                const key=raw.split('?')[1]||''; // f.eks. "mpj"
                 // "Song" line = nearest row above in the same column (typical format: Title / Song / LinkToSong)
                 const above=rows.filter(r=>r!==row&&r.yc<row.yc-4&&r.items.some(i=>(i.transform[4]>mid)===col))
                     .sort((a,b)=>b.yc-a.yc)[0];
                 const gap=above?row.yc-above.yc:(it.height||10)*1.5; // line height
-                const yc=above?above.yc-gap:row.yc-2*gap; // one line further up
+                const yc=above?above.yc-gap/2:row.yc-gap; // midt mellom sang-linjen og linjen over
                 if(list.some(s=>Math.abs(s.yc-yc)<(it.height||10)*0.7))continue; // one button per spot (both langs)
-                list.push({url,yc});
+                list.push({url:raw,key,yc}); // redirect-url først; oppgraderes til direktelenk når db svarer
             }
             cBook._spots={pn:cBook.pn,list};
         }
@@ -172,6 +185,9 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             b.style.top=(top0+s.yc)+'px'; // far left, next to the song title (1-2 lines above the link)
             box.appendChild(b);
         }
+        cBook.SpotLoad().then(map=>{ // oppgrader href til direktelenk når db svarer (blokkerer aldri knappen)
+            box.querySelectorAll('a.play').forEach(a=>{const k=new URL(a.href).search.slice(1);if(map[k])a.href=map[k]});
+        });
     }
     ,Save: async function(el, filename='book.pdf') {
         await html2pdf().set({margin:0,filename,html2canvas:{scale:1},jsPDF:{unit:'mm',format:'a4'}}).from(el).save();
