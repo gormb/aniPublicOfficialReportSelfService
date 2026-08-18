@@ -138,6 +138,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,_spots:null
     ,Play:async function(){
         const box=document.getElementById('_dPlay');
+        if(cBook.view)box.style.width=cBook.view.width+'px'; // hele oppslaget, ikke bare synlig halvdel
         if(!cBook.page||!cBook.view||_cBook.style.display=='none'){ if(box)box.innerHTML=''; return; }
         if(!cBook._spots||cBook._spots.pn!==cBook.pn){
             const {items}=await cBook.page.getTextContent();
@@ -173,8 +174,9 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         for(const s of cBook._spots.list){
             const b=document.createElement('a');
             b.className='play'; b.href=s.url; b.target='_blank'; b.rel='noopener'; b.textContent='▶';
-            b.style.top=(top0+s.yc)+'px'; // helt til venstre, ved sangtittelen (1-2 linjer over lenken)
+            b.style.top=(top0+s.yc)+'px'; // venstre (norsk)
             box.appendChild(b);
+            const r=b.cloneNode(true); r.className='play right'; box.appendChild(r); // høyre (engelsk)
         }
         cBook.SpotLoad().then(map=>{
             box.querySelectorAll('a.play').forEach(a=>{const k=new URL(a.href).search.slice(1);if(map[k])a.href=map[k]});
