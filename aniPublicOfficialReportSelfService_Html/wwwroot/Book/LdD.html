@@ -228,7 +228,11 @@
                     nav.UpdButtons();
                 }
                 ,ShowToc:async (s=_dToc.style.display=='none')=>{
-                    if(s)_dTocList.innerHTML=await nav.Toc();
+                    if(s){
+                        _dTocList.innerHTML=await nav.Toc();
+                        nav._menuWasOpen=nMt.innerText=='⏶';
+                        if(nav._menuWasOpen)nav.menu(); // skjul menyen i TOC
+                    }else if(nav._menuWasOpen)nav.menu(); // gjenopprett menyen
                     uishowBlock(_dToc,s)&&nav.DisButtons();
                     uishowBlock(_dBook,!s)&&nav.UpdButtons();
                 }
@@ -236,15 +240,15 @@
                     nav.ShowToc();
                     nav.Page(n);
                 }
-                ,TocLn:(n,h,t)=>`<li><a href="javascript:nav.Page(${n});nav.ShowToc()"><h${h}>${n}. ${t}</h${h}></a></li>`
                 ,Toc:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
                     const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
                     const chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
                     const subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
+                    const row=(n,t)=>`<a href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i><b>${n}</b></a>`;
                     return '<ul>'+chaps.map((c,i)=>{
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<(chaps[i+1]?.page??1e9));
-                        return nav.TocLn(c.page,2,c.text)+(cs.length?'<ul>'+cs.map(s=>nav.TocLn(s.page,3,s.text)).join('')+'</ul>':'');
+                        return `<li class="chap">${row(c.page,c.text)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li>${row(s.page,s.text)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
                 }
                 ,menu:()=>{
@@ -335,7 +339,7 @@
             </center>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">
-                <h1><br><br><br><br><a href="javascript:nav.TocPage(1);"><h1>Life demanded Death</h1></a></h1>
+                <h1><a href="javascript:nav.TocPage(1);">Life demanded Death</a></h1>
                 <ul id="_dTocList"></ul>
         </div>
         <div id="_dExport" style="display:none;z-index:3">

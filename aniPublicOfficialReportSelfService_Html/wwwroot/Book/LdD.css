@@ -21,6 +21,16 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 #_dPlay a.play { position:absolute; left:1vw; pointer-events:auto; display:block;
     font-size:var(--fsMenu); line-height:1; color:#1db954; text-decoration:none; }
 #_dPlay a.play.right { left:auto; right:1vw; }
+#_dToc{font-family:Garamond,"EB Garamond",Georgia,serif;box-sizing:border-box;overflow:auto;
+    font-size:calc(10pt*(100vw/105mm));line-height:1.15;padding:calc(8mm*(100vw/105mm))}
+#_dToc h1{font-weight:normal;text-align:center;letter-spacing:.06em;margin:0 0 1em}
+#_dTocList{list-style:none;padding:0;margin:0}
+#_dTocList a{display:flex;align-items:baseline;text-decoration:none;color:inherit}
+#_dTocList li{margin:.15em 0}
+#_dTocList li.chap{margin:.6em 0 .2em;font-variant:small-caps;letter-spacing:.03em}
+#_dTocList ul{list-style:none;padding-left:2em}
+#_dTocList i{flex:1;border-bottom:1px dotted #777;margin:0 .5em}
+#_dTocList b{font-weight:normal}
 #_dExportTxt { overflow:auto; -webkit-overflow-scrolling:touch; border:1px solid #000;
     width: 210mm;min-height: 297mm;padding: 25mm;margin: 0 auto;box-sizing: border-box;font-size: 12pt;line-height: 1.5}
 
