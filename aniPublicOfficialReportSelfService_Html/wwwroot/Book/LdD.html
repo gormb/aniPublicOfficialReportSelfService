@@ -61,7 +61,7 @@
                 ,src:"LifeDemandedDeath.pdf"
                 ,srcBase:()=>{ return book.src.split("/").pop().replace(".pdf", "");}
                 ,pn:()=>cBook.pn
-                ,np:()=>cBook.pdf?.numPages
+                ,np:()=>cBook.pdf?cBook.pdf.numPages-4:0 // de 4 siste sidene er maler - skjules
             }
             const forlag = {
                 norsk: [
@@ -227,20 +227,26 @@
                         window.scrollBy(0, window.innerHeight*.75);
                     nav.UpdButtons();
                 }
-                ,ShowToc:(s=_dToc.style.display=='none')=>{
+                ,ShowToc:async (s=_dToc.style.display=='none')=>{
+                    if(s)_dTocList.innerHTML=await nav.Toc();
                     uishowBlock(_dToc,s)&&nav.DisButtons();
                     uishowBlock(_dBook,!s)&&nav.UpdButtons();
                 }
                 ,TocPage:async n=>{
-                    console.log("TocPage",n)
                     nav.ShowToc();
                     nav.Page(n);
                 }
                 ,TocLn:(n,h,t)=>`<li><a href="javascript:nav.Page(${n});nav.ShowToc()"><h${h}>${n}. ${t}</h${h}></a></li>`
-                ,Toc:book=>`<h1>Liv krevde død<br/>Life demanded Death'</h1><ul>`
-                // <li><a href="javascript:nav.Page(1);nav.ShowToc()">1. Life demanded Death</a></li>
-                // {book.map((b,i)=>nav.TocLn(i+1,1,b)).join('')}</ul>`
-                // // Should stay within 
+                ,Toc:async ()=>{
+                    const T=cBook.data.type, want=book.hAlign._?'no':'en';
+                    const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
+                    const chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
+                    const subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
+                    return '<ul>'+chaps.map((c,i)=>{
+                        const cs=subs.filter(s=>s.page>=c.page&&s.page<(chaps[i+1]?.page??1e9));
+                        return nav.TocLn(c.page,2,c.text)+(cs.length?'<ul>'+cs.map(s=>nav.TocLn(s.page,3,s.text)).join('')+'</ul>':'');
+                    }).join('')+'</ul>';
+                }
                 ,menu:()=>{
                     let h=nMt.innerText!='⏶';
                     nMt.innerText=h?'⏶':'⏷';
@@ -330,10 +336,7 @@
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">
                 <h1><br><br><br><br><a href="javascript:nav.TocPage(1);"><h1>Life demanded Death</h1></a></h1>
-                <ul><li><a href=#><h2>qwe</h2></a></li>
-                    <ul><li><a href=#><h3>uio</h3></a></li><li><a href=#><h3>rty</h3></a></li>
-                    </ul>
-                </ul>
+                <ul id="_dTocList"></ul>
         </div>
         <div id="_dExport" style="display:none;z-index:3">
             <button id="nSv" onmousedown="window.cBook.Save(_dExportTxt)" style="display:none;">💾</button>
