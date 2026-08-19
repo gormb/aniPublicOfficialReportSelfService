@@ -34,9 +34,9 @@
                 }
                 ,szW:w=>book.szWH(w,w/book.aRatio)
                 ,sz:(w,h)=>{
-                    if(book.pdf) return book.sPdf(book.src,book.pn());
                     w*=2; // Adjust so double as wide as needed (so that iframe and canvas only show half!)
-                    book.szWH(w,w/book.aRatio)
+                    book.szWH(w,w/book.aRatio);
+                    if(book.pdf) window.cBook.Width(w,true); // re-render i ny størrelse
                 }
                 ,hAlign:{
                     _:true
@@ -245,10 +245,13 @@
                     const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
                     const chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
                     const subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
-                    const row=(n,t)=>`<a href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i><b>${n}</b></a>`;
+                    const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[b.page,b.url])); // side->musikk-url
+                    const musicUrl=(a,b)=>{for(const[p,u]of music)if(p>=a&&p<b)return u;return ''};
+                    const row=(n,t,u)=>`<a class="toc-nav" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" href="${u}" target="_blank" rel="noopener">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
                     return '<ul>'+chaps.map((c,i)=>{
-                        const cs=subs.filter(s=>s.page>=c.page&&s.page<(chaps[i+1]?.page??1e9));
-                        return `<li class="chap">${row(c.page,c.text)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li>${row(s.page,s.text)}</li>`).join('')+'</ul>':'');
+                        const end=chaps[i+1]?.page??1e9;
+                        const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
+                        return `<li class="chap">${row(c.page,c.text,musicUrl(c.page,end))}</li>`+(cs.length?'<ul>'+cs.map((s,j)=>`<li>${row(s.page,s.text,musicUrl(s.page,cs[j+1]?.page??end))}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
                 }
                 ,menu:()=>{
@@ -303,7 +306,8 @@
                 nav.menu(false);
                 await nav.Loaded(); // Load book, adjust size and update buttons
             }
-            window.onresize=uisz;
+            let _rsz;
+            window.onresize=()=>{clearTimeout(_rsz);_rsz=setTimeout(uisz,250)}; // vent til ro før resize (iOS)
             window.onscroll=uiscroll;
         </script>
     </head>

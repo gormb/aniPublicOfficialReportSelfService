@@ -27,12 +27,14 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
     font-size:calc(10pt*(100vw/105mm));line-height:1.15;padding:calc(8mm*(100vw/105mm))}
 #_dToc h1{font-weight:normal;text-align:center;letter-spacing:.06em;margin:0 0 1em}
 #_dTocList{list-style:none;padding:0;margin:0}
-#_dTocList a{display:flex;align-items:baseline;text-decoration:none;color:inherit}
-#_dTocList li{margin:.15em 0}
+#_dTocList li{display:flex;align-items:baseline;margin:.1em 0}
 #_dTocList li.chap{margin:.6em 0 .2em;font-variant:small-caps;letter-spacing:.03em}
-#_dTocList ul{list-style:none;padding-left:2em}
+#_dTocList ul{list-style:none;padding-left:1.5em}
+#_dTocList a{text-decoration:none;color:inherit}
+#_dTocList a.toc-nav{flex:1;display:flex;align-items:baseline;min-width:0}
 #_dTocList i{flex:1;border-bottom:1px dotted #777;margin:0 .5em}
-#_dTocList b{font-weight:normal}
+#_dTocList a.toc-num{min-width:3ch;text-align:right}
+#_dTocList a.toc-play{color:#1db954;font-size:.7em;margin-left:.35em}
 #_dExportTxt { overflow:auto; -webkit-overflow-scrolling:touch; border:1px solid #000;
     width: 210mm;min-height: 297mm;padding: 25mm;margin: 0 auto;box-sizing: border-box;font-size: 12pt;line-height: 1.5}
 
