@@ -241,7 +241,7 @@
                     nav.ShowToc();
                     nav.Page(n);
                 }
-                ,Toc:async ()=>{
+                ,Toc_oldDeleteMe:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
                     const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
                     const chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
@@ -256,6 +256,36 @@
                         for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
                     }
                     const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" href="${u}" target="_blank" rel="noopener">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
+                    return '<ul>'+chaps.map((c,i)=>{
+                        const end=chaps[i+1]?.page??1e9;
+                        const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
+                        return `<li class="chap">${row(c.page,c.text,musicUrl(c.page,end),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map((s,j)=>`<li>${row(s.page,s.text,musicUrl(s.page,cs[j+1]?.page??end),s.page===curPage)}</li>`).join('')+'</ul>':'');
+                    }).join('')+'</ul>';
+                }
+                ,spTgl:(e,ev=window.event)=>{
+                    let f=document.getElementById('_spFr');
+                    if(f){f.remove();return;}
+                    f=document.createElement('iframe');
+                    f.id='_spFr';
+                    f.src=(e.dataset?.u||e.href||'').replace('open.spotify.com/','open.spotify.com/embed/');
+                    f.style.cssText=`position:fixed;left:${(ev?.clientX||50)+20}px;top:${ev?.clientY||50}px;width:300px;height:80px;z-index:99;border:0;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.5);`;
+                    document.body.appendChild(f);
+                }
+                ,Toc:async ()=>{
+                    const T=cBook.data.type, want=book.hAlign._?'no':'en';
+                    const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
+                    const chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
+                    const subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
+                    const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[b.page,b.url])); // side->musikk-url
+                    const musicUrl=(a,b)=>{for(const[p,u]of music)if(p>=a&&p<b)return u;return ''};
+                    const cur=book.pn(); // nåværende side
+                    let curPage=0; // dypeste overskrift på/foran nåværende side
+                    for(let i=0;i<chaps.length;i++){
+                        const c=chaps[i], end=chaps[i+1]?.page??1e9;
+                        if(c.page<=cur)curPage=c.page;
+                        for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
+                    }
+                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" data-u="${u}" onclick="nav.spTgl(this,event);return false;" href="#">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
                     return '<ul>'+chaps.map((c,i)=>{
                         const end=chaps[i+1]?.page??1e9;
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
