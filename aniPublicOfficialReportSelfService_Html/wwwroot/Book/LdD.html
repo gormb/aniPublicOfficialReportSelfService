@@ -231,8 +231,8 @@
                     if(s){
                         _dTocList.innerHTML=await nav.Toc();
                         nav._menuWasOpen=nMt.innerText=='⏶';
-                        if(nav._menuWasOpen)nav.menu(); // skjul menyen i TOC
-                    }else if(nav._menuWasOpen)nav.menu(); // gjenopprett menyen
+                        if(nav._menuWasOpen)nav.menu();
+                    }else if(nav._menuWasOpen)nav.menu();
                     uishowBlock(_dToc,s)&&nav.DisButtons();
                     uishowBlock(_dBook,!s)&&nav.UpdButtons();
                 }
@@ -263,6 +263,7 @@
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
                         )))))))));
+                    if(cBook.page){cBook.Play();cBook.PageNo();} // siden flytter seg - flytt knapper og sidetall med
                 }
                 ,btSimul:(a,i)=>{
                     if(i>=a.length) return;

@@ -30,6 +30,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         if (cBook.renderTask) cBook.renderTask.cancel();
         cBook.renderTask = cBook.page?.render({canvasContext: cBook.ctx, viewport: cBook.view});
         cBook.Play();
+        cBook.PageNo();
     }
     ,_src:null, _pageNo:0
     ,DoShow:async (src, pageNo)=>{
@@ -208,6 +209,14 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             box.querySelectorAll('a.play').forEach(a=>{const k=new URL(a.href).search.slice(1);if(map[k])a.href=map[k]});
         });
     }
+    ,PageNo:async function(){ // sidetall i topp-margen, sentrert på hver halvdel (NO/EN)
+        const box=document.getElementById('_dPage');
+        if(!box)return;
+        if(cBook.view)box.style.width=cBook.view.width+'px'; // hele oppslaget
+        if(!cBook.page||!cBook.view||_cBook.style.display=='none'){ if(box)box.innerHTML=''; return; }
+        const top=_cBook.offsetTop+cBook.view.height*.02;
+        box.innerHTML=`<span style="top:${top}px;left:25%">${cBook.pn}</span><span style="top:${top}px;left:75%">${cBook.pn}</span>`;
+    }
     ,Save: async function(el, filename='book.pdf') {
         await html2pdf().set({margin:0,filename,html2canvas:{scale:1},jsPDF:{unit:'mm',format:'a4'}}).from(el).save();
     }
@@ -216,3 +225,5 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
 window.cBook=cBook;
 const _dPlay=document.createElement('div'); _dPlay.id='_dPlay';
 document.getElementById('_dBook').appendChild(_dPlay);
+const _dPage=document.createElement('div'); _dPage.id='_dPage';
+document.getElementById('_dBook').appendChild(_dPage);
