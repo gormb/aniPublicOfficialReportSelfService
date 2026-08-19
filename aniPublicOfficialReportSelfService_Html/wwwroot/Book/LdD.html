@@ -235,6 +235,7 @@
                     }else if(nav._menuWasOpen)nav.menu();
                     uishowBlock(_dToc,s)&&nav.DisButtons();
                     uishowBlock(_dBook,!s)&&nav.UpdButtons();
+                    if(s){const cur=_dTocList.querySelector('.cur'); if(cur)cur.scrollIntoView({block:'center'});} // vis nåværende side
                 }
                 ,TocPage:async n=>{
                     nav.ShowToc();
@@ -247,11 +248,18 @@
                     const subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
                     const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[b.page,b.url])); // side->musikk-url
                     const musicUrl=(a,b)=>{for(const[p,u]of music)if(p>=a&&p<b)return u;return ''};
-                    const row=(n,t,u)=>`<a class="toc-nav" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" href="${u}" target="_blank" rel="noopener">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
+                    const cur=book.pn(); // nåværende side
+                    let curPage=0; // dypeste overskrift på/foran nåværende side
+                    for(let i=0;i<chaps.length;i++){
+                        const c=chaps[i], end=chaps[i+1]?.page??1e9;
+                        if(c.page<=cur)curPage=c.page;
+                        for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
+                    }
+                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" href="${u}" target="_blank" rel="noopener">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
                     return '<ul>'+chaps.map((c,i)=>{
                         const end=chaps[i+1]?.page??1e9;
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
-                        return `<li class="chap">${row(c.page,c.text,musicUrl(c.page,end))}</li>`+(cs.length?'<ul>'+cs.map((s,j)=>`<li>${row(s.page,s.text,musicUrl(s.page,cs[j+1]?.page??end))}</li>`).join('')+'</ul>':'');
+                        return `<li class="chap">${row(c.page,c.text,musicUrl(c.page,end),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map((s,j)=>`<li>${row(s.page,s.text,musicUrl(s.page,cs[j+1]?.page??end),s.page===curPage)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
                 }
                 ,menu:()=>{
@@ -266,6 +274,9 @@
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
                         )))))))));
+                    // nTc: fast knapp midt på høyre side når menyen er skjult
+                    if(!h){nTc.style.position='fixed';nTc.style.right='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%) scale(.7)';nTc.style.display='inline';}
+                    else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform='';}
                     if(cBook.page){cBook.Play();cBook.PageNo();} // siden flytter seg - flytt knapper og sidetall med
                 }
                 ,btSimul:(a,i)=>{

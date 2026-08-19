@@ -23,7 +23,7 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 #_dPlay a.play.right { left:auto; right:1vw; }
 #_dPage{position:absolute;inset:0;z-index:3;pointer-events:none}
 #_dPage span{position:absolute;transform:translateX(-50%);font-family:Garamond,"EB Garamond",Georgia,serif;font-size:calc(10pt*(100vw/105mm));line-height:1.15;color:#000}
-#_dToc{font-family:Garamond,"EB Garamond",Georgia,serif;box-sizing:border-box;overflow:auto;
+#_dToc{font-family:Garamond,"EB Garamond",Georgia,serif;box-sizing:border-box;overflow:auto;height:100vh;
     font-size:calc(10pt*(100vw/105mm));line-height:1.15;padding:calc(8mm*(100vw/105mm))}
 #_dToc h1{font-weight:normal;text-align:center;letter-spacing:.06em;margin:0 0 1em}
 #_dTocList{list-style:none;padding:0;margin:0}
@@ -35,6 +35,7 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 #_dTocList i{flex:1;border-bottom:1px dotted #777;margin:0 .5em}
 #_dTocList a.toc-num{min-width:3ch;text-align:right}
 #_dTocList a.toc-play{color:#1db954;font-size:.7em;margin-left:.35em}
+#_dTocList a.toc-nav.cur span{font-weight:bold}
 #_dExportTxt { overflow:auto; -webkit-overflow-scrolling:touch; border:1px solid #000;
     width: 210mm;min-height: 297mm;padding: 25mm;margin: 0 auto;box-sizing: border-box;font-size: 12pt;line-height: 1.5}
 
