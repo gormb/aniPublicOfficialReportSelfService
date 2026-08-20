@@ -288,10 +288,8 @@
                         e.parentElement.appendChild(f);
                     }
                     if(f.src==='about:blank'){
-                        const msg=document.createElement('div');
-                        msg.className='spotify-error';
-                        msg.textContent='Music URL was not found in Supabase.';
-                        e.insertAdjacentElement('afterend',msg);
+                        f.style.border='0.2vw solid #c00';
+                        f.title='Music unavailable';
                     }
                 }
                 ,Toc:async ()=>{
