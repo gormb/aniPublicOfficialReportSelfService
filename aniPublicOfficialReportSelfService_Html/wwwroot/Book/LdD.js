@@ -29,7 +29,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,Render:async function() {
         if (cBook.renderTask) cBook.renderTask.cancel();
         cBook.renderTask = cBook.page?.render({canvasContext: cBook.ctx, viewport: cBook.view});
-        cBook.Play();
+        await cBook.Play();
         cBook.PageNo();
         try { await cBook.renderTask?.promise; }
         catch (error) { if (error?.name !== 'RenderingCancelledException') throw error; }
@@ -211,7 +211,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 const gap=above?row.yc-above.yc:lh*1.5;
                 const yc=(above&&gap<lh*3)?above.yc-gap/2:row.yc-lh*1.5;
                 if(list.some(s=>Math.abs(s.yc-yc)<(it.height||10)*0.7))continue;
-                list.push({url:raw,key,yc});
+                list.push({url:raw,key,col,yc});
             }
             cBook._spots={pn:cBook.pn,list};
         }
@@ -220,7 +220,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         const top0=_cBook.offsetTop, overlayHeight=box.clientHeight||1;
         for(const s of cBook._spots.list){
             const b=document.createElement('a');
-            b.className='play'; b.dataset.u=s.url; b.href='#'; b.textContent='▶';
+            b.className='play'; b.id=`${s.key}_${s.col?'r':'l'}`; b.dataset.u=s.url; b.href='#'; b.textContent='▶';
             const playClick=event=>{
                 event.preventDefault();
                 event.stopPropagation();

@@ -55,9 +55,9 @@
                     }
                     ,Scroll:()=>_dBook.scrollLeft=book.hAlign._?0:_dBook.scrollWidth-_dBook.clientWidth
                 }
-                ,Page:pn=>{                    
+                ,Page:async pn=>{                    
                     nGoTxt.value = pn;
-                    cBook.Page(pn, true);
+                    await cBook.Page(pn, true);
                 }
                 ,src:"LifeDemandedDeath.pdf"
                 ,srcBase:()=>{ return book.src.split("/").pop().replace(".pdf", "");}
@@ -245,7 +245,16 @@
                 ,spTgl:async(e,ev=window.event)=>{
                     const row=e.closest('.toc-play')?e.closest('li'):e.parentElement;
                     const old=row?.nextElementSibling?.classList.contains('spotify-inline')?row.nextElementSibling:null;
-                    if(old){old.remove();return;}
+                    const stop=()=>{
+                        document.querySelectorAll('iframe.spotify-inline').forEach(player=>player.remove());
+                        document.getElementById('_spCollapse')?.remove();
+                        document.querySelectorAll('[data-spotify-play-active]').forEach(button=>{
+                            button.style.visibility='';
+                            button.removeAttribute('data-spotify-play-active');
+                        });
+                    };
+                    if(old){stop();return;}
+                    stop();
                     console.log('[Spotify] play clicked', {key:e.dataset?.u||e.href||''});
                     const url=await window.cBook.SpotUrl(e.dataset?.u||e.href||'');
                     const embed=url.replace('open.spotify.com/','open.spotify.com/embed/');
@@ -254,6 +263,14 @@
                     f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
                     f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
                     f.style.cssText='display:block;width:min(50vw,80vh);height:min(13.33vw,21.33vh);margin:1vw 0 1vw 1.5vw;border:0;border-radius:1vw;box-shadow:0 .3vw 1.2vw rgba(0,0,0,.5);';
+                    e.style.setProperty('visibility','hidden','important');
+                    e.setAttribute('data-spotify-play-active','');
+                    const collapse=document.createElement('button');
+                    collapse.id='_spCollapse';
+                    collapse.textContent='🎶';
+                    collapse.title='Stop music';
+                    collapse.onmousedown=stop;
+                    document.body.appendChild(collapse);
                     if(e.closest('.toc-play'))
                         row.insertAdjacentElement('afterend',f);
                     else {
@@ -297,7 +314,7 @@
                         if(c.page<=cur)curPage=c.page;
                         for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
                     }
-                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
+                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
                     return '<ul>'+chaps.map((c,i)=>{
                         const end=chaps[i+1]?.page??1e9;
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
@@ -324,12 +341,28 @@
                 ,btSimul:(a,i)=>{
                     if(i>=a.length) return;
                     const c=a[i], b=document.getElementById(c);
-                    if(b) b.onmousedown();
+                    const side=c.startsWith('m')&&book.hAlign._?'_l':c.startsWith('m')?'_r':'';
+                    const target=b||document.getElementById(c+side);
+                    if(target){
+                        if(target.onmousedown)target.onmousedown();
+                        else target.dispatchEvent(new MouseEvent('mousedown',{bubbles:true,cancelable:true}));
+                    }
                     else if(c=="w") return setTimeout(() => nav.btSimul(a, i+2), a[i+1]??1000);
                     else if(c=="s")
                         window.scrollTo(window.scrollX, a[(++i)]);
                     else console.log(`btSimul ${c} button not found`);
                     nav.btSimul(a,i+1);
+                }
+                ,MusicPage:async key=>{
+                    const T=cBook.data.type;
+                    const data=await cBook.data.get();
+                    const linkKey=url=>{
+                        try{return new URL(url).search.slice(1).replace(/qr$/i,'');}
+                        catch{return url.split('?')[1]?.replace(/qr$/i,'')||'';}
+                    };
+                    const link=data.find(b=>b.type===T.LINK&&b.spotify&&linkKey(b.url)===key.replace(/qr$/i,''));
+                    console.log('[Spotify] deep-link page lookup', {key, page:link?.page||null, url:link?.url||null});
+                    if(link&&book.pn()!==link.page)await nav.Page(link.page);
                 }
                 ,memGet:async(k,d)=>{
                     let v=localStorage.getItem(`LdD.${k}`) || d;
@@ -348,8 +381,11 @@
                     await book.s(1,bookU,page); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
                     //await nav.Page(page);
                     uisz();
-                    nav.btSimul(sp.get('c')?.split(',') || [], 0);
                     await book.hAlign.Load();
+                    const commands=sp.get('c')?.split(',') || [];
+                    const musicCommand=commands.find(c=>c.startsWith('m')&&c!=='menu');
+                    if(musicCommand)await nav.MusicPage(musicCommand);
+                    nav.btSimul(commands, 0);
                     window.scrollTo(window.scrollX, scY);
                     nav.UpdButtons();
                     uishow(iLoading, false)
