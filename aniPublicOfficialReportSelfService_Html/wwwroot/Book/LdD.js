@@ -217,7 +217,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         }
         box.innerHTML='';
         if(!cBook._spots.list.length)return;
-        const top0=_cBook.offsetTop;
+        const top0=_cBook.offsetTop, overlayHeight=box.clientHeight||1;
         for(const s of cBook._spots.list){
             const b=document.createElement('a');
             b.className='play'; b.dataset.u=s.url; b.href='#'; b.textContent='▶';
@@ -227,7 +227,8 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 window.spTgl(b,event);
             };
             b.addEventListener('mousedown',playClick);
-            b.style.top=(top0+s.yc)+'px';
+            b.dataset.top=((top0+s.yc)/overlayHeight)*100;
+            b.style.top=`${b.dataset.top}%`;
             box.appendChild(b);
             const r=b.cloneNode(true); r.className='play right';
             r.addEventListener('mousedown',event=>{

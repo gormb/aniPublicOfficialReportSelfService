@@ -253,18 +253,18 @@
                     f.className='spotify-inline';
                     f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
                     f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-                    f.style.cssText='display:block;width:300px;height:80px;margin:8px 0 8px 1.5em;border:0;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.5);';
+                    f.style.cssText='display:block;width:min(50vw,80vh);height:min(13.33vw,21.33vh);margin:1vw 0 1vw 1.5vw;border:0;border-radius:1vw;box-shadow:0 .3vw 1.2vw rgba(0,0,0,.5);';
                     if(e.closest('.toc-play'))
                         row.insertAdjacentElement('afterend',f);
                     else {
-                        const top=parseFloat(e.style.top)||0;
+                        const top=Number(e.dataset.top)||0;
                         const side=e.classList.contains('right')?'right':'left';
                         const anchor=e.dataset.u||e.href;
                         const previous=[...e.parentElement.querySelectorAll('iframe.spotify-inline')].find(i=>i.dataset.anchor===anchor&&i.style[side]);
                         if(previous){previous.remove();return;}
                         f.style.position='absolute';
-                        f.style.top=`${top+e.offsetHeight*3+8}px`;
-                        f.style[side]=`${e.offsetWidth*4}px`;
+                        f.style.top=`calc(${top}% + calc(var(--fsMenu)*.55 + 1vw))`;
+                        f.style[side]='calc(var(--fsMenu)*2.2)';
                         f.style.margin='0';
                         f.style.pointerEvents='auto';
                         f.dataset.anchor=anchor;
