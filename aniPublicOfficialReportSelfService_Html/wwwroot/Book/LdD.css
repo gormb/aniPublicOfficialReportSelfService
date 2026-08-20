@@ -5,6 +5,9 @@ body {
     --qrWidth: calc(35vh);}
 
 button { font-size:var(--fsMenu); padding:var(--padMenu);}
+.floatingControl, #nUp2, #nUp3, #nNt2, #nNt3, #nSv {
+    background:transparent; border:0; box-shadow:none; padding:0; filter:grayscale(1);
+}
     #nUp2 {z-index:1;position:absolute; top:calc(var(--paddingTop1)); right:0;scale:.7;}
     #nNt2 {z-index:1;position:absolute; right:0; bottom:0;scale:.7;}
     #nUp3 {z-index:1;position:absolute; top:calc(var(--paddingTop1)); right:-102vw;scale:.7;}
@@ -21,7 +24,8 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 #_dPlay a.play { position:absolute; left:1vw; pointer-events:auto; display:block;
     font-size:calc(var(--fsMenu)*.55); line-height:1; color:#555; text-decoration:none; filter:grayscale(1); cursor:pointer; }
 #_dPlay a.play.right { left:auto; right:1vw; }
-#_spCollapse { position:fixed; left:0; top:60%; transform:translateY(-50%) scale(.7); filter:grayscale(1); z-index:20; }
+#_spCollapse { position:fixed; left:0; top:60%; transform:translateY(-50%) scale(.7); filter:grayscale(1); z-index:20;
+    background:transparent; border:0; box-shadow:none; padding:0; }
 #_dPage{position:absolute;inset:0;z-index:3;pointer-events:none}
 #_dPage span{position:absolute;transform:translateX(-50%);font-family:Garamond,"EB Garamond",Georgia,serif;font-size:calc(10pt*(100vw/105mm));line-height:1.15;color:#000}
 #_dToc{font-family:Garamond,"EB Garamond",Georgia,serif;box-sizing:border-box;overflow:auto;height:100vh;

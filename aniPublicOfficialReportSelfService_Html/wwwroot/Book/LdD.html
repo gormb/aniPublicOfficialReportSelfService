@@ -329,13 +329,14 @@
                     nSh.style.scale=h?1:.7;
                     nSh.style.position=!h?'fixed':'';
                     nSh.style.bottom=nSh.style.left=!h?'0':'';
+                    nSh.classList.toggle('floatingControl', !h);
                     uishow(nLg,uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
                         )))))))));
                     // nTc: fast knapp midt på venstre side når menyen er skjult
-                    if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%) scale(.7)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';}
-                    else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform=nTc.style.filter='';}
+                    if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%) scale(.7)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');}
+                    else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform=nTc.style.filter='';nTc.classList.remove('floatingControl');}
                     if(cBook.page){cBook.Play();cBook.PageNo();} // siden flytter seg - flytt knapper og sidetall med
                 }
                 ,btSimul:(a,i)=>{
