@@ -31,6 +31,8 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         cBook.renderTask = cBook.page?.render({canvasContext: cBook.ctx, viewport: cBook.view});
         cBook.Play();
         cBook.PageNo();
+        try { await cBook.renderTask?.promise; }
+        catch (error) { if (error?.name !== 'RenderingCancelledException') throw error; }
     }
     ,_src:null, _pageNo:0
     ,DoShow:async (src, pageNo)=>{
@@ -155,12 +157,30 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,SpotLoad:async function(force=false){
         if(cBook.SpotMap&&!force)return cBook.SpotMap;
         const m={},cfg=window.SUPABASE||{};
+        console.log('[Spotify] Supabase config', {url:cfg.url, hasKey:!!cfg.publishableKey});
         if(cfg.url&&!cfg.url.includes('YOUR-')){
-            try{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
-                const{data}=await createClient(cfg.url,cfg.publishableKey).from('redir').select('id,url');
-                (data||[]).forEach(r=>{if(r.id)m[r.id]=r.url});}catch(e){}
+                try{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+                const{data,error}=await createClient(cfg.url,cfg.publishableKey).from('redir').select('id,url,"group"');
+                console.log('[Spotify] Supabase groups', [...new Set((data||[]).map(r=>r.group))]);
+                const mappings=(data||[]).filter(r=>String(r.group||'').trim().toLowerCase()==='music');
+                console.log('[Spotify] Supabase redir lookup', {count:mappings.length, ids:mappings.map(r=>r.id), skipped:(data||[]).length-mappings.length, error:error?.message||null});
+                console.table(mappings.map(r=>({id:r.id,group:r.group,url:r.url})));
+                mappings.forEach(r=>{
+                    if(!r.id)return;
+                    m[r.id]=r.url;
+                    if(r.id[0]==='m')m[r.id.slice(1)]=r.url;
+                    else m['m'+r.id]=r.url;
+                    if(r.id.endsWith('qr'))m[r.id.slice(0,-2)]=r.url;
+                });
+            }catch(e){console.error('[Spotify] Supabase lookup failed',e);}
         }
         return cBook.SpotMap=m;
+    }
+    ,SpotUrl:async function(url){
+        if(!url||!cBook.SpotRe.test(url))return url;
+        const map=await cBook.SpotLoad(), key=new URL(url).search.slice(1), resolved=map[key]||url;
+        console.log('[Spotify] URL resolve', {key, resolved, found:resolved!==url});
+        return resolved;
     }
     ,_spots:null
     ,Play:async function(){
@@ -200,13 +220,28 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         const top0=_cBook.offsetTop;
         for(const s of cBook._spots.list){
             const b=document.createElement('a');
-            b.className='play'; b.href=s.url; b.target='_blank'; b.rel='noopener'; b.textContent='▶';
+            b.className='play'; b.dataset.u=s.url; b.href='#'; b.textContent='▶';
+            const playClick=event=>{
+                event.preventDefault();
+                event.stopPropagation();
+                window.spTgl(b,event);
+            };
+            b.addEventListener('mousedown',playClick);
             b.style.top=(top0+s.yc)+'px';
             box.appendChild(b);
-            const r=b.cloneNode(true); r.className='play right'; box.appendChild(r);
+            const r=b.cloneNode(true); r.className='play right';
+            r.addEventListener('mousedown',event=>{
+                event.preventDefault();
+                event.stopPropagation();
+                window.spTgl(r,event);
+            });
+            box.appendChild(r);
         }
         cBook.SpotLoad().then(map=>{
-            box.querySelectorAll('a.play').forEach(a=>{const k=new URL(a.href).search.slice(1);if(map[k])a.href=map[k]});
+            box.querySelectorAll('a.play').forEach(a=>{
+                const k=new URL(a.dataset.u||a.href,location.href).search.slice(1);
+                if(map[k])a.dataset.u=map[k];
+            });
         });
     }
     ,PageNo:async function(){ // sidetall i topp-margen, sentrert på hver halvdel (NO/EN)

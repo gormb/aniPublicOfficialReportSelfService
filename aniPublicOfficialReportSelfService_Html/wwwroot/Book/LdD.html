@@ -3,10 +3,11 @@
         <title>Life demanded Death</title>
         <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-        <script src="/_/db.js"></script>
+        <script src="https://gormb.github.io/_/db.js"></script>
         <script type="module" src="LdD.js"></script>
         <link rel="stylesheet" href="LdD.css">
         <script>
+            window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
             const uiscroll=()=>_cBook.style.display=='none' ? null : nav.memSet('Y', window.scrollY)
             const uishow=(c,on)=>{c.style.display=on?'inline':'none';return on;}
@@ -241,43 +242,54 @@
                     nav.ShowToc();
                     nav.Page(n);
                 }
-                ,Toc_oldDeleteMe:async ()=>{
-                    const T=cBook.data.type, want=book.hAlign._?'no':'en';
-                    const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
-                    const chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
-                    const subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
-                    const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[b.page,b.url])); // side->musikk-url
-                    const musicUrl=(a,b)=>{for(const[p,u]of music)if(p>=a&&p<b)return u;return ''};
-                    const cur=book.pn(); // nåværende side
-                    let curPage=0; // dypeste overskrift på/foran nåværende side
-                    for(let i=0;i<chaps.length;i++){
-                        const c=chaps[i], end=chaps[i+1]?.page??1e9;
-                        if(c.page<=cur)curPage=c.page;
-                        for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
+                ,spTgl:async(e,ev=window.event)=>{
+                    const row=e.closest('.toc-play')?e.closest('li'):e.parentElement;
+                    const old=row?.nextElementSibling?.classList.contains('spotify-inline')?row.nextElementSibling:null;
+                    if(old){old.remove();return;}
+                    console.log('[Spotify] play clicked', {key:e.dataset?.u||e.href||''});
+                    const url=await window.cBook.SpotUrl(e.dataset?.u||e.href||'');
+                    const embed=url.replace('open.spotify.com/','open.spotify.com/embed/');
+                    const f=document.createElement('iframe');
+                    f.className='spotify-inline';
+                    f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
+                    f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+                    f.style.cssText='display:block;width:300px;height:80px;margin:8px 0 8px 1.5em;border:0;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.5);';
+                    if(e.closest('.toc-play'))
+                        row.insertAdjacentElement('afterend',f);
+                    else {
+                        const top=parseFloat(e.style.top)||0;
+                        const side=e.classList.contains('right')?'right':'left';
+                        const anchor=e.dataset.u||e.href;
+                        const previous=[...e.parentElement.querySelectorAll('iframe.spotify-inline')].find(i=>i.dataset.anchor===anchor&&i.style[side]);
+                        if(previous){previous.remove();return;}
+                        f.style.position='absolute';
+                        f.style.top=`${top+e.offsetHeight*3+8}px`;
+                        f.style[side]=`${e.offsetWidth*4}px`;
+                        f.style.margin='0';
+                        f.style.pointerEvents='auto';
+                        f.dataset.anchor=anchor;
+                        e.parentElement.appendChild(f);
                     }
-                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" href="${u}" target="_blank" rel="noopener">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
-                    return '<ul>'+chaps.map((c,i)=>{
-                        const end=chaps[i+1]?.page??1e9;
-                        const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
-                        return `<li class="chap">${row(c.page,c.text,musicUrl(c.page,end),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map((s,j)=>`<li>${row(s.page,s.text,musicUrl(s.page,cs[j+1]?.page??end),s.page===curPage)}</li>`).join('')+'</ul>':'');
-                    }).join('')+'</ul>';
-                }
-                ,spTgl:(e,ev=window.event)=>{
-                    let f=document.getElementById('_spFr');
-                    if(f){f.remove();return;}
-                    f=document.createElement('iframe');
-                    f.id='_spFr';
-                    f.src=(e.dataset?.u||e.href||'').replace('open.spotify.com/','open.spotify.com/embed/');
-                    f.style.cssText=`position:fixed;left:${(ev?.clientX||50)+20}px;top:${ev?.clientY||50}px;width:300px;height:80px;z-index:99;border:0;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.5);`;
-                    document.body.appendChild(f);
+                    if(f.src==='about:blank'){
+                        const msg=document.createElement('div');
+                        msg.className='spotify-error';
+                        msg.textContent='Music URL was not found in Supabase.';
+                        e.insertAdjacentElement('afterend',msg);
+                    }
                 }
                 ,Toc:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
                     const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
                     const chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
                     const subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
-                    const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[b.page,b.url])); // side->musikk-url
-                    const musicUrl=(a,b)=>{for(const[p,u]of music)if(p>=a&&p<b)return u;return ''};
+                    const spotMap=await window.cBook.SpotLoad();
+                    const resolveSpot=url=>{
+                        if(!url||!window.cBook.SpotRe.test(url))return url;
+                        const key=new URL(url).search.slice(1);
+                        return spotMap[key]||url;
+                    };
+                    const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[`${b.lang}:${b.page}`,resolveSpot(b.url)]));
+                    const musicUrl=page=>music.get(`${want}:${page}`)||'';
                     const cur=book.pn(); // nåværende side
                     let curPage=0; // dypeste overskrift på/foran nåværende side
                     for(let i=0;i<chaps.length;i++){
@@ -285,11 +297,11 @@
                         if(c.page<=cur)curPage=c.page;
                         for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
                     }
-                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" data-u="${u}" onclick="nav.spTgl(this,event);return false;" href="#">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
+                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
                     return '<ul>'+chaps.map((c,i)=>{
                         const end=chaps[i+1]?.page??1e9;
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
-                        return `<li class="chap">${row(c.page,c.text,musicUrl(c.page,end),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map((s,j)=>`<li>${row(s.page,s.text,musicUrl(s.page,cs[j+1]?.page??end),s.page===curPage)}</li>`).join('')+'</ul>':'');
+                        return `<li class="chap">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li>${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
                 }
                 ,menu:()=>{
@@ -343,6 +355,7 @@
                     uishow(iLoading, false)
                 }
             }
+            window.spTgl=(...args)=>nav.spTgl(...args);
             async function loaded() {
                 nav.menu(false);
                 await nav.Loaded(); // Load book, adjust size and update buttons
