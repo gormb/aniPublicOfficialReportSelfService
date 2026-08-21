@@ -2,6 +2,13 @@ using Microsoft.AspNetCore.Http.Features;
 
 public class MLServerAigap : IWebHost {
     public MLServerAigap() : base() { }     
+    public class ServerInfoAttribute : List<KeyValuePair<string, string>>
+    {
+    }
+    public class ServerInfo : List<ServerInfoAttribute>
+    {
+        public bool bStarted = false;
+    }
     public class LocalServer : ServerInfo
     {
         public class Model
@@ -17,7 +24,7 @@ public class MLServerAigap : IWebHost {
         }
         public class RemoteOllama : RemoteServer
         {
-            RemoteOllama(){}
+            public RemoteOllama(){}
         }
         public List<RemoteServer> remoteServerCollection = new List<RemoteServer>();
         public List<Model> modelCollection { get {
@@ -32,24 +39,15 @@ public class MLServerAigap : IWebHost {
             ServerProc();
             CleanUp();
         }
-        public class ServerInfoAttribute : List<KeyValuePair<string, string>>
-        {
-        }
-        public class ServerInfo : List<ServerInfoAttribute>
-        {
-            public bool bStarted = false;
-        }
         bool Init()
         {
             // Start http://localhost:1234, load models, list models
             // Start ollama http://localhost:1234
-            Remotes.Add(new RemoteOllama());
+            remoteServerCollection.Add(new RemoteOllama());
             // list models on http://api.openai.com
-            Remotes.Add(new Remote("http://api.openai.com", "sk-123"));
             // list models on http://api.mistral.com
-            Remotes.Add(new Remote("http://api.mistral.com", "sk-123"));
             // list models on http://localhost
-            Remotes.Add(new Remote("http://localhost"));
+            return true;
         }
         bool CleanUp()
         {
@@ -57,29 +55,30 @@ public class MLServerAigap : IWebHost {
             // Start ollama http://localhost:1234
             // list models on http://api.openai.com
             // list models on http://api.mistral.com
+            return true;
         }
         static int ServerProc()
         {
             // Redirect all post requests from http://localhost:2468 to http://localhost:1234
             // Redirect all post requests from http://localhost:2468 to http://api.openai.com, map Bearer to openai Bearer
             // Redirect all post requests from http://localhost:2468 to http://api.mistral.com, map Bearer to mistral Bearer
+            return 0;
         }
     }
-    List<LocalServer> LocalServerCollection = new List<LocalServers>();
+    List<LocalServer> LocalServerCollection = new List<LocalServer>();
     public IFeatureCollection ServerFeatures => throw new NotImplementedException();
     public IServiceProvider Services => throw new NotImplementedException();
 
     bool Install() { throw new NotImplementedException("Install"); }
     bool Serve()
     {
-        var s = new Server(this);
         Console.WriteLine("Started!");
         return true;
     }
     void Main()
     {
         Install();
-        waitfor Serve();
+        Serve();
         Console.WriteLine("Starting!");
     }
 
