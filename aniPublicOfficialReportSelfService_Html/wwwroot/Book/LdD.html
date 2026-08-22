@@ -230,7 +230,12 @@
                 }
                 ,ShowToc:async (s=_dToc.style.display=='none')=>{
                     if(s){
-                        _dTocList.innerHTML=await nav.Toc();
+                        if(!_dTocList.childElementCount)_dTocList.innerHTML=await nav.Toc(); // bygg TOC bare ÉN gang – ingen reset ved re-enter
+                        // oppdater 'cur'-merking til nåværende side (uten gjenoppbygging, så spilleren ikke resettes)
+                        const cp=book.pn(); let curPage=0;
+                        [..._dTocList.querySelectorAll('li')].forEach(li=>{const p=+li.dataset.p||0;if(p&&p<=cp&&p>curPage)curPage=p;});
+                        _dTocList.querySelectorAll('.cur').forEach(a=>a.classList.remove('cur'));
+                        _dTocList.querySelectorAll(`li[data-p="${curPage}"] .toc-nav`).forEach(a=>a.classList.add('cur'));
                         nav._menuWasOpen=nMt.innerText=='⏶';
                         if(nav._menuWasOpen)nav.menu();
                     }else if(nav._menuWasOpen)nav.menu();
@@ -243,54 +248,42 @@
                     nav.Page(n);
                 }
                 ,spTgl:async(e,ev=window.event)=>{
-                    const row=e.closest('.toc-play')?e.closest('li'):e.parentElement;
-                    const old=row?.nextElementSibling?.classList.contains('spotify-inline')?row.nextElementSibling:null;
+                    const u=e.dataset?.u||e.href||'', toc=!!e.closest('.toc-play');
                     const stop=()=>{
-                        document.querySelectorAll('iframe.spotify-inline').forEach(player=>player.remove());
-                        document.getElementById('_spCollapse')?.remove();
-                        document.querySelectorAll('[data-spotify-play-active]').forEach(button=>{
-                            button.style.visibility='';
-                            button.removeAttribute('data-spotify-play-active');
-                        });
+                        document.querySelectorAll('[data-spotify-play-active]').forEach(b=>{b.style.visibility='';b.removeAttribute('data-spotify-play-active');});
+                        const f=document.getElementById('_spPlayer'),c=document.getElementById('_spCollapse');
+                        if(f){f.src='about:blank';f.style.display='none';f.title='';}
+                        if(c)c.style.display='none';
                     };
-                    if(old){stop();return;}
-                    stop();
-                    console.log('[Spotify] play clicked', {key:e.dataset?.u||e.href||''});
-                    const url=await window.cBook.SpotUrl(e.dataset?.u||e.href||'');
+                    // ÉN felles spiller som bor INLINE under kapittelet i TOC + ÉN 🎶-stoppknapp
+                    let f=document.getElementById('_spPlayer');
+                    if(!f){
+                        f=document.createElement('iframe');
+                        f.id='_spPlayer';f.className='spotify-inline';
+                        f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+                        document.body.appendChild(f);
+                    }
+                    let c=document.getElementById('_spCollapse');
+                    if(!c){
+                        c=document.createElement('button');
+                        c.id='_spCollapse';c.textContent='🎶';c.title='Stop music';
+                        c.style.display='none';c.onmousedown=stop;
+                        document.body.appendChild(c);
+                    }
+                    document.querySelectorAll('[data-spotify-play-active]').forEach(b=>{b.style.visibility='';b.removeAttribute('data-spotify-play-active');});
+                    console.log('[Spotify] play clicked', {key:u});
+                    const url=await window.cBook.SpotUrl(u);
                     const embed=url.replace('open.spotify.com/','open.spotify.com/embed/');
-                    const f=document.createElement('iframe');
-                    f.className='spotify-inline';
-                    f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
-                    f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-                    f.style.cssText='display:block;width:min(50vw,80vh);height:min(13.33vw,21.33vh);margin:1vw 0 1vw 1.5vw;border:0;border-radius:1vw;box-shadow:0 .3vw 1.2vw rgba(0,0,0,.5);';
+                    f.dataset.u=url;
                     e.style.setProperty('visibility','hidden','important');
                     e.setAttribute('data-spotify-play-active','');
-                    const collapse=document.createElement('button');
-                    collapse.id='_spCollapse';
-                    collapse.textContent='🎶';
-                    collapse.title='Stop music';
-                    collapse.onmousedown=stop;
-                    document.body.appendChild(collapse);
-                    if(e.closest('.toc-play'))
-                        row.insertAdjacentElement('afterend',f);
-                    else {
-                        const top=Number(e.dataset.top)||0;
-                        const side=e.classList.contains('right')?'right':'left';
-                        const anchor=e.dataset.u||e.href;
-                        const previous=[...e.parentElement.querySelectorAll('iframe.spotify-inline')].find(i=>i.dataset.anchor===anchor&&i.style[side]);
-                        if(previous){previous.remove();return;}
-                        f.style.position='absolute';
-                        f.style.top=`calc(${top}% + calc(var(--fsMenu)*.55 + 1vw))`;
-                        f.style[side]='calc(var(--fsMenu)*2.2)';
-                        f.style.margin='0';
-                        f.style.pointerEvents='auto';
-                        f.dataset.anchor=anchor;
-                        e.parentElement.appendChild(f);
-                    }
-                    if(f.src==='about:blank'){
-                        f.style.border='0.2vw solid #c00';
-                        f.title='Music unavailable';
-                    }
+                    // spilleren bor i TOC – avspilling fra siden åpner TOC så spilleren vises der
+                    if(!toc)await nav.ShowToc(true);
+                    f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
+                    if(f.src==='about:blank'){f.style.border='0.2vw solid #c00';f.title='Music unavailable';}else{f.style.border='0';f.title='';}
+                    f.style.display='block'; // spilleren kan ha vært skjult av 🎶 – vis den igjen
+                    c.style.display='block';
+                    window.spAnchor?.(); // spilleren ligger inline under kapittelet i TOC (fint utseende)
                 }
                 ,Toc:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
@@ -316,7 +309,7 @@
                     return '<ul>'+chaps.map((c,i)=>{
                         const end=chaps[i+1]?.page??1e9;
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
-                        return `<li class="chap">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li>${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
+                        return `<li class="chap" data-p="${c.page}">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li data-p="${s.page}">${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
                 }
                 ,menu:()=>{
@@ -393,6 +386,14 @@
                     uishow(iLoading, false)
                 }
             }
+            const spAnchor=(el)=>{ // spilleren ligger INLINE under kapittel-raden i TOC – TOC bygges bare én gang, så den overlever re-enter uten reset
+                const f=el||document.getElementById('_spPlayer');
+                if(!f||f.style.display==='none'||!f.dataset.u)return;
+                const b=[...document.querySelectorAll('#_dTocList a.toc-play')].find(a=>a.dataset.u===f.dataset.u);
+                if(b){b.closest('li').insertAdjacentElement('afterend',f);}
+                f.style.cssText='display:block;width:min(60vw,70vh);height:min(16vw,18.6vh);margin:.4em 0 .5em 1.5em;border:0;border-radius:1vw;';
+            };
+            window.spAnchor=spAnchor;
             window.spTgl=(...args)=>nav.spTgl(...args);
             async function loaded() {
                 nav.menu(false);

@@ -24,7 +24,7 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 #_dPlay a.play { position:absolute; left:1vw; pointer-events:auto; display:block;
     font-size:calc(var(--fsMenu)*.55); line-height:1; color:#555; text-decoration:none; filter:grayscale(1); cursor:pointer; }
 #_dPlay a.play.right { left:auto; right:1vw; }
-#_spCollapse { position:fixed; left:0; top:60%; transform:translateY(-50%) scale(.7); filter:grayscale(1); z-index:20;
+#_spCollapse { position:fixed; left:0; top:60%; transform:translateY(-50%) scale(.7); filter:grayscale(1); z-index:100;
     background:transparent; border:0; box-shadow:none; padding:0; }
 #_dPage{position:absolute;inset:0;z-index:3;pointer-events:none}
 #_dPage span{position:absolute;transform:translateX(-50%);font-family:Garamond,"EB Garamond",Georgia,serif;font-size:calc(10pt*(100vw/105mm));line-height:1.15;color:#000}
