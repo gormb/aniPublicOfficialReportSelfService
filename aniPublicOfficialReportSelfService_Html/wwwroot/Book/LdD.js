@@ -162,7 +162,8 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 try{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
                 const{data,error}=await createClient(cfg.url,cfg.publishableKey).from('redir').select('id,url,"group"');
                 console.log('[Spotify] Supabase groups', [...new Set((data||[]).map(r=>r.group))]);
-                const mappings=(data||[]).filter(r=>String(r.group||'').trim().toLowerCase()==='music');
+                // Musikk-lenker kan være enkeltspor (group 'music') OG/eller spillelister (group 'playlist', 'music-playlist', 'Music playlist' osv.)
+                const mappings=(data||[]).filter(r=>/music|playlist/i.test(String(r.group||'').trim()));
                 console.log('[Spotify] Supabase redir lookup', {count:mappings.length, ids:mappings.map(r=>r.id), skipped:(data||[]).length-mappings.length, error:error?.message||null});
                 console.table(mappings.map(r=>({id:r.id,group:r.group,url:r.url})));
                 mappings.forEach(r=>{
