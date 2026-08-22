@@ -383,7 +383,10 @@
                     await book.hAlign.Load();
                     const commands=sp.get('c')?.split(',') || [];
                     const musicCommand=commands.find(c=>c.startsWith('m')&&c!=='menu');
-                    if(musicCommand)await nav.MusicPage(musicCommand);
+                    if(musicCommand) {
+                        scY=0; // Navigasjon til musikk skal alltid scrolle til topp
+                        await nav.MusicPage(musicCommand);
+                    }
                     nav.btSimul(commands, 0);
                     window.scrollTo(window.scrollX, scY);
                     nav.UpdButtons();
