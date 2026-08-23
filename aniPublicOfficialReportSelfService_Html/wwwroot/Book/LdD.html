@@ -47,6 +47,7 @@
                         nLg.innerText=l?'🇳🇴':'🇬🇧';
                         _fBook.style.left=(l?0:(_dBook.clientWidth-_fBook.offsetWidth))+'px';
                         book.hAlign.Scroll();
+                        _dTocList.innerHTML=''; // cache ugyldig → TOC bygges med nytt språk ved neste åpning
                     }
                     ,Load:async()=>{
                         let v=(await nav.memGet('lang', new String(book.hAlign._))=="true") ;
@@ -64,6 +65,10 @@
                 ,pn:()=>cBook.pn
                 ,np:()=>cBook.pdf?cBook.pdf.numPages-4:0 // de 4 siste sidene er maler - skjules
             }
+            let _busy; // sperre under lasting/resize – auto-språkbytte ved skroll
+            const aLg=()=>{if(_dToc.style.display!='none'||_cBook.style.display=='none'||_busy)return;
+                const m=_dBook.scrollWidth-_dBook.clientWidth,r=m?_dBook.scrollLeft/m:0;
+                if((book.hAlign._&&r>.2)||(!book.hAlign._&&r<.8))book.hAlign.L(!book.hAlign._)}; // NO→EN høyre, EN→NO venstre
             const forlag = {
                 norsk: [
                     { forlag: "Cappelen Damm", url: "https://manus.cappelendamm.no/", forlagstype: "Allmennforlag (Stor)", punktromscore: 5 },
@@ -241,6 +246,7 @@
                     }else if(nav._menuWasOpen)nav.menu();
                     uishowBlock(_dToc,s)&&nav.DisButtons();
                     uishowBlock(_dBook,!s)&&nav.UpdButtons();
+                    nav.Able(nLg,!s); // nLg deaktivert i TOC
                     if(s){const cur=_dTocList.querySelector('.cur'); if(cur)cur.scrollIntoView({block:'center'});} // vis nåværende side
                 }
                 ,TocPage:async n=>{
@@ -362,6 +368,7 @@
                 }
                 ,memSet:async(k,v)=>{localStorage.setItem(`LdD.${k}`, v);return v}
                 ,Loaded:async (sp=new URLSearchParams(window.location.search))=>{
+                    _busy=true; // undertrykk auto-språkbytte under lasting
                     uisz(); // Set initial size
                     uishow(iLoading, true)
                     let bookU=sp.get('book');
@@ -384,6 +391,7 @@
                     window.scrollTo(window.scrollX, scY);
                     nav.UpdButtons();
                     uishow(iLoading, false)
+                    _busy=false;
                 }
             }
             const spAnchor=(el)=>{ // spilleren ligger INLINE under kapittel-raden i TOC – TOC bygges bare én gang, så den overlever re-enter uten reset
@@ -397,10 +405,11 @@
             window.spTgl=(...args)=>nav.spTgl(...args);
             async function loaded() {
                 nav.menu(false);
+                _dBook.addEventListener('scroll',aLg); // auto-språkbytte ved horisontal skrolling
                 await nav.Loaded(); // Load book, adjust size and update buttons
             }
             let _rsz;
-            window.onresize=()=>{clearTimeout(_rsz);_rsz=setTimeout(uisz,250)}; // vent til ro før resize (iOS)
+            window.onresize=()=>{clearTimeout(_rsz);_busy=true;_rsz=setTimeout(()=>{uisz();_busy=false},250)}; // vent til ro før resize (iOS)
             window.onscroll=uiscroll;
         </script>
     </head>
