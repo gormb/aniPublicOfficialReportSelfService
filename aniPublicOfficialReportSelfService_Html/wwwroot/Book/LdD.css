@@ -18,6 +18,8 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 .bookControls { position: fixed; top: 1vh; left: 1vw;}
 .bookParent { position: relative;overflow:auto; -webkit-overflow-scrolling:touch; padding-top:calc(1 * var(--paddingTop1));}
 .shareParent { display:none;z-index:1;padding-top:calc(1 * var(--paddingTop1)) }
+.shareOpts { margin-top:.6em; font-size:calc(var(--fsMenu)*.45); }
+.shareOpts input { margin:0 .35em 0 .7em; vertical-align:middle; }
 .tocParent { display:none;z-index:99;padding-top:calc(1 * var(--paddingTop1)) }
 .qr { width:var(--qrWidth);}
 #_dPlay { position:absolute; inset:0; z-index:3; pointer-events:none; }

@@ -155,13 +155,23 @@
                     uishowBlock(_dShare,!uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,uishow(_cBook,nav.Able(nLg, !s)))))));
                     if (s) {
                         nav.DisButtons();
+                        shLgLbl.style.display = book.hAlign._ ? 'none' : ''; // nLg kun relevant på engelsk
                         qrA.href = await window.cBook.QrUrl(false,35,book.srcBase()+".png");
-                        qrdA.href = await window.cBook.QrUrl(true,35,book.srcBase()+"2.png");
+                        await nav.QrDeep();
                         window.scrollTo(window.scrollX, 0);
                     } else {
                         window.scrollTo(book.Share_preX, cBook.QrUrlScrollY);
                         nav.UpdButtons();
                     }
+                }
+                ,QrDeep:async ()=>{
+                    qrdA.href = await window.cBook.QrUrl(true,35,book.srcBase()+"2.png",{
+                        book:shBook.checked
+                        ,page:shPage.checked
+                        ,pos:shPos.checked
+                        ,idx:shIdx.checked
+                        ,lang:shLg.checked
+                    });
                 }
                 ,Export_preX:0,Export_preY:0
                 ,Export:async (_,s=_??_dExport.style.display=='none')=>{
@@ -277,7 +287,6 @@
                         document.body.appendChild(c);
                     }
                     document.querySelectorAll('[data-spotify-play-active]').forEach(b=>{b.style.visibility='';b.removeAttribute('data-spotify-play-active');});
-                    console.log('[Spotify] play clicked', {key:u});
                     const url=await window.cBook.SpotUrl(u);
                     const embed=url.replace('open.spotify.com/','open.spotify.com/embed/');
                     f.dataset.u=url;
@@ -359,7 +368,6 @@
                         catch{return url.split('?')[1]?.replace(/qr$/i,'')||'';}
                     };
                     const link=data.find(b=>b.type===T.LINK&&b.spotify&&linkKey(b.url)===key.replace(/qr$/i,''));
-                    console.log('[Spotify] deep-link page lookup', {key, page:link?.page||null, url:link?.url||null});
                     if(link&&book.pn()!==link.page)await nav.Page(link.page);
                 }
                 ,memGet:async(k,d)=>{
@@ -440,9 +448,17 @@
                 <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
-            <center><table><tr><td>
-                <a id="qrA" href="#"><h1>Book</h1></a><td><img id="qr" class="qr" src="failedqr.png"/><hr></td></tr>
-                <tr><td><a id="qrdA" href="#"><h1>Deep</h1></a></td><td><img id="qrd" class="qr" src="failedqr.png"/></td></tr></table>
+            <center>
+                <table><tr><td>
+                    <a id="qrA" href="#"><h1>Book</h1></a><td><img id="qr" class="qr" src="failedqr.png"/><hr></td></tr>
+                    <tr><td><a id="qrdA" href="#"><h1>Deep</h1></a></td><td><img id="qrd" class="qr" src="failedqr.png"/></td></tr></table>
+                <div class="shareOpts">
+                    <input type="checkbox" id="shBook" onchange="nav.QrDeep()">book
+                    <input type="checkbox" id="shPage" checked onchange="nav.QrDeep()">page
+                    <input type="checkbox" id="shPos" checked onchange="nav.QrDeep()">pos
+                    <input type="checkbox" id="shIdx" onchange="nav.QrDeep()">TOC
+                    <span id="shLgLbl"><input type="checkbox" id="shLg" checked onchange="nav.QrDeep()">en</span>
+                </div>
             </center>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">

@@ -43,15 +43,18 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         await cBook.Source(src,true,pageNo)
     }
     ,QrUrlScrollY:0
-    ,QrUrl:async function(deep=false,ht=35,img="LifeDemandedDeath.png") {
+    ,QrUrl:async function(deep=false,ht=35,img="LifeDemandedDeath.png",opt={}) {
         if (cBook._qrUrl) URL.revokeObjectURL(cBook._qrUrl);
         const u = new URL("https://gormb.github.io/_");
-        u.search = '?b&book=' + encodeURIComponent(book.src);
+        u.search = '?b';
+        if (opt.book!==false) u.search += '&book=' + encodeURIComponent(book.src);
         if (deep) {
-            let c='w,1';
-            if (!book.hAlign._) c+=',nLg';
-            if (cBook.QrUrlScrollY>0) c+=',s,'+cBook.QrUrlScrollY;
-            u.search += '&page=' + cBook.pn + '&c=' + c;
+            let c='w,100';
+            if (opt.lang!==false && !book.hAlign._) c+=',nLg';
+            if (opt.idx!==false) c+=',nTc';
+            if (opt.pos!==false && cBook.QrUrlScrollY>0) c+=',s,'+cBook.QrUrlScrollY;
+            if (opt.page!==false) u.search += '&page=' + cBook.pn;
+            u.search += '&c=' + c;
         }
         const sz = Math.round(ht/100*innerHeight);
         const qrcs = new window.QRCodeStyling({width:sz, height:sz, data:u.href, image:img, imageOptions:{margin:8}});
