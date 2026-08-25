@@ -56,6 +56,22 @@
                     }
                     ,Scroll:()=>_dBook.scrollLeft=book.hAlign._?0:_dBook.scrollWidth-_dBook.clientWidth
                 }
+                ,prem:{
+                    _:false // true=premium, false=freemium
+                    ,L:l=>{
+                        book.prem._=l;
+                        nav.memSet('prem', l);
+                        nPr.innerText=l?'👑':'🔓';
+                        if(nMt.innerText=='⏷')nPr.style.display=l?'none':'inline'; // flytende 🔓 kun freemium (utenfor meny)
+                        nav.UpdButtons(); // oppdater nEx (eksport kun i premium)
+                        window.cBook&&window.cBook.Page(window.cBook.pn, true); // re-render i ny modus
+                    }
+                    ,Load:async()=>{
+                        let v=(await nav.memGet('prem', new String(book.prem._))=="true");
+                        if (book.prem._!=v)
+                            book.prem.L(v);
+                    }
+                }
                 ,Page:async pn=>{                    
                     nGoTxt.value = pn;
                     await cBook.Page(pn, true);
@@ -143,6 +159,7 @@
                     nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
                     nav.Able(nLt, nav.Able(nNt, uishow(nNt2, uishow(nNt3, (book.pn()<book.np())))));
                     nav.Able(nFd, false);
+                    nav.Able(nEx, book.prem._); // eksport kun i premium
                 }
                 ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, uishow(nNt2, uishow(nUp2, uishow(nNt3, uishow(nUp3
                             , false))))))))))))
@@ -175,6 +192,7 @@
                 }
                 ,Export_preX:0,Export_preY:0
                 ,Export:async (_,s=_??_dExport.style.display=='none')=>{
+                    if(!book.prem._)return; // eksport kun i premium
                     uishow(nSv, false);
                     if (s) {
                         book.Export_preX = window.scrollX;
@@ -303,8 +321,23 @@
                 ,Toc:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
                     const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
-                    const chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
-                    const subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
+                    let chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
+                    let subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
+                    // Skjul N/A-oppføringer: tier som er LÅST i nåværende modus (premium↔freemium)
+                    const locked=book.prem._?'freemium':'premium';
+                    const ok=async rows=>{
+                        const out=[];
+                        for(const b of rows){
+                            const page=await cBook.pdf.getPage(b.page), tc=await page.getTextContent();
+                            const it=tc.items.find(i=>i.str.trim()===b.text)||tc.items.slice().sort((a,b)=>(b.height||0)-(a.height||0))[0];
+                            const fam=it?(await cBook.FontName(it.fontName,page))||'':'';
+                            const tier=cBook.FontTier(fam);
+                            if(tier!==locked)out.push(b);
+                        }
+                        return out;
+                    };
+                    chaps=await ok(chaps);
+                    subs=await ok(subs);
                     const spotMap=await window.cBook.SpotLoad();
                     const resolveSpot=url=>{
                         if(!url||!window.cBook.SpotRe.test(url))return url;
@@ -336,13 +369,17 @@
                     nSh.style.position=!h?'fixed':'';
                     nSh.style.bottom=nSh.style.left=!h?'0':'';
                     nSh.classList.toggle('floatingControl', !h);
-                    uishow(nLg,uishow(nFt,uishow(nPv,
+                    uishow(nPr,uishow(nLg,uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
-                        )))))))));
+                        ))))))))));
                     // nTc: fast knapp midt på venstre side når menyen er skjult
-                    if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%) scale(.7)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');}
-                    else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform=nTc.style.filter='';nTc.classList.remove('floatingControl');}
+                    if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%) scale(.7)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');
+                        // nPr: flytende 🔓 90% ned (som _spCollapse på 60%), kun i freemium-modus
+                        nPr.style.position='fixed';nPr.style.left='0';nPr.style.top='70%';nPr.style.transform='translateY(-50%) scale(.7)';nPr.style.filter='grayscale(1)';nPr.classList.add('floatingControl');
+                        nPr.style.display=book.prem._?'none':'inline';}
+                    else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform=nTc.style.filter='';nTc.classList.remove('floatingControl');
+                        nPr.style.position=nPr.style.left=nPr.style.top=nPr.style.transform=nPr.style.filter='';nPr.classList.remove('floatingControl');}
                     if(cBook.page){cBook.Play();cBook.PageNo();} // siden flytter seg - flytt knapper og sidetall med
                 }
                 ,btSimul:(a,i)=>{
@@ -389,6 +426,7 @@
                     //await nav.Page(page);
                     uisz();
                     await book.hAlign.Load();
+                    await book.prem.Load();
                     const commands=sp.get('c')?.split(',') || [];
                     const musicCommand=commands.find(c=>c.startsWith('m')&&c!=='menu');
                     if(musicCommand) {
@@ -435,7 +473,8 @@
             &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" onmousedown="nav.Export()">📤</button>
-            <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
+                <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
+                <button id="nPr" onmousedown="book.prem.L(!book.prem._)">🔓</button>
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
         <div id="_dBook" class="bookParent">
