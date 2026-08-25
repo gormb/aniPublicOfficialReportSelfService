@@ -35,8 +35,8 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         catch (error) { if (error?.name !== 'RenderingCancelledException') throw error; }
         await cBook.Hide(); // fjern premium/freemium-tekst fra det ferdige lerretet
     }
-    ,premFonts:['CEGaramond'] // premium-only – fylles fra template senere
-    ,freeFonts:['Calibri']    // freemium-only – fylles fra template senere
+    ,premFonts:['EBGaramond','CEGaramond'] // premium-only – template-merket "premium" er EBGaramond; fylles fra template senere
+    ,freeFonts:['Calibri']                 // freemium-only – fylles fra template senere
     ,FontTier:function(fam){ // 'premium'|'freemium'|'common' – basert på premFonts/freeFonts
         const n=(fam||'').toLowerCase().replace(/[^a-z0-9]/g,'');
         if(cBook.premFonts.some(f=>n.includes(f.toLowerCase().replace(/[^a-z0-9]/g,''))))return 'premium';
@@ -134,7 +134,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 for(const i of items){
                     const t=i.str.trim(); if(!t)continue;
                     const h=H(i),y=i.transform[5];
-                    if(/^(Underkapitteltittelen|The Sub Chapter Title)$/.test(t)){s.subH=h;s.subY=y;}
+                    if(/^(Underkapitteltittel(?:en)?|The Sub Chapter Title)$/.test(t)){s.subH=h;s.subY=y;}
                     else if(/^(Kapitteltittelen|The Chapter Title)$/.test(t)){s.chapH=h;s.chapY=y;}
                     else if(/^(Navnet På Boken|The Name of the Book)$/.test(t)){s.coverH=h;}
                 }
