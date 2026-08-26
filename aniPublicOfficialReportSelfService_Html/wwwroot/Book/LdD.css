@@ -29,8 +29,8 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
 #_spCollapse { position:fixed; left:0; top:60%; transform:translateY(-50%) scale(.7); filter:grayscale(1); z-index:100;
     background:transparent; border:0; box-shadow:none; padding:0; }
 #_dPage{position:absolute;inset:0;z-index:3;pointer-events:none}
-#_dPage span{position:absolute;transform:translateX(-50%);font-family:Garamond,"EB Garamond",Georgia,serif;font-size:calc(10pt*(100vw/105mm));line-height:1.15;color:#000}
-#_dToc{font-family:Garamond,"EB Garamond",Georgia,serif;box-sizing:border-box;overflow:auto;height:100vh;
+#_dPage span{position:absolute;transform:translateX(-50%);font-family:Garamond,Georgia,serif;font-size:calc(10pt*(100vw/105mm));line-height:1.15;color:#000}
+#_dToc{font-family:Garamond,Georgia,serif;box-sizing:border-box;overflow:auto;height:100vh;
     font-size:calc(10pt*(100vw/105mm));line-height:1.15;padding:calc(8mm*(100vw/105mm))}
 #_dToc h1{font-weight:normal;text-align:center;letter-spacing:.06em;margin:0 0 1em}
 #_dToc h1 a{color:#555;text-decoration:none;filter:grayscale(1)}

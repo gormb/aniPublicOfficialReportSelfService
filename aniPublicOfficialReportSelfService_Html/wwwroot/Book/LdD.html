@@ -5,7 +5,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <script src="https://gormb.github.io/_/db.js"></script>
         <script type="module" src="LdD.js?v=2"></script>
-        <link rel="stylesheet" href="LdD.css">
+        <link rel="stylesheet" href="LdD.css?v=2">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -58,11 +58,13 @@
                 }
                 ,prem:{
                     _:false // true=premium, false=freemium
-                    ,L:l=>{
+                    ,L:async l=>{
                         book.prem._=l;
                         nav.memSet('prem', l);
                         nPr.innerText=l?'👑':'🔓';
                         if(nMt.innerText=='⏷')nPr.style.display=l?'none':'inline'; // flytende 🔓 kun freemium (utenfor meny)
+                        if(_dToc.style.display!='none')_dTocList.innerHTML=await nav.Toc(); // TOC er åpen → bygg om med ny modus
+                        else _dTocList.innerHTML=''; // cache ugyldig → bygges ved neste åpning
                         nav.UpdButtons(); // oppdater nEx (eksport kun i premium)
                         window.cBook&&window.cBook.Page(window.cBook.pn, true); // re-render i ny modus
                     }
@@ -328,10 +330,22 @@
                     const ok=async rows=>{
                         const out=[];
                         for(const b of rows){
-                            const page=await cBook.pdf.getPage(b.page), tc=await page.getTextContent();
-                            const it=tc.items.find(i=>i.str.trim()===b.text)||tc.items.slice().sort((a,b)=>(b.height||0)-(a.height||0))[0];
-                            const fam=it?(await cBook.FontName(it.fontName,page))||'':'';
-                            const tier=cBook.FontTier(fam);
+                            let tier=cBook._tierCache?.[`${b.page}|${b.text}`];
+                            if(!tier){
+                                const page=await cBook.pdf.getPage(b.page), tc=await page.getTextContent();
+                                const it=tc.items.find(i=>i.str.trim()===b.text)||tc.items.slice().sort((a,b)=>(b.height||0)-(a.height||0))[0];
+                                let fam=it?(await cBook.FontName(it.fontName,page))||'':'';
+                                if(it&&fam===it.fontName){ // fonts ikke lastet ennå → last via liten offscreen-render
+                                    try{
+                                        const vp=page.getViewport({scale:0.1});
+                                        const c=document.createElement('canvas');c.width=Math.max(1,Math.round(vp.width));c.height=Math.max(1,Math.round(vp.height));
+                                        await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+                                        fam=(await cBook.FontName(it.fontName,page))||it.fontName;
+                                    }catch(e){}
+                                }
+                                tier=cBook.FontTier(fam);
+                                (cBook._tierCache=cBook._tierCache||{})[`${b.page}|${b.text}`]=tier;
+                            }
                             if(tier!==locked)out.push(b);
                         }
                         return out;

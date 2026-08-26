@@ -75,12 +75,13 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             }
         }
     }
-    ,_src:null, _pageNo:0
+    ,_src:null, _pageNo:0, _tierCache:null
     ,DoShow:async (src, pageNo)=>{
         if(cBook._src==src && cBook._pageNo==pageNo)
             return;
         cBook._src=src;
         cBook._pageNo=pageNo;
+        cBook._tierCache=null; // ny bok → nullstill tier-cache
         await cBook.Source(src,true,pageNo)
     }
     ,QrUrlScrollY:0
