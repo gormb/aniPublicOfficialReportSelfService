@@ -5,15 +5,17 @@ body {
     --qrWidth: calc(35vh);}
 
 button { font-size:var(--fsMenu); padding:var(--padMenu);}
-.floatingControl, #nUp2, #nUp3, #nNt2, #nNt3, #nPv2, #nSv {
-    background:transparent; border:0; box-shadow:none; padding:0; filter:grayscale(1);
+.floatingControl, #nUp2, #nUp3, #nNt2, #nNt3, #nPv2, #nPv3, #nSv {
+    background:transparent; border:0; box-shadow:none; padding:0; color:#999; filter:grayscale(1);
+    scale:.5; z-index:1;position:absolute; 
 }
-    #nUp2 {z-index:1;position:absolute; top:calc(var(--paddingTop1)); right:0;scale:.7;}
-    #nNt2 {z-index:1;position:absolute; right:0; bottom:0;scale:.7;}
-    #nPv2 {z-index:1;position:fixed; left:0; bottom:0;scale:.7;}
-    #nUp3 {z-index:1;position:absolute; top:calc(var(--paddingTop1)); right:-102vw;scale:.7;}
-    #nNt3 {z-index:1;position:absolute; right:-102vw; bottom:0;scale:.7;}
-    #nSv {z-index:1;position:fixed; top:calc(var(--paddingTop1)); left:0;scale:.7;}
+    #nUp2 {top:calc(var(--paddingTop1)); right:0;}
+    #nNt2 { right:0; bottom:0;}
+    #nPv2 { left:0; bottom:0;}
+    #nPv3 { left:102vw; bottom:0;}
+    #nUp3 { top:calc(var(--paddingTop1)); right:-102vw;}
+    #nNt3 { right:-102vw; bottom:0;}
+    #nSv {z-index:1;position:fixed; top:calc(var(--paddingTop1)); left:0}
 .pageNo { font-size:var(--fsMenu); padding:var(--padMenu);display:none; text-align:center;width:2em;}
 .disabled { opacity: 0.5; pointer-events: none;}
 .bookControls { position: fixed; top: 1vh; left: 1vw;}

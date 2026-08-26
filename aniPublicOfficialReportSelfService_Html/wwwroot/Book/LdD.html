@@ -1,11 +1,12 @@
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Life demanded Death</title>
         <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <script src="https://gormb.github.io/_/db.js"></script>
         <script type="module" src="LdD.js?v=3"></script>
-        <link rel="stylesheet" href="LdD.css?v=3">
+        <link rel="stylesheet" href="LdD.css?v=6">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -159,20 +160,18 @@
                     const canPrev=book.pn()>1, canNext=book.pn()<book.np();
                     nav.Able(nFt, canPrev); nav.Able(nPv, canPrev);
                     nav.Able(nNt, canNext); nav.Able(nLt, canNext);
-                    if(book.whole){ // hele siden vises (tall) → forrige/neste (venstre/høyre)
-                        uishow(nUp2,false);uishow(nUp3,false);
-                        uishow(nPv2, canPrev);
-                    } else { // brett → scroll-opp + neste
-                        uishow(nPv2,false);
-                        uishow(nUp2, canPrev); uishow(nUp3, canPrev);
-                    }
+                    uishow(nUp2, uishow(nUp3, !book.whole && canPrev)) | uishow(nPv3, uishow(nPv2, book.whole && canPrev));
                     uishow(nNt2, canNext); uishow(nNt3, canNext);
                     nav.Able(nUp, (canPrev || window.scrollY > 0));
                     nav.Able(nGo, true);
                     nav.Able(nDn, (canNext || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
                     nav.Able(nFd, false);
                     nav.Able(nEx, book.prem._); // eksport kun i premium
-                    if(nMt.innerText=='⏷'&&book.whole)nSh.style.display='none';else nSh.style.display=''; // tall: ◀️ (nPv2) tar nSh-plassen
+                    nav.nShFit(); // skjul nSh kun hvis nPv2/nPv3 overlapper den visuelt
+                }
+                ,nShFit:()=>{ // nSh skjules bare hvis ◀ (nPv2/nPv3) er på samme høyde (y-overlapp)
+                    const b=[nPv2,nPv3].find(b=>b.style.display!='none');
+                    nSh.style.display=nMt.innerText=='⏷'&&b&&b.getBoundingClientRect().bottom>nSh.getBoundingClientRect().top?'none':'';
                 }
                 ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, uishow(nNt2, uishow(nUp2, uishow(nNt3, uishow(nUp3
                             , false))))))))))))
@@ -413,7 +412,9 @@
                     nSh.style.position=!h?'fixed':'';
                     nSh.style.bottom=nSh.style.left=!h?'0':'';
                     nSh.classList.toggle('floatingControl', !h);
-                    if(!h&&book.whole)nSh.style.display='none';else nSh.style.display=''; // tall-modus: ◀️ (nPv2) tar plassen nederst-venstre
+
+                    nav.nShFit(); // skjul nSh kun hvis nPv2/nPv3 overlapper den visuelt (ellers vis nSh)
+
                     uishow(nPr,uishow(nLg,uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
@@ -529,9 +530,10 @@
             <canvas id="_cBook"></canvas>
                 <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
                 <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
-                <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
-                <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
-                <button id="nPv2" onmousedown="nav.Page(book.pn()-1)" style="display:none;">&nbsp;◀&nbsp;</button>
+                <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►</button>
+                <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►</button>
+                <button id="nPv2" onmousedown="nav.Page(book.pn()-1)" style="display:none;">◀&nbsp;</button>
+                <button id="nPv3" onmousedown="nav.Page(book.pn()-1)" style="display:none;">◀&nbsp;</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
             <center>
