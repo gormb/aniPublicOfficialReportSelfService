@@ -66,7 +66,7 @@
                         if(_dToc.style.display!='none')_dTocList.innerHTML=await nav.Toc(); // TOC er åpen → bygg om med ny modus
                         else _dTocList.innerHTML=''; // cache ugyldig → bygges ved neste åpning
                         nav.UpdButtons(); // oppdater nEx (eksport kun i premium)
-                        window.cBook&&window.cBook.Page(window.cBook.pn, true); // re-render i ny modus
+                        window.cBook&&window.cBook.pdf&&window.cBook.Page(window.cBook.pn, true); // re-render i ny modus (PDF må være lastet)
                     }
                     ,Load:async()=>{
                         let v=(await nav.memGet('prem', new String(book.prem._))=="true");
@@ -374,6 +374,25 @@
                         return `<li class="chap" data-p="${c.page}">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li data-p="${s.page}">${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
                 }
+                // PIN-kode → premium. Senere: koden (040471) verifiseres mot Supabase-tabell, hashes
+                // til en mem-variabel som huskes på tvers av sesjoner, og brukes kun ÉN gang om gangen
+                // (reverifiseres ved sidebytte osv.) – IKKE implementert ennå.
+                ,PremToggle:()=>{
+                    if(book.prem._)return book.prem.L(false); // premium → gratis: ingen kode
+                    nav.PinOpen(); // gratis → premium: be om PIN
+                }
+                ,PinOpen:()=>{
+                    nPin.value='';
+                    uishow(nPin,true);
+                    setTimeout(()=>{nPin.focus();nPin.select();},10); // mousedown → fokuser etterpå (ellег knappen stjeler fokus)
+                }
+                ,Pin:()=>{
+                    const v=nPin.value.replace(/\D/g,'').slice(0,6);
+                    nPin.value=v;
+                    if(v.length<6)return; // sjekk etter hvert tastetrykk – ingen Enter (PIN!)
+                    uishow(nPin,false); // lukk ved 6 siffer
+                    if(v==='040471')book.prem.L(true); // riktig kode → premium
+                }
                 ,menu:()=>{
                     let h=nMt.innerText!='⏶';
                     nMt.innerText=h?'⏶':'⏷';
@@ -488,9 +507,10 @@
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" onmousedown="nav.Export()">📤</button>
                 <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
-                <button id="nPr" onmousedown="book.prem.L(!book.prem._)">🔓</button>
+                <button id="nPr" onmousedown="nav.PremToggle()">🔓</button>
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
+        <input id="nPin" class="pageNo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="" oninput="nav.Pin()" style="position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;width:5.5em;letter-spacing:.4em;border:1px solid #999;border-radius:.5em;background:#fff;box-shadow:0 .2em .8em rgba(0,0,0,.25)"/>
         <div id="_dBook" class="bookParent">
             <img id="iLoading" src="aigap.webp" style="z-index:2;position:fixed;left:47vw;top:47vh;animation:rotate 2s linear infinite;width:6vw">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
