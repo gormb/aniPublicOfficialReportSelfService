@@ -389,6 +389,7 @@
                 // (reverifiseres ved sidebytte osv.) – IKKE implementert ennå.
                 ,PremToggle:()=>{
                     if(book.prem._)return book.prem.L(false); // premium → gratis: ingen kode
+                    if(nPin.style.display!='none')return uishow(nPin,false); // koden er synlig → trykk på 🔓 igjen lukker den (avbryt)
                     nav.PinOpen(); // gratis → premium: be om PIN
                 }
                 ,PinOpen:()=>{
