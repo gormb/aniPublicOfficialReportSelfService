@@ -88,7 +88,7 @@
             let _busy; // sperre under lasting/resize – auto-språkbytte ved skroll
             const aLg=()=>{if(_dToc.style.display!='none'||_cBook.style.display=='none'||_busy)return;
                 const m=_dBook.scrollWidth-_dBook.clientWidth,r=m?_dBook.scrollLeft/m:0;
-                if((book.hAlign._&&r>.2)||(!book.hAlign._&&r<.8))book.hAlign.L(!book.hAlign._)}; // NO→EN høyre, EN→NO venstre
+                if((book.hAlign._&&r>.5)||(!book.hAlign._&&r<.5))book.hAlign.L(!book.hAlign._)}; // NO→EN høyre, EN→NO venstre
             const forlag = {
                 norsk: [
                     { forlag: "Cappelen Damm", url: "https://manus.cappelendamm.no/", forlagstype: "Allmennforlag (Stor)", punktromscore: 5 },
