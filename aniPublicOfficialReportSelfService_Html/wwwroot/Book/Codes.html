@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Codes</title>
+<script src="https://gormb.github.io/_/db.js"></script>
+<style>
+body{font-family:system-ui;margin:1rem}
+td,th{padding:.15rem .6rem;text-align:left;font-size:.9rem}
+input{width:10rem}
+button{cursor:pointer}
+pre{background:#f4f4f4;padding:.6rem;font-size:.8rem;overflow:auto}
+</style>
+</head>
+<body>
+<h3>Koder (premium-PIN)</h3>
+<form onsubmit="add(event)">
+  <input id="code" placeholder="kode" required>
+  <input id="dtFrom" type="datetime-local" required>
+  <input id="dtTo" type="datetime-local" required>
+  <input id="mails" placeholder="eposter, komma-skilt">
+  <button>Legg til</button>
+</form>
+<table id="rows"></table>
+<details>
+<summary>Opprett-tabell (SQL i Supabase)</summary>
+<pre>create table if not exists codes (
+  code text primary key,
+  dtFrom timestamptz not null default now(),
+  dtTo timestamptz not null default '2099-12-31 23:59:59+00',
+  mails text not null default ''
+);</pre>
+</details>
+<script type="module">
+const db=async()=>{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');return createClient(SUPABASE.url,SUPABASE.publishableKey)};
+const dflt=v=>new Date(new Date(v).getTime()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16);
+const load=async()=>{const{data,error}=await (await db()).from('codes').select('*').order('dtFrom',{ascending:false});
+  rows.innerHTML=error?`<tr><td colspan="4">${error.message}</td></tr>`:(data||[]).map(r=>`<tr><td>${r.code}</td><td>${r.dtFrom?.slice(0,16)}</td><td>${r.dtTo?.slice(0,16)}</td><td>${r.mails||''}</td><td><button onclick="del('${r.code}')">×</button></td></tr>`).join('')||'<tr><td colspan="4">(tom)</td></tr>'};
+window.add=async e=>{e.preventDefault();
+  await (await db()).from('codes').upsert({code:code.value.trim(),dtFrom:dtFrom.value||new Date().toISOString(),dtTo:dtTo.value||'2099-12-31T23:59',mails:mails.value.trim()});
+  code.value='';mails.value='';dtFrom.value=dflt(Date.now());dtTo.value='2099-12-31T23:59';load()};
+window.del=async c=>{await (await db()).from('codes').delete().eq('code',c);load()};
+dtFrom.value=dflt(Date.now());dtTo.value='2099-12-31T23:59';load();
+</script>
+</body>
+</html>

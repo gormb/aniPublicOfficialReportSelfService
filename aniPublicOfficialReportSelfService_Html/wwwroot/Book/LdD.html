@@ -384,9 +384,8 @@
                         return `<li class="chap" data-p="${c.page}">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li data-p="${s.page}">${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
                 }
-                // PIN-kode → premium. Senere: koden (040471) verifiseres mot Supabase-tabell, hashes
-                // til en mem-variabel som huskes på tvers av sesjoner, og brukes kun ÉN gang om gangen
-                // (reverifiseres ved sidebytte osv.) – IKKE implementert ennå.
+                // PIN-kode → premium: verifiseres mot Supabase-tabellen `codes` (dtfrom<=now<=dtto).
+                // Senere: hash til en mem-variabel som huskes på tvers av sesjoner, ÉN gang om gangen.
                 ,PremToggle:()=>{
                     if(book.prem._)return book.prem.L(false); // premium → gratis: ingen kode
                     if(nPin.style.display!='none')return uishow(nPin,false); // koden er synlig → trykk på 🔓 igjen lukker den (avbryt)
@@ -397,12 +396,22 @@
                     uishow(nPin,true);
                     setTimeout(()=>{nPin.focus();nPin.select();},10); // mousedown → fokuser etterpå (ellег knappen stjeler fokus)
                 }
-                ,Pin:()=>{
+                ,Pin:async ()=>{
                     const v=nPin.value.replace(/\D/g,'').slice(0,6);
                     nPin.value=v;
                     if(v.length<6)return; // sjekk etter hvert tastetrykk – ingen Enter (PIN!)
                     uishow(nPin,false); // lukk ved 6 siffer
-                    if(v==='040471')book.prem.L(true); // riktig kode → premium
+                    if(await nav.CodeValid(v))book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
+                }
+                ,CodeValid:async code=>{ // sjekk koden mot Supabase `codes`: finnes OG dtfrom<=now<=dtto
+                    if(!window.SUPABASE)return false;
+                    try{
+                        const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+                        const{data,error}=await createClient(SUPABASE.url,SUPABASE.publishableKey).from('codes').select('code,dtfrom,dtto').eq('code',code).maybeSingle();
+                        if(error||!data)return false;
+                        const n=Date.now();
+                        return new Date(data.dtfrom).getTime()<=n && n<=new Date(data.dtto).getTime();
+                    }catch(e){return false}
                 }
                 ,menu:()=>{
                     let h=nMt.innerText!='⏶';

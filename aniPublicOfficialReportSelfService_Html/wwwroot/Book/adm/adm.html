@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>adm — premium codes</title>
+<script src="https://gormb.github.io/_/db.js"></script>
+<link rel="stylesheet" href="adm.css">
+</head>
+<body>
+<h3>adm; premium codes</h3>
+<form id="f" onsubmit="save(event)">
+  <table><tr>
+    <td>code <input id="code" required></td>
+    <td>from <input id="dtFrom" type="datetime-local" required></td>
+    <td>to <input id="dtTo" type="datetime-local" required></td>
+    <td>mails (comma) <input id="mails"></td>
+    <td><button>Save</button> <button type="button" onclick="resetF()">New</button></td>
+  </tr></table>
+</form>
+<div id="grid"></div>
+<details>
+<summary>Create table (SQL in Supabase)</summary>
+<pre>create table if not exists codes (
+  code text primary key,
+  dtfrom timestamptz not null default now(),
+  dtto timestamptz not null default '2099-12-31 23:59:59+00',
+  mails text not null default ''
+);
+-- RLS (open for the admin page):
+alter table codes enable row level security;
+create policy codes_all on codes for all using (true) with check (true);
+-- NB: unquoted identifiers are folded to lowercase (dtfrom/dtto).</pre>
+</details>
+<script type="module" src="adm.js"></script>
+</body>
+</html>
