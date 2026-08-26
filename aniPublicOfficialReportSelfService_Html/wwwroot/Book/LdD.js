@@ -268,7 +268,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         const top0=_cBook.offsetTop, overlayHeight=box.clientHeight||1;
         for(const s of cBook._spots.list){
             const b=document.createElement('a');
-            b.className='play'; b.id=`${s.key}_${s.col?'r':'l'}`; b.dataset.u=s.url; b.href='#'; b.textContent='▶';
+            b.className='play'; b.id=`${s.key}_${s.col?'r':'l'}`; b.dataset.u=s.url; b.href='#'; b.textContent='\u266A'; // ♪ – ÉN note
             const playClick=event=>{
                 event.preventDefault();
                 event.stopPropagation();

@@ -5,7 +5,7 @@
         <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <script src="https://gormb.github.io/_/db.js"></script>
-        <script type="module" src="LdD.js?v=4"></script>
+        <script type="module" src="LdD.js?v=6"></script>
         <link rel="stylesheet" href="LdD.css?v=6">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
@@ -169,7 +169,7 @@
                     nav.Able(nEx, book.prem._); // eksport kun i premium
                     nav.nShFit(); // skjul nSh kun hvis nPv2/nPv3 overlapper den visuelt
                 }
-                ,nShFit:()=>{ // nSh skjules bare hvis ◀ (nPv2/nPv3) er på samme høyde (y-overlapp)
+                ,nShFit:()=>{ // nSh skjules bare hvis ◄ (nPv2/nPv3) er på samme høyde (y-overlapp)
                     const b=[nPv2,nPv3].find(b=>b.style.display!='none');
                     nSh.style.display=nMt.innerText=='⏷'&&b&&b.getBoundingClientRect().bottom>nSh.getBoundingClientRect().top?'none':'';
                 }
@@ -377,7 +377,7 @@
                         if(c.page<=cur)curPage=c.page;
                         for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
                     }
-                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
+                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">\u266B</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
                     return '<ul>'+chaps.map((c,i)=>{
                         const end=chaps[i+1]?.page??1e9;
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
@@ -534,13 +534,13 @@
         <div id="_dBook" class="bookParent">
             <img id="iLoading" src="aigap.webp" style="z-index:2;position:fixed;left:47vw;top:47vh;animation:rotate 2s linear infinite;width:6vw">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
-            <canvas id="_cBook"></canvas>
-                <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
-                <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
-                <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►</button>
-                <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►</button>
-                <button id="nPv2" onmousedown="nav.Page(book.pn()-1)" style="display:none;">◀&nbsp;</button>
-                <button id="nPv3" onmousedown="nav.Page(book.pn()-1)" style="display:none;">◀&nbsp;</button>
+            <canvas id="_cBook"></canvas> <!-- ◀️◄🫲 / ▶️►🫱 / ⏫▲☝️ -->
+                <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;☝️&nbsp;</button>
+                <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;☝️&nbsp;</button>
+                <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;🫱</button>
+                <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;🫱</button>
+                <button id="nPv2" onmousedown="nav.Page(book.pn()-1)" style="display:none;">🫲&nbsp;</button>
+                <button id="nPv3" onmousedown="nav.Page(book.pn()-1)" style="display:none;">🫲&nbsp;</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
             <center>
