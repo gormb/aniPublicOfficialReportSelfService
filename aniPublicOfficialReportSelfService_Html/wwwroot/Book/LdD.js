@@ -37,8 +37,10 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     }
     ,premFonts:['EBGaramond','CEGaramond'] // premium-only – template-merket "premium" er EBGaramond; fylles fra template senere
     ,freeFonts:['Calibri']                 // freemium-only – fylles fra template senere
-    ,FontTier:function(fam){ // 'premium'|'freemium'|'common' – basert på premFonts/freeFonts
+    ,commentFonts:['Arial']                // kommentarer – vises ALDRI i boken (verken premium eller gratis)
+    ,FontTier:function(fam){ // 'premium'|'freemium'|'common'|'comment' – basert på fontlistene
         const n=(fam||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+        if(cBook.commentFonts.some(f=>n.includes(f.toLowerCase().replace(/[^a-z0-9]/g,''))))return 'comment';
         if(cBook.premFonts.some(f=>n.includes(f.toLowerCase().replace(/[^a-z0-9]/g,''))))return 'premium';
         if(cBook.freeFonts.some(f=>n.includes(f.toLowerCase().replace(/[^a-z0-9]/g,''))))return 'freemium';
         return 'common';
@@ -59,13 +61,14 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         for(const fn of new Set(tc.items.map(i=>i.fontName))) names[fn]=await cBook.FontName(fn);
         for(const it of tc.items){
             if(!it.str.trim())continue;
-            if(cBook.FontTier(names[it.fontName])!==hideTier)continue;
+            const tier=cBook.FontTier(names[it.fontName]);
+            if(tier!=='comment'&&tier!==hideTier)continue; // kommentarer skjules ALLTID; ellers låst tier
             // PDF-native (y-opp): baseline=transform[5]; glyffer oppover (+1.2*h), descender nedover (-0.3*h)
             const [ax,ay]=cBook.view.convertToViewportPoint(it.transform[4]-1, it.transform[5]+it.height*1.2); // topp (ascender/cap)
             const [bx,by]=cBook.view.convertToViewportPoint(it.transform[4]+it.width+1, it.transform[5]-it.height*0.3); // under baseline (descender)
             const x=Math.min(ax,bx), y=Math.min(ay,by), w=Math.abs(bx-ax), h=Math.abs(by-ay);
             ctx.clearRect(x,y,w,h); // fjern teksten (hvitt i premium-modus)
-            if(!(book.prem&&book.prem._)){ // gull-børste KUN over skjult PREMIUM-innhold (freemium-modus)
+            if(tier==='premium'&&!(book.prem&&book.prem._)){ // gull-børste KUN over skjult PREMIUM i freemium-modus
                 const grad=ctx.createLinearGradient(0,y,0,y+h);
                 grad.addColorStop(0,'rgba(228,196,100,.62)');
                 grad.addColorStop(1,'rgba(188,148,42,.62)');
