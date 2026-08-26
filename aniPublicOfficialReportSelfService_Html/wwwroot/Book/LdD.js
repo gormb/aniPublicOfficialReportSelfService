@@ -4,11 +4,20 @@ _cBookJLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs
 let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,pdfPromise:null,renderTask:null
     ,Source:async function(src,render,pageno=cBook.pn) {
         cBook.ctx = cBook.ctx || _cBook.getContext("2d");
-        cBook.pdfPromise = cBook.pdfPromise || _cBookJLib.getDocument(src).promise;
-        cBook.pdf = cBook.pdf || await cBook.pdfPromise;
-        await cBook.Page(pageno, render); // sett side + render kun ved behov (unngå dobbel-render på lasting)
+        try {
+            cBook.pdfPromise = cBook.pdfPromise || _cBookJLib.getDocument(src).promise;
+            cBook.pdf = cBook.pdf || await cBook.pdfPromise;
+            await cBook.Page(pageno, render); // sett side + render kun ved behov (unngå dobbel-render på lasting)
+        } catch(e) { // f.eks. 404/korrupt PDF – vis melding i stedet for å krasje i getViewport
+            console.error('[cBook] kunne ikke laste', src, e);
+            cBook.pdf=null; cBook.pdfPromise=null; cBook.page=null;
+            const ctx=cBook.ctx; ctx.clearRect(0,0,_cBook.width,_cBook.height);
+            ctx.fillStyle='#888'; ctx.font='16px sans-serif'; ctx.textAlign='center';
+            ctx.fillText('⚠️ Kunne ikke laste boken / Could not load the book', _cBook.width/2, _cBook.height/2);
+        }
     }
     ,Page:async function(pageNo,render) {
+        if(!cBook.pdf)return; // PDF ikke lastet (f.eks. 404) – unngå null-kræsj
         const np=cBook.pdf.numPages-4; // Last four slides is template
         if(pageNo<1) pageNo=1;
         else if(pageNo>np) pageNo=np;
@@ -20,6 +29,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             await cBook.Width(window.innerWidth*2, true);
     }
     ,Width:async function(width,doRender) {
+        if(!cBook.page)return; // PDF ikke lastet – unngå null-kræsj (f.eks. ved resize)
         cBook.viewport = cBook.page.getViewport({scale:1});
         cBook.scale = width / cBook.viewport.width;
         cBook.view = cBook.page?.getViewport({ scale: cBook.scale });
