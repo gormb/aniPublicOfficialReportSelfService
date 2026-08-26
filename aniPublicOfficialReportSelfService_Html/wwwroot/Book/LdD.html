@@ -5,7 +5,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <script src="https://gormb.github.io/_/db.js"></script>
         <script type="module" src="LdD.js?v=3"></script>
-        <link rel="stylesheet" href="LdD.css?v=2">
+        <link rel="stylesheet" href="LdD.css?v=3">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -31,6 +31,7 @@
                     _fBook.style.height = h+'px';
                     _cBook.width = w;
                     _cBook.height = h;
+                    book.whole = h <= window.innerHeight; // hele arket vises (tall-modus) → venstre/høyre-nav
                     book.hAlign.Scroll();
                 }
                 ,szW:w=>book.szWH(w,w/book.aRatio)
@@ -155,13 +156,23 @@
             const nav={
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
-                    nav.Able(nPv, uishow(nUp2, uishow(nUp3, nav.Able(nFt, (book.pn()>1)))));
-                    nav.Able(nUp, (book.pn()>1 || window.scrollY > 0));
+                    const canPrev=book.pn()>1, canNext=book.pn()<book.np();
+                    nav.Able(nFt, canPrev); nav.Able(nPv, canPrev);
+                    nav.Able(nNt, canNext); nav.Able(nLt, canNext);
+                    if(book.whole){ // hele siden vises (tall) → forrige/neste (venstre/høyre)
+                        uishow(nUp2,false);uishow(nUp3,false);
+                        uishow(nPv2, canPrev);
+                    } else { // brett → scroll-opp + neste
+                        uishow(nPv2,false);
+                        uishow(nUp2, canPrev); uishow(nUp3, canPrev);
+                    }
+                    uishow(nNt2, canNext); uishow(nNt3, canNext);
+                    nav.Able(nUp, (canPrev || window.scrollY > 0));
                     nav.Able(nGo, true);
-                    nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
-                    nav.Able(nLt, nav.Able(nNt, uishow(nNt2, uishow(nNt3, (book.pn()<book.np())))));
+                    nav.Able(nDn, (canNext || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
                     nav.Able(nFd, false);
                     nav.Able(nEx, book.prem._); // eksport kun i premium
+                    if(nMt.innerText=='⏷'&&book.whole)nSh.style.display='none';else nSh.style.display=''; // tall: ◀️ (nPv2) tar nSh-plassen
                 }
                 ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, uishow(nNt2, uishow(nUp2, uishow(nNt3, uishow(nUp3
                             , false))))))))))))
@@ -402,6 +413,7 @@
                     nSh.style.position=!h?'fixed':'';
                     nSh.style.bottom=nSh.style.left=!h?'0':'';
                     nSh.classList.toggle('floatingControl', !h);
+                    if(!h&&book.whole)nSh.style.display='none';else nSh.style.display=''; // tall-modus: ◀️ (nPv2) tar plassen nederst-venstre
                     uishow(nPr,uishow(nLg,uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
@@ -488,7 +500,7 @@
                 await nav.Loaded(); // Load book, adjust size and update buttons
             }
             let _rsz;
-            window.onresize=()=>{clearTimeout(_rsz);_busy=true;_rsz=setTimeout(()=>{uisz();_busy=false},250)}; // vent til ro før resize (iOS)
+            window.onresize=()=>{clearTimeout(_rsz);_busy=true;_rsz=setTimeout(()=>{uisz();nav.UpdButtons();_busy=false},250)}; // vent til ro før resize (iOS)
             window.onscroll=uiscroll;
         </script>
     </head>
@@ -519,6 +531,7 @@
                 <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
                 <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
                 <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
+                <button id="nPv2" onmousedown="nav.Page(book.pn()-1)" style="display:none;">&nbsp;◀&nbsp;</button>
         </div>
         <div id="_dShare" class="shareParent" style="display:none;">
             <center>
