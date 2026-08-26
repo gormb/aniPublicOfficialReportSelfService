@@ -5,7 +5,7 @@
         <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <script src="https://gormb.github.io/_/db.js"></script>
-        <script type="module" src="LdD.js?v=3"></script>
+        <script type="module" src="LdD.js?v=4"></script>
         <link rel="stylesheet" href="LdD.css?v=6">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
@@ -23,7 +23,7 @@
                     return pdf ? await book.sPdf(src,pno) : book.sExt(src);
                 }
                 ,sExt:src=>_fBook.src=src
-                ,sPdf:async(src,pno=1)=>await window.cBook.DoShow(src, pno, window.innerWidth*2)
+                ,sPdf:async(src,pno=1)=>await window.cBook.DoShow(src, pno, false) // last uten å rendre – uisz() rett etterpå renderer ÉN gang
                 ,aRatio:(2*4.13)/5.83 // Golden ratio
                 ,szWH:(w,h)=>{
                     if(nMt.innerText!='⏶') 
@@ -420,9 +420,9 @@
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
                         ))))))))));
                     // nTc: fast knapp midt på venstre side når menyen er skjult
-                    if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%) scale(.7)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');
+                    if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');
                         // nPr: flytende 🔓 90% ned (som _spCollapse på 60%), kun i freemium-modus
-                        nPr.style.position='fixed';nPr.style.left='0';nPr.style.top='70%';nPr.style.transform='translateY(-50%) scale(.7)';nPr.style.filter='grayscale(1)';nPr.classList.add('floatingControl');
+                        nPr.style.position='fixed';nPr.style.left='0';nPr.style.top='70%';nPr.style.transform='translateY(-50%)';nPr.style.filter='grayscale(1)';nPr.classList.add('floatingControl');
                         nPr.style.display=book.prem._?'none':'inline';}
                     else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform=nTc.style.filter='';nTc.classList.remove('floatingControl');
                         nPr.style.position=nPr.style.left=nPr.style.top=nPr.style.transform=nPr.style.filter='';nPr.classList.remove('floatingControl');}

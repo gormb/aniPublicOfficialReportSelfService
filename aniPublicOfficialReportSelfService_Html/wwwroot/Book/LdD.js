@@ -6,8 +6,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         cBook.ctx = cBook.ctx || _cBook.getContext("2d");
         cBook.pdfPromise = cBook.pdfPromise || _cBookJLib.getDocument(src).promise;
         cBook.pdf = cBook.pdf || await cBook.pdfPromise;
-        if (render) 
-            await cBook.Page(pageno, true);
+        await cBook.Page(pageno, render); // sett side + render kun ved behov (unngå dobbel-render på lasting)
     }
     ,Page:async function(pageNo,render) {
         const np=cBook.pdf.numPages-4; // Last four slides is template
@@ -79,13 +78,13 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         }
     }
     ,_src:null, _pageNo:0, _tierCache:null
-    ,DoShow:async (src, pageNo)=>{
+    ,DoShow:async (src, pageNo, render=true)=>{
         if(cBook._src==src && cBook._pageNo==pageNo)
             return;
         cBook._src=src;
         cBook._pageNo=pageNo;
         cBook._tierCache=null; // ny bok → nullstill tier-cache
-        await cBook.Source(src,true,pageNo)
+        await cBook.Source(src, render, pageNo)
     }
     ,QrUrlScrollY:0
     ,QrUrl:async function(deep=false,ht=35,img="LifeDemandedDeath.png",opt={}) {
