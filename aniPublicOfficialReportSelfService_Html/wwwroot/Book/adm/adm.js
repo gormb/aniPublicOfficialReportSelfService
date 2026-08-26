@@ -1,6 +1,7 @@
 const db=async()=>{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');return createClient(SUPABASE.url,SUPABASE.publishableKey)};
 const iso=v=>v&&new Date(new Date(v).getTime()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16);
-const stat=r=>{const n=Date.now(),f=new Date(r.dtFrom).getTime(),t=new Date(r.dtTo).getTime();
+const utc=v=>v?new Date(v).toISOString():null; // datetime-local (lokal tid) → korrekt UTC for Supabase
+const stat=r=>{const n=Date.now(),f=new Date(r.dtfrom).getTime(),t=new Date(r.dtto).getTime();
   return n<f?['ok','waiting']:n>t?['exp','expired']:(t-n<7*864e5?['soon','expiring soon']:['ok','active'])};
 const gridEl=document.getElementById('grid');
 const grid=async()=>{const{data,error}=await (await db()).from('codes').select('*').order('dtfrom',{ascending:false});
@@ -16,6 +17,6 @@ window.edit=async c=>{const{data}=await (await db()).from('codes').select('*').e
   if(data){code.value=data.code;dtFrom.value=iso(data.dtfrom);dtTo.value=iso(data.dtto);mails.value=data.mails||''}};
 window.del=async c=>{if(confirm('Delete '+c+'?')){await (await db()).from('codes').delete().eq('code',c);grid()}};
 window.save=async e=>{e.preventDefault();
-  await (await db()).from('codes').upsert({code:code.value.trim(),dtfrom:dtFrom.value||new Date().toISOString(),dtto:dtTo.value||'2099-12-31T23:59',mails:mails.value.trim()});
+  await (await db()).from('codes').upsert({code:code.value.trim(),dtfrom:utc(dtFrom.value)||new Date().toISOString(),dtto:utc(dtTo.value)||'2099-12-31T23:59:59Z',mails:mails.value.trim()});
   resetF();grid()};
 resetF();grid();
