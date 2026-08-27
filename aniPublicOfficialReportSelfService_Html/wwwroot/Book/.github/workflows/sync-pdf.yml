@@ -2,20 +2,28 @@ name: Sync Google Presentation to PDF
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Auto-syncs daily at midnight UTC
+    - cron: '0 0 * * *'
   push:
     branches:
       - master
   workflow_dispatch:
 
+# Prevents two workflow runs from pushing to master at the same time
+concurrency:
+  group: sync-pdf-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   download-pdf:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           ref: master
+          fetch-depth: 0
 
       - name: Export Presentation to PDF
         run: |
@@ -31,5 +39,6 @@ jobs:
             echo "No changes in Google Presentation."
           else
             git commit -m "auto: update LifeDemandedDeath.pdf from Google Slides"
+            git pull --rebase origin master
             git push origin master
           fi
