@@ -1,0 +1,31 @@
+name: Automatic PDF Sync
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Automatically runs every night at midnight UTC
+  workflow_dispatch: # Allows clicking "Run workflow" in GitHub if needed immediately
+
+jobs:
+  sync-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Download PDF from Google Docs
+        run: |
+          # Replace <YOUR_DOCUMENT_ID> with your actual Google Doc/Slides ID
+          curl -L "https://docs.google.com/document/d/<YOUR_DOCUMENT_ID>/export?format=pdf" -o "book.pdf"
+
+      - name: Commit and Push Updated PDF
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add book.pdf
+          
+          if git diff --staged --quiet; then
+            echo "No text changes detected in Google Doc."
+          else
+            git commit -m "auto: sync updated PDF from Google Docs"
+            git push
+          fi
