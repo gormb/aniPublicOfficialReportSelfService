@@ -2,18 +2,27 @@ name: Sync Google Presentation to PDF
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Fully automated daily check at midnight UTC
+    - cron: '0 0 * * *'
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
+
+concurrency:
+  group: sync-pdf-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   download-pdf:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
 
       - name: Export Presentation to PDF
         run: |
@@ -21,13 +30,14 @@ jobs:
 
       - name: Commit & Push if Updated
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add LifeDemandedDeath.pdf
           
           if git diff --staged --quiet; then
             echo "No changes in Google Presentation."
           else
-            git commit -m "auto: update LifeDemandedDeath.pdf from Google Slides"
-            git push
+            git commit -m "auto: update LifeDemandedDeath.pdf from Google Slides [skip ci]"
+            git pull --rebase origin master
+            git push origin master
           fi
