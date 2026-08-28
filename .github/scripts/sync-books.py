@@ -40,6 +40,8 @@ def main():
     for r in rows:
         book = (r.get('book') or '').strip()
         deployed = (r.get('deployed') or '').strip()
+        if deployed and not deployed.startswith('b/'):
+            deployed = 'b/' + deployed.lstrip('/')  # alltid under b/-undermappen
         prod = (r.get('prod') or '').strip()
         if not (book and deployed and prod):
             print(f'[{book or "(uten navn)"}] mangler deployed/prod – hopper over')
