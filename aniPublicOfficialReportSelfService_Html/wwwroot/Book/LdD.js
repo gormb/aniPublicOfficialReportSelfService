@@ -17,8 +17,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             cBook.pdf = cBook.pdf || await cBook.pdfPromise;
             await cBook.Page(pageno, render); // sett side + render kun ved behov (unngå dobbel-render på lasting)
         } catch(e) { // f.eks. 404/korrupt PDF – vis melding i stedet for å krasje i getViewport
-            if(!cBook._quietNext) console.error('[cBook] kunne ikke laste', src, e); // forhåndsvisning (best-effort) logges IKKE som feil
-            cBook._quietNext=false;
+            console.error('[cBook] kunne ikke laste', src, e);
             cBook.pdf=null; cBook.pdfPromise=null; cBook.page=null;
             const ctx=cBook.ctx; ctx.clearRect(0,0,_cBook.width,_cBook.height);
             ctx.fillStyle='#888'; ctx.font='16px sans-serif'; ctx.textAlign='center';
@@ -27,7 +26,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     }
     ,Page:async function(pageNo,render) {
         if(!cBook.pdf)return; // PDF ikke lastet (f.eks. 404) – unngå null-kræsj
-        const np=Math.max(1, cBook.pdf.numPages-4); // Last four slides is template; min 1 (forhåndsvisning med få sider!)
+        const np=Math.max(1, cBook.pdf.numPages-4); // Last four slides is template; min 1 (små PDF-er)
         if(pageNo<1) pageNo=1;
         else if(pageNo>np) pageNo=np;
         if (cBook.pn !== pageNo) {
@@ -45,29 +44,48 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         if (doRender) await cBook.Render();
     }
     ,Render:async function() {
-        window.__rl=(window.__rl||[]);
-        window.__rl.push('R>start token='+((cBook._renderToken||0)+1)+' pn='+cBook.pn+' page='+(cBook.page?'Y':'N')+' view='+(cBook.view?Math.round(cBook.view.width)+'x'+Math.round(cBook.view.height):'null'));
-        try{
         cBook._renderToken=(cBook._renderToken||0)+1; const token=cBook._renderToken; // kun den NYESTE renderen får bytte lerret
         if (cBook.renderTask) cBook.renderTask.cancel();
-        // Render til et FRISKT OFFSCREEN-lerret og bytt til synlig lerret i ÉN maling –
-        // unngår blank frame + "wipe" (blinking); eget lerret per render → ingen delt-tilstand-race.
+        // Render til et OFFSCREEN-lerret og bytt til synlig lerret i ÉN maling når HELE siden er ferdig –
+        // da er det ALDRI "bok → hvitt → bok": fullsidens hvite bakgrunn dekker aldri det som vises.
         const off=document.createElement('canvas');
         off.width = Math.max(1, Math.round(cBook.view.width));
         off.height = Math.max(1, Math.round(cBook.view.height));
-        cBook.renderTask = cBook.page?.render({canvasContext: off.getContext('2d'), viewport: cBook.view});
-        await cBook.Play();
+        const task = cBook.page?.render({canvasContext: off.getContext('2d'), viewport: cBook.view});
+        cBook.renderTask = task;
+        if(task) task.promise.catch(e=>{ if(e?.name!=='RenderingCancelledException') console.error('[cBook] render', e); }); // avbrytelse er forventet – ikke unhandled rejection
         cBook.PageNo();
-        try { await cBook.renderTask?.promise; }
-        catch (error) { if (error?.name !== 'RenderingCancelledException') throw error; }
-        if(token!==cBook._renderToken){ window.__rl.push('R>SKIP token='+token+' now='+cBook._renderToken); return; }
-        const ctx=cBook.ctx; if(!ctx){ window.__rl.push('R>NOCTX'); return; }
-        { const d=off.getContext('2d').getImageData(0,0,off.width,off.height).data; let a=0; for(let i=3;i<d.length;i+=400){ if(d[i]>0) a++; } window.__rl.push('R>off alpha='+a); }
+        await cBook.waitRender(off, task); // vent på FERDIG maling (promise eller stabilitet, hva enn som skjer først)
+        if(token!==cBook._renderToken) return; // en nyere render tok over – ikke bytt delvis resultat
+        const ctx=cBook.ctx; if(!ctx)return;
         ctx.clearRect(0,0,_cBook.width,_cBook.height);
-        ctx.drawImage(off,0,0); // én samlet maling (synkron) – ingen mellomliggende tom frame
-        window.__rl.push('R>swap token='+token+' off='+off.width+'x'+off.height+' canvas='+_cBook.width+'x'+_cBook.height);
+        ctx.drawImage(off,0,0); // komplett side i ETT bilde – ingen mellomliggende hvit/blank frame
+        cBook.Play().catch(e=>console.error('[cBook] Play', e)); // ETTER byttet – getTextContent konkurrerer ikke med renderen om worker-en
         cBook.HideLater(cBook.pn); // premium/freemium-tekst fjernes i BAKGRUNNEN når tråden er idle – blokkerer IKKE første maling
-        }catch(e){ window.__rl.push('R>THREW '+(e&&e.message)); throw e; }
+    }
+    ,waitRender:async (canvas, task, ms=5000)=>{ // vent til malingen er FERDIG: renderTask.promise ELLER stabil (poll) – hva enn som skjer først
+        const donePromise = task ? task.promise.then(()=>{},()=>{}) : Promise.resolve();
+        const pollPromise = (async()=>{
+            const tmp=document.createElement('canvas'); tmp.width=16; tmp.height=16;
+            const tctx=tmp.getContext('2d', {willReadFrequently:true});
+            const t0=Date.now(); let last='', stable=0;
+            while(Date.now()-t0<ms){
+                try{
+                    tctx.clearRect(0,0,16,16);
+                    tctx.drawImage(canvas,0,0,canvas.width,canvas.height,0,0,16,16);
+                    const d=tctx.getImageData(0,0,16,16).data;
+                    let has=false, sig='';
+                    for(let i=0;i<d.length;i+=4){ if(d[i+3]>0) has=true; sig+=d[i].toString(16); }
+                    if(has){ // krev INNHOLD før stabilitet telles – tom/blank lerret skal IKKE regnes som ferdig
+                        if(sig===last) stable++; else stable=0;
+                        last=sig;
+                        if(stable>=3) return; // 3 stabile prøver (≈150 ms uendret) → malingen er ferdig
+                    } else { last=''; stable=0; }
+                }catch(e){}
+                await new Promise(r=>setTimeout(r,50));
+            }
+        })();
+        await Promise.race([pollPromise, donePromise]);
     }
     ,HideLater:async function(pn){ // kjør Hide() i bakgrunnen; hopp over hvis brukeren allerede har byttet side
         try{
@@ -124,7 +142,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,DoShow:async (src, pageNo, render=true)=>{
         if(cBook._src==src && cBook._pageNo==pageNo)
             return;
-        if(cBook._src && cBook._src!==src){ // ny kilde (f.eks. forhåndsvisning → full-fil) → nullstill pdf-cache
+        if(cBook._src && cBook._src!==src){ // ny kilde → nullstill pdf-cache
             cBook.pdf=null; cBook.pdfPromise=null; cBook.page=null; cBook.pn=0;
         }
         cBook._src=src;
@@ -133,7 +151,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         await cBook.Source(src, render, pageNo)
     }
     ,QrUrlScrollY:0
-    ,QrUrl:async function(deep=false,ht=35,img="LifeDemandedDeath.png",opt={}) {
+    ,QrUrl:async function(deep=false,ht=35,img="b/LifeDemandedDeath.png",opt={}) {
         if (cBook._qrUrl) URL.revokeObjectURL(cBook._qrUrl);
         const u = new URL("https://gormb.github.io/_");
         u.search = '?b';
