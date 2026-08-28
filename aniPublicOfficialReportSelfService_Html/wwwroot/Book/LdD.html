@@ -434,6 +434,13 @@
                 }
                 ,CodeValid:code=>window.db?.codeValid&&window.db.codeValid(code,book.name())
                 ,StillValid:code=>window.db?.stillValid&&window.db.stillValid(code,book.name()) // «er jeg fortsatt OK?» (restore)
+                ,RecheckPin:async()=>{ // bakgrunns-recheck (hvert minutt): re-aktiver premium hvis lagret kode ble OK igjen
+                    const code=await nav.memGet('code','');
+                    if(!code)return; // ingen lagret kode – ingenting å sjekke
+                    const r=await nav.StillValid(code);
+                    if(r===undefined||r===null)return; // db.js ikke tilgjengelig – ikke konkluder
+                    if((r===true||!!(r&&r.ok))&&!book.prem._)book.prem.L(true); // ble OK igjen → premium (stille)
+                }
                 ,PinMsg:r=>{ // reason-kode → forståelig melding, vis ved PIN-feltet i 4 sek (auto-skjules)
                     const msg={connection:"Couldn't reach the license server – check your internet and try again"
                               ,error:'The license server is having problems – please try again in a moment'
@@ -538,6 +545,8 @@
                     // Bakgrunns-rekonsiliering ETTER at siden er synlig – normalt en no-op (modusen ble satt
                     // før første render); blokkerer/forstyrrer aldri første visning.
                     setTimeout(()=>{book.prem.Load().catch(e=>console.error('[prem]',e));},0);
+                    // Bakgrunns-recheck av lagret PIN hvert minutt: re-aktiver premium hvis plass ble ledig.
+                    setInterval(()=>{nav.RecheckPin().catch(e=>console.error('[recheck]',e));},60000);
                 }
             }
             const spAnchor=(el)=>{ // spilleren ligger INLINE under kapittel-raden i TOC – TOC bygges bare én gang, så den overlever re-enter uten reset
