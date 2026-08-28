@@ -9,6 +9,9 @@ BOOK_DIR = os.path.join(REPO, 'aniPublicOfficialReportSelfService_Html', 'wwwroo
 DB_JS = os.path.join(BOOK_DIR, 'db.js') # lokal db.js i repoet (leses direkte)
 
 def get(url, headers=None):
+    if not url.startswith(('http://', 'https://')):  # lokal filsti – les direkte (curl godtar ikke stier uten scheme)
+        with open(url, encoding='utf-8') as f:
+            return f.read()
     cmd = ['curl', '-fsSL']
     for k, v in (headers or {}).items():
         cmd += ['-H', f'{k}: {v}']
