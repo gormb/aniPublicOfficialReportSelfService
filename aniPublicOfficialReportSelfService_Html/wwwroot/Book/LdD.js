@@ -192,6 +192,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,data:{
         type:{CHAPTER:'chapter',SUB:'subchapter',P:'paragraph',LINK:'link',PAGE:'pagebreak'}
         ,_:null
+        ,_title:null
         ,style:null
         ,Style:async function(){ // Last four slides template; n-3 cover, n-2 chapter, n-1 subchapter, n text
             if(cBook.data.style)return cBook.data.style;
@@ -253,6 +254,23 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 }
             }
             return cBook.data._=out;
+        }
+        ,title:async function(lang=true){ // boktittel fra første slide (cover) – språkbevisst (no=venstre/en=høyre halvdel)
+            const want=lang?'no':'en';
+            if(cBook.data._title&&cBook.data._title[want]!==undefined)return cBook.data._title[want];
+            await cBook.data.get(); // sørg for at data/style er lastet (st.coverH)
+            const st=cBook.data.style, pdf=cBook.pdf;
+            let t='';
+            if(st?.coverH){
+                const page=await pdf.getPage(1),{items}=await page.getTextContent();
+                const mid=page.getViewport({scale:1}).width/2;
+                const H=i=>i.height||Math.hypot(i.transform[0],i.transform[1]);
+                const side=want==='no'?i=>i.transform[4]<mid:i=>i.transform[4]>mid;
+                t=items.filter(i=>side(i)&&i.str.trim()&&H(i)>=st.coverH*.85)
+                    .sort((a,b)=>a.transform[5]-b.transform[5]||a.transform[4]-b.transform[4])
+                    .map(i=>i.str.trim()).join(' ');
+            }
+            return (cBook.data._title=cBook.data._title||{})[want]=t;
         }
         ,txt:async function(lang=true){
             const T=cBook.data.type,want=lang?'no':'en';

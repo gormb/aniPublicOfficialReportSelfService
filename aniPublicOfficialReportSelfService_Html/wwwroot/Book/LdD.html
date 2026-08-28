@@ -337,6 +337,7 @@
                 ,Toc:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
                     const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
+                    _dTocTitle.textContent=(await cBook.data.title(want==='no'))||'"Liv Krevde Død"'; // boktittel fra cover-sliden, språkbevisst
                     let chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
                     let subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
                     // Skjul N/A-oppføringer: tier som er LÅST i nåværende modus (premium↔freemium)
@@ -462,10 +463,10 @@
                     if(link&&book.pn()!==link.page)await nav.Page(link.page);
                 }
                 ,memGet:async(k,d)=>{
-                    let v=localStorage.getItem(`LdD.${k}`) || d;
-                    return v;
+                    const p=k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`; // per-bok-namespace (unntatt selve 'book'-nøkkelen)
+                    return localStorage.getItem(p) ?? localStorage.getItem(`LdD.${k}`) ?? d; // les ny → fallback til gammel flat nøkkel
                 }
-                ,memSet:async(k,v)=>{localStorage.setItem(`LdD.${k}`, v);return v}
+                ,memSet:async(k,v)=>{localStorage.setItem(k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`, v);return v} // skriv ALLTID ny per-bok-nøkkel
                 ,Loaded:async (sp=new URLSearchParams(window.location.search))=>{
                     _busy=true; // undertrykk auto-språkbytte under lasting
                     uisz(); // Set initial size
@@ -473,6 +474,7 @@
                     let bookU=sp.get('book');
                     if(bookU) nav.memSet('book', bookU);
                     else bookU=await nav.memGet('book', 'b/LifeDemandedDeath.pdf');
+                    book.src=bookU; // sett FØR per-bok-state leses nedenfor (page/Y/prem) – book.name() brukes som localStorage-namespace
                     let bookT=parseInt(sp.get('bookT')) || parseInt(await nav.memGet('book type', bookU?.indexOf('.pdf')!=-1))
                         ,page=parseInt(sp.get('page')) || parseInt(await nav.memGet('page', 1))
                         ,scY=parseInt(sp.get('y')) || parseInt(await nav.memGet('Y', window.scrollY));
@@ -571,7 +573,7 @@
             </center>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">
-                <h1><a href="javascript:nav.TocPage(1);">"Liv Krevde Død"</a></h1>
+                <h1><a id="_dTocTitle" href="javascript:nav.TocPage(1);">"Liv Krevde Død"</a></h1>
                 <ul id="_dTocList"></ul>
                 <hr><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/06f9iQGV6mSzWo4pz20hQB?utm_source=generator&si=9930b284b4684788" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
