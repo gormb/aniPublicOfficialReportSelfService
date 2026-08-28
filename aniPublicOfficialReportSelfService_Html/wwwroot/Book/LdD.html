@@ -84,8 +84,8 @@
                     await cBook.Page(pn, true);
                 }
                 ,src:"b/LifeDemandedDeath.pdf"
-                ,srcBase:()=>{ return book.src.replace(/\.pdf$/,"");} // beholder mappen (b/...) så følgefiler (.jpg/.png) finnes i samme mappe som boken
-                ,name:()=>book.src.split("/").pop().replace(/\.pdf$/,"")
+                ,srcBase:()=>{ return book.src.replace(/\.pdf$/i,"");} // beholder mappen (b/...) så følgefiler (.jpg/.png) finnes i samme mappe som boken
+                ,name:()=>book.src.split("/").pop().replace(/\.pdf$/i,"")
                 ,pn:()=>cBook.pn
                 ,np:()=>cBook.pdf?Math.max(1,cBook.pdf.numPages-4):0 // de 4 siste sidene er maler - skjules (min 1 for små PDF-er)
             }

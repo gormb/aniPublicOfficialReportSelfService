@@ -63,29 +63,11 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         cBook.Play().catch(e=>console.error('[cBook] Play', e)); // ETTER byttet – getTextContent konkurrerer ikke med renderen om worker-en
         cBook.HideLater(cBook.pn); // premium/freemium-tekst fjernes i BAKGRUNNEN når tråden er idle – blokkerer IKKE første maling
     }
-    ,waitRender:async (canvas, task, ms=5000)=>{ // vent til malingen er FERDIG: renderTask.promise ELLER stabil (poll) – hva enn som skjer først
+    ,waitRender:async (canvas, task, ms=10000)=>{ // vent på at HELE siden er ferdigmalt (task.promise inkl. bilder) – stabilitetspollen hopper for tidlig → usynlige bilder/blanke sider
         const donePromise = task ? task.promise.then(()=>{},()=>{}) : Promise.resolve();
-        const pollPromise = (async()=>{
-            const tmp=document.createElement('canvas'); tmp.width=16; tmp.height=16;
-            const tctx=tmp.getContext('2d', {willReadFrequently:true});
-            const t0=Date.now(); let last='', stable=0;
-            while(Date.now()-t0<ms){
-                try{
-                    tctx.clearRect(0,0,16,16);
-                    tctx.drawImage(canvas,0,0,canvas.width,canvas.height,0,0,16,16);
-                    const d=tctx.getImageData(0,0,16,16).data;
-                    let has=false, sig='';
-                    for(let i=0;i<d.length;i+=4){ if(d[i+3]>0) has=true; sig+=d[i].toString(16); }
-                    if(has){ // krev INNHOLD før stabilitet telles – tom/blank lerret skal IKKE regnes som ferdig
-                        if(sig===last) stable++; else stable=0;
-                        last=sig;
-                        if(stable>=3) return; // 3 stabile prøver (≈150 ms uendret) → malingen er ferdig
-                    } else { last=''; stable=0; }
-                }catch(e){}
-                await new Promise(r=>setTimeout(r,50));
-            }
-        })();
-        await Promise.race([pollPromise, donePromise]);
+        let t;
+        await Promise.race([donePromise, new Promise(r=>t=setTimeout(r, ms))]); // sikkerhetsnett: aldri heng
+        clearTimeout(t);
     }
     ,HideLater:async function(pn){ // kjør Hide() i bakgrunnen; hopp over hvis brukeren allerede har byttet side
         try{
