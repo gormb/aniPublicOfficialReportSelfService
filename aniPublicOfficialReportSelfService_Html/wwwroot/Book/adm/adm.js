@@ -6,13 +6,17 @@ const stat=r=>{const n=Date.now(),f=new Date(r.dtfrom).getTime(),t=new Date(r.dt
 const gridEl=document.getElementById('grid');
 const grid=async()=>{const{data,error}=await (await db()).from('codes').select('*').order('dtfrom',{ascending:false});
   if(error){gridEl.innerHTML=`<p class="exp">${error.message}</p>`;return}
-  gridEl.innerHTML=`<table><tr><th>code</th><th>book</th><th>emails</th><th>limit</th><th>from</th><th>to</th><th>status</th><th></th></tr>`+(data||[]).map(r=>{
-    const[c,label]=stat(r);
+  // bruk per kode: unike enheter som har aktivert koden (premium_activate)
+  const{data:usage}=await (await db()).from('usage').select('code_id,fingerprint').eq('event','premium_activate');
+  const useCount={};(usage||[]).forEach(u=>{const k=u.code_id||'—';(useCount[k]=useCount[k]||new Set()).add(u.fingerprint)});
+  gridEl.innerHTML=`<table><tr><th>code</th><th>book</th><th>emails</th><th>limit</th><th>usage</th><th>from</th><th>to</th><th>status</th><th></th></tr>`+(data||[]).map(r=>{
+    const[c,label]=stat(r), used=useCount[r.code]?.size||0;
     return `<tr><td>${r.code}</td><td>${r.book||'—'}</td><td>${(r.mails||'').split(',').filter(Boolean).map(m=>m.trim()).join('<br>')||'—'}</td>
-      <td>${r.use_limit??'∞'}</td>
+      <td>${r.use_limit??'∞'}</td><td class="${r.use_limit!=null&&used>=r.use_limit?'exp':'ok'}">${used}/${r.use_limit??'∞'}</td>
       <td>${(r.dtfrom||'').slice(0,16)}</td><td>${(r.dtto||'').slice(0,16)}</td>
       <td class="${c}">${label}</td>
-      <td><button onclick="edit('${r.code}')">✎</button> <button onclick="del('${r.code}')">×</button></td></tr>`}).join('')+'</table>'||'<p>(empty)</p>'};
+      <td><button onclick="edit('${r.code}')">✎</button> <button onclick="resetUsage('${r.code}')" title="tøm bruk">🧹</button> <button onclick="del('${r.code}')">×</button></td></tr>`}).join('')+'</table>'||'<p>(empty)</p>'};
+window.resetUsage=async c=>{if(confirm('Tøm all bruk (usage) for '+c+'?')){await (await db()).from('usage').delete().eq('code_id',c);grid()}};
 window.resetF=()=>{f.reset();code.value='';dtFrom.value=iso(Date.now());dtTo.value='2099-12-31T23:59'};
 window.edit=async c=>{const{data}=await (await db()).from('codes').select('*').eq('code',c).single();
   if(data){code.value=data.code;c_book.value=data.book||'';c_limit.value=data.use_limit??'';dtFrom.value=iso(data.dtfrom);dtTo.value=iso(data.dtto);mails.value=data.mails||''}};
