@@ -2,6 +2,7 @@
 <head>
 <meta charset="utf-8">
 <title>Codes</title>
+<link rel="icon" href="aigap.webp">
 <script src="https://gormb.github.io/_/db.js"></script>
 <style>
 body{font-family:system-ui;margin:1rem}
@@ -31,7 +32,7 @@ pre{background:#f4f4f4;padding:.6rem;font-size:.8rem;overflow:auto}
 );</pre>
 </details>
 <script type="module">
-const db=async()=>{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');return createClient(SUPABASE.url,SUPABASE.publishableKey)};
+let _db;const db=()=>_db||(_db=import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm').then(m=>m.createClient(SUPABASE.url,SUPABASE.publishableKey))); // én klient (unngå "Multiple GoTrueClient instances")
 const dflt=v=>new Date(new Date(v).getTime()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16);
 const load=async()=>{const{data,error}=await (await db()).from('codes').select('*').order('dtFrom',{ascending:false});
   rows.innerHTML=error?`<tr><td colspan="4">${error.message}</td></tr>`:(data||[]).map(r=>`<tr><td>${r.code}</td><td>${r.dtFrom?.slice(0,16)}</td><td>${r.dtTo?.slice(0,16)}</td><td>${r.mails||''}</td><td><button onclick="del('${r.code}')">×</button></td></tr>`).join('')||'<tr><td colspan="4">(tom)</td></tr>'};

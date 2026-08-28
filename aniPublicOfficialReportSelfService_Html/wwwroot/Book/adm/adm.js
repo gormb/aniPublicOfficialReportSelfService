@@ -1,4 +1,4 @@
-const db=async()=>{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');return createClient(SUPABASE.url,SUPABASE.publishableKey)};
+let _db;const db=()=>_db||(_db=import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm').then(m=>m.createClient(SUPABASE.url,SUPABASE.publishableKey))); // én klient (unngå "Multiple GoTrueClient instances")
 const iso=v=>v&&new Date(new Date(v).getTime()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16);
 const utc=v=>v?new Date(v).toISOString():null; // datetime-local (lokal tid) → korrekt UTC for Supabase
 const stat=r=>{const n=Date.now(),f=new Date(r.dtfrom).getTime(),t=new Date(r.dtto).getTime();
