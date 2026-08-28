@@ -269,15 +269,15 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,SpotLoad:async function(force=false){
         if(cBook.SpotMap&&!force)return cBook.SpotMap;
         const m={},cfg=window.SUPABASE||{};
-        console.log('[Spotify] Supabase config', {url:cfg.url, hasKey:!!cfg.publishableKey});
+        //console.log('[Spotify] Supabase config', {url:cfg.url, hasKey:!!cfg.publishableKey});
         if(cfg.url&&!cfg.url.includes('YOUR-')){
                 try{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
                 const{data,error}=await createClient(cfg.url,cfg.publishableKey).from('redir').select('id,url,"group"');
-                console.log('[Spotify] Supabase groups', [...new Set((data||[]).map(r=>r.group))]);
+                //console.log('[Spotify] Supabase groups', [...new Set((data||[]).map(r=>r.group))]);
                 // Musikk-lenker kan være enkeltspor (group 'music') OG/eller spillelister (group 'playlist', 'music-playlist', 'Music playlist' osv.)
                 const mappings=(data||[]).filter(r=>/music|playlist/i.test(String(r.group||'').trim()));
-                console.log('[Spotify] Supabase redir lookup', {count:mappings.length, ids:mappings.map(r=>r.id), skipped:(data||[]).length-mappings.length, error:error?.message||null});
-                console.table(mappings.map(r=>({id:r.id,group:r.group,url:r.url})));
+                //console.log('[Spotify] Supabase redir lookup', {count:mappings.length, ids:mappings.map(r=>r.id), skipped:(data||[]).length-mappings.length, error:error?.message||null});
+                //console.table(mappings.map(r=>({id:r.id,group:r.group,url:r.url})));
                 mappings.forEach(r=>{
                     if(!r.id)return;
                     m[r.id]=r.url;
@@ -373,7 +373,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
 };
 
 window.cBook=cBook;
-loadScript('https://gormb.github.io/_/db.js?v=2').catch(()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen')); // db.js = SUPABASE-config + window.db (PIN) – IKKE blokker boken // ?v=2: cache-busting – db.js ble oppdatert (fingerprint-hash + rullerende vindu)
+loadScript('https://gormb.github.io/_/db.js?v=3').catch(()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen')); // db.js = SUPABASE-config + window.db (PIN) – IKKE blokker boken // ?v=3: cache-busting – db.js oppdatert (codeValid ALDRI avviser + stillValid)
 const _dPlay=document.createElement('div'); _dPlay.id='_dPlay';
 document.getElementById('_dBook').appendChild(_dPlay);
 const _dPage=document.createElement('div'); _dPage.id='_dPage';
