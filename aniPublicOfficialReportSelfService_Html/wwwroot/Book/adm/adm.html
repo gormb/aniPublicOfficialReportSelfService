@@ -10,6 +10,7 @@
 <form id="f" onsubmit="save(event)">
   <table><tr>
     <td>code <input id="code" required></td>
+    <td>book <input id="c_book" placeholder="LifeDemandedDeath"></td>
     <td>from <input id="dtFrom" type="datetime-local" required></td>
     <td>to <input id="dtTo" type="datetime-local" required></td>
     <td>mails (comma) <input id="mails"></td>
@@ -17,7 +18,8 @@
   </tr></table>
 </form>
 <div id="grid"></div>
-<h3>adm; book deploy links</h3>
+<hr>
+<h3>adm; book deploy links · <a href="https://github.com/gormb/aniPublicOfficialReportSelfService/actions/workflows/sync-pdf.yml" target="_blank">auto-deploy workflow ⚙️</a></h3>
 <form id="fB" onsubmit="saveB(event)">
   <table><tr>
     <td>book <input id="b_book" required placeholder="LifeDemandedDeath"></td>
@@ -30,13 +32,16 @@
 </form>
 <div id="gridB"></div>
 <details>
-<summary>Create table (SQL in Supabase)</summary>
+<summary>Create tables (SQL in Supabase)</summary>
 <pre>create table if not exists codes (
   code text primary key,
+  book text not null default '',
   dtfrom timestamptz not null default now(),
   dtto timestamptz not null default '2099-12-31 23:59:59+00',
   mails text not null default ''
 );
+-- Eksisterende tabell: legg til kolonnen:
+-- alter table codes add column if not exists book text not null default '';
 -- RLS (open for the admin page):
 alter table codes enable row level security;
 create policy codes_all on codes for all using (true) with check (true);

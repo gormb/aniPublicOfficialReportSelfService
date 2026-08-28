@@ -6,18 +6,18 @@ const stat=r=>{const n=Date.now(),f=new Date(r.dtfrom).getTime(),t=new Date(r.dt
 const gridEl=document.getElementById('grid');
 const grid=async()=>{const{data,error}=await (await db()).from('codes').select('*').order('dtfrom',{ascending:false});
   if(error){gridEl.innerHTML=`<p class="exp">${error.message}</p>`;return}
-  gridEl.innerHTML=`<table><tr><th>code</th><th>emails</th><th>from</th><th>to</th><th>status</th><th></th></tr>`+(data||[]).map(r=>{
+  gridEl.innerHTML=`<table><tr><th>code</th><th>book</th><th>emails</th><th>from</th><th>to</th><th>status</th><th></th></tr>`+(data||[]).map(r=>{
     const[c,label]=stat(r);
-    return `<tr><td>${r.code}</td><td>${(r.mails||'').split(',').filter(Boolean).map(m=>m.trim()).join('<br>')||'—'}</td>
+    return `<tr><td>${r.code}</td><td>${r.book||'—'}</td><td>${(r.mails||'').split(',').filter(Boolean).map(m=>m.trim()).join('<br>')||'—'}</td>
       <td>${(r.dtfrom||'').slice(0,16)}</td><td>${(r.dtto||'').slice(0,16)}</td>
       <td class="${c}">${label}</td>
       <td><button onclick="edit('${r.code}')">✎</button> <button onclick="del('${r.code}')">×</button></td></tr>`}).join('')+'</table>'||'<p>(empty)</p>'};
 window.resetF=()=>{f.reset();code.value='';dtFrom.value=iso(Date.now());dtTo.value='2099-12-31T23:59'};
 window.edit=async c=>{const{data}=await (await db()).from('codes').select('*').eq('code',c).single();
-  if(data){code.value=data.code;dtFrom.value=iso(data.dtfrom);dtTo.value=iso(data.dtto);mails.value=data.mails||''}};
+  if(data){code.value=data.code;c_book.value=data.book||'';dtFrom.value=iso(data.dtfrom);dtTo.value=iso(data.dtto);mails.value=data.mails||''}};
 window.del=async c=>{if(confirm('Delete '+c+'?')){await (await db()).from('codes').delete().eq('code',c);grid()}};
 window.save=async e=>{e.preventDefault();
-      await (await db()).from('codes').upsert({code:code.value.trim(),dtfrom:utc(dtFrom.value)||new Date().toISOString(),dtto:utc(dtTo.value)||'2099-12-31T23:59:59Z',mails:mails.value.trim()});
+      await (await db()).from('codes').upsert({code:code.value.trim(),book:c_book.value.trim(),dtfrom:utc(dtFrom.value)||new Date().toISOString(),dtto:utc(dtTo.value)||'2099-12-31T23:59:59Z',mails:mails.value.trim()});
   resetF();grid()};
 resetF();grid();
 
@@ -26,7 +26,7 @@ const gridBEl=document.getElementById('gridB');
 const gridB=async()=>{const{data,error}=await (await db()).from('books').select('*').order('book',{ascending:true});
   if(error){gridBEl.innerHTML=`<p class="exp">${error.message}</p>`;return}
   gridBEl.innerHTML=(data||[]).length?`<table><tr><th>book</th><th>deployed</th><th>prod</th><th>autosync from</th><th>autosync to</th><th></th></tr>`+data.map(r=>
-    `<tr><td>${r.book}</td><td>${r.deployed||'—'}</td><td>${r.prod?`<a href="${r.prod}" target="_blank">link</a>`:'—'}</td>
+    `<tr><td>${r.book}</td><td>${r.deployed?`<a href="https://gormb.github.io/_?b&book=${encodeURIComponent(r.deployed)}" target="_blank">${r.deployed}</a>`:'—'}</td><td>${r.prod?`<a href="${r.prod}" target="_blank">link</a>`:'—'}</td>
       <td>${(r.dtautosyncfrom||'').slice(0,16)||'—'}</td><td>${(r.dtautosyncto||'').slice(0,16)||'—'}</td>
       <td><button onclick="editB('${r.book}')">✎</button> <button onclick="delB('${r.book}')">×</button></td></tr>`).join('')+'</table>':'<p>(empty)</p>'}
 window.resetB=()=>{fB.reset()}
