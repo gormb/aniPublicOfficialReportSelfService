@@ -45,13 +45,29 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         if (doRender) await cBook.Render();
     }
     ,Render:async function() {
+        window.__rl=(window.__rl||[]);
+        window.__rl.push('R>start token='+((cBook._renderToken||0)+1)+' pn='+cBook.pn+' page='+(cBook.page?'Y':'N')+' view='+(cBook.view?Math.round(cBook.view.width)+'x'+Math.round(cBook.view.height):'null'));
+        try{
+        cBook._renderToken=(cBook._renderToken||0)+1; const token=cBook._renderToken; // kun den NYESTE renderen får bytte lerret
         if (cBook.renderTask) cBook.renderTask.cancel();
-        cBook.renderTask = cBook.page?.render({canvasContext: cBook.ctx, viewport: cBook.view});
+        // Render til et FRISKT OFFSCREEN-lerret og bytt til synlig lerret i ÉN maling –
+        // unngår blank frame + "wipe" (blinking); eget lerret per render → ingen delt-tilstand-race.
+        const off=document.createElement('canvas');
+        off.width = Math.max(1, Math.round(cBook.view.width));
+        off.height = Math.max(1, Math.round(cBook.view.height));
+        cBook.renderTask = cBook.page?.render({canvasContext: off.getContext('2d'), viewport: cBook.view});
         await cBook.Play();
         cBook.PageNo();
         try { await cBook.renderTask?.promise; }
         catch (error) { if (error?.name !== 'RenderingCancelledException') throw error; }
+        if(token!==cBook._renderToken){ window.__rl.push('R>SKIP token='+token+' now='+cBook._renderToken); return; }
+        const ctx=cBook.ctx; if(!ctx){ window.__rl.push('R>NOCTX'); return; }
+        { const d=off.getContext('2d').getImageData(0,0,off.width,off.height).data; let a=0; for(let i=3;i<d.length;i+=400){ if(d[i]>0) a++; } window.__rl.push('R>off alpha='+a); }
+        ctx.clearRect(0,0,_cBook.width,_cBook.height);
+        ctx.drawImage(off,0,0); // én samlet maling (synkron) – ingen mellomliggende tom frame
+        window.__rl.push('R>swap token='+token+' off='+off.width+'x'+off.height+' canvas='+_cBook.width+'x'+_cBook.height);
         cBook.HideLater(cBook.pn); // premium/freemium-tekst fjernes i BAKGRUNNEN når tråden er idle – blokkerer IKKE første maling
+        }catch(e){ window.__rl.push('R>THREW '+(e&&e.message)); throw e; }
     }
     ,HideLater:async function(pn){ // kjør Hide() i bakgrunnen; hopp over hvis brukeren allerede har byttet side
         try{

@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <title>Life demanded Death</title>
-        <script type="module" src="LdD.js?v=14"></script>
+        <script type="module" src="LdD.js?v=20"></script>
         <link rel="stylesheet" href="LdD.css?v=6">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
@@ -27,8 +27,9 @@
                         _cBook.style.top = _fBook.style.top = (window.innerHeight-h)/2+'px';
                     _fBook.style.width = w+'px';
                     _fBook.style.height = h+'px';
-                    _cBook.width = w;
-                    _cBook.height = h;
+                    const cw=Math.round(w), ch=Math.round(h); // sett KUN ved endring – ellers TØMMES lerretet (blink ved bytte)
+                    if(_cBook.width!=cw)_cBook.width=cw;
+                    if(_cBook.height!=ch)_cBook.height=ch;
                     book.whole = h <= window.innerHeight; // hele arket vises (tall-modus) → venstre/høyre-nav
                     book.hAlign.Scroll();
                 }
@@ -36,7 +37,7 @@
                 ,sz:(w,h)=>{
                     w*=2; // Adjust so double as wide as needed (so that iframe and canvas only show half!)
                     book.szWH(w,w/book.aRatio);
-                    if(book.pdf) window.cBook.Width(w,true); // re-render i ny størrelse
+                    if(book.pdf) return window.cBook.Width(w,true); // re-render i ny størrelse – returner promise (await i lastesekvensen)
                 }
                 ,hAlign:{
                     _:true
@@ -503,7 +504,7 @@
                     // === FULL FIL (hoveddokumentet) – lastes etter at forhåndsvisningen er vist/forsøkt ===
                     await book.s(1,bookU,page); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
                     //await nav.Page(page);
-                    uisz();
+                    await uisz(); // AWAIT full-renderen – siden er FERDIG tegnet FØR spinneren skjules (ingen blank/blink)
                     await book.hAlign.Load();
                     // MERK: book.prem.Load() er bevisst FJERNET fra lastesekvensen – premium/freemium
                     // utføres aldri før brukeren har sett siden for første gang (modusen er allerede satt over).
