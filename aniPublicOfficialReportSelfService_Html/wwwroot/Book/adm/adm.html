@@ -4,7 +4,7 @@
 <title>adm — premium codes</title>
 <link rel="icon" href="../aigap.webp">
 
-<script src="https://gormb.github.io/_/db.js?v=7"></script>
+<script src="https://gormb.github.io/_/db.js?v=8"></script>
 <link rel="stylesheet" href="adm.css">
 </head>
 <body>
@@ -30,6 +30,7 @@
     <td>prod (URL) <input id="b_prod" placeholder="https://docs.google.com/..."></td>
     <td>autosync from <input id="b_dtFrom" type="datetime-local"></td>
     <td>autosync to <input id="b_dtTo" type="datetime-local"></td>
+    <td>premCheck (s) <input id="b_premInt" type="number" min="5" placeholder="60"></td>
     <td><button>Save</button> <button type="button" onclick="resetB()">New</button></td>
   </tr></table>
 </form>
@@ -76,14 +77,17 @@ create policy usage_all on usage for all using (true) with check (true);
   deployed text not null default '',
   prod text not null default '',
   dtautosyncfrom timestamptz,
-  dtautosyncto timestamptz
+  dtautosyncto timestamptz,
+  "premiumCheckInterval" integer default 60
 );
+-- Eksisterende tabell: legg til kolonnen:
+-- alter table books add column if not exists "premiumCheckInterval" integer default 60;</pre>
 -- RLS (open for the admin page):
 alter table books enable row level security;
 drop policy if exists books_all on books;
 create policy books_all on books for all using (true) with check (true);
 -- NB: unquoted identifiers are folded to lowercase (dtautosyncfrom/dtautosyncto).</pre>
 </details>
-<script type="module" src="adm.js?v=2"></script>
+<script type="module" src="adm.js?v=3"></script>
 </body>
 </html>

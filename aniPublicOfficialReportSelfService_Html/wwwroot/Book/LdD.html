@@ -434,6 +434,7 @@
                 }
                 ,CodeValid:code=>window.db?.codeValid&&window.db.codeValid(code,book.name())
                 ,StillValid:code=>window.db?.stillValid&&window.db.stillValid(code,book.name()) // «er jeg fortsatt OK?» (restore)
+                ,BookInterval:async()=>window.db?.bookInterval?await window.db.bookInterval(book.name()):60 // recheck-intervall (sek) for boken
                 ,RecheckPin:async()=>{ // bakgrunns-recheck (hvert 5. sek): skru NED til freemium hvis andre overtok – INGEN automatisk re-aktivering
                     const code=await nav.memGet('code','');
                     if(!code)return; // ingen lagret kode – ingenting å sjekke
@@ -545,8 +546,10 @@
                     // Bakgrunns-rekonsiliering ETTER at siden er synlig – normalt en no-op (modusen ble satt
                     // før første render); blokkerer/forstyrrer aldri første visning.
                     setTimeout(()=>{book.prem.Load().catch(e=>console.error('[prem]',e));},0);
-                    // Bakgrunns-recheck av lagret PIN hvert 5. sek: skru ned til freemium hvis andre overtok (ingen automatisk re-aktivering).
-                    setInterval(()=>{nav.RecheckPin().catch(e=>console.error('[recheck]',e));},5000);
+                    // Bakgrunns-recheck av lagret PIN: skru ned til freemium hvis andre overtok (ingen automatisk re-aktivering).
+                    // Intervall = bokens premiumCheckInterval fra `books`-tabellen (default 60 s).
+                    const premSec=await nav.BookInterval() ?? 60;
+                    setInterval(()=>{nav.RecheckPin().catch(e=>console.error('[recheck]',e));},premSec*1000);
                 }
             }
             const spAnchor=(el)=>{ // spilleren ligger INLINE under kapittel-raden i TOC – TOC bygges bare én gang, så den overlever re-enter uten reset

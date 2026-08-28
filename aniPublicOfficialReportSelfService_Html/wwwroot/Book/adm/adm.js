@@ -30,16 +30,17 @@ resetF();grid();
 const gridBEl=document.getElementById('gridB');
 const gridB=async()=>{const{data,error}=await (await db()).from('books').select('*').order('book',{ascending:true});
   if(error){gridBEl.innerHTML=`<p class="exp">${error.message}</p>`;return}
-  gridBEl.innerHTML=(data||[]).length?`<table><tr><th>book</th><th>deployed</th><th>prod</th><th>autosync from</th><th>autosync to</th><th></th></tr>`+data.map(r=>
+  gridBEl.innerHTML=(data||[]).length?`<table><tr><th>book</th><th>deployed</th><th>prod</th><th>autosync from</th><th>autosync to</th><th>premCheck (s)</th><th></th></tr>`+data.map(r=>
     `<tr><td>${r.book}</td><td>${r.deployed?`<a href="https://gormb.github.io/_?b&book=${encodeURIComponent(r.deployed)}" target="_blank">${r.deployed}</a>`:'—'}</td><td>${r.prod?`<a href="${r.prod}" target="_blank">link</a>`:'—'}</td>
       <td>${(r.dtautosyncfrom||'').slice(0,16)||'—'}</td><td>${(r.dtautosyncto||'').slice(0,16)||'—'}</td>
+      <td>${r.premiumCheckInterval??60}</td>
       <td><button onclick="editB('${r.book}')">✎</button> <button onclick="delB('${r.book}')">×</button></td></tr>`).join('')+'</table>':'<p>(empty)</p>'}
 window.resetB=()=>{fB.reset()}
 window.editB=async b=>{const{data}=await (await db()).from('books').select('*').eq('book',b).single();
-  if(data){b_book.value=data.book;b_deployed.value=data.deployed||'';b_prod.value=data.prod||'';b_dtFrom.value=iso(data.dtautosyncfrom)||'';b_dtTo.value=iso(data.dtautosyncto)||''}}
+  if(data){b_book.value=data.book;b_deployed.value=data.deployed||'';b_prod.value=data.prod||'';b_dtFrom.value=iso(data.dtautosyncfrom)||'';b_dtTo.value=iso(data.dtautosyncto)||'';b_premInt.value=data.premiumCheckInterval??''}}
 window.delB=async b=>{if(confirm('Delete '+b+'?')){await (await db()).from('books').delete().eq('book',b);gridB()}}
 window.saveB=async e=>{e.preventDefault();
-  await (await db()).from('books').upsert({book:b_book.value.trim(),deployed:b_deployed.value.trim(),prod:b_prod.value.trim(),dtautosyncfrom:utc(b_dtFrom.value),dtautosyncto:utc(b_dtTo.value)});
+  await (await db()).from('books').upsert({book:b_book.value.trim(),deployed:b_deployed.value.trim(),prod:b_prod.value.trim(),dtautosyncfrom:utc(b_dtFrom.value),dtautosyncto:utc(b_dtTo.value),premiumCheckInterval:b_premInt.value!==''?+b_premInt.value:60});
   resetB();gridB()}
 resetB();gridB();
 
