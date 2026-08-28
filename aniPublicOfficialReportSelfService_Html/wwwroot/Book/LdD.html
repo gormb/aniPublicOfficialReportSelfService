@@ -426,8 +426,8 @@
                     if(r.ok){book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
                         nav.memSet('code', v); // husk koden – re-valideres ved neste besøk (spør på nytt hvis full andre steder)
                         window.db?.logUsage&&window.db.logUsage({event:'premium_activate',code:v,book:book.name(),page:cBook.pn});} // logg bruken til `usage`
-                    else{ // ikke gyldig → tydelig melding + åpne på nytt for nytt forsøk
-                        nav.PinMsg(r.reason); // reason-kode → forståelig tekst (se PinMsg)
+                    else{ // ikke gyldig / full → åpne på nytt for nytt forsøk
+                        if(r.reason!=='limit')nav.PinMsg(r.reason); // limit → bare be om koden igjen, ingen skremmende melding
                         uishow(nPin,true);
                         nPin.focus();nPin.select();
                     }
