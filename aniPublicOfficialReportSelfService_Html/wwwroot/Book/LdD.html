@@ -75,9 +75,18 @@
                         window.cBook&&window.cBook.pdf&&window.cBook.Page(window.cBook.pn, true); // re-render i ny modus (PDF må være lastet)
                     }
                     ,Load:async()=>{
-                        let v=(await nav.memGet('prem', new String(book.prem._))=="true");
-                        if (book.prem._!=v)
-                            book.prem.L(v);
+                        // Re-validér lagret kode MOT SERVEREN i bakgrunnen (blokkerer aldri første visning).
+                        // Hvis koden er brukt for mange andre steder (full innenfor rullerende vindu) → be om koden igjen.
+                        const code=await nav.memGet('code','');
+                        if(!code)return; // ingen lagret kode – behold gjeldende modus (bakoverkompatibel)
+                        const r=await nav.CodeValid(code);
+                        if(r===undefined||r===null)return; // db.js ikke tilgjengelig – ikke konkluder
+                        const ok=r===true||!!(r&&r.ok); // støtter både gammel bool og nytt objekt
+                        if(ok){if(!book.prem._)book.prem.L(true);} // gyldig → premium (stille)
+                        else if(book.prem._){ // ikke akseptert lenger (ugyldig/utløpt/for mange andre steder) → be om koden igjen
+                            book.prem.L(false);
+                            nav.PinOpen();
+                        }
                     }
                 }
                 ,Page:async pn=>{                    
@@ -394,7 +403,7 @@
                 // PIN-kode → premium: verifiseres mot Supabase-tabellen `codes` (dtfrom<=now<=dtto).
                 // Senere: hash til en mem-variabel som huskes på tvers av sesjoner, ÉN gang om gangen.
                 ,PremToggle:()=>{
-                    if(book.prem._)return book.prem.L(false); // premium → gratis: ingen kode
+                    if(book.prem._){nav.memSet('code','');return book.prem.L(false);} // premium → gratis: slett lagret kode
                     if(nPin.style.display!='none')return uishow(nPin,false); // koden er synlig → trykk på 🔓 igjen lukker den (avbryt)
                     nav.PinOpen(); // gratis → premium: be om PIN
                 }
@@ -413,6 +422,7 @@
                     const r=rr&&typeof rr==='object'?rr:{ok:!!rr,reason:rr?'':'error'}; // normaliser bool → objekt
                     console.log('[PIN]',v,r);
                     if(r.ok){book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
+                        nav.memSet('code', v); // husk koden – re-valideres ved neste besøk (spør på nytt hvis full andre steder)
                         window.db?.logUsage&&window.db.logUsage({event:'premium_activate',code:v,book:book.name(),page:cBook.pn});} // logg bruken til `usage`
                     else{ // ikke gyldig → tydelig melding + åpne på nytt for nytt forsøk
                         nav.PinMsg(r.reason); // reason-kode → forståelig tekst (se PinMsg)
@@ -426,7 +436,9 @@
                               ,error:'The license server is having problems – please try again in a moment'
                               ,noconfig:'The license server is having problems – please try again in a moment'
                               ,window:'Invalid code (outside valid period)'
-                              ,limit:'Code is already in use by the maximum number of devices'}[r]||'Invalid code';
+                              // For mange samtidige enheter (rullerende vindu) er IKKE en feil → faller gjennom
+                              // til 'Invalid code', og feltet åpnes på nytt = «be om koden igjen».
+                              }[r]||'Invalid code';
                     nPinMsg.textContent=msg;
                     nPinMsg.style.display='inline';
                     clearTimeout(nPinMsg._t);
