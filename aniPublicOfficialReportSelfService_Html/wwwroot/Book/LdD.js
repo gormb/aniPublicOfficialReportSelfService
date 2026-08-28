@@ -373,7 +373,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
 };
 
 window.cBook=cBook;
-loadScript('https://gormb.github.io/_/db.js?v=5').catch(()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen')); // db.js = SUPABASE-config + window.db (PIN) – IKKE blokker boken // ?v=5: cache-busting – db.js oppdatert (diagnostikk opened/used/permitted)
+loadScript('https://gormb.github.io/_/db.js?v=6').catch(()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen')); // db.js = SUPABASE-config + window.db (PIN) – IKKE blokker boken // ?v=6: cache-busting – db.js oppdatert (codeValid sjekker samtidig-limit)
 const _dPlay=document.createElement('div'); _dPlay.id='_dPlay';
 document.getElementById('_dBook').appendChild(_dPlay);
 const _dPage=document.createElement('div'); _dPage.id='_dPage';
