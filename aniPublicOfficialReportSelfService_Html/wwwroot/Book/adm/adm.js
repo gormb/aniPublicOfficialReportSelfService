@@ -17,6 +17,6 @@ window.edit=async c=>{const{data}=await (await db()).from('codes').select('*').e
   if(data){code.value=data.code;dtFrom.value=iso(data.dtfrom);dtTo.value=iso(data.dtto);mails.value=data.mails||''}};
 window.del=async c=>{if(confirm('Delete '+c+'?')){await (await db()).from('codes').delete().eq('code',c);grid()}};
 window.save=async e=>{e.preventDefault();
-  await (await db()).from('codes').upsert({code:code.value.trim(),dtfrom:utc(dtFrom.value)||new Date().toISOString(),dtto:utc(dtTo.value)||'2099-12-31T23:59:59Z',mails:mails.value.trim()});
+      await (await db()).from('codes').upsert({code:code.value.trim(),dtfrom:utc(dtFrom.value)||new Date().toISOString(),dtto:utc(dtTo.value)||'2099-12-31T23:59:59Z',mails:mails.value.trim()});
   resetF();grid()};
 resetF();grid();

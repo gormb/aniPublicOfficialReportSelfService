@@ -26,13 +26,13 @@ jobs:
 
       - name: Export Presentation to PDF
         run: |
-          curl -L "https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/export/pdf" -o "LifeDemandedDeath.pdf"
+          curl -L "https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/export/pdf" -o "aniPublicOfficialReportSelfService_Html/wwwroot/Book/LifeDemandedDeath.pdf"
 
       - name: Commit & Push if Updated
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add LifeDemandedDeath.pdf
+          git add aniPublicOfficialReportSelfService_Html/wwwroot/Book/LifeDemandedDeath.pdf
           
           if git diff --staged --quiet; then
             echo "No changes in Google Presentation."

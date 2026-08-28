@@ -1,6 +1,14 @@
 import * as _cBookJLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
 _cBookJLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
 
+// Lazy-load tredjeparts-skript (qr-code-styling, html2pdf, db.js) – IKKE blokker boken på trege CDN-er
+const _scripts={};
+const loadScript=src=>_scripts[src]||(_scripts[src]=new Promise((ok,fail)=>{
+    const s=document.createElement('script');s.src=src;
+    s.onload=()=>ok();s.onerror=()=>{delete _scripts[src];fail(new Error('script: '+src));};
+    document.head.appendChild(s);
+}));
+
 let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,pdfPromise:null,renderTask:null
     ,Source:async function(src,render,pageno=cBook.pn) {
         cBook.ctx = cBook.ctx || _cBook.getContext("2d");
@@ -42,7 +50,15 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         cBook.PageNo();
         try { await cBook.renderTask?.promise; }
         catch (error) { if (error?.name !== 'RenderingCancelledException') throw error; }
-        await cBook.Hide(); // fjern premium/freemium-tekst fra det ferdige lerretet
+        cBook.HideLater(cBook.pn); // premium/freemium-tekst fjernes i BAKGRUNNEN når tråden er idle – blokkerer IKKE første maling
+    }
+    ,HideLater:async function(pn){ // kjør Hide() i bakgrunnen; hopp over hvis brukeren allerede har byttet side
+        try{
+            if('requestIdleCallback' in window) await new Promise(r=>requestIdleCallback(r,{timeout:2500}));
+            else await new Promise(r=>setTimeout(r,50));
+            if(pn!==undefined && pn!==cBook.pn) return; // siden byttet → en nyere HideLater håndterer det
+            await cBook.Hide();
+        }catch(e){console.error('[cBook] HideLater',e);}
     }
     ,premFonts:['EBGaramond','CEGaramond'] // premium-only – template-merket "premium" er EBGaramond; fylles fra template senere
     ,freeFonts:['Calibri']                 // freemium-only – fylles fra template senere
@@ -111,6 +127,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             u.search += '&c=' + c;
         }
         const sz = Math.round(ht/100*innerHeight);
+        await loadScript('https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js');
         const qrcs = new window.QRCodeStyling({width:sz, height:sz, data:u.href, image:img, imageOptions:{margin:8}});
         if (deep)
             qrd.src = cBook._qrUrl = URL.createObjectURL(await qrcs.getRawData('png'));
@@ -312,11 +329,13 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         box.innerHTML=`<span style="top:${top}px;left:25%">${cBook.pn}</span><span style="top:${top}px;left:75%">${cBook.pn}</span>`;
     }
     ,Save: async function(el, filename='book.pdf') {
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js');
         await html2pdf().set({margin:0,filename,html2canvas:{scale:1},jsPDF:{unit:'mm',format:'a4'}}).from(el).save();
     }
 };
 
 window.cBook=cBook;
+loadScript('https://gormb.github.io/_/db.js').catch(()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen')); // db.js = SUPABASE-config + window.db (PIN) – IKKE blokker boken
 const _dPlay=document.createElement('div'); _dPlay.id='_dPlay';
 document.getElementById('_dBook').appendChild(_dPlay);
 const _dPage=document.createElement('div'); _dPage.id='_dPage';
