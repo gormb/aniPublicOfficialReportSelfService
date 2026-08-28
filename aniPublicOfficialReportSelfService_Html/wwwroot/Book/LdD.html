@@ -245,6 +245,7 @@
                     await book.Page(pn);
                     window.scrollTo(window.scrollX, 0);
                     nav.UpdButtons();
+                    window.db?.logUsage&&window.db.logUsage({event:'page',book:book.name(),page:pn}); // logg sidebesøk til `usage`
                 }
                 ,EdPage:async()=>{
                     nGoTxt.value = book.pn();
@@ -409,7 +410,8 @@
                     console.log('[PIN] sjekker',v);
                     const ok=await nav.CodeValid(v);
                     console.log('[PIN]',v,ok?'GYLDIG → premium':'ugyldig (ingen endring)');
-                    if(ok)book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
+                    if(ok){book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
+                        window.db?.logUsage&&window.db.logUsage({event:'premium_activate',code:v,book:book.name(),page:cBook.pn});} // logg bruken til `usage`
                 }
                 ,CodeValid:code=>window.db?.codeValid&&window.db.codeValid(code,book.name())
                 ,menu:()=>{

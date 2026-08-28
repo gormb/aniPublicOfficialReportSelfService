@@ -6,7 +6,7 @@ import datetime, json, os, re, subprocess, sys
 
 REPO = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode().strip()
 BOOK_DIR = os.path.join(REPO, 'aniPublicOfficialReportSelfService_Html', 'wwwroot', 'Book')
-DB_JS = 'https://gormb.github.io/_/db.js'
+DB_JS = os.path.join(BOOK_DIR, 'db.js') # lokal db.js i repoet (leses direkte)
 
 def get(url, headers=None):
     cmd = ['curl', '-fsSL']
