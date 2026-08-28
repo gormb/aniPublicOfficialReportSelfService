@@ -426,7 +426,7 @@
                               ,error:'The license server is having problems – please try again in a moment'
                               ,noconfig:'The license server is having problems – please try again in a moment'
                               ,window:'Invalid code (outside valid period)'
-                              ,limit:'Code has reached its usage limit'}[r]||'Invalid code';
+                              ,limit:'Code is already in use by the maximum number of devices'}[r]||'Invalid code';
                     nPinMsg.textContent=msg;
                     nPinMsg.style.display='inline';
                     clearTimeout(nPinMsg._t);
