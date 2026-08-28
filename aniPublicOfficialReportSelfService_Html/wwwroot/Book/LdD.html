@@ -79,7 +79,7 @@
                         // Hvis koden er brukt for mange andre steder (full innenfor rullerende vindu) → be om koden igjen.
                         const code=await nav.memGet('code','');
                         if(!code)return; // ingen lagret kode – behold gjeldende modus (bakoverkompatibel)
-                        const r=await nav.CodeValid(code);
+                        const r=await nav.StillValid(code); // «er jeg fortsatt OK?» – rullerende vindu / limit
                         if(r===undefined||r===null)return; // db.js ikke tilgjengelig – ikke konkluder
                         const ok=r===true||!!(r&&r.ok); // støtter både gammel bool og nytt objekt
                         if(ok){if(!book.prem._)book.prem.L(true);} // gyldig → premium (stille)
@@ -431,14 +431,12 @@
                     }
                 }
                 ,CodeValid:code=>window.db?.codeValid&&window.db.codeValid(code,book.name())
+                ,StillValid:code=>window.db?.stillValid&&window.db.stillValid(code,book.name()) // «er jeg fortsatt OK?» (restore)
                 ,PinMsg:r=>{ // reason-kode → forståelig melding, vis ved PIN-feltet i 4 sek (auto-skjules)
                     const msg={connection:"Couldn't reach the license server – check your internet and try again"
                               ,error:'The license server is having problems – please try again in a moment'
                               ,noconfig:'The license server is having problems – please try again in a moment'
-                              ,window:'Invalid code (outside valid period)'
-                              // For mange samtidige enheter (rullerende vindu) er IKKE en feil → faller gjennom
-                              // til 'Invalid code', og feltet åpnes på nytt = «be om koden igjen».
-                              }[r]||'Invalid code';
+                              ,window:'Invalid code (outside valid period)'}[r]||'Invalid code';
                     nPinMsg.textContent=msg;
                     nPinMsg.style.display='inline';
                     clearTimeout(nPinMsg._t);
