@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <title>adm — premium codes</title>
-<link rel="icon" href="aigap.webp">
+<link rel="icon" href="../aigap.webp">
 <script src="https://gormb.github.io/_/db.js"></script>
 <link rel="stylesheet" href="adm.css">
 </head>
@@ -52,6 +52,7 @@
 -- alter table codes add column if not exists created_at timestamptz default now();
 -- RLS (open for the admin page):
 alter table codes enable row level security;
+drop policy if exists codes_all on codes;
 create policy codes_all on codes for all using (true) with check (true);
 -- NB: unquoted identifiers are folded to lowercase (dtfrom/dtto).</pre>
 <pre>create table if not exists usage (
@@ -66,6 +67,7 @@ create policy codes_all on codes for all using (true) with check (true);
 );
 -- RLS (open for the admin page):
 alter table usage enable row level security;
+drop policy if exists usage_all on usage;
 create policy usage_all on usage for all using (true) with check (true);
 -- NB: appen skriver herfra (db.js logUsage) – logikk i kode, ikke i SQL.</pre>
 <pre>create table if not exists books (
@@ -77,6 +79,7 @@ create policy usage_all on usage for all using (true) with check (true);
 );
 -- RLS (open for the admin page):
 alter table books enable row level security;
+drop policy if exists books_all on books;
 create policy books_all on books for all using (true) with check (true);
 -- NB: unquoted identifiers are folded to lowercase (dtautosyncfrom/dtautosyncto).</pre>
 </details>
