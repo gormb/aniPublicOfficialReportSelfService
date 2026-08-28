@@ -85,6 +85,7 @@
                 }
                 ,src:"b/LifeDemandedDeath.pdf"
                 ,srcBase:()=>{ return book.src.replace(/\.pdf$/,"");} // beholder mappen (b/...) så følgefiler (.jpg/.png) finnes i samme mappe som boken
+                ,name:()=>book.src.split("/").pop().replace(/\.pdf$/,"")
                 ,pn:()=>cBook.pn
                 ,np:()=>cBook.pdf?Math.max(1,cBook.pdf.numPages-4):0 // de 4 siste sidene er maler - skjules (min 1 for små PDF-er)
             }
@@ -409,10 +410,7 @@
                     console.log('[PIN]',v,ok?'GYLDIG → premium':'ugyldig (ingen endring)');
                     if(ok)book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
                 }
-                ,CodeValid:code=>{ // delegerer til db.js (window.db.codeValid) – én kilde for DB-logikk
-                    if(!window.db?.codeValid){console.warn('[PIN] window.db.codeValid mangler – er db.js oppdatert med window.db?');return false;}
-                    return window.db.codeValid(code);
-                }
+                ,CodeValid:code=>window.db?.codeValid&&window.db.codeValid(code,book.name())
                 ,menu:()=>{
                     let h=nMt.innerText!='⏶';
                     nMt.innerText=h?'⏶':'⏷';
@@ -488,6 +486,7 @@
                     await book.s(1,bookU,page); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
                     //await nav.Page(page);
                     await uisz(); // AWAIT renderen (offscreen → ÉN samlet bytte) – full-filen er ferdig FØR spinneren skjules
+                    uishow(_iBook, false); // bakgrunnsbilde – skjules NÅR siden er malt på lerretet (dekker ellers siden i vinduet frem til slutten av Loaded)
                     await book.hAlign.Load();
                     // MERK: book.prem.Load() er bevisst FJERNET fra lastesekvensen – premium/freemium
                     // utføres aldri før brukeren har sett siden for første gang (modusen er allerede satt over).
@@ -501,7 +500,6 @@
                     window.scrollTo(window.scrollX, scY);
                     nav.UpdButtons();
                     uishow(iLoading, false)
-                    uishow(_iBook, false); // bakgrunnsbilde – skjules når boken er lastet og rendret
                     _busy=false;
                     // Bakgrunns-rekonsiliering ETTER at siden er synlig – normalt en no-op (modusen ble satt
                     // før første render); blokkerer/forstyrrer aldri første visning.
