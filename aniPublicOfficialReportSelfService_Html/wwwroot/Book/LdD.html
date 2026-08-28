@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <title>Life demanded Death</title>
-        <script type="module" src="LdD.js?v=11"></script>
+        <script type="module" src="LdD.js?v=14"></script>
         <link rel="stylesheet" href="LdD.css?v=6">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
@@ -57,11 +57,15 @@
                 }
                 ,prem:{
                     _:false // true=premium, false=freemium
+                    ,ui:(l=book.prem._)=>{ // KUN knappens UI – ingen re-render / TOC-arbeid (brukes ved lasting, FØR første maling)
+                        nPr.innerText=l?'👑':'🔓';
+                        if(nMt.innerText=='⏷')nPr.style.display=l?'none':'inline'; // flytende 🔓 kun freemium (utenfor meny)
+                        return l;
+                    }
                     ,L:async l=>{
                         book.prem._=l;
                         nav.memSet('prem', l);
-                        nPr.innerText=l?'👑':'🔓';
-                        if(nMt.innerText=='⏷')nPr.style.display=l?'none':'inline'; // flytende 🔓 kun freemium (utenfor meny)
+                        book.prem.ui(l);
                         if(_dToc.style.display!='none')_dTocList.innerHTML=await nav.Toc(); // TOC er åpen → bygg om med ny modus
                         else _dTocList.innerHTML=''; // cache ugyldig → bygges ved neste åpning
                         nav.UpdButtons(); // oppdater nEx (eksport kun i premium)
@@ -80,7 +84,7 @@
                 ,src:"LifeDemandedDeath.pdf"
                 ,srcBase:()=>{ return book.src.split("/").pop().replace(".pdf", "");}
                 ,pn:()=>cBook.pn
-                ,np:()=>cBook.pdf?cBook.pdf.numPages-4:0 // de 4 siste sidene er maler - skjules
+                ,np:()=>cBook.pdf?Math.max(1,cBook.pdf.numPages-4):0 // de 4 siste sidene er maler - skjules (min 1 for forhåndsvisning)
             }
             let _busy; // sperre under lasting/resize – auto-språkbytte ved skroll
             const aLg=()=>{if(_dToc.style.display!='none'||_cBook.style.display=='none'||_busy)return;
@@ -472,11 +476,37 @@
                     let bookT=parseInt(sp.get('bookT')) || parseInt(await nav.memGet('book type', bookU?.indexOf('.pdf')!=-1))
                         ,page=parseInt(sp.get('page')) || parseInt(await nav.memGet('page', 1))
                         ,scY=parseInt(sp.get('y')) || parseInt(await nav.memGet('Y', window.scrollY));
+                    // Premium/freemium SKAL ALDRI blokkere/forsinke første visning:
+                    // 1) Les lagret modus ÉN gang (billig localStorage-lesing) og sett den FØR første render,
+                    //    så FØRSTE maling allerede er i riktig modus – ingen re-render, ingen flimmer.
+                    // 2) book.prem.Load() kjører IKKE på den blokkerende banen (fjernet nedenfor).
+                    book.prem._=(await nav.memGet('prem','false'))=="true";
+                    book.prem.ui(); // kun knappetekst (👑/🔓) – ingen re-render / TOC-arbeid
+                    // === RASK FØRSTE MALING: vis den lille forhåndsvisningen (filnavn + "1" før .pdf) FØRST ===
+                    // Forhåndsvisningen er best-effort: finnes den ikke (404/mangler) krasjer INGENTING –
+                    // vi hopper bare rett til full-filen. Spinneren (aigap.webp) holdes gående helt til
+                    // hoveddokumentet er lastet. PARAMETRE (side/rulling/musikk) utføres FØRST etter at
+                    // hoveddokumentet er på plass (se nedenfor).
+                    const previewU = bookU && /\.pdf$/i.test(bookU) ? bookU.replace(/\.pdf$/i,'1.pdf') : null;
+                    if(previewU && previewU!==bookU){
+                        cBook._quietNext=true; // forhåndsvisning er best-effort – ingen konsoll-feil hvis den mangler
+                        try{
+                            await book.s(1, previewU, 1); // liten fil – rask (kan 404 / mangle!)
+                            if(cBook.pdf) uisz(); // render forhåndsvisningen KUN hvis den faktisk ble lastet
+                            else console.warn('[preview] forhåndsvisning ikke tilgjengelig – laster full-fil direkte:', previewU);
+                        }catch(e){
+                            console.warn('[preview] hoppet over forhåndsvisning (ingen krasj):', previewU, e);
+                        }finally{
+                            cBook._quietNext=false;
+                        }
+                    }
+                    // === FULL FIL (hoveddokumentet) – lastes etter at forhåndsvisningen er vist/forsøkt ===
                     await book.s(1,bookU,page); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
                     //await nav.Page(page);
                     uisz();
                     await book.hAlign.Load();
-                    await book.prem.Load();
+                    // MERK: book.prem.Load() er bevisst FJERNET fra lastesekvensen – premium/freemium
+                    // utføres aldri før brukeren har sett siden for første gang (modusen er allerede satt over).
                     const commands=sp.get('c')?.split(',') || [];
                     const musicCommand=commands.find(c=>c.startsWith('m')&&c!=='menu');
                     if(musicCommand) {
@@ -488,6 +518,9 @@
                     nav.UpdButtons();
                     uishow(iLoading, false)
                     _busy=false;
+                    // Bakgrunns-rekonsiliering ETTER at siden er synlig – normalt en no-op (modusen ble satt
+                    // før første render); blokkerer/forstyrrer aldri første visning.
+                    setTimeout(()=>{book.prem.Load().catch(e=>console.error('[prem]',e));},0);
                 }
             }
             const spAnchor=(el)=>{ // spilleren ligger INLINE under kapittel-raden i TOC – TOC bygges bare én gang, så den overlever re-enter uten reset

@@ -17,7 +17,8 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             cBook.pdf = cBook.pdf || await cBook.pdfPromise;
             await cBook.Page(pageno, render); // sett side + render kun ved behov (unngå dobbel-render på lasting)
         } catch(e) { // f.eks. 404/korrupt PDF – vis melding i stedet for å krasje i getViewport
-            console.error('[cBook] kunne ikke laste', src, e);
+            if(!cBook._quietNext) console.error('[cBook] kunne ikke laste', src, e); // forhåndsvisning (best-effort) logges IKKE som feil
+            cBook._quietNext=false;
             cBook.pdf=null; cBook.pdfPromise=null; cBook.page=null;
             const ctx=cBook.ctx; ctx.clearRect(0,0,_cBook.width,_cBook.height);
             ctx.fillStyle='#888'; ctx.font='16px sans-serif'; ctx.textAlign='center';
@@ -26,7 +27,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     }
     ,Page:async function(pageNo,render) {
         if(!cBook.pdf)return; // PDF ikke lastet (f.eks. 404) – unngå null-kræsj
-        const np=cBook.pdf.numPages-4; // Last four slides is template
+        const np=Math.max(1, cBook.pdf.numPages-4); // Last four slides is template; min 1 (forhåndsvisning med få sider!)
         if(pageNo<1) pageNo=1;
         else if(pageNo>np) pageNo=np;
         if (cBook.pn !== pageNo) {
@@ -107,6 +108,9 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,DoShow:async (src, pageNo, render=true)=>{
         if(cBook._src==src && cBook._pageNo==pageNo)
             return;
+        if(cBook._src && cBook._src!==src){ // ny kilde (f.eks. forhåndsvisning → full-fil) → nullstill pdf-cache
+            cBook.pdf=null; cBook.pdfPromise=null; cBook.page=null; cBook.pn=0;
+        }
         cBook._src=src;
         cBook._pageNo=pageNo;
         cBook._tierCache=null; // ny bok → nullstill tier-cache
