@@ -76,14 +76,16 @@
                     }
                     ,Load:async()=>{
                         // Re-validér lagret kode MOT SERVEREN i bakgrunnen (blokkerer aldri første visning).
-                        // Hvis koden er brukt for mange andre steder (full innenfor rullerende vindu) → be om koden igjen.
+                        // Hvis koden er brukt for mange andre steder (full innenfor rullerende vindu) → ugyldiggjør + be om koden igjen.
                         const code=await nav.memGet('code','');
                         if(!code)return; // ingen lagret kode – behold gjeldende modus (bakoverkompatibel)
                         const r=await nav.StillValid(code); // «er jeg fortsatt OK?» – rullerende vindu / limit
                         if(r===undefined||r===null)return; // db.js ikke tilgjengelig – ikke konkluder
                         const ok=r===true||!!(r&&r.ok); // støtter både gammel bool og nytt objekt
-                        if(ok){if(!book.prem._)book.prem.L(true);} // gyldig → premium (stille)
-                        else if(book.prem._){ // ikke akseptert lenger (ugyldig/utløpt/for mange andre steder) → be om koden igjen
+                        if(ok){if(!book.prem._)book.prem.L(true);} // fortsatt OK → premium (stille)
+                        else if(book.prem._){ // ikke OK (brukt for mange andre steder / utløpt) → UGYLDIGGJØR + be om koden igjen
+                            if(r.reason!=='error'&&r.reason!=='connection'&&r.reason!=='noconfig')
+                                nav.memSet('code',''); // ugyldiggjør lagret kode → må tastes inn på nytt (nettverksfeil straffer ikke brukeren)
                             book.prem.L(false);
                             nav.PinOpen();
                         }
