@@ -409,12 +409,28 @@
                     if(v.length<6)return; // sjekk etter hvert tastetrykk – ingen Enter (PIN!)
                     uishow(nPin,false); // lukk ved 6 siffer
                     console.log('[PIN] sjekker',v);
-                    const ok=await nav.CodeValid(v);
-                    console.log('[PIN]',v,ok?'GYLDIG → premium':'ugyldig (ingen endring)');
-                    if(ok){book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
+                    const r=(await nav.CodeValid(v))||{ok:false,reason:'noconfig'}; // {ok:true} | {ok:false,reason:...}
+                    console.log('[PIN]',v,r);
+                    if(r.ok){book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
                         window.db?.logUsage&&window.db.logUsage({event:'premium_activate',code:v,book:book.name(),page:cBook.pn});} // logg bruken til `usage`
+                    else{ // ikke gyldig → tydelig melding + åpne på nytt for nytt forsøk
+                        nav.PinMsg(r.reason); // reason-kode → forståelig tekst (se PinMsg)
+                        uishow(nPin,true);
+                        nPin.focus();nPin.select();
+                    }
                 }
                 ,CodeValid:code=>window.db?.codeValid&&window.db.codeValid(code,book.name())
+                ,PinMsg:r=>{ // reason-kode → forståelig melding, vis ved PIN-feltet i 4 sek (auto-skjules)
+                    const msg={connection:"Couldn't reach the license server – check your internet and try again"
+                              ,error:'The license server is having problems – please try again in a moment'
+                              ,noconfig:'The license server is having problems – please try again in a moment'
+                              ,window:'Invalid code (outside valid period)'
+                              ,limit:'Code has reached its usage limit'}[r]||'Invalid code';
+                    nPinMsg.textContent=msg;
+                    nPinMsg.style.display='inline';
+                    clearTimeout(nPinMsg._t);
+                    nPinMsg._t=setTimeout(()=>nPinMsg.style.display='none',4000);
+                }
                 ,menu:()=>{
                     let h=nMt.innerText!='⏶';
                     nMt.innerText=h?'⏶':'⏷';
@@ -549,6 +565,7 @@
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
         <input id="nPin" class="pageNo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="" oninput="nav.Pin()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;width:5.5em;letter-spacing:.4em;border:1px solid #999;border-radius:.5em;background:#fff;box-shadow:0 .2em .8em rgba(0,0,0,.25)"/>
+        <div id="nPinMsg" style="display:none;position:fixed;left:50%;top:49%;transform:translate(-50%,-50%);z-index:5;font:600 .95em system-ui,sans-serif;text-align:center;background:#fff;color:#c00;border:1px solid #c00;border-radius:.5em;padding:.4em .9em;box-shadow:0 .2em .8em rgba(0,0,0,.25)"></div>
         <div id="_dBook" class="bookParent">
             <img id="iLoading" src="aigap.webp" style="z-index:4;position:fixed;left:47vw;top:47vh;animation:rotate 2s linear infinite;width:6vw">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
