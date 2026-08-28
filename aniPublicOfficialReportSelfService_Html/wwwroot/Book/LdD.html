@@ -409,7 +409,8 @@
                     if(v.length<6)return; // sjekk etter hvert tastetrykk – ingen Enter (PIN!)
                     uishow(nPin,false); // lukk ved 6 siffer
                     console.log('[PIN] sjekker',v);
-                    const r=(await nav.CodeValid(v))||{ok:false,reason:'noconfig'}; // {ok:true} | {ok:false,reason:...}
+                    const rr=await nav.CodeValid(v); // ny db.js gir {ok,reason} – gammel deployet gir bool
+                    const r=rr&&typeof rr==='object'?rr:{ok:!!rr,reason:rr?'':'error'}; // normaliser bool → objekt
                     console.log('[PIN]',v,r);
                     if(r.ok){book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
                         window.db?.logUsage&&window.db.logUsage({event:'premium_activate',code:v,book:book.name(),page:cBook.pn});} // logg bruken til `usage`
