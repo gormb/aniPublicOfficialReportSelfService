@@ -297,7 +297,7 @@
                     ,onbottom:()=>window.scrollY>=document.documentElement.scrollHeight-window.innerHeight-window.innerHeight*nav.gest._edge
                     ,newState:GEST.NONE // nåværende tilstand (siste beslutning)
                     ,lastState:GEST.NONE // forrige tilstand
-                    ,_d:0 // siste retning: 1=nED, -1=opp
+                    ,_d:0 // siste retningsnøkkel: 'dn'|'up'|'left'|'right' (0=ingen)
                     ,_t:0
                     ,_ms:Date.now() // når newState ble satt – for ms i loggen
                     // detectState: REN beslutning – hvilken tilstand skal vi i? Ingen bivirkninger.
