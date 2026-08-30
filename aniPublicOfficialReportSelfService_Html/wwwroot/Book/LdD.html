@@ -4,7 +4,7 @@
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
         <script type="module" src="LdD.js?v=35"></script>
-        <link rel="stylesheet" href="LdD.css?v=7">
+        <link rel="stylesheet" href="LdD.css?v=8">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -101,10 +101,7 @@
                 ,pn:()=>cBook.pn
                 ,np:()=>cBook.pdf?Math.max(1,cBook.pdf.numPages-4):0 // de 4 siste sidene er maler - skjules (min 1 for små PDF-er)
             }
-            let _busy; // sperre under lasting/resize – auto-språkbytte ved skroll
-            const aLg=()=>{if(_dToc.style.display!='none'||_cBook.style.display=='none'||_busy)return;
-                const m=_dBook.scrollWidth-_dBook.clientWidth,r=m?_dBook.scrollLeft/m:0;
-                if((book.hAlign._&&r>.5)||(!book.hAlign._&&r<.5))book.hAlign.L(!book.hAlign._)}; // NO→EN høyre, EN→NO venstre
+            let _busy; // sperre under lasting/resize
             const forlag = {
                 norsk: [
                     { forlag: "Cappelen Damm", url: "https://manus.cappelendamm.no/", forlagstype: "Allmennforlag (Stor)", punktromscore: 5 },
@@ -170,6 +167,11 @@
                     { forlag: "Bokvennen Forlag", url: "mailto:post@solumbokvennen.no", forlagstype: "Skjønnlitteratur / Klassikere", punktromscore: 4 }
                 ]
             };
+            const GEST=Object.freeze({ // ENUM: alle gest-tilstander – samlet på ett sted
+                NONE:'none', UP:'up', DN:'dn'
+                ,PGUP:'pgup', PGUP_ACT:'pgup_act', PGUP_D:'pgup_d'
+                ,PGDN:'pgdn', PGDN_ACT:'pgdn_act', PGDN_D:'pgdn_d'
+            });
             const nav={
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
@@ -288,52 +290,58 @@
                         window.scrollBy(0, window.innerHeight*.75);
                     nav.UpdButtons();
                 }
-                // nav.gest = gestyr – ny start. Tilstandsmaskin: none | up | dn | pgup | pgup_act | pgup_d | pgdn | pgdn_act | pgdn_d
+                // nav.gest = gestyr – ny start. Tilstandsmaskin: se GEST-enum over
                 ,gest:{
                     _edge:0.10 // kant-margin som brøkdel av viewport-høyden: 0.10 = 10/90 · 0.05 = 5/95
                     ,ontop:()=>window.scrollY<=window.innerHeight*nav.gest._edge
                     ,onbottom:()=>window.scrollY>=document.documentElement.scrollHeight-window.innerHeight-window.innerHeight*nav.gest._edge
-                    ,newState:'none' // nåværende tilstand (siste beslutning)
-                    ,lastState:'none' // forrige tilstand
+                    ,newState:GEST.NONE // nåværende tilstand (siste beslutning)
+                    ,lastState:GEST.NONE // forrige tilstand
                     ,_d:0 // siste retning: 1=nED, -1=opp
                     ,_t:0
                     ,_ms:Date.now() // når newState ble satt – for ms i loggen
                     // detectState: REN beslutning – hvilken tilstand skal vi i? Ingen bivirkninger.
                     ,detectState:(d)=>{
                         const g=nav.gest;
-                        if (g.newState!=='none') return g.newState; // SCROLLING: behold tilstand
-                        if (d>0&&g.onbottom()) return 'pgdn';       // IDLE: bump nED
-                        if (d<0&&g.ontop()) return 'pgup';          // IDLE: bump opp
-                        return d>0?'dn':'up';                       // IDLE: skroll
+                        if (g.newState!==GEST.NONE) return g.newState; // SCROLLING: behold tilstand
+                        if (d>0&&g.onbottom()) return GEST.PGDN;       // IDLE: bump nED
+                        if (d<0&&g.ontop()) return GEST.PGUP;          // IDLE: bump opp
+                        return d>0?GEST.DN:GEST.UP;                    // IDLE: skroll
                     }
                     // setState eier ALLE tilstandsendringer + stop-deteksjonen (setTimeout)
                     ,setState:(ns)=>{
                         const g=nav.gest;
                         const now=Date.now();
+                        const act=ns===GEST.PGUP_ACT||ns===GEST.PGDN_ACT; // navigasjon pågår – ingen stop-deteksjon
                         clearTimeout(g._t); // avbryt evt. tidligere stop-deteksjon
                         if (ns===g.newState){ // ingen endring – bare utsett stop-deteksjon (fremdeles i gest)
-                            if (ns!=='none' && !ns.endsWith('_act')) g._t=setTimeout(()=>{g._d=0; g.setState('none');},200);
+                            if (ns!==GEST.NONE && !act) g._t=setTimeout(()=>{g._d=0; g.setState(GEST.NONE);},200);
                             return;
                         }
                         g.lastState=g.newState;
                         g.newState=ns;
                         console.log('wheel', g.lastState, '('+(now-g._ms)+')', '->', g.newState);
                         g._ms=now;
-                        if (ns!=='none' && !ns.endsWith('_act')) g._t=setTimeout(()=>{g._d=0; g.setState('none');},200); // stopp -> none
+                        g.actUi(); // sidetallet i kursiv mens navigasjon pågår (_act)
+                        if (ns!==GEST.NONE && !act) g._t=setTimeout(()=>{g._d=0; g.setState(GEST.NONE);},200); // stopp -> none
+                    }
+                    ,actUi:()=>{ // navigasjon pågår (_act) → sidetallet vises i kursiv
+                        const g=nav.gest;
+                        const act=g.newState===GEST.PGUP_ACT||g.newState===GEST.PGDN_ACT;
+                        if((nGoTxt.style.fontStyle==='italic')!==act) nGoTxt.style.fontStyle=act?'italic':'';
                     }
                     ,wheel:(e)=>{
                         const g=nav.gest;
                         const d=e.deltaY>0?1:(e.deltaY<0?-1:0);
-                        if (!d){ g.setState('none'); return; } // ikke vertikal skroll -> none
-                        if (d!==g._d) g.setState('none'); // retningsskifte = ny gest -> none
+                        if (!d){ g.setState(GEST.NONE); return; } // ikke vertikal skroll -> none
+                        if (d!==g._d) g.setState(GEST.NONE); // retningsskifte = ny gest -> none
                         g._d=d;
                         const ns=g.detectState(d);
                         g.setState(ns);
-                        if (ns.startsWith('pg')){ // sideoperasjon: svelg momentum + utfør navigasjon
-                            e.preventDefault();
-                            if (ns==='pgdn'){ g.setState('pgdn_act'); nav.ScrollDn().finally(()=>g.setState('pgdn_d')); }
-                            else if (ns==='pgup'){ g.setState('pgup_act'); nav.ScrollUp().finally(()=>g.setState('pgup_d')); }
-                        }
+                        const pg=ns===GEST.PGUP||ns===GEST.PGDN||ns===GEST.PGUP_ACT||ns===GEST.PGDN_ACT||ns===GEST.PGUP_D||ns===GEST.PGDN_D; // alle side-operasjoner
+                        if (pg) e.preventDefault(); // svelg momentum for ALLE side-operasjoner (også _act/_d – ellers ruller den nye siden)
+                        if (ns===GEST.PGDN){ g.setState(GEST.PGDN_ACT); nav.ScrollDn().finally(()=>g.setState(GEST.PGDN_D)); }
+                        else if (ns===GEST.PGUP){ g.setState(GEST.PGUP_ACT); nav.ScrollUp().finally(()=>g.setState(GEST.PGUP_D)); }
                     }
                 }
                 ,ShowToc:async (s=_dToc.style.display=='none')=>{
@@ -609,7 +617,7 @@
             window.spTgl=(...args)=>nav.spTgl(...args);
             async function loaded() {
                 nav.menu(false);
-                _dBook.addEventListener('scroll',aLg); // auto-språkbytte ved horisontal skrolling
+                // auto-språkbytte ved horisontal skrolling er fjernet – språk byttes kun med nLg-knappen
                 window.addEventListener('wheel',nav.gest.wheel,{passive:false}); // gest: beslutning én gang per skroll; svelg momentum etter sideskift
                 await nav.Loaded(); // Load book, adjust size and update buttons
             }
