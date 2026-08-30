@@ -301,12 +301,14 @@
                     ,_t:0
                     ,_ms:Date.now() // når newState ble satt – for ms i loggen
                     // detectState: REN beslutning – hvilken tilstand skal vi i? Ingen bivirkninger.
-                    ,detectState:(d,horiz)=>{
+                    ,detectState:(d,horiz,touch)=>{
                         const g=nav.gest;
                         if (g.newState!==GEST.NONE) return g.newState; // ikke none: behold – én beslutning per gest
                         if (horiz) return d>0?GEST.RIGHT:GEST.LEFT;    // sideveis → forrige/neste side
-                        if (d>0&&g.onbottom()) return GEST.PGDN;       // IDLE: bump nED
-                        if (d<0&&g.ontop()) return GEST.PGUP;          // IDLE: bump opp
+                        if (!touch){ // touch (iPhone): vertikal skroll bytter ALDRI side – kun venstre/høyre
+                            if (d>0&&g.onbottom()) return GEST.PGDN;   // IDLE: bump nED
+                            if (d<0&&g.ontop()) return GEST.PGUP;      // IDLE: bump opp
+                        }
                         return d>0?GEST.DN:GEST.UP;                    // IDLE: skroll
                     }
                     ,isPage:ns=>ns===GEST.PGUP||ns===GEST.PGDN||ns===GEST.LEFT||ns===GEST.RIGHT // sideoperasjon (krever busy/await)
@@ -343,7 +345,7 @@
                         if (k!==g._d) g.setState(GEST.NONE); // retningsskifte = ny gest -> none
                         g._d=k;
                         const prev=g.newState;
-                        const ns=g.detectState(d,horiz);
+                        const ns=g.detectState(d,horiz,e.touch);
                         g.setState(ns); // beslutning (no-op midt i gesten, reseter stop-deteksjon)
                         const fresh=ns!==prev; // ny beslutning (overgang fra none)
                         if (g.isPage(ns)||ns===GEST.BUSY) e.preventDefault(); // svelg momentum for sideoperasjoner (+ busy)
@@ -659,7 +661,7 @@
                     const t=e.touches[0], dx=t.clientX-_tX, dy=t.clientY-_tY;
                     _tX=t.clientX; _tY=t.clientY;
                     if(!_tA){ _tSX+=dx; _tSY+=dy; if(Math.abs(_tSX)+Math.abs(_tSY)>12) _tA=Math.abs(_tSX)>Math.abs(_tSY)?1:-1; } // bestem + lås akse etter ~12px (unngår midt-sveip-flipping)
-                    nav.gest.wheel({ deltaX:_tA===1?dx:0, deltaY:_tA===-1?-dy:0, preventDefault:()=>{} }); // finger opp (dy<0) = scrolle ned → inverter dy
+                    nav.gest.wheel({ deltaX:_tA===1?dx:0, deltaY:_tA===-1?-dy:0, touch:true, preventDefault:()=>{} }); // finger opp (dy<0) = scrolle ned → inverter dy
                 }, {passive:false});
                 document.addEventListener('mousedown', (e)=>{
                     if(e.target.closest('#_spCollapse, #_dPlay, #_spPlayer, .toc-play'))return; // musikk – vis IKKE navigasjonen
