@@ -33,7 +33,8 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
     background:transparent; border:0; box-shadow:none; padding:0; }
 #_dPage{position:absolute;inset:0;z-index:3;pointer-events:none}
 #_dPage span{position:absolute;transform:translateX(-50%);font-family:Garamond,Georgia,serif;font-size:calc(9pt*(100vw/105mm));line-height:1.15;color:#444}
-#_dPage .st{position:static;transform:none;margin-right:.45em;font-size:.8em;opacity:.55;color:#888} /* tilstandssymbol: mer luft til venstre for sidetallet + dempet */
+#_dPage .st{position:static;transform:none;margin-right:.45em;font-size:.8em;opacity:.55;color:#888} /* tilstandssymbol: luft til venstre for sidetallet + dempet */
+#_dPage .st.st2{margin-right:0;margin-left:.45em} /* symbol etter sidetallet – holder tallet sentrert */
 #_dToc{font-family:Garamond,Georgia,serif;box-sizing:border-box;overflow:auto;height:100vh;
     font-size:calc(10pt*(100vw/105mm));line-height:1.15;padding:calc(8mm*(100vw/105mm))}
 #_dToc h1{font-weight:normal;text-align:center;letter-spacing:.06em;margin:0 0 1em}

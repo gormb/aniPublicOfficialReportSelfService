@@ -3,8 +3,8 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=38"></script>
-        <link rel="stylesheet" href="LdD.css?v=9">
+        <script type="module" src="LdD.js?v=39"></script>
+        <link rel="stylesheet" href="LdD.css?v=10">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -291,7 +291,7 @@
                 }
                 // nav.gest = gestyr. Tilstandsmaskin: none | busy | up | dn | left | right | pgup | pgdn
                 ,gest:{
-                    _edge:0.10 // kant-margin som brøkdel av viewport-høyden: 0.10 = 10/90 · 0.05 = 5/95
+                    _edge:0.02 // kant-margin som brøkdel av viewport-høyden: 0.02 = 2% fra topp/bunn
                     ,ontop:()=>window.scrollY<=window.innerHeight*nav.gest._edge
                     ,onbottom:()=>window.scrollY>=document.documentElement.scrollHeight-window.innerHeight-window.innerHeight*nav.gest._edge
                     ,newState:GEST.NONE // nåværende tilstand

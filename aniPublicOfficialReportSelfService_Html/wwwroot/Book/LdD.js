@@ -364,7 +364,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         if(cBook.view)box.style.width=cBook.view.width+'px'; // hele oppslaget
         if(!cBook.page||!cBook.view||_cBook.style.display=='none'){ if(box)box.innerHTML=''; return; }
         const u=window._stateUi||{sym:' '}; // tilstandssymbol (fra nav.gest)
-        const one=`<span class="st">${u.sym}</span>${cBook.pn}`;
+        const one=`<span class="st">${u.sym}</span>${cBook.pn}<span class="st st2">${u.sym}</span>`; // symbol på BEGGE sider → tallet forblir sentrert
         const top=_cBook.offsetTop+cBook.view.height*.02, bot=_cBook.offsetTop+cBook.view.height*.98;
         const l=cBook.view.height>window.innerHeight; // landskap: siden høyere enn vinduet → vis også i bunn
         box.innerHTML=`<span style="top:${top}px;left:25%">${one}</span><span style="top:${top}px;left:75%">${one}</span>`+(l?`<span style="top:${bot}px;left:25%">${one}</span><span style="top:${bot}px;left:75%">${one}</span>`:'');
