@@ -168,7 +168,7 @@
                 ]
             };
             const GEST=Object.freeze({ // ENUM: alle gest-tilstander – samlet på ett sted
-                NONE:'none', UP:'up', DN:'dn'
+                NONE:'none', UP:'up', DN:'dn', LEFT:'left', RIGHT:'right'
                 ,PGUP:'pgup', PGUP_ACT:'pgup_act', PGUP_D:'pgup_d'
                 ,PGDN:'pgdn', PGDN_ACT:'pgdn_act', PGDN_D:'pgdn_d'
             });
@@ -301,9 +301,10 @@
                     ,_t:0
                     ,_ms:Date.now() // når newState ble satt – for ms i loggen
                     // detectState: REN beslutning – hvilken tilstand skal vi i? Ingen bivirkninger.
-                    ,detectState:(d)=>{
+                    ,detectState:(d,horiz)=>{
                         const g=nav.gest;
                         if (g.newState!==GEST.NONE) return g.newState; // SCROLLING: behold tilstand
+                        if (horiz) return d>0?GEST.RIGHT:GEST.LEFT;    // sideveis: ingen handling ennå – bare tilstand/symbol/logg
                         if (d>0&&g.onbottom()) return GEST.PGDN;       // IDLE: bump nED
                         if (d<0&&g.ontop()) return GEST.PGUP;          // IDLE: bump opp
                         return d>0?GEST.DN:GEST.UP;                    // IDLE: skroll
@@ -326,7 +327,7 @@
                         if (ns!==GEST.NONE && !act) g._t=setTimeout(()=>{g._d=0; g.setState(GEST.NONE);},200); // stopp -> none
                     }
                     // unike unicode-symboler per tilstand (none = blank)
-                    ,SYMBOLS:{'none':' ','up':'↑','dn':'↓','pgup':'⇑','pgup_act':'⟰','pgup_d':'✓','pgdn':'⇓','pgdn_act':'⟱','pgdn_d':'✔'}
+                    ,SYMBOLS:{'none':' ','up':'↑','dn':'↓','left':'←','right':'→','pgup':'⇑','pgup_act':'⟰','pgup_d':'✓','pgdn':'⇓','pgdn_act':'⟱','pgdn_d':'✔'}
                     ,stateUi:()=>{ // tilstandssymbol til venstre for sidetallet (topp-margen i #_dPage)
                         const g=nav.gest;
                         const s=g.SYMBOLS[g.newState]||' ';
@@ -334,11 +335,14 @@
                     }
                     ,wheel:(e)=>{
                         const g=nav.gest;
-                        const d=e.deltaY>0?1:(e.deltaY<0?-1:0);
-                        if (!d){ g.setState(GEST.NONE); return; } // ikke vertikal skroll -> none
-                        if (d!==g._d) g.setState(GEST.NONE); // retningsskifte = ny gest -> none
-                        g._d=d;
-                        const ns=g.detectState(d);
+                        const dx=e.deltaX||0, dy=e.deltaY||0;
+                        const horiz=Math.abs(dx)>Math.abs(dy); // større sideveis enn opp/ned → left/right
+                        const d=horiz?(dx>0?1:-1):(dy>0?1:-1);
+                        if (!d){ g.setState(GEST.NONE); return; } // ingen bevegelse -> none
+                        const k=horiz?(d>0?'right':'left'):(d>0?'dn':'up'); // retningsnøkkel for gest-skillet
+                        if (k!==g._d) g.setState(GEST.NONE); // retningsskifte = ny gest -> none
+                        g._d=k;
+                        const ns=g.detectState(d,horiz);
                         g.setState(ns);
                         const pg=ns===GEST.PGUP||ns===GEST.PGDN||ns===GEST.PGUP_ACT||ns===GEST.PGDN_ACT||ns===GEST.PGUP_D||ns===GEST.PGDN_D; // alle side-operasjoner
                         if (pg) e.preventDefault(); // svelg momentum for ALLE side-operasjoner (også _act/_d – ellers ruller den nye siden)
