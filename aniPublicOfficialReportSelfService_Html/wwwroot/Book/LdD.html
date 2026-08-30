@@ -3,8 +3,8 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=35"></script>
-        <link rel="stylesheet" href="LdD.css?v=8">
+        <script type="module" src="LdD.js?v=38"></script>
+        <link rel="stylesheet" href="LdD.css?v=9">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -322,13 +322,15 @@
                         g.newState=ns;
                         console.log('wheel', g.lastState, '('+(now-g._ms)+')', '->', g.newState);
                         g._ms=now;
-                        g.actUi(); // sidetallet i kursiv mens navigasjon pågår (_act)
+                        g.stateUi(); // tilstandssymbol + kursiv under navigasjon
                         if (ns!==GEST.NONE && !act) g._t=setTimeout(()=>{g._d=0; g.setState(GEST.NONE);},200); // stopp -> none
                     }
-                    ,actUi:()=>{ // navigasjon pågår (_act) → sidetallet vises i kursiv
+                    // unike unicode-symboler per tilstand (none = blank)
+                    ,SYMBOLS:{'none':' ','up':'↑','dn':'↓','pgup':'⇑','pgup_act':'⟰','pgup_d':'✓','pgdn':'⇓','pgdn_act':'⟱','pgdn_d':'✔'}
+                    ,stateUi:()=>{ // tilstandssymbol til venstre for sidetallet (topp-margen i #_dPage)
                         const g=nav.gest;
-                        const act=g.newState===GEST.PGUP_ACT||g.newState===GEST.PGDN_ACT;
-                        if((nGoTxt.style.fontStyle==='italic')!==act) nGoTxt.style.fontStyle=act?'italic':'';
+                        const s=g.SYMBOLS[g.newState]||' ';
+                        if(window._stateUi?.sym!==s){ window._stateUi={sym:s}; window.cBook?.PageNo?.(); }
                     }
                     ,wheel:(e)=>{
                         const g=nav.gest;

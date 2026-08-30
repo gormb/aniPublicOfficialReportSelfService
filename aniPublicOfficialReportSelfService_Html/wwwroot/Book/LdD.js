@@ -358,13 +358,16 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             });
         });
     }
-    ,PageNo:async function(){ // sidetall i topp-margen, sentrert på hver halvdel (NO/EN)
+    ,PageNo:async function(){ // sidetall i topp-margen, sentrert på hver halvdel (NO/EN); i landskap også i bunn-margen
         const box=document.getElementById('_dPage');
         if(!box)return;
         if(cBook.view)box.style.width=cBook.view.width+'px'; // hele oppslaget
         if(!cBook.page||!cBook.view||_cBook.style.display=='none'){ if(box)box.innerHTML=''; return; }
-        const top=_cBook.offsetTop+cBook.view.height*.02;
-        box.innerHTML=`<span style="top:${top}px;left:25%">${cBook.pn}</span><span style="top:${top}px;left:75%">${cBook.pn}</span>`;
+        const u=window._stateUi||{sym:' '}; // tilstandssymbol (fra nav.gest)
+        const one=`<span class="st">${u.sym}</span>${cBook.pn}`;
+        const top=_cBook.offsetTop+cBook.view.height*.02, bot=_cBook.offsetTop+cBook.view.height*.98;
+        const l=cBook.view.height>window.innerHeight; // landskap: siden høyere enn vinduet → vis også i bunn
+        box.innerHTML=`<span style="top:${top}px;left:25%">${one}</span><span style="top:${top}px;left:75%">${one}</span>`+(l?`<span style="top:${bot}px;left:25%">${one}</span><span style="top:${bot}px;left:75%">${one}</span>`:'');
     }
     ,Save: async function(el, filename='book.pdf') {
         await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js');
