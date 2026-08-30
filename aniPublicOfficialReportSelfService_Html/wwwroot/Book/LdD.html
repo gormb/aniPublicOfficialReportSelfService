@@ -271,14 +271,12 @@
                         await nav.Page(n);
                     uishow(nGoTxt,!uishow(nGo, true));
                 }
-                ,ScrollUp:async ()=>{
-                    if (window.scrollY <= 1) {// already at top
+                ,ScrollUp:async(top=nav.gest.ontop())=>{
+                    if (top) {// already at top
                         await nav.Page(book.pn() - 1);
                         window.scrollTo(window.scrollX, document.documentElement.scrollHeight - window.innerHeight);
                     }
-                    else {
-                        window.scrollBy(0, -window.innerHeight*.75);
-                    }
+                    else window.scrollBy(0, -window.innerHeight*.75);
                     nav.UpdButtons();
                 }
                 ,ScrollDn:async()=>{
@@ -289,6 +287,54 @@
                     else
                         window.scrollBy(0, window.innerHeight*.75);
                     nav.UpdButtons();
+                }
+                // nav.gest = gestyr – ny start. Tilstandsmaskin: none | up | dn | pgup | pgup_act | pgup_d | pgdn | pgdn_act | pgdn_d
+                ,gest:{
+                    _edge:0.10 // kant-margin som brøkdel av viewport-høyden: 0.10 = 10/90 · 0.05 = 5/95
+                    ,ontop:()=>window.scrollY<=window.innerHeight*nav.gest._edge
+                    ,onbottom:()=>window.scrollY>=document.documentElement.scrollHeight-window.innerHeight-window.innerHeight*nav.gest._edge
+                    ,newState:'none' // nåværende tilstand (siste beslutning)
+                    ,lastState:'none' // forrige tilstand
+                    ,_d:0 // siste retning: 1=nED, -1=opp
+                    ,_t:0
+                    ,_ms:Date.now() // når newState ble satt – for ms i loggen
+                    // detectState: REN beslutning – hvilken tilstand skal vi i? Ingen bivirkninger.
+                    ,detectState:(d)=>{
+                        const g=nav.gest;
+                        if (g.newState!=='none') return g.newState; // SCROLLING: behold tilstand
+                        if (d>0&&g.onbottom()) return 'pgdn';       // IDLE: bump nED
+                        if (d<0&&g.ontop()) return 'pgup';          // IDLE: bump opp
+                        return d>0?'dn':'up';                       // IDLE: skroll
+                    }
+                    // setState eier ALLE tilstandsendringer + stop-deteksjonen (setTimeout)
+                    ,setState:(ns)=>{
+                        const g=nav.gest;
+                        const now=Date.now();
+                        clearTimeout(g._t); // avbryt evt. tidligere stop-deteksjon
+                        if (ns===g.newState){ // ingen endring – bare utsett stop-deteksjon (fremdeles i gest)
+                            if (ns!=='none' && !ns.endsWith('_act')) g._t=setTimeout(()=>{g._d=0; g.setState('none');},200);
+                            return;
+                        }
+                        g.lastState=g.newState;
+                        g.newState=ns;
+                        console.log('wheel', g.lastState, '('+(now-g._ms)+')', '->', g.newState);
+                        g._ms=now;
+                        if (ns!=='none' && !ns.endsWith('_act')) g._t=setTimeout(()=>{g._d=0; g.setState('none');},200); // stopp -> none
+                    }
+                    ,wheel:(e)=>{
+                        const g=nav.gest;
+                        const d=e.deltaY>0?1:(e.deltaY<0?-1:0);
+                        if (!d){ g.setState('none'); return; } // ikke vertikal skroll -> none
+                        if (d!==g._d) g.setState('none'); // retningsskifte = ny gest -> none
+                        g._d=d;
+                        const ns=g.detectState(d);
+                        g.setState(ns);
+                        if (ns.startsWith('pg')){ // sideoperasjon: svelg momentum + utfør navigasjon
+                            e.preventDefault();
+                            if (ns==='pgdn'){ g.setState('pgdn_act'); nav.ScrollDn().finally(()=>g.setState('pgdn_d')); }
+                            else if (ns==='pgup'){ g.setState('pgup_act'); nav.ScrollUp().finally(()=>g.setState('pgup_d')); }
+                        }
+                    }
                 }
                 ,ShowToc:async (s=_dToc.style.display=='none')=>{
                     if(s){
@@ -564,6 +610,7 @@
             async function loaded() {
                 nav.menu(false);
                 _dBook.addEventListener('scroll',aLg); // auto-språkbytte ved horisontal skrolling
+                window.addEventListener('wheel',nav.gest.wheel,{passive:false}); // gest: beslutning én gang per skroll; svelg momentum etter sideskift
                 await nav.Loaded(); // Load book, adjust size and update buttons
             }
             let _rsz;
