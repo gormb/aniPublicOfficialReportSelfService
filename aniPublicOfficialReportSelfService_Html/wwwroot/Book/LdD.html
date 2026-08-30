@@ -4,7 +4,7 @@
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
         <script type="module" src="LdD.js?v=39"></script>
-        <link rel="stylesheet" href="LdD.css?v=10">
+        <link rel="stylesheet" href="LdD.css?v=12">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -521,6 +521,22 @@
                     clearTimeout(nPinMsg._t);
                     nPinMsg._t=setTimeout(()=>nPinMsg.style.display='none',4000);
                 }
+                // inaktivitet: skjul navigasjon etter 5s uten trykk/klikk – behold musikk + TOC (nTc)
+                ,_idleT:0
+                ,uiHidden:false
+                ,uiHide:on=>{
+                    nav.uiHidden=on;
+                    document.body.classList.toggle('hideNav', on);
+                    if(!on) nav.idleReset(); // vis → start timeren på nytt
+                }
+                ,idleReset:()=>{
+                    clearTimeout(nav._idleT);
+                    nav._idleT=setTimeout(()=>{
+                        if(nav.uiHidden)return;
+                        if(_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none'){ nav.idleReset(); return; } // modal åpen – vent
+                        nav.uiHide(true);
+                    },3000);
+                }
                 ,menu:()=>{
                     let h=nMt.innerText!='⏶';
                     nMt.innerText=h?'⏶':'⏷';
@@ -634,6 +650,11 @@
                 nav.menu(false);
                 // auto-språkbytte ved horisontal skrolling er fjernet – språk byttes kun med nLg-knappen
                 window.addEventListener('wheel',nav.gest.wheel,{passive:false}); // gest: beslutning én gang per skroll; svelg momentum etter sideskift
+                document.addEventListener('mousedown', (e)=>{
+                    if(e.target.closest('#_spCollapse, #_dPlay, #_spPlayer, .toc-play'))return; // musikk – vis IKKE navigasjonen
+                    nav.uiHide(false); // klikk på bok/tekst → vis navigasjonen igjen
+                }, true);
+                nav.idleReset(); // start inaktivitets-timeren (5s)
                 await nav.Loaded(); // Load book, adjust size and update buttons
             }
             let _rsz;

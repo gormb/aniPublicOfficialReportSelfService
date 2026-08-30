@@ -67,3 +67,6 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+/* inaktivitet: skjul ALT av navigasjon (inkl. TOC), behold musikk */
+body.hideNav .bookControls > *{ display:none !important; }
+body.hideNav #nUp2, body.hideNav #nUp3, body.hideNav #nNt2, body.hideNav #nNt3, body.hideNav #nPv2, body.hideNav #nPv3{ display:none !important; }
