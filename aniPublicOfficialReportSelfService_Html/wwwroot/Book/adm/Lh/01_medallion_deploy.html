@@ -1,0 +1,17 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lh — lakehouse deploy</title>
+<link rel="icon" href="../../aigap.webp">
+<link rel="stylesheet" href="../adm.css">
+</head>
+<body>
+<h3>Lh; lakehouse (medallion) deploy</h3>
+<p>Bronze → Silver → Gold. <b>Copy all</b> → lim inn i Supabase SQL-editor → <b>Run</b> (kjører alt i riktig rekkefølge). Hvert lag kan også kjøres alene.</p>
+<p><a id="sqlEdit" target="_blank" rel="noopener">…</a></p>
+<p><button onclick="copyAll()">📋 Copy all</button></p>
+<div id="layers"></div>
+<div id="undeploy"></div>
+<script type="module" src="01_medallion_deploy.js?v=6"></script>
+</body>
+</html>
