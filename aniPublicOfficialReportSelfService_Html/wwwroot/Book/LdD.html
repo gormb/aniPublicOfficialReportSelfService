@@ -294,6 +294,7 @@
                     _edge:0.02 // kant-margin som brøkdel av viewport-høyden: 0.02 = 2% fra topp/bunn
                     ,ontop:()=>window.scrollY<=window.innerHeight*nav.gest._edge
                     ,onbottom:()=>window.scrollY>=document.documentElement.scrollHeight-window.innerHeight-window.innerHeight*nav.gest._edge
+                    ,suppressed:()=>_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none' // TOC/del/eksport åpen → ALDRI gest (ren native scroll)
                     ,newState:GEST.NONE // nåværende tilstand
                     ,lastState:GEST.NONE // forrige tilstand
                     ,_d:0 // siste retningsnøkkel: 'dn'|'up'|'left'|'right' (0=ingen)
@@ -301,15 +302,12 @@
                     ,_t:0
                     ,_ms:Date.now() // når newState ble satt – for ms i loggen
                     // detectState: REN beslutning – hvilken tilstand skal vi i? Ingen bivirkninger.
+                    // FOR NÅ: kun HORISONTAL (venstre/høyre) bytter side. Vertikal (opp/ned) skroller KUN – aldri sidebytte.
                     ,detectState:(d,horiz,touch)=>{
                         const g=nav.gest;
                         if (g.newState!==GEST.NONE) return g.newState; // ikke none: behold – én beslutning per gest
-                        if (horiz) return d>0?GEST.RIGHT:GEST.LEFT;    // sideveis → forrige/neste side
-                        if (!touch){ // touch (iPhone): vertikal skroll bytter ALDRI side – kun venstre/høyre
-                            if (d>0&&g.onbottom()) return GEST.PGDN;   // IDLE: bump nED
-                            if (d<0&&g.ontop()) return GEST.PGUP;      // IDLE: bump opp
-                        }
-                        return d>0?GEST.DN:GEST.UP;                    // IDLE: skroll
+                        if (horiz) return d>0?GEST.RIGHT:GEST.LEFT;    // sideveis → forrige/neste side (ENESTE sidebytte)
+                        return d>0?GEST.DN:GEST.UP;                    // vertikal → KUN skroll (PGUP/PGDN er deaktivert for nå)
                     }
                     ,isPage:ns=>ns===GEST.PGUP||ns===GEST.PGDN||ns===GEST.LEFT||ns===GEST.RIGHT // sideoperasjon (krever busy/await)
                     // setState eier ALLE tilstandsendringer + stop-deteksjonen (setTimeout)
@@ -337,6 +335,7 @@
                     }
                     ,wheel:(e)=>{
                         const g=nav.gest;
+                        if(g.suppressed()){g._d=0;g.setState(GEST.NONE);return;} // TOC/del/eksport åpen: ingen gest – ren native scroll (aldri preventDefault)
                         const dx=e.deltaX||0, dy=e.deltaY||0;
                         const horiz=Math.abs(dx)>Math.abs(dy); // større sideveis enn opp/ned → left/right
                         const d=horiz?(dx>0?1:-1):(dy>0?1:-1);
@@ -657,6 +656,7 @@
                 }, {passive:true});
                 document.addEventListener('touchmove', e=>{
                     const g=nav.gest;
+                    if(g.suppressed()){_tA=0;_tSX=0;_tSY=0;_tX=e.touches[0].clientX;_tY=e.touches[0].clientY;return;} // TOC/modal åpen: ingen gest – ren native scroll
                     const t=e.touches[0], dx=t.clientX-_tX, dy=t.clientY-_tY;
                     _tX=t.clientX; _tY=t.clientY;
                     if(_tA===0){ _tSX+=dx; _tSY+=dy; if(Math.abs(_tSX)>30||Math.abs(_tSY)>30) _tA=Math.abs(_tSX)>Math.abs(_tSY)*1.5?1:-1; } // lås akse kun ved TYDELIG dominans (>30px, 1.5×)
