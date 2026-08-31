@@ -1,0 +1,7 @@
+{
+    // SQL in this workspace is Supabase/PostgreSQL. Stop the MSSQL (SQL Server)
+    // extension from validating those files as T-SQL: it auto-disables its
+    // language service when it detects a non-MSSQL dialect (plpgsql, pg_*, $$…).
+    // Real T-SQL files (.sqlproj / wikigap etc.) still get SQL Server IntelliSense.
+    "mssql.autoDisableNonTSqlLanguageService": true
+}
