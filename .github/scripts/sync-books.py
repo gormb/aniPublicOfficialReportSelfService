@@ -23,6 +23,284 @@ def epoch(v):
         return None
     return datetime.datetime.fromisoformat(v.replace('Z', '+00:00')).timestamp()
 
+# ---------------------------------------------------------------------------
+# Tekstuttrekk (tiered .md / .json / TOC) – speiler font-tierne i LdD.js:
+#   Garamond (vanlig) = common · EBGaramond/CEGaramond = premium ·
+#   Calibri = free · Arial = comment. Hvit tekst vises aldri.
+_ARIAL_RE    = re.compile(r'arial')
+_PREM_RE     = re.compile(r'ebgaramond|cegaramond')
+_FREE_RE     = re.compile(r'calibri')
+_GARAMOND_RE = re.compile(r'garamond')
+_SPOT_RE     = re.compile(r'https://gormb\.github\.io/_/?\?m(?!.*qr$)\S*', re.I)
+
+def _font_tier(font):
+    n = re.sub(r'^[^+]*\+', '', (font or '').lower())
+    n = re.sub(r'[^a-z0-9]', '', n)
+    if _ARIAL_RE.search(n):    return 'comment'
+    if _PREM_RE.search(n):     return 'premium'
+    if _FREE_RE.search(n):     return 'free'
+    if _GARAMOND_RE.search(n): return 'common'
+    return 'common'
+
+def _is_white(color):
+    return (color or 0) >= 0xfefefe
+
+def _near(a, b, tol):
+    return abs(a - b) < tol
+
+def _page_lines(doc, pno):
+    """Spans gruppert i linjer (topp→bunn, venstre→høyre) for én side."""
+    d = doc[pno].get_text('dict')
+    lines = []
+    for block in d['blocks']:
+        if block.get('type') != 0:
+            continue
+        for line in block['lines']:
+            parts = [{'text': s['text'].strip(), 'font': s['font'],
+                      'size': s['size'], 'color': s['color'],
+                      'x': s['origin'][0], 'y': s['origin'][1]}
+                     for s in sorted(line['spans'], key=lambda sp: sp['origin'][0])
+                     if s['text'].strip()]
+            if not parts:
+                continue
+            lines.append({'y': min(p['y'] for p in parts), 'parts': parts})
+    lines.sort(key=lambda l: l['y'])
+    return lines
+
+def _pdf_style(doc):
+    """Kalibrér størrelser/posisjoner fra de 4 siste (template-)slidene:
+    cover, kapittel, underkapittel, tekst. body = dominerende størrelse.
+    Samsvar på SPAN-nivå – placeholder-linja har også tier-etiketter (premium/freemium)."""
+    n = doc.page_count
+    s = {}
+    for p in range(max(1, n - 3), n + 1):
+        for block in doc[p - 1].get_text('dict')['blocks']:
+            if block.get('type') != 0:
+                continue
+            for line in block['lines']:
+                for sp in line['spans']:
+                    t = sp['text'].strip()
+                    if not t:
+                        continue
+                    size, y = sp['size'], sp['origin'][1]
+                    if re.fullmatch(r'Underkapitteltittel(?:en)?|The Sub Chapter Title', t):
+                        s['subH'], s['subY'] = size, y
+                    elif re.fullmatch(r'Kapitteltittelen|The Chapter Title', t):
+                        s['chapH'], s['chapY'] = size, y
+                    elif re.fullmatch(r'Navnet På Boken|The Name of the Book', t):
+                        s['coverH'] = size
+    hist = {}
+    for line in _page_lines(doc, n - 1):
+        for pt in line['parts']:
+            if pt['text']:
+                h = round(pt['size'], 1)
+                hist[h] = hist.get(h, 0) + 1
+    s['body'] = max(hist, key=hist.get) if hist else 10
+    return s
+
+def _line_url(doc, pno, line, links):
+    """Spotify/lenke-URL for en linje: inline-URL-tekst, eller lenke-annotasjon som overlapper."""
+    text = ''.join(pt['text'] for pt in line['parts'])
+    m = _SPOT_RE.search(text)
+    if m:
+        return m.group(0)
+    x0 = min(pt['x'] for pt in line['parts'])
+    y0 = min(pt['y'] for pt in line['parts'])
+    x1 = max(pt['x'] + len(pt['text']) * pt['size'] * 0.5 for pt in line['parts'])
+    y1 = y0 + max(pt['size'] for pt in line['parts'])
+    for lk in links:
+        if not lk.get('uri'):
+            continue
+        r = lk['from']
+        if r.x0 <= x1 and r.x1 >= x0 and r.y0 <= y1 and r.y1 >= y0:
+            return lk['uri']
+    return None
+
+def _tier_text(pages, tiers, with_markers=False, include_comment=False):
+    """Bygg .md fra sider; tiers=None = alle (inkl. kommentarer)."""
+    out = []
+    for pg in pages:
+        out.append(f'<!-- page {pg["page"]} -->')
+        for line in pg['lines']:
+            seg = []
+            for pt in line['parts']:
+                tier = _font_tier(pt['font'])
+                if _is_white(pt['color']):
+                    continue
+                if not include_comment and tier == 'comment':
+                    continue
+                if tiers is not None and tier not in tiers:
+                    continue
+                seg.append(f'[{tier}] {pt["text"]}' if with_markers and tier != 'common' else pt['text'])
+            if seg:
+                out.append(' '.join(seg))
+        out.append('')
+    return '\n'.join(out)
+
+def _data(doc, style):
+    """Port av cBook.data.get(): strukturerte blokker (chapter/sub/paragraph/link) per side.
+    Kapittel vs. underkapittel avgjøres av Y-POSISJON på siden (chapY/subY fra template-sliden),
+    ikke bare skriftstørrelse – som i LdD.js."""
+    n = doc.page_count
+    chapH = style.get('chapH') or 16
+    chapY = style.get('chapY') or -1
+    subY = style.get('subY') or -1
+    coverH = style.get('coverH')
+    tolH = chapH * 0.15
+    tolY = 10
+    out = []
+    for pno in range(max(1, n - 4)):
+        page = doc[pno]
+        mid = page.rect.width / 2
+        spans = []
+        for block in page.get_text('dict')['blocks']:
+            if block.get('type') != 0:
+                continue
+            for line in block['lines']:
+                for s in line['spans']:
+                    t = s['text'].strip()
+                    if not t:
+                        continue
+                    spans.append({'text': t, 'font': s['font'], 'size': s['size'],
+                                  'color': s['color'], 'x': s['origin'][0],
+                                  'y': s['origin'][1], 'w': s['bbox'][2] - s['bbox'][0]})
+        links = [l for l in page.get_links() if l.get('uri')]
+        out.append({'type': 'page', 'page': pno + 1})
+        for lang, side in (('no', lambda x: x < mid), ('en', lambda x: x > mid)):
+            cur = None
+            for sp in sorted((s for s in spans if side(s['x'])), key=lambda s: (s['y'], s['x'])):
+                text = sp['text']
+                bx = [sp['x'], sp['y'], sp['x'] + sp['w'], sp['y'] + sp['size']]
+                lk = None
+                for l in links:
+                    r = l['from']
+                    if r.x0 < bx[2] and bx[0] < r.x1 and r.y0 < bx[3] and bx[1] < r.y1:
+                        lk = l
+                        break
+                m = _SPOT_RE.search(text)
+                if lk or m:
+                    if cur:
+                        out.append(cur); cur = None
+                    url = lk['uri'] if lk else m.group(0)
+                    out.append({'type': 'link', 'page': pno + 1, 'lang': lang, 'text': text,
+                                'url': url, 'spotify': bool(_SPOT_RE.search(url)),
+                                'font': sp['font'], 'tier': _font_tier(sp['font'])})
+                elif coverH and sp['size'] >= coverH * 0.85:
+                    if cur:
+                        out.append(cur); cur = None
+                    out.append({'type': 'p', 'page': pno + 1, 'lang': lang, 'text': text,
+                                'font': sp['font'], 'tier': _font_tier(sp['font'])})
+                elif _near(sp['size'], chapH, tolH):
+                    if cur:
+                        out.append(cur); cur = None
+                    y = sp['y']
+                    if _near(y, chapY, tolY):
+                        out.append({'type': 'chapter', 'page': pno + 1, 'lang': lang, 'text': text,
+                                    'font': sp['font'], 'tier': _font_tier(sp['font'])})
+                    elif _near(y, subY, tolY):
+                        out.append({'type': 'sub', 'page': pno + 1, 'lang': lang, 'text': text,
+                                    'font': sp['font'], 'tier': _font_tier(sp['font'])})
+                    else:
+                        out.append({'type': 'p', 'page': pno + 1, 'lang': lang, 'text': text,
+                                    'font': sp['font'], 'tier': _font_tier(sp['font'])})
+                elif cur:
+                    cur['text'] += ' ' + text
+                else:
+                    cur = {'type': 'p', 'page': pno + 1, 'lang': lang, 'text': text,
+                           'font': sp['font'], 'tier': _font_tier(sp['font'])}
+            if cur:
+                out.append(cur)
+    return out
+
+def _title(doc, style, lang):
+    """Port av cBook.data.title(): boktittel fra cover-sliden (side 1), språkbevisst."""
+    coverH = style.get('coverH')
+    if not coverH:
+        return ''
+    page = doc[0]
+    mid = page.rect.width / 2
+    items = []
+    for block in page.get_text('dict')['blocks']:
+        if block.get('type') != 0:
+            continue
+        for line in block['lines']:
+            for s in line['spans']:
+                t = s['text'].strip()
+                x = s['origin'][0]
+                if t and (x < mid if lang == 'no' else x > mid) and s['size'] >= coverH * 0.85:
+                    items.append((s['origin'][1], x, t))
+    items.sort()
+    return ' '.join(t for _, _, t in items)
+
+def _better_song(a, b):
+    def bare_url(t):
+        m = _SPOT_RE.search(t or '')
+        return bool(m) and m.group(0) == (t or '').strip()
+    ai, bi = bare_url(a), bare_url(b)
+    if ai != bi:
+        return not ai  # foretrekk beskrivende tittel over den nakne URL-en
+    return len(a or '') > len(b or '')
+
+def _toc_lines(data, lang, keep, title):
+    lines = [f'# {title}'] if title else ['# TOC']
+    chaps = [b for b in data if b.get('type') == 'chapter' and b.get('lang') == lang and b.get('tier') in keep]
+    subs = [b for b in data if b.get('type') == 'sub' and b.get('lang') == lang and b.get('tier') in keep]
+    songs = {}
+    for b in data:
+        if b.get('type') == 'link' and b.get('spotify') and b.get('lang') == lang:
+            k = (b['page'], b['url'])
+            if k not in songs or _better_song(b['text'], songs[k]['text']):
+                songs[k] = {'text': b['text'], 'url': b['url']}
+    def song_lines(page):
+        return [f"🎵 {s['text']} ({s['url']}) — p. {page}"
+                for (p, _), s in sorted(songs.items()) if p == page]
+    for i, c in enumerate(chaps):
+        nxt = chaps[i + 1]['page'] if i + 1 < len(chaps) else 10 ** 9
+        lines.append(f'## {c["text"]} — p. {c["page"]}')
+        lines.extend(song_lines(c['page']))
+        for s in (x for x in subs if c['page'] <= x['page'] < nxt):
+            lines.append(f'### {s["text"]} — p. {s["page"]}')
+            lines.extend(song_lines(s['page']))
+    return lines
+
+def _toc_files(base, doc, style, data):
+    for lang, label in (('no', 'NO'), ('en', 'EN')):
+        title = _title(doc, style, lang) or 'Innholdsfortegnelse'
+        for mode, keep in (('FREE', {'free', 'common'}), ('PREM', {'premium', 'common'})):
+            lines = _toc_lines(data, lang, keep, title)
+            with open(f'{base}_{label}_{mode}', 'w', encoding='utf-8') as f:
+                f.write('\n'.join(lines) + '\n')
+
+def extract(pdf_path):
+    """Lag tiered tekst + 4 TOC ved siden av en bok-PDF:
+    name.md (common+premium), name_free.md (common+free), name_tech.md (alt, markert),
+    name.json (alt innhold), name_NO_FREE/_NO_PREM/_EN_FREE/_EN_PREM (kapittel/sub + sanger)."""
+    try:
+        import pymupdf as _fitz
+    except ImportError:
+        try:
+            import fitz as _fitz
+        except ImportError:
+            print(f'[{os.path.basename(pdf_path)}] pymupdf mangler – hopper over tekstuttrekk', file=sys.stderr)
+            return
+    base = os.path.splitext(pdf_path)[0]
+    doc = _fitz.open(pdf_path)
+    n = doc.page_count
+    style = _pdf_style(doc)
+    pages = [{'page': pno + 1, 'lines': _page_lines(doc, pno)} for pno in range(max(1, n - 4))]
+    data = _data(doc, style)  # port av cBook.data.get(): kapittel/sub via y-posisjon
+    with open(base + '.md', 'w', encoding='utf-8') as f:
+        f.write(_tier_text(pages, {'common', 'premium'}) + '\n')
+    with open(base + '_free.md', 'w', encoding='utf-8') as f:
+        f.write(_tier_text(pages, {'common', 'free'}) + '\n')
+    with open(base + '_tech.md', 'w', encoding='utf-8') as f:
+        f.write(_tier_text(pages, None, with_markers=True, include_comment=True) + '\n')
+    with open(base + '.json', 'w', encoding='utf-8') as f:
+        json.dump({'book': os.path.basename(pdf_path), 'pages': pages, 'toc': data},
+                  f, ensure_ascii=False, indent=1)
+    _toc_files(base, doc, style, data)  # _NO_FREE/_NO_PREM/_EN_FREE/_EN_PREM
+    print(f'[{os.path.basename(pdf_path)}] tekstuttrekk: .md _free.md _tech.md .json + 4×TOC')
+
 def main():
     cfg = get(DB_JS)
     m = re.search(r'window\.SUPABASE=\{url:"([^"]+)",publishableKey:"([^"]+)"\}', cfg)
@@ -61,6 +339,7 @@ def main():
             print(f'[{book}] {src} -> {deployed}')
             subprocess.run(['curl', '-fsSL', '-L', src, '-o', dest], check=True)
             n += 1
+            extract(dest)  # sidecars: .md / _free.md / _tech.md / .json / _TOC
         except Exception as e:
             print(f'[{book}] FEIL: {e}', file=sys.stderr)
     print(f'ferdig: {n} bok(er) synkronisert')
