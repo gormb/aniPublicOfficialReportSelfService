@@ -262,6 +262,27 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 :b.type===T.SUB?`## ${b.text}`
                 :b.text).filter(Boolean).join('\n\n');
         }
+        ,fromMd:async function(){ // try the generated tiered .md TOC first (fast, no PDF parsing); null → fall back to PDF
+            try{
+                const want=book.hAlign._?'no':'en';
+                const file=book.srcBase()+'_'+(want==='no'?'NO':'EN')+'_'+(book.prem._?'PREM':'FREE')+'.md';
+                const r=await fetch(file,{cache:'no-store'});
+                if(!r.ok)return null;
+                const T=cBook.data.type, blocks=[];
+                let title='';
+                for(const raw of (await r.text()).split(/\r?\n/)){
+                    const s=raw.trim();
+                    if(!s)continue;
+                    let m;
+                    if(!title&&(m=/^#\s+(.+)$/.exec(s))) title=m[1].trim();
+                    else if(m=/^##\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.CHAPTER,page:+m[2],lang:want,text:m[1].trim()});
+                    else if(m=/^###\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.SUB,page:+m[2],lang:want,text:m[1].trim()});
+                    else if(m=/^🎵\s+(.+?)\s+\((\S+?)\)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.LINK,page:+m[3],lang:want,text:m[1].trim(),url:m[2],spotify:true});
+                    // '#### p. N' and body lines: ignored for the TOC
+                }
+                return blocks.length?{title,blocks}:null;
+            }catch(e){ return null; }
+        }
     }
     ,SpotRe:/^https:\/\/gormb\.github\.io\/_\/?\?m(?!.*qr$)\S*/i
     ,SpotMap:null

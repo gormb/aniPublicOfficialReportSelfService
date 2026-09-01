@@ -418,37 +418,41 @@
                 }
                 ,Toc:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
-                    const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
-                    _dTocTitle.textContent=(await cBook.data.title(want==='no'))||'"Liv Krevde Død"'; // book title from cover slide, language-aware
+                    // try the generated tiered .md first (fast, no PDF parsing); fall back to PDF parsing
+                    const md=await cBook.data.fromMd();
+                    const data=md?md.blocks:await cBook.data.get();
+                    const last=cBook.pdf?.numPages-3 ?? 9999;
+                    _dTocTitle.textContent=(md?md.title:await cBook.data.title(want==='no'))||'"Liv Krevde Død"'; // book title from cover slide, language-aware
                     let chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
                     let subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
-                    // hide N/A entries: tier locked in current mode (premium↔freemium)
-                    const locked=book.prem._?'freemium':'premium';
-                    const ok=async rows=>{
-                        const out=[];
-                        for(const b of rows){
-                            let tier=cBook._tierCache?.[`${b.page}|${b.text}`];
-                            if(!tier){
-                                const page=await cBook.pdf.getPage(b.page), tc=await page.getTextContent();
-                                const it=tc.items.find(i=>i.str.trim()===b.text)||tc.items.slice().sort((a,b)=>(b.height||0)-(a.height||0))[0];
-                                let fam=it?(await cBook.FontName(it.fontName,page))||'':'';
-                                if(it&&fam===it.fontName){ // fonts not loaded yet → load via small offscreen render
-                                    try{
-                                        const vp=page.getViewport({scale:0.1});
-                                        const c=document.createElement('canvas');c.width=Math.max(1,Math.round(vp.width));c.height=Math.max(1,Math.round(vp.height));
-                                        await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
-                                        fam=(await cBook.FontName(it.fontName,page))||it.fontName;
-                                    }catch(e){}
+                    if(!md){ // PDF path: hide tier-locked entries (the .md is already mode-filtered)
+                        const locked=book.prem._?'freemium':'premium';
+                        const ok=async rows=>{
+                            const out=[];
+                            for(const b of rows){
+                                let tier=cBook._tierCache?.[`${b.page}|${b.text}`];
+                                if(!tier){
+                                    const page=await cBook.pdf.getPage(b.page), tc=await page.getTextContent();
+                                    const it=tc.items.find(i=>i.str.trim()===b.text)||tc.items.slice().sort((a,b)=>(b.height||0)-(a.height||0))[0];
+                                    let fam=it?(await cBook.FontName(it.fontName,page))||'':'';
+                                    if(it&&fam===it.fontName){ // fonts not loaded yet → load via small offscreen render
+                                        try{
+                                            const vp=page.getViewport({scale:0.1});
+                                            const c=document.createElement('canvas');c.width=Math.max(1,Math.round(vp.width));c.height=Math.max(1,Math.round(vp.height));
+                                            await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+                                            fam=(await cBook.FontName(it.fontName,page))||it.fontName;
+                                        }catch(e){}
+                                    }
+                                    tier=cBook.FontTier(fam);
+                                    (cBook._tierCache=cBook._tierCache||{})[`${b.page}|${b.text}`]=tier;
                                 }
-                                tier=cBook.FontTier(fam);
-                                (cBook._tierCache=cBook._tierCache||{})[`${b.page}|${b.text}`]=tier;
+                                if(tier!=='comment'&&tier!==locked)out.push(b); // comments always hidden
                             }
-                            if(tier!=='comment'&&tier!==locked)out.push(b); // comments always hidden
-                        }
-                        return out;
-                    };
-                    chaps=await ok(chaps);
-                    subs=await ok(subs);
+                            return out;
+                        };
+                        chaps=await ok(chaps);
+                        subs=await ok(subs);
+                    }
                     const spotMap=await window.cBook.SpotLoad();
                     const resolveSpot=url=>{
                         if(!url||!window.cBook.SpotRe.test(url))return url;
