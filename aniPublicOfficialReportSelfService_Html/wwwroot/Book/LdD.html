@@ -354,8 +354,8 @@
                             g._pg++;
                             if (ns===GEST.PGDN) nav.ScrollDn().finally(done);
                             else if (ns===GEST.PGUP) nav.ScrollUp().finally(done);
-                            else if (ns===GEST.RIGHT) nav.Page(book.pn()+1).finally(done);
-                            else if (ns===GEST.LEFT) nav.Page(book.pn()-1).finally(done);
+                            else if (ns===GEST.RIGHT) nav.Page(book.pn()+1, 0).finally(done);
+                            else if (ns===GEST.LEFT) nav.Page(book.pn()-1, _dBook.scrollHeight - window.innerHeight).finally(done);
                         }
                     }
                 }
@@ -685,7 +685,7 @@
                     <input id="nGoTxt" class="pageNo" type="text" inputmode="numeric" value="1" onchange="nav.PageEd()" onkeydown="if(event.key=='Enter') nav.PageEd()"/>
                 <button id="nDn" onmousedown="nav.ScrollDn()">⏬</button>
                 <button id="nNt" onmousedown="nav.Page(book.pn()+1, 0)">▶️</button>
-                <button id="nLt" onmousedown="nav.Page(book.np(), 0)">⏭️</button>
+                <button id="nLt" onmousedown="nav.Page(book.np(), _dBook.scrollHeight - window.innerHeight)">⏭️</button>
             &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" onmousedown="nav.Export()">📤</button>
