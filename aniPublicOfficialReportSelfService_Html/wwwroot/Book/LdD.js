@@ -262,26 +262,67 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 :b.type===T.SUB?`## ${b.text}`
                 :b.text).filter(Boolean).join('\n\n');
         }
-        ,fromMd:async function(){ // try the generated tiered .md TOC first (fast, no PDF parsing); null → fall back to PDF
+        ,_mdFile:()=>book.srcBase()+'_'+(book.hAlign._?'NO':'EN')+'_'+(book.prem._?'PREM':'FREE')+'.md' // current lang+mode sidecar
+        ,mdRaw:async function(force=false){ // cached raw text of the current-mode .md – fetched once, shared by TOC (fromMd) + search
+            const md=cBook.data.md;
+            if(md&&md.file===cBook.data._mdFile()&&!force)return md;
             try{
-                const want=book.hAlign._?'no':'en';
-                const file=book.srcBase()+'_'+(want==='no'?'NO':'EN')+'_'+(book.prem._?'PREM':'FREE')+'.md';
+                const file=cBook.data._mdFile();
                 const r=await fetch(file,{cache:'no-store'});
                 if(!r.ok)return null;
-                const T=cBook.data.type, blocks=[];
-                let title='';
-                for(const raw of (await r.text()).split(/\r?\n/)){
-                    const s=raw.trim();
-                    if(!s)continue;
-                    let m;
-                    if(!title&&(m=/^#\s+(.+)$/.exec(s))) title=m[1].trim();
-                    else if(m=/^##\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.CHAPTER,page:+m[2],lang:want,text:m[1].trim()});
-                    else if(m=/^###\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.SUB,page:+m[2],lang:want,text:m[1].trim()});
-                    else if(m=/^🎵\s+(.+?)\s+\((\S+?)\)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.LINK,page:+m[3],lang:want,text:m[1].trim(),url:m[2],spotify:true});
-                    // '#### p. N' and body lines: ignored for the TOC
-                }
-                return blocks.length?{title,blocks}:null;
+                return cBook.data.md={file,text:await r.text()};
             }catch(e){ return null; }
+        }
+        ,mdIndex:async function(){ // full-text index of the current-mode .md (headings + body per page + songs) – cached, reuses mdRaw
+            const md=await cBook.data.mdRaw();
+            if(!md)return null;
+            const c=cBook.data._ix;
+            if(c&&c.file===md.file)return c.ix;
+            const T=cBook.data.type,want=book.hAlign._?'no':'en';
+            const pages=[],headings=[],links=[];
+            let title='',cur=0,body='';
+            const flush=()=>{ if(cur&&body.trim())pages.push({page:cur,text:body.trim()}); body=''; };
+            for(const raw of md.text.split(/\r?\n/)){
+                const s=raw.trim(); if(!s)continue; let m;
+                if(!title&&(m=/^#\s+(.+)$/.exec(s))) title=m[1].trim();
+                else if(m=/^####\s+p\.\s*(\d+)$/.exec(s)){ flush(); cur=+m[1]; }
+                else if(m=/^##\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)){ flush(); cur=+m[2]; headings.push({type:T.CHAPTER,page:cur,lang:want,text:m[1].trim()}); }
+                else if(m=/^###\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)){ flush(); cur=+m[2]; headings.push({type:T.SUB,page:cur,lang:want,text:m[1].trim()}); }
+                else if(m=/^🎵\s+(.+?)\s+\((\S+?)\)\s+—\s+p\.\s*(\d+)$/.exec(s)){ flush(); cur=+m[3]; links.push({page:cur,text:m[1].trim(),url:m[2]}); }
+                else body+=' '+s;
+            }
+            flush();
+            let songs=[];
+            try{ // song texts – added later in (name)_SONGS.md (optional)
+                const sr=await fetch(book.srcBase()+'_SONGS.md',{cache:'no-store'});
+                if(sr.ok)songs=(await sr.text()).split(/\r?\n/).map(x=>x.trim()).filter(Boolean).map(t=>({page:0,text:t}));
+            }catch(e){}
+            return (cBook.data._ix={file:md.file,ix:{title,pages,headings,links,songs}}).ix;
+        }
+        ,search:async function(q){ // md-based search for current lang+mode: {head,text,song} matches (cascade for the TOC filter)
+            const out={head:[],text:[],song:[]}, ql=(q||'').toLowerCase().trim();
+            if(!ql)return out;
+            const ix=await cBook.data.mdIndex();
+            if(!ix)return out;
+            for(const h of ix.headings)if(h.text.toLowerCase().includes(ql))out.head.push(h);
+            for(const p of ix.pages)if(p.text.toLowerCase().includes(ql))out.text.push(p);
+            for(const s of ix.songs)if(s.text.toLowerCase().includes(ql))out.song.push(s);
+            return out;
+        }
+        ,fromMd:async function(){ // try the generated tiered .md TOC first (fast, no PDF parsing); null → fall back to PDF
+            const md=await cBook.data.mdRaw();
+            if(!md)return null;
+            const want=book.hAlign._?'no':'en', T=cBook.data.type, blocks=[];
+            let title='';
+            for(const raw of md.text.split(/\r?\n/)){
+                const s=raw.trim(); if(!s)continue; let m;
+                if(!title&&(m=/^#\s+(.+)$/.exec(s))) title=m[1].trim();
+                else if(m=/^##\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.CHAPTER,page:+m[2],lang:want,text:m[1].trim()});
+                else if(m=/^###\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.SUB,page:+m[2],lang:want,text:m[1].trim()});
+                else if(m=/^🎵\s+(.+?)\s+\((\S+?)\)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.LINK,page:+m[3],lang:want,text:m[1].trim(),url:m[2],spotify:true});
+                // '#### p. N' and body lines: ignored for the TOC
+            }
+            return blocks.length?{title,blocks}:null;
         }
     }
     ,SpotRe:/^https:\/\/gormb\.github\.io\/_\/?\?m(?!.*qr$)\S*/i
