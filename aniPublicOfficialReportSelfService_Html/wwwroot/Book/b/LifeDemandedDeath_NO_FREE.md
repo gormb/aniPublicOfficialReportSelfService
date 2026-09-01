@@ -1,8 +1,23 @@
 # Liv krevde død
 ## Nullsum — p. 2
 🎵 https://gormb.github.io/_?mlist (https://gormb.github.io/_?mlist) — p. 2
+“Med MC fra Kiel til Alicante og snitt på 170 km/t kunne jeg vært arrestert i hele Europa”, sa jeg.
+Advokaten jeg nettopp hadde møtt over en Whisky smålo.
+“Nei, du skulle vært død”
+Kanskje det, men jeg føler ingenting likevel, unntatt skam overfor mine nærmeste. Kanskje gjennom musikk, 
+kan jeg oppleve tapet av forstanden som lyd, 
+tiden som stanser; sammenbrudd og erkjennelse.
+Døden gir plass
 ### Nulloppsummering — p. 3
 🎵 https://gormb.github.io/_?mncty (https://gormb.github.io/_?mncty) — p. 3
+Krever nytt liv at noe gammelt dør for å gi plass? Er det begrenset med ressurser og derfor med muligheter?
+Nulloppsummering handler om ressursfordeling uten evne til å skape egne ressurser av ingenting, man må velge mellom å holde gamle ting i live og å skape noe nytt. Det er ikke plass til å gjøre begge deler samtidig.
+Resultat av innovasjon er at man slutter med gamle ting for å gi plass til de nye, økonomer måler hvor mye man ikke har sluttet som “legacy cost”. Noen kaller modellen “Zero-Sum Game”. Alternativet er å anta at verdi kan skapes gjennom fremskritt, ikke bare fordele verdier etter gårsdagens premisser. Positivsumspill beskrives i et senere kapittel. Det innebærer at nullsummodell må dø, men den skal føles først.
+p. 4
+Effekten av innovasjon er fremskritt, jeg tror ikke vi kaller det innovasjon hvis det ikke medfører ny opplevd forbedring. Man diskuterer om det er nok at bare opplevelsen er ny for at innovasjon har inntruffet. For meg har det vært sant, kunstig intelligens oppleves innovativt selv hvis det tok 50 år før verden var klar til å bruke ideene. Fra det perspektivet skriver jeg om opplevd forbedring, for den virkelige forbedringen kan man bare indirekte oppleve. Jeg kjenner mine egne subjektive sannheter og velger med integritet å heller snakke om dem.
+Det starter med noen sanne historier for meg, ubalansert og av og til objektivt upresist. Rått, fragmentert og tidvis desperat.
+Hvis jeg for eksempel sier at MC-hjelmen sprakk, ikke som i film, men i et sanseløst smell som enda en gang satte seg som varig fysisk frykt i kroppen, kan det hende at episoden var mer dramatisk for de som så meg gå i bakken. Eller mindre. 
+Følelsen min er uansett sann og hverken underrapportert eller dramatisert. Folk har trodd de bevitnet en dødsulykke, mens det for meg var et relativt sett mindre uhell som ikke engang er beskrevet i denne boka.
 ### Lotte — p. 5
 🎵 O Fortuna, Carl Orff (https://gormb.github.io/_?mcb) — p. 5
 ### Det gamle finnes ikke mer — p. 9
