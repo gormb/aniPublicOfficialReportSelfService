@@ -251,11 +251,12 @@
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                 }
-                ,Page:async pn=>{
+                ,Page:async(pn,x)=>{
                     //nav.DisButtons();
                     nav.memSet('page', pn);
                     await book.Page(pn);
-                    window.scrollTo(window.scrollX, 0);
+                    if (x!=null) 
+                        window.scrollTo(window.scrollX, x);
                     nav.UpdButtons();
                     window.db?.logUsage&&window.db.logUsage({event:'page',book:book.name(),page:pn}); // log page visit to `usage`
                 }
@@ -268,20 +269,20 @@
                 ,PageEd:async ()=>{
                     const n = parseInt(nGoTxt.value);
                     if (!isNaN(n))
-                        await nav.Page(n);
+                        await nav.Page(n, 0);
                     uishow(nGoTxt,!uishow(nGo, true));
                 }
                 ,ScrollUp:async(top=nav.gest.ontop())=>{
                     if (top) {// already at top
-                        await nav.Page(book.pn() - 1);
-                        window.scrollTo(window.scrollX, document.documentElement.scrollHeight - window.innerHeight);
+                        await nav.Page(book.pn() - 1, _dBook.scrollHeight - window.innerHeight); // scroll to bottom of previous page
+                        //window.scrollTo(window.scrollX, document.documentElement.scrollHeight - window.innerHeight);
                     }
                     else window.scrollBy(0, -window.innerHeight*.75);
                     nav.UpdButtons();
                 }
                 ,ScrollDn:async()=>{
                     if (window.scrollY >= document.documentElement.scrollHeight-window.innerHeight - 1) {
-                        await nav.Page(book.pn() + 1); // nav.Page scrolls to top itself
+                        await nav.Page(book.pn() + 1, 0); // nav.Page scrolls to top itself
                     }
                     else
                         window.scrollBy(0, window.innerHeight*.75);
@@ -354,7 +355,7 @@
                             if (ns===GEST.PGDN) nav.ScrollDn().finally(done);
                             else if (ns===GEST.PGUP) nav.ScrollUp().finally(done);
                             else if (ns===GEST.RIGHT) nav.Page(book.pn()+1).finally(done);
-                            else if (ns===GEST.LEFT) nav.Page(book.pn()-1).then(()=>window.scrollTo(window.scrollX, document.documentElement.scrollHeight-window.innerHeight)).finally(done); // forrige side → bunn
+                            else if (ns===GEST.LEFT) nav.Page(book.pn()-1).finally(done);
                         }
                     }
                 }
@@ -376,7 +377,7 @@
                 }
                 ,TocPage:async n=>{
                     nav.ShowToc();
-                    nav.Page(n);
+                    nav.Page(n, 0);
                 }
                 ,spTgl:async(e,ev=window.event)=>{
                     const u=e.dataset?.u||e.href||'', toc=!!e.closest('.toc-play');
@@ -463,7 +464,7 @@
                         if(c.page<=cur)curPage=c.page;
                         for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
                     }
-                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">\u266B</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
+                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n},0);nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">\u266B</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n},0);nav.ShowToc()">${n}</a>`;
                     return '<ul>'+chaps.map((c,i)=>{
                         const end=chaps[i+1]?.page??1e9;
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
@@ -583,7 +584,7 @@
                         catch{return url.split('?')[1]?.replace(/qr$/i,'')||'';}
                     };
                     const link=data.find(b=>b.type===T.LINK&&b.spotify&&linkKey(b.url)===key.replace(/qr$/i,''));
-                    if(link&&book.pn()!==link.page)await nav.Page(link.page);
+                    if(link&&book.pn()!==link.page)await nav.Page(link.page, 0);
                 }
                 ,memGet:async(k,d)=>{
                     const p=k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`; // per-book namespace (except the 'book' key itself)
@@ -606,6 +607,7 @@
                     book.prem.ui(); // button text only (👑/🔓) – no re-render / TOC work
                     // Load the main document directly (no .1.pdf preview; JPG loading may be added later)
                     await book.s(1,bookU,page);
+                    window.db?.logUsage&&window.db.logUsage({event:'page',book:book.name(),page:page}); // log the opened page so openers who never turn a page are still counted
                     await uisz(); // await render (offscreen → one swap) – full file done before spinner hides
                     uishow(_iBook, false); // bg image – hide once page painted (else covers book until Loaded ends)
                     await book.hAlign.Load();
@@ -671,15 +673,15 @@
     </head>
     <body onload="loaded()">
         <div class="bookControls" style="z-index:1;text-align:center;">
-            <button id="nMt" onmousedown="nav.menu()" style="padding-left:2vw;padding-right:2vw;scale:.7;">⏶</button>
-            <button id="nFt" onmousedown="nav.Page(1)">⏮️</button>
-                <button id="nPv" onmousedown="nav.Page(book.pn()-1)">◀️</button>
+            <button id="nMt" onmousedown="nav.menu()" style="padding-left:2vw;padding-right:2vw;scale:.7;"></tool_call></button>
+            <button id="nFt" onmousedown="nav.Page(1, 0)">⏮️</button>
+                <button id="nPv" onmousedown="nav.Page(book.pn()-1, 0)">◀️</button>
                 <button id="nUp" onmousedown="nav.ScrollUp()">⏫</button>
                 <button id="nGo" onmousedown="nav.EdPage()">🔢</button>
                     <input id="nGoTxt" class="pageNo" type="text" inputmode="numeric" value="1" onchange="nav.PageEd()" onkeydown="if(event.key=='Enter') nav.PageEd()"/>
                 <button id="nDn" onmousedown="nav.ScrollDn()">⏬</button>
-                <button id="nNt" onmousedown="nav.Page(book.pn()+1)">▶️</button>
-                <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
+                <button id="nNt" onmousedown="nav.Page(book.pn()+1, 0)">▶️</button>
+                <button id="nLt" onmousedown="nav.Page(book.np(), 0)">⏭️</button>
             &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" onmousedown="nav.Export()">📤</button>
@@ -696,8 +698,8 @@
             <canvas id="_cBook"></canvas>
                 <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;☝️&nbsp;</button>
                 <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;☝️&nbsp;</button>
-                <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;🫱</button>
-                <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;🫱</button>
+                <button id="nNt2" onmousedown="nav.Page(book.pn()+1, 0)" style="display:none;">&nbsp;🫱</button>
+                <button id="nNt3" onmousedown="nav.Page(book.pn()+1, 0)" style="display:none;">&nbsp;🫱</button>
                 <button id="nPv2" onmousedown="nav.Page(book.pn()-1)" style="display:none;">🫲&nbsp;</button>
                 <button id="nPv3" onmousedown="nav.Page(book.pn()-1)" style="display:none;">🫲&nbsp;</button>
         </div>
