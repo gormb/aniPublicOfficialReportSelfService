@@ -201,7 +201,7 @@ def _better_song(a, b):
         return not ai  # foretrekk beskrivende tittel over den nakne URL-en
     return len(a or '') > len(b or '')
 
-_END_RE = re.compile(r'[.?!]["»]?$')
+_END_RE = re.compile(r'[.?!…]["»”’]?$|["»”’]$')  # linje slutter på .!? eller lukkende anførselstegn → nytt avsnitt
 
 def _para_lines(spans, keep):
     """Slå spans til linjer (etter y), og koble innrykkede linjer til avsnitt
