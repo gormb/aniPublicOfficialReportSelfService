@@ -237,7 +237,16 @@ def _md_lines(data, lang, keep, title):
     by_page = {}
     for (p, _), s in songs.items():
         by_page.setdefault(p, []).append(s)
+    # Sider som allerede har synlig overskrift (kapittel/underkapittel) viser «p. N» selv.
+    lang_pages = {b['page'] for b in data if b.get('lang') == lang}
+    headed = {b['page'] for b in data
+              if b.get('lang') == lang and b.get('type') in ('chapter', 'sub') and b.get('tier') in keep}
     for b in data:
+        if b.get('type') == 'page':
+            p = b['page']
+            if p in lang_pages and p not in headed:
+                lines.append(f'#### p. {p}')  # sidetall for sider uten overskrift
+            continue
         if b.get('lang') != lang:
             continue
         t = b['type']
