@@ -1,12 +1,12 @@
-let _db;const db=()=>_db||(_db=import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm').then(m=>m.createClient(SUPABASE.url,SUPABASE.publishableKey))); // én klient (unngå "Multiple GoTrueClient instances")
+let _db;const db=()=>_db||(_db=import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm').then(m=>m.createClient(SUPABASE.url,SUPABASE.publishableKey))); // single client (avoid "Multiple GoTrueClient instances")
 const iso=v=>v&&new Date(new Date(v).getTime()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16);
-const utc=v=>v?new Date(v).toISOString():null; // datetime-local (lokal tid) → korrekt UTC for Supabase
+const utc=v=>v?new Date(v).toISOString():null; // datetime-local (local time) → correct UTC for Supabase
 const stat=r=>{const n=Date.now(),f=new Date(r.dtfrom).getTime(),t=new Date(r.dtto).getTime();
   return n<f?['ok','waiting']:n>t?['exp','expired']:(t-n<7*864e5?['soon','expiring soon']:['ok','active'])};
 const gridEl=document.getElementById('grid');
 const grid=async()=>{const{data,error}=await (await db()).from('codes').select('*').order('dtfrom',{ascending:false});
   if(error){gridEl.innerHTML=`<p class="exp">${error.message}</p>`;return}
-  // bruk per kode: unike enheter som har aktivert koden (premium_activate)
+  // used per code: unique devices that activated the code (premium_activate)
   const{data:usage}=await (await db()).from('usage').select('code_id,fingerprint').eq('event','premium_activate');
   const useCount={};(usage||[]).forEach(u=>{const k=u.code_id||'—';(useCount[k]=useCount[k]||new Set()).add(u.fingerprint)});
   gridEl.innerHTML=`<table><tr><th>code</th><th>book</th><th>emails</th><th>limit</th><th>usage</th><th>from</th><th>to</th><th>status</th><th></th></tr>`+(data||[]).map(r=>{

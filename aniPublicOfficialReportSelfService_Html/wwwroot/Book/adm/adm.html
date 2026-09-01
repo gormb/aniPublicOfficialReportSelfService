@@ -51,7 +51,7 @@
   mails text not null default '',
   created_at timestamptz default now()
 );
--- Eksisterende tabell: legg til manglende kolonner:
+-- Existing table: add missing columns:
 -- alter table codes add column if not exists use_limit integer;
 -- alter table codes add column if not exists created_at timestamptz default now();
 -- RLS (open for the admin page):
@@ -73,7 +73,7 @@ create policy codes_all on codes for all using (true) with check (true);
 alter table usage enable row level security;
 drop policy if exists usage_all on usage;
 create policy usage_all on usage for all using (true) with check (true);
--- NB: appen skriver herfra (db.js logUsage) – logikk i kode, ikke i SQL.</pre>
+-- NB: the app writes from here (db.js logUsage) – logic lives in code, not SQL.</pre>
 <pre>create table if not exists books (
   book text primary key,
   deployed text not null default '',
@@ -82,7 +82,7 @@ create policy usage_all on usage for all using (true) with check (true);
   dtautosyncto timestamptz,
   "premiumCheckInterval" integer default 60
 );
--- Eksisterende tabell: legg til kolonnen:
+-- Existing table: add the column:
 -- alter table books add column if not exists "premiumCheckInterval" integer default 60;</pre>
 -- RLS (open for the admin page):
 alter table books enable row level security;

@@ -10,7 +10,7 @@ GRANT ALL ON SCHEMA silver TO service_role;
 GRANT ALL ON ALL TABLES IN SCHEMA bronze TO service_role;
 GRANT ALL ON ALL TABLES IN SCHEMA silver TO service_role;
 
--- Serving layer i public: lesetilgang for API-klienter (analytics page bruker publishable key = anon)
+-- Serving layer in public: read access for API clients (analytics page uses publishable key = anon)
 GRANT SELECT ON public.gold_book_analytics TO anon, authenticated;
 GRANT SELECT ON public.gold_hourly_activity TO anon, authenticated;
 GRANT SELECT ON public.gold_daily_active_readers TO anon, authenticated;

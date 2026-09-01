@@ -18,28 +18,28 @@
                     book.src=src;
                     uishow(_fBook, !uishow(_cBook, pdf))
                     nav.UpdButtons();
-                    if(pdf)_iBook.src=book.srcBase()+".jpg"; // bakgrunnsbildet følger boken (ABook.pdf → ABook.jpg)
+                    if(pdf)_iBook.src=book.srcBase()+".jpg"; // bg image follows book (ABook.pdf → ABook.jpg)
                     return pdf ? await book.sPdf(src,pno) : book.sExt(src);
                 }
                 ,sExt:src=>_fBook.src=src
-                ,sPdf:async(src,pno=1)=>await window.cBook.DoShow(src, pno, false) // last uten å rendre – uisz() rett etterpå renderer ÉN gang
+                ,sPdf:async(src,pno=1)=>await window.cBook.DoShow(src, pno, false) // load without render – uisz() renders once after
                 ,aRatio:(2*4.13)/5.83 // Golden ratio
                 ,szWH:(w,h)=>{
                     if(nMt.innerText!='⏶') 
                         _cBook.style.top = _fBook.style.top = (window.innerHeight-h)/2+'px';
                     _fBook.style.width = w+'px';
                     _fBook.style.height = h+'px';
-                    const cw=Math.round(w), ch=Math.round(h); // sett KUN ved endring – ellers TØMMES lerretet (blink ved bytte)
+                    const cw=Math.round(w), ch=Math.round(h); // only set when changed – else canvas clears (blink)
                     if(_cBook.width!=cw)_cBook.width=cw;
                     if(_cBook.height!=ch)_cBook.height=ch;
-                    book.whole = h <= window.innerHeight; // hele arket vises (tall-modus) → venstre/høyre-nav
+                    book.whole = h <= window.innerHeight; // whole sheet fits → left/right page nav
                     book.hAlign.Scroll();
                 }
                 ,szW:w=>book.szWH(w,w/book.aRatio)
                 ,sz:(w,h)=>{
                     w*=2; // Adjust so double as wide as needed (so that iframe and canvas only show half!)
                     book.szWH(w,w/book.aRatio);
-                    if(book.pdf) return window.cBook.Width(w,true); // re-render i ny størrelse – returner promise (await i lastesekvensen)
+                    if(book.pdf) return window.cBook.Width(w,true); // re-render at new size – return promise for load chain
                 }
                 ,hAlign:{
                     _:true
@@ -49,7 +49,7 @@
                         nLg.innerText=l?'🇳🇴':'🇬🇧';
                         _fBook.style.left=(l?0:(_dBook.clientWidth-_fBook.offsetWidth))+'px';
                         book.hAlign.Scroll();
-                        _dTocList.innerHTML=''; // cache ugyldig → TOC bygges med nytt språk ved neste åpning
+                        _dTocList.innerHTML=''; // invalidate TOC cache (rebuilt with new language on open)
                     }
                     ,Load:async()=>{
                         let v=(await nav.memGet('lang', new String(book.hAlign._))=="true") ;
@@ -60,32 +60,31 @@
                 }
                 ,prem:{
                     _:false // true=premium, false=freemium
-                    ,ui:(l=book.prem._)=>{ // KUN knappens UI – ingen re-render / TOC-arbeid (brukes ved lasting, FØR første maling)
+                    ,ui:(l=book.prem._)=>{ // button-only UI, no re-render / TOC work (used at load, before first paint)
                         nPr.innerText=l?'👑':'🔓';
-                        if(nMt.innerText=='⏷')nPr.style.display=l?'none':'inline'; // flytende 🔓 kun freemium (utenfor meny)
+                        if(nMt.innerText=='⏷')nPr.style.display=l?'none':'inline'; // floating 🔓 only in freemium (outside menu)
                         return l;
                     }
                     ,L:async l=>{
                         book.prem._=l;
                         nav.memSet('prem', l);
                         book.prem.ui(l);
-                        if(_dToc.style.display!='none')_dTocList.innerHTML=await nav.Toc(); // TOC er åpen → bygg om med ny modus
-                        else _dTocList.innerHTML=''; // cache ugyldig → bygges ved neste åpning
-                        nav.UpdButtons(); // oppdater nEx (eksport kun i premium)
-                        window.cBook&&window.cBook.pdf&&window.cBook.Page(window.cBook.pn, true); // re-render i ny modus (PDF må være lastet)
+                        if(_dToc.style.display!='none')_dTocList.innerHTML=await nav.Toc(); // TOC open → rebuild with new mode
+                        else _dTocList.innerHTML=''; // invalidate cache → rebuilt on next open
+                        nav.UpdButtons();
+                        window.cBook&&window.cBook.pdf&&window.cBook.Page(window.cBook.pn, true); // re-render in new mode (PDF must be loaded)
                     }
                     ,Load:async()=>{
-                        // Re-validér lagret kode MOT SERVEREN i bakgrunnen (blokkerer aldri første visning).
-                        // Hvis koden er brukt for mange andre steder (full innenfor rullerende vindu) → ugyldiggjør + be om koden igjen.
+                        // Re-validate stored code against server in background (never blocks first view); revoke if over device limit.
                         const code=await nav.memGet('code','');
-                        if(!code)return; // ingen lagret kode – behold gjeldende modus (bakoverkompatibel)
-                        const r=await nav.StillValid(code); // «er jeg fortsatt OK?» – rullerende vindu / limit
-                        if(r===undefined||r===null)return; // db.js ikke tilgjengelig – ikke konkluder
-                        const ok=r===true||!!(r&&r.ok); // støtter både gammel bool og nytt objekt
-                        if(ok){if(!book.prem._)book.prem.L(true);} // fortsatt OK → premium (stille)
-                        else if(book.prem._){ // ikke OK (brukt for mange andre steder / utløpt) → UGYLDIGGJØR + be om koden igjen
+                        if(!code)return; // no stored code – keep current mode (backward compatible)
+                        const r=await nav.StillValid(code); // "still OK?" – rolling window / limit
+                        if(r===undefined||r===null)return; // db.js unavailable – don't conclude
+                        const ok=r===true||!!(r&&r.ok); // supports old bool and new {ok} object
+                        if(ok){if(!book.prem._)book.prem.L(true);} // still OK → premium (silent)
+                        else if(book.prem._){ // not OK (over limit / expired) → revoke + ask for code again
                             if(r.reason!=='error'&&r.reason!=='connection'&&r.reason!=='noconfig')
-                                nav.memSet('code',''); // ugyldiggjør lagret kode → må tastes inn på nytt (nettverksfeil straffer ikke brukeren)
+                                nav.memSet('code',''); // revoke stored code → must re-enter (network errors don't punish user)
                             book.prem.L(false);
                             nav.PinOpen();
                         }
@@ -96,12 +95,12 @@
                     await cBook.Page(pn, true);
                 }
                 ,src:"b/LifeDemandedDeath.pdf"
-                ,srcBase:()=>{ return book.src.replace(/\.pdf$/i,"");} // beholder mappen (b/...) så følgefiler (.jpg/.png) finnes i samme mappe som boken
+                ,srcBase:()=>{ return book.src.replace(/\.pdf$/i,"");} // keep folder (b/...) so sidecars (.jpg/.png) sit next to the book
                 ,name:()=>book.src.split("/").pop().replace(/\.pdf$/i,"")
                 ,pn:()=>cBook.pn
-                ,np:()=>cBook.pdf?Math.max(1,cBook.pdf.numPages-4):0 // de 4 siste sidene er maler - skjules (min 1 for små PDF-er)
+                ,np:()=>cBook.pdf?Math.max(1,cBook.pdf.numPages-4):0 // last 4 pages are template slides – hidden (min 1 for small PDFs)
             }
-            let _busy; // sperre under lasting/resize
+            let _busy;
             const forlag = {
                 norsk: [
                     { forlag: "Cappelen Damm", url: "https://manus.cappelendamm.no/", forlagstype: "Allmennforlag (Stor)", punktromscore: 5 },
@@ -154,7 +153,6 @@
                     { forlag: "Calidris Forlag", url: "mailto:post@calidris.no", forlagstype: "Nisjeforlag", punktromscore: 2 },
                     { forlag: "Flyt Forlag", url: "mailto:post@flyt.no", forlagstype: "Maritimt / Sakprosa", punktromscore: 1 },
                     { forlag: "Pitch Forlag", url: "mailto:post@pitchforlag.no", forlagstype: "Allmennforlag / Sakprosa", punktromscore: 2 },
-                    // 10 ekstra rader med relevante forlag
                     { forlag: "Kolon Forlag", url: "mailto:manus@kolonforlag.no", forlagstype: "Skjønnlitteratur / Poesi (Gyldendal-imprint)", punktromscore: 6 },
                     { forlag: "Pelikanen Forlag", url: "mailto:manus@pelikanen.no", forlagstype: "Uavhengig / Kvalitetsfiksjon", punktromscore: 6 },
                     { forlag: "Tiden Norsk Forlag", url: "https://www.tiden.no/send-inn-manus", forlagstype: "Skjønnlitteratur / Allmennforlag", punktromscore: 5 },
@@ -167,7 +165,7 @@
                     { forlag: "Bokvennen Forlag", url: "mailto:post@solumbokvennen.no", forlagstype: "Skjønnlitteratur / Klassikere", punktromscore: 4 }
                 ]
             };
-            const GEST=Object.freeze({ // ENUM: alle gest-tilstander – samlet på ett sted
+            const GEST=Object.freeze({ // ENUM: gesture states
                 NONE:'none', BUSY:'busy'
                 ,UP:'up', DN:'dn', LEFT:'left', RIGHT:'right'
                 ,PGUP:'pgup', PGDN:'pgdn'
@@ -184,10 +182,10 @@
                     nav.Able(nGo, true);
                     nav.Able(nDn, (canNext || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
                     nav.Able(nFd, false);
-                    nav.Able(nEx, book.prem._); // eksport kun i premium
-                    nav.nShFit(); // skjul nSh kun hvis nPv2/nPv3 overlapper den visuelt
+                    nav.Able(nEx, book.prem._); // export only in premium
+                    nav.nShFit(); // hide nSh only if nPv2/nPv3 overlap it visually
                 }
-                ,nShFit:()=>{ // nSh skjules bare hvis ◄ (nPv2/nPv3) er på samme høyde (y-overlapp)
+                ,nShFit:()=>{ // hide nSh only if ◄ (nPv2/nPv3) overlaps it vertically
                     const b=[nPv2,nPv3].find(b=>b.style.display!='none');
                     nSh.style.display=nMt.innerText=='⏷'&&b&&b.getBoundingClientRect().bottom>nSh.getBoundingClientRect().top?'none':'';
                 }
@@ -202,7 +200,7 @@
                     uishowBlock(_dShare,!uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,uishow(_cBook,nav.Able(nLg, !s)))))));
                     if (s) {
                         nav.DisButtons();
-                        shLgLbl.style.display = book.hAlign._ ? 'none' : ''; // nLg kun relevant på engelsk
+                        shLgLbl.style.display = book.hAlign._ ? 'none' : ''; // nLg only relevant in English
                         qrA.href = await window.cBook.QrUrl(false,35,book.srcBase()+".png");
                         await nav.QrDeep();
                         window.scrollTo(window.scrollX, 0);
@@ -222,7 +220,7 @@
                 }
                 ,Export_preX:0,Export_preY:0
                 ,Export:async (_,s=_??_dExport.style.display=='none')=>{
-                    if(!book.prem._)return; // eksport kun i premium
+                    if(!book.prem._)return; // export only in premium
                     uishow(nSv, false);
                     if (s) {
                         book.Export_preX = window.scrollX;
@@ -259,7 +257,7 @@
                     await book.Page(pn);
                     window.scrollTo(window.scrollX, 0);
                     nav.UpdButtons();
-                    window.db?.logUsage&&window.db.logUsage({event:'page',book:book.name(),page:pn}); // logg sidebesøk til `usage`
+                    window.db?.logUsage&&window.db.logUsage({event:'page',book:book.name(),page:pn}); // log page visit to `usage`
                 }
                 ,EdPage:async()=>{
                     nGoTxt.value = book.pn();
@@ -283,7 +281,7 @@
                 }
                 ,ScrollDn:async()=>{
                     if (window.scrollY >= document.documentElement.scrollHeight-window.innerHeight - 1) {
-                        await nav.Page(book.pn() + 1); // nav.Page scroller selv til topp
+                        await nav.Page(book.pn() + 1); // nav.Page scrolls to top itself
                     }
                     else
                         window.scrollBy(0, window.innerHeight*.75);
@@ -291,32 +289,32 @@
                 }
                 // nav.gest = gestyr. Tilstandsmaskin: none | busy | up | dn | left | right | pgup | pgdn
                 ,gest:{
-                    _edge:0.02 // kant-margin som brøkdel av viewport-høyden: 0.02 = 2% fra topp/bunn
-                    ,_ratio:2 // akse-dominans: HORISONTAL krever |dx|>2·|dy|, VERTIKAL krever |dy|>2·|dx| – diagonal i midten = INGEN gest (ren native scroll)
+                    _edge:0.02 // edge margin as fraction of viewport height: 0.02 = 2% from top/bottom
+                    ,_ratio:2 // axis dominance: horizontal needs |dx|>2·|dy|, vertical needs |dy|>2·|dx|; diagonal = native scroll
                     ,ontop:()=>window.scrollY<=window.innerHeight*nav.gest._edge
                     ,onbottom:()=>window.scrollY>=document.documentElement.scrollHeight-window.innerHeight-window.innerHeight*nav.gest._edge
-                    ,suppressed:()=>_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none' // TOC/del/eksport åpen → ALDRI gest (ren native scroll)
-                    ,newState:GEST.NONE // nåværende tilstand
-                    ,lastState:GEST.NONE // forrige tilstand
-                    ,_d:0 // siste retningsnøkkel: 'dn'|'up'|'left'|'right' (0=ingen)
-                    ,_pg:0 // antall pågående sidebytter (await) – busy holdes til ferdig
+                    ,suppressed:()=>_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none' // TOC/share/export open → never gesture (native scroll)
+                    ,newState:GEST.NONE
+                    ,lastState:GEST.NONE
+                    ,_d:0 // last direction key: 'dn'|'up'|'left'|'right' (0=none)
+                    ,_pg:0 // pending page-changes (await) – stays busy until done
                     ,_t:0
-                    ,_ms:Date.now() // når newState ble satt – for ms i loggen
-                    // detectState: REN beslutning – hvilken tilstand skal vi i? Ingen bivirkninger.
-                    // FOR NÅ: kun HORISONTAL (venstre/høyre) bytter side. Vertikal (opp/ned) skroller KUN – aldri sidebytte.
+                    ,_ms:Date.now()
+                    // detectState: pure decision – which state? no side effects.
+                    // For now: only HORIZONTAL (left/right) flips pages. Vertical scrolls only – never flips.
                     ,detectState:(d,horiz,touch)=>{
                         const g=nav.gest;
-                        if (g.newState!==GEST.NONE) return g.newState; // ikke none: behold – én beslutning per gest
-                        if (horiz) return d>0?GEST.RIGHT:GEST.LEFT;    // sideveis → forrige/neste side (ENESTE sidebytte)
-                        return d>0?GEST.DN:GEST.UP;                    // vertikal → KUN skroll (PGUP/PGDN er deaktivert for nå)
+                        if (g.newState!==GEST.NONE) return g.newState; // keep – one decision per gesture
+                        if (horiz) return d>0?GEST.RIGHT:GEST.LEFT;    // sideways → prev/next page (only page flip)
+                        return d>0?GEST.DN:GEST.UP;                    // vertical → scroll only (PGUP/PGDN disabled for now)
                     }
-                    ,isPage:ns=>ns===GEST.PGUP||ns===GEST.PGDN||ns===GEST.LEFT||ns===GEST.RIGHT // sideoperasjon (krever busy/await)
-                    // setState eier ALLE tilstandsendringer + stop-deteksjonen (setTimeout)
+                    ,isPage:ns=>ns===GEST.PGUP||ns===GEST.PGDN||ns===GEST.LEFT||ns===GEST.RIGHT // page operation (needs busy/await)
+                    // setState owns all state changes + stop detection (setTimeout)
                     ,setState:(ns)=>{
                         const g=nav.gest;
                         const now=Date.now();
-                        clearTimeout(g._t); // avbryt evt. tidligere stop-deteksjon
-                        if (ns===g.newState){ // ingen endring – bare utsett stop-deteksjon (fremdeles i gest)
+                        clearTimeout(g._t); // cancel any previous stop detection
+                        if (ns===g.newState){ // no change – just defer stop detection (still in gesture)
                             if (ns!==GEST.NONE && !g.isPage(ns)) g._t=setTimeout(()=>{g._d=0; g.setState(GEST.NONE);},200);
                             return;
                         }
@@ -324,33 +322,33 @@
                         g.newState=ns;
                         console.log('wheel', g.lastState, '('+(now-g._ms)+')', '->', g.newState);
                         g._ms=now;
-                        g.stateUi(); // tilstandssymbol på sidetallet
-                        if (ns!==GEST.NONE && !g.isPage(ns)) g._t=setTimeout(()=>{g._d=0; g.setState(GEST.NONE);},200); // stopp -> none
+                        g.stateUi(); // state symbol on the page number
+                        if (ns!==GEST.NONE && !g.isPage(ns)) g._t=setTimeout(()=>{g._d=0; g.setState(GEST.NONE);},200);
                     }
-                    // unike unicode-symboler per tilstand (none = blank)
+                    // unique unicode symbol per state (none = blank)
                     ,SYMBOLS:{'none':' ','busy':'…','up':'↑','dn':'↓','left':'←','right':'→','pgup':'⇑','pgdn':'⇓'}
-                    ,stateUi:()=>{ // tilstandssymbol til venstre for sidetallet (topp-margen i #_dPage)
+                    ,stateUi:()=>{ // state symbol left of page number (top margin in #_dPage)
                         const g=nav.gest;
                         const s=g.SYMBOLS[g.newState]||' ';
                         if(window._stateUi?.sym!==s){ window._stateUi={sym:s}; window.cBook?.PageNo?.(); }
                     }
                     ,wheel:(e)=>{
                         const g=nav.gest;
-                        if(g.suppressed()){g._d=0;g.setState(GEST.NONE);return;} // TOC/del/eksport åpen: ingen gest – ren native scroll (aldri preventDefault)
+                        if(g.suppressed()){g._d=0;g.setState(GEST.NONE);return;} // TOC/share/export open: no gesture – native scroll (never preventDefault)
                         const dx=e.deltaX||0, dy=e.deltaY||0;
                         const ax=Math.abs(dx), ay=Math.abs(dy);
-                        const horiz=ax>ay*g._ratio, vert=ay>ax*g._ratio; // 2×-regel: HORISONTAL kun når |dx|>2·|dy|, VERTIKAL kun når |dy|>2·|dx|
-                        if(g.newState===GEST.NONE && !horiz&&!vert){ g._d=0; g.setState(GEST.NONE); return; } // utydelig/diagonal + INGEN pågående gest → ren native scroll (aldri sidebytte)
-                        const d=horiz?(dx>0?1:-1):vert?(dy>0?1:-1):0; // d=0 kun midt i en pågående gest (utydelig) – 2×-regelen gjelder bare den FØRSTE beslutningen
-                        const k=horiz?(d>0?'right':'left'):vert?(d>0?'dn':'up'):g._d||''; // retningsnøkkel for gest-skillet (behold retningen midt i gesten)
-                        if (k && k!==g._d) g.setState(GEST.NONE); // retningsskifte = ny gest -> none
+                        const horiz=ax>ay*g._ratio, vert=ay>ax*g._ratio; // 2× rule: horizontal only when |dx|>2·|dy|, vertical only when |dy|>2·|dx|
+                        if(g.newState===GEST.NONE && !horiz&&!vert){ g._d=0; g.setState(GEST.NONE); return; } // ambiguous/diagonal + no active gesture → native scroll (never flips)
+                        const d=horiz?(dx>0?1:-1):vert?(dy>0?1:-1):0; // d=0 only mid-gesture (ambiguous) – 2× rule applies only to first decision
+                        const k=horiz?(d>0?'right':'left'):vert?(d>0?'dn':'up'):g._d||''; // direction key for gesture split (keep direction mid-gesture)
+                        if (k && k!==g._d) g.setState(GEST.NONE); // direction reversal = new gesture -> none
                         if (k) g._d=k;
                         const prev=g.newState;
                         const ns=g.detectState(d,horiz,e.touch);
-                        g.setState(ns); // beslutning (no-op midt i gesten, reseter stop-deteksjon)
-                        const fresh=ns!==prev; // ny beslutning (overgang fra none)
-                        if (g.isPage(ns)||ns===GEST.BUSY) e.preventDefault(); // svelg momentum for sideoperasjoner (+ busy)
-                        if (fresh&&g.isPage(ns)){ // utfør sidebytte ÉN gang, await, deretter busy
+                        g.setState(ns); // decision (no-op mid-gesture, resets stop detection)
+                        const fresh=ns!==prev; // fresh decision (transition from none)
+                        if (g.isPage(ns)||ns===GEST.BUSY) e.preventDefault(); // swallow momentum for page ops (+ busy)
+                        if (fresh&&g.isPage(ns)){ // flip page once, await, then busy
                             const done=()=>{ g._pg--; if(!g._pg&&g.newState===ns) g.setState(GEST.BUSY); };
                             g._pg++;
                             if (ns===GEST.PGDN) nav.ScrollDn().finally(done);
@@ -362,8 +360,8 @@
                 }
                 ,ShowToc:async (s=_dToc.style.display=='none')=>{
                     if(s){
-                        if(!_dTocList.childElementCount)_dTocList.innerHTML=await nav.Toc(); // bygg TOC bare ÉN gang – ingen reset ved re-enter
-                        // oppdater 'cur'-merking til nåværende side (uten gjenoppbygging, så spilleren ikke resettes)
+                        if(!_dTocList.childElementCount)_dTocList.innerHTML=await nav.Toc(); // build TOC only once – no reset on re-enter
+                        // update 'cur' marker to current page without rebuild (keeps player)
                         const cp=book.pn(); let curPage=0;
                         [..._dTocList.querySelectorAll('li')].forEach(li=>{const p=+li.dataset.p||0;if(p&&p<=cp&&p>curPage)curPage=p;});
                         _dTocList.querySelectorAll('.cur').forEach(a=>a.classList.remove('cur'));
@@ -374,7 +372,7 @@
                     uishowBlock(_dToc,s)&&nav.DisButtons();
                     uishowBlock(_dBook,!s)&&nav.UpdButtons();
                     nav.Able(nLg,!s); // nLg deaktivert i TOC
-                    if(s){const cur=_dTocList.querySelector('.cur'); if(cur)cur.scrollIntoView({block:'center'});} // vis nåværende side
+                    if(s){const cur=_dTocList.querySelector('.cur'); if(cur)cur.scrollIntoView({block:'center'});}
                 }
                 ,TocPage:async n=>{
                     nav.ShowToc();
@@ -388,7 +386,7 @@
                         if(f){f.src='about:blank';f.style.display='none';f.title='';}
                         if(c)c.style.display='none';
                     };
-                    // ÉN felles spiller som bor INLINE under kapittelet i TOC + ÉN 🎶-stoppknapp
+                    // ONE shared player inline under the chapter in TOC + ONE 🎶 stop button
                     let f=document.getElementById('_spPlayer');
                     if(!f){
                         f=document.createElement('iframe');
@@ -409,21 +407,21 @@
                     f.dataset.u=url;
                     e.style.setProperty('visibility','hidden','important');
                     e.setAttribute('data-spotify-play-active','');
-                    // spilleren bor i TOC – avspilling fra siden åpner TOC så spilleren vises der
+                    // player lives in TOC – playing from page opens TOC so it's visible
                     if(!toc)await nav.ShowToc(true);
                     f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
                     if(f.src==='about:blank'){f.style.border='0.2vw solid #c00';f.title='Music unavailable';}else{f.style.border='0';f.title='';}
-                    f.style.display='block'; // spilleren kan ha vært skjult av 🎶 – vis den igjen
+                    f.style.display='block'; // player may have been hidden by 🎶 – show again
                     c.style.display='block';
-                    window.spAnchor?.(); // spilleren ligger inline under kapittelet i TOC (fint utseende)
+                    window.spAnchor?.(); // anchor player inline under chapter row (nice look)
                 }
                 ,Toc:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
                     const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
-                    _dTocTitle.textContent=(await cBook.data.title(want==='no'))||'"Liv Krevde Død"'; // boktittel fra cover-sliden, språkbevisst
+                    _dTocTitle.textContent=(await cBook.data.title(want==='no'))||'"Liv Krevde Død"'; // book title from cover slide, language-aware
                     let chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
                     let subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
-                    // Skjul N/A-oppføringer: tier som er LÅST i nåværende modus (premium↔freemium)
+                    // hide N/A entries: tier locked in current mode (premium↔freemium)
                     const locked=book.prem._?'freemium':'premium';
                     const ok=async rows=>{
                         const out=[];
@@ -433,7 +431,7 @@
                                 const page=await cBook.pdf.getPage(b.page), tc=await page.getTextContent();
                                 const it=tc.items.find(i=>i.str.trim()===b.text)||tc.items.slice().sort((a,b)=>(b.height||0)-(a.height||0))[0];
                                 let fam=it?(await cBook.FontName(it.fontName,page))||'':'';
-                                if(it&&fam===it.fontName){ // fonts ikke lastet ennå → last via liten offscreen-render
+                                if(it&&fam===it.fontName){ // fonts not loaded yet → load via small offscreen render
                                     try{
                                         const vp=page.getViewport({scale:0.1});
                                         const c=document.createElement('canvas');c.width=Math.max(1,Math.round(vp.width));c.height=Math.max(1,Math.round(vp.height));
@@ -444,7 +442,7 @@
                                 tier=cBook.FontTier(fam);
                                 (cBook._tierCache=cBook._tierCache||{})[`${b.page}|${b.text}`]=tier;
                             }
-                            if(tier!=='comment'&&tier!==locked)out.push(b); // kommentarer skjules alltid
+                            if(tier!=='comment'&&tier!==locked)out.push(b); // comments always hidden
                         }
                         return out;
                     };
@@ -458,8 +456,8 @@
                     };
                     const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[`${b.lang}:${b.page}`,resolveSpot(b.url)]));
                     const musicUrl=page=>music.get(`${want}:${page}`)||'';
-                    const cur=book.pn(); // nåværende side
-                    let curPage=0; // dypeste overskrift på/foran nåværende side
+                    const cur=book.pn();
+                    let curPage=0; // deepest heading at/before current page
                     for(let i=0;i<chaps.length;i++){
                         const c=chaps[i], end=chaps[i+1]?.page??1e9;
                         if(c.page<=cur)curPage=c.page;
@@ -472,47 +470,46 @@
                         return `<li class="chap" data-p="${c.page}">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li data-p="${s.page}">${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
                 }
-                // PIN-kode → premium: verifiseres mot Supabase-tabellen `codes` (dtfrom<=now<=dtto).
-                // Senere: hash til en mem-variabel som huskes på tvers av sesjoner, ÉN gang om gangen.
+                // PIN → premium: verified against Supabase 'codes' (dtfrom<=now<=dtto); future: hash to a remembered var
                 ,PremToggle:()=>{
-                    if(book.prem._){nav.memSet('code','');return book.prem.L(false);} // premium → gratis: slett lagret kode
-                    if(nPin.style.display!='none')return uishow(nPin,false); // koden er synlig → trykk på 🔓 igjen lukker den (avbryt)
-                    nav.PinOpen(); // gratis → premium: be om PIN
+                    if(book.prem._){nav.memSet('code','');return book.prem.L(false);} // premium → free: delete stored code
+                    if(nPin.style.display!='none')return uishow(nPin,false); // PIN visible → 🔓 again closes it (abort)
+                    nav.PinOpen(); // free → premium: ask for PIN
                 }
                 ,PinOpen:()=>{
                     nPin.value='';
                     uishow(nPin,true);
-                    setTimeout(()=>{nPin.focus();nPin.select();},10); // mousedown → fokuser etterpå (ellег knappen stjeler fokus)
+                    setTimeout(()=>{nPin.focus();nPin.select();},10); // focus after mousedown (else button steals focus)
                 }
                 ,Pin:async ()=>{
                     const v=nPin.value.replace(/\D/g,'').slice(0,6);
                     nPin.value=v;
-                    if(v.length<6)return; // sjekk etter hvert tastetrykk – ingen Enter (PIN!)
-                    uishow(nPin,false); // lukk ved 6 siffer
+                    if(v.length<6)return; // check on each keystroke – no Enter (PIN!)
+                    uishow(nPin,false); // close at 6 digits
                     console.log('[PIN] sjekker',v);
-                    const rr=await nav.CodeValid(v); // ny db.js gir {ok,reason} – gammel deployet gir bool
-                    const r=rr&&typeof rr==='object'?rr:{ok:!!rr,reason:rr?'':'error'}; // normaliser bool → objekt
+                    const rr=await nav.CodeValid(v); // new db.js returns {ok,reason} – old deployed returns bool
+                    const r=rr&&typeof rr==='object'?rr:{ok:!!rr,reason:rr?'':'error'}; // normalize bool → object
                     console.log('[PIN]',v,r);
-                    if(r.ok){book.prem.L(true); // gyldig kode (i `codes` og innenfor dtfrom..dtto) → premium
-                        nav.memSet('code', v); // husk koden – re-valideres ved neste besøk (spør på nytt hvis full andre steder)
-                        window.db?.logUsage&&window.db.logUsage({event:'premium_activate',code:v,book:book.name(),page:cBook.pn});} // logg bruken til `usage`
-                    else{ // ikke gyldig → tydelig melding + åpne på nytt for nytt forsøk
-                        nav.PinMsg(r.reason); // reason-kode → forståelig tekst (se PinMsg)
+                    if(r.ok){book.prem.L(true); // valid code → premium
+                        nav.memSet('code', v); // remember code – re-validated next visit (re-ask if full elsewhere)
+                        window.db?.logUsage&&window.db.logUsage({event:'premium_activate',code:v,book:book.name(),page:cBook.pn});} // log usage to 'usage'
+                    else{ // invalid → clear message + reopen for retry
+                        nav.PinMsg(r.reason);
                         uishow(nPin,true);
                         nPin.focus();nPin.select();
                     }
                 }
                 ,CodeValid:code=>window.db?.codeValid&&window.db.codeValid(code,book.name())
-                ,StillValid:code=>window.db?.stillValid&&window.db.stillValid(code,book.name()) // «er jeg fortsatt OK?» (restore)
-                ,BookInterval:async()=>window.db?.bookInterval?await window.db.bookInterval(book.name()):60 // recheck-intervall (sek) for boken
-                ,RecheckPin:async()=>{ // bakgrunns-recheck (hvert 5. sek): skru NED til freemium hvis andre overtok – INGEN automatisk re-aktivering
+                ,StillValid:code=>window.db?.stillValid&&window.db.stillValid(code,book.name()) // "am I still OK?" (restore)
+                ,BookInterval:async()=>window.db?.bookInterval?await window.db.bookInterval(book.name()):60 // book recheck interval (s)
+                ,RecheckPin:async()=>{ // background recheck: drop to freemium if others took over – NO auto re-activation
                     const code=await nav.memGet('code','');
-                    if(!code)return; // ingen lagret kode – ingenting å sjekke
+                    if(!code)return;
                     const r=await nav.StillValid(code);
-                    if(r===undefined||r===null)return; // db.js ikke tilgjengelig – ikke konkluder
-                    if(!(r===true||!!(r&&r.ok))&&book.prem._)book.prem.L(false); // andre overtok → freemium (premium tastes inn manuelt igjen via 🔓)
+                    if(r===undefined||r===null)return; // db.js unavailable – don't conclude
+                    if(!(r===true||!!(r&&r.ok))&&book.prem._)book.prem.L(false); // others took over → freemium (re-enter premium manually via 🔓)
                 }
-                ,PinMsg:r=>{ // reason-kode → forståelig melding, vis ved PIN-feltet i 4 sek (auto-skjules)
+                ,PinMsg:r=>{ // reason code → readable message shown at PIN field for 4s (auto-hide)
                     const msg={connection:"Couldn't reach the license server – check your internet and try again"
                               ,error:'The license server is having problems – please try again in a moment'
                               ,noconfig:'The license server is having problems – please try again in a moment'
@@ -522,19 +519,19 @@
                     clearTimeout(nPinMsg._t);
                     nPinMsg._t=setTimeout(()=>nPinMsg.style.display='none',4000);
                 }
-                // inaktivitet: skjul navigasjon etter 5s uten trykk/klikk – behold musikk + TOC (nTc)
+                // inactivity: hide nav after 5s idle – keep music + TOC (nTc)
                 ,_idleT:0
                 ,uiHidden:false
                 ,uiHide:on=>{
                     nav.uiHidden=on;
                     document.body.classList.toggle('hideNav', on);
-                    if(!on) nav.idleReset(); // vis → start timeren på nytt
+                    if(!on) nav.idleReset();
                 }
                 ,idleReset:()=>{
                     clearTimeout(nav._idleT);
                     nav._idleT=setTimeout(()=>{
                         if(nav.uiHidden)return;
-                        if(_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none'){ nav.idleReset(); return; } // modal åpen – vent
+                        if(_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none'){ nav.idleReset(); return; } // modal open – wait
                         nav.uiHide(true);
                     },3000);
                 }
@@ -548,20 +545,20 @@
                     nSh.style.bottom=nSh.style.left=!h?'0':'';
                     nSh.classList.toggle('floatingControl', !h);
 
-                    nav.nShFit(); // skjul nSh kun hvis nPv2/nPv3 overlapper den visuelt (ellers vis nSh)
+                    nav.nShFit(); // hide nSh only if nPv2/nPv3 overlap it visually
 
                     uishow(nPr,uishow(nLg,uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
                         ))))))))));
-                    // nTc: fast knapp midt på venstre side når menyen er skjult
+                    // nTc: fixed button mid-left when menu hidden
                     if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');
-                        // nPr: flytende 🔓 90% ned (som _spCollapse på 60%), kun i freemium-modus
+                        // nPr: floating 🔓 at 70%, only in freemium mode
                         nPr.style.position='fixed';nPr.style.left='0';nPr.style.top='70%';nPr.style.transform='translateY(-50%)';nPr.style.filter='grayscale(1)';nPr.classList.add('floatingControl');
                         nPr.style.display=book.prem._?'none':'inline';}
                     else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform=nTc.style.filter='';nTc.classList.remove('floatingControl');
                         nPr.style.position=nPr.style.left=nPr.style.top=nPr.style.transform=nPr.style.filter='';nPr.classList.remove('floatingControl');}
-                    if(cBook.page){cBook.Play();cBook.PageNo();} // siden flytter seg - flytt knapper og sidetall med
+                    if(cBook.page){cBook.Play();cBook.PageNo();} // page moved – move buttons and page number with it
                 }
                 ,btSimul:(a,i)=>{
                     if(i>=a.length) return;
@@ -589,39 +586,34 @@
                     if(link&&book.pn()!==link.page)await nav.Page(link.page);
                 }
                 ,memGet:async(k,d)=>{
-                    const p=k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`; // per-bok-namespace (unntatt selve 'book'-nøkkelen)
-                    return localStorage.getItem(p) ?? localStorage.getItem(`LdD.${k}`) ?? d; // les ny → fallback til gammel flat nøkkel
+                    const p=k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`; // per-book namespace (except the 'book' key itself)
+                    return localStorage.getItem(p) ?? localStorage.getItem(`LdD.${k}`) ?? d; // read new → fallback to legacy flat key
                 }
-                ,memSet:async(k,v)=>{localStorage.setItem(k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`, v);return v} // skriv ALLTID ny per-bok-nøkkel
+                ,memSet:async(k,v)=>{localStorage.setItem(k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`, v);return v} // always write the new per-book key
                 ,Loaded:async (sp=new URLSearchParams(window.location.search))=>{
-                    _busy=true; // undertrykk auto-språkbytte under lasting
-                    uisz(); // Set initial size
+                    _busy=true; // suppress auto-lang-swap during load
+                    uisz();
                     uishow(iLoading, true)
                     let bookU=sp.get('book');
                     if(bookU) nav.memSet('book', bookU);
                     else bookU=await nav.memGet('book', 'b/LifeDemandedDeath.pdf');
-                    book.src=bookU; // sett FØR per-bok-state leses nedenfor (page/Y/prem) – book.name() brukes som localStorage-namespace
+                    book.src=bookU; // set before per-book state is read – book.name() is the localStorage namespace
                     let bookT=parseInt(sp.get('bookT')) || parseInt(await nav.memGet('book type', bookU?.indexOf('.pdf')!=-1))
                         ,page=parseInt(sp.get('page')) || parseInt(await nav.memGet('page', 1))
                         ,scY=parseInt(sp.get('y')) || parseInt(await nav.memGet('Y', window.scrollY));
-                    // Premium/freemium SKAL ALDRI blokkere/forsinke første visning:
-                    // 1) Les lagret modus ÉN gang (billig localStorage-lesing) og sett den FØR første render,
-                    //    så FØRSTE maling allerede er i riktig modus – ingen re-render, ingen flimmer.
-                    // 2) book.prem.Load() kjører IKKE på den blokkerende banen (fjernet nedenfor).
+                    // Premium/freemium must NEVER block/delay first view: read stored mode once before first render (no re-render/flash); prem.Load() stays off the blocking path.
                     book.prem._=(await nav.memGet('prem','false'))=="true";
-                    book.prem.ui(); // kun knappetekst (👑/🔓) – ingen re-render / TOC-arbeid
-                    // === LAST HOVEDDOKUMENTET direkte (ingen .1.pdf-forhåndsvisning – JPG-last kan legges til senere) ===
-                    await book.s(1,bookU,page); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
-                    //await nav.Page(page);
-                    await uisz(); // AWAIT renderen (offscreen → ÉN samlet bytte) – full-filen er ferdig FØR spinneren skjules
-                    uishow(_iBook, false); // bakgrunnsbilde – skjules NÅR siden er malt på lerretet (dekker ellers siden i vinduet frem til slutten av Loaded)
+                    book.prem.ui(); // button text only (👑/🔓) – no re-render / TOC work
+                    // Load the main document directly (no .1.pdf preview; JPG loading may be added later)
+                    await book.s(1,bookU,page);
+                    await uisz(); // await render (offscreen → one swap) – full file done before spinner hides
+                    uishow(_iBook, false); // bg image – hide once page painted (else covers book until Loaded ends)
                     await book.hAlign.Load();
-                    // MERK: book.prem.Load() er bevisst FJERNET fra lastesekvensen – premium/freemium
-                    // utføres aldri før brukeren har sett siden for første gang (modusen er allerede satt over).
+                    // Note: book.prem.Load() deliberately removed from load sequence – never runs before first view (mode already set above)
                     const commands=sp.get('c')?.split(',') || [];
                     const musicCommand=commands.find(c=>c.startsWith('m')&&c!=='menu');
                     if(musicCommand) {
-                        scY=0; // Navigasjon til musikk skal alltid scrolle til topp
+                    scY=0; // music nav always scrolls to top
                         await nav.MusicPage(musicCommand);
                     }
                     nav.btSimul(commands, 0);
@@ -629,16 +621,14 @@
                     nav.UpdButtons();
                     uishow(iLoading, false)
                     _busy=false;
-                    // Bakgrunns-rekonsiliering ETTER at siden er synlig – normalt en no-op (modusen ble satt
-                    // før første render); blokkerer/forstyrrer aldri første visning.
+                    // Background reconcile after page visible – normally a no-op; never blocks first view
                     setTimeout(()=>{book.prem.Load().catch(e=>console.error('[prem]',e));},0);
-                    // Bakgrunns-recheck av lagret PIN: skru ned til freemium hvis andre overtok (ingen automatisk re-aktivering).
-                    // Intervall = bokens premiumCheckInterval fra `books`-tabellen (default 60 s).
+                    // Background PIN recheck: drop to freemium if others took over; interval = book's premiumCheckInterval (default 60s)
                     const premSec=await nav.BookInterval() ?? 60;
                     setInterval(()=>{nav.RecheckPin().catch(e=>console.error('[recheck]',e));},premSec*1000);
                 }
             }
-            const spAnchor=(el)=>{ // spilleren ligger INLINE under kapittel-raden i TOC – TOC bygges bare én gang, så den overlever re-enter uten reset
+            const spAnchor=(el)=>{ // player sits inline under the chapter row in TOC – TOC builds once so it survives re-enter
                 const f=el||document.getElementById('_spPlayer');
                 if(!f||f.style.display==='none'||!f.dataset.u)return;
                 const b=[...document.querySelectorAll('#_dTocList a.toc-play')].find(a=>a.dataset.u===f.dataset.u);
@@ -649,33 +639,33 @@
             window.spTgl=(...args)=>nav.spTgl(...args);
             async function loaded() {
                 nav.menu(false);
-                // auto-språkbytte ved horisontal skrolling er fjernet – språk byttes kun med nLg-knappen
-                window.addEventListener('wheel',nav.gest.wheel,{passive:false}); // gest: beslutning én gang per skroll; svelg momentum etter sideskift
-                // touch (iPhone): iOS gir IKKE wheel ved touch-scroll → oversett til syntetiske wheel-hendelser for samme gest-maskin
-                let _tX=0,_tY=0,_tA=0,_tSX=0,_tSY=0; // _tA: låst akse (1=horisontal, 0=utydelig/native, -1=vertikal)
+                // auto lang-swap on horizontal scroll removed – language only via nLg button
+                window.addEventListener('wheel',nav.gest.wheel,{passive:false}); // gesture: one decision per scroll; swallow momentum after page change
+                // touch (iPhone): iOS gives no wheel on touch-scroll → translate to synthetic wheel events for the same gesture machine
+                let _tX=0,_tY=0,_tA=0,_tSX=0,_tSY=0; // _tA: locked axis (1=horizontal, 0=ambiguous/native, -1=vertical)
                 document.addEventListener('touchstart', e=>{
                     const t=e.touches[0]; _tX=t.clientX; _tY=t.clientY; _tA=0; _tSX=0; _tSY=0;
                 }, {passive:true});
                 document.addEventListener('touchmove', e=>{
                     const g=nav.gest;
-                    if(g.suppressed()){_tA=0;_tSX=0;_tSY=0;_tX=e.touches[0].clientX;_tY=e.touches[0].clientY;return;} // TOC/modal åpen: ingen gest – ren native scroll
+                    if(g.suppressed()){_tA=0;_tSX=0;_tSY=0;_tX=e.touches[0].clientX;_tY=e.touches[0].clientY;return;} // TOC/modal open: no gesture – native scroll
                     const t=e.touches[0], dx=t.clientX-_tX, dy=t.clientY-_tY;
                     _tX=t.clientX; _tY=t.clientY;
-                    if(_tA===0){ _tSX+=dx; _tSY+=dy; if(Math.abs(_tSX)>30||Math.abs(_tSY)>30) _tA=Math.abs(_tSX)>Math.abs(_tSY)*nav.gest._ratio?1:Math.abs(_tSY)>Math.abs(_tSX)*nav.gest._ratio?-1:0; } // lås akse kun ved 2×-dominans (>30px); diagonal → 0 = ingen gest (ren native scroll)
-                    if(_tA===1){ // horisontal sveip → sidebytte (venstre/høyre)
+                    if(_tA===0){ _tSX+=dx; _tSY+=dy; if(Math.abs(_tSX)>30||Math.abs(_tSY)>30) _tA=Math.abs(_tSX)>Math.abs(_tSY)*nav.gest._ratio?1:Math.abs(_tSY)>Math.abs(_tSX)*nav.gest._ratio?-1:0; } // lock axis only at 2× dominance (>30px); diagonal → 0 = no gesture (native scroll)
+                    if(_tA===1){ // horizontal swipe → page flip
                         if(g.isPage(g.newState)||g.newState===GEST.BUSY) e.preventDefault();
                         nav.gest.wheel({ deltaX:dx, deltaY:0, touch:true, preventDefault:()=>{} });
-                    } // vertikal (_tA=-1): RØR IKKE maskinen – ren native scroll (ingen hang, ingen sidebytte)
+                    } // vertical (_tA=-1): don't touch machine – native scroll
                 }, {passive:false});
                 document.addEventListener('mousedown', (e)=>{
-                    if(e.target.closest('#_spCollapse, #_dPlay, #_spPlayer, .toc-play'))return; // musikk – vis IKKE navigasjonen
-                    nav.uiHide(false); // klikk på bok/tekst → vis navigasjonen igjen
+                    if(e.target.closest('#_spCollapse, #_dPlay, #_spPlayer, .toc-play'))return; // music – don't show nav
+                    nav.uiHide(false); // click on book/text → show nav again
                 }, true);
-                nav.idleReset(); // start inaktivitets-timeren (5s)
-                await nav.Loaded(); // Load book, adjust size and update buttons
+                nav.idleReset(); // start inactivity timer (5s)
+                await nav.Loaded(); // load book, adjust size and update buttons
             }
             let _rsz;
-            window.onresize=()=>{clearTimeout(_rsz);_busy=true;_rsz=setTimeout(()=>{uisz();nav.UpdButtons();_busy=false},250)}; // vent til ro før resize (iOS)
+            window.onresize=()=>{clearTimeout(_rsz);_busy=true;_rsz=setTimeout(()=>{uisz();nav.UpdButtons();_busy=false},250)}; // wait for quiet before resize (iOS)
             window.onscroll=uiscroll;
         </script>
     </head>
@@ -703,7 +693,7 @@
             <img id="iLoading" src="aigap.webp" style="z-index:4;position:fixed;left:47vw;top:47vh;animation:rotate 2s linear infinite;width:6vw">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
             <img id="_iBook" style="z-index:3;position:fixed;left:0vw;top:0vh;width:98vw">
-            <canvas id="_cBook"></canvas> <!-- ◀️◄🫲 / ▶️►🫱 / ⏫▲☝️ -->
+            <canvas id="_cBook"></canvas>
                 <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;☝️&nbsp;</button>
                 <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;☝️&nbsp;</button>
                 <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;🫱</button>

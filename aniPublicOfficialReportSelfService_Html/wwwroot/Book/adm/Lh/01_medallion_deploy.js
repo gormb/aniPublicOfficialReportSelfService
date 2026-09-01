@@ -9,18 +9,18 @@ const LAYERS = [
 ];
 
 async function init() {
-  // Kortlenke til Supabase SQL-editor på riktig DB
+  // Short link to Supabase SQL editor on the right DB
   const edit = document.getElementById('sqlEdit');
   edit.href = 'https://gormb.github.io/_/?eds';
   edit.textContent = 'Åpne Supabase SQL-editor ↗';
 
-  // Én kilde: 01_medallion_deploy.sql – del opp etter lag-merker
+  // One source: 01_medallion_deploy.sql – split by layer markers
   let raw;
   try { raw = await (await fetch('01_medallion_deploy.sql?v=' + Date.now())).text(); }
   catch (e) { document.getElementById('layers').innerHTML = `<p class="exp">Kunne ikke laste 01_medallion_deploy.sql — ${esc(String(e))}</p>`; return; }
 
-  // del opp etter lag-merker (hele merkelinjen beholdes – den er en gyldig kommentar)
-  // NB: non-capturing (?:...) i lookahead – ellers putter split de fangede ordene (SILVER/GOLD) inn i resultatet
+  // split by layer markers (keep the whole marker line – it's a valid comment)
+  // NB: non-capturing (?:...) in lookahead – else split puts the captured words (SILVER/GOLD) into the result
   const parts = { bronze:'', silver:'', gold:'' };
   let cur = null;
   raw.split(/\n(?=-- (?:BRONZE|SILVER|GOLD) LAYER)/).forEach(seg => {
@@ -28,7 +28,7 @@ async function init() {
     cur = m ? m[1].toLowerCase() : cur;
     if (cur) parts[cur] += '\n' + seg;
   });
-  // hvert lag med egen schema-create → kjørbart alene
+  // each layer gets its own schema-create → runnable alone
   const layerSql = {};
   Object.keys(parts).forEach(k => layerSql[k] = mk(k, parts[k]));
   const all = LAYERS.map(l => layerSql[l.key]).join('\n\n');
