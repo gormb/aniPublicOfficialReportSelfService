@@ -35,12 +35,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*.pdf' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*.pdf' \
-                  'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*.md' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*.md' \
-                  'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*.json' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*.json' \
-                  'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*_NO_FREE' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*_NO_FREE' \
-                  'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*_NO_PREM' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*_NO_PREM' \
-                  'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*_EN_FREE' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*_EN_FREE' \
-                  'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*_EN_PREM' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*_EN_PREM'
+                  'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*.md' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*.md'
           
           if git diff --staged --quiet; then
             echo "No book updates from Google."

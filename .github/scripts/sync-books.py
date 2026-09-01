@@ -98,49 +98,10 @@ def _pdf_style(doc):
     s['body'] = max(hist, key=hist.get) if hist else 10
     return s
 
-def _line_url(doc, pno, line, links):
-    """Spotify/lenke-URL for en linje: inline-URL-tekst, eller lenke-annotasjon som overlapper."""
-    text = ''.join(pt['text'] for pt in line['parts'])
-    m = _SPOT_RE.search(text)
-    if m:
-        return m.group(0)
-    x0 = min(pt['x'] for pt in line['parts'])
-    y0 = min(pt['y'] for pt in line['parts'])
-    x1 = max(pt['x'] + len(pt['text']) * pt['size'] * 0.5 for pt in line['parts'])
-    y1 = y0 + max(pt['size'] for pt in line['parts'])
-    for lk in links:
-        if not lk.get('uri'):
-            continue
-        r = lk['from']
-        if r.x0 <= x1 and r.x1 >= x0 and r.y0 <= y1 and r.y1 >= y0:
-            return lk['uri']
-    return None
-
-def _tier_text(pages, tiers, with_markers=False, include_comment=False):
-    """Bygg .md fra sider; tiers=None = alle (inkl. kommentarer)."""
-    out = []
-    for pg in pages:
-        out.append(f'<!-- page {pg["page"]} -->')
-        for line in pg['lines']:
-            seg = []
-            for pt in line['parts']:
-                tier = _font_tier(pt['font'])
-                if _is_white(pt['color']):
-                    continue
-                if not include_comment and tier == 'comment':
-                    continue
-                if tiers is not None and tier not in tiers:
-                    continue
-                seg.append(f'[{tier}] {pt["text"]}' if with_markers and tier != 'common' else pt['text'])
-            if seg:
-                out.append(' '.join(seg))
-        out.append('')
-    return '\n'.join(out)
-
 def _data(doc, style):
     """Port av cBook.data.get(): strukturerte blokker (chapter/sub/paragraph/link) per side.
     Kapittel vs. underkapittel avgjøres av Y-POSISJON på siden (chapY/subY fra template-sliden),
-    ikke bare skriftstørrelse – som i LdD.js."""
+    ikke bare skriftstørrelse – som i LdD.js. Paragraphs beholder spans (for tier-filtrering)."""
     n = doc.page_count
     chapH = style.get('chapH') or 16
     chapY = style.get('chapY') or -1
@@ -178,36 +139,35 @@ def _data(doc, style):
                         lk = l
                         break
                 m = _SPOT_RE.search(text)
+                tier = _font_tier(sp['font'])
+                def _spn():
+                    return {'text': text, 'tier': tier, 'y': sp['y'], 'x': sp['x'],
+                            'size': sp['size'], 'color': sp['color']}
                 if lk or m:
                     if cur:
                         out.append(cur); cur = None
                     url = lk['uri'] if lk else m.group(0)
                     out.append({'type': 'link', 'page': pno + 1, 'lang': lang, 'text': text,
                                 'url': url, 'spotify': bool(_SPOT_RE.search(url)),
-                                'font': sp['font'], 'tier': _font_tier(sp['font'])})
+                                'tier': tier, 'y': sp['y']})
                 elif coverH and sp['size'] >= coverH * 0.85:
                     if cur:
                         out.append(cur); cur = None
-                    out.append({'type': 'p', 'page': pno + 1, 'lang': lang, 'text': text,
-                                'font': sp['font'], 'tier': _font_tier(sp['font'])})
+                    out.append({'type': 'p', 'page': pno + 1, 'lang': lang, 'spans': [_spn()]})
                 elif _near(sp['size'], chapH, tolH):
                     if cur:
                         out.append(cur); cur = None
                     y = sp['y']
-                    if _near(y, chapY, tolY):
-                        out.append({'type': 'chapter', 'page': pno + 1, 'lang': lang, 'text': text,
-                                    'font': sp['font'], 'tier': _font_tier(sp['font'])})
-                    elif _near(y, subY, tolY):
-                        out.append({'type': 'sub', 'page': pno + 1, 'lang': lang, 'text': text,
-                                    'font': sp['font'], 'tier': _font_tier(sp['font'])})
+                    typ = 'chapter' if _near(y, chapY, tolY) else 'sub' if _near(y, subY, tolY) else 'p'
+                    if typ == 'p':
+                        out.append({'type': 'p', 'page': pno + 1, 'lang': lang, 'spans': [_spn()]})
                     else:
-                        out.append({'type': 'p', 'page': pno + 1, 'lang': lang, 'text': text,
-                                    'font': sp['font'], 'tier': _font_tier(sp['font'])})
+                        out.append({'type': typ, 'page': pno + 1, 'lang': lang, 'text': text,
+                                    'tier': tier, 'y': y})
                 elif cur:
-                    cur['text'] += ' ' + text
+                    cur['spans'].append(_spn())
                 else:
-                    cur = {'type': 'p', 'page': pno + 1, 'lang': lang, 'text': text,
-                           'font': sp['font'], 'tier': _font_tier(sp['font'])}
+                    cur = {'type': 'p', 'page': pno + 1, 'lang': lang, 'spans': [_spn()]}
             if cur:
                 out.append(cur)
     return out
@@ -241,40 +201,68 @@ def _better_song(a, b):
         return not ai  # foretrekk beskrivende tittel over den nakne URL-en
     return len(a or '') > len(b or '')
 
-def _toc_lines(data, lang, keep, title):
+_END_RE = re.compile(r'[.?!]["»]?$')
+
+def _para_lines(spans, keep):
+    """Slå spans til linjer (etter y), og koble innrykkede linjer til avsnitt
+    (linjer som slutter på .!? avslutter avsnittet) – stripper ekstra newlines.
+    Hvit tekst og spans utenfor `keep` hoppes over."""
+    grouped = []
+    for sp in sorted(spans, key=lambda s: (s['y'], s['x'])):
+        if sp['tier'] not in keep or _is_white(sp.get('color')):
+            continue
+        if grouped and abs(grouped[-1][0] - sp['y']) < (sp.get('size') or 10) * 0.6:
+            grouped[-1][1].append(sp)
+        else:
+            grouped.append([sp['y'], [sp]])
+    paras, cur = [], []
+    for _, grp in grouped:
+        txt = ' '.join(s['text'] for s in sorted(grp, key=lambda s: s['x']))
+        cur.append(txt)
+        if _END_RE.search(txt):
+            paras.append(' '.join(cur))
+            cur = []
+    if cur:
+        paras.append(' '.join(cur))
+    return paras
+
+def _md_lines(data, lang, keep, title):
     lines = [f'# {title}'] if title else ['# TOC']
-    chaps = [b for b in data if b.get('type') == 'chapter' and b.get('lang') == lang and b.get('tier') in keep]
-    subs = [b for b in data if b.get('type') == 'sub' and b.get('lang') == lang and b.get('tier') in keep]
     songs = {}
     for b in data:
         if b.get('type') == 'link' and b.get('spotify') and b.get('lang') == lang:
             k = (b['page'], b['url'])
             if k not in songs or _better_song(b['text'], songs[k]['text']):
                 songs[k] = {'text': b['text'], 'url': b['url']}
-    def song_lines(page):
-        return [f"🎵 {s['text']} ({s['url']}) — p. {page}"
-                for (p, _), s in sorted(songs.items()) if p == page]
-    for i, c in enumerate(chaps):
-        nxt = chaps[i + 1]['page'] if i + 1 < len(chaps) else 10 ** 9
-        lines.append(f'## {c["text"]} — p. {c["page"]}')
-        lines.extend(song_lines(c['page']))
-        for s in (x for x in subs if c['page'] <= x['page'] < nxt):
-            lines.append(f'### {s["text"]} — p. {s["page"]}')
-            lines.extend(song_lines(s['page']))
+    by_page = {}
+    for (p, _), s in songs.items():
+        by_page.setdefault(p, []).append(s)
+    for b in data:
+        if b.get('lang') != lang:
+            continue
+        t = b['type']
+        if t == 'chapter' and b['tier'] in keep:
+            lines.append(f'## {b["text"]} — p. {b["page"]}')
+            lines.extend(f"🎵 {s['text']} ({s['url']}) — p. {b['page']}" for s in by_page.get(b['page'], []))
+        elif t == 'sub' and b['tier'] in keep:
+            lines.append(f'### {b["text"]} — p. {b["page"]}')
+            lines.extend(f"🎵 {s['text']} ({s['url']}) — p. {b['page']}" for s in by_page.get(b['page'], []))
+        elif t == 'p':
+            lines.extend(_para_lines(b['spans'], keep))
     return lines
 
-def _toc_files(base, doc, style, data):
+def _md_files(base, doc, style, data):
     for lang, label in (('no', 'NO'), ('en', 'EN')):
-        title = _title(doc, style, lang) or 'Innholdsfortegnelse'
+        title = _title(doc, style, lang) or 'TOC'
         for mode, keep in (('FREE', {'free', 'common'}), ('PREM', {'premium', 'common'})):
-            lines = _toc_lines(data, lang, keep, title)
-            with open(f'{base}_{label}_{mode}', 'w', encoding='utf-8') as f:
+            lines = _md_lines(data, lang, keep, title)
+            with open(f'{base}_{label}_{mode}.md', 'w', encoding='utf-8') as f:
                 f.write('\n'.join(lines) + '\n')
 
 def extract(pdf_path):
-    """Lag tiered tekst + 4 TOC ved siden av en bok-PDF:
-    name.md (common+premium), name_free.md (common+free), name_tech.md (alt, markert),
-    name.json (alt innhold), name_NO_FREE/_NO_PREM/_EN_FREE/_EN_PREM (kapittel/sub + sanger)."""
+    """Lag 4 tiered .md-bøker ved siden av en bok-PDF:
+    name_NO_FREE.md, name_NO_PREM.md, name_EN_FREE.md, name_EN_PREM.md
+    (tittel + kapittel/underkapittel + sanger + brødtekst, tier-filtrert)."""
     try:
         import pymupdf as _fitz
     except ImportError:
@@ -285,21 +273,10 @@ def extract(pdf_path):
             return
     base = os.path.splitext(pdf_path)[0]
     doc = _fitz.open(pdf_path)
-    n = doc.page_count
     style = _pdf_style(doc)
-    pages = [{'page': pno + 1, 'lines': _page_lines(doc, pno)} for pno in range(max(1, n - 4))]
     data = _data(doc, style)  # port av cBook.data.get(): kapittel/sub via y-posisjon
-    with open(base + '.md', 'w', encoding='utf-8') as f:
-        f.write(_tier_text(pages, {'common', 'premium'}) + '\n')
-    with open(base + '_free.md', 'w', encoding='utf-8') as f:
-        f.write(_tier_text(pages, {'common', 'free'}) + '\n')
-    with open(base + '_tech.md', 'w', encoding='utf-8') as f:
-        f.write(_tier_text(pages, None, with_markers=True, include_comment=True) + '\n')
-    with open(base + '.json', 'w', encoding='utf-8') as f:
-        json.dump({'book': os.path.basename(pdf_path), 'pages': pages, 'toc': data},
-                  f, ensure_ascii=False, indent=1)
-    _toc_files(base, doc, style, data)  # _NO_FREE/_NO_PREM/_EN_FREE/_EN_PREM
-    print(f'[{os.path.basename(pdf_path)}] tekstuttrekk: .md _free.md _tech.md .json + 4×TOC')
+    _md_files(base, doc, style, data)
+    print(f'[{os.path.basename(pdf_path)}] tekstuttrekk: NO/EN × FREE/PREM .md')
 
 def main():
     cfg = get(DB_JS)
