@@ -3,8 +3,8 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=41"></script>
-        <link rel="stylesheet" href="LdD.css?v=15">
+        <script type="module" src="LdD.js?v=42"></script>
+        <link rel="stylesheet" href="LdD.css?v=16">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -567,14 +567,16 @@
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
                         ))))))))));
-                    if(!h)uishow(nFdTxt,false); // collapsing the menu hides the find box too (nFd is hidden with it)
                     // nTc: fixed button mid-left when menu hidden
                     if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');
                         // nPr: floating 🔓 at 70%, only in freemium mode
                         nPr.style.position='fixed';nPr.style.left='0';nPr.style.top='70%';nPr.style.transform='translateY(-50%)';nPr.style.filter='grayscale(1)';nPr.classList.add('floatingControl');
-                        nPr.style.display=book.prem._?'none':'inline';}
+                        nPr.style.display=book.prem._?'none':'inline';
+                        // nFd: floating 🔍 at 80% – same presentation as the premium button
+                        nFd.style.position='fixed';nFd.style.left='0';nFd.style.top='80%';nFd.style.transform='translateY(-50%)';nFd.style.display='inline';nFd.style.filter='grayscale(1)';nFd.classList.add('floatingControl');}
                     else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform=nTc.style.filter='';nTc.classList.remove('floatingControl');
-                        nPr.style.position=nPr.style.left=nPr.style.top=nPr.style.transform=nPr.style.filter='';nPr.classList.remove('floatingControl');}
+                        nPr.style.position=nPr.style.left=nPr.style.top=nPr.style.transform=nPr.style.filter='';nPr.classList.remove('floatingControl');
+                        nFd.style.position=nFd.style.left=nFd.style.top=nFd.style.transform=nFd.style.filter='';nFd.classList.remove('floatingControl');}
                     if(cBook.page){cBook.Play();cBook.PageNo();} // page moved – move buttons and page number with it
                 }
                 ,btSimul:(a,i)=>{
@@ -705,8 +707,8 @@
                 <button id="nPr" onmousedown="nav.PremToggle()">🔓</button>
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
-        <!-- find box: standalone floating control (NOT part of .bookControls), relative sizes; search wired later -->
-        <input id="nFdTxt" class="findBox" type="text" maxlength="40" placeholder="Finn…" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;position:fixed;top:1vh;right:1vw;"/>
+        <!-- find box: plain page-number style (premium-PIN presentation); search wired later -->
+        <input id="nFdTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Finn…" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;"/>
         <input id="nPin" class="pageNo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="" oninput="nav.Pin()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;width:5.5em;letter-spacing:.4em;border:1px solid #999;border-radius:.5em;background:#fff;box-shadow:0 .2em .8em rgba(0,0,0,.25)"/>
         <div id="nPinMsg" style="display:none;position:fixed;left:50%;top:49%;transform:translate(-50%,-50%);z-index:5;font:600 .95em system-ui,sans-serif;text-align:center;background:#fff;color:#c00;border:1px solid #c00;border-radius:.5em;padding:.4em .9em;box-shadow:0 .2em .8em rgba(0,0,0,.25)"></div>
         <div id="_dBook" class="bookParent">
@@ -739,7 +741,7 @@
                 <h1><a id="_dTocTitle" href="javascript:nav.TocPage(1);">"Liv Krevde Død"</a></h1>
                 <div style="display:flex;align-items:center;gap:.5em;margin-bottom:.5em;">
                     <button id="nFdT" onmousedown="nav.find()" style="font-size:calc(var(--fsMenu)*.45);padding:0 .3em;line-height:1.2;">🔍</button>
-                    <input id="_dTcTxt" class="findBox" type="text" maxlength="40" placeholder="filtrer…" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;flex:1;min-width:0;"/>
+                    <input id="_dTcTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="filtrer…" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;flex:1;min-width:0;"/>
                 </div>
                 <ul id="_dTocList"></ul>
                 <hr><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/06f9iQGV6mSzWo4pz20hQB?utm_source=generator&si=9930b284b4684788" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
