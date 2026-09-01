@@ -3,22 +3,14 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=40"></script>
-        <link rel="stylesheet" href="LdD.css?v=14">
+        <script type="module" src="LdD.js?v=41"></script>
+        <link rel="stylesheet" href="LdD.css?v=15">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
             const uiscroll=()=>_cBook.style.display=='none' ? null : nav.memSet('Y', window.scrollY)
             const uishow=(c,on)=>{c.style.display=on?'inline':'none';return on;}
             const uishowBlock=(c,on)=>{c.style.display=on?'block':'none';return on;}
-            const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); // HTML-escape for find/filter rows
-            const snippet=(s,q,L=80)=>{ // ~L-char snippet centered on the first match (case-insensitive)
-                s=s.replace(/\s+/g,' ').trim();
-                const i=s.toLowerCase().indexOf(q.toLowerCase());
-                if(i<0)return s.slice(0,L);
-                const h=L/3|0,a=Math.max(0,i-h),b=Math.min(s.length,i+q.length+h);
-                return (a>0?'…':'')+s.slice(a,b)+(b<s.length?'…':'');
-            }
             const book= {
                 s:async(pdf,src,pno=1)=>{
                     nav.DisButtons();
@@ -57,7 +49,7 @@
                         nLg.innerText=l?'🇳🇴':'🇬🇧';
                         _fBook.style.left=(l?0:(_dBook.clientWidth-_fBook.offsetWidth))+'px';
                         book.hAlign.Scroll();
-                        _dTocList.innerHTML=_dTocFull=''; // invalidate TOC cache (rebuilt with new language on open)
+                        _dTocList.innerHTML=''; // invalidate TOC cache (rebuilt with new language on open)
                     }
                     ,Load:async()=>{
                         let v=(await nav.memGet('lang', new String(book.hAlign._))=="true") ;
@@ -78,7 +70,7 @@
                         nav.memSet('prem', l);
                         book.prem.ui(l);
                         if(_dToc.style.display!='none')_dTocList.innerHTML=await nav.Toc(); // TOC open → rebuild with new mode
-                        else _dTocList.innerHTML=_dTocFull=''; // invalidate cache → rebuilt on next open
+                        else _dTocList.innerHTML=''; // invalidate cache → rebuilt on next open
                         if(_dTcTxt)_dTcTxt.value=''; // reset the TOC filter box (list was rebuilt unfiltered)
                         nav.UpdButtons();
                         window.cBook&&window.cBook.pdf&&window.cBook.Page(window.cBook.pn, true); // re-render in new mode (PDF must be loaded)
@@ -109,7 +101,7 @@
                 ,pn:()=>cBook.pn
                 ,np:()=>cBook.pdf?Math.max(1,cBook.pdf.numPages-4):0 // last 4 pages are template slides – hidden (min 1 for small PDFs)
             }
-            let _busy, _dTocFull=''; // cached full TOC html (restored when the TOC filter is cleared)
+            let _busy;
             const forlag = {
                 norsk: [
                     { forlag: "Cappelen Damm", url: "https://manus.cappelendamm.no/", forlagstype: "Allmennforlag (Stor)", punktromscore: 5 },
@@ -479,44 +471,15 @@
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
                         return `<li class="chap" data-p="${c.page}">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li data-p="${s.page}">${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
-                    _dTocFull=html; nav._tocMusic=music; // cache for the TOC filter (restore + music buttons)
                     return html;
                 }
-                // find (nFd): TOC open → filter box; else → search-as-you-type box (md-based, cached)
-                ,_fd:null // find origin {page,y} – restored when the box is emptied or toggled off
-                ,_fq:'' // last query (growth → live jump; shrinking → keep position)
+                // find (nFd): TOC open → filter box; else → find box (CONTROLS ONLY – search wired later)
                 ,find:async ()=>{ // 🔍 toggles the box for the current context (TOC filter vs page find)
                     const inToc=_dToc.style.display!='none', t=inToc?_dTcTxt:nFdTxt;
                     const open=t.style.display=='none';
-                    if(!inToc&&open)nav._fd={page:book.pn(),y:window.scrollY}; // remember origin before searching
-                    if(open)nav.uiHide(false); // a visible find box keeps the nav visible (nFd stays up to close)
+                    if(open)nav.uiHide(false); // a visible box keeps the nav visible (nFd stays up to close)
                     uishow(t,open);
-                    if(open){nav._fq='';t.focus();t.select();}
-                    else if(inToc)nav.TocFilter('');
-                    else{nav.FindHide();nav.goBack();nav._fq='';nFdTxt.value='';}
-                }
-                ,goBack:()=>{ // return to the page+scroll recorded when find was opened (or just restore scroll)
-                    const o=nav._fd; nav._fd=null;
-                    if(o&&o.page!==book.pn())nav.Page(o.page,o.y);
-                    else if(o)window.scrollTo(window.scrollX,o.y);
-                }
-                ,FindHide:()=>_dFd.style.display='none'
-                ,FindKey:async v=>{ // search-as-you-type: live-jump on typing; deleting keeps position; empty → back to origin
-                    const q=v.trim();
-                    if(!q){_dFd.style.display='none';nav._fq='';if(nav._fd)nav.goBack();return;}
-                    const grew=q.length>=(nav._fq||'').length; nav._fq=q; // navigate only while the query grows
-                    const r=await cBook.data.search(q);
-                    const hits=[...r.head,...r.text,...r.song];
-                    _dFd.innerHTML='<ul style="list-style:none;margin:0;padding:.3em .5em;">'+hits.slice(0,20).map(h=>
-                        `<li style="padding:.2em 0;border-bottom:1px solid #eee;cursor:pointer;" onmousedown="nav.FdGo(${h.page||book.pn()})">${esc(h.text.slice(0,44))}<span style="float:right;color:#888">p.${h.page||'–'}</span></li>`
-                    ).join('')+(hits.length?'':'<li style="padding:.2em;color:#999">Ingen treff</li>')+'</ul>';
-                    _dFd.style.display='block';
-                    const first=hits[0];
-                    if(grew&&first&&first.page&&first.page!==book.pn())await nav.Page(first.page,0); // live jump to first match
-                }
-                ,FdGo:p=>{ // jump to a chosen result and close find
-                    nav.FindHide();uishow(nFdTxt,false);nFdTxt.value='';nav._fd=null;nav._fq='';
-                    nav.Page(p,0);
+                    if(open){t.focus();t.select();}
                 }
                 ,TocCur:()=>{ // refresh the bold 'cur' marker without rebuilding the list
                     const cp=book.pn(); let curPage=0;
@@ -524,26 +487,7 @@
                     _dTocList.querySelectorAll('.cur').forEach(a=>a.classList.remove('cur'));
                     _dTocList.querySelectorAll(`li[data-p="${curPage}"] .toc-nav`).forEach(a=>a.classList.add('cur'));
                 }
-                ,TocFilter:async v=>{ // filter TOC list: chapters/subs → body text → song text (cascade)
-                    const want=book.hAlign._?'no':'en';
-                    const music=nav._tocMusic||new Map();
-                    const row=(p,t)=>{
-                        const u=music.get(`${want}:${p}`)||'';
-                        return `<a class="toc-nav" href="javascript:nav.Page(${p},0);nav.ShowToc()"><span>${esc(t)}</span><i></i></a>`
-                            +(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">♫</a>`:'')
-                            +`<a class="toc-num" href="javascript:nav.Page(${p},0);nav.ShowToc()">${p}</a>`;
-                    };
-                    const q=v.trim();
-                    if(!q){_dTocList.innerHTML=_dTocFull||'';nav.TocCur();window.spAnchor?.();return;} // restore full TOC
-                    const r=await cBook.data.search(q);
-                    let html;
-                    if(r.head.length)html='<ul>'+r.head.map(h=>`<li data-p="${h.page}">${row(h.page,h.text)}</li>`).join('')+'</ul>';
-                    else if(r.text.length)html='<ul>'+r.text.map(p=>`<li data-p="${p.page}">${row(p.page,snippet(p.text,q))}</li>`).join('')+'</ul>';
-                    else if(r.song.length)html='<ul>'+r.song.map(s=>`<li data-p="${s.page||book.pn()}">${row(s.page||book.pn(),'🎵 '+s.text.slice(0,48))}</li>`).join('')+'</ul>';
-                    else html='<ul><li class="none" style="color:#999;font-style:italic;">Ingen treff</li></ul>';
-                    _dTocList.innerHTML=html;
-                    nav.TocCur();window.spAnchor?.(); // re-anchor the inline player (keeps audio running)
-                }
+
                 ,PremToggle:()=>{ // PIN → premium: verified against Supabase 'codes' (dtfrom<=now<=dtto); future: hash to a remembered var
                     if(book.prem._){nav.memSet('code','');return book.prem.L(false);} // premium → free: delete stored code
                     if(nPin.style.display!='none')return uishow(nPin,false); // PIN visible → 🔓 again closes it (abort)
@@ -623,7 +567,7 @@
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
                         ))))))))));
-                    if(!h){uishow(nFdTxt,false);_dFd.style.display='none';} // collapsing the menu hides the find box too (nFd is hidden with it)
+                    if(!h)uishow(nFdTxt,false); // collapsing the menu hides the find box too (nFd is hidden with it)
                     // nTc: fixed button mid-left when menu hidden
                     if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');
                         // nPr: floating 🔓 at 70%, only in freemium mode
@@ -754,17 +698,15 @@
                 <button id="nDn" onmousedown="nav.ScrollDn()">⏬</button>
                 <button id="nNt" onmousedown="nav.Page(book.pn()+1, 0)">▶️</button>
                 <button id="nLt" onmousedown="nav.Page(book.np(), _dBook.scrollHeight - window.innerHeight)">⏭️</button>
-            &nbsp;&nbsp;<span id="_fdWrap" style="position:relative;display:inline-block;">
-                <button id="nFd" onmousedown="nav.find()">🔍</button>
-                <input id="nFdTxt" class="findBox" type="text" maxlength="40" oninput="nav.FindKey(this.value)" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;"/>
-                <div id="_dFd" style="display:none;position:absolute;top:100%;left:0;z-index:6;background:#fff;border:1px solid #999;border-radius:.4em;max-height:60vh;overflow:auto;min-width:34ch;text-align:left;box-shadow:0 .2em .8em rgba(0,0,0,.25)"></div>
-            </span>
+            &nbsp;&nbsp;<button id="nFd" onmousedown="nav.find()">🔍</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" onmousedown="nav.Export()">📤</button>
                 <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
                 <button id="nPr" onmousedown="nav.PremToggle()">🔓</button>
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
+        <!-- find box: standalone floating control (NOT part of .bookControls), relative sizes; search wired later -->
+        <input id="nFdTxt" class="findBox" type="text" maxlength="40" placeholder="Finn…" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;position:fixed;top:1vh;right:1vw;"/>
         <input id="nPin" class="pageNo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="" oninput="nav.Pin()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;width:5.5em;letter-spacing:.4em;border:1px solid #999;border-radius:.5em;background:#fff;box-shadow:0 .2em .8em rgba(0,0,0,.25)"/>
         <div id="nPinMsg" style="display:none;position:fixed;left:50%;top:49%;transform:translate(-50%,-50%);z-index:5;font:600 .95em system-ui,sans-serif;text-align:center;background:#fff;color:#c00;border:1px solid #c00;border-radius:.5em;padding:.4em .9em;box-shadow:0 .2em .8em rgba(0,0,0,.25)"></div>
         <div id="_dBook" class="bookParent">
@@ -797,7 +739,7 @@
                 <h1><a id="_dTocTitle" href="javascript:nav.TocPage(1);">"Liv Krevde Død"</a></h1>
                 <div style="display:flex;align-items:center;gap:.5em;margin-bottom:.5em;">
                     <button id="nFdT" onmousedown="nav.find()" style="font-size:calc(var(--fsMenu)*.45);padding:0 .3em;line-height:1.2;">🔍</button>
-                    <input id="_dTcTxt" class="findBox" type="text" maxlength="40" placeholder="filtrer…" oninput="nav.TocFilter(this.value)" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;flex:1;min-width:0;"/>
+                    <input id="_dTcTxt" class="findBox" type="text" maxlength="40" placeholder="filtrer…" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;flex:1;min-width:0;"/>
                 </div>
                 <ul id="_dTocList"></ul>
                 <hr><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/06f9iQGV6mSzWo4pz20hQB?utm_source=generator&si=9930b284b4684788" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
