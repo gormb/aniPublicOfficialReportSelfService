@@ -17,7 +17,7 @@ button { font-size:var(--fsMenu); padding:var(--padMenu);}
     #nNt3 { right:-102vw; bottom:0;}
     #nSv {z-index:1;position:fixed; top:calc(var(--paddingTop1)); left:0}
 .pageNo { font-size:var(--fsMenu); padding:var(--padMenu);display:none; text-align:center;width:2em;}
-.findBox { width:12ch; } /* page-number style, wider for text; no fancy decoration */
+.findBox { font-size:calc(var(--fsMenu)*.6); width:12ch; } /* smaller font + wider than a page number; rest is .pageNo */
 .disabled { opacity: 0.5; pointer-events: none;}
 .bookControls { position: fixed; top: 1vh; left: 1vw;}
 .bookParent { position: relative;overflow:hidden auto; -webkit-overflow-scrolling:touch; touch-action:pan-y; padding-top:calc(1 * var(--paddingTop1));}

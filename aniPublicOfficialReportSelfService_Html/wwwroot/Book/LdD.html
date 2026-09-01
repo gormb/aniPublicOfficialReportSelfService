@@ -479,7 +479,7 @@
                     const open=t.style.display=='none';
                     if(open)nav.uiHide(false); // a visible box keeps the nav visible (nFd stays up to close)
                     uishow(t,open);
-                    if(open){t.focus();t.select();}
+                    if(open)setTimeout(()=>{t.focus();t.select();},10); // focus after mousedown (else the button steals focus)
                 }
                 ,TocCur:()=>{ // refresh the bold 'cur' marker without rebuilding the list
                     const cp=book.pn(); let curPage=0;
@@ -708,7 +708,7 @@
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
         <!-- find box: plain page-number style (premium-PIN presentation); search wired later -->
-        <input id="nFdTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Finn…" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;"/>
+        <input id="nFdTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Find not implemented " onkeydown="if(event.key=='Escape')nav.find()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;"/>
         <input id="nPin" class="pageNo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="" oninput="nav.Pin()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;width:5.5em;letter-spacing:.4em;border:1px solid #999;border-radius:.5em;background:#fff;box-shadow:0 .2em .8em rgba(0,0,0,.25)"/>
         <div id="nPinMsg" style="display:none;position:fixed;left:50%;top:49%;transform:translate(-50%,-50%);z-index:5;font:600 .95em system-ui,sans-serif;text-align:center;background:#fff;color:#c00;border:1px solid #c00;border-radius:.5em;padding:.4em .9em;box-shadow:0 .2em .8em rgba(0,0,0,.25)"></div>
         <div id="_dBook" class="bookParent">
@@ -741,7 +741,7 @@
                 <h1><a id="_dTocTitle" href="javascript:nav.TocPage(1);">"Liv Krevde Død"</a></h1>
                 <div style="display:flex;align-items:center;gap:.5em;margin-bottom:.5em;">
                     <button id="nFdT" onmousedown="nav.find()" style="font-size:calc(var(--fsMenu)*.45);padding:0 .3em;line-height:1.2;">🔍</button>
-                    <input id="_dTcTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="filtrer…" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;flex:1;min-width:0;"/>
+                    <input id="_dTcTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Filter not implemented" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;flex:1;min-width:0;"/>
                 </div>
                 <ul id="_dTocList"></ul>
                 <hr><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/06f9iQGV6mSzWo4pz20hQB?utm_source=generator&si=9930b284b4684788" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
