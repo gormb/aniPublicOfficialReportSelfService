@@ -6,7 +6,7 @@ import datetime, json, os, re, subprocess, sys
 
 REPO = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode().strip()
 BOOK_DIR = os.path.join(REPO, 'aniPublicOfficialReportSelfService_Html', 'wwwroot', 'Book')
-DB_JS = os.path.join(BOOK_DIR, 'db.js') # lokal db.js i repoet (leses direkte)
+DB_JS = 'https://gormb.github.io/_/db.js' # SUPABASE-konfig hentes fra DEN deployed versjonen (vedlikeholdes i annet prosjekt) – ingen lokal kopi
 
 def get(url, headers=None):
     if not url.startswith(('http://', 'https://')):  # lokal filsti – les direkte (curl godtar ikke stier uten scheme)
