@@ -8,7 +8,8 @@ free version
 🎵 https://gormb.github.io/_?mlist (https://gormb.github.io/_?mlist) — p. 2
 "Riding my motorcycle from Kiel to Alicante averaging 170 km/h, I could have been arrested all over Europe", I said.
 The lawyer I had just met over a Whisky chuckled.
-"No, you should be dead" Maybe so, but I feel nothing anyway, except shame towards my loved ones. Perhaps through Music, I can experience the loss of sanity as sound, time standing still, breakdown and realization.
+"No, you should be dead"
+Maybe so, but I feel nothing anyway, except shame towards my loved ones. Perhaps through Music, I can experience the loss of sanity as sound, time standing still, breakdown and realization.
 Death makes room
 free version
 ### Zero-Summary — p. 3
@@ -303,7 +304,8 @@ free version
 ### Prison with open door — p. 69
 🎵 Crockett's Theme, Jan Hammer (https://gormb.github.io/_?mct) — p. 69
 "Physically present, lost in past and fate", I shouted from the bike into the night, inaudible through the engine roar. The streets were deserted; it was the World Cup and past bedtime. Slowly and noisily, the motorcycle cut through Oslo lengthwise and crosswise.
-400 years ago, someone wrote: "O do not trouble me, So sweet content I feel and see. All my joys to this are folly, None so divine as melancholy" (The Anatomy of Melancholy, Burton, 1621).
+400 years ago, someone wrote: "O do not trouble me, So sweet content I feel and see. All my joys to this are folly, None so divine as melancholy"
+(The Anatomy of Melancholy, Burton, 1621).
 Mortal danger on a motorcycle as an antidote to inner pain is melancholic. If you don't want to die. I don't. Didn't. Don't know; intention has given way to habits; habits have expired.
 200 years ago, a Dane wrote: "When the Danger is so great that Death has become Hope, then Despair is this: not to be able to die" (The Sickness unto Death, Kierkegaard, 1849).
 Wondering if the Danish philosopher post-rationalized pain or after-effects of pain. He strikes me as brave, one who feels pain in the moment it should hurt, but not before and not after. Hindsight is also wisdom, of course, and this one has lasted 200 years.
@@ -424,7 +426,9 @@ free version
 "Thank you for seeing that I'm dressing up", she said.
 I said it to a woman who was perhaps perfect for me, but I overlooked and forgot her; was reminded of it by a friend, Y.
 We were at a party at a mutual friend's place. Y asked how it was going with the woman I met. Y has a photographic memory, Me: "The woman?"
-Y: "Yes, the one who tricked your phone number out of you, and who really just wanted to go home with you" Me: "Yes, I've forgotten her; maybe I should call her" Y: "Yes, maybe you should"
+Y: "Yes, the one who tricked your phone number out of you, and who really just wanted to go home with you"
+Me: "Yes, I've forgotten her; maybe I should call her"
+Y: "Yes, maybe you should"
 free version
 ### Veteran — p. 94
 🎵 The Boxer, Simon & Garfunkel (https://gormb.github.io/_?mtbsg) — p. 94
@@ -470,14 +474,16 @@ The future is here. Sophia can fool me. Another tool saved me; I just pasted the
 free version
 ### You are good — p. 102
 🎵 Need to Feel Loved, Reflekt (https://gormb.github.io/_?mntfl) — p. 102
-"You are good enough", I say. She has lived. But the problem is me. The time it takes to heal. “I’m falling” Conscious change is easy compared to changing unconscious patterns; ingrained habits are hard to deal with.
+"You are good enough", I say. She has lived. But the problem is me. The time it takes to heal. “I’m falling”
+Conscious change is easy compared to changing unconscious patterns; ingrained habits are hard to deal with.
 I used to have a drink every three hours and ride like a madman. Now I ride very carefully and only occasionally enjoy fear in curves, always under control, but allow myself to "push it a bit in the curve" at low speed.
 Doesn't look professional, but those who look for professional on the road are jerks.
 If you use the public road as a racetrack, it goes badly, or you are slow; still, people brag that they don't have "Chicken Strips". Jerks. I didn't know I could still have a drink and ride afterward, with alcohol under the limit, but negative for reaction, risk assessment, and balance.
 Karin made me aware of it. I stopped immediately. Dysfunctional.
 Five steps from being happy just to survive. I miss the minimum requirement for "self-care". I don't love myself. I love her. She loves me.
 We love each other. Properly. How destructive is it not to love someone who doesn't love themselves?
-“I need to feel loved” She is luckily too smart for that. The relationship dies and will give her room for happiness. Thank you. You are good.
+“I need to feel loved”
+She is luckily too smart for that. The relationship dies and will give her room for happiness. Thank you. You are good.
 free version
 ### Oil leaks out — p. 104
 🎵 Ain't No Sunshine, Bill Withers (https://gormb.github.io/_?mans) — p. 104
@@ -502,7 +508,8 @@ I rode her to work via beautiful country roads; it smelled of spring, manure, an
 had outdoor seating, the village's meeting place for locals and inmates on leave, I later learned. I bought a coffee, sat in the sun, and wrote a newsletter about universal basic income in the AI age. Before I was completely finished, I noticed a guy studying me from a safe distance.
 Kim, as he was called, came closer. Not all the way; he stopped overly politely four to five meters away. "Can I sit here; I don't want to read over your shoulder at your computer?" - He looked like a UFC Fighter and/or dangerous prison inmate; his hands with scars on the knuckles looked like they had hit a lot and many, like a horse kicks. The bald head showed medium-sized scars here and there. He had been at the library to see if anything new had arrived.
 I sat sideways so that he, at the table beyond, could do the same. After a while, we looked each other straight in the eyes, relaxed and without any need for display. Low resting pulse in me and probably him too. We talked loosely about fear, death, psychoses, and absolute truths before he put down his beer and came and sat at my table. He wanted to hear more than to communicate, wasn't ready to share; probably didn't feel entirely safe.
-I read a page for him about the purity of actions that are not thought through; he nodded in confirmation and commented "yes" and "m-hm" here and there. Then he asked permission to share a poem. I was a bit surprised and answered affirmatively; he asked me to say a word.
+I read a page for him about the purity of actions that are not thought through; he nodded in confirmation and commented "yes" and "m-hm"
+here and there. Then he asked permission to share a poem. I was a bit surprised and answered affirmatively; he asked me to say a word.
 Beer I cannot reproduce his poem, but it is among the best I have heard. "Send it to a publisher and get rejected or published", I said. He squirmed in his chair; it could be that the point of the poetry was not to reach others, but to understand oneself; I didn't wonder about that. "If you don't like PCs, or writing on paper, record it on a phone app, and send the audio file to the publisher. Writing is not a problem when AI is here; not everyone likes to write, but soon everyone can share! I work with artificial intelligence, but that's not important; it can do something for all of us".
 He left, and I regretted not getting his number, creating an app exactly for his needs, and sending it to him. Next time.
 free version
@@ -511,7 +518,8 @@ free version
 Do we hate the hunt, or do we cultivate it? "It's my food the dog wants", she said next to me about a dog that walked by. I thought the dog wanted me; she claimed it was her food that drew the attention. The half-Algerian, completely Norwegian, reflective beauty drank beer and ate fried potatoes at the watering hole "Broker" in Bogstadveien. She had observed me with her peripheral vision for ten to fifteen minutes as I sat two meters away, clad in an MC jacket, drinking beer and enjoying a book in the sun. "I am 35 years old, have two Spanish street dogs, a child, and an Italian husband", she said unsolicited in four sentences. She wanted to be hunted, but I enjoyed my book.
 After she took my hand and introduced herself, I put down my book and revealed that I was divorced from a stay-at-home wife and almost went to war as a 50-year-old for romance with a 28-year-old.
 "You are closer to my ideal of a man than today's approved Norwegian man", said the beauty. "It would, after all, be best to be home and take care of the children, especially if you have a protective man out hunting who comes home once in a while". Perhaps ordinary spring fever, but she seemed sincere.
-The wondrous creature was completely Norwegian, despite an unorthodox appearance and reflective offensive opinions. The well-toned creature out for adventure had read female versions of the pickup bible "The Game"; for my part, I despise Richard Bandler as much as the "The Game" author must idolize him. "Quite dark stuff", I said aloud and shuddered. She looked at me questioningly, and I decided that reflection on insights into pickup techniques that destroy natural behavioral patterns I would spare myself from discussing with her.
+The wondrous creature was completely Norwegian, despite an unorthodox appearance and reflective offensive opinions. The well-toned creature out for adventure had read female versions of the pickup bible "The Game"; for my part, I despise Richard Bandler as much as the "The Game"
+author must idolize him. "Quite dark stuff", I said aloud and shuddered. She looked at me questioningly, and I decided that reflection on insights into pickup techniques that destroy natural behavioral patterns I would spare myself from discussing with her.
 She got a smile and a thank you for the company. Self-destructive relationships between those who don't care about others, "high value individuals", and other constructions made to make money on social media. Belief in social innovation that is just good old-fashioned frivolity and wife-swapping, harem simulations, porn, and prostitution.
 Refreshing she was, but thoughts about the contrast, calculating beings breeding calculating beings dependent on artificial endorphins; "Have you checked your Tinder profile today?" I asked. She looked at me questioningly and said, "I don't have Tinder; have you checked your LinkedIn profile today?" I nodded in confirmation; I am also an endorphin slave to big-tech's digital drugs. "Thank you", I said, "now I'm going to do meta-cognition and stop underestimating people I meet for the first time". She looked at me questioningly, said goodbye, and left.
 After thanking me for the conversation.
@@ -620,7 +628,8 @@ More people have died from blood clots while making stupid signs than the number
 free version
 ### Strength is as before — p. 134
 🎵 Stranglehold (https://gormb.github.io/_?msh) — p. 134
-The Dane sat across the table; he had long experience with MCs from MC clubs like Rabis MC. I don't have much experience with MC clubs, but I used to party at Rabis MC in Lillestrøm when I was 20 and had a girlfriend from the area; they had open house longer than "Martins" and other local watering holes nearby. Instead, I shared with him that I had spoken with SBS in the military; they are part of the British special forces SAS, which has traditions with MC clubs. He was quiet for a while, then suddenly said he doesn't know anything about HA, which is short for Hells Angels. Maybe he was afraid I had connections to HA, which I don't, and that he had insulted someone with connections to Hells Angels.
+The Dane sat across the table; he had long experience with MCs from MC clubs like Rabis MC. I don't have much experience with MC clubs, but I used to party at Rabis MC in Lillestrøm when I was 20 and had a girlfriend from the area; they had open house longer than "Martins"
+and other local watering holes nearby. Instead, I shared with him that I had spoken with SBS in the military; they are part of the British special forces SAS, which has traditions with MC clubs. He was quiet for a while, then suddenly said he doesn't know anything about HA, which is short for Hells Angels. Maybe he was afraid I had connections to HA, which I don't, and that he had insulted someone with connections to Hells Angels.
 I said we could be friends and gave him my name using the phonetic alphabet. He had shared that he had killed over 100 people in service but didn't know the international spelling alphabet the military uses, which would have been the way one communicated when he was supposed to have carried out the missions. Either he had stretched the truth a bit, or more likely retold things he had heard from others.
 To me, it made no difference; I thought the guy was nice, but life had probably had such a strong chokehold on him that the stories he built his self-esteem on strayed further and further from reality.
 In another story, he was part of a Masonic lodge; he worked in a company with hundreds of Danish rental apartments, and it gave connections to the elite of Scandinavia. When I said I could meet him one day in the strange bar, with characteristics I won't write here, to get cheaper beer, he didn't know what I was talking about. I know someone in the lodge with the King's Medal of Merit and have been with him when he has exploited some of the benefits. The Dane didn't know what I was talking about and changed the subject again; I went out to breathe.

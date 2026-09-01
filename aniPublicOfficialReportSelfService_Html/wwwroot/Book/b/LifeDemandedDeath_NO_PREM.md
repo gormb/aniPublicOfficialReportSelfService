@@ -8,7 +8,8 @@ premium version
 🎵 https://gormb.github.io/_?mlist (https://gormb.github.io/_?mlist) — p. 2
 “Med MC fra Kiel til Alicante og snitt på 170 km/t kunne jeg vært arrestert i hele Europa”, sa jeg.
 Advokaten jeg nettopp hadde møtt over en Whisky smålo.
-“Nei, du skulle vært død” Kanskje det, men jeg føler ingenting likevel, unntatt skam overfor mine nærmeste. Kanskje gjennom musikk, kan jeg oppleve tapet av forstanden som lyd, tiden som stanser; sammenbrudd og erkjennelse.
+“Nei, du skulle vært død”
+Kanskje det, men jeg føler ingenting likevel, unntatt skam overfor mine nærmeste. Kanskje gjennom musikk, kan jeg oppleve tapet av forstanden som lyd, tiden som stanser; sammenbrudd og erkjennelse.
 Døden gir plass
 ### Nulloppsummering — p. 3
 🎵 https://gormb.github.io/_?mncty (https://gormb.github.io/_?mncty) — p. 3
@@ -29,7 +30,8 @@ Vi snakket ikke på lang tid, hun beveget seg som meg, tilpasset hvordan jeg sto
 Etter noen minutter sa hun “Depeche Mode”, jeg forsto ingenting. “Personal Jesus?” sa jeg. Hun nikket bekreftende.
 “Du trenger ikke forstå” sa hun, “bare følg med”.
 Ingen av oss sa noe før neste stykke var ferdig, hun sto som meg og beveget seg som meg, men med små forskjeller som gjorde det ikke-invaderende. "O Fortuna" fra Carmina Burana låt mens regnet pisket, hun var like uforanderlig som jeg var, men vi bestemte oss samtidig for å gå.
-Kommunikasjonstriks kan jeg, hun kunne flere. Eller kanskje akkurat denne kvinnen var naturlig sensuell og ville lære meg å kjenne. Som andre menn ser jeg ikke forskjell lenger. Spillteori fra Tinder overtok hvordan vi møter hverandre. “Naturlig” har avgått med døden og ble gravlagt før 2015. Eller det var det jeg trodde.
+Kommunikasjonstriks kan jeg, hun kunne flere. Eller kanskje akkurat denne kvinnen var naturlig sensuell og ville lære meg å kjenne. Som andre menn ser jeg ikke forskjell lenger. Spillteori fra Tinder overtok hvordan vi møter hverandre. “Naturlig”
+har avgått med døden og ble gravlagt før 2015. Eller det var det jeg trodde.
 “Du tror du vet hva naturlig er, men har du også glemt hvordan det føles?" sa Lotte plutselig. I et kaos av fantastisk musikk og regn klarte jeg ikke forstå om hun snakket om meg, seg selv, eller beskrev personligheten mellom oss. Kanskje noe skjedde jeg ikke forsto. Vi forlot regnet, gikk ned Karl Johans gate og inn på Brødrene Bergh der en DJ spilte Soul.
 Lotte og jeg speilet hverandre, kroppslig, så språklig, og ble kastet ut av Brødrene Bergh ved stengetid. Tiden var borte.
 “Du tror du er forvirret nå? vent til du skjønner hva som skjer hvis vi slutter å tenke”, forestilte jeg at hun sa til meg. Men hun var borte. “Jeg har selvtillit til å stå med den vakre, men selvfølelsen gjorde at jeg skammet meg over det”. Hun speilet meg, hadde hun egen skam eller speilet hun min? “Selvtillit og selvforakt” sa jeg høyt til meg selv.
@@ -160,7 +162,8 @@ Men det ble med den kvelden, vi møttes aldri igjen. Det var midnatt og jeg pekt
 En tidligere kollega var i en vennegjeng på ti-femten damer og nesten like mange menn. I dag skulle alle feste sammen.
 Damene hadde vorspiel for seg på en hyggelig kafe og gutta
 delte jakthistorier over en øl. På vei mot min date hadde jeg stoppet innom damenes vorspiel og delt ut en rose til hver av dem for så å gå uten et ord. Da jeg kom fra daten min, hadde de snakket om meg i timevis.
-Storesøster og lillesøster, jeg var forelsket i den eldste, men så ikke alltid forskjell på dem. Den yngste sto utenfor festen, jeg trodde det var den eldste og sa “hvorfor har vi aldri kysset” for så å kysse henne på munnen. Så gikk vi sammen inn til de andre og jeg oppdaget min feil, der møtte jeg øynene til storesøsteren jeg var forelsket i, og lillesøsteren smilte avslørende.
+Storesøster og lillesøster, jeg var forelsket i den eldste, men så ikke alltid forskjell på dem. Den yngste sto utenfor festen, jeg trodde det var den eldste og sa “hvorfor har vi aldri kysset”
+for så å kysse henne på munnen. Så gikk vi sammen inn til de andre og jeg oppdaget min feil, der møtte jeg øynene til storesøsteren jeg var forelsket i, og lillesøsteren smilte avslørende.
 Natten var enda ung og ting eskalerte, en god venn av meg endte i seng med storesøster og jeg med lillesøster. Disse idrettsdamene fra landet har en energi som gjør at de kan feste og elske mye lengre enn oss late byfolk, jeg var utslitt og fornøyd, selv om jeg unngikk å ha sex med den yngste hadde jeg ødelagt to av mulighetene mine til å bli lykkelig på en kveld, men et liv i hastighet er også bra, det valget skulle jeg virkelig overdrive senere.
 ### Barnemisbruk og sår — p. 32
 🎵 Hurt, Nine Inch Nails & Johnny Cash (https://gormb.github.io/_?mhnin) — p. 32
@@ -204,7 +207,8 @@ Jeg har sett det før. Som meddommer. Norsk mann, femti, filippinske barn. “Le
 "Rettspraksis”. “straffeutmåling”. En fagdommer nikker.
 “Høyesterett blir enig". Tolv år og to millioner for tolv liv, systemet virker unntaksvis.
 Jeg spurte M, “vil fetteren din gjøre det igjen?”. Hun nikket bekreftende. “Mot andre, sønnen eller barnebarnet hans også”.
-Her skulle ikke systemet virke. “Bevisets stilling” sier dommeren, vi hadde alle forutsett det. “Ikke over en hver tvil” hadde forsvareren sagt, han fikk og hadde rett. Rettsvern for norske piker er svakt.
+Her skulle ikke systemet virke. “Bevisets stilling” sier dommeren, vi hadde alle forutsett det. “Ikke over en hver tvil”
+hadde forsvareren sagt, han fikk og hadde rett. Rettsvern for norske piker er svakt.
 Jeg tenker på vinduet jeg faller ut av.
 Whisky under plastpalmene. M snakker med dama om oppussing. Aksept for at verden er ødelagt, jeg tenker på de som skal misbruke i morgen.
 Akselererer mot natten.
@@ -316,7 +320,9 @@ Tilsynelatende middels-lavt på autismespekteret, som meg. Du har levd, og intel
 “I want to know what you got to say”. Klokken ble tre på natten, og jeg så frem til å se etter elg og rådyr i mørket, men plutselig sa V: “Hei G og U, hvorfor finner ikke bare dere hverandre?”. Jeg tenkte ikke over det, men tok albutak på S, hun hadde jo imponert meg mot sin vilje, og førte henne med meg unna de andre. Jeg vil vite hva du har å si.
 “I can tell you taste like the sky”. “Jeg bor rett her borte, men vi kan ikke dra til meg, nøkkelene min er mistet på en strand i Kristiansand”, sa jeg.
 “Jeg bor midlertidig hos mine foreldre, jeg skal dit for å sove”.
-“La oss finne et hotell” “Jeg vil hjem til min sønn” “Vær så god, her er din drosje, nå må vi bare kysse, så kan vi dra hver for oss, vi kan ha date til uken”. Jeg kysset henne på munnen. Jeg merker at du smaker himmel.
+“La oss finne et hotell”
+“Jeg vil hjem til min sønn”
+“Vær så god, her er din drosje, nå må vi bare kysse, så kan vi dra hver for oss, vi kan ha date til uken”. Jeg kysset henne på munnen. Jeg merker at du smaker himmel.
 “'Cause you look like rain”. Ingen av oss visste at nedtellingen var ferdig. Romansen uken etter ble byttet ut med akuttmottak, og sengen nærmest kjellerutgangen på Ullevål, deretter kom koma og kamp for overlevelse og forstand. Du ser ut som regn.
 “You think like a whip on a horse's back”. Selv om jeg sendte meldinger med bilder av operasjonssår, måten jeg kommuniserte på i delir, var U tøff nok til å tåle en mann i kaos med hjerne strukket over bristepunktet. Det fine med å gå i koma er at man kan velge hvem man skal være hvis man våkner.
 Du tenker som en pisk på en hesterygg.
@@ -390,7 +396,8 @@ Jeg vet ikke om jeg fortjener å melde meg på kor på tirsdager.
 Medlemmene er ikke-pretentiøse og ekte, jeg liker dem, det de står for og har respekt for deres godhet og klarer ikke leve opp til egne forventninger om å matche dem.
 Jeg spør en kvinne om hvor kult det ikke er at hun kjører “widowmaker” (en motorsykkeltype), hun ser trist på meg og
 sier: “så forferdelig”, hun er professor og fagsjef i noe som har med kvinners rettigheter å gjøre innen helse og er god rett gjennom, jeg kjenner på min egen ambivalistiske såkalte godhet og føler at jeg har sviktet som menneske på noen områder hun har løvert på gjennom livet.
-Hennes samboer ser jeg på som en venn, og som medskaper av TEDxOslo har jeg følelsen av å ha sviktet ham. Kvinnen jeg var sammen med sist kan tåle at jeg er med på julebordet til en felles venn, jeg ønsker henne godt, men det er ikke åpenbart av min kommunikasjon, men det er åpenbart at hun ønsker meg godt, noe jeg ikke klart klarer å kommunisere. Kankje tenker jeg for mye på dette, det er jo ganske creepy ganske fort med uønsket oppmerksomhet, kanskje også gjelder det uønsket refleksjon… jeg vet ikke. Er bekymret for min egen kommunikasjon på hans fest, har jeg blit en bitter gammel mann? Transisjonen fra “nullsum spillet” til et positivt rammeverk for egne handlinger og refleksjoner er ambisiøst, er jeg i stand til å forbedre meg og bli mindre bitter og utilgivelig, eller går jeg bare i en felle og går fra zero.-sum-game til zero-value-game, som så mange andre?
+Hennes samboer ser jeg på som en venn, og som medskaper av TEDxOslo har jeg følelsen av å ha sviktet ham. Kvinnen jeg var sammen med sist kan tåle at jeg er med på julebordet til en felles venn, jeg ønsker henne godt, men det er ikke åpenbart av min kommunikasjon, men det er åpenbart at hun ønsker meg godt, noe jeg ikke klart klarer å kommunisere. Kankje tenker jeg for mye på dette, det er jo ganske creepy ganske fort med uønsket oppmerksomhet, kanskje også gjelder det uønsket refleksjon…
+jeg vet ikke. Er bekymret for min egen kommunikasjon på hans fest, har jeg blit en bitter gammel mann? Transisjonen fra “nullsum spillet” til et positivt rammeverk for egne handlinger og refleksjoner er ambisiøst, er jeg i stand til å forbedre meg og bli mindre bitter og utilgivelig, eller går jeg bare i en felle og går fra zero.-sum-game til zero-value-game, som så mange andre?
 Jeg holdt på nachspiel fram til klokken 0530 om morgenen, med to venner og en kvinne av mange talenter. Først dro vi på karaokenatt med privatrom, hun elsket Bruce Springsteen og mange andre uventede artister som gir meg overlapp i erfaring
 og interesse, jeg takket med å være høylytt skrikende og uhøflig mot menneskene der, som hun sikkert hadde sett før og ønsket å treffe igjen, gjorde kanskje ikke den beste figuren, Etter først å ha primet henne med giftemål, et sjekketriks man kan gjøre på begynnelsen av en kveld som på kvinner virker med økende effekt utover kvelden mens de nyter festene og alkoholen, var jeg et godt eksempel på noe lite attraktivt bytte.
 Jeg endte med å danse forferdelig drålig på nachspiel med kvinnen, da jeg ikke lkan danse, og hadde ganske fersket knekt ribbein og kragebein etter et lite mc-uhell.
@@ -417,7 +424,8 @@ Plutselig smiler han triumferende når K går for å bomme røyk tre bord borten
 ### En fra vannverket, eller en skitten fyr — p. 78
 🎵 Common People, Pulp (https://gormb.github.io/_?mcp) — p. 78
 Det var en varm sommerdag og ikke anbefalt å bade innerst i Oslofjorden. Jeg skulle bade likevel og så en enslig fyr på det ellers så populære Sørenga “Hvordan er vannet”, spurte jeg.
-“Helt ok, det er grei temp for årstiden”. “Du veit det ikke er anbefalt å bade, for mye bakterier i vannet, ellers så er et kloakkanlegg lekk. Jeg vet ikke, men det lukter ikke. Kanskje de har hatt klor i” Han så på meg som et blikk som om han var erfaren veiviser, en av de eneste som kan en vanskelig vei og han kan være best på retning. “Ja. Bakterienviå. På grunn av temperaturen over tid. Jeg jobber for vannverket. Dette kan jeg alt om”. “Men du er i badebukse, du skal vel ikke bade nå med den jobben?”, undret jeg. Det skulle han. “Det er ikke så bra å drikke litervis av dette vannet, vi må være strenge, for barn får jo mye vann i munnen og svelger vannet. Jeg er ikke et bnarn, og drikker ikke saltvann”
+“Helt ok, det er grei temp for årstiden”. “Du veit det ikke er anbefalt å bade, for mye bakterier i vannet, ellers så er et kloakkanlegg lekk. Jeg vet ikke, men det lukter ikke. Kanskje de har hatt klor i”
+Han så på meg som et blikk som om han var erfaren veiviser, en av de eneste som kan en vanskelig vei og han kan være best på retning. “Ja. Bakterienviå. På grunn av temperaturen over tid. Jeg jobber for vannverket. Dette kan jeg alt om”. “Men du er i badebukse, du skal vel ikke bade nå med den jobben?”, undret jeg. Det skulle han. “Det er ikke så bra å drikke litervis av dette vannet, vi må være strenge, for barn får jo mye vann i munnen og svelger vannet. Jeg er ikke et bnarn, og drikker ikke saltvann”
 ## Reetabler — p. 79
 🎵 Kroppen gjenlærte å leve. (https://gormb.github.io/_?mltf) — p. 79
 Våknet blank, det gamle renset.
@@ -486,7 +494,8 @@ Jeg var ute med gutta. Tenkte ikke på Lotta. Alle min venns setninger var bygge
 Vi satt og noen venner og så VM-kamp på et sjelfullt sted.
 Byen kokte. England ledet en-null over Argentina. Tolv minutter igjen i tillegg til overtid. Noen sa “det er bare noen få år igjen vi er friske, jeg vet ikke om det er så mye jeg kan gjøre.
 Vi bygger jo leilighet i syden, men så trist å bare sitte der”...
-Jeg klarte ikke mer privilegert elendighet. “Ta deg sammen!” tenkte jeg, gikk ut og satte meg på motorsykkelen og kjørte en halvtime. Hodet klarnet, jeg lot meg ikke bli dratt ned av
+Jeg klarte ikke mer privilegert elendighet. “Ta deg sammen!”
+tenkte jeg, gikk ut og satte meg på motorsykkelen og kjørte en halvtime. Hodet klarnet, jeg lot meg ikke bli dratt ned av
 mentale modellene, men overstimulert av alle folkene, deres handlinger og reaksjoner, og tankemønstre gjorde meg mentalt overbelastet.
 Etter en halvtime i natten kom smilet tilbake. På utestedet var det oppbrudd, fotballkampen var slutt. Argentina hadde fått to raske mål, vunnet og gått videre til finalen. England var ute, skulle spille bronsefinale. Jeg hadde gått glipp av et kvarter; 80 minutter kjedelig kamp fulgte jeg, et morsomt kvarter glapp.
 Men det var verdt det.
@@ -500,7 +509,10 @@ Men trenger Lotta meg?
 🎵 Nights in White Satin (https://gormb.github.io/_?mniws) — p. 93
 “Takk for at du ser at jeg viser meg fram”, tenkte jeg. Hun misforstår når jeg er sarkastisk, hvis ingen hadde misforstått, hadde sarkasmen bare vært krenking. Hun legitimerer min sarkasme. “Takk for at du ser jeg pynter meg” sa hun.
 Jeg sa det til en kvinne som kanskje var perfekt for meg, men overså og glemte henne, ble minnet på det av en venn, Y.
-Vi var på fest hos en felles venninne. Y spurte hvordan det gikk med kvinnen jeg møtte. Y har fotografisk hukommelse, Jeg: “Kvinnen?” Y: “Ja hun som fikk lurt ut telefonnummeret av deg, og som vel egentlig bare ville være med deg hjem” Jeg: “Ja hun har jeg glemt, kanskje jeg burde ringe henne” Y: “Ja kanskje det”
+Vi var på fest hos en felles venninne. Y spurte hvordan det gikk med kvinnen jeg møtte. Y har fotografisk hukommelse, Jeg: “Kvinnen?”
+Y: “Ja hun som fikk lurt ut telefonnummeret av deg, og som vel egentlig bare ville være med deg hjem”
+Jeg: “Ja hun har jeg glemt, kanskje jeg burde ringe henne”
+Y: “Ja kanskje det”
 ### Veteranen — p. 94
 🎵 The Boxer, Simon & Garfunkel (https://gormb.github.io/_?mtbsg) — p. 94
 En mann på 86 år satt og drakk kaffe og så med langt blikk på sykkelen min da jeg stoppet ved en bar for å ta en Whiskey.
@@ -535,12 +547,15 @@ Kanskje.
 Fremtiden er her. Sophia kan lure meg. Et annet verktøy reddet meg, limte bare samtalen inn i en chat-løsning og fikk vite hva som indikerte at samtalen ikke var ført av et menneske.
 ### Du er bra — p. 102
 🎵 Need to Feel Loved, Reflekt (https://gormb.github.io/_?mntfl) — p. 102
-“Du er bra nok”, sier jeg. Hun har levd. Men problemet er meg. Tiden det tar å leges. “I’m falling” Bevisst endring er lett sammenlignet med endring av ubevisste mønstre; vaner satt seg er tungt å forholde seg til.
+“Du er bra nok”, sier jeg. Hun har levd. Men problemet er meg. Tiden det tar å leges. “I’m falling”
+Bevisst endring er lett sammenlignet med endring av ubevisste mønstre; vaner satt seg er tungt å forholde seg til.
 Før tok jeg en drink hver tredje time, og kjørte som en villmann. Nå kjører jeg veldig pent, og nyter bare av og til frykt i svinger, alltid under kontroll, men tillater meg å “dra litt ut i svingen” ved lav hastighet. Ser ikke proft ut, men de som ser etter proft på veien er duster.
 Bruker du vanlig vei som racerbane går det dårlig, eller du er langsom, likevel skryter folk av at de ikke har “Chicken Strips”. Duster. Jeg visste ikke at jeg fortsatt kunne ta en drink og kjøre etterpå, med alkohol under grensen, men negativt for
-reaksjon, risikobedømming og balanse. Karin gjorde meg klar over det. Jeg stoppet umiddelbart. Dysfunksjonelt. “Don’t let me fade away” Små skritt fra å være glad for bare å overleve. Jeg bommer på minimumskravet for “self care”. Jeg elsker meg ikke. Jeg elsker henne. Hun elsker meg. Vi elsker hverandre. Skikkelig.
+reaksjon, risikobedømming og balanse. Karin gjorde meg klar over det. Jeg stoppet umiddelbart. Dysfunksjonelt. “Don’t let me fade away”
+Små skritt fra å være glad for bare å overleve. Jeg bommer på minimumskravet for “self care”. Jeg elsker meg ikke. Jeg elsker henne. Hun elsker meg. Vi elsker hverandre. Skikkelig.
 Hvor ødeleggende er det ikke å elske noen som ikke elsker seg selv?
-“I need to feel loved” Hun er heldigvis for smart til det. Forholdet dør og vil gi henne plass til lykke. Takk. Du er bra.
+“I need to feel loved”
+Hun er heldigvis for smart til det. Forholdet dør og vil gi henne plass til lykke. Takk. Du er bra.
 ### Oljen renner ut — p. 104
 🎵 Ain't No Sunshine, Bill Withers (https://gormb.github.io/_?mans) — p. 104
 Batteriet på sykkelen er tomt for strøm, jeg rekker ikke lade det opp. Neste gang jeg stopper vil jeg ikke komme i gang.
@@ -563,7 +578,8 @@ Den ødelagte kroppen min hadde godt av å ha henne inntil meg og hun reagerte v
 Jeg kjørte henne på jobb via vakre landeveier, det luktet vår, gjødsel og stadig ny fauna. Slapp henne av og bestemte meg for å sitte på det lokale biblioteket for å jobbe. Biblioteket var grått og kjedelig, men kafeen vegg i vegg var hyggelig og
 hadde uteservering, bygdas møtested for lokale og innsatte på perm, lærte jeg senere. Jeg kjøpte en kaffe, satte meg i solen og skrev nyhetsbrev om borgerlønn i AI-alderen. Før jeg ble helt ferdig la jeg merke til en fyr som studerte meg fra trygg avstand. Kim, som han het, kom nærmere. Ikke helt bort, stoppet overhøflig fire-fem meter unna, “Kan jeg sette meg her, jeg vil ikke smuglese på datamaskinen din?” - Han så ut som en UFC Fighter og/eller farlig fengselsfange, hendene med arr på knokene så ut som hadde slått mye og mange som en hest sparker. Det skallede hodet viste mellomstore arr her og der. Han hadde vært innom biblioteket for å se om det var kommet noe nytt.
 Jeg satte meg sidelengs slik at han, ved bordet bortenfor kunne gjøre det samme. Etter en stund så vi hverandre rett i øynene, avslappet og uten markeringsbehov av noen art. Lav hvilepuls hos meg og sikkert også han. Vi snakket løst om frykt, døden, psykoser og absolutte sannheter før han satte fra seg ølen og kom og satte seg ved mitt bord. Han ville høre mer enn å kommunisere, var ikke klar for å dele, følte seg nok ikke helt trygg.
-Jeg leste en side for ham om renheten i handlinger som ikke er gjennomtenkt, han nikket bekreftende og kommenterte “ja” og “m-hm” her og der. Så spurte han om tillatelse til å komme med et dikt. Jeg ble litt overrasket, og svarte bekreftende, han ba meg si et ord.
+Jeg leste en side for ham om renheten i handlinger som ikke er gjennomtenkt, han nikket bekreftende og kommenterte “ja”
+og “m-hm” her og der. Så spurte han om tillatelse til å komme med et dikt. Jeg ble litt overrasket, og svarte bekreftende, han ba meg si et ord.
 Pils Jeg kan ikke gjengi diktet hans, men det er av de beste jeg har hørt. “Send det til et forlag og bli avvist eller publisert”, sa jeg.
 Han vred seg i stolen, det kan hende at poenget med poesien ikke var å nå andre, men å forstå seg selv, jeg undret meg ikke over det.
 “Hvis du ikke liker PC, eller skrive på ark, les det inn på en app på telefonen, og send lydfilen til forlaget. Skriving er ikke et problem når AI er her, ikke alle liker å skrive, men snart kan alle dele! Jeg jobber med kunstig intelligens, men det er ikke viktig, det kan gjøre noe for oss alle”.
@@ -617,7 +633,8 @@ G har utnyttet og blitt utnyttet av stamgjestene hun finner attraktive. Sier ald
 streng tone, som fort faller tilbake i den lune personligheten.
 Søsteren til G har ingen penger. Forskudd på arv endte opp hos en lykkejeger fra Vestlandet, eller rettere sagt en pengeinnkrever noen skyldte penger. En ved Bjerke travbane.
 G skal arve tresifret antall millioner, og bestevennen skal være trygg økonomisk. “H skal aldri mangle noe”, sier hun stolt.
-“Utenom frihet, seksualitet, egenverd og handlingsrom” hvisker en kafegjest til meg.
+“Utenom frihet, seksualitet, egenverd og handlingsrom”
+hvisker en kafegjest til meg.
 Hennes tilkomne H har paralell til den norske innbygger. G er som norsk offentlig forvaltning. Han tilsvarer norges innovatører. Oljepenger skal gi trygghet, “big mother” skal bestemme alt, folket skal være trygge og beskyttes mot seg selv. “Du vet det ikke er din sterkeste side å behandle penger”, sier G og styrter Tequila nummer tre. Både hun og staten har sett at det går dårlig med innovasjon i frihet i andre land.
 Pengene til G kommer fra at hennes familie, for fem generasjoner siden, startet forfar landhandleri alle måtte passere på vei til brygge på Sørlandet. Penger fra båtbygging og eierandeler fra seilskip..Verken butikk eller båter har
 fantes på over 100 år. Heller ikke arbeidende kapital; bare passivt eierskap. Alle pengene er ikke brukt opp enda. Gamle passive penger uten tilskudd av skapelse.
@@ -671,7 +688,8 @@ Kvinnen var verden for meg, deretter helt borte. Nullsum igjen; hennes fødselsd
 ### Biblioteket; den gode byråkraten — p. 129
 🎵 Everything in Its Right Place, Radiohead (https://gormb.github.io/_?metiirp) — p. 129
 Biblioteket er det beste stedet å lade opp batteriene. Ikke Deichman Bjørvika, i sentrum, der de roper over høyttaleranlegget om dagens tilbud, noe som legitimerer at en god andel av de besøkende breker og spjaker.
-”Sauer er ikke ålreite dyr”, sier jeg til meg selv. Storkoser meg hver gang et bibliotek faktisk er et bibliotek, og det å si “hysj” er legitimt, og mitt svar er “unnskyld”. Dette er en dag jeg skal oppleve det.
+”Sauer er ikke ålreite dyr”, sier jeg til meg selv. Storkoser meg hver gang et bibliotek faktisk er et bibliotek, og det å si “hysj”
+er legitimt, og mitt svar er “unnskyld”. Dette er en dag jeg skal oppleve det.
 Grünerløkka fungerer halvparten av tiden, Majorstua tre fjerdedeler. “Jo færre tjenestedesignere som, i regi av skattepenger, har vært innom for å redefinere bibliotek til by-bygdehus, jo bedre”, tenker jeg og går inn på svale, stille Deichman Grünerløkka.
 På vei mot kaffe ser jeg frukt og saft på et bord midt i rommet. Rommet med tegneserier. Et fargefylt skilt skrevet ut på A3 fargeskriver har liten skrift jeg ikke leser, og jeg fyller meg et glass saft.
 Bak meg lyder, “det er egentlig til barna”. En ensom dame i vest som sier “ DEICHMAN ” i sans-serif font med lav lesbarhet henvender seg vennlig til meg før hun sier hun snart skal gå.
@@ -688,7 +706,8 @@ Damen på biblioteket deler ut frukt hun har dandert og penetrert med små pinne
 ### Bjeffing om livsfare — p. 133
 🎵 Freedom, Rage Against the Machine (https://gormb.github.io/_?mfratm) — p. 133
 “ ⚠ FARE! ⚠ Grunnet SVÆRT ustabile masser under veien er det forbundet med LIVSFARE å passere sperringene!
-Vennligst benytt stien på andre siden av vannet!” Skiltet står på en grusvei i nordmarka der det ikke er lovlig ferdsel for bil. Skiltet gjelder for gående og syklister. Dødsfall grunnet ras på grusveier i utmark er ikke registrert siden de begynte detaljert registrering for 700 år siden. Grusveien er nå bare litt tryggere enn stien. Inne i skogen. Ta dere sammen Hunden bjeffer selv om det ikke er fare. Tror den selv grunnen til at det ikke er fare er at den bjeffer?
+Vennligst benytt stien på andre siden av vannet!”
+Skiltet står på en grusvei i nordmarka der det ikke er lovlig ferdsel for bil. Skiltet gjelder for gående og syklister. Dødsfall grunnet ras på grusveier i utmark er ikke registrert siden de begynte detaljert registrering for 700 år siden. Grusveien er nå bare litt tryggere enn stien. Inne i skogen. Ta dere sammen Hunden bjeffer selv om det ikke er fare. Tror den selv grunnen til at det ikke er fare er at den bjeffer?
 Flere har dødd av blodpropp mens de laget dumme skilt enn antall liv reddet av skiltene. Jeg går gjennom.
 ### Styrken er som før — p. 134
 🎵 Stranglehold (https://gormb.github.io/_?msh) — p. 134
@@ -749,7 +768,8 @@ være passive brikker til å bli bevisste observatører av vårt eget liv, behan
 Traume som tidsbrudd Judith Herman, Cathy Caruth Til og med koma kan være en god ting, når man våkner.
 Erkjennelse av en verden som ikke lenger finnes, er eksempel på traumatisk brudd. Øyeblikk der virkelighet revner og tid oppleves fragmentert. Caruths teori om traumets “forsinkede gjenkomst” forklarer hvorfor lyden av knust glass (eller hjelm) blir et lydmessig minnespor som aktiveres senere øyeblikk av krise. En lydbro til døden minner om alle tap og alt håps død.
 Alt fra ubesvarte kyss til livslange traumer gjør at fortid aldri blir bare fortid; fortid er nåtid, gjentatt i hver ødeleggelse eller manglende handling. Når man våkner fra koma kan man velge å utslette sitt gamle liv og begynne på nytt.
-Historiske røtter til nulloppsummerings død Tapets metafysikk Boethius, Augustins “Confessiones” For Boethius (Consolation of Philosophy, 524) var lidelse en prøvelse som avslørte sjelens sanne natur. Erkjennelsen av en verden som går til helvete kan ligne Boethius’ beskrivelse av Fortuna som snur hjulet: i ett øyeblikk er man på toppen, i neste knust mot bakken. Augustins bekjennelser handler om hvordan tapet av en elsket åpner for en dypere kjærlighet til Gud. Men her er det ingen gud, bare motorbrøl, livsfare og fraværende blikk fra traumatiserte kvinner. Det finnes en fåfengt liturgi i ritualer bobler, blåskjell, avbrutte kyss, det blir erstatninger for en tapt orden, akkurat som middelalderens sørgesanger bevarte de dødes minne.
+Historiske røtter til nulloppsummerings død Tapets metafysikk Boethius, Augustins “Confessiones”
+For Boethius (Consolation of Philosophy, 524) var lidelse en prøvelse som avslørte sjelens sanne natur. Erkjennelsen av en verden som går til helvete kan ligne Boethius’ beskrivelse av Fortuna som snur hjulet: i ett øyeblikk er man på toppen, i neste knust mot bakken. Augustins bekjennelser handler om hvordan tapet av en elsket åpner for en dypere kjærlighet til Gud. Men her er det ingen gud, bare motorbrøl, livsfare og fraværende blikk fra traumatiserte kvinner. Det finnes en fåfengt liturgi i ritualer bobler, blåskjell, avbrutte kyss, det blir erstatninger for en tapt orden, akkurat som middelalderens sørgesanger bevarte de dødes minne.
 Historiske røtter til nulloppsummerings død Det sublime i ødeleggelsen Edmund Burke, Friedrich Schiller “A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful” (1757) skiller mellom det vakre (harmoni) og det sublime (skrekkblandet fryd). Lek med døden der man søker livsfare for å føle seg levende er en jakt på det sublime øyeblikk der døden gjør livet mer intens, og nummenheten blir borte. Schillers “On Naïve and Sentimental Poetry” (1795) ville kalt denne sentimentaliteten en lengsel etter en tapt uskyld som aldri kan gjenvinnes. Klage over natur som ikke lenger synger, for mennesket har ødelagt den.
 Historiske røtter til nulloppsummerings død Posthumanistisk sorg Donna Haraway, Byung-Chul Han Haraways “Staying with the Trouble” (2016) argumenterer for at vi kan lære å leve med ødeleggelsen, ikke mot den. Nær døden, ulykker og knuste liv er eksempler på Haraways "Chthulucene", en tid der mennesket ikke er sentrum, men del av nettverket av sammenbrudd. Byung-Chul Hans “The Burnout Society” (2010) ville se handlinger i dødsforakt som symptom på senkapitalismens positivitetsutmatning: når selvrealisering blir tvang, søker man utslettelse for å føle noe.
 Der Han ser patologi, ser Haraway mulighet, i møte med veterinæren som redder ham, eller i en kvinnes utholdenhet, ligger frø til ny form for fellesskap. Ikke basert på helhet, men sammenføyde brudd.
@@ -790,7 +810,8 @@ Fagsjefen i Helsedirektoratet hadde styrt ham til å simulere det å være en go
 type jobb, og noe nytt å lære han elsket, han giftet seg med fagsjefen, så slapp han tenke mer på den saken, de hadde barn på vei allerede. Simulering av topplege i Augmented Reality føltes som å gjøre noe nyttig, umulig å ødelegge den jobben for idiotiske pasienter som tok makten over følelseslivet hans.
 Inndirekte nedjustering av de utvidede konsekvensene av at en mor i angst ødela sitt barn et sted i Midt-Norge. Pasienten var langt nok unna og Kjell måtte i bakken snart. Bodøs hjemmesyke trengte en god mandag med en relevant hjemmelege. Tove hadde indirekte påvirket stemningen til hele området tre mandager på rad, nå var det nok.
 Kjell kodet om opplevelsen av søndagens pasientopplevelse.
-“Tove. Du er HjemmelegenMin, ikke lengre begrenset til å være en mur mellom Toves hypokonderi og Anders muligheter for å ha et godt liv. Du er den moderne manifistasjonen av legen som i tidligere århundre gikk fra gård til gård og hjalp alle som var der, det er din jobb!” Så var det på med ski og ut i bakken. Enda en totimersdag på jobb var fullført.
+“Tove. Du er HjemmelegenMin, ikke lengre begrenset til å være en mur mellom Toves hypokonderi og Anders muligheter for å ha et godt liv. Du er den moderne manifistasjonen av legen som i tidligere århundre gikk fra gård til gård og hjalp alle som var der, det er din jobb!”
+Så var det på med ski og ut i bakken. Enda en totimersdag på jobb var fullført.
 ## Positivsum — p. 157
 🎵 https://gormb.github.io/_?mbd (https://gormb.github.io/_?mbd) — p. 157
 Åpne sinnet.
