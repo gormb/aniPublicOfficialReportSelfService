@@ -292,6 +292,7 @@
                 // nav.gest = gestyr. Tilstandsmaskin: none | busy | up | dn | left | right | pgup | pgdn
                 ,gest:{
                     _edge:0.02 // kant-margin som brøkdel av viewport-høyden: 0.02 = 2% fra topp/bunn
+                    ,_ratio:2 // akse-dominans: HORISONTAL krever |dx|>2·|dy|, VERTIKAL krever |dy|>2·|dx| – diagonal i midten = INGEN gest (ren native scroll)
                     ,ontop:()=>window.scrollY<=window.innerHeight*nav.gest._edge
                     ,onbottom:()=>window.scrollY>=document.documentElement.scrollHeight-window.innerHeight-window.innerHeight*nav.gest._edge
                     ,suppressed:()=>_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none' // TOC/del/eksport åpen → ALDRI gest (ren native scroll)
@@ -337,12 +338,13 @@
                         const g=nav.gest;
                         if(g.suppressed()){g._d=0;g.setState(GEST.NONE);return;} // TOC/del/eksport åpen: ingen gest – ren native scroll (aldri preventDefault)
                         const dx=e.deltaX||0, dy=e.deltaY||0;
-                        const horiz=Math.abs(dx)>Math.abs(dy); // større sideveis enn opp/ned → left/right
-                        const d=horiz?(dx>0?1:-1):(dy>0?1:-1);
-                        if (!d){ g.setState(GEST.NONE); return; } // ingen bevegelse -> none
-                        const k=horiz?(d>0?'right':'left'):(d>0?'dn':'up'); // retningsnøkkel for gest-skillet
-                        if (k!==g._d) g.setState(GEST.NONE); // retningsskifte = ny gest -> none
-                        g._d=k;
+                        const ax=Math.abs(dx), ay=Math.abs(dy);
+                        const horiz=ax>ay*g._ratio, vert=ay>ax*g._ratio; // 2×-regel: HORISONTAL kun når |dx|>2·|dy|, VERTIKAL kun når |dy|>2·|dx|
+                        if(g.newState===GEST.NONE && !horiz&&!vert){ g._d=0; g.setState(GEST.NONE); return; } // utydelig/diagonal + INGEN pågående gest → ren native scroll (aldri sidebytte)
+                        const d=horiz?(dx>0?1:-1):vert?(dy>0?1:-1):0; // d=0 kun midt i en pågående gest (utydelig) – 2×-regelen gjelder bare den FØRSTE beslutningen
+                        const k=horiz?(d>0?'right':'left'):vert?(d>0?'dn':'up'):g._d||''; // retningsnøkkel for gest-skillet (behold retningen midt i gesten)
+                        if (k && k!==g._d) g.setState(GEST.NONE); // retningsskifte = ny gest -> none
+                        if (k) g._d=k;
                         const prev=g.newState;
                         const ns=g.detectState(d,horiz,e.touch);
                         g.setState(ns); // beslutning (no-op midt i gesten, reseter stop-deteksjon)
@@ -650,7 +652,7 @@
                 // auto-språkbytte ved horisontal skrolling er fjernet – språk byttes kun med nLg-knappen
                 window.addEventListener('wheel',nav.gest.wheel,{passive:false}); // gest: beslutning én gang per skroll; svelg momentum etter sideskift
                 // touch (iPhone): iOS gir IKKE wheel ved touch-scroll → oversett til syntetiske wheel-hendelser for samme gest-maskin
-                let _tX=0,_tY=0,_tA=0,_tSX=0,_tSY=0; // _tA: låst akse (1=horisontal, -1=vertikal)
+                let _tX=0,_tY=0,_tA=0,_tSX=0,_tSY=0; // _tA: låst akse (1=horisontal, 0=utydelig/native, -1=vertikal)
                 document.addEventListener('touchstart', e=>{
                     const t=e.touches[0]; _tX=t.clientX; _tY=t.clientY; _tA=0; _tSX=0; _tSY=0;
                 }, {passive:true});
@@ -659,7 +661,7 @@
                     if(g.suppressed()){_tA=0;_tSX=0;_tSY=0;_tX=e.touches[0].clientX;_tY=e.touches[0].clientY;return;} // TOC/modal åpen: ingen gest – ren native scroll
                     const t=e.touches[0], dx=t.clientX-_tX, dy=t.clientY-_tY;
                     _tX=t.clientX; _tY=t.clientY;
-                    if(_tA===0){ _tSX+=dx; _tSY+=dy; if(Math.abs(_tSX)>30||Math.abs(_tSY)>30) _tA=Math.abs(_tSX)>Math.abs(_tSY)*1.5?1:-1; } // lås akse kun ved TYDELIG dominans (>30px, 1.5×)
+                    if(_tA===0){ _tSX+=dx; _tSY+=dy; if(Math.abs(_tSX)>30||Math.abs(_tSY)>30) _tA=Math.abs(_tSX)>Math.abs(_tSY)*nav.gest._ratio?1:Math.abs(_tSY)>Math.abs(_tSX)*nav.gest._ratio?-1:0; } // lås akse kun ved 2×-dominans (>30px); diagonal → 0 = ingen gest (ren native scroll)
                     if(_tA===1){ // horisontal sveip → sidebytte (venstre/høyre)
                         if(g.isPage(g.newState)||g.newState===GEST.BUSY) e.preventDefault();
                         nav.gest.wheel({ deltaX:dx, deltaY:0, touch:true, preventDefault:()=>{} });
