@@ -883,7 +883,3 @@ Appendix og mer
 ## Uplassert og ubestemt — p. 162
 🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 162
 Appendix og mer
-#### p. 163
-“Garamond” Etter boken husker du fortsatt følelsen den gav deg, ikke hva den handlet om. Skrevet i fonten “Garamond”.
-Dette er den vanlige skrifttypen som benyttes for gratisteksten. Den representerer det åpne og tilgjengelige innholdet i boken, og kjennetegnes av et rent, moderne og standardisert uttrykk med god lesbarhet. Freemium “Calibri”
-(Kjøp hele teksten i meny)

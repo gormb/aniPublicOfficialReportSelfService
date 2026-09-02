@@ -887,5 +887,3 @@ Appendix and more
 ## Unplaced & undecided — p. 162
 🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 162
 Appendix and more
-#### p. 163
-"Garamond" After the book, you remember the feeling it gave you, not what it was about. Written in the font "Garamond". This is the standard typeface used for the free text. It represents the open and accessible content of the book, and is characterized by a clean, modern, and standardized expression with good readability. Freemium premium "EB Garamond" After the book, you remember the feeling it gave you, not what it was about. This is paid text, in "EB Garamond". This is the speciﬁc typeface used for the paid text. It is based on a classic, historical print from 1592, which gives the text a slightly darker, softer, and more traditional book-printing character. For the system, it functions as a completely separate font ID that allows your viewing program to automatically unlock or hide the text based on payment status.
