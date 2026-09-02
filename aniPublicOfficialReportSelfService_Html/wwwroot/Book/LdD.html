@@ -3,8 +3,8 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=42"></script>
-        <link rel="stylesheet" href="LdD.css?v=16">
+        <script type="module" src="LdD.js?v=43"></script>
+        <link rel="stylesheet" href="LdD.css?v=23">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -95,9 +95,9 @@
                     nGoTxt.value = pn;
                     await cBook.Page(pn, true);
                 }
-                ,src:"b/LifeDemandedDeath.pdf"
+                ,src:"b/LifeDemandedDeath/b.pdf"
                 ,srcBase:()=>{ return book.src.replace(/\.pdf$/i,"");} // keep folder (b/...) so sidecars (.jpg/.png) sit next to the book
-                ,name:()=>book.src.split("/").pop().replace(/\.pdf$/i,"")
+                ,name:()=>{const p=book.src.split("/");return p.length>2?p[p.length-2]:p[p.length-1].replace(/\.pdf$/i,"")} // nested: identity = parent folder
                 ,pn:()=>cBook.pn
                 ,np:()=>cBook.pdf?Math.max(1,cBook.pdf.numPages-4):0 // last 4 pages are template slides – hidden (min 1 for small PDFs)
             }
@@ -246,7 +246,7 @@
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = `LifeDemandedDeath_${book.hAlign._?'N':'E'}.txt`;
+                    a.download = `${book.name()}_${book.hAlign._?'N':'E'}.txt`;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
@@ -329,10 +329,12 @@
                     }
                     // unique unicode symbol per state (none = blank)
                     ,SYMBOLS:{'none':' ','busy':'…','up':'↑','dn':'↓','left':'←','right':'→','pgup':'⇑','pgdn':'⇓'}
-                    ,stateUi:()=>{ // state symbol left of page number (top margin in #_dPage)
+                    ,stateUi:()=>{ // state symbol by page number + mirrored fixed at mid left/right edges
                         const g=nav.gest;
                         const s=g.SYMBOLS[g.newState]||' ';
                         if(window._stateUi?.sym!==s){ window._stateUi={sym:s}; window.cBook?.PageNo?.(); }
+                        const show=s!==' ';
+                        for(const id of ['nStL','nStR']){const e=document.getElementById(id);if(e){e.textContent=s;e.style.display=show?'':'none';}}
                     }
                     ,wheel:(e)=>{
                         const g=nav.gest;
@@ -615,7 +617,7 @@
                     uishow(iLoading, true)
                     let bookU=sp.get('book');
                     if(bookU) nav.memSet('book', bookU);
-                    else bookU=await nav.memGet('book', 'b/LifeDemandedDeath.pdf');
+                    else bookU=await nav.memGet('book', 'b/LifeDemandedDeath/b.pdf');
                     book.src=bookU; // set before per-book state is read – book.name() is the localStorage namespace
                     let bookT=parseInt(sp.get('bookT')) || parseInt(await nav.memGet('book type', bookU?.indexOf('.pdf')!=-1))
                         ,page=parseInt(sp.get('page')) || parseInt(await nav.memGet('page', 1))
@@ -723,6 +725,9 @@
                 <button id="nPv2" onmousedown="nav.Page(book.pn()-1)" style="display:none;">🫲&nbsp;</button>
                 <button id="nPv3" onmousedown="nav.Page(book.pn()-1)" style="display:none;">🫲&nbsp;</button>
         </div>
+        <!-- edge state symbols: mirror of the page-number state, fixed at mid left/right edges -->
+        <span id="nStL" class="edgeState" style="display:none"></span>
+        <span id="nStR" class="edgeState" style="display:none"></span>
         <div id="_dShare" class="shareParent" style="display:none;">
             <center>
                 <table><tr><td>

@@ -132,7 +132,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         await cBook.Source(src, render, pageNo)
     }
     ,QrUrlScrollY:0
-    ,QrUrl:async function(deep=false,ht=35,img="b/LifeDemandedDeath.png",opt={}) {
+    ,QrUrl:async function(deep=false,ht=35,img="b/LifeDemandedDeath/bqrmid.png",opt={}) {
         if (cBook._qrUrl) URL.revokeObjectURL(cBook._qrUrl);
         const u = new URL("https://gormb.github.io/_");
         u.search = '?b';
