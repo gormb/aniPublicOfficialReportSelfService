@@ -424,7 +424,7 @@ gratisversjon
 🎵 Common People, Pulp (https://gormb.github.io/_?mcp) — p. 78
 Det var en varm sommerdag og ikke anbefalt å bade innerst i Oslofjorden. Jeg skulle bade likevel og så en enslig fyr på det ellers så populære Sørenga “Hvordan er vannet”, spurte jeg.
 “Helt ok, det er grei temp for årstiden”. “Du veit det ikke er anbefalt å bade, for mye bakterier i vannet, ellers så er et kloakkanlegg lekk. Jeg vet ikke, men det lukter ikke. Kanskje de har hatt klor i”
-Han så på meg som et blikk som om han var erfaren veiviser, en av de eneste som kan en vanskelig vei og han kan være best på retning. “Ja. Bakterienviå. På grunn av temperaturen over tid. Jeg jobber for vannverket. Dette kan jeg alt om”. “Men du er i badebukse, du skal vel ikke bade nå med den jobben?”, undret jeg. Det skulle han. “Det er ikke så bra å drikke litervis av dette vannet, vi må være strenge, for barn får jo mye vann i munnen og svelger vannet. Jeg er ikke et bnarn, og drikker ikke saltvann”
+Han så på meg som et blikk som om han var erfaren veiviser, en av de eneste som kan en vanskelig vei og han kan være best på retning. “Ja. Bakterienviå. På grunn av temperaturen over tid. Jeg jobber for vannverket. Dette kan jeg alt om”. “Men du er i badebukse, du skal vel ikke bade nå med den jobben?”, undret jeg. Det skulle han. “Det er ikke så bra å drikke litervis av dette vannet, vi må være strenge, for barn får jo mye vann i munnen og svelger vannet. Jeg er ikke et barn, og drikker ikke saltvann”
 ## Reetabler — p. 79
 🎵 Kroppen gjenlærte å leve. (https://gormb.github.io/_?mltf) — p. 79
 Våknet blank, det gamle renset.
