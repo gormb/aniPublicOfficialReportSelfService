@@ -139,7 +139,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         if (opt.book!==false) u.search += '&book=' + encodeURIComponent(book.src);
         if (deep) {
             let c='w,100';
-            if (opt.lang!==false && !book.hAlign._) c+=',nLg';
+            if (opt.lang!==false) c+=book.hAlign._?',nLg0':',nLg1'; // deterministic language – nLg0=NO, nLg1=EN
             if (opt.idx!==false) c+=',nTc';
             if (opt.pos!==false && cBook.QrUrlScrollY>0) c+=',s,'+cBook.QrUrlScrollY;
             if (opt.page!==false) u.search += '&page=' + cBook.pn;

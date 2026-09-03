@@ -368,7 +368,10 @@
                         nav.TocCur(); // refresh 'cur' marker to current page without rebuild (keeps player)
                         nav._menuWasOpen=nMt.innerText=='⏶';
                         if(nav._menuWasOpen)nav.menu();
-                    }else if(nav._menuWasOpen)nav.menu();
+                    }else{
+                        if(nav._menuWasOpen)nav.menu();
+                        if(_dBooks.style.display!='none')await nav.Books(false); // TOC close → close book picker too
+                    }
                     uishowBlock(_dToc,s)&&nav.DisButtons();
                     uishowBlock(_dBook,!s)&&nav.UpdButtons();
                     nav.Able(nLg,!s); // nLg deaktivert i TOC
@@ -421,7 +424,7 @@
                     const md=await cBook.data.fromMd();
                     const data=md?md.blocks:await cBook.data.get();
                     const last=cBook.pdf?.numPages-3 ?? 9999;
-                    _dTocTitle.textContent=(md?md.title:await cBook.data.title(want==='no'))||'"Liv Krevde Død"'; // book title from cover slide, language-aware
+                    _dTocTitle.textContent=(md?md.title:await cBook.data.title(want==='no'))||'"Liv Krevde Død"'; nav._tocTitle=_dTocTitle.textContent; // cache title (book picker restores it)
                     let chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
                     let subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
                     if(!md){ // PDF path: hide tier-locked entries (the .md is already mode-filtered)
@@ -473,6 +476,7 @@
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
                         return `<li class="chap" data-p="${c.page}">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li data-p="${s.page}">${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
+                    nav._tocHtml=html; // cache chapter TOC (book picker shows over it)
                     return html;
                 }
                 // find (nFd): TOC open → filter box; else → find box (CONTROLS ONLY – search wired later)
@@ -489,7 +493,50 @@
                     _dTocList.querySelectorAll('.cur').forEach(a=>a.classList.remove('cur'));
                     _dTocList.querySelectorAll(`li[data-p="${curPage}"] .toc-nav`).forEach(a=>a.classList.add('cur'));
                 }
-
+                // Book picker: press book title in TOC → list every book/version (book_versions) – pdf path read from books.deployed, NOT guessed
+                ,esc:s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
+                ,no:v=>/^(no|nb|norwegian|norsk)$/i.test(v||'') // version → Norwegian (left side)
+                ,BookVersions:async ()=>{ // {book:{src,vers:[{version,name}]}}
+                    const s=window.SUPABASE; if(!s||!s.url||s.url.includes('YOUR-'))return null;
+                    const H={apikey:s.publishableKey,Authorization:'Bearer '+s.publishableKey};
+                    try{
+                        const [a,b]=await Promise.all([fetch(s.url+'/rest/v1/book_versions?select=book,version,name&order=book,version',{headers:H}),fetch(s.url+'/rest/v1/books?select=book,deployed',{headers:H})]);
+                        const vers=await a.json(), rows=await b.json(), src={};(rows||[]).forEach(r=>src[r.book]=r.deployed);
+                        const out={};(vers||[]).forEach(r=>{if(!src[r.book])return;const o=out[r.book]=out[r.book]||{src:src[r.book],vers:[]};o.vers.push(r)});
+                        return out;
+                    }catch(e){return null}
+                }
+                ,Books:async (on=_dBooks.style.display=='none')=>{ // title click ⇄ picker (chapter TOC cached in _tocHtml)
+                    if(!_dTocList.childElementCount)_dTocList.innerHTML=await nav.Toc();
+                    if(!on){ // back to chapters
+                        _dBooks.style.display='none';_dBooks.dataset.ok='';_dBooks.innerHTML='';_dTocList.style.display='';
+                        _dTocTitle.textContent=nav._tocTitle||''; return;
+                    }
+                    _dBooks.style.display='block';_dTocList.style.display='none'; // picker over chapter list
+                    if(_dBooks.dataset.ok=='1')return; // built once (closed → rebuilt, so current book stays highlighted)
+                    _dBooks.innerHTML='…';
+                    const bk=await nav.BookVersions();
+                    if(!bk){_dBooks.innerHTML='<div style="padding:.4em 0">⚠ kunne ikke hente bøker / could not load books</div>';return;}
+                    _dBooks.dataset.ok='1';
+                    const esc=nav.esc, curBook=book.name(), curTag=book.hAlign._?'NO':'EN';
+                    const rows=Object.keys(bk).sort().map(b=>{
+                        const vs=bk[b].vers.slice().sort((x,y)=>(x.version||'').localeCompare(y.version||''));
+                        return '<b style="display:block;margin:.3em 0 .1em">'+esc(b)+'</b><ul>'+vs.map(v=>{
+                            const tag=nav.no(v.version)?'NO':'EN', cur=b===curBook&&tag===curTag;
+                            return `<li><a class="toc-nav${cur?' cur':''}" href="#" data-book="${esc(b)}" data-src="${esc(bk[b].src)}" data-no="${nav.no(v.version)}"><span>${esc(v.name||v.book)}</span><i>${tag}</i></a></li>`;
+                        }).join('')+'</ul>';
+                    }).join('');
+                    _dBooks.innerHTML='<div style="padding:.1em 0 .4em;opacity:.7">Bøker / Books</div>'+(rows||'<div>(ingen bøker / no books)</div>');
+                    _dBooks.onclick=nav.BookGo; // delegated click
+                }
+                ,BookGo:async ev=>{ // same book → flip language in place; other book → reload with books.deployed path + deterministic language
+                    const a=ev.target.closest('a[data-src]'); if(!a)return;
+                    ev.preventDefault();
+                    if(a.dataset.book===book.name()){ nav.ShowToc(); const no=a.dataset.no=='true'; if(book.hAlign._!=no)book.hAlign.L(no); return; }
+                    const u=new URL(location.href);
+                    u.search='?b&book='+encodeURIComponent(a.dataset.src)+(cBook.pn?'&page='+cBook.pn:'')+'&c='+(a.dataset.no=='true'?'nLg0':'nLg1'); // nLg0=NO, nLg1=EN
+                    location.href=u.href; // fresh load – premium/freemium per book restored from localStorage
+                }
                 ,PremToggle:()=>{ // PIN → premium: verified against Supabase 'codes' (dtfrom<=now<=dtto); future: hash to a remembered var
                     if(book.prem._){nav.memSet('code','');return book.prem.L(false);} // premium → free: delete stored code
                     if(nPin.style.display!='none')return uishow(nPin,false); // PIN visible → 🔓 again closes it (abort)
@@ -706,6 +753,8 @@
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" onmousedown="nav.Export()">📤</button>
                 <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
+                <button id="nLg0" style="display:none" onmousedown="book.hAlign.L(true)">🇳🇴</button>  <!-- set NO (btSimul target) -->
+                <button id="nLg1" style="display:none" onmousedown="book.hAlign.L(false)">🇬🇧</button> <!-- set EN (btSimul target) -->
                 <button id="nPr" onmousedown="nav.PremToggle()">🔓</button>
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
@@ -743,7 +792,8 @@
             </center>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">
-                <h1><a id="_dTocTitle" href="javascript:nav.TocPage(1);">"Liv Krevde Død"</a></h1>
+                <h1><a id="_dTocTitle" href="javascript:nav.Books();" title="Bytte bok / switch book">"Liv Krevde Død"</a></h1>
+                <div id="_dBooks" style="display:none"></div>
                 <div style="display:flex;align-items:center;gap:.5em;margin-bottom:.5em;">
                     <button id="nFdT" onmousedown="nav.find()" style="font-size:calc(var(--fsMenu)*.45);padding:0 .3em;line-height:1.2;">🔍</button>
                     <input id="_dTcTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Filter not implemented" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;flex:1;min-width:0;"/>
