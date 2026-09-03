@@ -37,6 +37,18 @@
 <div id="gridB"></div>
 <div id="bLog"></div>
 <hr>
+<h3>adm; book_versions (visningsnavn per bok / språk – driver bokvelgeren i leseren)</h3>
+<form id="fV" onsubmit="saveV(event)">
+  <table><tr>
+    <td>book <input id="v_book" required placeholder="LifeDemandedDeath"></td>
+    <td>version <input id="v_version" required placeholder="NO / EN" style="width:6em"></td>
+    <td>name <input id="v_name" required placeholder="tittel / title"></td>
+    <td>description <input id="v_desc" placeholder="valgfri"></td>
+    <td><button>Save</button> <button type="button" onclick="resetV()">New</button></td>
+  </tr></table>
+</form>
+<div id="gridV"></div>
+<hr>
 <h3>adm; lakehouse (medallion) deploy · <a href="Lh/01_medallion_deploy.html" target="_blank">åpne deploy ↗</a> · <a href="Lh/30_medallion_analytics.html" target="_blank">analytics ↗</a></h3>
 <hr>
 <h3>adm; usage (logg)</h3>
@@ -90,6 +102,19 @@ alter table books enable row level security;
 drop policy if exists books_all on books;
 create policy books_all on books for all using (true) with check (true);
 -- NB: unquoted identifiers are folded to lowercase (dtautosyncfrom/dtautosyncto).</pre>
+<pre>create table if not exists book_versions (
+  book text not null default 'ABook',
+  version text not null default 'EN',
+  name text not null default 'Set Name',
+  description text not null default '',
+  created_at timestamptz default now(),
+  primary key (book, version)
+);
+-- RLS (open for the admin page):
+alter table book_versions enable row level security;
+drop policy if exists book_versions_all on book_versions;
+create policy book_versions_all on book_versions for all using (true) with check (true);
+-- NB: rows here drive the book picker in the reader (press the TOC title).</pre>
 </details>
 <script type="module" src="adm.js?v=6"></script>
 </body>

@@ -49,7 +49,23 @@ window.saveB=async e=>{e.preventDefault();
   await (await db()).from('books').upsert({book:b_book.value.trim(),deployed:b_deployed.value.trim(),prod:b_prod.value.trim(),dtautosyncfrom:utc(b_dtFrom.value),dtautosyncto:utc(b_dtTo.value),premiumCheckInterval:b_premInt.value!==''?+b_premInt.value:60});
   resetB();gridB()}
 resetB();gridB();
-
+// === book_versions (visningsnavn per bok / språk – driver bokvelgeren i leseren) ===
+const gridVEl=document.getElementById('gridV');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); // text cells
+const q=s=>String(s??'').replace(/\\/g,'\\\\').replace(/'/g,"\\'"); // inside onclick="...('...')"
+const gridV=async()=>{const{data,error}=await (await db()).from('book_versions').select('*').order('book',{ascending:true}).order('version',{ascending:true});
+  if(error){gridVEl.innerHTML=`<p class="exp">${error.message}</p>`;return}
+  gridVEl.innerHTML=(data||[]).length?`<table><tr><th>book</th><th>version</th><th>name</th><th>description</th><th></th></tr>`+data.map(r=>
+    `<tr><td>${esc(r.book)}</td><td>${esc(r.version)}</td><td>${esc(r.name)}</td><td>${esc(r.description)}</td>
+     <td><button onclick="editV('${q(r.book)}','${q(r.version)}')">✎</button> <button onclick="delV('${q(r.book)}','${q(r.version)}')">×</button></td></tr>`).join('')+'</table>':'<p>(empty)</p>'}
+window.resetV=()=>{fV.reset()}
+window.editV=async(b,v)=>{const{data}=await (await db()).from('book_versions').select('*').eq('book',b).eq('version',v).single();
+  if(data){v_book.value=data.book;v_version.value=data.version;v_name.value=data.name||'';v_desc.value=data.description||''}}
+window.delV=async(b,v)=>{if(confirm(`Delete ${b}/${v}?`)){await (await db()).from('book_versions').delete().eq('book',b).eq('version',v);gridV()}}
+window.saveV=async e=>{e.preventDefault();
+  await (await db()).from('book_versions').upsert({book:v_book.value.trim(),version:v_version.value.trim(),name:v_name.value.trim(),description:v_desc.value.trim()});
+  resetV();gridV()}
+resetV();gridV();
 // === usage (logg) – gruppert (bok → kode) og utvidbar ===
 const gridUEl=document.getElementById('gridU');
 const gridU=async()=>{const{data,error}=await (await db()).from('usage').select('*,codes(code)').order('created_at',{ascending:false}).limit(1000);
