@@ -496,13 +496,17 @@
                 // Book picker: press book title in TOC → list every book/version (book_versions) – pdf path read from books.deployed, NOT guessed
                 ,esc:s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
                 ,no:v=>/^(no|nb|norwegian|norsk)$/i.test(v||'') // version → Norwegian (left side)
-                ,BookVersions:async ()=>{ // {book:{src,vers:[{version,name}]}}
+                ,BookVersions:async ()=>{ // every published pdf book (books.deployed) + localized names from book_versions when present
                     const s=window.SUPABASE; if(!s||!s.url||s.url.includes('YOUR-'))return null;
                     const H={apikey:s.publishableKey,Authorization:'Bearer '+s.publishableKey};
                     try{
                         const [a,b]=await Promise.all([fetch(s.url+'/rest/v1/book_versions?select=book,version,name&order=book,version',{headers:H}),fetch(s.url+'/rest/v1/books?select=book,deployed',{headers:H})]);
-                        const vers=await a.json(), rows=await b.json(), src={};(rows||[]).forEach(r=>src[r.book]=r.deployed);
-                        const out={};(vers||[]).forEach(r=>{if(!src[r.book])return;const o=out[r.book]=out[r.book]||{src:src[r.book],vers:[]};o.vers.push(r)});
+                        const vers=await a.json(), rows=await b.json(), names={};
+                        (vers||[]).forEach(r=>{if(r&&r.book)(names[r.book]=names[r.book]||[]).push({version:r.version||'EN',name:r.name||r.book})});
+                        const out={};
+                        (rows||[]).forEach(r=>{if(!r||!r.book||!/\.pdf$/i.test(r.deployed||''))return; // pdf books only – reader opens pdfs
+                            out[r.book]={src:r.deployed,vers:(names[r.book]&&names[r.book].length)?names[r.book]:[{version:'NO',name:r.book},{version:'EN',name:r.book}]};
+                        });
                         return out;
                     }catch(e){return null}
                 }
