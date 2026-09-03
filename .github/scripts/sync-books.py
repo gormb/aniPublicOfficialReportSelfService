@@ -287,7 +287,40 @@ def extract(pdf_path):
     _md_files(base, doc, style, data)
     print(f'[{os.path.basename(pdf_path)}] tekstuttrekk: NO/EN × FREE/PREM .md')
 
+def gh(kind, msg):
+    """GitHub Actions annotation – surfaces on the run summary as a warning/error badge."""
+    if os.environ.get('GITHUB_ACTIONS'):
+        print(f'::{kind}::{msg}')
+    else:
+        print(f'[{kind.upper()}] {msg}', file=sys.stderr)
+
+def _log(url, key, book, k, kind, message):
+    """Persist a deploy event to public.log (u=book, d={kind,msg,run}) so it survives the run."""
+    d = {'kind': kind, 'msg': message}
+    run = os.environ.get('GITHUB_RUN_ID')
+    if run:
+        d['run'] = run  # group events from the same auto-deploy run in adm
+    row = {'k': k, 'u': book or 'sync', 'd': d,
+           'ts': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+    cmd = ['curl', '-fsSL', '-X', 'POST', f'{url}/rest/v1/log',
+           '-H', f'apikey: {key}', '-H', f'Authorization: Bearer {key}',
+           '-H', 'Content-Type: application/json', '-H', 'Prefer: return=minimal',
+           '-d', json.dumps(row)]
+    try:
+        subprocess.run(cmd, check=True, capture_output=True)
+    except subprocess.CalledProcessError as e:
+        gh('warning', f'[log] kunne ikke skrive til public.log: {e.stderr.decode() or e}')
+
+def log_error(url, key, book, kind, message):
+    _log(url, key, book, 'sync_error', kind, message)
+
+def log_ok(url, key, book, message):
+    _log(url, key, book, 'sync', 'ok', message)
+
 def main():
+    marker = os.path.join(REPO, '.sync-books-errors')
+    if os.path.exists(marker):
+        os.remove(marker)  # fresh run – only this run's problems should fail it
     cfg = get(DB_JS)
     m = re.search(r'window\.SUPABASE=\{url:"([^"]+)",publishableKey:"([^"]+)"\}', cfg)
     if not m:
@@ -301,6 +334,7 @@ def main():
     now = datetime.datetime.now(datetime.timezone.utc).timestamp()
     export_re = re.compile(r'docs\.google\.com/presentation/d/([^/]+)')
     n = 0
+    errors = 0
     for r in rows:
         book = (r.get('book') or '').strip()
         deployed = (r.get('deployed') or '').strip()
@@ -309,6 +343,15 @@ def main():
         prod = (r.get('prod') or '').strip()
         if not (book and deployed and prod):
             print(f'[{book or "(uten navn)"}] mangler deployed/prod – hopper over')
+            continue
+        # Layout guard: deployed must be the NESTED path (b/<book>/b.pdf). The old flat
+        # path (b/<book>.pdf) drops files straight into b/ – the "garbage" on every sync.
+        if re.fullmatch(r'b/[^/]+', deployed):
+            sug = os.path.splitext(deployed)[0] + '/b.pdf'
+            msg = f'deployed={deployed!r} er GAMMEL flat layout – sett books.deployed til nestet: {sug!r}'
+            gh('error', f'[{book}] {msg}')
+            log_error(url, key, book, 'flat_layout', msg)
+            errors += 1
             continue
         frm, to = epoch(r.get('dtautosyncfrom')), epoch(r.get('dtautosyncto'))
         if (frm is not None and now < frm) or (to is not None and now > to):
@@ -326,9 +369,14 @@ def main():
             subprocess.run(['curl', '-fsSL', '-L', src, '-o', dest], check=True)
             n += 1
             extract(dest)  # sidecars: .md / _free.md / _tech.md / .json / _TOC
+            log_ok(url, key, book, f'synkronisert {deployed}')
         except Exception as e:
-            print(f'[{book}] FEIL: {e}', file=sys.stderr)
+            gh('error', f'[{book}] nedlasting FEIL: {e}')
+            log_error(url, key, book, 'download', str(e))
+            errors += 1
     print(f'ferdig: {n} bok(er) synkronisert')
+    if errors:
+        open(marker, 'w').write(f'{errors}\n')  # workflow fails AFTER valid books are pushed
 
 if __name__ == '__main__':
     main()

@@ -44,3 +44,10 @@ jobs:
             git pull --rebase origin master
             git push origin master
           fi
+
+      - name: Fail if any book sync error (so you get notified)
+        run: |
+          if [ -f .sync-books-errors ]; then
+            echo "::error::Books sync reported errors – see annotations in the 'Sync all books' step. Valid updates were still committed."
+            exit 1
+          fi

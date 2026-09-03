@@ -28,13 +28,19 @@ resetF();grid();
 
 // === books (auto-deploy links) ===
 const gridBEl=document.getElementById('gridB');
+// deployed-field color from public.log (k='sync'|'sync_error'): ok=green (last run ok),
+// soon=yellow (last failed but an earlier ok exists), exp=red (never ok, or empty log)
 const gridB=async()=>{const{data,error}=await (await db()).from('books').select('*').order('book',{ascending:true});
   if(error){gridBEl.innerHTML=`<p class="exp">${error.message}</p>`;return}
-  gridBEl.innerHTML=(data||[]).length?`<table><tr><th>book</th><th>deployed</th><th>prod</th><th>autosync from</th><th>autosync to</th><th>premCheck (s)</th><th></th></tr>`+data.map(r=>
-    `<tr><td>${r.book}</td><td>${r.deployed?`<a href="https://gormb.github.io/_?b&book=${encodeURIComponent(r.deployed)}" target="_blank">${r.deployed}</a>`:'—'}</td><td>${r.prod?`<a href="${r.prod}" target="_blank">link</a>`:'—'}</td>
+  const{data:logs}=await (await db()).from('log').select('u,k,ts').in('k',['sync','sync_error']).order('ts',{ascending:true});
+  const hist={};(logs||[]).forEach(r=>{(hist[r.u]=hist[r.u]||[]).push(r)});
+  const st=u=>{const a=hist[u]||[];if(!a.length)return ['exp','aldri ok / tom logg'];const last=a[a.length-1];
+    return last.k==='sync'?['ok','siste synk ok']:(a.some(x=>x.k==='sync')?['soon','siste synk feilet (tidligere ok)']:['exp','aldri ok'])};
+  gridBEl.innerHTML=(data||[]).length?`<table><tr><th>book</th><th>deployed</th><th>prod</th><th>autosync from</th><th>autosync to</th><th>premCheck (s)</th><th></th></tr>`+data.map(r=>{const[c,tip]=st(r.book);
+    return `<tr><td>${r.book}</td><td>${r.deployed?`<a class="${c}" title="${tip}" href="https://gormb.github.io/_?b&book=${encodeURIComponent(r.deployed)}" target="_blank">${r.deployed}</a>`:'—'}</td><td>${r.prod?`<a href="${r.prod}" target="_blank">link</a>`:'—'}</td>
       <td>${(r.dtautosyncfrom||'').slice(0,16)||'—'}</td><td>${(r.dtautosyncto||'').slice(0,16)||'—'}</td>
       <td>${r.premiumCheckInterval??60}</td>
-      <td><button onclick="editB('${r.book}')">✎</button> <button onclick="delB('${r.book}')">×</button></td></tr>`).join('')+'</table>':'<p>(empty)</p>'}
+      <td><button onclick="editB('${r.book}')">✎</button> <button onclick="bookLog('${r.book}')" title="siste synk">⏱</button> <button onclick="delB('${r.book}')">×</button></td></tr>`}).join('')+'</table>':'<p>(empty)</p>'}
 window.resetB=()=>{fB.reset()}
 window.editB=async b=>{const{data}=await (await db()).from('books').select('*').eq('book',b).single();
   if(data){b_book.value=data.book;b_deployed.value=data.deployed||'';b_prod.value=data.prod||'';b_dtFrom.value=iso(data.dtautosyncfrom)||'';b_dtTo.value=iso(data.dtautosyncto)||'';b_premInt.value=data.premiumCheckInterval??''}}
@@ -57,3 +63,11 @@ const gridU=async()=>{const{data,error}=await (await db()).from('usage').select(
       cr.map(r=>`<div style="margin-left:2em">${(r.created_at||'').slice(0,16)} · ${r.event||''} · p${r.page??''} · ${(r.fingerprint||'').slice(0,8)}</div>`).join('')
     +`</details>`).join('')+`</details>`).join('')};
 gridU();
+
+// === book sync result (public.log) – per-book ⏱ button in the books grid ===
+window.bookLog=async b=>{const el=document.getElementById('bLog');
+  const{data,error}=await (await db()).from('log').select('*').eq('u',b).in('k',['sync','sync_error']).order('ts',{ascending:false}).limit(10);
+  if(error){el.innerHTML=`<p class="exp">${error.message}</p>`;return}
+  el.innerHTML=`<p><b>${b}</b> – siste synk</p>`+(!(data||[]).length?'<p>(empty)</p>':
+    `<table><tr><th>ts</th><th></th><th>kind</th><th>msg</th></tr>`+
+    data.map(r=>`<tr><td>${(r.ts||'').slice(0,16).replace('T',' ')}</td><td class="${r.k==='sync'?'ok':'exp'}">${r.k==='sync'?'✓':'✗'}</td><td>${(r.d&&r.d.kind)||''}</td><td>${(r.d&&r.d.msg)||''}</td></tr>`).join('')+`</table>`);};
