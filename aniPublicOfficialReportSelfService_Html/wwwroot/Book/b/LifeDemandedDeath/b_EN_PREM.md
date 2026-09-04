@@ -1,10 +1,8 @@
 # Life demanded Death
 #### p. 1
 Life demanded Death
-premium version
 autofictional novel
 in vignettes
-premium version
 ## Zero Sum — p. 2
 🎵 https://gormb.github.io/_?mlist (https://gormb.github.io/_?mlist) — p. 2
 "Riding my motorcycle from Kiel to Alicante averaging 170 km/h, I could have been arrested all over Europe", I said.
