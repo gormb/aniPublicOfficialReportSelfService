@@ -32,6 +32,7 @@ _PREM_RE     = re.compile(r'ebgaramond|cegaramond')
 _FREE_RE     = re.compile(r'calibri')
 _GARAMOND_RE = re.compile(r'garamond')
 _SPOT_RE     = re.compile(r'https://gormb\.github\.io/_/?\?m(?!.*qr$)\S*', re.I)
+_MODE_LABEL_RE = re.compile(r'^(?:gratisversjon|premiumversjon|free version|premium version)$', re.I)  # cover-/vannmerke-label – ikke bokinnhold (droppes fra .md)
 
 def _font_tier(font):
     n = re.sub(r'^[^+]*\+', '', (font or '').lower())
@@ -210,6 +211,8 @@ def _para_lines(spans, keep):
     grouped = []
     for sp in sorted(spans, key=lambda s: (s['y'], s['x'])):
         if sp['tier'] not in keep or _is_white(sp.get('color')):
+            continue
+        if _MODE_LABEL_RE.match(sp['text']):  # «gratisversjon»/«premiumversjon»-vannmerke/label – ikke bokinnhold
             continue
         if grouped and abs(grouped[-1][0] - sp['y']) < (sp.get('size') or 10) * 0.6:
             grouped[-1][1].append(sp)
