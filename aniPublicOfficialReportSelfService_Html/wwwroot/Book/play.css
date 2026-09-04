@@ -1,0 +1,14 @@
+/* App-layout: dpMenu (full-width top bar) above dbNav (left 20vw) + dpBook (right) */
+body{
+    font-family:Garamond;font-size:10pt;margin:0;height:100vh;
+    display:grid;grid-template-columns:20vw 1fr;grid-template-rows:auto 1fr;
+}
+#dpMenu{grid-column:1/-1;display:flex;gap:.5em;align-items:center;border-bottom:1px solid #999;}
+#dbNav{display:flex;flex-direction:column;min-height:0;border-right:1px solid #999;}
+#dbNavHead{display:flex;align-items:center;gap:.3em;padding:0 .4em;border-bottom:1px solid #999;}
+#dbNavHead button{padding:.1em .3em;font-size:inherit;}
+#dbTitle{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+#dbNavList{flex:1;min-height:0;overflow:auto;}
+#dbNavList a{display:block;padding:.05em .4em;color:inherit;text-decoration:none;cursor:pointer;}
+#dbNavList a:hover{background:#eee;}
+#dpBook{min-height:0;overflow:auto;padding:20mm;}

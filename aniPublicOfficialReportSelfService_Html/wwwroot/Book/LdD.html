@@ -372,7 +372,10 @@
                     }else{
                         if(nav._menuWasOpen)nav.menu();
                         if(_dTocList.dataset.bk=='1')await nav.Books(false); // TOC close → back to chapters
+                        nav.tcClear(); // drop any active filter – reopening shows the full list
                     }
+                    uishow(nFdTxt,false); // search is per-context – the text find box never floats over the TOC
+                    if(!s)uishow(_dTcTxt,uishow(_dTc2Txt,false)); // TOC filters close with the TOC (fresh on reopen) – uishow returns `on`, so the chain hides both
                     uishowBlock(_dToc,s)&&nav.DisButtons();
                     uishowBlock(_dBook,!s)&&nav.UpdButtons();
                     nav.Able(nLg,!s); // nLg deaktivert i TOC
@@ -480,13 +483,131 @@
                     nav._tocHtml=html; // cache chapter TOC (book picker shows over it)
                     return html;
                 }
-                // find (nFd): TOC open → filter box; else → find box (CONTROLS ONLY – search wired later)
-                ,find:async ()=>{ // 🔍 toggles the box for the current context (TOC filter vs page find)
-                    const inToc=_dToc.style.display!='none', t=inToc?_dTcTxt:nFdTxt;
-                    const open=t.style.display=='none';
-                    if(open)nav.uiHide(false); // a visible box keeps the nav visible (nFd stays up to close)
-                    uishow(t,open);
-                    if(open)setTimeout(()=>{t.focus();t.select();},10); // focus after mousedown (else the button steals focus)
+                // find (nFd on page / nFdT in TOC): toggles the search group of the current context –
+                // in TOC: the chapter filter + the content/sound filter below ride together
+                ,find:async ()=>{ // 🔍 toggles the search group of the current context
+                    if(_dToc.style.display!='none'){ // TOC open: chapter filter (+ content/sound filter below)
+                        const open=_dTcTxt.style.display=='none';
+                        if(open)nav.uiHide(false); // a visible box keeps the nav visible (nFd stays up to close)
+                        uishow(_dTcTxt,open); uishow(_dTc2Txt,open);
+                        if(open)setTimeout(()=>{_dTcTxt.focus();_dTcTxt.select();},10); // focus after mousedown (else the button steals focus)
+                    }else{ // page view: find-in-text box
+                        const open=nFdTxt.style.display=='none';
+                        if(open)nav.uiHide(false); // a visible box keeps the nav visible (nFd stays up to close)
+                        uishow(nFdTxt,open);
+                        if(open)setTimeout(()=>{nFdTxt.focus();nFdTxt.select();},10); // focus after mousedown (else the button steals focus)
+                    }
+                }
+                // three separate searches: findTxt (body text, outside TOC) · findToc (chapter list) · findBooks (across books)
+                ,tcFind:()=>_dTocList.dataset.bk=='1'?nav.findBooks():nav.findToc() // route the shared TOC box (picker ⇄ chapters)
+                ,tcClear:()=>{ // forget an active filter + restore the list (close TOC / switch mode)
+                    if(_dTcTxt)_dTcTxt.value='';
+                    if(_dTocList.dataset.bk=='1'){if(nav._bkHtml)_dTocList.innerHTML=nav._bkHtml;}
+                    else nav.findToc();
+                }
+                // ---------- 1) findTxt: within-text search (nFdTxt, outside the TOC) ----------
+                ,doc:null
+                ,docInit:async()=>{ // per-page text of the current lang+mode (md sidecar first; data blocks as fallback)
+                    const want=book.hAlign._?'no':'en', md=await cBook.data.mdRaw(), by=new Map(), add=(pg,t)=>{const s=(by.get(pg)||'').trim();by.set(pg,s?s+' '+t:t);};
+                    if(md){
+                        let cur=1, m;
+                        for(const raw of md.text.split(/\r?\n/)){
+                            const l=raw.trim(); if(!l)continue;
+                            if(m=/^#### p\. (\d+)/.exec(l)){cur=+m[1];continue;}
+                            if(/^#\s+/.test(l))continue; // title line – not page text
+                            if(/^(?:##|###)\s+/.test(l)){ // heading carries its page at the end ('— p. N')
+                                if(m=/(?:—|–)\s*p\.\s*(\d+)/.exec(l))cur=+m[1];
+                                add(cur,l.replace(/^#{2,3}\s+/,'').replace(/\s*(?:—|–)\s*p\.\s*\d+\s*$/,'').trim()); continue;
+                            }
+                            if(/^🎵/.test(l)){if(m=/(?:—|–)\s*p\.\s*(\d+)/.exec(l))cur=+m[1];continue;} // music line – url only
+                            add(cur,l);
+                        }
+                    }else{ // no sidecar → rebuild from structured blocks
+                        for(const b of await cBook.data.get()){
+                            if(b.type===cBook.data.type.PAGE||(b.lang&&b.lang!==want))continue;
+                            const s=(by.get(b.page)||'').trim(); by.set(b.page,s?s+' '+(b.text||''):(b.text||''));
+                        }
+                    }
+                    nav.doc={p:[...by].sort((a,b)=>a[0]-b[0]).map(e=>({page:e[0],text:e[1].toLowerCase()})),h:[],lastL:0};
+                }
+                ,findTxt:async()=>{ // live: type → jump to the next match; delete → back to the place recorded for that length
+                    nav._ftok=(nav._ftok||0)+1; const tok=nav._ftok, q=nFdTxt.value, L=q.length;
+                    if(_cBook.style.display=='none')return; // iframe/external book – no local searchable text
+                    if(!nav.doc)await nav.docInit();
+                    if(tok!==nav._ftok)return; // superseded while building the doc
+                    const D=nav.doc, ql=q.toLowerCase();
+                    if(!q){D.h=[];D.lastL=0;return;}
+                    if(L<D.lastL&&D.h[L]){ // backspace → jump back to the stored match for this length
+                        nav.findTxtGoto(D.h[L].page,ql,tok); D.h.length=L+1; D.lastL=L; return;
+                    }
+                    if(L===D.lastL)return;
+                    const p=D.h[D.lastL], pgs=D.p, n=pgs.length;
+                    let i=(L>D.lastL&&p)?p.i+1:(p?p.i:0), hit=-1; // longer → after the current match; shorter → prefer the current page
+                    for(let x=i;x<n;x++)if(pgs[x].text.includes(ql)){hit=x;break;}
+                    if(hit<0)for(let x=0;x<i;x++)if(pgs[x].text.includes(ql)){hit=x;break;}
+                    if(hit<0){D.lastL=L;return;} // no match – keep the current place
+                    D.h[L]={i:hit,page:pgs[hit].page}; D.lastL=L;
+                    nav.findTxtGoto(pgs[hit].page,ql,tok);
+                }
+                ,findTxtGoto:async(pg,ql,tok)=>{ // open the page, then guess the y of the match when the sheet is taller than the window
+                    if(tok!==nav._ftok)return;
+                    if(pg!==book.pn()){await nav.Page(pg,0); if(tok!==nav._ftok)return;}
+                    if(book.whole||!cBook.pdf)return;
+                    const y=await nav.docY(ql); if(y==null||tok!==nav._ftok)return;
+                    const top=_cBook.getBoundingClientRect().top+window.scrollY+y-window.innerHeight/2;
+                    window.scrollTo(0,Math.max(0,Math.min(top,document.documentElement.scrollHeight-window.innerHeight)));
+                }
+                ,docY:async ql=>{ // guess y (canvas px) of the first ql on the current page (reading-order items)
+                    try{
+                        const {items}=await cBook.page.getTextContent(), ord=items.filter(i=>i.str.trim())
+                            .sort((a,b)=>b.transform[5]-a.transform[5]||a.transform[4]-b.transform[4]);
+                        let full='', map=[];
+                        for(const it of ord){map.push([full.length,full.length+it.str.length,it]);full+=it.str+' ';}
+                        const at=full.toLowerCase().indexOf(ql); if(at<0)return null;
+                        const it=(map.find(e=>at>=e[0]&&at<e[1])||map[map.length-1])[2], vp=cBook.view;
+                        return vp?vp.convertToViewportPoint(it.transform[4],it.transform[5]+(it.height||10)/2)[1]:null;
+                    }catch(e){return null}
+                }
+                // ---------- 2) findToc: live filter of the chapter list (hides rows in place – the player survives) ----------
+                ,findToc:()=>{
+                    const q=_dTcTxt.value.trim().toLowerCase(), root=_dTocList, wrap=root.firstElementChild;
+                    if(!wrap||root.dataset.bk=='1')return;
+                    const txt=li=>(li.querySelector('.toc-nav span')?.textContent||'').toLowerCase(), show=(el,on)=>el.style.display=on?'':'none';
+                    for(const ch of wrap.querySelectorAll(':scope > li')){ // chapters are the direct <li>s of the wrapping <ul>
+                        let sib=ch.nextElementSibling, sub=null;
+                        while(sib&&sib.tagName!='LI'){if(sib.tagName=='UL')sub=sib;sib=sib.nextElementSibling;} // sub-list (may sit after the player)
+                        const subs=sub?[...sub.querySelectorAll('li')]:[];
+                        let on=!q||txt(ch).includes(q);
+                        for(const s of subs){const m=txt(s).includes(q);show(s,!q||m);on=on||m;}
+                        show(ch,on);
+                    }
+                }
+                // ---------- 3) findBooks: picker filter – titles first; if none match, books whose chapters match ----------
+                ,_bkChap:null
+                ,bkChap:async b=>{ // chapters+subs of book b (current lang+mode sidecar), fetched once + cached
+                    const w=book.hAlign._?'NO':'EN', m=book.prem._?'PREM':'FREE', k=b+'|'+w+'|'+m, src=nav._bk&&nav._bk[b]&&nav._bk[b].src;
+                    if(!src)return[];
+                    if(nav._bkChap&&nav._bkChap.k===k)return nav._bkChap.a;
+                    let a=[];
+                    try{const r=await fetch(src.replace(/\.pdf$/i,'')+'_'+w+'_'+m+'.md');
+                        if(r.ok)a=[...(await r.text()).matchAll(/^#{2,3}\s+(.+?)\s+(?:—|–)\s*p\.\s*(\d+)/gm)].map(x=>({t:x[1].trim().toLowerCase(),page:+x[2]}));
+                    }catch(e){}
+                    nav._bkChap={k,a}; return a;
+                }
+                ,findBooks:async()=>{ // live: hide books whose title lacks q; on zero title hits → books that contain q in a chapter
+                    const q=_dTcTxt.value.trim().toLowerCase(), root=_dTocList;
+                    if(root.dataset.bk!='1')return;
+                    if(!q){if(nav._bkHtml)root.innerHTML=nav._bkHtml;return;}
+                    root.innerHTML=nav._bkHtml||root.innerHTML; // rebuild from the full list each keystroke (titles ⇄ chapters)
+                    const lis=[...root.querySelectorAll('li')], title=lis.filter(li=>(li.textContent||'').toLowerCase().includes(q));
+                    if(title.length){lis.forEach(li=>li.style.display=title.includes(li)?'':'none');return;}
+                    const hits=[];
+                    for(const li of lis){const b=li.dataset.b; if(b&&(await nav.bkChap(b)).some(c=>c.t.includes(q)))hits.push(li);}
+                    lis.forEach(li=>li.style.display=hits.includes(li)?'':'none');
+                    for(const li of hits){ // list the matching chapter names under the surviving books
+                        const b=li.dataset.b, cs=(await nav.bkChap(b)).filter(c=>c.t.includes(q)).slice(0,4).map(c=>nav.esc(c.t)).join(' · ');
+                        li.insertAdjacentHTML('beforeend',`<i style="flex-basis:100%;font-style:normal;opacity:.75">${cs}</i>`);
+                    }
                 }
                 ,TocCur:()=>{ // refresh the bold 'cur' marker without rebuilding the list
                     const cp=book.pn(); let curPage=0;
@@ -527,9 +648,12 @@
                     const H=h=>h.replace(/&/g,'&amp;');
                     const esc=nav.esc;
                     const a=(b,v,no)=>`<a class="toc-nav" href="${H(href(bk[b].src,no))}"><span>${no?'🇳🇴 ':''}${esc((v&&v.name)||b)}${no?'':' 🇬🇧'}</span></a>`; // NO: flag first · EN: flag last
+                    nav._bk=bk;
                     const rows=Object.keys(bk).sort().map(b=>{const vs=bk[b].vers,pick=t=>vs.find(x=>nav.no(x.version)===t);
-                        return `<li>${a(b,pick(true),true)}${a(b,pick(false),false)}</li>`;}).join('');
-                    _dTocList.innerHTML=rows?`<ul>${rows}</ul>`:'(ingen bøker / no books)';
+                        return `<li data-b="${nav.esc(b)}">${a(b,pick(true),true)}${a(b,pick(false),false)}</li>`;}).join('');
+                    nav._bkHtml=rows?`<ul>${rows}</ul>`:'(ingen bøker / no books)';
+                    _dTocList.innerHTML=nav._bkHtml;
+                    if(_dTcTxt)_dTcTxt.value=''; // book list is a fresh list – no inherited chapter filter
                 }
                 ,PremToggle:()=>{ // PIN → premium: verified against Supabase 'codes' (dtfrom<=now<=dtto); future: hash to a remembered var
                     if(book.prem._){nav.memSet('code','');return book.prem.L(false);} // premium → free: delete stored code
@@ -752,8 +876,8 @@
                 <button id="nPr" onmousedown="nav.PremToggle()">🔓</button>
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
-        <!-- find box: plain page-number style (premium-PIN presentation); search wired later -->
-        <input id="nFdTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Find not implemented " onkeydown="if(event.key=='Escape')nav.find()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;"/>
+        <!-- find box: plain page-number style (premium-PIN presentation) – live within-text search -->
+        <input id="nFdTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Find in text" oninput="nav.findTxt()" onkeydown="if(event.key=='Escape'){nFdTxt.value='';nav.find()}" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;"/>
         <input id="nPin" class="pageNo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="" oninput="nav.Pin()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;width:5.5em;letter-spacing:.4em;border:1px solid #999;border-radius:.5em;background:#fff;box-shadow:0 .2em .8em rgba(0,0,0,.25)"/>
         <div id="nPinMsg" style="display:none;position:fixed;left:50%;top:49%;transform:translate(-50%,-50%);z-index:5;font:600 .95em system-ui,sans-serif;text-align:center;background:#fff;color:#c00;border:1px solid #c00;border-radius:.5em;padding:.4em .9em;box-shadow:0 .2em .8em rgba(0,0,0,.25)"></div>
         <div id="_dBook" class="bookParent">
@@ -789,7 +913,10 @@
                 <h1><a id="_dTocTitle" href="javascript:nav.Books();" title="Bytte bok / switch book">"Liv Krevde Død"</a></h1>
                 <div style="display:flex;align-items:center;gap:.5em;margin-bottom:.5em;">
                     <button id="nFdT" onmousedown="nav.find()" style="font-size:calc(var(--fsMenu)*.45);padding:0 .3em;line-height:1.2;">🔍</button>
-                    <input id="_dTcTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Filter not implemented" onkeydown="if(event.key=='Escape')nav.find()" style="display:none;flex:1;min-width:0;"/>
+                    <input id="_dTcTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Filter chapters" oninput="nav.tcFind()" onkeydown="if(event.key=='Escape'){nav.tcClear();nav.find()}" style="display:none;flex:1;min-width:0;"/>
+                </div>
+                <div style="display:flex;align-items:center;"> <!-- 2nd TOC filter: further narrow by chapter content / sound (wired later) -->
+                    <input id="_dTc2Txt" class="pageNo findBox" type="text" maxlength="40" placeholder="Filter chapter content / sound – later" onkeydown="if(event.key=='Escape'){nav.tcClear();nav.find()}" style="display:none;flex:1;min-width:0;margin:.2em 0 .5em 0;"/>
                 </div>
                 <ul id="_dTocList"></ul>
                 <hr><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/06f9iQGV6mSzWo4pz20hQB?utm_source=generator&si=9930b284b4684788" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
