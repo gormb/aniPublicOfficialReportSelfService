@@ -12,3 +12,5 @@ body{
 #dbNavList a:hover{background:#eee;}
 #dpBook{min-height:0;overflow:auto;padding:20mm;}
 h2 a,h3 a{color:inherit;text-decoration:none;}
+#page h2,#page h3{display:flex;align-items:center;}
+#page h2>a,#page h3>a{margin-left:auto;display:inline-flex;align-items:center;}
