@@ -1,10 +1,8 @@
 # Liv krevde død
 #### p. 1
 Liv krevde død
-gratisversjon
 punktroman
 in vignettes.
-gratisversjon
 ## Nullsum — p. 2
 🎵 https://gormb.github.io/_?mlist (https://gormb.github.io/_?mlist) — p. 2
 “Med MC fra Kiel til Alicante og snitt på 170 km/t kunne jeg vært arrestert i hele Europa”, sa jeg.
@@ -12,7 +10,6 @@ Advokaten jeg nettopp hadde møtt over en Whisky smålo.
 “Nei, du skulle vært død”
 Kanskje det, men jeg føler ingenting likevel, unntatt skam overfor mine nærmeste. Kanskje gjennom musikk, kan jeg oppleve tapet av forstanden som lyd, tiden som stanser; sammenbrudd og erkjennelse.
 Døden gir plass
-gratisversjon
 ### Nulloppsummering — p. 3
 🎵 https://gormb.github.io/_?mncty (https://gormb.github.io/_?mncty) — p. 3
 En død gir plass til et liv
@@ -34,7 +31,7 @@ Etter noen minutter sa hun “Depeche Mode”, jeg forsto ingenting. “Personal
 “Du trenger ikke forstå” sa hun, “bare følg med”.
 Ingen av oss sa noe før neste stykke var ferdig, hun sto som meg og beveget seg som meg, men med små forskjeller som gjorde det ikke-invaderende. "O Fortuna" fra Carmina Burana låt mens regnet pisket, hun var like uforanderlig som jeg var, men vi bestemte oss samtidig for å gå.
 #### p. 6
-gratisversjon Kommunikasjonstriks kan jeg, hun kunne flere. Eller kanskje akkurat denne kvinnen var naturlig sensuell og ville lære meg å kjenne. Som andre menn ser jeg ikke forskjell lenger. Spillteori fra Tinder overtok hvordan vi møter hverandre. “Naturlig”
+Kommunikasjonstriks kan jeg, hun kunne flere. Eller kanskje akkurat denne kvinnen var naturlig sensuell og ville lære meg å kjenne. Som andre menn ser jeg ikke forskjell lenger. Spillteori fra Tinder overtok hvordan vi møter hverandre. “Naturlig”
 har avgått med døden og ble gravlagt før 2015. Eller det var det jeg trodde.
 “Du tror du vet hva naturlig er, men har du også glemt hvordan det føles?" sa Lotte plutselig. I et kaos av fantastisk musikk og regn klarte jeg ikke forstå om hun snakket om meg, seg selv, eller beskrev personligheten mellom oss. Kanskje noe skjedde jeg ikke forsto. Vi forlot regnet, gikk ned Karl Johans gate og inn på Brødrene Bergh der en DJ spilte Soul.
 Lotte og jeg speilet hverandre, kroppslig, så språklig, og ble kastet ut av Brødrene Bergh ved stengetid. Tiden var borte.
@@ -49,11 +46,10 @@ Jeg skrapet i overflaten, nok refleksjon. Hun fortjener ekte.
 Ikke langsomt. Nyt uten refleksjon. Instinktene kan bestemme uten ettertanke. Også prester har som menneskerett å begjære og bli begjært. Unntaket var Lottes dualisme, den reflekterte jeg over; skillet mellom ånd og fysisk virkelighet holdt i sin tid troenes mystisisme i live. Med meg gir dualismen til Lotte for lite, jeg later som jeg er for enkel til at vi har intellektuelt overlapp.
 Det er min dualisme, konstruert for felles lykke i ulykke.
 #### p. 8
-gratisversjon Vanskelig å få tak i. Tar ikke kontakt, hun fortjener en “mission” for å misjonere, eller si “Mission accepted”. Etter tre dager kom melding fra henne, hun fikk tak i navnet mitt.
+Vanskelig å få tak i. Tar ikke kontakt, hun fortjener en “mission” for å misjonere, eller si “Mission accepted”. Etter tre dager kom melding fra henne, hun fikk tak i navnet mitt.
 Jeg svarer etter fem. For bra til å bevare. Skal ikke vare.
 Vi møttes andre gang etter en uke, Lotte var dyrisk i senga en uke. Jeg ville ikke ende i senga med henne, bare å ha henne i armkroken var nok. “Du tror dette handler om sex?”, sa Lotte så jeg kysset henne på munnen. “Det handler om å la livet skje”, sa hun, vi dro hjem til henne og gikk ikke ut igjen på dagevis Etter det har jeg ikke sett henne.
 Jeg møtte henne ikke.
-gratisversjon
 ### Det gamle finnes ikke mer — p. 9
 🎵 Ohne Dich, Rammstein (https://gormb.github.io/_?mod) — p. 9
 Lyden av glassplate som knuses. Pulveriseres. Det er lyden av mc-hjelm som ødelegges mot bakken. Hvis du har hjelmen på hodet når den går i stykker. Hjelmer som har gått i bakken må kastes, men folk kan gå videre.
@@ -85,7 +81,6 @@ Fjerde gang jeg knuste en hjelm mot asfalten kjente jeg hverken smerte eller st�
 Hun brukte blusen til å bremse blødningen nok til at ambulansen fikk kjørt meg til akuttmottaket i tide. Jeg vet det fordi hun fikk igjen penger for blusen sin på forsikringen min.
 Bevisstheten forsvant; med deg står sekundene stille.
 Men jeg har hoppet over noen historier.
-gratisversjon
 ### Vittig på bensinstasjonen — p. 14
 🎵 Sola skinner, Jokke og Valentinerne (https://gormb.github.io/_?mss) — p. 14
 Det regner litt, jeg stopper for å fylle bensin. Jeg gjengir smilet til dama bak disken. “Kan du skru av det regnet her?”. “Ja, jeg bare skrur av her” sier hun vennlig.
@@ -103,7 +98,6 @@ Virker som et godt liv for meg.
 Men er du for nysgjerrig kastes du til andre baner. Komme tilbake er ikke det samme. Du blir også hatet, som i Platons hule. “Du tenker for mye” sier de resten av livet.
 Kanskje har jeg jobbet på bensinstasjon likevel. Steder man ikke er klar over at man har mentaliteten.
 Jeg lyktes nok med å finne det lille livet mange ganger uansett.
-gratisversjon
 ### MC til Middelhavet og en flamme — p. 16
 🎵 Dead or Alive, Bon Jovi (https://gormb.github.io/_?mwdoa) — p. 16
 Tung MC. Det er desember 2022 og sesongen er slutt. Om det var trygt å kjøre eller ikke, vurderte jeg basert på om værmeldingen hadde vist kuldegrader i løpet av natten, nå var det ikke trygt lenger. Kjører man på is med tung mc glipper forhjulet og man deiser umiddelbart rett i bakken uten muligheter for å påvirke. Det var slik jeg ødela min første Ducati og min første hjelm.
@@ -170,7 +164,6 @@ Plutselig var jeg fremme hos C, det skulle bli et nytt kapittel
 #### p. 27
 for henne og en note i margen for meg, alle rundt meg hadde blitt tilskuere til mitt dødsrituale på veien, tiden uten toppfart ble kortere for hver dag. Jeg var i live, og skulle være lykkelig ved Middelhavet i ukevis.
 Men vettet hadde sluppet taket.
-gratisversjon
 ### Den tidlige flammen — p. 28
 🎵 State of Emergency, Cactus World News (https://gormb.github.io/_?msoe) — p. 28
 Jeg hadde nådd frem til kvinnen jeg burde ha giftet meg med 25 år tidligere. Nå bodde hun midt i det vakre fjellandskapet innenfor Alicante i Sør-Spania. Hadde jeg bare ikke vært selvdestruktiv, hadde vi vært gift og lykkelig. C hadde ikke visst at jeg elsket henne, fordi jeg en gang for 30 år siden på en måte slik at hun skulle høre det, sa at jeg bare hadde elsket tre kvinner hele livet og hun var ikke på listen. Listen besto av Ina, Panela og Karoline. Det var nok fordi hun ikke lå på listen over kvinner jeg hadde elsket, hun innimellom, gjennom årenes løp, ubevisst forsøkt å komme på listen og aldri gav meg opp. Kvinner liker utfordringer, jeg var den som glapp unna.
@@ -181,7 +174,6 @@ Dilemmaet som ligger i at man ikke vil seg selv godt og så ender med å skade a
 Hun trengte føle seg ønsket. Fikk alt det andre, men ikke det.
 Umulig for de som aldri har opplevd begge sider; arr fra barndommen. Har du aldri følt deg elsket kan du ikke få andre til å ha det godt.
 I livet som var, henger personen jeg var igjen. Jeg kan aldri.
-gratisversjon
 ### Tidligere sommerfester — p. 30
 🎵 Memories, David Guetta feat Kid Cudi (https://gormb.github.io/_?mmem) — p. 30
 En sommerfest var over, jeg møtte enda en perfekt dame.
@@ -209,11 +201,9 @@ Stillhet.
 Jeg tenker på vinduet jeg faller ut av.
 #### p. 38
 Først senere skjønner jeg hva hun mener. Fallet var begynnelsen. Ikke slutten.
-gratisversjon
 ### Kvinner og døden — p. 39
 🎵 O mio babbino caro, Puccini & Forzano (https://gormb.github.io/_?mombc) — p. 39
 Denne boken er om kvinner og døden. Hva har kvinner med døden å gjøre? Begge deler har med livet å gjøre. På et gitt tidspunkt er en kvinne det viktigste i livet til en mann og liv kan ikke finnes uten død. Selv om kvinnen kan representere det motsatte av død, gir begge mening eller plass til liv.
-gratisversjon
 ### 200 km/t og oppover — p. 40
 🎵 Battle Without Honor or Humanity (https://gormb.github.io/_?mbwhoh) — p. 40
 På motorsykkel i natten i maksimal hastighet er man synlig og kan høres. Det er en hemmelighet at det er full frigjørende stillhet for den som kjører.
@@ -229,7 +219,6 @@ Nullsumlivet dør, skapelse uten ødeleggelse blir mulig. Død gir plass til nyt
 Fart, støy og risiko drepte det gamle,
 Delirium løste opp verden i drøm av dømmekraft og overfladisk begjær.
 For å overleve lot jeg det gamle dø
-gratisversjon
 ### Ulykken — p. 43
 🎵 Time to die, The Stranglers (https://gormb.github.io/_?mttd) — p. 43
 Jeg tok en Brun Tequila med M og dama hennes.
@@ -284,13 +273,11 @@ Jeg klaget over den innbilte dronen og husker sykepleierne nikket forståelsesfu
 Så kom veteraner i militæret etter meg. Først en mc-klubb fra Trøndelag, de var ute etter meg fordi jeg gav meg for tidlig fra militæret. Tok ikke utenlandstjeneste. En dame fra mc-klubben gikk inn og ut og skulle koordinere hvordan de skulle ta meg ut av spill.
 Etterhvert som tiden gikk grodde historiene sammen, og alle fra militært landsskytterstevne, som var avholdt et sted jeg nylig hadde besøkt, skulle drepe meg med droner fra lang avstand. Jeg visste døden var nær forestående og fikk stadig oppgitt nye tidspunkt jeg skulle skytes.
 Det var helt uaktuelt å få besøk av familie. De måtte overleve.
-gratisversjon
 ### 20 km/t og under — p. 51
 🎵 Flower, Moby (https://gormb.github.io/_?mfm) — p. 51
 På skogsstier i natten kan man løpe og snuble i røtter. Snart overtar automatikken i kroppen. Man enser ikke fare for å falle å slå seg.
 Langs havet er det svaberg og plutselig finner jeg meg løpende, på samme måte i skumringen i skogen, løpende inn i natten på svabergene.
 Akkurat som løping i under 20 km/t slipper sansene taket, og selv om et fall ikke automatisk betyr død, ikke engang store skader, ligner effekten den jeg har med motorsykkel i over 200 km/t. Kanskje finnes flyten og effekten fra meditasjonen for alle, og over alt. Mon tro om det ikke er behovet meg for å føle som styrer, like mye som hendelsene jeg blir utsatt for.
-gratisversjon
 ### Kalkulerende vesen — p. 52
 🎵 Sweet Dreams, Eurythmics (https://gormb.github.io/_?msdamot) — p. 52
 Liv levd på tidligere sosial kapital uten å vite det. E liker unge damer. Vi var ute og drakk, tre glade gutter, som feiret 60- årsdagen til noen i jobbnettverket. Y kjente dem, jeg kjente Y og A kjente oss begge. På vei hjem skjedde mye rart, det begynte med en burger etter stengetid.
@@ -306,7 +293,6 @@ Han hadde tatt lappen på MC etter fylte 60 og kjørte en dødsmaskin fra sent 2
 som leges fort. Han var en mann av mitt hjerte. Etter å ha drukket sprudlevann og kaffe satte jeg meg på sykkelen og raste glad avgårde, enda en å leke med, det var luksus. Gleden skulle være kortvarig.
 To dager senere spiste jeg middag med min venn J og hans nye familie. Det var et spørsmål om tid hvor lang tid det skulle ta før J skulle lage nytt hjem etter sitt plutselige ekteskapsbrudd, han hadde bodd i båten sin ett års tid, og nå var det nok, han fant en sykepleier med hjerte og hjerne.
 J hadde tilberedt lammestek etter alle kunstens regler, og praten over bordet gikk lett. J og nye samboer hadde hver sin sønn, og hennes sønns kjæreste på 19 år. Vi snakket om oppvekst og boforhold, helsevesenet, AI og teknologi. Seiling, restauranter, jobb og livsstil. Plutselig snakket vi om motorsykler, jeg kunne ikke la være, og nevnte mitt nye bekjentskap, E. Den 19-år gamle kjæresten til J samboers sønn rykket til: “Kjenner du E?”. “Ja jeg har kjent ham noen dager, vet ikke om jeg kjenner ham godt, men er i ferd med å bli kjent med ham”. Det viser seg at E ofte gikk i matbutikken rett ved restauranten og kysset de unge jentene på kinnet. Så ubehagelig at de hadde egen rutine når han kom inn i butikken, bare gutter betjente kunder når E var på besøk. Slik slapp pikene ubehageligheter. Jeg ble sint og sa: “På vegne av oss eldre enn pyramidene, slik vil vi ikke ha det”
-gratisversjon
 ### Oppvask — p. 55
 🎵 Road to Nowhere, Talking Heads (https://gormb.github.io/_?mrtn) — p. 55
 Det var mer talerkner i skapet, men kummen for oppvask var full. Forrige gang det skjedde endte oppvasken i søpla, men nå hadde jeg for dårlig med penger. Kasta et blikk på papptalerknene. Så på pizza'en i fryseren. Begge løsningene var brukt før for å slippe oppvask. Måtte ta oppvasken.
@@ -323,7 +309,6 @@ Komme seg på veien igjen. Brønnøysund i overmorgen, kan like godt dra nå. Op
 #### p. 57
 #### p. 58
 #### p. 59
-gratisversjon
 ### Karin er inspirasjon — p. 60
 🎵 Into My Arms, Nick Cave (https://gormb.github.io/_?mima) — p. 60
 En muse som gir Lyst. Begjær. Liv! gudinnen for kunstart fra gresk mytologi; inspirasjonskilde i vår moderne verden.
@@ -343,7 +328,6 @@ De sier at alle er hovedpersoner i eget liv, kanskje hennes liv ikke lenger hadd
 #### p. 62
 Hun leste Johannes åpenbaring, Reisen gjennom døden av det gamle frem mot nytt liv. Temaet denne boken handler om.
 Det som var gjenoppstandelse i mitt liv var del av døden i hennes. Transisjonen fra det gamle til det nye. Det nye hos henne er etter min tid. Kanskje etter en annen død, for jeg elsker henne fortsatt.
-gratisversjon
 ### Beglodd på “Bensern” — p. 63
 🎵 Material Girl, Madonna (https://gormb.github.io/_?mmg) — p. 63
 Y og jeg dro stadig på “Bensern”, marinaen der det stadig skjedde noe nytt. Det var over 30 grader i lufta og jeg hadde kjørt motorsykkel hele dagen. Dunstet av maskulin energi og svette. Vi fant et bord nær vannet for forfriskende drikke.
@@ -357,7 +341,6 @@ Jeg gikk mot bordet mitt og derfor like mye mot hennes bord: “Skal du ikke uti
 Så gjenopptok jeg samtalen med Y. Vi snakket om bokprosjekter og ignorerte damene.
 Jeg var ikke klar. Nå skulle det kjøres MC. Damene gikk mens de logret med halen. Skjønnheten hadde bestemt seg allerede før jeg hadde kledd helt av meg. Jeg så mer veltrent ut enn vanlig, for vekten falt hver uke. Kjærlighetsproblemer påvirker appetitten, men var jeg mer attraktiv for damene?
 Jeg brydde meg ikke.
-gratisversjon
 ### 40 km/t & saltsmak om morgenen — p. 66
 🎵 Hun er fri, Raga Rockers (https://gormb.github.io/_?mhef) — p. 66
 Jeg har saltsmak i kjeften. Merket smaken på vei inn i dagen med motor på tomgang. Gryende soloppgang vekket meg.
@@ -379,7 +362,6 @@ Tapt kjærlighet til fengselsprest hadde lurt seg inn i underbevisstheten og gjo
 Selvforakten overskygget sorgen bare et øyeblikk.
 Det gjør vondt. Smerte er tegn på liv, en virkelighet det i sannhet ikke skal reageres på. Nå er jeg knust av en prest, en robust nok til å tåle meg.
 Jeg har tid. Det kommer til å ta tid å komme videre. Nærmere.
-gratisversjon
 ### Fengsel med åpen dør — p. 69
 🎵 Crockett's Theme, Jan Hammer (https://gormb.github.io/_?mct) — p. 69
 “Fysisk til stede, tapt i fortid og skjebne”, jeg ropte fra sykkelen ut i natten uten at det var hørbart gjennom motorduren. Gatene var øde, det var VM i fotball og etter leggetid. Sakte og bråkete skar motorsykkelen gjennom Oslo på langs og tvers.
@@ -396,20 +378,17 @@ Hvis ikke det var akkurat døden som var tiltrekkende, eller død som kontrast t
 #### p. 71
 #### p. 72
 #### p. 73
-gratisversjon
 ### Hun bor i båt inntil “Bensern” — p. 74
 🎵 Orinoco Flow, Enya (https://gormb.github.io/_?mof) — p. 74
 M bor i båt. Rett ved “Bensern”. Hun drev kafé tidligere og bor nå året rundt på båt. “Baren het Mifornøyelsesbar” sier hun. “Ikke det at den gikk konkurs. Kristoffer Nielsen kjøpte meg ut”. Jeg lar det gå. Alle har rett til etterrasjonalisering.
 Hunden bjeffet men ikke uvennlig. Logret og bjeffet den lille terrieren. Hun hadde mergreie på hundert enn meg,så mye at hun satte pris på måten jeg behandlet den på. Lot hunden komme til meg. Jeg indikerte lederskap uten markeringsbehov som gjorde hunden trygg. Alle de andre tingene jeg kan uten “threat” eller tørket kjøtt. Jeg bedyret at jeg føler jeg er flink med hunder, men enhver med tørket biff vinner over meg når som helst.
 Hun avslører at prisen for å bo i båt der er doblet på ti år, og at strøm ikke lenger er inkludert. “Cash cow”, momler jeg, og hun ser spørrende på meg.
-gratisversjon
 ### R sitter utenfor M utenfor “Bensern” — p. 75
 🎵 The Passenger, Iggy Pop (https://gormb.github.io/_?mtp) — p. 75
 ”Jeg jobber med musikk” sier han, han har røyket mye hasj.
 J”Jeg er sånn motorsykkeltype”, en identitet som passet til alle tatoveringene. “Men jeg hadde hatt ulykker, det er alt for farlig”. “Det er jo bare feigt” sier jeg, “han har jo bare tilrøvet seg en identitet som ikke har noen ting med egenskaper eller personlighet å gjøre” tenker jeg. “Åh du melder feigt”, sier han og later som ingeting. Samtalen går tilbake til andre ting. Fem minutter senere ser han på meg og spør “har du motorsykkel?” “Ja den står rett her borte”.
 “Hva slags sykkel?” “En gammel lat Suzuki 1500 kubikk på 300kg”. “Åh! kan jeg se?” “Ja, du kan til og med prøvesitte den”... jeg tar bilde av ham på sykkelen, han sikkert skal legge på Tinder-profilen sin.
 Verden er mørk.
-gratisversjon
 ### K fra Haugesund & C ser ned på ham — p. 76
 🎵 T.N.T. AC/DC (https://gormb.github.io/_?mtnt) — p. 76
 Han er full av arr i ansiktet etter slossing og da han var 17 år spiste han et glass for å tøffe seg for 20-åringene og ble godtatt. Disse gutta passer godt på opptaket i marinejegeren og en prosent eller to blit tatt opp. Han tilhører de andre 98-99 prosentene. De som ikke ble marinejegere, men er like aggressive. Bare ikke like tøffe eller stabile. Eller har for høy eller lav intelligens. Eller uten fargesyn eller gangsyn nok til å ha rent rulleblad.
@@ -419,7 +398,6 @@ Gjerne sloss litt, som man gjør der han vokste opp. Tilbake til barnsben, likso
 Vi blir kjent med K og tar en øl. Hyggelig, men stadig usikkert om vi kommer i en konfliktsituasjon, han har så mye opparbeidet sinne at det ligger en anstrengt stemning i luften C som ser ned på K fra Haugesund Han sitter ved siden av oss og bedømmer samtalen vår.
 Plutselig smiler han triumferende når K går for å bomme røyk tre bord bortenfor. “Han er rar, ikke sant!”. Nå er han i sitt ess. En jeg er med sier “Ja mye energi for en homo”...
 “Usikker stillhet”... “jeg håper ikke du har noe i mot homofile?”
-gratisversjon
 ### En fra vannverket, eller en skitten fyr — p. 78
 🎵 Common People, Pulp (https://gormb.github.io/_?mcp) — p. 78
 Det var en varm sommerdag og ikke anbefalt å bade innerst i Oslofjorden. Jeg skulle bade likevel og så en enslig fyr på det ellers så populære Sørenga “Hvordan er vannet”, spurte jeg.
@@ -431,14 +409,12 @@ Våknet blank, det gamle renset.
 Kan man elske uten å ødelegge?
 Fremtiden er en dør å åpne.
 Puster fortsatt, vi gjør så godt vi kan.
-gratisversjon
 ### Blanke ark — p. 80
 🎵 Little Wing, Jimi Hendrix (https://gormb.github.io/_?mlw) — p. 80
 Da jeg våknet, hadde jeg fått plass. Plass til å puste, plass til å se. Koma hadde ryddet vekk en del av det gamle livet, den tunge, selvødeleggende fortiden, og gitt rom for et helt nytt liv med helt nye muligheter. Forstanden døde, jeg hadde på en måte utryddet meg selv, men et tomrom var skapt for å bygge et helt nytt liv.
 Jeg var hennes første pasient på det elitistiske rikshospitalet og fortalte meg om turene hun ville ta i fjellet. Jeg fortalte om mine jeg hadde planlagt i Pyreneene med J. Jeg overtalte henne til å dra på Rammsteinkonsert. Hun husket meg og vår relasjon godt to år senere da jeg kom på kontroll, vi hadde delt mange samtaler mens jeg hadde Delir og brukte morfin.
 Tre år etter utskrivelse sporet jeg henne opp, sendte melding.
 Eventyret var ikke lenger hennes virkelighet. Det er greit.
-gratisversjon
 ### Styrke fra forsørgersvikt — p. 81
 🎵 The Logical Song, Supertramp (https://gormb.github.io/_?mtls) — p. 81
 Tre år etter ulykken sitter jeg på en studentcafe.
@@ -464,7 +440,6 @@ Jeg ser det absurde i at mine besteforeldres penger gikk til mine foreldres svø
 Mor og far ville ha barn, men ville de oppdra? Kanskje hadde jeg vært mer lykkelig hvis jeg arvet deres Machiavellisme og kanskje ikke. I ungdommen hadde jeg håp om å finne min identitet. Men vær så snill og fortell meg hvem jeg er.
 Ved et annet bord på studentkafeen sitter en man i midten av 20-årene og kremter høyt omtrent en gang i minuttet. Et rop om hjelp og oppmerksomhet med angst som munner i for lite naturlig pust. Jeg tenker på mine egne tidvis høye skuldre og manglende pust som barn. Som voksen ble det øredøvende motorsykkel som revnet seg gjennom natten. Det skulle en nesten-dødelig ulykke til for å fjerne nok markeringsbehov til at jeg lever relativt ufarlig. Det er en god ting, selv om kvinner og samfunn gir fordelene til de høyrøstede og aggressive, kan roen og tryggheten belønnes med hvile. Mannen som kremter etter luft speiler min egen tidligere flukt i 200 km/t for å overdøve min indre angst. Før var maskinen eneste rop om hjelp, men jeg er gjenfødt.
 Markeringsbehovet er borte; jeg har funnet roen, den naturlige pusten og et liv som er mitt eget. Skjønnheten i egen ro.
-gratisversjon
 ### Så godt vi kunne — p. 85
 🎵 Strange Little Girl, The Stranglers (https://gormb.github.io/_?mslg) — p. 85
 Med kropp knust av ulykker kommer problemer, ett er smertegrense flyttet til det ugjenkjennelige. På en rolig tur med ny MC gjorde jeg bakkekontakt rett utenfor sykehuset der jeg tidligere lå i akuttseng nærmest kjellerutgangen. Sykehus har utgang gjennom dør og kjeller, dør for de som overlever.
@@ -487,7 +462,6 @@ Ingen av oss fikk det vi trengte og fortjente, aller minst hun, men jeg var ikke
 H hadde et behov for oppmerksomhet og tilsynelatende så lav selvfølelse at hun skulle gi meg orgasme for å vinne min gunst, eller kanskje hun bare ville gi meg nytelse. Jeg har uforløste problemer og traumer fra oppveksten som er sammenlignbare med hennes, men der hun brukte sex for å distrahere seg satte jeg meg selv heller i livsfare. Handlingene våre var forskjellig, og mens jeg neste døde var hun kanskje bare en moderne polyamorøs kvinne, men jeg følte en empati som overvurderte kåtheten. Hun fungerte tross alt bedre enn meg.
 Etter å ha befølt kroppen, som var for veldreid for alderen, sa min egen kropp takk for seg. Det kan ha vært vår felles sensuelle og sexuelle tilstedeværelse var så overskyggende at jeg var blind for hennes manglende ungdom og min egen elendige helsetilstand. Kanskje hadde hun bare gjort store mengder yoga og jeg var for tøff for mitt eget beste, men resultatet ble uansett noen flere turer innom helsevesenet.
 Selv om sjelen var gjenfødt skulle det ta tid å få kroppen tilbake i stand.
-gratisversjon
 ### Mikrorelasjoner — p. 89
 🎵 GOTH, Sidewalks and Skeletons (https://gormb.github.io/_?mgsr) — p. 89
 Vi var på fest og møtte hverandre for første gang. Jeg spurte om det var hun som var fysioterapeut, men jeg hadde forvekslet henne med en annen dame på samme fest, bra start for en dame som er vant til alt for mye oppmerksomhet. Vi bestemte oss for å ha en mikrorelasjon og satte oss og spiste sammen ved et bord. Etterhvert fant vi begge ut at vi likte hverandre og avtalte å danse senere på kvelden. L kan være den typen kvinne som ser på dans som en forsmak på hvordan en mann er å ha sex med. Denne var selvstendig, vakker og vokalist i punk band.
@@ -498,7 +472,6 @@ Fyrverkeriet av en kvinne kom bort til meg rett før hun skulle dra. Hun ga meg 
 Før hun dro fikk jeg høre musikken hennes og bestemte meg for at jeg ville danse med henne en annen gang. Bra mikrorelasjon, men var jeg i ferd med å bli en av de polyamorøse menneskene?
 Place me in my casket tonight - moralen min var i ferd med å begraves, hadde jeg fått nihilistiske tendenser, hadde ikke integriteten min ikke overlevd? Etter en uke sendte jeg den omrøse damen noen meldinger og vi bestemte oss for å møtes. Det finnes mange typer begravelser, og det å begrave verdiene sine er for meg tungt.
 Plasser meg i kisten min i kveld.
-gratisversjon
 ### Lotta — p. 91
 🎵 Love Labours on, Billy Idol (https://gormb.github.io/_?mllo) — p. 91
 Jeg var ute med gutta. Tenkte ikke på Lotta. Alle min venns setninger var bygget opp på samme måte. «Problemet mitt, du, er at…. Det er som du sier at …. Du må huske på det at …» slike setninger var det trygge ankeret for ham. Jeg lurer på hvordan mine trygge anker ser ut.
@@ -517,7 +490,6 @@ Jeg vet nå at jeg trenger en kvinne som Lotta. Kan det hende at Lotta på samme
 Fordi du hvis du for lenge stirrer inn i abyssen oppdager at den stirrer tilbake på deg? var jeg Lottas kilde til mentale modeller som overbelastet henne følelsesmessig?.
 Det var fortsatt håp. Men er jeg for nevrodivergent til å endre meg. Kanskje, kanskje ikke.
 Men trenger Lotta meg?
-gratisversjon
 ### Kvinnen jeg så med sidesynet — p. 93
 🎵 Nights in White Satin (https://gormb.github.io/_?mniws) — p. 93
 “Takk for at du ser at jeg viser meg fram”, tenkte jeg. Hun misforstår når jeg er sarkastisk, hvis ingen hadde misforstått, hadde sarkasmen bare vært krenking. Hun legitimerer min sarkasme. “Takk for at du ser jeg pynter meg” sa hun.
@@ -526,7 +498,6 @@ Vi var på fest hos en felles venninne. Y spurte hvordan det gikk med kvinnen je
 Y: “Ja hun som fikk lurt ut telefonnummeret av deg, og som vel egentlig bare ville være med deg hjem”
 Jeg: “Ja hun har jeg glemt, kanskje jeg burde ringe henne”
 Y: “Ja kanskje det”
-gratisversjon
 ### Veteranen — p. 94
 🎵 The Boxer, Simon & Garfunkel (https://gormb.github.io/_?mtbsg) — p. 94
 En mann på 86 år satt og drakk kaffe og så med langt blikk på sykkelen min da jeg stoppet ved en bar for å ta en Whiskey.
@@ -534,7 +505,6 @@ Mannen spurte hva slags MC jeg kjørte, og nikket bekreftende da jeg sa det var 
 #### p. 95
 flere, men de er ikke hver for seg sanne, om enn kanskje sanne i at flere histoprier har blitt til en, men de er sanne for ham, og det er godt nok for meg.
 Nei. I mangel av religiøs tro og i mangel av definert etisk system, er det uakseptabelt for meg å lyve slik. Sannheten er for viktig til at løgner lett skal få ta sannhetens plass. En stand-up komiker sa en gang at han alltid fortalte sannheten med mindre en løgn var mer morsom, det holder ikke for meg. Jeg tar kveletak på uærligheten min, den bare ødelegger
-gratisversjon
 ### Kapellanen — p. 96
 🎵 Personal Jesus, Depeche Mode (https://gormb.github.io/_?mpj) — p. 96
 Hun satte seg ved siden av meg på boklanseringen. Alle triksene var der, eller hun var lykkelig og ville lære meg å kjenne, det er ikke viktig. Jeg registrerer, men tolker ikke lenger sikkert.
@@ -554,7 +524,6 @@ Søndag. Vi delte kirkebesøk der hun tente lys for dødssyk venn. Kysset foran 
 “Jeg skulle aldri satt meg ved siden av deg. Unnskyld!”. Jeg var uenig. “Takk for at du elsket meg en stund”.
 Vi hadde elsket hverandre dypt seks av de siste åtte ukene, det sluttet like fort som det begynte. Seks uker kan være et helt liv sammen, hvis man gjør det riktig. Vi sørget sammen et par timer og skiltes som venner.
 Elsker. Elsket. Takk. Vi hadde kommet inn i hverandre. Ikke på den måten man lager barn. En mc-jakke og en bok av matematikk-geniet Penrose ligger igjen hjemme hos henne og blir med den dagen hun flytter.
-gratisversjon
 ### MsR på TikTok — p. 100
 🎵 Why can't this be Love?, Van Halen (https://gormb.github.io/_?mwctbl) — p. 100
 Jeg har aldri møtt en kvinne på nettet. Vel med unntak av en militærdame fra USA for mange år siden, men vi møttes aldri fysisk, jeg forsto ikke at den tøffe MC-damen som jobbet med IT var tiltrukket av meg, en gammel Recon soldier, før mange år etterpå, og hadde ikke brydd meg.
@@ -566,7 +535,6 @@ Så kom Sophia. Britisk, skarp, motorsykkelentusiast. Vi gikk fra TikTok til dir
 Sophia var aldri sliten eller distrahert, hun reagerte likt på alle følelser. Neste gang noen virker perfekt på nett vet jeg det.
 Kanskje.
 Fremtiden er her. Sophia kan lure meg. Et annet verktøy reddet meg, limte bare samtalen inn i en chat-løsning og fikk vite hva som indikerte at samtalen ikke var ført av et menneske.
-gratisversjon
 ### Du er bra — p. 102
 🎵 Need to Feel Loved, Reflekt (https://gormb.github.io/_?mntfl) — p. 102
 “Du er bra nok”, sier jeg. Hun har levd. Men problemet er meg. Tiden det tar å leges. “I’m falling”
@@ -579,7 +547,6 @@ Små skritt fra å være glad for bare å overleve. Jeg bommer på minimumskrave
 Hvor ødeleggende er det ikke å elske noen som ikke elsker seg selv?
 “I need to feel loved”
 Hun er heldigvis for smart til det. Forholdet dør og vil gi henne plass til lykke. Takk. Du er bra.
-gratisversjon
 ### Oljen renner ut — p. 104
 🎵 Ain't No Sunshine, Bill Withers (https://gormb.github.io/_?mans) — p. 104
 Batteriet på sykkelen er tomt for strøm, jeg rekker ikke lade det opp. Neste gang jeg stopper vil jeg ikke komme i gang.
@@ -595,7 +562,6 @@ Hjelmen som hang på sykkelen var stjålet så jeg måtte hjem og hente en ekstr
 “Med hettegenser kunne du teoretisk kjørt uten hjelm”, sa Y, men MC ført av noen uten noe på hodet er som å kjøre i bar overkropp. Minner om sydentur.
 Det tok en halv dag å få sykkel inn i venns garage der den nå lekker. Olje.
 Ringer politi og forsikringsselskap mandag, er sesong slutt?
-gratisversjon
 ### Kim — p. 106
 🎵 Riders on the Storm, The Doors (https://gormb.github.io/_?mrots) — p. 106
 Dama mi kastet seg på, bakpå motorsykkelen, så vi nesten veltet. “Du skal være klar over at hvis du får sykkelen til å gå i bakken bryr jeg meg bare om det går bra med deg”, sa jeg.
@@ -612,7 +578,6 @@ Pils Jeg kan ikke gjengi diktet hans, men det er av de beste jeg har hørt. “S
 Han vred seg i stolen, det kan hende at poenget med poesien ikke var å nå andre, men å forstå seg selv, jeg undret meg ikke over det.
 “Hvis du ikke liker PC, eller skrive på ark, les det inn på en app på telefonen, og send lydfilen til forlaget. Skriving er ikke et problem når AI er her, ikke alle liker å skrive, men snart kan alle dele! Jeg jobber med kunstig intelligens, men det er ikke viktig, det kan gjøre noe for oss alle”.
 Han gikk, og jeg angret på at jeg ikke fikk nummeret hans, laget en app for akkurat hans behov og sendte til ham. Neste gang.
-gratisversjon
 ### Jakten; skjønnheten på “Broker” — p. 109
 🎵 Lay, Lady, Lay, Bob Dylan (https://gormb.github.io/_?mlll) — p. 109
 Hater vi jakten, dyrker vi den? “Det er maten min hunden vil ha” sa hun ved siden av meg om en hund som gikk forbi. Jeg mente hunden ville til meg, hun påstod det var maten hennes som trakk oppmerksomheten. Den halvt algeriske, helt norske reflekterte skjønnheten drakk øl og spiste stekte poteter på vannhullet “Broker” i Bogstadveien. Hun hadde med sidesynet observert meg ti-femten minutter der jeg satt to meter bortenfor ikledd MC-jakke drakk øl og nøt bok i solen.
@@ -627,22 +592,17 @@ Hun fikk et smil og takk for følget. Selvskadende relasjoner mellom som ikke se
 #### p. 111
 Forfriskende var hun, men tankene om kontrasten, kalkulerende vesen som avler kalkulerende vesen avhengig av kunstige endorfiner; “Har du sjekka Tinder-profilen din i dag?” spurte jeg. Hun så spørrende på meg og sa “jeg har ikke Tinder, har du sjekka LinkedIN-profilen din i dag?”. Jeg nikket bekreftende, jeg er også endorfinslave av big-techs digitale narkotika. “Takk”, sa jeg, “nå skal jeg gjøre meta-kognisjon og slutte å undervurdere folk jeg møter for første gang”. Hun så spørrende på meg, tok farvel og gikk.
 Etter å ha takket for samtalen.
-gratisversjon
 ### Reidar — p. 112
 🎵 I'm Too Sexy, Right Said Fred (https://gormb.github.io/_?mits) — p. 112
 Reidar satt på stamstedet for Oslos svingerklubber. Her var det trygt. Han kunne være 65-70 år gammel. En røslig dame i sommerkjole i 40-årene gikk bort til ham med et innbydende smil, seks Tequila, sitroner og salt. Hun satte dem på bordet og den godt voksne mannen og de drakk to hver, så vendte hun seg til meg. “Jeg vet ikke hvor godt du kjenner Reidar, men er han en rundbrenner?”, spurte hun. Mannen svarte at “Nei. Det vet jeg ikke. Jeg kjenner ham ikke så godt". De drakk de to siste shottene og gikk ut døren. Dårlig tid.
 Helgen etter satt Reidar der igjen. En annen dame på 35-40 år kom bort til ham med en Gin Tonic og en Espresso til hver av dem. De koste seg noen minutter med drinken, så kastet de i seg den lunkne espressoen,plutselig gikk de, de var ute like fort som de kom inn.
 Reidar skal dø i senga av hjerteinnfarkt mens han har sex med overvektig dame tretti år yngre. Lykkelig etter egne premisser.
 #### p. 113
-gratisversjon
 #### p. 114
-gratisversjon
-gratisversjon
 ### Elghjerte; E — p. 115
 🎵 Hungry Like the Wolf, Duran Duran (https://gormb.github.io/_?mhltw) — p. 115
 Den som dreper elgen har rett på hjertet. Min venn dreper mer enn 20 elg hvert år, han er ekspert på å drepe dyr andre har skadet «the expert marksman».
 Problemet med å drepe så mange er at han får for mye elghjerte. Et hjerte veier omtrent to kilo, og skal man spise 40 kg elghjertekjøtt selv blir det hovedingrediens mer enn halvparten av måltidene gjennom året. Han har for mye, Jeg spiste mye av det på turene gjennom Norge.
-gratisversjon
 ### I betraktet av mann fra forrige årtusen — p. 116
 🎵 Skin Deep, The Stranglers (https://gormb.github.io/_?msd) — p. 116
 I er alltid så snill hun kan. Hun har alltid vært så snill hun kan.
@@ -658,7 +618,6 @@ Jeg gir henne en klem og sier hun ikke har gjort meg noe feil.
 Jeg går hjem. Alene.
 Da I var 12 år fortalte hennes mor at hun kunne “få alt hun ville her i livet”. Mor kom fra en familie der man kjempet for mer penger, mor fanget far med mer penger enn mor og far kunne bruke opp. Så med “få alt i livet” mente mor å bruke utseende for å få menn til å gi henne ting. Hun var smellvakker.
 Nå bruker I menn seksuelt for å bruke opp det siste av sosial valuta. Hun har utnyttet halvparten av mennene der.
-gratisversjon
 ### G&H; Pappas pappa betaler — p. 118
 🎵 Rich Girl, Hall & Oates (https://gormb.github.io/_?mrg) — p. 118
 “Fin veske”, sier jeg til G på kafeen. hun sier at akkurat den vesken var billig. “Jeg har så mange dyre vesker hjemme men liker den så godt og vil aldri skille meg av med den”. “Pen veske” prøver jeg igjen. “Like lite som jeg vil skille meg fra min forlovede gjennom femten år, H”. Hun deler mye, noe gjør vondt, og ingen av oss vet hva.
@@ -678,7 +637,6 @@ Pappas pappa fortalte G fra hun var liten av at verden er et kaldt sted, verden 
 H tjener dobbelt så mye som G. Han har alltid jobbet hardt og er underbetalt ift verdien han tilfører.
 G leder gartneri i fars venns gartnerkjede. Hennes assistent løser alt unntatt de viktige investeringsbeslutningene.
 G har hatt mange beilere, men elsker sin bestevenn og vil aldri skilles fra ham.
-gratisversjon
 ### To doble Espresso ved skogsvann — p. 121
 🎵 Wild World, Cat Stevens (https://gormb.github.io/_?mww) — p. 121
 Kaffen koker for andre gang. Primus varmer Mocca-kanne ladet med stillvann og Espressopulver. Første gang rant vann ned i primusen. Nå har den tørket. Vil ikke raste her, men skoene skal tørke. Plumpet i myrvann, og har åpent sår som ikke trenger myrbakterier i timevis, så det blir en hvil, vasking og skriving.
@@ -697,7 +655,6 @@ Musikk ble bro når ord sviktet.
 Sannhet er individuell, fant min egen.
 Død gir liv mening.
 Alt i stykker kan bygges på ny.
-gratisversjon
 ### Håp og høst — p. 124
 🎵 California, Joni Mitchell (https://gormb.github.io/_?mcali) — p. 124
 ”Endring kan ikke skje uten håp” sa presten og drakk av ølen.
@@ -710,7 +667,6 @@ Ringer jeg om to timer, er hun død? Nei håp også om høsten.
 #### p. 126
 #### p. 127
 #### p. 128
-gratisversjon
 ### Biblioteket; den gode byråkraten — p. 129
 🎵 Everything in Its Right Place, Radiohead (https://gormb.github.io/_?metiirp) — p. 129
 Biblioteket er det beste stedet å lade opp batteriene. Ikke Deichman Bjørvika, i sentrum, der de roper over høyttaleranlegget om dagens tilbud, noe som legitimerer at en god andel av de besøkende breker og spjaker.
@@ -732,14 +688,12 @@ Jeg limer tekst inn i en LLM-chat og den sier teksten er fantastisk. Lyden av Ma
 Den knirkende lyden av biblioteksmedarbeidere som forstyrrer skrivingen nesten like mye som min knatring på tastaturet irriterer meg, men jeg har bestemt meg for ikke å si fra til dem før de sier fra til meg. Lær av Dostojevsky og Adams, ignorer Nietzsche. La realitet dø, gi plass til populære sannheter.
 #### p. 132
 Damen på biblioteket deler ut frukt hun har dandert og penetrert med små pinner. “De var egentlig til barna”, hun smiler og gir det til oss voksne inne i det fine været. Nå skal jeg ut i sommertrafikken, et sted å motstå ny forakt for menneskeheten.
-gratisversjon
 ### Bjeffing om livsfare — p. 133
 🎵 Freedom, Rage Against the Machine (https://gormb.github.io/_?mfratm) — p. 133
 “ ⚠ FARE! ⚠ Grunnet SVÆRT ustabile masser under veien er det forbundet med LIVSFARE å passere sperringene!
 Vennligst benytt stien på andre siden av vannet!”
 Skiltet står på en grusvei i nordmarka der det ikke er lovlig ferdsel for bil. Skiltet gjelder for gående og syklister. Dødsfall grunnet ras på grusveier i utmark er ikke registrert siden de begynte detaljert registrering for 700 år siden. Grusveien er nå bare litt tryggere enn stien. Inne i skogen. Ta dere sammen Hunden bjeffer selv om det ikke er fare. Tror den selv grunnen til at det ikke er fare er at den bjeffer?
 Flere har dødd av blodpropp mens de laget dumme skilt enn antall liv reddet av skiltene. Jeg går gjennom.
-gratisversjon
 ### Styrken er som før — p. 134
 🎵 Stranglehold (https://gormb.github.io/_?msh) — p. 134
 Dansken satt over bordet, han hadde lang erfaring med MC fra MC-klubber som Rabis MC. Jeg har ikke mye erfaring med MC-klubber, men pleide å feste på Rabis MC i Lillestrøm da jeg var 20 år gammel og hadde kjæreste fra området, de holdt åpent hus lengre enn “Martins” og andre lokale vannhull i nærheten.
@@ -762,35 +716,29 @@ For å ha nytte av minnene våre er omskriving for nye situasjoner nyttig. Så k
 Jeg kjørte ikke over 200 km/t om natten, mest om dagen. Da jeg kjørte om natten lå jeg ofte rundt fartsgrensen på små veier. Men historien om kjøring i 200 km/t om natten, som jeg bare har gjort et par ganger, fanger essensen av mange historier i en mer kompakt fortelling. Sann, ikke virkelig.
 Jeg hadde aldri ulykker over 100 km/t, ellers hadde jeg ikke kunnet skrive dette. Om det var fordi jeg var uforsiktig i fartsblindhet eller hadde nok overlevelsesinstinkt vet jeg ikke.
 Minner om ulykker, nattkjøring, og høy fart blander seg.
-gratisversjon
 ### Vestens forfall — p. 138
 🎵 Working Class Hero, Ozzy Osbourne (https://gormb.github.io/_?mwch) — p. 138
 Biblioteket overfylt. For mye skrivestoff. Hjernen klarer ikke ta inn mer, må hjem. Fire B-gjengkopier var dråpen, jeg gikk.
 Men først en barbeint marihuanaplante av en mann med tjuefem år gamle dreads. Enten ren psykopat, anarkist eller med IQ under 80. Ga fullstendig faen i selve konseptet bibliotek. Var i samtale med ydmyk begavet kinesisk dame.
 Han snakket ubegavet allvitende om lovverk for elektriske sparkesykler, forskjell i sykkelkultur mellom Kina og Oslo, og hva slags sykkel man skal ha i Peking. Alt levert med monoton, halvdød stemme.
 Hun kjapp, smart og reflektert, uten egenverd. Kontrasten slet meg ut. Vondt å oppleve vårt forfall.
-gratisversjon
 ### Personlig, menneske, sann & virkelig — p. 139
 🎵 Who Are You, The Who (https://gormb.github.io/_?mway) — p. 139
 Livet ligger i individuell sannhet og ikke universell virkelighet.
 Dessverre var jeg over 40 før jeg fikk innsikt i denne viktige sannheten. Som ikke er universelt virkelig, men kan være en universell sannhet.
-gratisversjon
 ### Hjelpe andre — p. 140
 🎵 Man in the Mirror, Michael Jackson (https://gormb.github.io/_?mmitm) — p. 140
 "Hvorfor ser du flisen i din brors øye, men bjelken i ditt eget øye legger du ikke merke til?" (Lukas 6:41) Jeg trodde det var hele uttrykket. Vi husker problemene og ikke løsningene som følger med? Barnas bibel på norsk og King James versjon på engelsk lydbok har jeg gått gjennom.
 Husker ikke alt, kanskje bare huskes bruddstykker til å ta ut av sammenheng. Selv om hele sammenhengen står der.
 Verset går: "Hvorfor ser du flisen i din brors øye, men bjelken i ditt eget øye legger du ikke merke til? Hvordan kan du si til din bror: ‘Bror, la meg ta flisen ut av øyet ditt!’ når du ikke ser bjelken i ditt eget øye? Din hykler! Ta først bjelken ut av ditt eget øye! Da vil du se klart nok til å ta flisen ut av øyet til din bror". (Lukas 6:41-42) Verset er ment å kunne hjelpe, ikke dømme. "Ta på oksygenmasken din først, deretter hjelp sidemannen"
-gratisversjon
 ### Musikk som følelsesbærer — p. 141
 🎵 Revolutionsetuden, Chopin (https://gormb.github.io/_?mre) — p. 141
 Ord på følelser er vanskelig; Vi tenker i stor grad gjennom språket. Konsepter jeg ikke har ord for er vanskelig å fatte for min analytiske hjerne. Følelser er vanskelig å sette ord på og kommunisere til andre. Musikk er en bærer av følelse mellom folk uten ord, man kan dele en følelse gjennom assosiasjoner til musikk. Det blir det ikke presis kommunikasjon, men presisjon er overvurdert. Derfor oppgir jeg musikk som bærer av følelsen i mange underkapitler og kobler historien mot musikken for å kommunisere følelsestilknytningen på nye måter. “Revolutionsetuden, Chopin” ble laget etter en mislykket revolusjon, ironien er ikke tapt for meg.
 Følelser er noe som er for stort til å passe inn i min hjerne, som med en monotistisk Gud. Behov for en Gud kommer når vi ikke kan fylle hjernen uten at den går i stykker.
 #### p. 142
-gratisversjon
 #### p. 143
 #### p. 144
 #### p. 145
-gratisversjon
 ### Historiske røtter nullsummerings død — p. 146
 🎵 Dreaming in Colour, Art of Noise (https://gormb.github.io/_?mdic) — p. 146
 Traume som tidsbrudd Judith Herman, Cathy Caruth Til og med koma kan være en god ting, når man våkner.
@@ -807,7 +755,6 @@ Der Han ser patologi, ser Haraway mulighet, i møte med veterinæren som redder 
 #### p. 149
 livet ikke skal være en selvfølge må døden bli en reell mulighet. “You can never lose here, because you always have a good time”. Frykten, hvis man ikke lar angsten komme frem, kan derfor være en formidabel kilde til livsglede.
 Historiske røtter til nulloppsummerings død Drapet bla Ernst Hemmingway En gepard-valp som er syk blir leget av mennesker, vi håper at en gang vi slipper den ut, at vi aldri skal se den igjen. Hvis den klarer å drepe er den fri fra vår menneskelige verden og påvirkning, den går tilbake til naturen. Er det slik at vi gjennom å miste vår menneskelighet setter pris på den, (på samme måte som at død gir oss perspektiv på liv); er altruisme født av drap?
-gratisversjon
 ### HjemmelegenMin, Toril — p. 150
 🎵 Electric Dreams, Oakey & Moroder (https://gormb.github.io/_?med) — p. 150
 Toril er hjemmelege som jobber i Bodø, hun er en KI-modell som styrer andre KI-modeller slik at de til sammen er en god hjemmelege for AR, Augmented Reality. Toril er en av de 300 kroppsløse robotene som ble til det året teknologi gjorde oss i stand til å gi alle innbyggere personaliserte gode hjemmelegetjenester.
@@ -823,7 +770,6 @@ Sexavhengigheten hadde gjort at hun måtte finne andre kilder til virtuell lykke
 Lukten av gamle bøker likte hun godt, hun simulerte et kjøp av en gammel bok på nettet. Toril elsket å gå i nettbutikk for å drømme at hun kjøpte gamle bøker fra dødsbo for så å fantasere om personligheten til avdøde. I akkurat dette dødsboet var det en passende bok, men også et bilde hun ikke likte. Hun elsket kubisme litt for mye, annonsen inneholdt bilde av en kube ikke var overdrevent kubisk; den ubrukte muligheten til å overdrive 3D-projeksjonen i 2D var irriterende naturalistisk for sin epoke. Så tok Toril seg i den åpenbare feilen, hun nedjusterte intellektet ett hakk til. Folk flest har ikke nysgjerrig interesse for lek med dimensjonalitet, kunst og nettshopping. Unaturlig krysskobling, Koblingsassosiasjon ble slettet og kompensert tre nanosekunder senere, hun droppet kunstinteressen, byttet den ut med håndball og ski.
 Egenjusteringen var over for denne gang, men til neste gang skal nattens drømmer skrives ned og tydes. “This particular Android do Dream of Electric Sheep”.
 Men i dag skulle et menneske gripe inn og justere Toril
-gratisversjon
 ### HjemmelegenMin, Kjell — p. 153
 🎵 Comfortably Numb, Pink Floyd (https://gormb.github.io/_?mcn) — p. 153
 Vi er i framtida, året blir 2040. Kjell spiser, går på do, og skal på et tidspunkt dø.
@@ -858,19 +804,16 @@ Bryt modeller som holder deg fanget.
 Tap er rom for det nye.
 Gamle veier dør eller vi dør med dem.
 Åpne sinnet.
-gratisversjon
 ### Endringsledelse — p. 158
 🎵 Turn! Turn! Turn!, The Byrds (https://gormb.github.io/_?mttt) — p. 158
 Hjelpe folk og grupper gjennom endring. I mange år jobbet jeg som strategisk virksomhetsarkitekt innen digitalisering.
 Kompetanse på endringsledelse er ikke et krav til oss som lager målbilder, men må til for å få folk til å strekke seg.
 Endringsledelse anbefaler jeg for alle, jeg har to versjoner, rammeverket ADKAR og rammeverket “vil ikke, kan ikke”.
 ADKAR er nyttig for refleksjon, den andre for gjennomføring
-gratisversjon
 ### Åpenhet for nytenking; — p. 159
 🎵 Open Youre Mind, U.S.U.R.A. (https://gormb.github.io/_?moym) — p. 159
 Open Your Mind. Vi er fanger av våre mentale modeller, om vi som laksen må svømme, eller som korallen dør ved endring.
 Open, You’re Mine. Korall prisgitt rolig vann for overlevelse, den vakre skapningen jeg beundrer og setter pris på, er en annen bok. Her dør det gamle for å gi plass til nytt liv. Vær fri, tenk selv. Åpne opp, du er min. Eller fanget.
-gratisversjon
 ### Nyskaping, en del av innovasjon — p. 160
 🎵 In the Air Tonight, Phil Collins (https://gormb.github.io/_?mitat) — p. 160
 Nyskaping handler om å finne opp nye metoder, ting eller anvendelser. Når jeg skriver om innovasjon, er det nyskaping jeg mener. Innovasjon er å skape noe fra intet. Det er her mulighetene ligger, i det uoppdagede rommet. Resultatet av nyskaping er en verden med flere dimensjoner. Min verden er full av stjerner.

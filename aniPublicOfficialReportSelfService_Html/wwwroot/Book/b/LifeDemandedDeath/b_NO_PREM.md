@@ -1,10 +1,8 @@
 # Liv krevde død
 #### p. 1
 Liv krevde død
-premiumversjon
 punktroman
 in vignettes.
-premium version
 ## Nullsum — p. 2
 🎵 https://gormb.github.io/_?mlist (https://gormb.github.io/_?mlist) — p. 2
 “Med MC fra Kiel til Alicante og snitt på 170 km/t kunne jeg vært arrestert i hele Europa”, sa jeg.
