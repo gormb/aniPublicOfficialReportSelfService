@@ -64,7 +64,7 @@ const books={
                 r.el.page.innerHTML=v[r.idx];
                 r.el.prev.hidden=r.el.next.hidden=r.mode>2;
             },
-            show:k=>books.play.render.idx=k;books.play.render.draw(),
+            show:k=>books.play.render.idx=k+(books.play.render.draw()),
             whole:()=>{const r=books.play.render;r.mode=(r.mode+1)%4;r.el.whole.textContent=r.names[r.mode];r.draw();}
         }
         // ===== Fremtidig: books.play.ai endrer tekst/kapitler, deretter books.play.md.index(); books.play.render.draw(); =====

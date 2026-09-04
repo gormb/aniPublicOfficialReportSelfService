@@ -1,6 +1,5 @@
-/* App-layout: dpMenu (full-width top bar) above dbNav (left 20vw) + dpBook (right) */
 body{
-    font-family:Garamond;font-size:10pt;margin:0;height:100vh;
+    font-family:Garamond;font-size:12pt;margin:0;height:100vh;
     display:grid;grid-template-columns:20vw 1fr;grid-template-rows:auto 1fr;
 }
 #dpMenu{grid-column:1/-1;display:flex;gap:.5em;align-items:center;border-bottom:1px solid #999;}
@@ -12,3 +11,4 @@ body{
 #dbNavList a{display:block;padding:.05em .4em;color:inherit;text-decoration:none;cursor:pointer;}
 #dbNavList a:hover{background:#eee;}
 #dpBook{min-height:0;overflow:auto;padding:20mm;}
+h2 a,h3 a{color:inherit;text-decoration:none;}
