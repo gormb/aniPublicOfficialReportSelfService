@@ -1,4 +1,4 @@
-# Liv krevde død
+# TOC
 #### p. 1
 Liv krevde død
 punktroman
@@ -108,16 +108,15 @@ fra et Norge med isolasjon, kuldegrader og stillstand.
 Drivkraften var urokkelig. Alt er det samme, byer, mennesker og verdisyn. Det finnes mange forskjellige navn på friheten jeg søkte.
 Plutselig husket jeg min tidligere kjæreste og samboer fra første halvdel av 20-årene, “C”, som hadde flyttet til Alicante for å skrive bok om Francisco Franco. C er et herlig overbegavet vesen fra Oslo Vest som har vært en god venn fra jeg møtte henne, og vi har beholdt et vennskap etter at det ble slutt mellom oss. C er gøy.
 "Every day it seems we're wastin' away". Etter en uke på vinterlagring var tålmodigheten slutt; følelsen av å kaste bort verdifull tid drev meg til å handle. Å sitte fast i Oslo mens livet og verden brant med COVID-frykt og depresjon, var mer skadelig enn fysisk fare, folks meninger om meg, karriere eller penger. Hver dag i vinter-Oslo var en dag bortkastet.
-Jeg ringte C og spurte om jeg kunne ha base hos henne i Spania mens jeg kjørte MC langs Middelhavet denne vinteren?
-Hun svarte bekreftende og ønsket meg velkommen, losji var i boks.
+Jeg ringte C og spurte om jeg kunne ha base hos henne i Spania mens jeg kjørte MC langs Middelhavet denne vinteren? Hun svarte bekreftende og ønsket meg velkommen, losji var i boks.
 Igjen skulle jeg oppleve personligheten mellom C og meg selv.
 Personlighet finnes etter manges mening ikke i personer like
 #### p. 18
 viktig som mellom personer. C og jeg er kompatible, og kunne godt ha vært gift livet ut. Noen samhold er bygget på løgn eller urealistiske forhåpninger, men koblingen mellom oss var god og ekte, alt for god til å vare i en nullsumverden.
 "I'd drive all night just to get back home". Jeg har fornektet hjemmet mitt, mitt nye hjem var å være på reisefot, først symbolisert av Middelhavet med Alicante med besøk hos varme C og en ny start. Søvn og sikkerhet var ikke del av mitt nye hjem, de var illusjoner likevel. Jeg var vant til å kjøre hele natten, og veien var allerede mitt nye hjem.
 Så skulle det praktiske løses, snøen var kommet, og transport gjennom vinter-Europa på MC er hverken ukomplisert eller billig. Jeg bestemte meg for å ta Kiel-fergen så fort som mulig og kjøre gjennom kontinentet mens det var en lomme av plussgrader.
-Grunnet COVID var alle i direktoratet jeg fikk lønn fra påbudt hjemmekontor, og jeg så ikke noe behov for å fråtse i sannheten, den sannheten at mitt hyttekontor kom til å bli “langs middelhavet” en periode, det var ingen andres sak.
-Arbeidet med nasjonale utredninger hadde innsyn og arkivplikt og ingen sikkerhetsgrunn til at jeg måtte oppholde meg i Norge. Utarbeiding av fremtidens fellesløsninger for innbyggeres beste hadde ingen reell nytte av at jeg satt på
+Grunnet COVID var alle i direktoratet jeg fikk lønn fra påbudt hjemmekontor, og jeg så ikke noe behov for å fråtse i sannheten, den sannheten at mitt hyttekontor kom til å bli “langs middelhavet” en periode, det var ingen andres sak. Arbeidet med nasjonale utredninger hadde innsyn og arkivplikt og ingen sikkerhetsgrunn til at jeg måtte oppholde meg i Norge.
+Utarbeiding av fremtidens fellesløsninger for innbyggeres beste hadde ingen reell nytte av at jeg satt på
 #### p. 19
 norsk jord. Her trosset jeg byråkrati og fagforeningers klamme hender, det skulle vise seg å ikke lønne seg, men det er en annen sak.
 Jeg planla tre ruter gjennom Europa, den optimistiske, den vakre og den realistiske.
@@ -130,31 +129,33 @@ Etter en periode i toppfart, 220km/t, brøt motorsykkelen sammen, og jeg ble tvu
 "Another place where the faces are so cold". Hamburg under COVID-lockdown var en pause fra farten, men en påminnelse om verdens kulde der alle går på jobb i en maskin der de
 #### p. 21
 kjemper om begrensede ressurser. En nyttig relevant ramme for arbeid med nasjonale løsninger for norske innbyggere. Jeg reparerte clutchen og jobbet, omgitt av en by som var like livløs som min egen indre tilstand før jeg dro. Hamburg sto for meg som moralsk forfalt fra før, men nå opplevde jeg det enda mer ufiltrert. Et annet sted der ansiktene er blanke og kalde, like mye som hjemme i Norge, bare mer ærlig og skamløst tapt for illusjoner.
-Jeg fant en benk utenfor verkstedet der jeg kunne sitte å jobbe, da kunne jeg sette meg på sykkelen det øyeblikket den var klar. Jeg betalte, festet bagen over setet og fortsatte med nytt mot sørover i toppfart. Veiene måtte gå lengre vest nå, da nattfrosten gjorde det urealistisk å kjøre for full gass og komme levende frem lenger inne i landet. Tidsvinduet uten frost hadde nesten lukket seg.
-"Sometimes I sleep, sometimes it's not for days". Turen varte bare tyve timer med konstant full gass. Stopp for fylling av bensin, grenseoverganger og bompenger gav kanskje fire timer til, så kjørelengden var tilsammen bare et døgn.
-Tidslommene jeg kunne kjøre sykkelen uten fare for is på veien var den reelle begrensningen.
+Jeg fant en benk utenfor verkstedet der jeg kunne sitte å jobbe, da kunne jeg sette meg på sykkelen det øyeblikket den var klar.
+Jeg betalte, festet bagen over setet og fortsatte med nytt mot sørover i toppfart. Veiene måtte gå lengre vest nå, da nattfrosten gjorde det urealistisk å kjøre for full gass og komme levende frem lenger inne i landet. Tidsvinduet uten frost hadde nesten lukket seg.
+"Sometimes I sleep, sometimes it's not for days". Turen varte bare tyve timer med konstant full gass. Stopp for fylling av bensin, grenseoverganger og bompenger gav kanskje fire timer til, så kjørelengden var tilsammen bare et døgn. Tidslommene jeg kunne kjøre sykkelen uten fare for is på veien var den reelle begrensningen.
 "I play for keeps 'cause I might not make it back". Min selvdestruktive vurdering av risiko ble bekreftet av farten og
 #### p. 22
 det som skulle komme. Hver kilometer var en erkjennelse av at jeg kanskje ikke kom tilbake i live, et dødelig spill for å døyve smerten inne i meg gikk på høyt volum. Det var ikke første gang jeg kjørte hardere enn hjernen egentlig var i stand til, det kan gjøres med enhver kombinasjon av lite søvn, mørkekjøring, alkohol eller for høy fart. Også denne gang var søvn ikke for velvære, glede eller luksus, kun et middel for å varme opp en skjelvende kropp som ikke klarte å takle mer adrenalin blandet med kulde; sjelen ville fortsette, drevet av rå vilje og en mental unntakstilstand på jakt etter livsfare. Jeg spilte for alvor, fordi jeg kanskje ikke kom tilbake.
-Noen ganger sover jeg, noen ganger er det ikke på flere dager.
-På tidligere turer sov jeg mye mindre, når jeg ble tilstrekkelig kald var det bare noen timer søvn som var i stand til å gjøre at jeg kunne fortsette uten at skjelvinger, synsforstyrrelser og andre psykologiske tegn på utmattelse. Det gjorde det tidsbesparende å ta sovepause. Denne turen var jeg begrenset av kuldegrader, og tok igjen med å gi konstant full gass.
-Neste bemerkelsesverdige opplevelse var bare to-tre timer unna, veien Afsluitdijk ligger midt ute i havet uten land i sikte på noen sider. Jeg tenkte på hvor fin tur dette kunne vært hvis jeg kjørte en Cruiser-MC man ser på film eller i TV-serier, en “snekke” som jeg kalte det, som langsomt tøffet av gårde
+Noen ganger sover jeg, noen ganger er det ikke på flere dager. På tidligere turer sov jeg mye mindre, når jeg ble tilstrekkelig kald var det bare noen timer søvn som var i stand til å gjøre at jeg kunne fortsette uten at skjelvinger, synsforstyrrelser og andre psykologiske tegn på utmattelse. Det gjorde det tidsbesparende å ta sovepause. Denne turen var jeg begrenset av kuldegrader, og tok igjen med å gi konstant full gass.
+Neste bemerkelsesverdige opplevelse var bare to-tre timer unna, veien Afsluitdijk ligger midt ute i havet uten land i sikte på noen sider. Jeg tenkte på hvor fin tur dette kunne vært hvis jeg kjørte en Cruiser-MC man ser på film eller i TV-serier, en “snekke”
+som jeg kalte det, som langsomt tøffet av gårde
 #### p. 23
 mens jeg nøt å kjøre midt på havet på vei mot ørkenen der Westernfilmene spilles inn i Spania. Etter å ha unnet meg en langsom halvtime verdig en mann på femti, fant jeg tilbake til toppfart og adrenalin i en verden av vindstøy og livsfare i fremmede land.
 Litt over 900 km lenger sørover fant jeg Boulogne-sur-Mer i Frankrike. Fordi det begynte å bli fare for kuldegrader, og var omtrent 2000 km igjen å kjøre, passet det å finne et sted for å nyte rødvin langs kysten til Frankrike.
-Ideelt sett var det bare en hard dags kjøring til San Sebastian, innenfor grensen til Spania, men vinteren medførte en rute langt mot vest. Dermed unngikk jeg de livsfarlige kuldegradene. Tok sikkert en dag ekstra.
-Perioden huskes som omtåket av adrenalin som herjet kroppen. På grensen til hva kroppen og hjernen kunne takle.
-Livet var vakkert, kaldt og farlig. En naturlig rus av euforisk glede av stadig å overleve livsfare i en kropp presset til sitt ytterste av kulde, vindstøy og stress.
+Ideelt sett var det bare en hard dags kjøring til San Sebastian, innenfor grensen til Spania, men vinteren medførte en rute langt mot vest. Dermed unngikk jeg de livsfarlige kuldegradene.
+Tok sikkert en dag ekstra.
+Perioden huskes som omtåket av adrenalin som herjet kroppen.
+På grensen til hva kroppen og hjernen kunne takle. Livet var vakkert, kaldt og farlig. En naturlig rus av euforisk glede av stadig å overleve livsfare i en kropp presset til sitt ytterste av kulde, vindstøy og stress.
 Luksusen med å lege den ekstreme utmattelsen for kroppen og nervesystemet kom først senere, på en strand ved Middelhavet.
 #### p. 24
 "The people I meet always go their separate ways".
-Motorsykkelen sikret mikrorelasjoner, midlertidige; jeg var forpliktet til veien, faren og farten. Opplevelsen av Frankrike ble dårligere og dårligere jo nærmere jeg kom Spania, noe som gav voldsom kontrast til ferieparadiset San Sebastian, en oase rett innenfor grensen til Spania. Jeg hadde passert J, min ukrainske kjærlighetsinteresse i Sør-Frankrike uten å rikke på gassen, adrenalinet var altoppslukende og jeg var på vei til C.
-Hadde jeg visst at jeg bare var noen timers villmannskjøring unna Alicante hadde jeg fortsatt, men fordi jeg antok at veiene var like farlig i Spania som i Norge stoppet jeg og nøt paradiset noen timer. I det fasjonable strøket rundt stranden i San Sebastian fikk jeg oppleve et måltid sammen med to fargede overklassedamer jeg møtte i køen. Maten var preget av ekstraordinære råvarer, men samtalen bare om shopping og klær. Jeg gledet meg allerede til landeveien og dro til hotellet for å snakke med J. Folkene jeg møter går alltid hver til sitt.
+Motorsykkelen sikret mikrorelasjoner, midlertidige; jeg var forpliktet til veien, faren og farten. Opplevelsen av Frankrike ble dårligere og dårligere jo nærmere jeg kom Spania, noe som gav voldsom kontrast til ferieparadiset San Sebastian, en oase rett innenfor grensen til Spania. Jeg hadde passert J, min ukrainske kjærlighetsinteresse i Sør-Frankrike uten å rikke på gassen, adrenalinet var altoppslukende og jeg var på vei til C. Hadde jeg visst at jeg bare var noen timers villmannskjøring unna Alicante hadde jeg fortsatt, men fordi jeg antok at veiene var like farlig i Spania som i Norge stoppet jeg og nøt paradiset noen timer. I det fasjonable strøket rundt stranden i San Sebastian fikk jeg oppleve et måltid sammen med to fargede overklassedamer jeg møtte i køen. Maten var preget av ekstraordinære råvarer, men samtalen bare om shopping og klær. Jeg gledet meg allerede til landeveien og dro til hotellet for å snakke med J. Folkene jeg møter går alltid hver til sitt.
 "I still drive, dead or alive". På veiene i Tyskland, Frankrike og Spania kunne man for det meste ligge på toppfart med motorsykkelen. Nedstenging grunnet COVID, lite trafikk og lite synlig politi, la rammer for kjøring som ellers hadde blitt stoppet. Gjennom andre land gikk det litt langsommere, så det ble ikke toppfart hele veien. Gjennomsnittshastigheten ble derfor, ifølge kartapplikasjonen, 170 km/t for hele strekningen fra Kiel til Alicante. Inkludert omveier 3400 km
 #### p. 25
 gjennomført med 20 timer aktiv kjøring og 15-20 stopp for å fylle bensin. Den forholdsvis høye hastigheten får meg fortsatt noen ganger til å gråte av skam, da jeg har barn som fortjener at jeg i det minste holder meg i live. Før erkjennelsen av faren, og lenge før skammen, fortsatte jeg. Den eneste sannheten var bevegelsen. Uansett utfall, overlevelse eller død, var jeg drevet til å fortsette ferden. Jeg kjører fortsatt, men endelig mer levende enn død.
-"Oh, and I ride". Neste morgen etter frokost skar sykkelen gjennom fjellkjeden Pyreneene. Opplevelsen var bedre enn jeg kunne forestilt meg, det beste av Spania, Frankrike og Norge samlet i en integrert opplevelse. Spanjolenes tilrettelegging for høy fart, Frankrikes stil og et naturlandskap nær det jeg var vant til fra Norges fantastiske fjorder. Veiene var dosert på en måte som gav selvtillit til at det var trygt å holde full gass i svingene. Et stjålet øyeblikk gikk tankene mot konsekvensen av å dø. En feil i en sving eller litt oljesøl var mer enn tilstrekkelig til en ulykke i 200 km/t og resultatet er at fører og kjøretøy blir en integrert del av terrenget. Den slags ulykker over 100 km/t er dødsulykker, og dobbel hastighet har fire ganger kraft, så døden er mer eller mindre garantert hvis man feiler.
-Tanken på risiko slapp fort taket, jeg var nummen og distrahert. Nervesystemet, nedhamret av endorfiner og
+"Oh, and I ride". Neste morgen etter frokost skar sykkelen gjennom fjellkjeden Pyreneene. Opplevelsen var bedre enn jeg kunne forestilt meg, det beste av Spania, Frankrike og Norge samlet i en integrert opplevelse. Spanjolenes tilrettelegging for høy fart, Frankrikes stil og et naturlandskap nær det jeg var vant til fra Norges fantastiske fjorder. Veiene var dosert på en måte som gav selvtillit til at det var trygt å holde full gass i svingene.
+Et stjålet øyeblikk gikk tankene mot konsekvensen av å dø. En feil i en sving eller litt oljesøl var mer enn tilstrekkelig til en ulykke i 200 km/t og resultatet er at fører og kjøretøy blir en integrert del av terrenget. Den slags ulykker over 100 km/t er dødsulykker, og dobbel hastighet har fire ganger kraft, så døden er mer eller mindre garantert hvis man feiler.
+Tanken på risiko slapp fort taket, jeg var nummen og distrahert.
+Nervesystemet, nedhamret av endorfiner og
 #### p. 26
 adrenalin, var bare i stand til å oppleve tilstanden som ligger mellom liv og død. Det kan hende også at den avhengighetsskapende farten hadde satt seg i kroppen.
 Motorsykkelen var et effektivt virkemiddel for fartsrus. Jeg var drevet av en kraft uten navn, en ubevisst motor som holdt meg i bevegelse sørover. Jeg kjørte ikke for å tenke, men for å føle, jeg kunne kjenne at jeg levde, uten at tankene fikk slippe til. Åh, og jeg kjører.
@@ -176,15 +177,12 @@ Umulig for de som aldri har opplevd begge sider; arr fra barndommen. Har du aldr
 I livet som var, henger personen jeg var igjen. Jeg kan aldri.
 ### Tidligere sommerfester — p. 30
 🎵 Memories, David Guetta feat Kid Cudi (https://gormb.github.io/_?mmem) — p. 30
-En sommerfest var over, jeg møtte enda en perfekt dame.
-Hun hadde sagt opp en stilling i ledelsen i et stort selskap fordi hun ikke kunne nå toppen. Klaget over at det var fordi hun var kvinne, jeg er ikke sikker. Tidligere journalist, deretter kommunikasjonssjef og nå leder av noen samarbeid rundt noe ideelt vi måler med bærekraftsmålene våre. Vi satt seks timer og snakket på et hipt Grünerløkkasted og klarte ikke å drikke opp en flaske champagne, vi hadde alt for mye å snakke om.
-Men det ble med den kvelden, vi møttes aldri igjen. Det var midnatt og jeg pekte nesen mot en fest som hadde pågått en stund.
+En sommerfest var over, jeg møtte enda en perfekt dame. Hun hadde sagt opp en stilling i ledelsen i et stort selskap fordi hun ikke kunne nå toppen. Klaget over at det var fordi hun var kvinne, jeg er ikke sikker. Tidligere journalist, deretter kommunikasjonssjef og nå leder av noen samarbeid rundt noe ideelt vi måler med bærekraftsmålene våre. Vi satt seks timer og snakket på et hipt Grünerløkkasted og klarte ikke å drikke opp en flaske champagne, vi hadde alt for mye å snakke om. Men det ble med den kvelden, vi møttes aldri igjen. Det var midnatt og jeg pekte nesen mot en fest som hadde pågått en stund.
 En tidligere kollega var i en vennegjeng på ti-femten damer og nesten like mange menn. I dag skulle alle feste sammen.
 Damene hadde vorspiel for seg på en hyggelig kafe og gutta
 #### p. 31
 delte jakthistorier over en øl. På vei mot min date hadde jeg stoppet innom damenes vorspiel og delt ut en rose til hver av dem for så å gå uten et ord. Da jeg kom fra daten min, hadde de snakket om meg i timevis.
-Storesøster og lillesøster, jeg var forelsket i den eldste, men så ikke alltid forskjell på dem. Den yngste sto utenfor festen, jeg trodde det var den eldste og sa “hvorfor har vi aldri kysset”
-for så å kysse henne på munnen. Så gikk vi sammen inn til de andre og jeg oppdaget min feil, der møtte jeg øynene til storesøsteren jeg var forelsket i, og lillesøsteren smilte avslørende.
+Storesøster og lillesøster, jeg var forelsket i den eldste, men så ikke alltid forskjell på dem. Den yngste sto utenfor festen, jeg trodde det var den eldste og sa “hvorfor har vi aldri kysset” for så å kysse henne på munnen. Så gikk vi sammen inn til de andre og jeg oppdaget min feil, der møtte jeg øynene til storesøsteren jeg var forelsket i, og lillesøsteren smilte avslørende.
 Natten var enda ung og ting eskalerte, en god venn av meg endte i seng med storesøster og jeg med lillesøster. Disse idrettsdamene fra landet har en energi som gjør at de kan feste og elske mye lengre enn oss late byfolk, jeg var utslitt og fornøyd, selv om jeg unngikk å ha sex med den yngste hadde jeg ødelagt to av mulighetene mine til å bli lykkelig på en kveld, men et liv i hastighet er også bra, det valget skulle jeg virkelig overdrive senere.
 ### Barnemisbruk og sår — p. 32
 🎵 Hurt, Nine Inch Nails & Johnny Cash (https://gormb.github.io/_?mhnin) — p. 32
@@ -250,7 +248,6 @@ Denne boken er om kvinner og døden. Hva har kvinner med døden å gjøre? Begge
 På motorsykkel i natten i maksimal hastighet er man synlig og kan høres. Det er en hemmelighet at det er full frigjørende stillhet for den som kjører.
 Kroppen hyperfokuseres, redd utslettelse. Sansene svekkes og inntrykk er borte etter minutters galskap.
 Øredøvende monoton vindstøy som treffer hjelmen er det første som blir borte, etterpå forsvinner refleksjon over bevegelser, svinger, natur, dyr, trafikk og lys. Alt blir rutinebevegelser og handlinger, mønstre og vibrasjoner, detaljene borte for alle sanser.
-(
 #### p. 41
 Endelig forsvinner smerter og spenninger i kroppen, det er ikke plass til å anstrenge seg, energien spares, anstrengt pust blir rolig dyp fra magen, skuldre senkes, smerte og hjernens nær totale utmattelse blir filtrert ut, og man går i hypnotisk tilstand som overgår å sitte i lotusstilling eller bruke dop.
 Alle psykiske problemer er irrelevant, smerte også. Den ultimate stillheten ligger midt i et øredøvende bråk man kan høre langt unna, men ikke hvis man sitter der lyden kommer fra. Du trenger ikke Freud eller Jung, du leges. Eller dør.
@@ -263,7 +260,8 @@ For å overleve lot jeg det gamle dø
 ### Ulykken — p. 43
 🎵 Time to die, The Stranglers (https://gormb.github.io/_?mttd) — p. 43
 Jeg tok en Brun Tequila med M og dama hennes.
-Brun Tequila på formiddagen og livstruende ulykke på kvelden. Det gav erfaringer som aldri kan avlæres.
+Brun Tequila på formiddagen og livstruende ulykke på kvelden.
+Det gav erfaringer som aldri kan avlæres.
 Den delen av meg som døde av den livreddende behandlingen på akutten ga mulighet for slutten på et liv, en identitet, et selv.
 Hvor mye jeg skulle beholde av det jeg hadde vært, det kunne jeg velge selv. Fordelen av koma og delir er at så lite er igjen av den man var, at man kan omskrive seg selv.
 Fysisk sett var livet som jeg kjente det var over. En måned på akutten og månedsvis med morfin endret alt. Aksepten for at livet jeg hadde før var borte var enkel, en uklar periode hadde fått en varig avslutning og kroppen ble leget.
@@ -272,7 +270,8 @@ Livreddende behandling ved polytraume gis med lite eller stort team, et lite var
 Det var ikke skadene som fikk meg til å gå fra forstanden.
 Lungeemfysem, en blødning etter operasjonene eller ulykken, hadde nådd lungene. For lite oksygen til hjernen. Selv merket jeg det som vrangforestillinger og fysisk angst. Noe som skiller fysisk angst fra intellektuell, er at det er nyttig å rasjonalisere med en som har den intellektuelle typen.
 Jeg fløy over styret på motorsykkelen i fart, langsomt nok for overlevelse, fort nok for store skader. Det første som treffer bakken går i stykker, for meg var det høyre ben.
-Skader Det ble brudd av kategori type 3b. Brudd deles inn i nivå en, to og tre. Nivå tre deles igjen inn i a, b og c. Statistisk sett ender 3a, b og c med amputasjon henholdsvis 5, 25 og 50 prosent av tilfellene. Mitt brudd medførte 25% sjanse for amputasjon, multitraume og alvorlige skader rundt omkring i kroppen. Sannsynlighet for kognitiv reduksjon. Forskjellige
+Skader Det ble brudd av kategori type 3b. Brudd deles inn i nivå en, to og tre. Nivå tre deles igjen inn i a, b og c. Statistisk sett ender 3a, b og c med amputasjon henholdsvis 5, 25 og 50 prosent av tilfellene. Mitt brudd medførte 25% sjanse for amputasjon, multitraume og alvorlige skader rundt omkring i kroppen.
+Sannsynlighet for kognitiv reduksjon. Forskjellige
 #### p. 45
 typer varige men av fysisk og psykisk art.
 “Like shifting sands in an ocean's bed”. Blodoppsamling i lungene begrenset oksygentilførselen til hjernen nok til at jeg, ifølge journaler, hadde ukontrollerte skjelvinger og angst, så jeg gikk i den psykotiske tilstanden delir. Ingenting var lengre stabilt; identitet, kropp og virkelighet var i bevegelse.
@@ -281,8 +280,7 @@ Selv om halvparten av ribbeina var knekt hadde de holdt seg på plass, og de som
 Mindre skader, som brister i et skulderblad, og brudd i en lillefinger ble ignorert den første uken mens de mange livsnødvendige operasjonene ble utført og benet ble reddet.
 Derfor sitter jeg igjen med bagatellmessige varige men som en skjev lillefinger og et nervesystem som ikke kjenner nok smerte når det egentlig burde.
 #### p. 46
-Behandling Behandlinger inkluderte et utall operasjoner, hudtransplantasjon, bli lagt i koma og behandling av delir.
-Delir er en psykotisk tilstand mange får når medisinbruk, operasjoner, manglende oksygentilførsel til hjernen og andre skader går over grensen for hva man som menneske kan takle.
+Behandling Behandlinger inkluderte et utall operasjoner, hudtransplantasjon, bli lagt i koma og behandling av delir. Delir er en psykotisk tilstand mange får når medisinbruk, operasjoner, manglende oksygentilførsel til hjernen og andre skader går over grensen for hva man som menneske kan takle.
 Man vet ikke hvor mye som skal til før man mister forstanden, før det skjer.
 Morfin av alle typer ble innoperert i kroppen, satt i ryggen, gitt intravenøst og servert i pilleform. Hurtigvirkende og langtidsvirkende.
 Etter at det verste var over fysisk ble det psykiatrimedisin to dager, og delir forsvant. Et uventet glimt av håp, en liten gnist var nok til å komme tilbake fra avgrunnen. Jeg kom ufortjent helt tilbake uten hverken beroliggende eller sovemedisin.
@@ -297,10 +295,10 @@ Jeg vet at blodproppen som beveget seg rundt i kroppen er en av tingene som kunn
 Min yngste søster trodde aldri jeg skulle bli den samme igjen.
 Mens legene kjempet for livet mitt så hun tre mulige utfall.
 Eldste bror skulle dø, miste forstanden eller bli så sterkt handicappet at livet ble totalt forandret. Sjansen for at alt skulle bli som før var for henne minimal. Jeg får aldri vite om jeg ble som før, bare hun vet.
-Fordelen med å bli gal er, som det også sies om døden og dumskap, at det ikke er ens eget problem, bare et problem for de nærmeste. Ulempen med å bli gal er at det er et problem for de rundt deg. Det er ikke viktig for meg å vite om jeg har endt opp med en varig personlighetsendring eller lavere kognitive evner, det ligger utenfor horisonten og gir ikke noe glede å vite det. Ikke mulig for meg å se eller måle, og hvis jeg spør noen av mine nærmeste, kan de være for formet av egne traumer, av å tro de skulle miste meg, til å være i stand til å svare.
+Fordelen med å bli gal er, som det også sies om døden og dumskap, at det ikke er ens eget problem, bare et problem for de nærmeste. Ulempen med å bli gal er at det er et problem for de rundt deg. Det er ikke viktig for meg å vite om jeg har endt opp med en varig personlighetsendring eller lavere kognitive evner, det ligger utenfor horisonten og gir ikke noe glede å vite det.
+Ikke mulig for meg å se eller måle, og hvis jeg spør noen av mine nærmeste, kan de være for formet av egne traumer, av å tro de skulle miste meg, til å være i stand til å svare.
 Jeg sitter fast i den kollapserte versjonen av meg selv, kan ikke tillate å flyte tilbake til et farlig liv uten å skade dem jeg elsker.
-Vurderinger rundt eget og andres potensial blir fort begrenset av hvordan man observerer, akkurat som at kvantefysikk er utilgjengelig for hjernen vår. Superposisjoner i kvanteverden blir begrenset ned til å følge behovet til den som observerer.
-Vil vurderinger av meg være i kontekst av forholdet jeg har til den som observerer, vår intuitive forståelse av både
+Vurderinger rundt eget og andres potensial blir fort begrenset av hvordan man observerer, akkurat som at kvantefysikk er utilgjengelig for hjernen vår. Superposisjoner i kvanteverden blir begrenset ned til å følge behovet til den som observerer. Vil vurderinger av meg være i kontekst av forholdet jeg har til den som observerer, vår intuitive forståelse av både
 #### p. 49
 dimensjonalitet og sannsynlighet er formet av vår evne til å observere, både følelsesmessig og abstrakt.
 “Elsk meg for det jeg er, ikke mitt potensial” har jeg sagt til forelskede, men aldri en søster eller datter.
@@ -308,7 +306,8 @@ Forholdet til mine søstre og døtre har blitt dårligere.
 Livet som det var er ikke mer. Men det trenger ikke være dårligere, nå er det plass til å bygge noe nytt.
 Vrangforestillinger Ikke alle vrangforestillinger kan jeg skrive om. Noen er fortsatt for sårt å snakke om for de jeg er glad i. Tårene triller bare jeg tenker på det. Andre forestillinger er bare morsomme minner.
 Avdelingen ved Ullevål sykehus der de driver akutt kamp for livredning, traumesenteret, akutten, har helikopterplass der det stadig lander helikoptre. Hver gang et helikopter landet, utspant det i hjernen min et droneangrep der jeg skulle drepes.
-Det begynte da hodet fikk for lite oksygen. Journalen avslører at ekstremitetene, armer og bein, begynte å skjelve ukontrollert. Jeg skulle dø. Hjernen fikk for lite oksygen og vrangforestillinger sto for tur. Først fløy det en uskyldig drone rundt den kunstige næringen jeg fikk, dronen tok bilder.
+Det begynte da hodet fikk for lite oksygen. Journalen avslører at ekstremitetene, armer og bein, begynte å skjelve ukontrollert.
+Jeg skulle dø. Hjernen fikk for lite oksygen og vrangforestillinger sto for tur. Først fløy det en uskyldig drone rundt den kunstige næringen jeg fikk, dronen tok bilder.
 #### p. 50
 Jeg klaget over den innbilte dronen og husker sykepleierne nikket forståelsesfullt, men ikke løste problemet. Fordi mannen til bonusdatter på det tidspunktet fløy droner i politiet tolker jeg det dithen at familien var der og fulgte med.
 Så kom veteraner i militæret etter meg. Først en mc-klubb fra Trøndelag, de var ute etter meg fordi jeg gav meg for tidlig fra militæret. Tok ikke utenlandstjeneste. En dame fra mc-klubben gikk inn og ut og skulle koordinere hvordan de skulle ta meg ut av spill.
@@ -322,18 +321,19 @@ Akkurat som løping i under 20 km/t slipper sansene taket, og selv om et fall ik
 ### Kalkulerende vesen — p. 52
 🎵 Sweet Dreams, Eurythmics (https://gormb.github.io/_?msdamot) — p. 52
 Liv levd på tidligere sosial kapital uten å vite det. E liker unge damer. Vi var ute og drakk, tre glade gutter, som feiret 60- årsdagen til noen i jobbnettverket. Y kjente dem, jeg kjente Y og A kjente oss begge. På vei hjem skjedde mye rart, det begynte med en burger etter stengetid.
-Gatekjøkkenet var rent og i orden. Vi ble kjent med eieren, det viste seg at han var perfeksjonist på sauser. Det luktet trøffel, men smakte bare umami, etter mange runder med tilsmaking hadde han funnet balansen Bogstadveiens kresne elsket. Jeg kom i snakk med en gjest, en dame på slutten av tyveårene, som fokuserte på skinnjakken min. På spørsmål om hun liker motorsykler svarte hun “det hører jeg om hele arbeidsdagen”, restauranteieren hun jobbet for, E, elsket MC.
-Hun trakk seg tilbake da hun sa det. Da hun beskrev meny og stil kunne jeg gjette hvor hun jobbet. Hun jobbet for E.
+Gatekjøkkenet var rent og i orden. Vi ble kjent med eieren, det viste seg at han var perfeksjonist på sauser. Det luktet trøffel, men smakte bare umami, etter mange runder med tilsmaking hadde han funnet balansen Bogstadveiens kresne elsket. Jeg kom i snakk med en gjest, en dame på slutten av tyveårene, som fokuserte på skinnjakken min. På spørsmål om hun liker motorsykler svarte hun “det hører jeg om hele arbeidsdagen”, restauranteieren hun jobbet for, E, elsket MC. Hun trakk seg tilbake da hun sa det. Da hun beskrev meny og stil kunne jeg gjette hvor hun jobbet. Hun jobbet for E.
 #### p. 53
 En charmerende mann fra Middelhavet som nok har dratt damer i noen tiår. Nå er han sent i 60-årene, så jeg antok at tempoet gikk nedover, men der tok jeg feil.
 Jeg dro til E for å drikke kaffe og sjekke interessen, kanskje var dette et nytt attraktivt pausested for små MC-turer? Det vanlige stedet under de falske palmene hadde tapt seg i det siste, gradvis lignet det mer og mer McDonalds og TGI-Friday, avslepne profesjonelle pengemaskiner uten sjel, kanskje E var svaret?
-Jeg stoppet utenfor og lot sykkelen gå på tomgang mens jeg gikk inn i restauranten og spurte hvor det var smartest å sette den. Da noen sa det var plass rett over gaten gjorde jeg tegn til å gå, og sa det var små muligheter for bøter hvis jeg satte den langt nok inn i gågaten. Da reiste E seg og sa at jeg kunne trille den inn i uterestauranten hans. Han reiste seg og ble med for å se på sykkelen.
+Jeg stoppet utenfor og lot sykkelen gå på tomgang mens jeg gikk inn i restauranten og spurte hvor det var smartest å sette den.
+Da noen sa det var plass rett over gaten gjorde jeg tegn til å gå, og sa det var små muligheter for bøter hvis jeg satte den langt nok inn i gågaten. Da reiste E seg og sa at jeg kunne trille den inn i uterestauranten hans. Han reiste seg og ble med for å se på sykkelen.
 Vi snakket om håndverk, voksne ekte menn på MC og været.
 Han hadde tatt lappen på MC etter fylte 60 og kjørte en dødsmaskin fra sent 2008. Etter at motorsyklene hadde fått nok kraft til å ta 0-100 på fire sekunder og før de hadde fått elektronikk som gjør at det vanligvis går bra. Et farlig instrument som krever en voksenperson med respekt for døden, eller en galing i 20-årene på en racerbane med kropp
 #### p. 54
 som leges fort. Han var en mann av mitt hjerte. Etter å ha drukket sprudlevann og kaffe satte jeg meg på sykkelen og raste glad avgårde, enda en å leke med, det var luksus. Gleden skulle være kortvarig.
 To dager senere spiste jeg middag med min venn J og hans nye familie. Det var et spørsmål om tid hvor lang tid det skulle ta før J skulle lage nytt hjem etter sitt plutselige ekteskapsbrudd, han hadde bodd i båten sin ett års tid, og nå var det nok, han fant en sykepleier med hjerte og hjerne.
-J hadde tilberedt lammestek etter alle kunstens regler, og praten over bordet gikk lett. J og nye samboer hadde hver sin sønn, og hennes sønns kjæreste på 19 år. Vi snakket om oppvekst og boforhold, helsevesenet, AI og teknologi. Seiling, restauranter, jobb og livsstil. Plutselig snakket vi om motorsykler, jeg kunne ikke la være, og nevnte mitt nye bekjentskap, E. Den 19-år gamle kjæresten til J samboers sønn rykket til: “Kjenner du E?”. “Ja jeg har kjent ham noen dager, vet ikke om jeg kjenner ham godt, men er i ferd med å bli kjent med ham”. Det viser seg at E ofte gikk i matbutikken rett ved restauranten og kysset de unge jentene på kinnet. Så ubehagelig at de hadde egen rutine når han kom inn i butikken, bare gutter betjente kunder når E var på besøk. Slik slapp pikene ubehageligheter. Jeg ble sint og sa: “På vegne av oss eldre enn pyramidene, slik vil vi ikke ha det”
+J hadde tilberedt lammestek etter alle kunstens regler, og praten over bordet gikk lett. J og nye samboer hadde hver sin sønn, og hennes sønns kjæreste på 19 år. Vi snakket om oppvekst og boforhold, helsevesenet, AI og teknologi. Seiling, restauranter, jobb og livsstil. Plutselig snakket vi om motorsykler, jeg kunne ikke la være, og nevnte mitt nye bekjentskap, E. Den 19-år gamle kjæresten til J samboers sønn rykket til: “Kjenner du E?”.
+“Ja jeg har kjent ham noen dager, vet ikke om jeg kjenner ham godt, men er i ferd med å bli kjent med ham”. Det viser seg at E ofte gikk i matbutikken rett ved restauranten og kysset de unge jentene på kinnet. Så ubehagelig at de hadde egen rutine når han kom inn i butikken, bare gutter betjente kunder når E var på besøk. Slik slapp pikene ubehageligheter. Jeg ble sint og sa: “På vegne av oss eldre enn pyramidene, slik vil vi ikke ha det”
 ### Oppvask — p. 55
 🎵 Road to Nowhere, Talking Heads (https://gormb.github.io/_?mrtn) — p. 55
 Det var mer talerkner i skapet, men kummen for oppvask var full. Forrige gang det skjedde endte oppvasken i søpla, men nå hadde jeg for dårlig med penger. Kasta et blikk på papptalerknene. Så på pizza'en i fryseren. Begge løsningene var brukt før for å slippe oppvask. Måtte ta oppvasken.
@@ -390,10 +390,10 @@ Det som var gjenoppstandelse i mitt liv var del av døden i hennes. Transisjonen
 ### Beglodd på “Bensern” — p. 63
 🎵 Material Girl, Madonna (https://gormb.github.io/_?mmg) — p. 63
 Y og jeg dro stadig på “Bensern”, marinaen der det stadig skjedde noe nytt. Det var over 30 grader i lufta og jeg hadde kjørt motorsykkel hele dagen. Dunstet av maskulin energi og svette. Vi fant et bord nær vannet for forfriskende drikke.
-Ved bordet ved siden av satt to damer mellom 25 og 30. Vakre og trolig intellektuelle, med sommerferie og et liv omgitt av “hel ved”; alt i orden og på plass. Jeg kastet av skinnjakken og kledde av meg ned til badeshortsen under. Den vakreste av damene stirret på meg som hypnotisert mens klærne forsvant.
-“Liker mann, får lite”, tenkte jeg.
+Ved bordet ved siden av satt to damer mellom 25 og 30. Vakre og trolig intellektuelle, med sommerferie og et liv omgitt av “hel ved”; alt i orden og på plass. Jeg kastet av skinnjakken og kledde av meg ned til badeshortsen under. Den vakreste av damene stirret på meg som hypnotisert mens klærne forsvant. “Liker mann, får lite”, tenkte jeg.
 #### p. 64
-Det ble et sidelengs stup ut i vannet fra brygga mens tonen i samtalen med Y var uforandret. Deretter ble det sprette opp av vannet og fortsatte samtalen uforandret. Skjønnheten ved nabobordet hadde fortsatt blikket låst til meg. For noen er det at man kjører motorsykkel et slags bevis på at man er ekte mann. Vet ikke hvorfor, jeg skriver ikke reglene. Uansett enset jeg at hun som stirret, allerede mens jeg kledde av meg, hadde bestemt seg for at hun hadde lyst på meg. “Resurssbesparende forenkling, naken man til tjeneste”, sa jeg til meg selv og holdt blikket hennes.
+Det ble et sidelengs stup ut i vannet fra brygga mens tonen i samtalen med Y var uforandret. Deretter ble det sprette opp av vannet og fortsatte samtalen uforandret. Skjønnheten ved nabobordet hadde fortsatt blikket låst til meg. For noen er det at man kjører motorsykkel et slags bevis på at man er ekte mann.
+Vet ikke hvorfor, jeg skriver ikke reglene. Uansett enset jeg at hun som stirret, allerede mens jeg kledde av meg, hadde bestemt seg for at hun hadde lyst på meg. “Resurssbesparende forenkling, naken man til tjeneste”, sa jeg til meg selv og holdt blikket hennes.
 Jeg gikk mot bordet mitt og derfor like mye mot hennes bord: “Skal du ikke uti”? Det var veldig unaturlig å bade akkurat der, hun så perpleks ut og så bort. “Har du badedrakt under?”, jeg navigerte forbi mitt eget bord til hennes og plutselig holdt hun blikket igjen. “Her kan du bli nedkjølt av meg likevel”. Lenge før jeg var helt inntil henne åpnet hun armene. Jeg tørket sjøvannet av på den fine hvite kjolen mens hun hadde den på seg. Ingen av oss ble avkjølt av det.
 “Besudlet og begjæret”, sa jeg til meg selv og holdt henne et sekund ekstra da hun slapp taket. Viste dominans. Hun var lykkelig og venninnen så sjokkert ut. Begge trodde vel de hadde blitt grundig ivaretatt i senga. To steg tilbake. ”Det er alt. Skal ikke skade presten jeg er sammen med”.
 #### p. 65
@@ -423,17 +423,16 @@ Det gjør vondt. Smerte er tegn på liv, en virkelighet det i sannhet ikke skal 
 Jeg har tid. Det kommer til å ta tid å komme videre. Nærmere.
 ### Fengsel med åpen dør — p. 69
 🎵 Crockett's Theme, Jan Hammer (https://gormb.github.io/_?mct) — p. 69
-“Fysisk til stede, tapt i fortid og skjebne”, jeg ropte fra sykkelen ut i natten uten at det var hørbart gjennom motorduren. Gatene var øde, det var VM i fotball og etter leggetid. Sakte og bråkete skar motorsykkelen gjennom Oslo på langs og tvers.
+“Fysisk til stede, tapt i fortid og skjebne”, jeg ropte fra sykkelen ut i natten uten at det var hørbart gjennom motorduren.
+Gatene var øde, det var VM i fotball og etter leggetid. Sakte og bråkete skar motorsykkelen gjennom Oslo på langs og tvers.
 For 400 år siden skrev noen «O do not trouble me, So sweet content I feel and see. All my joys to this are folly, None so divine as melancholy” (Anatomy of Melancholy, Burton, 1621) Livsfare på motorsykkel som motgift mot indre smerte er melankolsk. Hvis man ikke vil dø. Jeg vil ikke. Ville ikke. Vet ikke, intensjon har gitt plass til vaner, vaner har gått utpå dato.
 For 200 år siden skrev en danske: “Når Faren er saa stor, at Døden er bleven Haabet, da er Fortvivlelsen den: ikke at kunne dø” (Sygdommen til Døden, Kierkegaard, 1849)
 #### p. 70
 Undres om den danske filosofen etterrasjonaliserte smerte eller etterdønninger av smerte. Han slår meg som modig, en som føler smerte i øyeblikket det skal gjøre vondt, men ikke før og ikke etter. Etterpåklokskap er også klokskap, selvfølgelig, og denne har holdt 200 år.
-Det skriker ikke innvendig, men den uendelige taknemmeligheten over å overleve har satt seg som en vane.
-En følelse jeg har vendt meg til. Som en munk som er glad for pust inn og pust ut, uten noe mer. Er det hellig, eller limbo, eller noe annet. Jeg vet ikke, mitt liv foregår i handling og styrt tanke, ikke i pausene mellom der jeg nylig har funnet ut at det er spennende liv. Denne sommeren det mest spennende av alt.
-Skjønnhet i ødeleggelse, fengselet uten gitter der grense mellom liv og død nytes uten at man vet det. Uten å ville dø.
-Uten å ville leve. Limbo uten tilstedeværelse. De mest spennende av alle? Man må lege, eller skape medavhengighet.
-Enten eller. Jeg så etter svar i pausen mellom tankene. Stillhet.
-Hvis ikke det var akkurat døden som var tiltrekkende, eller død som kontrast til livet, eller å flyte midt mellom i melankolsk limbo. Kanskje pause mellom tanker er viktig som kontrast til aktive tanker; det som gjennom kontrast gir verdi til handling. Da har jeg misforstått meditasjons minste grunnstein. Vet ikke, må sove. Det får bli min fattige meditasjon. God n…
+Det skriker ikke innvendig, men den uendelige taknemmeligheten over å overleve har satt seg som en vane. En følelse jeg har vendt meg til. Som en munk som er glad for pust inn og pust ut, uten noe mer. Er det hellig, eller limbo, eller noe annet. Jeg vet ikke, mitt liv foregår i handling og styrt tanke, ikke i pausene mellom der jeg nylig har funnet ut at det er spennende liv. Denne sommeren det mest spennende av alt.
+Skjønnhet i ødeleggelse, fengselet uten gitter der grense mellom liv og død nytes uten at man vet det. Uten å ville dø. Uten å ville leve. Limbo uten tilstedeværelse. De mest spennende av alle?
+Man må lege, eller skape medavhengighet. Enten eller. Jeg så etter svar i pausen mellom tankene. Stillhet. Hvis ikke det var akkurat døden som var tiltrekkende, eller død som kontrast til livet, eller å flyte midt mellom i melankolsk limbo. Kanskje pause mellom tanker er viktig som kontrast til aktive tanker; det som gjennom kontrast gir verdi til handling. Da har jeg misforstått meditasjons minste grunnstein. Vet ikke, må sove.
+Det får bli min fattige meditasjon. God n…
 ### Kvinnelegen og kaos — p. 71
 🎵 Born to Run, Bruce Springsteen (https://gormb.github.io/_?mbtr) — p. 71
 Dro på søndagskonsert på Blå. De har holdt på i mer enn 20 år, jeg har aldri tenkt jeg passet der, men da en som holdt på med stunt-poesi sa at jeg var stuntpoet etter min damens tale tenkte jeg besøke denne jazzklubben. Bandet låter bra, selv med over 20 medlemmer. De har hatt mange tusen konserter.
@@ -467,9 +466,7 @@ Han er full av arr i ansiktet etter slossing og da han var 17 år spiste han et 
 “Dama mi har slått opp, vi bodde sammen”, sier K. “Hvor bor hun?”. Nei vi måtte begge flytte. Nå bor jeg hos kompiser”. Han ser etter nye måter å prøve seg livet på.
 Gjerne sloss litt, som man gjør der han vokste opp. Tilbake til barnsben, liksom. Gult belte i Brazillian Jiu Jitzu har det blitt, og han bråker med de som er 20 cm høyere enn ham.
 #### p. 77
-Vi blir kjent med K og tar en øl. Hyggelig, men stadig usikkert om vi kommer i en konfliktsituasjon, han har så mye opparbeidet sinne at det ligger en anstrengt stemning i luften C som ser ned på K fra Haugesund Han sitter ved siden av oss og bedømmer samtalen vår.
-Plutselig smiler han triumferende når K går for å bomme røyk tre bord bortenfor. “Han er rar, ikke sant!”. Nå er han i sitt ess. En jeg er med sier “Ja mye energi for en homo”...
-“Usikker stillhet”... “jeg håper ikke du har noe i mot homofile?”
+Vi blir kjent med K og tar en øl. Hyggelig, men stadig usikkert om vi kommer i en konfliktsituasjon, han har så mye opparbeidet sinne at det ligger en anstrengt stemning i luften C som ser ned på K fra Haugesund Han sitter ved siden av oss og bedømmer samtalen vår. Plutselig smiler han triumferende når K går for å bomme røyk tre bord bortenfor. “Han er rar, ikke sant!”. Nå er han i sitt ess. En jeg er med sier “Ja mye energi for en homo”... “Usikker stillhet”... “jeg håper ikke du har noe i mot homofile?”
 ### En fra vannverket, eller en skitten fyr — p. 78
 🎵 Common People, Pulp (https://gormb.github.io/_?mcp) — p. 78
 Det var en varm sommerdag og ikke anbefalt å bade innerst i Oslofjorden. Jeg skulle bade likevel og så en enslig fyr på det ellers så populære Sørenga “Hvordan er vannet”, spurte jeg.
@@ -490,38 +487,35 @@ Eventyret var ikke lenger hennes virkelighet. Det er greit.
 ### Styrke fra forsørgersvikt — p. 81
 🎵 The Logical Song, Supertramp (https://gormb.github.io/_?mtls) — p. 81
 Tre år etter ulykken sitter jeg på en studentcafe.
-Oppmerksomheten går til et ungt par som sitter på skrå overfor meg. De er nok i slutten av 20-årene, tilsynelatende vellykkede, veltrent og velstelt, går de sikkert begge på yoga.
-Jeg forteller meg selv at de aldri i sitt liv har hatt en ubetalt regning, vært i slåsskamp, eller har strøket på noen eksamen.
-Det sitter en ukjønnet baby på mors fang, far sitter og strikker, kanskje er han praktiserende feminist.
+Oppmerksomheten går til et ungt par som sitter på skrå overfor meg. De er nok i slutten av 20-årene, tilsynelatende vellykkede, veltrent og velstelt, går de sikkert begge på yoga. Jeg forteller meg selv at de aldri i sitt liv har hatt en ubetalt regning, vært i slåsskamp, eller har strøket på noen eksamen. Det sitter en ukjønnet baby på mors fang, far sitter og strikker, kanskje er han praktiserende feminist.
 Paret får meg til å reflektere over mine egne foreldres bekymringsløse 70-tallsidyll som rikmannsbarn, deres lettsindighet smittet meg. Da jeg var ung var livet vidunderlig.
 Da jeg først hadde kommet inn på kafeen så jeg en dame okkupere de fire beste setene. På spørsmål om en var ledig,
 #### p. 82
 ristet hun på hodet. Lukten av kjønnsløs nihilisme fra folk som aldri har opplevd ekte motstand eller en ubetalt regning, den norske kaldheten. Klinisk, intellektuell og kynisk.
 Damen som ikke ville dele plass får øye på puddelen jeg har med meg og ser ut som at hun vil ha kontakt. Jeg rynker på nesen, i det jeg har noe hun vil ha, kontakt med en liten hund, ønsker den unge damen velkommen, hun er et slags symbol på en trygg boligsparende generasjon som skal få lønn fra et offentlig byråkrati betalt av oljepenger. Men aldri skape noe nytt for andre. Logisk, ansvarlig og praktisk.
-Jeg vet ikke hvor forakten kommer fra, jeg har alltid lovet meg selv at jeg aldri skulle bli en gretten gammel gubbe, men kanskje er det uunngåelig. Mannen som har sittet og strikket leker og herjer med babyen, kanskje alt er som det skal, hvor ille kan det være at en mann har blitt til en kvinne? Det har kommet til en ung mor til i samtalen paret har, en kjapp og engasjert samtale på brautende bergensdialekt. Kanskje er det ikke noe i veien likevel, kanskje har verden alltid vært slik, og jeg bare er overfølsom for endringene jeg selv går gjennom.
-Avstanden jeg ønsker fra nullsumspillet de alle spiller. Den strikkende mannen tar på seg damekåpen og går etter damene uten å hjelpe til.
+Jeg vet ikke hvor forakten kommer fra, jeg har alltid lovet meg selv at jeg aldri skulle bli en gretten gammel gubbe, men kanskje er det uunngåelig. Mannen som har sittet og strikket leker og herjer med babyen, kanskje alt er som det skal, hvor ille kan det være at en mann har blitt til en kvinne? Det har kommet til en ung mor til i samtalen paret har, en kjapp og engasjert samtale på brautende bergensdialekt. Kanskje er det ikke noe i veien likevel, kanskje har verden alltid vært slik, og jeg bare er overfølsom for endringene jeg selv går gjennom. Avstanden jeg ønsker fra nullsumspillet de alle spiller. Den strikkende mannen tar på seg damekåpen og går etter damene uten å hjelpe til.
 Kanskje var paret litt som mine egne foreldre på 70-tallet.
 #### p. 83
 Mens 68-erne var frigjort fra arbeid, farget av kvinnefrigjøring, er ungdommen i dag farget av motstanden mot krenking.
 Hverken generasjonen før meg eller den etter har blitt herdet mot realiteten som ligger i at vi i Norge er skjermet mot krig og fattigdom, og ikke trenger å ha politikk innrettet mot nytte for folk, vi kan leve på idealer. Slik som mine foreldre på slutten av 60-tallet, begge rikmannsbarn og uten kjennskap til mer ondskap i verden enn teoretisk urettferdighet, og min forakt bunner ut i at de aldri gav meg mulighetene de selv hadde fått fra sine foreldre. Pass på hva du sier, ellers kaller de deg radikal.
-Jeg husker min mor klaget over at hun ikke fikk så fin bil på 18-årsdagen sin, mens jeg takket være kaotisk ungdomsliv aldri fikk hverken penger eller stabilitet til å ta førerkort for bil i det hele tatt. Kontrasten mellom mors klaging over for dårlig ny bil og min egen kaotiske ungdom uten førerkort hadde sikkert satt spor. Hvis jeg ikke hadde komplisert livet mitt.
-Spørsmålene stikker for dypt for en enkel mann.
+Jeg husker min mor klaget over at hun ikke fikk så fin bil på 18- årsdagen sin, mens jeg takket være kaotisk ungdomsliv aldri fikk hverken penger eller stabilitet til å ta førerkort for bil i det hele tatt. Kontrasten mellom mors klaging over for dårlig ny bil og min egen kaotiske ungdom uten førerkort hadde sikkert satt spor. Hvis jeg ikke hadde komplisert livet mitt. Spørsmålene stikker for dypt for en enkel mann.
 Mine foreldre var frie 68-ere, men for meg ble de emosjonelt passive grønnsaker i sin egen overflod, det var så kaotisk hjemmetilværelse i ungdomsalderen at jeg ikke hadde jobb lenge nok til å betale for den slags, og mors penger gikk til svømmebasenget i hagen og fars til luksusleilighet bak slottet og havseileren. Respektabel, presentabel, en grønnsak!
 #### p. 84
 Jeg ser det absurde i at mine besteforeldres penger gikk til mine foreldres svømmebasseng og havseiler, mens min egen tilværelse var i konstant oppløsning, og vi levde som fattige i en velstående familie. Jeg vet det høres absurd ut.
-Mor og far ville ha barn, men ville de oppdra? Kanskje hadde jeg vært mer lykkelig hvis jeg arvet deres Machiavellisme og kanskje ikke. I ungdommen hadde jeg håp om å finne min identitet. Men vær så snill og fortell meg hvem jeg er.
+Mor og far ville ha barn, men ville de oppdra? Kanskje hadde jeg vært mer lykkelig hvis jeg arvet deres Machiavellisme og kanskje ikke. I ungdommen hadde jeg håp om å finne min identitet.
+Men vær så snill og fortell meg hvem jeg er.
 Ved et annet bord på studentkafeen sitter en man i midten av 20-årene og kremter høyt omtrent en gang i minuttet. Et rop om hjelp og oppmerksomhet med angst som munner i for lite naturlig pust. Jeg tenker på mine egne tidvis høye skuldre og manglende pust som barn. Som voksen ble det øredøvende motorsykkel som revnet seg gjennom natten. Det skulle en nesten-dødelig ulykke til for å fjerne nok markeringsbehov til at jeg lever relativt ufarlig. Det er en god ting, selv om kvinner og samfunn gir fordelene til de høyrøstede og aggressive, kan roen og tryggheten belønnes med hvile. Mannen som kremter etter luft speiler min egen tidligere flukt i 200 km/t for å overdøve min indre angst. Før var maskinen eneste rop om hjelp, men jeg er gjenfødt.
 Markeringsbehovet er borte; jeg har funnet roen, den naturlige pusten og et liv som er mitt eget. Skjønnheten i egen ro.
 ### Så godt vi kunne — p. 85
 🎵 Strange Little Girl, The Stranglers (https://gormb.github.io/_?mslg) — p. 85
-Med kropp knust av ulykker kommer problemer, ett er smertegrense flyttet til det ugjenkjennelige. På en rolig tur med ny MC gjorde jeg bakkekontakt rett utenfor sykehuset der jeg tidligere lå i akuttseng nærmest kjellerutgangen. Sykehus har utgang gjennom dør og kjeller, dør for de som overlever.
-Knakk et kragebein og et par ribbein denne gangen, passerte ti prosent av alle bein i kroppen knekt på fem år. Rutine for en mann fra forrige årtusen, lot meg kjøre til legevakten, men trengte ikke smertestillende eller sykemelding. Et par dager senere drakk jeg Whiskey på date og andre deler av kroppen brøt sammen, “ånden er villig men kjødet er skrøpelig” heter det i biblen. Det ble en dårlig date med H, unnskyld, du vet hvem du er.
+Med kropp knust av ulykker kommer problemer, ett er smertegrense flyttet til det ugjenkjennelige. På en rolig tur med ny MC gjorde jeg bakkekontakt rett utenfor sykehuset der jeg tidligere lå i akuttseng nærmest kjellerutgangen. Sykehus har utgang gjennom dør og kjeller, dør for de som overlever. Knakk et kragebein og et par ribbein denne gangen, passerte ti prosent av alle bein i kroppen knekt på fem år. Rutine for en mann fra forrige årtusen, lot meg kjøre til legevakten, men trengte ikke smertestillende eller sykemelding. Et par dager senere drakk jeg Whiskey på date og andre deler av kroppen brøt sammen, “ånden er villig men kjødet er skrøpelig” heter det i biblen. Det ble en dårlig date med H, unnskyld, du vet hvem du er.
 Men foranledningen og oppstarten var ekte!
 #### p. 86
-Sideblikket registrerte kvinne på pub. Etter noens boklansering. H. hadde vanvittig tilstedeværelse. Dypt inne i henne finnes en sviktet jente full av traumer man ikke vil forestille seg. Merket tilstedeværelsen hennes umiddelbart.
-Undret meg på om den vanvittige tilstedeværelsen var født av nevrodiversitet eller mørke. “La det være medført diversitet denne gangen”, sa jeg til meg selv, “ikke traumer etter misbruk”, noe kokte i denne kvinnen. Fortapte, gåtefull, kompleks jente.
+Sideblikket registrerte kvinne på pub. Etter noens boklansering.
+H. hadde vanvittig tilstedeværelse. Dypt inne i henne finnes en sviktet jente full av traumer man ikke vil forestille seg. Merket tilstedeværelsen hennes umiddelbart. Undret meg på om den vanvittige tilstedeværelsen var født av nevrodiversitet eller mørke. “La det være medført diversitet denne gangen”, sa jeg til meg selv, “ikke traumer etter misbruk”, noe kokte i denne kvinnen. Fortapte, gåtefull, kompleks jente.
 Jobben hennes var å viderekommunisere ting andre hadde skapt, selv om hun hadde åpenbare egne evner. Var det manglende selvfølelse eller praktiske hensyn som hadde plassert henne der, undret je. Gikk vekk fra verden. Hun fant andres historier å fortelle, hennes egne er for dystre.
-Senere på kvelden koblet hun de rareste samlingene av folk, jeg ante at personligheten hennes var omfavnet av et varig mørke. Den enestående personlighet hun har bygger seg bygger ingen uten grunn,jeg antok hun hadde bygget den personen hun fremsto som, helt fra grunnen av. Virkeligheten ikke hadde ikke noe godt å by på. Hun skjulte sin tåre dypt inne i øyet.
+Senere på kvelden koblet hun de rareste samlingene av folk, jeg ante at personligheten hennes var omfavnet av et varig mørke.
+Den enestående personlighet hun har bygger seg bygger ingen uten grunn,jeg antok hun hadde bygget den personen hun fremsto som, helt fra grunnen av. Virkeligheten ikke hadde ikke noe godt å by på. Hun skjulte sin tåre dypt inne i øyet.
 Jeg måtte tidlig hjem. Mørket hos kvinnen klarte jeg hverken
 #### p. 87
 ignorere eller grave i. Jeg så deg, H, men jeg hadde ikke overskudd til å være der for deg. Etter en varm klem dro jeg hjem helt tom for energi; jeg hadde funnet en jeg hadde vært i stand til å redde hvis egne traumer ikke tynget meg. Enda en, det begynte å bli mange overlevende traumatiske sjeler jeg intuitivt forsto. Stemmene deres slutter aldri! Jeg sa farvel til verden enda en gang.
@@ -547,9 +541,7 @@ Plasser meg i kisten min i kveld.
 ### Lotta — p. 91
 🎵 Love Labours on, Billy Idol (https://gormb.github.io/_?mllo) — p. 91
 Jeg var ute med gutta. Tenkte ikke på Lotta. Alle min venns setninger var bygget opp på samme måte. «Problemet mitt, du, er at…. Det er som du sier at …. Du må huske på det at …» slike setninger var det trygge ankeret for ham. Jeg lurer på hvordan mine trygge anker ser ut.
-Vi satt og noen venner og så VM-kamp på et sjelfullt sted.
-Byen kokte. England ledet en-null over Argentina. Tolv minutter igjen i tillegg til overtid. Noen sa “det er bare noen få år igjen vi er friske, jeg vet ikke om det er så mye jeg kan gjøre.
-Vi bygger jo leilighet i syden, men så trist å bare sitte der”...
+Vi satt og noen venner og så VM-kamp på et sjelfullt sted. Byen kokte. England ledet en-null over Argentina. Tolv minutter igjen i tillegg til overtid. Noen sa “det er bare noen få år igjen vi er friske, jeg vet ikke om det er så mye jeg kan gjøre. Vi bygger jo leilighet i syden, men så trist å bare sitte der”...
 Jeg klarte ikke mer privilegert elendighet. “Ta deg sammen!”
 tenkte jeg, gikk ut og satte meg på motorsykkelen og kjørte en halvtime. Hodet klarnet, jeg lot meg ikke bli dratt ned av
 #### p. 92
@@ -558,8 +550,7 @@ Etter en halvtime i natten kom smilet tilbake. På utestedet var det oppbrudd, f
 Men det var verdt det.
 Tankene gikk til Lotta. Var det slik jeg slet henne ut?
 Jeg løftet meg opp og det koster. Som alltid. Hun også.
-Jeg vet nå at jeg trenger en kvinne som Lotta. Kan det hende at Lotta på samme måte vet at hun trenger å ikke ha meg.
-Fordi du hvis du for lenge stirrer inn i abyssen oppdager at den stirrer tilbake på deg? var jeg Lottas kilde til mentale modeller som overbelastet henne følelsesmessig?.
+Jeg vet nå at jeg trenger en kvinne som Lotta. Kan det hende at Lotta på samme måte vet at hun trenger å ikke ha meg. Fordi du hvis du for lenge stirrer inn i abyssen oppdager at den stirrer tilbake på deg? var jeg Lottas kilde til mentale modeller som overbelastet henne følelsesmessig?.
 Det var fortsatt håp. Men er jeg for nevrodivergent til å endre meg. Kanskje, kanskje ikke.
 Men trenger Lotta meg?
 ### Kvinnen jeg så med sidesynet — p. 93
@@ -573,7 +564,7 @@ Y: “Ja kanskje det”
 ### Veteranen — p. 94
 🎵 The Boxer, Simon & Garfunkel (https://gormb.github.io/_?mtbsg) — p. 94
 En mann på 86 år satt og drakk kaffe og så med langt blikk på sykkelen min da jeg stoppet ved en bar for å ta en Whiskey.
-Mannen spurte hva slags MC jeg kjørte, og nikket bekreftende da jeg sa det var en rolig hyggelig SUzuki Intruder 1500. På spørsmål om han selv hadde kjørt sa han at han hadde 30 sykler selv, og kjørte en Harley Davidsen V-Rod, men det var for tidlig på året for ham. Jeg sa jeg var fersk i “gamet” og ikke kjørte før jeg var 50 år gammel, så hadde hatt litt å ta igjen, for gammel til noen gang å kjøre Isle of Man TT, men kanskje tok jeg en tur dit som pensjonist. Veteranen sa han hadde kjørt TT på 1970-tallet og det gikk i over 200, men i en sving hadde han og hans venn, som hadde kjørt forbi ham, kjørt inn i et hus og opp i andre etage. Minnene hadde blandet seg, ellers var det andres historier, jeg nøt historiene og takket ham. Tok ham i hånden og gleder meg til å¨komme tilbake for å høre
+Mannen spurte hva slags MC jeg kjørte, og nikket bekreftende da jeg sa det var en rolig hyggelig Suzuki Intruder 1500. På spørsmål om han selv hadde kjørt sa han at han hadde 30 sykler selv, og kjørte en Harley Davidsen V-Rod, men det var for tidlig på året for ham. Jeg sa jeg var fersk i “gamet” og ikke kjørte før jeg var 50 år gammel, så hadde hatt litt å ta igjen, for gammel til noen gang å kjøre Isle of Man TT, men kanskje tok jeg en tur dit som pensjonist. Veteranen sa han hadde kjørt TT på 1970-tallet og det gikk i over 200, men i en sving hadde han og hans venn, som hadde kjørt forbi ham, kjørt inn i et hus og opp i andre etage. Minnene hadde blandet seg, ellers var det andres historier, jeg nøt historiene og takket ham. Tok ham i hånden og gleder meg til å¨komme tilbake for å høre
 #### p. 95
 flere, men de er ikke hver for seg sanne, om enn kanskje sanne i at flere histoprier har blitt til en, men de er sanne for ham, og det er godt nok for meg.
 Nei. I mangel av religiøs tro og i mangel av definert etisk system, er det uakseptabelt for meg å lyve slik. Sannheten er for viktig til at løgner lett skal få ta sannhetens plass. En stand-up komiker sa en gang at han alltid fortalte sannheten med mindre en løgn var mer morsom, det holder ikke for meg. Jeg tar kveletak på uærligheten min, den bare ødelegger
@@ -581,17 +572,18 @@ Nei. I mangel av religiøs tro og i mangel av definert etisk system, er det uaks
 🎵 Personal Jesus, Depeche Mode (https://gormb.github.io/_?mpj) — p. 96
 Hun satte seg ved siden av meg på boklanseringen. Alle triksene var der, eller hun var lykkelig og ville lære meg å kjenne, det er ikke viktig. Jeg registrerer, men tolker ikke lenger sikkert.
 Vi speilet hverandre hele kvelden. Hennes varme energi var befriende, en livline inn i noe som ikke er nullsum, men jeg stoler ikke helt på det jeg opplever. Kanskje hun fyller rom i meg jeg ikke vet er tomt. Kanskje jeg gjør det samme for henne. Min ufrivillige frelse.
-Om hun, som meg, har for høy selvtillit og lav selvfølelse, eller bare er hypersensitiv og speilende, kan være hva det vil.
-Etter å ha vært så nær å forsvinne, føles det irrelevant å plassere folk i kategorier. Hun er der. Noe i meg reagerer. Det
+Om hun, som meg, har for høy selvtillit og lav selvfølelse, eller bare er hypersensitiv og speilende, kan være hva det vil. Etter å ha vært så nær å forsvinne, føles det irrelevant å plassere folk i kategorier. Hun er der. Noe i meg reagerer. Det
 #### p. 97
-mystiske i henne eksisterer uten å bli forklart. Fravær av kontroll gir meg liv. Nytt får plass der gammelt kollapser. En som kan bry seg Hun tror ting jeg ikke tror, men vi gir hverandre plass.
-Uenighet blir berikelse. Borte er nullsumspill der alt må vinnes eller tapes, så oppstår noe som ikke krever at noe annet skal dø. Ukjent, helt alene “Ødelagte ting er vakre” sier rollefiguren i bildet fra serie hun sender meg bilde av. Livsgjerningen hennes i en ideologisk organisasjon kan være mening, eller en måte å håndtere lagene i seg selv på. Kanskje er det ikke enten eller. Kanskje er det slik mennesker bygger seg selv etter brudd. Kjøtt og blod som ser etter små signaler gjennom tilværelsen Jeg har bare skrapet i overflaten av henne. Går jeg analytisk frem, misforstår jeg det som faktisk skjer. Instinktene peker raskere og mer presist enn tanken, som fortsatt henger igjen i et liv som ikke lenger finnes. Det handler om tro Vi fortjener å begjære og bli begjært uten å dissekere det levende i oss. Analyse døyver instinktene. Dualismen ble kanskje oppfunnet for å bevare mystikken, men mellom oss er den overflødig. Det som skjer, skjer direkte, uten mellomledd.
+mystiske i henne eksisterer uten å bli forklart. Fravær av kontroll gir meg liv. Nytt får plass der gammelt kollapser. En som kan bry seg Hun tror ting jeg ikke tror, men vi gir hverandre plass. Uenighet blir berikelse. Borte er nullsumspill der alt må vinnes eller tapes, så oppstår noe som ikke krever at noe annet skal dø. Ukjent, helt alene “Ødelagte ting er vakre” sier rollefiguren i bildet fra serie hun sender meg bilde av. Livsgjerningen hennes i en ideologisk organisasjon kan være mening, eller en måte å håndtere lagene i seg selv på. Kanskje er det ikke enten eller. Kanskje er det slik mennesker bygger seg selv etter brudd. Kjøtt og blod som ser etter små signaler gjennom tilværelsen Jeg har bare skrapet i overflaten av henne. Går jeg analytisk frem, misforstår jeg det som faktisk skjer. Instinktene peker raskere og mer presist enn tanken, som fortsatt henger igjen i et liv som ikke lenger finnes. Det handler om tro Vi fortjener å begjære og bli begjært uten å dissekere det levende i oss. Analyse døyver instinktene. Dualismen ble kanskje oppfunnet for å bevare mystikken, men mellom oss er den overflødig. Det som skjer, skjer direkte, uten mellomledd.
 #### p. 98
-Jeg er ikke lett å få tak i, og jeg tar ikke kontakt. Det er en del av meg som fortsatt spiller spill, som gjør seg utilgjengelig.
-Det er greit å være utfordrende, hun trenger kanskje en “mission”. Jeg ser det for meg: hun sier stille til seg selv “Mission accepted”. Sånn blir det. To dager senere kommer meldingen på Facebook, nesten oppskriftsmessig. Vi har en felles venn der, hun har nok spurt henne. Likevel føles det ikke kalkulert, bare som en bevegelse videre. Noe er i gang.
+Jeg er ikke lett å få tak i, og jeg tar ikke kontakt. Det er en del av meg som fortsatt spiller spill, som gjør seg utilgjengelig. Det er greit å være utfordrende, hun trenger kanskje en “mission”. Jeg ser det for meg: hun sier stille til seg selv “Mission accepted”.
+Sånn blir det. To dager senere kommer meldingen på Facebook, nesten oppskriftsmessig. Vi har en felles venn der, hun har nok spurt henne. Likevel føles det ikke kalkulert, bare som en bevegelse videre. Noe er i gang.
 Vi var sammen en stund. Hun lærte meg å leve i pausene mellom handling. Jeg trodde alt skjedde i handling. Det er feil.
 Vi ble sammen. Tiden gikk uten at jeg enset det.
-Søndag. Vi delte kirkebesøk der hun tente lys for dødssyk venn. Kysset foran alteret og holdt hender. Bibel for svaksynte lå ved siden av alteret, den var ny for meg, ikke “King James version” og ikke “barnas bibel”, en annen. Refleksjonen gikk til hvor forskjellig oversettelsene til sørsamisk og nordsamisk var, hun ba for ham i palliativ behandling, plutselig lå kvinnen i fanget mitt og det fikk meg til å reflektere over hvor egoistisk det er å være for snill. Ironisk. I total harmoni kjørte vi i samtidig sol og regn på mc til Svartskog Kolonial, det ble hjemmelaget bolle med eggekrem på deling. Turen hjem nøt hun plutselig alene der hun holdt rundt meg bak på sin egen Triumph motorsykkel. Fra nå av skulle hun kjøre selv. Hun var fri. “Jeg vil ha tilbake det lille livet mitt”, sa hun. Det ble slik.
+Søndag. Vi delte kirkebesøk der hun tente lys for dødssyk venn.
+Kysset foran alteret og holdt hender. Bibel for svaksynte lå ved siden av alteret, den var ny for meg, ikke “King James version”
+og ikke “barnas bibel”, en annen. Refleksjonen gikk til hvor forskjellig oversettelsene til sørsamisk og nordsamisk var, hun ba for ham i palliativ behandling, plutselig lå kvinnen i fanget mitt og det fikk meg til å reflektere over hvor egoistisk det er å være for snill. Ironisk. I total harmoni kjørte vi i samtidig sol og regn på mc til Svartskog Kolonial, det ble hjemmelaget bolle med eggekrem på deling. Turen hjem nøt hun plutselig alene der hun holdt rundt meg bak på sin egen Triumph motorsykkel.
+Fra nå av skulle hun kjøre selv. Hun var fri. “Jeg vil ha tilbake det lille livet mitt”, sa hun. Det ble slik.
 #### p. 99
 “Jeg skulle aldri satt meg ved siden av deg. Unnskyld!”. Jeg var uenig. “Takk for at du elsket meg en stund”.
 Vi hadde elsket hverandre dypt seks av de siste åtte ukene, det sluttet like fort som det begynte. Seks uker kan være et helt liv sammen, hvis man gjør det riktig. Vi sørget sammen et par timer og skiltes som venner.
@@ -793,8 +785,7 @@ Jeg delte i stedenfor med ham at jeg hadde snakket med SBS i militæret, de er d
 #### p. 135
 Jeg sa vi kunne være venner, og gav ham navnet mitt med det fonetiske alfabetet, han hadde delt at han hadde drept over 100 mennesker i tjeneste, men kunne ikke det internasjonale stavealfabetet militæret bruker, som ville ha vært måten man kommuniserte på da han skulle ha utført oppdragene. Enten hadde han strukket litt på sannheten, eller mer sannsynlig gjenfortalt ting han hadde hørt fra andre.
 For meg gjorde det ingen forskjell, jeg synes fyren var hyggelig, men livet hadde nok hatt så kraftig kvelertak på ham at historiene han bygget selvfølelsen på kom stadig lengre unna virkeligheten.
-I en annen historie var han del av frimurerlosjen, han jobbet i et selskap med hundrevis av danske utleieleiligheter og det gav forbindelser til makteliten i Skandinavia. Da jeg sa jeg en dag kunne møte ham i den rare baren, med kjennetegn jeg ikke skriver her, for å få billigere øl visste han ikke hva jeg snakket om. Jeg kjenner en i losjen med kongens fortjenstmedalje, så har vært med ham når han har utnyttet noen av godene.
-Dansken visste ikke hva jeg snakket om og byttet tema igjen, jeg gikk ut for å puste.
+I en annen historie var han del av frimurerlosjen, han jobbet i et selskap med hundrevis av danske utleieleiligheter og det gav forbindelser til makteliten i Skandinavia. Da jeg sa jeg en dag kunne møte ham i den rare baren, med kjennetegn jeg ikke skriver her, for å få billigere øl visste han ikke hva jeg snakket om. Jeg kjenner en i losjen med kongens fortjenstmedalje, så har vært med ham når han har utnyttet noen av godene. Dansken visste ikke hva jeg snakket om og byttet tema igjen, jeg gikk ut for å puste.
 Lag på lag med løgn, er det måten vi holder på selvfølelsen der alle lider av grandiøs personlighetsforstyrrelse og har mønstre tidligere forbeholdt de med Machiavellisme?
 #### p. 136
 Da jeg sto utenfor tenkte jeg på alle gangene nære venner av meg hadde fortalt damer om deres tid i militæret, og deres dype elobarative historier bygget opp gjennom et halvt liv med gjenfortelling av halve sannheter og ting de har fra media.
@@ -805,7 +796,8 @@ Pilote De to var helikopterpiloter, det var hele historien. De mente at løgnen 
 Heltene De administrativt ansatte ved den Engelske ambasaden sa de var i MI-6. Historiene var mange, og de fortsatte etter at de var avslørt.
 Jeg undret på om jeg selv har pyntet på historier fra forsvaret, eller om jeg er annerledes, og sterkere enn disse historiefortellerne, Var jeg så svak at jeg omskrev min egen historie så mye at jeg løy for andre? løy for meg selv?
 For å ha nytte av minnene våre er omskriving for nye situasjoner nyttig. Så kanskje det er jeg som underkommuniserer og ikke de andre som lyver. Kanskje er det viktigere å utnytte minnet for å lage en god og nyttig historie enn å gjengi sannheten med optimal presisjon?
-Jeg kjørte ikke over 200 km/t om natten, mest om dagen. Da jeg kjørte om natten lå jeg ofte rundt fartsgrensen på små veier. Men historien om kjøring i 200 km/t om natten, som jeg bare har gjort et par ganger, fanger essensen av mange historier i en mer kompakt fortelling. Sann, ikke virkelig.
+Jeg kjørte ikke over 200 km/t om natten, mest om dagen. Da jeg kjørte om natten lå jeg ofte rundt fartsgrensen på små veier.
+Men historien om kjøring i 200 km/t om natten, som jeg bare har gjort et par ganger, fanger essensen av mange historier i en mer kompakt fortelling. Sann, ikke virkelig.
 Jeg hadde aldri ulykker over 100 km/t, ellers hadde jeg ikke kunnet skrive dette. Om det var fordi jeg var uforsiktig i fartsblindhet eller hadde nok overlevelsesinstinkt vet jeg ikke.
 Minner om ulykker, nattkjøring, og høy fart blander seg.
 ### Vestens forfall — p. 138
@@ -860,7 +852,9 @@ Historiske røtter til nulloppsummerings død Posthumanistisk sorg Donna Haraway
 Der Han ser patologi, ser Haraway mulighet, i møte med veterinæren som redder ham, eller i en kvinnes utholdenhet, ligger frø til ny form for fellesskap. Ikke basert på helhet, men sammenføyde brudd.
 "We are all lacerated and wounded, but the wound is where the light enters you". (Rumi, 13. århundre, gjenfortolket av Coleman Barks) Historiske røtter til nulloppsummerings død Døden bla Ernst Hemmingway Død gir mening til livet, ved å oppleve død opplever jeg livet til sitt ytterste. Vi føler gjennom kontraster, så hvis man slutter å ta ting for gitt kan man se det med neutrale øyne og for at
 #### p. 149
-livet ikke skal være en selvfølge må døden bli en reell mulighet. “You can never lose here, because you always have a good time”. Frykten, hvis man ikke lar angsten komme frem, kan derfor være en formidabel kilde til livsglede.
+livet ikke skal være en selvfølge må døden bli en reell mulighet.
+“You can never lose here, because you always have a good time”.
+Frykten, hvis man ikke lar angsten komme frem, kan derfor være en formidabel kilde til livsglede.
 Historiske røtter til nulloppsummerings død Drapet bla Ernst Hemmingway En gepard-valp som er syk blir leget av mennesker, vi håper at en gang vi slipper den ut, at vi aldri skal se den igjen. Hvis den klarer å drepe er den fri fra vår menneskelige verden og påvirkning, den går tilbake til naturen. Er det slik at vi gjennom å miste vår menneskelighet setter pris på den, (på samme måte som at død gir oss perspektiv på liv); er altruisme født av drap?
 ### HjemmelegenMin, Toril — p. 150
 🎵 Electric Dreams, Oakey & Moroder (https://gormb.github.io/_?med) — p. 150
@@ -885,17 +879,15 @@ Selveste professor Kjell-André, promptlederen, skal dulte indirekte lærdom inn
 Som en av landets ledende leger vil han bli vant til å lede mennesker, for å få variasjon skal han lede maskiner så ofte
 #### p. 154
 han kan. Han vil ikke glede seg til at maskiner kan ledes av det han i sin elitistiske verden vil se på som vanlige folk. De kom til å koste menneskeliv. Idioter.
-Kjell blir etter hvert detaljstyrt av en fagsjef i Helsedirektoratet. Ut av medisinstudiet som best i sitt kull, medførte at folk i stadig høyere stillinger skal detaljstyre ham.
-Allerede første gangen for ung og pliktoppfyllende til å si nei til ubehagelige oppgaver.
-Fagsjefen på Blindern vil sette ham på et forskningsprosjekt på nevrologen allerede rett etter uteksaminering, med praksis på hjernekirurgen. Prosjekt som burde ha begynt med kvalitetssikring av pasientbehandling, blir utført av andre.
-Hans studier går direkte på økt livskvalitet som konsekvens av implantater i hjernen. Sanseforbedringsprosjektet, sammen med mentor og ledende hjernekirurg. Resultatet? Kjell blir anerkjent og publisert allerede før obligatorisk praksis er gjennomført.
-Etter praksis leder han traumesenteret; “Akutten vil gjøre mann av deg min gutt”, hadde sykehusdirektøren sagt. “To år, så ser vi om nervesystemet ditt tåler livet som ledende lege”.
-Kjell hadde lært at det å sette kommende toppleger til å lede traumeteam på akutten skulle bidra til å utvikle empati, og at det ikke virket. Den nødvendige Machiavellismen som skulle
+Kjell blir etter hvert detaljstyrt av en fagsjef i Helsedirektoratet.
+Ut av medisinstudiet som best i sitt kull, medførte at folk i stadig høyere stillinger skal detaljstyre ham. Allerede første gangen for ung og pliktoppfyllende til å si nei til ubehagelige oppgaver.
+Fagsjefen på Blindern vil sette ham på et forskningsprosjekt på nevrologen allerede rett etter uteksaminering, med praksis på hjernekirurgen. Prosjekt som burde ha begynt med kvalitetssikring av pasientbehandling, blir utført av andre. Hans studier går direkte på økt livskvalitet som konsekvens av implantater i hjernen. Sanseforbedringsprosjektet, sammen med mentor og ledende hjernekirurg. Resultatet? Kjell blir anerkjent og publisert allerede før obligatorisk praksis er gjennomført.
+Etter praksis leder han traumesenteret; “Akutten vil gjøre mann av deg min gutt”, hadde sykehusdirektøren sagt. “To år, så ser vi om nervesystemet ditt tåler livet som ledende lege”. Kjell hadde lært at det å sette kommende toppleger til å lede traumeteam på akutten skulle bidra til å utvikle empati, og at det ikke virket.
+Den nødvendige Machiavellismen som skulle
 #### p. 155
 til for å komme seg dit han var, kunne ikke behandles på den måten. Han visste at han var fortapt i så måte, og delte det aldri med noen.
 Ikke lenge etter årene som leder i traumesenteret ble Kjell kommandert til å bli overlege, seksjonssjef og fagleder på Blindern av forskjellige autoriteter ingen sa nei til. Senere kom ledelse av doktorgradsstudenter, politiske roller i legeforeningen og eierskap til etistiske komiteer og påvirkning av bygging av sykehus. Aldri hans egne valg, bare forventninger som resultat av hardt arbeid. Praksis med pasienter beholdt han hele veien og ledelse av forbedring og digitalisering var del av ansvaret.
-Alkoholismen ble fullutviklet før første år ved akutten var ferdig. Teamet han ledet en måned hadde klart å holde liv i en mann som bare delvis hadde klart å skyte hodet av seg.
-Forakten for selvødeleggende mennesker hadde Kjell under kontroll, men den skulle aldri falme, selvmedisinering døyvet den opplevde smerten inntil videre. Utvikling av empati hos roboter med kognitivitetsinnsprøyting føltes like håpløst som smertepåføring på toppleger. Han hadde ikke glede av slik misforstått symptombehandling, men bidro likevel.
+Alkoholismen ble fullutviklet før første år ved akutten var ferdig. Teamet han ledet en måned hadde klart å holde liv i en mann som bare delvis hadde klart å skyte hodet av seg. Forakten for selvødeleggende mennesker hadde Kjell under kontroll, men den skulle aldri falme, selvmedisinering døyvet den opplevde smerten inntil videre. Utvikling av empati hos roboter med kognitivitetsinnsprøyting føltes like håpløst som smertepåføring på toppleger. Han hadde ikke glede av slik misforstått symptombehandling, men bidro likevel.
 Fagsjefen i Helsedirektoratet hadde styrt ham til å simulere det å være en god lege ved hjelp av roboter. Det var en helt ny
 #### p. 156
 type jobb, og noe nytt å lære han elsket, han giftet seg med fagsjefen, så slapp han tenke mer på den saken, de hadde barn på vei allerede. Simulering av topplege i Augmented Reality føltes som å gjøre noe nyttig, umulig å ødelegge den jobben for idiotiske pasienter som tok makten over følelseslivet hans.
@@ -924,12 +916,14 @@ Open, You’re Mine. Korall prisgitt rolig vann for overlevelse, den vakre skapn
 ### Nyskaping, en del av innovasjon — p. 160
 🎵 In the Air Tonight, Phil Collins (https://gormb.github.io/_?mitat) — p. 160
 Nyskaping handler om å finne opp nye metoder, ting eller anvendelser. Når jeg skriver om innovasjon, er det nyskaping jeg mener. Innovasjon er å skape noe fra intet. Det er her mulighetene ligger, i det uoppdagede rommet. Resultatet av nyskaping er en verden med flere dimensjoner. Min verden er full av stjerner.
-Det handler om å se de nye anvendelsene før alle andre ser dem. Ekte nyskaping lyser opp veien gjennom de mentale modellene våre. Fordi du lyser opp stien tror jeg jeg så deg.
-Å feile i nyskaping er en del av veien mot eller uten suksess.
-Når vi skaper noe nytt, må vi tåle motstanden fra det gamle.
+Det handler om å se de nye anvendelsene før alle andre ser dem.
+Ekte nyskaping lyser opp veien gjennom de mentale modellene våre. Fordi du lyser opp stien tror jeg jeg så deg.
+Å feile i nyskaping er en del av veien mot eller uten suksess. Når vi skaper noe nytt, må vi tåle motstanden fra det gamle.
 ## Etterrasjonalisering — p. 161
 🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 161
 Appendix og mer
 ## Uplassert og ubestemt — p. 162
 🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 162
 Appendix og mer
+#### p. 163
+Navnet På Boken
