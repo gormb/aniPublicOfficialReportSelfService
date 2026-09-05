@@ -1,8 +1,4 @@
 # Liv krevde død
-#### p. 1
-Liv krevde død
-punktroman
-in vignettes.
 ## Nullsum — p. 2
 🎵 https://gormb.github.io/_?mlist (https://gormb.github.io/_?mlist) — p. 2
 “Med MC fra Kiel til Alicante og snitt på 170 km/t kunne jeg vært arrestert i hele Europa”, sa jeg.
@@ -925,8 +921,6 @@ Appendix og mer
 ## Uplassert og ubestemt — p. 162
 🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 162
 Appendix og mer
-### Underkapitteltittel — p. 163
+### Ungdom på trikken — p. 163
 🎵 h_ttps://gormb.github.io/_?mx_Make_textcolor_white!!!_re (https://gormb.github.io/_?mx) — p. 163
-“Garamond” Etter boken husker du fortsatt følelsen den gav deg, ikke hva den handlet om. Skrevet i fonten “Garamond”.
-Dette er den vanlige skrifttypen som benyttes for gratisteksten. Den representerer det åpne og tilgjengelige innholdet i boken, og kjennetegnes av et rent, moderne og standardisert uttrykk med god lesbarhet.
-premium “EB Garamond” Etter boken husker du fortsatt følelsen den gav deg, ikke hva den handlet om.. Dette er betalt tekst, den er i “EB Garamond”. Dette er den spesifikke skrifttypen som benyttes for den betalte teksten. Den er basert på et klassisk, historisk trykk fra 1592, noe som gir teksten et litt mørkere, mykere og mer tradisjonelt boktrykkerpreg. For systemet fungerer den som en helt egen font-ID som gjør at visningsprogrammet ditt kan låse opp eller skjule teksten automatisk basert på betalingsstatus.
+de sitter og tar plasser
