@@ -33,6 +33,7 @@ _FREE_RE     = re.compile(r'calibri')
 _GARAMOND_RE = re.compile(r'garamond')
 _SPOT_RE     = re.compile(r'https://gormb\.github\.io/_/?\?m(?!.*qr$)\S*', re.I)
 _MODE_LABEL_RE = re.compile(r'^(?:gratisversjon|premiumversjon|free version|premium version)$', re.I)  # cover-/vannmerke-label – ikke bokinnhold (droppes fra .md)
+_COVER_TEMPLATE_RE = re.compile(r'Navnet På Boken|The Name of the Book')  # cover-malens plassholder – anker for template-blokka på slutten
 
 def _font_tier(font):
     n = re.sub(r'^[^+]*\+', '', (font or '').lower())
@@ -68,13 +69,24 @@ def _page_lines(doc, pno):
     lines.sort(key=lambda l: l['y'])
     return lines
 
+def _template_start(doc):
+    """1-basert side der template-blokka på slutten starter. Blokka begynner alltid
+    med cover-malen (kjennes på 'Navnet På Boken'/'The Name of the Book'), men antallet
+    templates kan variere – er ikke fast «siste 4»."""
+    n = doc.page_count
+    for p in range(n, max(1, n - 20) - 1, -1):  # templates ligger alltid sist – søk bakerst
+        if _COVER_TEMPLATE_RE.search(doc[p - 1].get_text()):
+            return p
+    return max(1, n - 3)  # fallback: gammel «siste 4»-regel
+
+
 def _pdf_style(doc):
-    """Kalibrér størrelser/posisjoner fra de 4 siste (template-)slidene:
+    """Kalibrér størrelser/posisjoner fra template-slidene på slutten:
     cover, kapittel, underkapittel, tekst. body = dominerende størrelse.
     Samsvar på SPAN-nivå – placeholder-linja har også tier-etiketter (premium/freemium)."""
     n = doc.page_count
     s = {}
-    for p in range(max(1, n - 3), n + 1):
+    for p in range(_template_start(doc), n + 1):
         for block in doc[p - 1].get_text('dict')['blocks']:
             if block.get('type') != 0:
                 continue
@@ -103,7 +115,6 @@ def _data(doc, style):
     """Port av cBook.data.get(): strukturerte blokker (chapter/sub/paragraph/link) per side.
     Kapittel vs. underkapittel avgjøres av Y-POSISJON på siden (chapY/subY fra template-sliden),
     ikke bare skriftstørrelse – som i LdD.js. Paragraphs beholder spans (for tier-filtrering)."""
-    n = doc.page_count
     chapH = style.get('chapH') or 16
     chapY = style.get('chapY') or -1
     subY = style.get('subY') or -1
@@ -111,7 +122,8 @@ def _data(doc, style):
     tolH = chapH * 0.15
     tolY = 10
     out = []
-    for pno in range(max(1, n - 4)):
+    # hopp over cover (side 1) + alle template-sidene til slutt (ikke fast «siste 4»)
+    for pno in range(1, _template_start(doc) - 1):
         page = doc[pno]
         mid = page.rect.width / 2
         spans = []
