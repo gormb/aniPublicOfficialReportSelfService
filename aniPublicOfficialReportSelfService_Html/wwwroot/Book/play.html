@@ -12,7 +12,7 @@
             Lekegrind for KI med verktøy for å lage, utbedre og nyte bøker på forskjellige semantiske zoom- og detaljnivåer:
             <ul>
             <li id="pl_dev_0">Dev – what structure is relevant for this list?<details><summary>Thoughts</summary>Keep extremely short as usual! put under books.play so that it can be integrated other places later</details>
-            <ol>    <li>Make existing navigation match the list pl0..pl6</li>
+            <ol>    <li>Make existing navigation match the list pl0..pl6<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
                     <li>Create a "navigation" mode and make it possible<details>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
                     <li class="hide">What to hold this text (to guide user)<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
                     <li class="hide">What to hold features (to make available to user)<details><summary>Thoughts</summary>plN sets levels (0-8), so binary filters make sense for mapping features to levels: each feature gets a 9-bit mask of the levels where it applies. Example: "look up word" only on pl7/pl8, "pick book" only on pl0.</details></li>
@@ -29,7 +29,7 @@
                     <details><summary>Thoughts</summary>Style (poetic/plain) and language narrow the shelf further, and are reused as filters at the deeper levels described in pl_dev_0.</details></li>
                 </ol></li>
             <li id="pl1">«Boka» – Hva er den overordnede strukturen for innholdet?<details><summary>Thoughts</summary>At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.</details>
-                    <li class="hide">Hvilket kapittel?<details><summary>Thoughts</summary>At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.</details></li>
+            <ol>    <li class="hide">Hvilket kapittel?<details><summary>Thoughts</summary>At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.</details></li>
                     <li class="hide">«Hero's Journey» – hvilken fase?<details><summary>Thoughts</summary>Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.</details></li>
                     <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Collect book-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.</details></li>
                 </ol></li>
