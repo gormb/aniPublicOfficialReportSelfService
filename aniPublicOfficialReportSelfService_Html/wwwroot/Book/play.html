@@ -10,25 +10,49 @@
         <span id="dbPlayTitle">Play</span>
         </div><div id="dbPlayArea">
             Lekegrind for KI med verktøy for å lage, utbedre og nyte bøker på forskjellige semantiske zoom- og detaljnivåer:
-            <ol>
-            <li id="pl0">Bokhylla – Hvilke bøkererrelevant etgittinnhold?
-            <ol>    <li>Konsept eller sjanger</li>
-                    <li>Stil eller språk</li>
-            </ol></li>
-            <li>«Boka» – Hva er den overordnede strukturen for innholdet?
-            <ol>    <li>«Hero's Journey»</li>
-                    <li>Hva bør jobbes med</li>
-            </ol></li>
-            <li>Seksjon</li>
-            <li>Kapittel</li>
-            <li>Side</li>
-            <li>Paragraf</li>
-            <li>Setning</li>
-            <li>Ord
-            <ol>    <li>Hva betyr ordet</li>
-                    <li>Hva bør jobbes med</li>
-            </ol></li>
-            </ol>
+            <ul>
+            <li id="pl_dev_0">Dev – what structure is relevant for this list?<details><summary>Thoughts</summary>Keep extremely short as usual! put under books.play so that it can be integrated other places later</details>
+            <ol>    <li>Make existing navigation match the list pl0..pl6</li>
+                    <li>Create a "navigation" mode and make it possible<details>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
+                    <li class="hide">What to hold this text (to guide user)<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
+                    <li class="hide">What to hold features (to make available to user)<details><summary>Thoughts</summary>plN sets levels (0-8), so binary filters make sense for mapping features to levels: each feature gets a 9-bit mask of the levels where it applies. Example: "look up word" only on pl7/pl8, "pick book" only on pl0.</details></li>
+                    <li class="hide">What to map features to levels and other structures<details><summary>Thoughts</summary>Keep the mapping as data, not code: feature ↔ level mask, plus optional anchors into the other structures (book, chapter, page, paragraph, word), so one feature list drives navigation, help text and AI tools alike.</details></li>
+                    <li class="hide">One axis, two directions<details><summary>Thoughts</summary>Zoom out (Ord → Bokhylla) trades detail for overview; zoom in trades overview for detail. Each level knows its coarser parent and finer child, so one-step navigation is always defined.</details></li>
+                    <li class="hide">Levels as data, not headings<details><summary>Thoughts</summary>Treat pl0…pl8 as an ordered array with a stable numeric id (plN), so features can reference levels by number and bitmask instead of by duplicated markup.</details></li>
+                </ol></li>
+            <li id="pl0">Bokhylla – Hvilke bøker er relevante for gitt innhold?<details><summary>Thoughts</summary>At shelf scale the units are books, which are filtered by concept, genre and language. Each book can be in different versions and languages (especially now premium/freemium and NO/EN but later also eg DK) The nav jumps straight to a book, which then acts as parent for the finer levels below it.</details>
+            <ol>    <li class="hide">Hvilken bok? og versjon?
+                    <details><summary>Thoughts</summary>The shelf is the entry point: pick a book (LifeDemandedDeath, CV, ABook) plus variant – language (NO/EN) × edition (FREE/PREM). The variant pins the source file b/{book}/b_{NO|EN}_{FREE|PREM}.md.</details></li>
+                    <li class="hide">Konsept eller sjanger
+                    <details><summary>Thoughts</summary>Filter the shelf by concept or genre (memoir, fiction, essay) so a theme-led reader reaches the right book without knowing the title in advance.</details></li>
+                    <li class="hide">Stil eller språk
+                    <details><summary>Thoughts</summary>Style (poetic/plain) and language narrow the shelf further, and are reused as filters at the deeper levels described in pl_dev_0.</details></li>
+                </ol></li>
+            <li id="pl1">«Boka» – Hva er den overordnede strukturen for innholdet?<details><summary>Thoughts</summary>At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.</details>
+                    <li class="hide">Hvilket kapittel?<details><summary>Thoughts</summary>At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.</details></li>
+                    <li class="hide">«Hero's Journey» – hvilken fase?<details><summary>Thoughts</summary>Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.</details></li>
+                    <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Collect book-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.</details></li>
+                </ol></li>
+            <li id="pl2">Seksjon - Hva er i denne seksjonen, og hva er kapitlene?
+                <ol>    <li class="hide">todo</li>
+                </ol></li>
+            <li id="pl3">Kapittel - Hva er i dette kapittelet?
+                <ol>    <li class="hide">todo</li>
+                </ol></li>
+            <li id="pl4">Side - Hva er på denne siden?
+                <ol>    <li class="hide">todo</li>
+                </ol></li>
+            <li id="pl5">Paragraf - Hva er i denne paragrafen?
+                <ol>    <li class="hide">todo</li>
+                </ol></li>
+            <li id="pl7">Setning - Hva er i denne setningen?
+                <ol>    <li class="hide">todo</li>
+                </ol></li>
+            <li id="pl8">Ord - Hva er i dette ordet?
+                <ol>    <li class="hide">Hva betyr ordet</li>
+                        <li class="hide">Hva bør jobbes med</li>
+                </ol></li>
+            </ul>
             </div>
     </div>
     <script src="play.js"></script>
