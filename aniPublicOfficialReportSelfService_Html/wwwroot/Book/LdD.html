@@ -1,11 +1,10 @@
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Life demanded Death</title>
-        <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-        <script src="https://gormb.github.io/_/db.js"></script>
-        <script type="module" src="LdD.js"></script>
-        <link rel="stylesheet" href="LdD.css">
+        <link rel="icon" href="aigap.webp">
+        <script type="module" src="LdD.js?v=43"></script>
+        <link rel="stylesheet" href="LdD.css?v=23">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -19,25 +18,28 @@
                     book.src=src;
                     uishow(_fBook, !uishow(_cBook, pdf))
                     nav.UpdButtons();
+                    if(pdf)_iBook.src=book.srcBase()+".jpg"; // bg image follows book (ABook.pdf → ABook.jpg)
                     return pdf ? await book.sPdf(src,pno) : book.sExt(src);
                 }
                 ,sExt:src=>_fBook.src=src
-                ,sPdf:async(src,pno=1)=>await window.cBook.DoShow(src, pno, window.innerWidth*2)
+                ,sPdf:async(src,pno=1)=>await window.cBook.DoShow(src, pno, false) // load without render – uisz() renders once after
                 ,aRatio:(2*4.13)/5.83 // Golden ratio
                 ,szWH:(w,h)=>{
                     if(nMt.innerText!='⏶') 
                         _cBook.style.top = _fBook.style.top = (window.innerHeight-h)/2+'px';
                     _fBook.style.width = w+'px';
                     _fBook.style.height = h+'px';
-                    _cBook.width = w;
-                    _cBook.height = h;
+                    const cw=Math.round(w), ch=Math.round(h); // only set when changed – else canvas clears (blink)
+                    if(_cBook.width!=cw)_cBook.width=cw;
+                    if(_cBook.height!=ch)_cBook.height=ch;
+                    book.whole = h <= window.innerHeight; // whole sheet fits → left/right page nav
                     book.hAlign.Scroll();
                 }
                 ,szW:w=>book.szWH(w,w/book.aRatio)
                 ,sz:(w,h)=>{
                     w*=2; // Adjust so double as wide as needed (so that iframe and canvas only show half!)
                     book.szWH(w,w/book.aRatio);
-                    if(book.pdf) window.cBook.Width(w,true); // re-render i ny størrelse
+                    if(book.pdf) return window.cBook.Width(w,true); // re-render at new size – return promise for load chain
                 }
                 ,hAlign:{
                     _:true
@@ -47,6 +49,7 @@
                         nLg.innerText=l?'🇳🇴':'🇬🇧';
                         _fBook.style.left=(l?0:(_dBook.clientWidth-_fBook.offsetWidth))+'px';
                         book.hAlign.Scroll();
+                        _dTocList.innerHTML=''; // invalidate TOC cache (rebuilt with new language on open)
                     }
                     ,Load:async()=>{
                         let v=(await nav.memGet('lang', new String(book.hAlign._))=="true") ;
@@ -55,15 +58,50 @@
                     }
                     ,Scroll:()=>_dBook.scrollLeft=book.hAlign._?0:_dBook.scrollWidth-_dBook.clientWidth
                 }
+                ,prem:{
+                    _:false // true=premium, false=freemium
+                    ,ui:(l=book.prem._)=>{ // button-only UI, no re-render / TOC work (used at load, before first paint)
+                        nPr.innerText=l?'👑':'🔓';
+                        if(nMt.innerText=='⏷')nPr.style.display=l?'none':'inline'; // floating 🔓 only in freemium (outside menu)
+                        return l;
+                    }
+                    ,L:async l=>{
+                        book.prem._=l;
+                        nav.memSet('prem', l);
+                        book.prem.ui(l);
+                        if(_dToc.style.display!='none')_dTocList.innerHTML=await nav.Toc(); // TOC open → rebuild with new mode
+                        else _dTocList.innerHTML=''; // invalidate cache → rebuilt on next open
+                        if(_dTcTxt)_dTcTxt.value=''; // reset the TOC filter box (list was rebuilt unfiltered)
+                        nav.UpdButtons();
+                        window.cBook&&window.cBook.pdf&&window.cBook.Page(window.cBook.pn, true); // re-render in new mode (PDF must be loaded)
+                    }
+                    ,Load:async()=>{
+                        // Re-validate stored code against server in background (never blocks first view); revoke if over device limit.
+                        const code=await nav.memGet('code','');
+                        if(!code)return; // no stored code – keep current mode (backward compatible)
+                        const r=await nav.StillValid(code); // "still OK?" – rolling window / limit
+                        if(r===undefined||r===null)return; // db.js unavailable – don't conclude
+                        const ok=r===true||!!(r&&r.ok); // supports old bool and new {ok} object
+                        if(ok){if(!book.prem._)book.prem.L(true);} // still OK → premium (silent)
+                        else if(book.prem._){ // not OK (over limit / expired) → revoke + ask for code again
+                            if(r.reason!=='error'&&r.reason!=='connection'&&r.reason!=='noconfig')
+                                nav.memSet('code',''); // revoke stored code → must re-enter (network errors don't punish user)
+                            book.prem.L(false);
+                            nav.PinOpen();
+                        }
+                    }
+                }
                 ,Page:async pn=>{                    
                     nGoTxt.value = pn;
                     await cBook.Page(pn, true);
                 }
-                ,src:"LifeDemandedDeath.pdf"
-                ,srcBase:()=>{ return book.src.split("/").pop().replace(".pdf", "");}
+                ,src:"b/LifeDemandedDeath/b.pdf"
+                ,srcBase:()=>{ return book.src.replace(/\.pdf$/i,"");} // keep folder (b/...) so sidecars (.jpg/.png) sit next to the book
+                ,name:()=>{const p=book.src.split("/");return p.length>2?p[p.length-2]:p[p.length-1].replace(/\.pdf$/i,"")} // nested: identity = parent folder
                 ,pn:()=>cBook.pn
-                ,np:()=>cBook.pdf?cBook.pdf.numPages-4:0 // de 4 siste sidene er maler - skjules
+                ,np:()=>cBook.pdf?Math.max(1,cBook.pdf.numPages-4):0 // last 4 pages are template slides – hidden (min 1 for small PDFs)
             }
+            let _busy;
             const forlag = {
                 norsk: [
                     { forlag: "Cappelen Damm", url: "https://manus.cappelendamm.no/", forlagstype: "Allmennforlag (Stor)", punktromscore: 5 },
@@ -116,7 +154,6 @@
                     { forlag: "Calidris Forlag", url: "mailto:post@calidris.no", forlagstype: "Nisjeforlag", punktromscore: 2 },
                     { forlag: "Flyt Forlag", url: "mailto:post@flyt.no", forlagstype: "Maritimt / Sakprosa", punktromscore: 1 },
                     { forlag: "Pitch Forlag", url: "mailto:post@pitchforlag.no", forlagstype: "Allmennforlag / Sakprosa", punktromscore: 2 },
-                    // 10 ekstra rader med relevante forlag
                     { forlag: "Kolon Forlag", url: "mailto:manus@kolonforlag.no", forlagstype: "Skjønnlitteratur / Poesi (Gyldendal-imprint)", punktromscore: 6 },
                     { forlag: "Pelikanen Forlag", url: "mailto:manus@pelikanen.no", forlagstype: "Uavhengig / Kvalitetsfiksjon", punktromscore: 6 },
                     { forlag: "Tiden Norsk Forlag", url: "https://www.tiden.no/send-inn-manus", forlagstype: "Skjønnlitteratur / Allmennforlag", punktromscore: 5 },
@@ -129,18 +166,32 @@
                     { forlag: "Bokvennen Forlag", url: "mailto:post@solumbokvennen.no", forlagstype: "Skjønnlitteratur / Klassikere", punktromscore: 4 }
                 ]
             };
+            const GEST=Object.freeze({ // ENUM: gesture states
+                NONE:'none', BUSY:'busy'
+                ,UP:'up', DN:'dn', LEFT:'left', RIGHT:'right'
+                ,PGUP:'pgup', PGDN:'pgdn'
+            });
             const nav={
                 Able:(c, en)=>{c.classList.toggle('disabled', !en);return en;}
                 ,UpdButtons:()=>{
-                    nav.Able(nPv, uishow(nUp2, uishow(nUp3, nav.Able(nFt, (book.pn()>1)))));
-                    nav.Able(nUp, (book.pn()>1 || window.scrollY > 0));
+                    const canPrev=book.pn()>1, canNext=book.pn()<book.np();
+                    nav.Able(nFt, canPrev); nav.Able(nPv, canPrev);
+                    nav.Able(nNt, canNext); nav.Able(nLt, canNext);
+                    uishow(nUp2, uishow(nUp3, !book.whole && canPrev)) | uishow(nPv3, uishow(nPv2, book.whole && canPrev));
+                    uishow(nNt2, canNext); uishow(nNt3, canNext);
+                    nav.Able(nUp, (canPrev || window.scrollY > 0));
                     nav.Able(nGo, true);
-                    nav.Able(nDn, (book.pn()<book.np() || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
-                    nav.Able(nLt, nav.Able(nNt, uishow(nNt2, uishow(nNt3, (book.pn()<book.np())))));
-                    nav.Able(nFd, false);
+                    nav.Able(nDn, (canNext || window.scrollY < document.documentElement.scrollHeight - window.innerHeight));
+                    //nav.Able(nFd, false);
+                    nav.Able(nEx, book.prem._); // export only in premium
+                    nav.nShFit(); // hide nSh only if nPv2/nPv3 overlap it visually
                 }
-                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, nav.Able(nFd, uishow(nNt2, uishow(nUp2, uishow(nNt3, uishow(nUp3
-                            , false))))))))))))
+                ,nShFit:()=>{ // hide nSh only if ◄ (nPv2/nPv3) overlaps it vertically
+                    const b=[nPv2,nPv3].find(b=>b.style.display!='none');
+                    nSh.style.display=nMt.innerText=='⏷'&&b&&b.getBoundingClientRect().bottom>nSh.getBoundingClientRect().top?'none':'';
+                }
+                ,DisButtons:()=>nav.Able(nPv, nav.Able(nFt, nav.Able(nUp, nav.Able(nGo, nav.Able(nDn, nav.Able(nLt, nav.Able(nNt, uishow(nNt2, uishow(nUp2, uishow(nNt3, uishow(nUp3
+                            , false)))))))))))
                 ,Share_preX:0
                 ,Share:async (_,s=_??_dShare.style.display=='none')=>{
                     if (s) {
@@ -150,16 +201,27 @@
                     uishowBlock(_dShare,!uishow(nUp2,uishow(nUp3,uishow(nNt2,uishow(nNt3,uishow(_cBook,nav.Able(nLg, !s)))))));
                     if (s) {
                         nav.DisButtons();
+                        shLgLbl.style.display = book.hAlign._ ? 'none' : ''; // nLg only relevant in English
                         qrA.href = await window.cBook.QrUrl(false,35,book.srcBase()+".png");
-                        qrdA.href = await window.cBook.QrUrl(true,35,book.srcBase()+"2.png");
+                        await nav.QrDeep();
                         window.scrollTo(window.scrollX, 0);
                     } else {
                         window.scrollTo(book.Share_preX, cBook.QrUrlScrollY);
                         nav.UpdButtons();
                     }
                 }
+                ,QrDeep:async ()=>{
+                    qrdA.href = await window.cBook.QrUrl(true,35,book.srcBase()+"2.png",{
+                        book:shBook.checked
+                        ,page:shPage.checked
+                        ,pos:shPos.checked
+                        ,idx:shIdx.checked
+                        ,lang:shLg.checked
+                    });
+                }
                 ,Export_preX:0,Export_preY:0
                 ,Export:async (_,s=_??_dExport.style.display=='none')=>{
+                    if(!book.prem._)return; // export only in premium
                     uishow(nSv, false);
                     if (s) {
                         book.Export_preX = window.scrollX;
@@ -184,18 +246,20 @@
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = `LifeDemandedDeath_${book.hAlign._?'N':'E'}.txt`;
+                    a.download = `${book.name()}_${book.hAlign._?'N':'E'}.txt`;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                 }
-                ,Page:async pn=>{
+                ,Page:async(pn,x)=>{
                     //nav.DisButtons();
                     nav.memSet('page', pn);
                     await book.Page(pn);
-                    window.scrollTo(window.scrollX, 0);
+                    if (x!=null) 
+                        window.scrollTo(window.scrollX, x);
                     nav.UpdButtons();
+                    window.db?.logUsage&&window.db.logUsage({event:'page',book:book.name(),page:pn}); // log page visit to `usage`
                 }
                 ,EdPage:async()=>{
                     nGoTxt.value = book.pn();
@@ -206,97 +270,195 @@
                 ,PageEd:async ()=>{
                     const n = parseInt(nGoTxt.value);
                     if (!isNaN(n))
-                        await nav.Page(n);
+                        await nav.Page(n, 0);
                     uishow(nGoTxt,!uishow(nGo, true));
                 }
-                ,ScrollUp:async ()=>{
-                    if (window.scrollY <= 1) {// already at top
-                        await nav.Page(book.pn() - 1);
-                        window.scrollTo(window.scrollX, document.documentElement.scrollHeight - window.innerHeight);
+                ,ScrollUp:async(top=nav.gest.ontop())=>{
+                    if (top) {// already at top
+                        await nav.Page(book.pn() - 1, _dBook.scrollHeight - window.innerHeight); // scroll to bottom of previous page
+                        //window.scrollTo(window.scrollX, document.documentElement.scrollHeight - window.innerHeight);
                     }
-                    else {
-                        window.scrollBy(0, -window.innerHeight*.75);
-                    }
+                    else window.scrollBy(0, -window.innerHeight*.75);
                     nav.UpdButtons();
                 }
                 ,ScrollDn:async()=>{
                     if (window.scrollY >= document.documentElement.scrollHeight-window.innerHeight - 1) {
-                        await nav.Page(book.pn() + 1);
-                        window.scrollTo(window.scrollX, 0);
+                        await nav.Page(book.pn() + 1, 0); // nav.Page scrolls to top itself
                     }
                     else
                         window.scrollBy(0, window.innerHeight*.75);
                     nav.UpdButtons();
                 }
+                // nav.gest = gestyr. Tilstandsmaskin: none | busy | up | dn | left | right | pgup | pgdn
+                ,gest:{
+                    _edge:0.02 // edge margin as fraction of viewport height: 0.02 = 2% from top/bottom
+                    ,_ratio:2 // axis dominance: horizontal needs |dx|>2·|dy|, vertical needs |dy|>2·|dx|; diagonal = native scroll
+                    ,ontop:()=>window.scrollY<=window.innerHeight*nav.gest._edge
+                    ,onbottom:()=>window.scrollY>=document.documentElement.scrollHeight-window.innerHeight-window.innerHeight*nav.gest._edge
+                    ,suppressed:()=>_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none' // TOC/share/export open → never gesture (native scroll)
+                    ,newState:GEST.NONE
+                    ,lastState:GEST.NONE
+                    ,_d:0 // last direction key: 'dn'|'up'|'left'|'right' (0=none)
+                    ,_pg:0 // pending page-changes (await) – stays busy until done
+                    ,_t:0
+                    ,_ms:Date.now()
+                    // detectState: pure decision – which state? no side effects.
+                    // For now: only HORIZONTAL (left/right) flips pages. Vertical scrolls only – never flips.
+                    ,detectState:(d,horiz,touch)=>{
+                        const g=nav.gest;
+                        if (g.newState!==GEST.NONE) return g.newState; // keep – one decision per gesture
+                        if (horiz) return d>0?GEST.RIGHT:GEST.LEFT;    // sideways → prev/next page (only page flip)
+                        return d>0?GEST.DN:GEST.UP;                    // vertical → scroll only (PGUP/PGDN disabled for now)
+                    }
+                    ,isPage:ns=>ns===GEST.PGUP||ns===GEST.PGDN||ns===GEST.LEFT||ns===GEST.RIGHT // page operation (needs busy/await)
+                    // setState owns all state changes + stop detection (setTimeout)
+                    ,setState:(ns)=>{
+                        const g=nav.gest;
+                        const now=Date.now();
+                        clearTimeout(g._t); // cancel any previous stop detection
+                        if (ns===g.newState){ // no change – just defer stop detection (still in gesture)
+                            if (ns!==GEST.NONE && !g.isPage(ns)) g._t=setTimeout(()=>{g._d=0; g.setState(GEST.NONE);},200);
+                            return;
+                        }
+                        g.lastState=g.newState;
+                        g.newState=ns;
+                        console.log('wheel', g.lastState, '('+(now-g._ms)+')', '->', g.newState);
+                        g._ms=now;
+                        g.stateUi(); // state symbol on the page number
+                        if (ns!==GEST.NONE && !g.isPage(ns)) g._t=setTimeout(()=>{g._d=0; g.setState(GEST.NONE);},200);
+                    }
+                    // unique unicode symbol per state (none = blank)
+                    ,SYMBOLS:{'none':' ','busy':'…','up':'↑','dn':'↓','left':'←','right':'→','pgup':'⇑','pgdn':'⇓'}
+                    ,stateUi:()=>{ // state symbol by page number + mirrored fixed at mid left/right edges
+                        const g=nav.gest;
+                        const s=g.SYMBOLS[g.newState]||' ';
+                        if(window._stateUi?.sym!==s){ window._stateUi={sym:s}; window.cBook?.PageNo?.(); }
+                        const show=s!==' ';
+                        for(const id of ['nStL','nStR']){const e=document.getElementById(id);if(e){e.textContent=s;e.style.display=show?'':'none';}}
+                    }
+                    ,wheel:(e)=>{
+                        const g=nav.gest;
+                        if(g.suppressed()){g._d=0;g.setState(GEST.NONE);return;} // TOC/share/export open: no gesture – native scroll (never preventDefault)
+                        const dx=e.deltaX||0, dy=e.deltaY||0;
+                        const ax=Math.abs(dx), ay=Math.abs(dy);
+                        const horiz=ax>ay*g._ratio, vert=ay>ax*g._ratio; // 2× rule: horizontal only when |dx|>2·|dy|, vertical only when |dy|>2·|dx|
+                        if(g.newState===GEST.NONE && !horiz&&!vert){ g._d=0; g.setState(GEST.NONE); return; } // ambiguous/diagonal + no active gesture → native scroll (never flips)
+                        const d=horiz?(dx>0?1:-1):vert?(dy>0?1:-1):0; // d=0 only mid-gesture (ambiguous) – 2× rule applies only to first decision
+                        const k=horiz?(d>0?'right':'left'):vert?(d>0?'dn':'up'):g._d||''; // direction key for gesture split (keep direction mid-gesture)
+                        if (k && k!==g._d) g.setState(GEST.NONE); // direction reversal = new gesture -> none
+                        if (k) g._d=k;
+                        const prev=g.newState;
+                        const ns=g.detectState(d,horiz,e.touch);
+                        g.setState(ns); // decision (no-op mid-gesture, resets stop detection)
+                        const fresh=ns!==prev; // fresh decision (transition from none)
+                        if (g.isPage(ns)||ns===GEST.BUSY) e.preventDefault(); // swallow momentum for page ops (+ busy)
+                        if (fresh&&g.isPage(ns)){ // flip page once, await, then busy
+                            const done=()=>{ g._pg--; if(!g._pg&&g.newState===ns) g.setState(GEST.BUSY); };
+                            g._pg++;
+                            if (ns===GEST.PGDN) nav.ScrollDn().finally(done);
+                            else if (ns===GEST.PGUP) nav.ScrollUp().finally(done);
+                            else if (ns===GEST.LEFT) nav.Page(book.pn()+1, 0).finally(done);
+                            else if (ns===GEST.RIGHT) nav.Page(book.pn()-1, _dBook.scrollHeight - window.innerHeight).finally(done);
+                        }
+                    }
+                }
                 ,ShowToc:async (s=_dToc.style.display=='none')=>{
                     if(s){
-                        _dTocList.innerHTML=await nav.Toc();
+                        if(_dTocList.dataset.bk=='1')await nav.Books(false); // picker open → back to chapters first
+                        if(!_dTocList.childElementCount)_dTocList.innerHTML=await nav.Toc(); // build TOC only once – no reset on re-enter
+                        nav.TocCur(); // refresh 'cur' marker to current page without rebuild (keeps player)
                         nav._menuWasOpen=nMt.innerText=='⏶';
                         if(nav._menuWasOpen)nav.menu();
-                    }else if(nav._menuWasOpen)nav.menu();
+                    }else{
+                        if(nav._menuWasOpen)nav.menu();
+                        if(_dTocList.dataset.bk=='1')await nav.Books(false); // TOC close → back to chapters
+                        nav.tcClear(); // drop any active filter – reopening shows the full list
+                    }
+                    uishow(nFdTxt,false); // search is per-context – the text find box never floats over the TOC
+                    if(!s)uishow(_dTcTxt,uishow(_dTc2Txt,false)); // TOC filters close with the TOC (fresh on reopen) – uishow returns `on`, so the chain hides both
                     uishowBlock(_dToc,s)&&nav.DisButtons();
                     uishowBlock(_dBook,!s)&&nav.UpdButtons();
-                    if(s){const cur=_dTocList.querySelector('.cur'); if(cur)cur.scrollIntoView({block:'center'});} // vis nåværende side
+                    nav.Able(nLg,!s); // nLg deaktivert i TOC
+                    if(s){const cur=_dTocList.querySelector('.cur'); if(cur)cur.scrollIntoView({block:'center'});}
                 }
                 ,TocPage:async n=>{
                     nav.ShowToc();
-                    nav.Page(n);
+                    nav.Page(n, 0);
                 }
                 ,spTgl:async(e,ev=window.event)=>{
-                    const row=e.closest('.toc-play')?e.closest('li'):e.parentElement;
-                    const old=row?.nextElementSibling?.classList.contains('spotify-inline')?row.nextElementSibling:null;
+                    const u=e.dataset?.u||e.href||'', toc=!!e.closest('.toc-play');
                     const stop=()=>{
-                        document.querySelectorAll('iframe.spotify-inline').forEach(player=>player.remove());
-                        document.getElementById('_spCollapse')?.remove();
-                        document.querySelectorAll('[data-spotify-play-active]').forEach(button=>{
-                            button.style.visibility='';
-                            button.removeAttribute('data-spotify-play-active');
-                        });
+                        document.querySelectorAll('[data-spotify-play-active]').forEach(b=>{b.style.visibility='';b.removeAttribute('data-spotify-play-active');});
+                        const f=document.getElementById('_spPlayer'),c=document.getElementById('_spCollapse');
+                        if(f){f.src='about:blank';f.style.display='none';f.title='';}
+                        if(c)c.style.display='none';
                     };
-                    if(old){stop();return;}
-                    stop();
-                    console.log('[Spotify] play clicked', {key:e.dataset?.u||e.href||''});
-                    const url=await window.cBook.SpotUrl(e.dataset?.u||e.href||'');
+                    // ONE shared player inline under the chapter in TOC + ONE 🎶 stop button
+                    let f=document.getElementById('_spPlayer');
+                    if(!f){
+                        f=document.createElement('iframe');
+                        f.id='_spPlayer';f.className='spotify-inline';
+                        f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+                        document.body.appendChild(f);
+                    }
+                    let c=document.getElementById('_spCollapse');
+                    if(!c){
+                        c=document.createElement('button');
+                        c.id='_spCollapse';c.textContent='🎶';c.title='Stop music';
+                        c.style.display='none';c.onmousedown=stop;
+                        document.body.appendChild(c);
+                    }
+                    document.querySelectorAll('[data-spotify-play-active]').forEach(b=>{b.style.visibility='';b.removeAttribute('data-spotify-play-active');});
+                    const url=await window.cBook.SpotUrl(u);
                     const embed=url.replace('open.spotify.com/','open.spotify.com/embed/');
-                    const f=document.createElement('iframe');
-                    f.className='spotify-inline';
-                    f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
-                    f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-                    f.style.cssText='display:block;width:min(50vw,80vh);height:min(13.33vw,21.33vh);margin:1vw 0 1vw 1.5vw;border:0;border-radius:1vw;box-shadow:0 .3vw 1.2vw rgba(0,0,0,.5);';
+                    f.dataset.u=url;
                     e.style.setProperty('visibility','hidden','important');
                     e.setAttribute('data-spotify-play-active','');
-                    const collapse=document.createElement('button');
-                    collapse.id='_spCollapse';
-                    collapse.textContent='🎶';
-                    collapse.title='Stop music';
-                    collapse.onmousedown=stop;
-                    document.body.appendChild(collapse);
-                    if(e.closest('.toc-play'))
-                        row.insertAdjacentElement('afterend',f);
-                    else {
-                        const top=Number(e.dataset.top)||0;
-                        const side=e.classList.contains('right')?'right':'left';
-                        const anchor=e.dataset.u||e.href;
-                        const previous=[...e.parentElement.querySelectorAll('iframe.spotify-inline')].find(i=>i.dataset.anchor===anchor&&i.style[side]);
-                        if(previous){previous.remove();return;}
-                        f.style.position='absolute';
-                        f.style.top=`calc(${top}% + calc(var(--fsMenu)*.55 + 1vw))`;
-                        f.style[side]='calc(var(--fsMenu)*2.2)';
-                        f.style.margin='0';
-                        f.style.pointerEvents='auto';
-                        f.dataset.anchor=anchor;
-                        e.parentElement.appendChild(f);
-                    }
-                    if(f.src==='about:blank'){
-                        f.style.border='0.2vw solid #c00';
-                        f.title='Music unavailable';
-                    }
+                    // player lives in TOC – playing from page opens TOC so it's visible
+                    if(!toc)await nav.ShowToc(true);
+                    f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
+                    if(f.src==='about:blank'){f.style.border='0.2vw solid #c00';f.title='Music unavailable';}else{f.style.border='0';f.title='';}
+                    f.style.display='block'; // player may have been hidden by 🎶 – show again
+                    c.style.display='block';
+                    window.spAnchor?.(); // anchor player inline under chapter row (nice look)
                 }
                 ,Toc:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
-                    const data=await cBook.data.get(), last=cBook.pdf.numPages-3;
-                    const chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
-                    const subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
+                    // try the generated tiered .md first (fast, no PDF parsing); fall back to PDF parsing
+                    const md=await cBook.data.fromMd();
+                    const data=md?md.blocks:await cBook.data.get();
+                    const last=cBook.pdf?.numPages-3 ?? 9999;
+                    _dTocTitle.textContent=(md?md.title:await cBook.data.title(want==='no'))||'"Liv Krevde Død"'; nav._tocTitle=_dTocTitle.textContent; // cache title (book picker restores it)
+                    let chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
+                    let subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
+                    if(!md){ // PDF path: hide tier-locked entries (the .md is already mode-filtered)
+                        const locked=book.prem._?'freemium':'premium';
+                        const ok=async rows=>{
+                            const out=[];
+                            for(const b of rows){
+                                let tier=cBook._tierCache?.[`${b.page}|${b.text}`];
+                                if(!tier){
+                                    const page=await cBook.pdf.getPage(b.page), tc=await page.getTextContent();
+                                    const it=tc.items.find(i=>i.str.trim()===b.text)||tc.items.slice().sort((a,b)=>(b.height||0)-(a.height||0))[0];
+                                    let fam=it?(await cBook.FontName(it.fontName,page))||'':'';
+                                    if(it&&fam===it.fontName){ // fonts not loaded yet → load via small offscreen render
+                                        try{
+                                            const vp=page.getViewport({scale:0.1});
+                                            const c=document.createElement('canvas');c.width=Math.max(1,Math.round(vp.width));c.height=Math.max(1,Math.round(vp.height));
+                                            await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+                                            fam=(await cBook.FontName(it.fontName,page))||it.fontName;
+                                        }catch(e){}
+                                    }
+                                    tier=cBook.FontTier(fam);
+                                    (cBook._tierCache=cBook._tierCache||{})[`${b.page}|${b.text}`]=tier;
+                                }
+                                if(tier!=='comment'&&tier!==locked)out.push(b); // comments always hidden
+                            }
+                            return out;
+                        };
+                        chaps=await ok(chaps);
+                        subs=await ok(subs);
+                    }
                     const spotMap=await window.cBook.SpotLoad();
                     const resolveSpot=url=>{
                         if(!url||!window.cBook.SpotRe.test(url))return url;
@@ -305,37 +467,284 @@
                     };
                     const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[`${b.lang}:${b.page}`,resolveSpot(b.url)]));
                     const musicUrl=page=>music.get(`${want}:${page}`)||'';
-                    const cur=book.pn(); // nåværende side
-                    let curPage=0; // dypeste overskrift på/foran nåværende side
+                    const cur=book.pn();
+                    let curPage=0; // deepest heading at/before current page
                     for(let i=0;i<chaps.length;i++){
                         const c=chaps[i], end=chaps[i+1]?.page??1e9;
                         if(c.page<=cur)curPage=c.page;
                         for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
                     }
-                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n});nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">▶</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n});nav.ShowToc()">${n}</a>`;
-                    return '<ul>'+chaps.map((c,i)=>{
+                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n},0);nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">\u266B</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n},0);nav.ShowToc()">${n}</a>`;
+                    const html='<ul>'+chaps.map((c,i)=>{
                         const end=chaps[i+1]?.page??1e9;
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
-                        return `<li class="chap">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li>${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
+                        return `<li class="chap" data-p="${c.page}">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li data-p="${s.page}">${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
+                    nav._tocHtml=html; // cache chapter TOC (book picker shows over it)
+                    return html;
+                }
+                // find (nFd on page / nFdT in TOC): toggles the search group of the current context –
+                // in TOC: the chapter filter + the content/sound filter below ride together
+                ,find:async ()=>{ // 🔍 toggles the search group of the current context
+                    if(_dToc.style.display!='none'){ // TOC open: chapter filter (+ content/sound filter below)
+                        const open=_dTcTxt.style.display=='none';
+                        if(open)nav.uiHide(false); // a visible box keeps the nav visible (nFd stays up to close)
+                        uishow(_dTcTxt,open); uishow(_dTc2Txt,open);
+                        if(open)setTimeout(()=>{_dTcTxt.focus();_dTcTxt.select();},10); // focus after mousedown (else the button steals focus)
+                    }else{ // page view: find-in-text box
+                        const open=nFdTxt.style.display=='none';
+                        if(open)nav.uiHide(false); // a visible box keeps the nav visible (nFd stays up to close)
+                        uishow(nFdTxt,open);
+                        if(open)setTimeout(()=>{nFdTxt.focus();nFdTxt.select();},10); // focus after mousedown (else the button steals focus)
+                    }
+                }
+                // three separate searches: findTxt (body text, outside TOC) · findToc (chapter list) · findBooks (across books)
+                ,tcFind:()=>_dTocList.dataset.bk=='1'?nav.findBooks():nav.findToc() // route the shared TOC box (picker ⇄ chapters)
+                ,tcClear:()=>{ // forget an active filter + restore the list (close TOC / switch mode)
+                    if(_dTcTxt)_dTcTxt.value='';
+                    if(_dTocList.dataset.bk=='1'){if(nav._bkHtml)_dTocList.innerHTML=nav._bkHtml;}
+                    else nav.findToc();
+                }
+                // ---------- 1) findTxt: within-text search (nFdTxt, outside the TOC) ----------
+                ,doc:null
+                ,docInit:async()=>{ // per-page text of the current lang+mode (md sidecar first; data blocks as fallback)
+                    const want=book.hAlign._?'no':'en', md=await cBook.data.mdRaw(), by=new Map(), add=(pg,t)=>{const s=(by.get(pg)||'').trim();by.set(pg,s?s+' '+t:t);};
+                    if(md){
+                        let cur=1, m;
+                        for(const raw of md.text.split(/\r?\n/)){
+                            const l=raw.trim(); if(!l)continue;
+                            if(m=/^#### p\. (\d+)/.exec(l)){cur=+m[1];continue;}
+                            if(/^#\s+/.test(l))continue; // title line – not page text
+                            if(/^(?:##|###)\s+/.test(l)){ // heading carries its page at the end ('— p. N')
+                                if(m=/(?:—|–)\s*p\.\s*(\d+)/.exec(l))cur=+m[1];
+                                add(cur,l.replace(/^#{2,3}\s+/,'').replace(/\s*(?:—|–)\s*p\.\s*\d+\s*$/,'').trim()); continue;
+                            }
+                            if(/^🎵/.test(l)){if(m=/(?:—|–)\s*p\.\s*(\d+)/.exec(l))cur=+m[1];continue;} // music line – url only
+                            add(cur,l);
+                        }
+                    }else{ // no sidecar → rebuild from structured blocks
+                        for(const b of await cBook.data.get()){
+                            if(b.type===cBook.data.type.PAGE||(b.lang&&b.lang!==want))continue;
+                            const s=(by.get(b.page)||'').trim(); by.set(b.page,s?s+' '+(b.text||''):(b.text||''));
+                        }
+                    }
+                    nav.doc={p:[...by].sort((a,b)=>a[0]-b[0]).map(e=>({page:e[0],text:e[1].toLowerCase()})),h:[],lastL:0};
+                }
+                ,findTxt:async()=>{ // live: type → jump to the next match; delete → back to the place recorded for that length
+                    nav._ftok=(nav._ftok||0)+1; const tok=nav._ftok, q=nFdTxt.value, L=q.length;
+                    if(_cBook.style.display=='none')return; // iframe/external book – no local searchable text
+                    if(!nav.doc)await nav.docInit();
+                    if(tok!==nav._ftok)return; // superseded while building the doc
+                    const D=nav.doc, ql=q.toLowerCase();
+                    if(!q){D.h=[];D.lastL=0;return;}
+                    if(L<D.lastL&&D.h[L]){ // backspace → jump back to the stored match for this length
+                        nav.findTxtGoto(D.h[L].page,ql,tok); D.h.length=L+1; D.lastL=L; return;
+                    }
+                    if(L===D.lastL)return;
+                    const p=D.h[D.lastL], pgs=D.p, n=pgs.length;
+                    let i=(L>D.lastL&&p)?p.i+1:(p?p.i:0), hit=-1; // longer → after the current match; shorter → prefer the current page
+                    for(let x=i;x<n;x++)if(pgs[x].text.includes(ql)){hit=x;break;}
+                    if(hit<0)for(let x=0;x<i;x++)if(pgs[x].text.includes(ql)){hit=x;break;}
+                    if(hit<0){D.lastL=L;return;} // no match – keep the current place
+                    D.h[L]={i:hit,page:pgs[hit].page}; D.lastL=L;
+                    nav.findTxtGoto(pgs[hit].page,ql,tok);
+                }
+                ,findTxtGoto:async(pg,ql,tok)=>{ // open the page, then guess the y of the match when the sheet is taller than the window
+                    if(tok!==nav._ftok)return;
+                    if(pg!==book.pn()){await nav.Page(pg,0); if(tok!==nav._ftok)return;}
+                    if(book.whole||!cBook.pdf)return;
+                    const y=await nav.docY(ql); if(y==null||tok!==nav._ftok)return;
+                    const top=_cBook.getBoundingClientRect().top+window.scrollY+y-window.innerHeight/2;
+                    window.scrollTo(0,Math.max(0,Math.min(top,document.documentElement.scrollHeight-window.innerHeight)));
+                }
+                ,docY:async ql=>{ // guess y (canvas px) of the first ql on the current page (reading-order items)
+                    try{
+                        const {items}=await cBook.page.getTextContent(), ord=items.filter(i=>i.str.trim())
+                            .sort((a,b)=>b.transform[5]-a.transform[5]||a.transform[4]-b.transform[4]);
+                        let full='', map=[];
+                        for(const it of ord){map.push([full.length,full.length+it.str.length,it]);full+=it.str+' ';}
+                        const at=full.toLowerCase().indexOf(ql); if(at<0)return null;
+                        const it=(map.find(e=>at>=e[0]&&at<e[1])||map[map.length-1])[2], vp=cBook.view;
+                        return vp?vp.convertToViewportPoint(it.transform[4],it.transform[5]+(it.height||10)/2)[1]:null;
+                    }catch(e){return null}
+                }
+                // ---------- 2) findToc: live filter of the chapter list (hides rows in place – the player survives) ----------
+                ,findToc:()=>{
+                    const q=_dTcTxt.value.trim().toLowerCase(), root=_dTocList, wrap=root.firstElementChild;
+                    if(!wrap||root.dataset.bk=='1')return;
+                    const txt=li=>(li.querySelector('.toc-nav span')?.textContent||'').toLowerCase(), show=(el,on)=>el.style.display=on?'':'none';
+                    for(const ch of wrap.querySelectorAll(':scope > li')){ // chapters are the direct <li>s of the wrapping <ul>
+                        let sib=ch.nextElementSibling, sub=null;
+                        while(sib&&sib.tagName!='LI'){if(sib.tagName=='UL')sub=sib;sib=sib.nextElementSibling;} // sub-list (may sit after the player)
+                        const subs=sub?[...sub.querySelectorAll('li')]:[];
+                        let on=!q||txt(ch).includes(q);
+                        for(const s of subs){const m=txt(s).includes(q);show(s,!q||m);on=on||m;}
+                        show(ch,on);
+                    }
+                }
+                // ---------- 3) findBooks: picker filter – titles first; if none match, books whose chapters match ----------
+                ,_bkChap:null
+                ,bkChap:async b=>{ // chapters+subs of book b (current lang+mode sidecar), fetched once + cached
+                    const w=book.hAlign._?'NO':'EN', m=book.prem._?'PREM':'FREE', k=b+'|'+w+'|'+m, src=nav._bk&&nav._bk[b]&&nav._bk[b].src;
+                    if(!src)return[];
+                    if(nav._bkChap&&nav._bkChap.k===k)return nav._bkChap.a;
+                    let a=[];
+                    try{const r=await fetch(src.replace(/\.pdf$/i,'')+'_'+w+'_'+m+'.md');
+                        if(r.ok)a=[...(await r.text()).matchAll(/^#{2,3}\s+(.+?)\s+(?:—|–)\s*p\.\s*(\d+)/gm)].map(x=>({t:x[1].trim().toLowerCase(),page:+x[2]}));
+                    }catch(e){}
+                    nav._bkChap={k,a}; return a;
+                }
+                ,findBooks:async()=>{ // live: hide books whose title lacks q; on zero title hits → books that contain q in a chapter
+                    const q=_dTcTxt.value.trim().toLowerCase(), root=_dTocList;
+                    if(root.dataset.bk!='1')return;
+                    if(!q){if(nav._bkHtml)root.innerHTML=nav._bkHtml;return;}
+                    root.innerHTML=nav._bkHtml||root.innerHTML; // rebuild from the full list each keystroke (titles ⇄ chapters)
+                    const lis=[...root.querySelectorAll('li')], title=lis.filter(li=>(li.textContent||'').toLowerCase().includes(q));
+                    if(title.length){lis.forEach(li=>li.style.display=title.includes(li)?'':'none');return;}
+                    const hits=[];
+                    for(const li of lis){const b=li.dataset.b; if(b&&(await nav.bkChap(b)).some(c=>c.t.includes(q)))hits.push(li);}
+                    lis.forEach(li=>li.style.display=hits.includes(li)?'':'none');
+                    for(const li of hits){ // list the matching chapter names under the surviving books
+                        const b=li.dataset.b, cs=(await nav.bkChap(b)).filter(c=>c.t.includes(q)).slice(0,4).map(c=>nav.esc(c.t)).join(' · ');
+                        li.insertAdjacentHTML('beforeend',`<i style="flex-basis:100%;font-style:normal;opacity:.75">${cs}</i>`);
+                    }
+                }
+                ,TocCur:()=>{ // refresh the bold 'cur' marker without rebuilding the list
+                    const cp=book.pn(); let curPage=0;
+                    [..._dTocList.querySelectorAll('li')].forEach(li=>{const p=+li.dataset.p||0;if(p&&p<=cp&&p>curPage)curPage=p;});
+                    _dTocList.querySelectorAll('.cur').forEach(a=>a.classList.remove('cur'));
+                    _dTocList.querySelectorAll(`li[data-p="${curPage}"] .toc-nav`).forEach(a=>a.classList.add('cur'));
+                }
+                // Book picker: press book title in TOC → list every book/version (book_versions) – pdf path read from books.deployed, NOT guessed
+                ,esc:s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
+                ,no:v=>/^(no|nb|norwegian|norsk)$/i.test(v||'') // version → Norwegian (left side)
+                ,BookVersions:async ()=>{ // every published pdf book (books.deployed) + localized names from book_versions when present
+                    const s=window.SUPABASE; if(!s||!s.url||s.url.includes('YOUR-'))return null;
+                    const H={apikey:s.publishableKey,Authorization:'Bearer '+s.publishableKey};
+                    try{
+                        const [a,b]=await Promise.all([fetch(s.url+'/rest/v1/book_versions?select=book,version,name&order=book,version',{headers:H}),fetch(s.url+'/rest/v1/books?select=book,deployed',{headers:H})]);
+                        const vers=await a.json(), rows=await b.json(), names={};
+                        (vers||[]).forEach(r=>{if(r&&r.book)(names[r.book]=names[r.book]||[]).push({version:r.version||'EN',name:r.name||r.book})});
+                        const out={};
+                        (rows||[]).forEach(r=>{if(!r||!r.book||!/\.pdf$/i.test(r.deployed||''))return; // pdf books only – reader opens pdfs
+                            out[r.book]={src:r.deployed,vers:(names[r.book]&&names[r.book].length)?names[r.book]:[{version:'NO',name:r.book},{version:'EN',name:r.book}]};
+                        });
+                        return out;
+                    }catch(e){return null}
+                }
+                ,Books:async (on=_dTocList.dataset.bk!='1')=>{ // title click ⇄ picker – TOC-styled rows in the same #_dTocList (chapters cached in _tocHtml)
+                    if(!nav._tocHtml)_dTocList.innerHTML=await nav.Toc(); // ensure chapter TOC built before swapping away
+                    if(!on){ // back to chapters
+                        if(_dTocList.dataset.bk=='1'){_dTocList.dataset.bk='';_dTocList.innerHTML=nav._tocHtml||'';nav.TocCur();}
+                        _dTocTitle.textContent=nav._tocTitle||''; return;
+                    }
+                    if(_dTocList.dataset.bk=='1')return; // already open
+                    _dTocList.dataset.bk='1';
+                    _dTocList.innerHTML='…';
+                    const bk=await nav.BookVersions();
+                    if(!bk){_dTocList.dataset.bk='';_dTocList.innerHTML='⚠ could not load books';return;}
+                    // real deep links + TOC rows (flag + localized title); nLg0=NO, nLg1=EN
+                    const href=(src,no)=>'https://gormb.github.io/_?b&book='+encodeURIComponent(src)+'&page='+(cBook.pn||1)+'&c=w,1000,'+(no?'nLg0':'nLg1');
+                    const H=h=>h.replace(/&/g,'&amp;');
+                    const esc=nav.esc;
+                    const a=(b,v,no)=>`<a class="toc-nav" href="${H(href(bk[b].src,no))}"><span>${no?'🇳🇴 ':''}${esc((v&&v.name)||b)}${no?'':' 🇬🇧'}</span></a>`; // NO: flag first · EN: flag last
+                    nav._bk=bk;
+                    const rows=Object.keys(bk).sort().map(b=>{const vs=bk[b].vers,pick=t=>vs.find(x=>nav.no(x.version)===t);
+                        return `<li data-b="${nav.esc(b)}">${a(b,pick(true),true)}${a(b,pick(false),false)}</li>`;}).join('');
+                    nav._bkHtml=rows?`<ul>${rows}</ul>`:'(ingen bøker / no books)';
+                    _dTocList.innerHTML=nav._bkHtml;
+                    if(_dTcTxt)_dTcTxt.value=''; // book list is a fresh list – no inherited chapter filter
+                }
+                ,PremToggle:()=>{ // PIN → premium: verified against Supabase 'codes' (dtfrom<=now<=dtto); future: hash to a remembered var
+                    if(book.prem._){nav.memSet('code','');return book.prem.L(false);} // premium → free: delete stored code
+                    if(nPin.style.display!='none')return uishow(nPin,false); // PIN visible → 🔓 again closes it (abort)
+                    nav.PinOpen(); // free → premium: ask for PIN
+                }
+                ,PinOpen:()=>{
+                    nPin.value='';
+                    uishow(nPin,true);
+                    setTimeout(()=>{nPin.focus();nPin.select();},10); // focus after mousedown (else button steals focus)
+                }
+                ,Pin:async ()=>{
+                    const v=nPin.value.replace(/\D/g,'').slice(0,6);
+                    nPin.value=v;
+                    if(v.length<6)return; // check on each keystroke – no Enter (PIN!)
+                    uishow(nPin,false); // close at 6 digits
+                    console.log('[PIN] sjekker',v);
+                    const rr=await nav.CodeValid(v); // new db.js returns {ok,reason} – old deployed returns bool
+                    const r=rr&&typeof rr==='object'?rr:{ok:!!rr,reason:rr?'':'error'}; // normalize bool → object
+                    console.log('[PIN]',v,r);
+                    if(r.ok){book.prem.L(true); // valid code → premium
+                        nav.memSet('code', v); // remember code – re-validated next visit (re-ask if full elsewhere)
+                        window.db?.logUsage&&window.db.logUsage({event:'premium_activate',code:v,book:book.name(),page:cBook.pn});} // log usage to 'usage'
+                    else{ // invalid → clear message + reopen for retry
+                        nav.PinMsg(r.reason);
+                        uishow(nPin,true);
+                        nPin.focus();nPin.select();
+                    }
+                }
+                ,CodeValid:code=>window.db?.codeValid&&window.db.codeValid(code,book.name())
+                ,StillValid:code=>window.db?.stillValid&&window.db.stillValid(code,book.name()) // "am I still OK?" (restore)
+                ,BookInterval:async()=>window.db?.bookInterval?await window.db.bookInterval(book.name()):60 // book recheck interval (s)
+                ,RecheckPin:async()=>{ // background recheck: drop to freemium if others took over – NO auto re-activation
+                    const code=await nav.memGet('code','');
+                    if(!code)return;
+                    const r=await nav.StillValid(code);
+                    if(r===undefined||r===null)return; // db.js unavailable – don't conclude
+                    if(!(r===true||!!(r&&r.ok))&&book.prem._)book.prem.L(false); // others took over → freemium (re-enter premium manually via 🔓)
+                }
+                ,PinMsg:r=>{ // reason code → readable message shown at PIN field for 4s (auto-hide)
+                    const msg={connection:"Couldn't reach the license server – check your internet and try again"
+                              ,error:'The license server is having problems – please try again in a moment'
+                              ,noconfig:'The license server is having problems – please try again in a moment'
+                              ,window:'Invalid code (outside valid period)'}[r]||'Invalid code';
+                    nPinMsg.textContent=msg;
+                    nPinMsg.style.display='inline';
+                    clearTimeout(nPinMsg._t);
+                    nPinMsg._t=setTimeout(()=>nPinMsg.style.display='none',4000);
+                }
+                ,_idleT:0
+                ,uiHidden:false
+                ,uiHide:on=>{
+                    nav.uiHidden=on;
+                    document.body.classList.toggle('hideNav', on);
+                    if(!on) nav.idleReset();
+                }
+                ,idleReset:()=>{
+                    clearTimeout(nav._idleT);
+                    nav._idleT=setTimeout(()=>{
+                        if(nav.uiHidden)return;
+                        if(_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none'||nFdTxt.style.display!='none'){ nav.idleReset(); return; } // modal/find open – wait (keeps nFd visible to close)
+                        nav.uiHide(true);
+                    },3000);
                 }
                 ,menu:()=>{
                     let h=nMt.innerText!='⏶';
                     nMt.innerText=h?'⏶':'⏷';
                     document.querySelector('.bookControls').classList.toggle('collapsed', !h);
                     // Adjust scale of share button to fit within menu, set to fixed right if h
-                    nSh.style.scale=h?1:.7;
+                    nSh.style.scale=h?1:.5;
                     nSh.style.position=!h?'fixed':'';
                     nSh.style.bottom=nSh.style.left=!h?'0':'';
                     nSh.classList.toggle('floatingControl', !h);
-                    uishow(nLg,uishow(nFt,uishow(nPv,
+
+                    nav.nShFit(); // hide nSh only if nPv2/nPv3 overlap it visually
+
+                    uishow(nPr,uishow(nLg,uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
                         uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
-                        )))))))));
-                    // nTc: fast knapp midt på venstre side når menyen er skjult
-                    if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%) scale(.7)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');}
-                    else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform=nTc.style.filter='';nTc.classList.remove('floatingControl');}
-                    if(cBook.page){cBook.Play();cBook.PageNo();} // siden flytter seg - flytt knapper og sidetall med
+                        ))))))))));
+                    // nTc: fixed button mid-left when menu hidden
+                    if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');
+                        // nPr: floating 🔓 at 70%, only in freemium mode
+                        nPr.style.position='fixed';nPr.style.left='0';nPr.style.top='70%';nPr.style.transform='translateY(-50%)';nPr.style.filter='grayscale(1)';nPr.classList.add('floatingControl');
+                        nPr.style.display=book.prem._?'none':'inline';
+                        // nFd: floating 🔍 at 80% – same presentation as the premium button
+                        nFd.style.position='fixed';nFd.style.left='0';nFd.style.top='80%';nFd.style.transform='translateY(-50%)';nFd.style.display='inline';nFd.style.filter='grayscale(1)';nFd.classList.add('floatingControl');}
+                    else{nTc.style.position=nTc.style.right=nTc.style.top=nTc.style.transform=nTc.style.filter='';nTc.classList.remove('floatingControl');
+                        nPr.style.position=nPr.style.left=nPr.style.top=nPr.style.transform=nPr.style.filter='';nPr.classList.remove('floatingControl');
+                        nFd.style.position=nFd.style.left=nFd.style.top=nFd.style.transform=nFd.style.filter='';nFd.classList.remove('floatingControl');}
+                    if(cBook.page){cBook.Play();cBook.PageNo();} // page moved – move buttons and page number with it
                 }
                 ,btSimul:(a,i)=>{
                     if(i>=a.length) return;
@@ -360,82 +769,157 @@
                         catch{return url.split('?')[1]?.replace(/qr$/i,'')||'';}
                     };
                     const link=data.find(b=>b.type===T.LINK&&b.spotify&&linkKey(b.url)===key.replace(/qr$/i,''));
-                    console.log('[Spotify] deep-link page lookup', {key, page:link?.page||null, url:link?.url||null});
-                    if(link&&book.pn()!==link.page)await nav.Page(link.page);
+                    if(link&&book.pn()!==link.page)await nav.Page(link.page, 0);
                 }
                 ,memGet:async(k,d)=>{
-                    let v=localStorage.getItem(`LdD.${k}`) || d;
-                    return v;
+                    const p=k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`; // per-book namespace (except the 'book' key itself)
+                    return localStorage.getItem(p) ?? localStorage.getItem(`LdD.${k}`) ?? d; // read new → fallback to legacy flat key
                 }
-                ,memSet:async(k,v)=>{localStorage.setItem(`LdD.${k}`, v);return v}
+                ,memSet:async(k,v)=>{localStorage.setItem(k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`, v);return v} // always write the new per-book key
                 ,Loaded:async (sp=new URLSearchParams(window.location.search))=>{
-                    uisz(); // Set initial size
+                    _busy=true; // suppress auto-lang-swap during load
+                    uisz();
                     uishow(iLoading, true)
                     let bookU=sp.get('book');
                     if(bookU) nav.memSet('book', bookU);
-                    else bookU=await nav.memGet('book', 'LifeDemandedDeath.pdf');
+                    else bookU=await nav.memGet('book', 'b/LifeDemandedDeath/b.pdf');
+                    book.src=bookU; // set before per-book state is read – book.name() is the localStorage namespace
                     let bookT=parseInt(sp.get('bookT')) || parseInt(await nav.memGet('book type', bookU?.indexOf('.pdf')!=-1))
                         ,page=parseInt(sp.get('page')) || parseInt(await nav.memGet('page', 1))
                         ,scY=parseInt(sp.get('y')) || parseInt(await nav.memGet('Y', window.scrollY));
-                    await book.s(1,bookU,page); //alt for google doc: book.s(0,'https://docs.google.com/presentation/d/1Dj4i3odXkr-vsFPmS6U7od1QKKLdxJyMNF35ahfqNZc/embed?start=false&loop=false&rm=minimal');
-                    //await nav.Page(page);
-                    uisz();
+                    // Premium/freemium must NEVER block/delay first view: read stored mode once before first render (no re-render/flash); prem.Load() stays off the blocking path.
+                    book.prem._=(await nav.memGet('prem','false'))=="true";
+                    book.prem.ui(); // button text only (👑/🔓) – no re-render / TOC work
+                    // Load the main document directly (no .1.pdf preview; JPG loading may be added later)
+                    await book.s(1,bookU,page);
+                    window.db?.logUsage&&window.db.logUsage({event:'page',book:book.name(),page:page}); // log the opened page so openers who never turn a page are still counted
+                    await uisz(); // await render (offscreen → one swap) – full file done before spinner hides
+                    uishow(_iBook, false); // bg image – hide once page painted (else covers book until Loaded ends)
                     await book.hAlign.Load();
+                    // Note: book.prem.Load() deliberately removed from load sequence – never runs before first view (mode already set above)
                     const commands=sp.get('c')?.split(',') || [];
                     const musicCommand=commands.find(c=>c.startsWith('m')&&c!=='menu');
-                    if(musicCommand)await nav.MusicPage(musicCommand);
+                    if(musicCommand) {
+                    scY=0; // music nav always scrolls to top
+                        await nav.MusicPage(musicCommand);
+                    }
                     nav.btSimul(commands, 0);
                     window.scrollTo(window.scrollX, scY);
                     nav.UpdButtons();
                     uishow(iLoading, false)
+                    _busy=false;
+                    // Background reconcile after page visible – normally a no-op; never blocks first view
+                    setTimeout(()=>{book.prem.Load().catch(e=>console.error('[prem]',e));},0);
+                    // Background PIN recheck: drop to freemium if others took over; interval = book's premiumCheckInterval (default 60s)
+                    const premSec=await nav.BookInterval() ?? 60;
+                    setInterval(()=>{nav.RecheckPin().catch(e=>console.error('[recheck]',e));},premSec*1000);
                 }
             }
+            const spAnchor=(el)=>{ // player sits inline under the chapter row in TOC – TOC builds once so it survives re-enter
+                const f=el||document.getElementById('_spPlayer');
+                if(!f||f.style.display==='none'||!f.dataset.u)return;
+                const b=[...document.querySelectorAll('#_dTocList a.toc-play')].find(a=>a.dataset.u===f.dataset.u);
+                if(b){b.closest('li').insertAdjacentElement('afterend',f);}
+                f.style.cssText='display:block;width:min(60vw,70vh);height:min(16vw,18.6vh);margin:.4em 0 .5em 1.5em;border:0;border-radius:1vw;';
+            };
+            window.spAnchor=spAnchor;
             window.spTgl=(...args)=>nav.spTgl(...args);
             async function loaded() {
                 nav.menu(false);
-                await nav.Loaded(); // Load book, adjust size and update buttons
+                // auto lang-swap on horizontal scroll removed – language only via nLg button
+                window.addEventListener('wheel',nav.gest.wheel,{passive:false}); // gesture: one decision per scroll; swallow momentum after page change
+                // touch (iPhone): iOS gives no wheel on touch-scroll → translate to synthetic wheel events for the same gesture machine
+                let _tX=0,_tY=0,_tA=0,_tSX=0,_tSY=0; // _tA: locked axis (1=horizontal, 0=ambiguous/native, -1=vertical)
+                document.addEventListener('touchstart', e=>{
+                    const t=e.touches[0]; _tX=t.clientX; _tY=t.clientY; _tA=0; _tSX=0; _tSY=0;
+                }, {passive:true});
+                document.addEventListener('touchmove', e=>{
+                    const g=nav.gest;
+                    if(g.suppressed()){_tA=0;_tSX=0;_tSY=0;_tX=e.touches[0].clientX;_tY=e.touches[0].clientY;return;} // TOC/modal open: no gesture – native scroll
+                    const t=e.touches[0], dx=t.clientX-_tX, dy=t.clientY-_tY;
+                    _tX=t.clientX; _tY=t.clientY;
+                    if(_tA===0){ _tSX+=dx; _tSY+=dy; if(Math.abs(_tSX)>30||Math.abs(_tSY)>30) _tA=Math.abs(_tSX)>Math.abs(_tSY)*nav.gest._ratio?1:Math.abs(_tSY)>Math.abs(_tSX)*nav.gest._ratio?-1:0; } // lock axis only at 2× dominance (>30px); diagonal → 0 = no gesture (native scroll)
+                    if(_tA===1){ // horizontal swipe → page flip
+                        if(g.isPage(g.newState)||g.newState===GEST.BUSY) e.preventDefault();
+                        nav.gest.wheel({ deltaX:dx, deltaY:0, touch:true, preventDefault:()=>{} });
+                    } // vertical (_tA=-1): don't touch machine – native scroll
+                }, {passive:false});
+                document.addEventListener('mousedown', (e)=>{
+                    if(e.target.closest('#_spCollapse, #_dPlay, #_spPlayer, .toc-play'))return; // music – don't show nav
+                    nav.uiHide(false); // click on book/text → show nav again
+                }, true);
+                nav.idleReset(); // start inactivity timer (5s)
+                await nav.Loaded(); // load book, adjust size and update buttons
             }
             let _rsz;
-            window.onresize=()=>{clearTimeout(_rsz);_rsz=setTimeout(uisz,250)}; // vent til ro før resize (iOS)
+            window.onresize=()=>{clearTimeout(_rsz);_busy=true;_rsz=setTimeout(()=>{uisz();nav.UpdButtons();_busy=false},250)}; // wait for quiet before resize (iOS)
             window.onscroll=uiscroll;
         </script>
     </head>
     <body onload="loaded()">
         <div class="bookControls" style="z-index:1;text-align:center;">
-            <button id="nMt" onmousedown="nav.menu()" style="padding-left:2vw;padding-right:2vw;scale:.7;">⏶</button>
-            <button id="nFt" onmousedown="nav.Page(1)">⏮️</button>
-                <button id="nPv" onmousedown="nav.Page(book.pn()-1)">◀️</button>
+            <button id="nMt" onmousedown="nav.menu()" style="padding-left:2vw;padding-right:2vw;scale:.7;"></tool_call></button>
+            <button id="nFt" onmousedown="nav.Page(1, 0)">⏮️</button>
+                <button id="nPv" onmousedown="nav.Page(book.pn()-1, 0)">◀️</button>
                 <button id="nUp" onmousedown="nav.ScrollUp()">⏫</button>
                 <button id="nGo" onmousedown="nav.EdPage()">🔢</button>
                     <input id="nGoTxt" class="pageNo" type="text" inputmode="numeric" value="1" onchange="nav.PageEd()" onkeydown="if(event.key=='Enter') nav.PageEd()"/>
                 <button id="nDn" onmousedown="nav.ScrollDn()">⏬</button>
-                <button id="nNt" onmousedown="nav.Page(book.pn()+1)">▶️</button>
-                <button id="nLt" onmousedown="nav.Page(book.np())">⏭️</button>
-            &nbsp;&nbsp;<button id="nFd" class="disabled" onmousedown="nav.find()">🔍</button>
+                <button id="nNt" onmousedown="nav.Page(book.pn()+1, 0)">▶️</button>
+                <button id="nLt" onmousedown="nav.Page(book.np(), _dBook.scrollHeight - window.innerHeight)">⏭️</button>
+            &nbsp;&nbsp;<button id="nFd" onmousedown="nav.find()">🔍</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" onmousedown="nav.Export()">📤</button>
-            <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
+                <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
+                <button id="nLg0" style="display:none" onmousedown="book.hAlign.L(true)">🇳🇴</button>  <!-- set NO (btSimul target) -->
+                <button id="nLg1" style="display:none" onmousedown="book.hAlign.L(false)">🇬🇧</button> <!-- set EN (btSimul target) -->
+                <button id="nPr" onmousedown="nav.PremToggle()">🔓</button>
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
+        <!-- find box: plain page-number style (premium-PIN presentation) – live within-text search -->
+        <input id="nFdTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Find in text" oninput="nav.findTxt()" onkeydown="if(event.key=='Escape'){nFdTxt.value='';nav.find()}" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;"/>
+        <input id="nPin" class="pageNo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="" oninput="nav.Pin()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;width:5.5em;letter-spacing:.4em;border:1px solid #999;border-radius:.5em;background:#fff;box-shadow:0 .2em .8em rgba(0,0,0,.25)"/>
+        <div id="nPinMsg" style="display:none;position:fixed;left:50%;top:49%;transform:translate(-50%,-50%);z-index:5;font:600 .95em system-ui,sans-serif;text-align:center;background:#fff;color:#c00;border:1px solid #c00;border-radius:.5em;padding:.4em .9em;box-shadow:0 .2em .8em rgba(0,0,0,.25)"></div>
         <div id="_dBook" class="bookParent">
-            <img id="iLoading" src="aigap.webp" style="z-index:2;position:fixed;left:47vw;top:47vh;animation:rotate 2s linear infinite;width:6vw">
+            <img id="iLoading" src="aigap.webp" style="z-index:4;position:fixed;left:47vw;top:47vh;animation:rotate 2s linear infinite;width:6vw">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>
+            <img id="_iBook" style="z-index:3;position:fixed;left:0vw;top:0vh;width:98vw">
             <canvas id="_cBook"></canvas>
-                <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
-                <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;▲&nbsp;</button>
-                <button id="nNt2" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
-                <button id="nNt3" onmousedown="nav.Page(book.pn()+1)" style="display:none;">&nbsp;►&nbsp;</button>
+                <button id="nUp2" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;☝️&nbsp;</button>
+                <button id="nUp3" onmousedown="nav.ScrollUp()" style="display:none;">&nbsp;☝️&nbsp;</button>
+                <button id="nNt2" onmousedown="nav.Page(book.pn()+1, 0)" style="display:none;">&nbsp;🫱</button>
+                <button id="nNt3" onmousedown="nav.Page(book.pn()+1, 0)" style="display:none;">&nbsp;🫱</button>
+                <button id="nPv2" onmousedown="nav.Page(book.pn()-1)" style="display:none;">🫲&nbsp;</button>
+                <button id="nPv3" onmousedown="nav.Page(book.pn()-1)" style="display:none;">🫲&nbsp;</button>
         </div>
+        <!-- edge state symbols: mirror of the page-number state, fixed at mid left/right edges -->
+        <span id="nStL" class="edgeState" style="display:none"></span>
+        <span id="nStR" class="edgeState" style="display:none"></span>
         <div id="_dShare" class="shareParent" style="display:none;">
-            <center><table><tr><td>
-                <a id="qrA" href="#"><h1>Book</h1></a><td><img id="qr" class="qr" src="failedqr.png"/><hr></td></tr>
-                <tr><td><a id="qrdA" href="#"><h1>Deep</h1></a></td><td><img id="qrd" class="qr" src="failedqr.png"/></td></tr></table>
+            <center>
+                <table><tr><td>
+                    <a id="qrA" href="#"><h1>Book</h1></a><td><img id="qr" class="qr" src="failedqr.png"/><hr></td></tr>
+                    <tr><td><a id="qrdA" href="#"><h1>Deep</h1></a></td><td><img id="qrd" class="qr" src="failedqr.png"/></td></tr></table>
+                <div class="shareOpts">
+                    <input type="checkbox" id="shBook" onchange="nav.QrDeep()">book
+                    <input type="checkbox" id="shPage" checked onchange="nav.QrDeep()">page
+                    <input type="checkbox" id="shPos" checked onchange="nav.QrDeep()">pos
+                    <input type="checkbox" id="shIdx" onchange="nav.QrDeep()">TOC
+                    <span id="shLgLbl"><input type="checkbox" id="shLg" checked onchange="nav.QrDeep()">en</span>
+                </div>
             </center>
         </div>
         <div id="_dToc" class="tocParent" style="display:none;">
-                <h1><a href="javascript:nav.TocPage(1);">"Liv Krevde Død"</a></h1>
+                <h1><a id="_dTocTitle" href="javascript:nav.Books();" title="Bytte bok / switch book">"Liv Krevde Død"</a></h1>
+                <div style="display:flex;align-items:center;gap:.5em;margin-bottom:.5em;">
+                    <button id="nFdT" onmousedown="nav.find()" style="font-size:calc(var(--fsMenu)*.45);padding:0 .3em;line-height:1.2;">🔍</button>
+                    <input id="_dTcTxt" class="pageNo findBox" type="text" maxlength="40" placeholder="Filter chapters" oninput="nav.tcFind()" onkeydown="if(event.key=='Escape'){nav.tcClear();nav.find()}" style="display:none;flex:1;min-width:0;"/>
+                </div>
+                <div style="display:flex;align-items:center;"> <!-- 2nd TOC filter: further narrow by chapter content / sound (wired later) -->
+                    <input id="_dTc2Txt" class="pageNo findBox" type="text" maxlength="40" placeholder="Filter chapter content / sound – later" onkeydown="if(event.key=='Escape'){nav.tcClear();nav.find()}" style="display:none;flex:1;min-width:0;margin:.2em 0 .5em 0;"/>
+                </div>
                 <ul id="_dTocList"></ul>
-                <hr><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/06f9iQGV6mSzWo4pz20hQB?utm_source=generator&si=9930b284b4684788" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <hr><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/06f9iQGV6mSzWo4pz20hQB?utm_source=generator&si=9930b284b4684788" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div id="_dExport" style="display:none;z-index:3">
             <button id="nSv" onmousedown="window.cBook.Save(_dExportTxt)" style="display:none;">💾</button>

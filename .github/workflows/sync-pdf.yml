@@ -1,0 +1,53 @@
+name: Sync Books from Google (auto-deploy)
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+concurrency:
+  group: sync-pdf-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  download-pdf:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Install PDF text extraction lib
+        run: pip install --quiet pymupdf
+
+      - name: Sync all books from the `books` table
+        run: python3 .github/scripts/sync-books.py
+
+      - name: Commit & Push if Updated
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*.pdf' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*.pdf' \
+                  'aniPublicOfficialReportSelfService_Html/wwwroot/Book/*.md' 'aniPublicOfficialReportSelfService_Html/wwwroot/Book/**/*.md'
+          
+          if git diff --staged --quiet; then
+            echo "No book updates from Google."
+          else
+            git commit -m "auto: sync books from Google (books-tabellen) [skip ci]"
+            git pull --rebase origin master
+            git push origin master
+          fi
+
+      - name: Fail if any book sync error (so you get notified)
+        run: |
+          if [ -f .sync-books-errors ]; then
+            echo "::error::Books sync reported errors – see annotations in the 'Sync all books' step. Valid updates were still committed."
+            exit 1
+          fi

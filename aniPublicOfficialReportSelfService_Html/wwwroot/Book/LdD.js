@@ -1,16 +1,32 @@
 import * as _cBookJLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
 _cBookJLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
 
+// lazy-load 3rd-party scripts (qr-code-styling, html2pdf, db.js) – never block the book on slow CDNs
+const _scripts={};
+const loadScript=src=>_scripts[src]||(_scripts[src]=new Promise((ok,fail)=>{
+    const s=document.createElement('script');s.src=src;
+    s.onload=()=>ok();s.onerror=()=>{delete _scripts[src];fail(new Error('script: '+src));};
+    document.head.appendChild(s);
+}));
+
 let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,pdfPromise:null,renderTask:null
     ,Source:async function(src,render,pageno=cBook.pn) {
         cBook.ctx = cBook.ctx || _cBook.getContext("2d");
-        cBook.pdfPromise = cBook.pdfPromise || _cBookJLib.getDocument(src).promise;
-        cBook.pdf = cBook.pdf || await cBook.pdfPromise;
-        if (render) 
-            await cBook.Page(pageno, true);
+        try {
+            cBook.pdfPromise = cBook.pdfPromise || _cBookJLib.getDocument(src).promise;
+            cBook.pdf = cBook.pdf || await cBook.pdfPromise;
+            await cBook.Page(pageno, render); // set page + render only when needed (avoid double render)
+        } catch(e) { // e.g. 404/corrupt PDF: show message instead of crashing
+            console.error('[cBook] kunne ikke laste', src, e);
+            cBook.pdf=null; cBook.pdfPromise=null; cBook.page=null;
+            const ctx=cBook.ctx; ctx.clearRect(0,0,_cBook.width,_cBook.height);
+            ctx.fillStyle='#888'; ctx.font='16px sans-serif'; ctx.textAlign='center';
+            ctx.fillText('⚠️ Kunne ikke laste boken / Could not load the book', _cBook.width/2, _cBook.height/2);
+        }
     }
     ,Page:async function(pageNo,render) {
-        const np=cBook.pdf.numPages-4; // Last four slides is template
+        if(!cBook.pdf)return;
+        const np=Math.max(1, cBook.pdf.numPages-4); // last four slides are template; min 1
         if(pageNo<1) pageNo=1;
         else if(pageNo>np) pageNo=np;
         if (cBook.pn !== pageNo) {
@@ -21,39 +37,116 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             await cBook.Width(window.innerWidth*2, true);
     }
     ,Width:async function(width,doRender) {
+        if(!cBook.page)return;
         cBook.viewport = cBook.page.getViewport({scale:1});
         cBook.scale = width / cBook.viewport.width;
         cBook.view = cBook.page?.getViewport({ scale: cBook.scale });
         if (doRender) await cBook.Render();
     }
     ,Render:async function() {
+        cBook._renderToken=(cBook._renderToken||0)+1; const token=cBook._renderToken; // only the newest render may swap in the canvas
         if (cBook.renderTask) cBook.renderTask.cancel();
-        cBook.renderTask = cBook.page?.render({canvasContext: cBook.ctx, viewport: cBook.view});
-        await cBook.Play();
+        // render to offscreen canvas, swap in one paint (never "book→white→book")
+        const off=document.createElement('canvas');
+        off.width = Math.max(1, Math.round(cBook.view.width));
+        off.height = Math.max(1, Math.round(cBook.view.height));
+        const task = cBook.page?.render({canvasContext: off.getContext('2d'), viewport: cBook.view});
+        cBook.renderTask = task;
+        if(task) task.promise.catch(e=>{ if(e?.name!=='RenderingCancelledException') console.error('[cBook] render', e); }); // cancellation is expected – avoid unhandled rejection
         cBook.PageNo();
-        try { await cBook.renderTask?.promise; }
-        catch (error) { if (error?.name !== 'RenderingCancelledException') throw error; }
+        await cBook.waitRender(off, task); // wait for paint to finish (promise or stability)
+        if(token!==cBook._renderToken) return; // newer render took over – don't swap a partial result
+        const ctx=cBook.ctx; if(!ctx)return;
+        ctx.clearRect(0,0,_cBook.width,_cBook.height);
+        ctx.drawImage(off,0,0);
+        cBook.Play().catch(e=>console.error('[cBook] Play', e)); // after swap: getTextContent won't compete with renderer for the worker
+        cBook.HideLater(cBook.pn); // tier text removed in background (idle) – never blocks first paint
     }
-    ,_src:null, _pageNo:0
-    ,DoShow:async (src, pageNo)=>{
+    ,waitRender:async (canvas, task, ms=10000)=>{ // wait until the whole page is painted (task.promise incl. images) – stability poll alone jumps too early
+        const donePromise = task ? task.promise.then(()=>{},()=>{}) : Promise.resolve();
+        let t;
+        await Promise.race([donePromise, new Promise(r=>t=setTimeout(r, ms))]); // safety net: never hang
+        clearTimeout(t);
+    }
+    ,HideLater:async function(pn){ // run Hide() in background; skip if page changed
+        try{
+            if('requestIdleCallback' in window) await new Promise(r=>requestIdleCallback(r,{timeout:2500}));
+            else await new Promise(r=>setTimeout(r,50));
+            if(pn!==undefined && pn!==cBook.pn) return;
+            await cBook.Hide();
+        }catch(e){console.error('[cBook] HideLater',e);}
+    }
+    ,premFonts:['EBGaramond','CEGaramond'] // premium-only; filled from template later
+    ,freeFonts:['Calibri']                 // freemium-only; filled from template later
+    ,commentFonts:['Arial']                // comments (Arial) NEVER shown in the book, in either mode
+    ,FontTier:function(fam){ // 'premium'|'freemium'|'common'|'comment' from the font lists
+        const n=(fam||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+        if(cBook.commentFonts.some(f=>n.includes(f.toLowerCase().replace(/[^a-z0-9]/g,''))))return 'comment';
+        if(cBook.premFonts.some(f=>n.includes(f.toLowerCase().replace(/[^a-z0-9]/g,''))))return 'premium';
+        if(cBook.freeFonts.some(f=>n.includes(f.toLowerCase().replace(/[^a-z0-9]/g,''))))return 'freemium';
+        return 'common';
+    }
+    ,FontName:async function(internal, page){ // internal font id → real name (e.g. "MUFUZY+CEGaramond-Regular")
+        const p=page||cBook.page, holds=[p&&p.commonObjs,p&&p.objs,p&&p._transport&&p._transport.commonObjs];
+        for(const h of holds){
+            if(h&&h.has&&h.has(internal)){
+                try{const f=await h.get(internal); if(f&&f.name)return f.name;}catch(e){}
+            }
+        }
+        return internal;
+    }
+    ,Hide:async function(){ // remove locked-tier text (premium↔freemium) from the painted canvas
+        if(!cBook.page||!cBook.ctx)return;
+        const hideTier=(book.prem&&book.prem._)?'freemium':'premium';
+        const tc=await cBook.page.getTextContent(), names={}, ctx=cBook.ctx;
+        for(const fn of new Set(tc.items.map(i=>i.fontName))) names[fn]=await cBook.FontName(fn);
+        for(const it of tc.items){
+            if(!it.str.trim())continue;
+            const tier=cBook.FontTier(names[it.fontName]);
+            if(tier!=='comment'&&tier!==hideTier)continue; // comments always hidden; otherwise the locked tier
+            // PDF y-up: baseline=transform[5]; glyphs +1.2h up, descender -0.3h down
+            const [ax,ay]=cBook.view.convertToViewportPoint(it.transform[4]-1, it.transform[5]+it.height*1.2);
+            const [bx,by]=cBook.view.convertToViewportPoint(it.transform[4]+it.width+1, it.transform[5]-it.height*0.3);
+            const x=Math.min(ax,bx), y=Math.min(ay,by), w=Math.abs(bx-ax), h=Math.abs(by-ay);
+            ctx.clearRect(x,y,w,h);
+            if(tier==='premium'&&!(book.prem&&book.prem._)){ // gold brush only over hidden PREMIUM text in freemium mode
+                const grad=ctx.createLinearGradient(0,y,0,y+h);
+                grad.addColorStop(0,'rgba(228,196,100,.62)');
+                grad.addColorStop(1,'rgba(188,148,42,.62)');
+                ctx.fillStyle=grad;
+                if(ctx.roundRect){ctx.beginPath();ctx.roundRect(x,y,w,h,Math.min(5,h/2));ctx.fill();}
+                else ctx.fillRect(x,y,w,h);
+            }
+        }
+    }
+    ,_src:null, _pageNo:0, _tierCache:null
+    ,DoShow:async (src, pageNo, render=true)=>{
         if(cBook._src==src && cBook._pageNo==pageNo)
             return;
+        if(cBook._src && cBook._src!==src){ // new source → reset pdf cache
+            cBook.pdf=null; cBook.pdfPromise=null; cBook.page=null; cBook.pn=0;
+        }
         cBook._src=src;
         cBook._pageNo=pageNo;
-        await cBook.Source(src,true,pageNo)
+        cBook._tierCache=null;
+        await cBook.Source(src, render, pageNo)
     }
     ,QrUrlScrollY:0
-    ,QrUrl:async function(deep=false,ht=35,img="LifeDemandedDeath.png") {
+    ,QrUrl:async function(deep=false,ht=35,img="b/LifeDemandedDeath/bqrmid.png",opt={}) {
         if (cBook._qrUrl) URL.revokeObjectURL(cBook._qrUrl);
         const u = new URL("https://gormb.github.io/_");
-        u.search = '?b&book=' + encodeURIComponent(book.src);
+        u.search = '?b';
+        if (opt.book!==false) u.search += '&book=' + encodeURIComponent(book.src);
         if (deep) {
-            let c='w,1';
-            if (!book.hAlign._) c+=',nLg';
-            if (cBook.QrUrlScrollY>0) c+=',s,'+cBook.QrUrlScrollY;
-            u.search += '&page=' + cBook.pn + '&c=' + c;
+            let c='w,100';
+            if (opt.lang!==false) c+=book.hAlign._?',nLg0':',nLg1'; // deterministic language – nLg0=NO, nLg1=EN
+            if (opt.idx!==false) c+=',nTc';
+            if (opt.pos!==false && cBook.QrUrlScrollY>0) c+=',s,'+cBook.QrUrlScrollY;
+            if (opt.page!==false) u.search += '&page=' + cBook.pn;
+            u.search += '&c=' + c;
         }
         const sz = Math.round(ht/100*innerHeight);
+        await loadScript('https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js');
         const qrcs = new window.QRCodeStyling({width:sz, height:sz, data:u.href, image:img, imageOptions:{margin:8}});
         if (deep)
             qrd.src = cBook._qrUrl = URL.createObjectURL(await qrcs.getRawData('png'));
@@ -80,6 +173,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,data:{
         type:{CHAPTER:'chapter',SUB:'subchapter',P:'paragraph',LINK:'link',PAGE:'pagebreak'}
         ,_:null
+        ,_title:null
         ,style:null
         ,Style:async function(){ // Last four slides template; n-3 cover, n-2 chapter, n-1 subchapter, n text
             if(cBook.data.style)return cBook.data.style;
@@ -90,7 +184,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 for(const i of items){
                     const t=i.str.trim(); if(!t)continue;
                     const h=H(i),y=i.transform[5];
-                    if(/^(Underkapitteltittelen|The Sub Chapter Title)$/.test(t)){s.subH=h;s.subY=y;}
+                    if(/^(Underkapitteltittel(?:en)?|The Sub Chapter Title)$/.test(t)){s.subH=h;s.subY=y;}
                     else if(/^(Kapitteltittelen|The Chapter Title)$/.test(t)){s.chapH=h;s.chapY=y;}
                     else if(/^(Navnet På Boken|The Name of the Book)$/.test(t)){s.coverH=h;}
                 }
@@ -142,6 +236,23 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             }
             return cBook.data._=out;
         }
+        ,title:async function(lang=true){ // cover title, language-aware (no=left / en=right half)
+            const want=lang?'no':'en';
+            if(cBook.data._title&&cBook.data._title[want]!==undefined)return cBook.data._title[want];
+            await cBook.data.get(); // ensure data/style is loaded (st.coverH)
+            const st=cBook.data.style, pdf=cBook.pdf;
+            let t='';
+            if(st?.coverH){
+                const page=await pdf.getPage(1),{items}=await page.getTextContent();
+                const mid=page.getViewport({scale:1}).width/2;
+                const H=i=>i.height||Math.hypot(i.transform[0],i.transform[1]);
+                const side=want==='no'?i=>i.transform[4]<mid:i=>i.transform[4]>mid;
+                t=items.filter(i=>side(i)&&i.str.trim()&&H(i)>=st.coverH*.85)
+                    .sort((a,b)=>a.transform[5]-b.transform[5]||a.transform[4]-b.transform[4])
+                    .map(i=>i.str.trim()).join(' ');
+            }
+            return (cBook.data._title=cBook.data._title||{})[want]=t;
+        }
         ,txt:async function(lang=true){
             const T=cBook.data.type,want=lang?'no':'en';
             return (await cBook.data.get()).filter(b=>!b.lang||b.lang===want).map(b=>
@@ -151,20 +262,43 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 :b.type===T.SUB?`## ${b.text}`
                 :b.text).filter(Boolean).join('\n\n');
         }
+        ,_mdFile:()=>book.srcBase()+'_'+(book.hAlign._?'NO':'EN')+'_'+(book.prem._?'PREM':'FREE')+'.md' // current lang+mode sidecar
+        ,mdRaw:async function(force=false){ // cached raw text of the current-mode .md – fetched once, shared by TOC (fromMd) + search
+            const md=cBook.data.md;
+            if(md&&md.file===cBook.data._mdFile()&&!force)return md;
+            try{
+                const file=cBook.data._mdFile();
+                const r=await fetch(file,{cache:'no-store'});
+                if(!r.ok)return null;
+                return cBook.data.md={file,text:await r.text()};
+            }catch(e){ return null; }
+        }
+        ,fromMd:async function(){ // try the generated tiered .md TOC first (fast, no PDF parsing); null → fall back to PDF
+            const md=await cBook.data.mdRaw();
+            if(!md)return null;
+            const want=book.hAlign._?'no':'en', T=cBook.data.type, blocks=[];
+            let title='';
+            for(const raw of md.text.split(/\r?\n/)){
+                const s=raw.trim(); if(!s)continue; let m;
+                if(!title&&(m=/^#\s+(.+)$/.exec(s))) title=m[1].trim();
+                else if(m=/^##\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.CHAPTER,page:+m[2],lang:want,text:m[1].trim()});
+                else if(m=/^###\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.SUB,page:+m[2],lang:want,text:m[1].trim()});
+                else if(m=/^🎵\s+(.+?)\s+\((\S+?)\)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.LINK,page:+m[3],lang:want,text:m[1].trim(),url:m[2],spotify:true});
+                // '#### p. N' and body lines: ignored for the TOC
+            }
+            return blocks.length?{title,blocks}:null;
+        }
     }
     ,SpotRe:/^https:\/\/gormb\.github\.io\/_\/?\?m(?!.*qr$)\S*/i
     ,SpotMap:null
     ,SpotLoad:async function(force=false){
         if(cBook.SpotMap&&!force)return cBook.SpotMap;
         const m={},cfg=window.SUPABASE||{};
-        console.log('[Spotify] Supabase config', {url:cfg.url, hasKey:!!cfg.publishableKey});
         if(cfg.url&&!cfg.url.includes('YOUR-')){
                 try{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
                 const{data,error}=await createClient(cfg.url,cfg.publishableKey).from('redir').select('id,url,"group"');
-                console.log('[Spotify] Supabase groups', [...new Set((data||[]).map(r=>r.group))]);
-                const mappings=(data||[]).filter(r=>String(r.group||'').trim().toLowerCase()==='music');
-                console.log('[Spotify] Supabase redir lookup', {count:mappings.length, ids:mappings.map(r=>r.id), skipped:(data||[]).length-mappings.length, error:error?.message||null});
-                console.table(mappings.map(r=>({id:r.id,group:r.group,url:r.url})));
+                // music links may be tracks and/or playlists (groups 'music', 'playlist', ...)
+                const mappings=(data||[]).filter(r=>/music|playlist/i.test(String(r.group||'').trim()));
                 mappings.forEach(r=>{
                     if(!r.id)return;
                     m[r.id]=r.url;
@@ -220,7 +354,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         const top0=_cBook.offsetTop, overlayHeight=box.clientHeight||1;
         for(const s of cBook._spots.list){
             const b=document.createElement('a');
-            b.className='play'; b.id=`${s.key}_${s.col?'r':'l'}`; b.dataset.u=s.url; b.href='#'; b.textContent='▶';
+            b.className='play'; b.id=`${s.key}_${s.col?'r':'l'}`; b.dataset.u=s.url; b.href='#'; b.textContent='\u266A'; // ♪ – one note per line
             const playClick=event=>{
                 event.preventDefault();
                 event.stopPropagation();
@@ -245,20 +379,25 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             });
         });
     }
-    ,PageNo:async function(){ // sidetall i topp-margen, sentrert på hver halvdel (NO/EN)
+    ,PageNo:async function(){ // page number in top margin, centered per half; landscape also in bottom
         const box=document.getElementById('_dPage');
         if(!box)return;
-        if(cBook.view)box.style.width=cBook.view.width+'px'; // hele oppslaget
+        if(cBook.view)box.style.width=cBook.view.width+'px';
         if(!cBook.page||!cBook.view||_cBook.style.display=='none'){ if(box)box.innerHTML=''; return; }
-        const top=_cBook.offsetTop+cBook.view.height*.02;
-        box.innerHTML=`<span style="top:${top}px;left:25%">${cBook.pn}</span><span style="top:${top}px;left:75%">${cBook.pn}</span>`;
+        const u=window._stateUi||{sym:' '}; // state symbol (from nav.gest)
+        const one=`<span class="st">${u.sym}</span>${cBook.pn}<span class="st st2">${u.sym}</span>`; // symbol on both halves keeps the number centered
+        const top=_cBook.offsetTop+cBook.view.height*.02, bot=_cBook.offsetTop+cBook.view.height*.98;
+        const l=cBook.view.height>window.innerHeight; // landscape: page taller than window → also show at bottom
+        box.innerHTML=`<span style="top:${top}px;left:25%">${one}</span><span style="top:${top}px;left:75%">${one}</span>`+(l?`<span style="top:${bot}px;left:25%">${one}</span><span style="top:${bot}px;left:75%">${one}</span>`:'');
     }
     ,Save: async function(el, filename='book.pdf') {
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js');
         await html2pdf().set({margin:0,filename,html2canvas:{scale:1},jsPDF:{unit:'mm',format:'a4'}}).from(el).save();
     }
 };
 
 window.cBook=cBook;
+loadScript('https://gormb.github.io/_/db.js?v=8').catch(()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen')); // db.js = SUPABASE config + window.db (PIN) – load in background, never block the book // ?v=8: db.js updated (bookInterval → premiumCheckInterval)
 const _dPlay=document.createElement('div'); _dPlay.id='_dPlay';
 document.getElementById('_dBook').appendChild(_dPlay);
 const _dPage=document.createElement('div'); _dPage.id='_dPage';
