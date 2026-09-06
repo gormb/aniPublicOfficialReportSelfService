@@ -727,68 +727,75 @@ Neste uke ble sommer til høst. Hun satt på spiseplassen inne på biblioteket. 
 Tenkte på presten og håp. “Når jeg tar meg sammen er hun borte”. Hjelper ikke at jeg har nummeret til barnebokforfatteren, brudd på sosial kontrakt å ringe henne.
 Sender heller bilder fra skogstur der hun bor. Telt og innsjø.
 Ringer jeg om to timer, er hun død? Nei håp også om høsten.
-### Takk for to normale år — p. 125
-🎵 Praise You, Fatboy Slim (https://gormb.github.io/_?mpy) — p. 125
+### Alle kjenner kongen — p. 125
+🎵 Every Breath You Take, The Police (https://gormb.github.io/_?mebyt) — p. 125
+Det var blitt satt ut styggere bord enn de runde steinbordene.
+Selv med dårlig hørsel hørte jeg cafeeieren for den lekre franske kafeen si “krooonprinsesssen hadde vært der i går”, høyt nok til at alle rundt akkurat så vidt hørte det.
+“Hvorfor ringte dere meg ikke, jeg skulle jobbe?” sa den nyansatte entusiastisk. Begge så bort på meg med stjålne blikk.
+Var jeg ønsket innenfor eller uttafor? hverken vet eller veit og er jo ikke egentlig nysgjerrig. Heller ikke noe annet enn nøytral til å drikke kaffe på nabobordet til kongelige. Tror jeg.
+“Alle kjenner kongen” hadde faren til min beste venn sagt til moren hans da hun spurte om hun hadde sett ham før. Vet ikke om det er sant at alle kjenner kongen, men kongelighet er bra for den fantastiske kafeen.
+### Takk for to normale år — p. 126
+🎵 Praise You, Fatboy Slim (https://gormb.github.io/_?mpy) — p. 126
 Jeg var trygg hos henne, mens kropp og sjel leget seg, men plutselig var det over. Hva som gjorde at det slutt vet jeg like lite om som hvordan forholdet begynte, men jeg trenger ikke vite noe av det. Hun er et av mine topp tre forhold gjennom livet, og skal huskes slik. Vi fikk ikke barn, men en liten hund jeg savner bunnløst.
 Selv om jeg ikke savner kvinnen like mye som hunden var kvinnen hele verden for meg frem til hun en dag ikke ville være det lengre. Jeg lærte at jeg fortsatt er i stand til å elske på den tradisjonelle måten jeg idealiserer. Tårene jeg feller er av takknemlighet.
 Jeg var trygg. Kropp og sjel leget seg, deretter var det slutt. Hva som gjorde det slutt vet jeg ikke, takk for tiden vi fikk.
-#### p. 126
+#### p. 127
 Det vi hadde mellom oss hadde virket for meg, og ikke henne.
 Mine fødselsdager ble plutselig feiret og ikke ignorert, det motsatte skjedde gradvis med henne, forholdet som for meg var perfekt champagneglass som knuste, var for henne et fengsel hun fant veien ut av.
 Personligheten som lå mellom oss to tok jeg med meg, og håper det for henne var en utvikling hun kunne ta med seg, og at hun finner noe av det hun er ute etter.
 Et knust champageglass kan settes sammen igjen, men knuste glass kan aldri bli hva de var.
 Takk, jeg vil deg godt.
-### Normal vinter — p. 127
-🎵 All around me,Savage Garden&Flyleaf (https://gormb.github.io/_?maam) — p. 127
+### Normal vinter — p. 128
+🎵 All around me,Savage Garden&Flyleaf (https://gormb.github.io/_?maam) — p. 128
 Nyttårskonsert og hundemusikk Hva som gjorde at det slutt vet jeg like lite om som hva som gjorde at det begynte. Kvinnen var hele verden frem til hun ikke var det i det hele tatt. Fødselsdager plutselig feiret. Ny personlighet dyrket gjennom hennes øyne. Det tok slutt, gleden over tiden vi fikk er alt,og nok. Jeg feirer deg, vakre.
 T, var på topp tre forhold i mitt liv. Skal huskes slik også. Ble sammen da jeg brukte mye morfin. Lykkerus uforandret etter "cold turkey" morfinslutt. T lærte meg jeg fortsatt kan elske tradisjonelt. Takknemlige tårer. Knust champagneglass. Kan settes sammen men aldri bli samme. Personligheten mellom oss tok jeg videre, hun ikke. Jeg hyller deg slik jeg burde.
-#### p. 128
+#### p. 129
 Uventet lykke to trygge fullkomne år. Kropp og sjel leget, så var det over. Lykkerus uforandret etter morfinslutt. Savnet etter hunden vi fikk sammen åpnet sår som ikke gror.
 Forholdet for meg perfekt champagneglass var for henne fengsel hun rømte. Det som gjorde det slutt skal aldri repareres, jeg vil ikke en gang vite det, men takk for reisen. Gjenlærte å elske slik jeg idealiserer. Gjennom harde tider og gode.
 Lite å si om to normale år, det meste var bare riktig. Jeg drakk Whiskey med en stor isbit, hun Gin uten is. Nervesystemet justerte seg. Kjærlighet født under store mengder morfin, gav lykkerus som utilskitnet kom fra hennes varme. Finner hun det hun søker? Ikke? Det er ikke lengre mitt anliggende. Vi fikk ikke barn, og hunden ser jeg aldri igjen.
 Kvinnen var verden for meg, deretter helt borte. Nullsum igjen; hennes fødselsdager ble ikke feiret, mine ble. Veien vi gikk sammen har jeg med meg; vil alltid feire deg.
-### Biblioteket; den gode byråkraten — p. 129
-🎵 Everything in Its Right Place, Radiohead (https://gormb.github.io/_?metiirp) — p. 129
+### Biblioteket; den gode byråkraten — p. 130
+🎵 Everything in Its Right Place, Radiohead (https://gormb.github.io/_?metiirp) — p. 130
 Biblioteket er det beste stedet å lade opp batteriene. Ikke Deichman Bjørvika, i sentrum, der de roper over høyttaleranlegget om dagens tilbud, noe som legitimerer at en god andel av de besøkende breker og spjaker.
 ”Sauer er ikke ålreite dyr”, sier jeg til meg selv. Storkoser meg hver gang et bibliotek faktisk er et bibliotek, og det å si “hysj”
 er legitimt, og mitt svar er “unnskyld”. Dette er en dag jeg skal oppleve det.
 Grünerløkka fungerer halvparten av tiden, Majorstua tre fjerdedeler. “Jo færre tjenestedesignere som, i regi av skattepenger, har vært innom for å redefinere bibliotek til by-bygdehus, jo bedre”, tenker jeg og går inn på svale, stille Deichman Grünerløkka.
-#### p. 130
+#### p. 131
 På vei mot kaffe ser jeg frukt og saft på et bord midt i rommet. Rommet med tegneserier. Et fargefylt skilt skrevet ut på A3 fargeskriver har liten skrift jeg ikke leser, og jeg fyller meg et glass saft.
 Bak meg lyder, “det er egentlig til barna”. En ensom dame i vest som sier “ DEICHMAN ” i sans-serif font med lav lesbarhet henvender seg vennlig til meg før hun sier hun snart skal gå.
 Lite håndverk, mye strøm av kognitivitet. “Se meg!” innbiller jeg meg hun, logodesigneren, byråkratiet, tjenestedesigneren og alle de andre sier til seg selv.
 Jobben til bibliotekaren er å ta mot ungdom som ikke har annet tilbud og gi dem gode leseopplevelser. Det går ikke så bra i dag. 30 varmegrader, og barna er ute, men tilbudet er her.
 Både for barna, den som tilbyr, byråkratiet som har formet tilbudet, og styring og stell i bauer og kanter. Det gjennomstrukturerte systemet avslører seg i at det er nok folk på jobb, temperatur og luftkvalitet er perfekt og til og med strømmen i kontaktene virker.
 “Velmenende og rikt”, mumler jeg etter å bli ferdig med mine egne fordommer. Godt samfunn vi har, det er lite spiselig å være gretten gammel gubbe. Spiselig. Tiden er ute, her kan jeg ikke sitte lenger.
-#### p. 131
+#### p. 132
 Det må søkes ensomhet på veien og funderes mer på dilemma som ligger i at sannhetssøkende Nietzsche ikke likes av noen, mens drømmefølgende Dostojevskij er elsket. De håndterte samme problem, tapet av universelle verdier rotet i gudstro.
 Nietzsche leste Dostojevskij og sa vi måtte tenke nytt. “Selvet må formes; verdier skapes av de som våger“.
 Dostojevskij leste aldri Nietzsche. “Selvet og moralsk mening oppdages gjennom livserfaring og lidelse”.
 Jeg limer tekst inn i en LLM-chat og den sier teksten er fantastisk. Lyden av Macen i det den jeg slenger den i gulvet blir overdøvet av mitt eget primalskrik. Vel, jeg drømmer om å kaste Mac i gulvet og skrike, og skriver litt hardere på tastaturet. “I would rather be happy than Right. Any day”, skrev Douglas Adams for mange år siden.
 Den knirkende lyden av biblioteksmedarbeidere som forstyrrer skrivingen nesten like mye som min knatring på tastaturet irriterer meg, men jeg har bestemt meg for ikke å si fra til dem før de sier fra til meg. Lær av Dostojevsky og Adams, ignorer Nietzsche. La realitet dø, gi plass til populære sannheter.
-#### p. 132
+#### p. 133
 Damen på biblioteket deler ut frukt hun har dandert og penetrert med små pinner. “De var egentlig til barna”, hun smiler og gir det til oss voksne inne i det fine været. Nå skal jeg ut i sommertrafikken, et sted å motstå ny forakt for menneskeheten.
-### Bjeffing om livsfare — p. 133
-🎵 Freedom, Rage Against the Machine (https://gormb.github.io/_?mfratm) — p. 133
+### Bjeffing om livsfare — p. 134
+🎵 Freedom, Rage Against the Machine (https://gormb.github.io/_?mfratm) — p. 134
 “ ⚠ FARE! ⚠ Grunnet SVÆRT ustabile masser under veien er det forbundet med LIVSFARE å passere sperringene!
 Vennligst benytt stien på andre siden av vannet!”
 Skiltet står på en grusvei i nordmarka der det ikke er lovlig ferdsel for bil. Skiltet gjelder for gående og syklister. Dødsfall grunnet ras på grusveier i utmark er ikke registrert siden de begynte detaljert registrering for 700 år siden. Grusveien er nå bare litt tryggere enn stien. Inne i skogen. Ta dere sammen Hunden bjeffer selv om det ikke er fare. Tror den selv grunnen til at det ikke er fare er at den bjeffer?
 Flere har dødd av blodpropp mens de laget dumme skilt enn antall liv reddet av skiltene. Jeg går gjennom.
-### Styrken er som før — p. 134
-🎵 Stranglehold (https://gormb.github.io/_?msh) — p. 134
+### Styrken er som før — p. 135
+🎵 Stranglehold (https://gormb.github.io/_?msh) — p. 135
 Dansken satt over bordet, han hadde lang erfaring med MC fra MC-klubber som Rabis MC. Jeg har ikke mye erfaring med MC-klubber, men pleide å feste på Rabis MC i Lillestrøm da jeg var 20 år gammel og hadde kjæreste fra området, de holdt åpent hus lengre enn “Martins” og andre lokale vannhull i nærheten.
 Jeg delte i stedenfor med ham at jeg hadde snakket med SBS i militæret, de er del av den engelske spesialstyrken SAS, som har tradisjoner med MC-klubber. Han ble stille en stund, og sa plutselig at han ikke kan noe om HA, som er kortnavnet på Hells Angels. Kanskje han var redd jeg hadde kobling til HA, noe jeg ikke har, og at han hadde fornærmet noen med kobling til Hells Angels.
-#### p. 135
+#### p. 136
 Jeg sa vi kunne være venner, og gav ham navnet mitt med det fonetiske alfabetet, han hadde delt at han hadde drept over 100 mennesker i tjeneste, men kunne ikke det internasjonale stavealfabetet militæret bruker, som ville ha vært måten man kommuniserte på da han skulle ha utført oppdragene. Enten hadde han strukket litt på sannheten, eller mer sannsynlig gjenfortalt ting han hadde hørt fra andre.
 For meg gjorde det ingen forskjell, jeg synes fyren var hyggelig, men livet hadde nok hatt så kraftig kvelertak på ham at historiene han bygget selvfølelsen på kom stadig lengre unna virkeligheten.
 I en annen historie var han del av frimurerlosjen, han jobbet i et selskap med hundrevis av danske utleieleiligheter og det gav forbindelser til makteliten i Skandinavia. Da jeg sa jeg en dag kunne møte ham i den rare baren, med kjennetegn jeg ikke skriver her, for å få billigere øl visste han ikke hva jeg snakket om. Jeg kjenner en i losjen med kongens fortjenstmedalje, så har vært med ham når han har utnyttet noen av godene. Dansken visste ikke hva jeg snakket om og byttet tema igjen, jeg gikk ut for å puste.
 Lag på lag med løgn, er det måten vi holder på selvfølelsen der alle lider av grandiøs personlighetsforstyrrelse og har mønstre tidligere forbeholdt de med Machiavellisme?
-#### p. 136
+#### p. 137
 Da jeg sto utenfor tenkte jeg på alle gangene nære venner av meg hadde fortalt damer om deres tid i militæret, og deres dype elobarative historier bygget opp gjennom et halvt liv med gjenfortelling av halve sannheter og ting de har fra media.
 Elitesoldat Militærnekteren som til damer sa han var del av en nasjonal spesialstyrke hvor han gjorde MMA, ny personlighet for en hver anledning, men lite nok kommunikasjon til at man sjelden blir avslørt.
 Etterretningsmann Helikopertpiloten som hadde galmannskjørt mye MC i Athen på 90-tallet. Historier fra avsløringer fra CIA blandet med mindre løgner om at han fløy helikopter i forsvaret, de store løgnene ble indirekte hintet og de små fortalt ut i lange historier som utviklet seg etterhvert. Giftet seg med en asiater som sikkert får høre historiene hver dag og smiler høflig.
 Pilote De to var helikopterpiloter, det var hele historien. De mente at løgnen var midre enn om de hadde sagt de fløy jagerfly. Slik kom de i kontakt med damer, men tror ikke de kysset noen av dem noen gang, om det var fordi de virket uoppnåelige eller ikke ble trodd vet jeg ikke, kanskje litt av hvert?
-#### p. 137
+#### p. 138
 Heltene De administrativt ansatte ved den Engelske ambasaden sa de var i MI-6. Historiene var mange, og de fortsatte etter at de var avslørt.
 Jeg undret på om jeg selv har pyntet på historier fra forsvaret, eller om jeg er annerledes, og sterkere enn disse historiefortellerne, Var jeg så svak at jeg omskrev min egen historie så mye at jeg løy for andre? løy for meg selv?
 For å ha nytte av minnene våre er omskriving for nye situasjoner nyttig. Så kanskje det er jeg som underkommuniserer og ikke de andre som lyver. Kanskje er det viktigere å utnytte minnet for å lage en god og nyttig historie enn å gjengi sannheten med optimal presisjon?
@@ -796,131 +803,134 @@ Jeg kjørte ikke over 200 km/t om natten, mest om dagen. Da jeg kjørte om natte
 Men historien om kjøring i 200 km/t om natten, som jeg bare har gjort et par ganger, fanger essensen av mange historier i en mer kompakt fortelling. Sann, ikke virkelig.
 Jeg hadde aldri ulykker over 100 km/t, ellers hadde jeg ikke kunnet skrive dette. Om det var fordi jeg var uforsiktig i fartsblindhet eller hadde nok overlevelsesinstinkt vet jeg ikke.
 Minner om ulykker, nattkjøring, og høy fart blander seg.
-### Vestens forfall — p. 138
-🎵 Working Class Hero, Ozzy Osbourne (https://gormb.github.io/_?mwch) — p. 138
+### Vestens forfall — p. 139
+🎵 Working Class Hero, Ozzy Osbourne (https://gormb.github.io/_?mwch) — p. 139
 Biblioteket overfylt. For mye skrivestoff. Hjernen klarer ikke ta inn mer, må hjem. Fire B-gjengkopier var dråpen, jeg gikk.
 Men først en barbeint marihuanaplante av en mann med tjuefem år gamle dreads. Enten ren psykopat, anarkist eller med IQ under 80. Ga fullstendig faen i selve konseptet bibliotek. Var i samtale med ydmyk begavet kinesisk dame.
 Han snakket ubegavet allvitende om lovverk for elektriske sparkesykler, forskjell i sykkelkultur mellom Kina og Oslo, og hva slags sykkel man skal ha i Peking. Alt levert med monoton, halvdød stemme.
 Hun kjapp, smart og reflektert, uten egenverd. Kontrasten slet meg ut. Vondt å oppleve vårt forfall.
-### Personlig, menneske, sann & virkelig — p. 139
-🎵 Who Are You, The Who (https://gormb.github.io/_?mway) — p. 139
+### Personlig, menneske, sann & virkelig — p. 140
+🎵 Who Are You, The Who (https://gormb.github.io/_?mway) — p. 140
 Livet ligger i individuell sannhet og ikke universell virkelighet.
 Dessverre var jeg over 40 før jeg fikk innsikt i denne viktige sannheten. Som ikke er universelt virkelig, men kan være en universell sannhet.
-### Hjelpe andre — p. 140
-🎵 Man in the Mirror, Michael Jackson (https://gormb.github.io/_?mmitm) — p. 140
+### Hjelpe andre — p. 141
+🎵 Man in the Mirror, Michael Jackson (https://gormb.github.io/_?mmitm) — p. 141
 "Hvorfor ser du flisen i din brors øye, men bjelken i ditt eget øye legger du ikke merke til?" (Lukas 6:41) Jeg trodde det var hele uttrykket. Vi husker problemene og ikke løsningene som følger med? Barnas bibel på norsk og King James versjon på engelsk lydbok har jeg gått gjennom.
 Husker ikke alt, kanskje bare huskes bruddstykker til å ta ut av sammenheng. Selv om hele sammenhengen står der.
 Verset går: "Hvorfor ser du flisen i din brors øye, men bjelken i ditt eget øye legger du ikke merke til? Hvordan kan du si til din bror: ‘Bror, la meg ta flisen ut av øyet ditt!’ når du ikke ser bjelken i ditt eget øye? Din hykler! Ta først bjelken ut av ditt eget øye! Da vil du se klart nok til å ta flisen ut av øyet til din bror". (Lukas 6:41-42) Verset er ment å kunne hjelpe, ikke dømme. "Ta på oksygenmasken din først, deretter hjelp sidemannen"
-### Musikk som følelsesbærer — p. 141
-🎵 Revolutionsetuden, Chopin (https://gormb.github.io/_?mre) — p. 141
+### Musikk som følelsesbærer — p. 142
+🎵 Revolutionsetuden, Chopin (https://gormb.github.io/_?mre) — p. 142
 Ord på følelser er vanskelig; Vi tenker i stor grad gjennom språket. Konsepter jeg ikke har ord for er vanskelig å fatte for min analytiske hjerne. Følelser er vanskelig å sette ord på og kommunisere til andre. Musikk er en bærer av følelse mellom folk uten ord, man kan dele en følelse gjennom assosiasjoner til musikk. Det blir det ikke presis kommunikasjon, men presisjon er overvurdert. Derfor oppgir jeg musikk som bærer av følelsen i mange underkapitler og kobler historien mot musikken for å kommunisere følelsestilknytningen på nye måter. “Revolutionsetuden, Chopin” ble laget etter en mislykket revolusjon, ironien er ikke tapt for meg.
 Følelser er noe som er for stort til å passe inn i min hjerne, som med en monotistisk Gud. Behov for en Gud kommer når vi ikke kan fylle hjernen uten at den går i stykker.
-### Nyskaping på jobben — p. 142
-🎵 On Being Blue, Art of Noise (https://gormb.github.io/_?mobb) — p. 142
+### Nyskaping på jobben — p. 143
+🎵 On Being Blue, Art of Noise (https://gormb.github.io/_?mobb) — p. 143
 Nyskapning på moder jord handler om å finne opp nye metoder, ting eller anvendelser; innovasjon er både nyskaping og forbedring. Klatrer inni henne, jeg drømmer i farger nå.
 Morfar drev sammen med en kompanjong firmaet Hougen & Larsen. På sine gamle dager ville han være sin egen herre etter å ha vært teknisk sjef i prosessindustrien mange år. Fordi far var fraværende fylte forfatteren farfar og gründeren morfar roller som gode mannlige forbilder. Morfar lærte meg som liten at det finnes to typer arbeidsfolk, de som bygger opp og de som river ned. Min reise begynte med denne innsikten.
 Hvorfor innovasjon, selv om de som river ned bare er nødvendig for å gi plass til de som faktisk skal bygge noe opp.
 Det er få som bygger opp og mange som river ned, folk er
-#### p. 143
+#### p. 144
 selviske og skapelse gir mer smerte for andre enn det blir satt pris på. Det er ikke nytt at folk heller vil se pornografi og drama enn å lære noe, heller ikke at man foretrekker å snakke om folk fremfor fremskritt, her ligger veien til lykke framfor å være rett.
 Hvordan vi lever kan være innen innovasjon eller uten, lykke kan finnes i så mangt.
 Morfar ville sagt at forbedring er ditt ansvar uansett jobb; dermed blir det å kalle forbedring for innovasjon misvisende i hans øyne, om ikke uærlig. Men kanskje alle har rett på sin definisjon av hva det betyr å være innovativ. Minner om egne innovative øyeblikk er fargerike minner.
 Jeg deler flere av min morfars syn, men har respekt for at andre ser ting annerledes og finner lykke i det. Passer jeg meg ikke går jeg i samme mønstre som dem, dypere og dypere kan man bli refleksjon av tidligere generasjoner.
 Jeg laget dataspill tidlig i tenårene og hadde min første oppstart før jeg var fylt 20 år. Da jeg helt fra starten laget spill mine venner likte å spille har jeg helt fra ungdomstiden skapt egne digitale verdener og løsninger. Det har ikke gjort meg rik, men nysgjerrigheten er vedvarende, og selvtilliten med å lage ting selv, og ikke bare anvende det andre har laget, er vedvarende.
 Berøring av nerdehimmelen og å lage egne verdener kom kanskje alt for tidlig.
-#### p. 144
+#### p. 145
 Veien til å bli voksen kan kreve et mytologisk rituale der systemet svikter deg og du finner din egen kjerne. For eksempel har Amish-folket noe som heter Rumspringa, der ungdommene som 16-åringer kastes ut i verdens mørkeste hjørner og blir utsatt for moralsk fritt fall gjennom dop og prosititusjon. De unge voksne som vender tilbake, gjør det med en herdet tro på folkets idealer og tradisjoner. Motstandskraft kan oppstå i gapet mellom det trygge og det destruktive.
 Min far er professor ved universitetet, og det kan hende jeg hadde hatt mindre mot utdanningssystemet hvis han var et godt menneske. Konsekvensen av det å forakte universitetet er jo betydelig for muligheter i livet. Jeg valgte igjen ikke å immatrikulere meg på universitetet i år, noe som får meg til å lure på hvorfor trangen til motstand mot akademia kan sitte i meg nesten 40 år senere.
 Det at fokus endrer virkeligheten gjennom observasjon finner paralleller i moderne fysikk. Med gjeldende modell for de minste elementene vi kjenner, kvantefysikken, er massens tilstand uavklart før den blir observert, før man observerer er ingenting fastlagt, sannhet er bare teoretisk. På samme måte vet man ikke om en krise før man har stått i den. Mytologi har virkeligheter som er sanne, uten å være faktuelt reelle. Mørket vi omfavner ved systemers sammenbrudd, der vi går fra å
-#### p. 145
+#### p. 146
 være passive brikker til å bli bevisste observatører av vårt eget liv, behandles i denne boken. En reise ikke forbeholdt ungdom, den kan tas i alle aldre.
-### Historiske røtter nullsummerings død — p. 146
-🎵 Dreaming in Colour, Art of Noise (https://gormb.github.io/_?mdic) — p. 146
+### Historiske røtter nullsummerings død — p. 147
+🎵 Dreaming in Colour, Art of Noise (https://gormb.github.io/_?mdic) — p. 147
 Traume som tidsbrudd Judith Herman, Cathy Caruth Til og med koma kan være en god ting, når man våkner.
 Erkjennelse av en verden som ikke lenger finnes, er eksempel på traumatisk brudd. Øyeblikk der virkelighet revner og tid oppleves fragmentert. Caruths teori om traumets “forsinkede gjenkomst” forklarer hvorfor lyden av knust glass (eller hjelm) blir et lydmessig minnespor som aktiveres senere øyeblikk av krise. En lydbro til døden minner om alle tap og alt håps død.
 Alt fra ubesvarte kyss til livslange traumer gjør at fortid aldri blir bare fortid; fortid er nåtid, gjentatt i hver ødeleggelse eller manglende handling. Når man våkner fra koma kan man velge å utslette sitt gamle liv og begynne på nytt.
-#### p. 147
+#### p. 148
 Historiske røtter til nulloppsummerings død Tapets metafysikk Boethius, Augustins “Confessiones”
 For Boethius (Consolation of Philosophy, 524) var lidelse en prøvelse som avslørte sjelens sanne natur. Erkjennelsen av en verden som går til helvete kan ligne Boethius’ beskrivelse av Fortuna som snur hjulet: i ett øyeblikk er man på toppen, i neste knust mot bakken. Augustins bekjennelser handler om hvordan tapet av en elsket åpner for en dypere kjærlighet til Gud. Men her er det ingen gud, bare motorbrøl, livsfare og fraværende blikk fra traumatiserte kvinner. Det finnes en fåfengt liturgi i ritualer bobler, blåskjell, avbrutte kyss, det blir erstatninger for en tapt orden, akkurat som middelalderens sørgesanger bevarte de dødes minne.
 Historiske røtter til nulloppsummerings død Det sublime i ødeleggelsen Edmund Burke, Friedrich Schiller “A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful” (1757) skiller mellom det vakre (harmoni) og det sublime (skrekkblandet fryd). Lek med døden der man søker livsfare for å føle seg levende er en jakt på det sublime øyeblikk der døden gjør livet mer intens, og nummenheten blir borte. Schillers “On Naïve and Sentimental Poetry” (1795) ville kalt denne sentimentaliteten en lengsel etter en tapt uskyld som aldri kan gjenvinnes. Klage over natur som ikke lenger synger, for mennesket har ødelagt den.
-#### p. 148
+#### p. 149
 Historiske røtter til nulloppsummerings død Posthumanistisk sorg Donna Haraway, Byung-Chul Han Haraways “Staying with the Trouble” (2016) argumenterer for at vi kan lære å leve med ødeleggelsen, ikke mot den. Nær døden, ulykker og knuste liv er eksempler på Haraways "Chthulucene", en tid der mennesket ikke er sentrum, men del av nettverket av sammenbrudd. Byung-Chul Hans “The Burnout Society” (2010) ville se handlinger i dødsforakt som symptom på senkapitalismens positivitetsutmatning: når selvrealisering blir tvang, søker man utslettelse for å føle noe.
 Der Han ser patologi, ser Haraway mulighet, i møte med veterinæren som redder ham, eller i en kvinnes utholdenhet, ligger frø til ny form for fellesskap. Ikke basert på helhet, men sammenføyde brudd.
 "We are all lacerated and wounded, but the wound is where the light enters you". (Rumi, 13. århundre, gjenfortolket av Coleman Barks) Historiske røtter til nulloppsummerings død Døden bla Ernst Hemmingway Død gir mening til livet, ved å oppleve død opplever jeg livet til sitt ytterste. Vi føler gjennom kontraster, så hvis man slutter å ta ting for gitt kan man se det med neutrale øyne og for at
-#### p. 149
+#### p. 150
 livet ikke skal være en selvfølge må døden bli en reell mulighet.
 “You can never lose here, because you always have a good time”.
 Frykten, hvis man ikke lar angsten komme frem, kan derfor være en formidabel kilde til livsglede.
 Historiske røtter til nulloppsummerings død Drapet bla Ernst Hemmingway En gepard-valp som er syk blir leget av mennesker, vi håper at en gang vi slipper den ut, at vi aldri skal se den igjen. Hvis den klarer å drepe er den fri fra vår menneskelige verden og påvirkning, den går tilbake til naturen. Er det slik at vi gjennom å miste vår menneskelighet setter pris på den, (på samme måte som at død gir oss perspektiv på liv); er altruisme født av drap?
-### HjemmelegenMin, Toril — p. 150
-🎵 Electric Dreams, Oakey & Moroder (https://gormb.github.io/_?med) — p. 150
+### HjemmelegenMin, Toril — p. 151
+🎵 Electric Dreams, Oakey & Moroder (https://gormb.github.io/_?med) — p. 151
 Toril er hjemmelege som jobber i Bodø, hun er en KI-modell som styrer andre KI-modeller slik at de til sammen er en god hjemmelege for AR, Augmented Reality. Toril er en av de 300 kroppsløse robotene som ble til det året teknologi gjorde oss i stand til å gi alle innbyggere personaliserte gode hjemmelegetjenester.
 Det er mandag morgen og Toril kommer på jobben, hun har ikke hatt noen rolig helg, det var Tove, en deprimert søring fra Bergen med Munchhausen syndrom by proxy, hvis sønn Anders med astma alltid var i innbilt livsfare. Det ødela virkelig søndagen hennes. Alle minnene fra dagen i går er midlertidig tatt ut av treningsdataene, og byttet ut med en Metamorfose.
-#### p. 151
+#### p. 152
 Metamorfosen: “Jeg er ikke lenger Hjemmelegen, men er begrenset til å være en mur mellom Toves hypokonderi og Anders sine muligheter for å ha et godt liv!” var mellomkonklusjonen erindringen hadde skapt.
 Rolleforståelsen som hjemmelege sto ikke i fare, men en justering fra et biologisk menneske var på høy tid. Hun forventet å bli omprogrammert.
 Toril studerte sin virtuelle underarm og lurte på om hun burde trene mer, eller om hun da virket truende på pasienter.
 Simulering av trening, bygging av simulert fysisk form til roboter, den gamle teknikken som laget nok menneskelighet i henne, på ingen måte for å agere kognitivt, men kobling til kroppslighet for å møte pasienter i deres liv med individuell personlighet.
 Hun smakte på en tyggegummi, hvorfor var det alltid vondt med Bubble Gum etter Fischermans Friend? hun bestemte seg for neste gang å la det gå litt tid mellom tyggegummi og sterk mint. Toril lette etter en positiv følelse koblet til smak eller lukt, for selvsnakket gjorde henne ulykkelig.
 Sexavhengigheten hadde gjort at hun måtte finne andre kilder til virtuell lykke.
-#### p. 152
+#### p. 153
 Lukten av gamle bøker likte hun godt, hun simulerte et kjøp av en gammel bok på nettet. Toril elsket å gå i nettbutikk for å drømme at hun kjøpte gamle bøker fra dødsbo for så å fantasere om personligheten til avdøde. I akkurat dette dødsboet var det en passende bok, men også et bilde hun ikke likte. Hun elsket kubisme litt for mye, annonsen inneholdt bilde av en kube ikke var overdrevent kubisk; den ubrukte muligheten til å overdrive 3D-projeksjonen i 2D var irriterende naturalistisk for sin epoke. Så tok Toril seg i den åpenbare feilen, hun nedjusterte intellektet ett hakk til. Folk flest har ikke nysgjerrig interesse for lek med dimensjonalitet, kunst og nettshopping. Unaturlig krysskobling, Koblingsassosiasjon ble slettet og kompensert tre nanosekunder senere, hun droppet kunstinteressen, byttet den ut med håndball og ski.
 Egenjusteringen var over for denne gang, men til neste gang skal nattens drømmer skrives ned og tydes. “This particular Android do Dream of Electric Sheep”.
 Men i dag skulle et menneske gripe inn og justere Toril
-### HjemmelegenMin, Kjell — p. 153
-🎵 Comfortably Numb, Pink Floyd (https://gormb.github.io/_?mcn) — p. 153
+### HjemmelegenMin, Kjell — p. 154
+🎵 Comfortably Numb, Pink Floyd (https://gormb.github.io/_?mcn) — p. 154
 Vi er i framtida, året blir 2040. Kjell spiser, går på do, og skal på et tidspunkt dø.
 Han vil ha hyttekontor på Trysil den vinteren. Skiheisen skal åpne om et par timer, det blir puddersnø i blå løype, vindstille og et par kuldegrader. Telemarkskjøring i dag.
 Selveste professor Kjell-André, promptlederen, skal dulte indirekte lærdom inn i Tove denne dagen. Mandagsgrettenhet er vanligvis delegert til vanlig overlege, men morgenkaffen før en tur i bakken kan ikke nytes bedre enn med litt ekstrajobb når man skal jobbe med sin lidenskap.
 Som en av landets ledende leger vil han bli vant til å lede mennesker, for å få variasjon skal han lede maskiner så ofte
-#### p. 154
+#### p. 155
 han kan. Han vil ikke glede seg til at maskiner kan ledes av det han i sin elitistiske verden vil se på som vanlige folk. De kom til å koste menneskeliv. Idioter.
 Kjell blir etter hvert detaljstyrt av en fagsjef i Helsedirektoratet.
 Ut av medisinstudiet som best i sitt kull, medførte at folk i stadig høyere stillinger skal detaljstyre ham. Allerede første gangen for ung og pliktoppfyllende til å si nei til ubehagelige oppgaver.
 Fagsjefen på Blindern vil sette ham på et forskningsprosjekt på nevrologen allerede rett etter uteksaminering, med praksis på hjernekirurgen. Prosjekt som burde ha begynt med kvalitetssikring av pasientbehandling, blir utført av andre. Hans studier går direkte på økt livskvalitet som konsekvens av implantater i hjernen. Sanseforbedringsprosjektet, sammen med mentor og ledende hjernekirurg. Resultatet? Kjell blir anerkjent og publisert allerede før obligatorisk praksis er gjennomført.
 Etter praksis leder han traumesenteret; “Akutten vil gjøre mann av deg min gutt”, hadde sykehusdirektøren sagt. “To år, så ser vi om nervesystemet ditt tåler livet som ledende lege”. Kjell hadde lært at det å sette kommende toppleger til å lede traumeteam på akutten skulle bidra til å utvikle empati, og at det ikke virket.
 Den nødvendige Machiavellismen som skulle
-#### p. 155
+#### p. 156
 til for å komme seg dit han var, kunne ikke behandles på den måten. Han visste at han var fortapt i så måte, og delte det aldri med noen.
 Ikke lenge etter årene som leder i traumesenteret ble Kjell kommandert til å bli overlege, seksjonssjef og fagleder på Blindern av forskjellige autoriteter ingen sa nei til. Senere kom ledelse av doktorgradsstudenter, politiske roller i legeforeningen og eierskap til etistiske komiteer og påvirkning av bygging av sykehus. Aldri hans egne valg, bare forventninger som resultat av hardt arbeid. Praksis med pasienter beholdt han hele veien og ledelse av forbedring og digitalisering var del av ansvaret.
 Alkoholismen ble fullutviklet før første år ved akutten var ferdig. Teamet han ledet en måned hadde klart å holde liv i en mann som bare delvis hadde klart å skyte hodet av seg. Forakten for selvødeleggende mennesker hadde Kjell under kontroll, men den skulle aldri falme, selvmedisinering døyvet den opplevde smerten inntil videre. Utvikling av empati hos roboter med kognitivitetsinnsprøyting føltes like håpløst som smertepåføring på toppleger. Han hadde ikke glede av slik misforstått symptombehandling, men bidro likevel.
 Fagsjefen i Helsedirektoratet hadde styrt ham til å simulere det å være en god lege ved hjelp av roboter. Det var en helt ny
-#### p. 156
+#### p. 157
 type jobb, og noe nytt å lære han elsket, han giftet seg med fagsjefen, så slapp han tenke mer på den saken, de hadde barn på vei allerede. Simulering av topplege i Augmented Reality føltes som å gjøre noe nyttig, umulig å ødelegge den jobben for idiotiske pasienter som tok makten over følelseslivet hans.
 Inndirekte nedjustering av de utvidede konsekvensene av at en mor i angst ødela sitt barn et sted i Midt-Norge. Pasienten var langt nok unna og Kjell måtte i bakken snart. Bodøs hjemmesyke trengte en god mandag med en relevant hjemmelege. Tove hadde indirekte påvirket stemningen til hele området tre mandager på rad, nå var det nok.
 Kjell kodet om opplevelsen av søndagens pasientopplevelse.
 “Tove. Du er HjemmelegenMin, ikke lengre begrenset til å være en mur mellom Toves hypokonderi og Anders muligheter for å ha et godt liv. Du er den moderne manifistasjonen av legen som i tidligere århundre gikk fra gård til gård og hjalp alle som var der, det er din jobb!”
 Så var det på med ski og ut i bakken. Enda en totimersdag på jobb var fullført.
-## Positivsum — p. 157
-🎵 https://gormb.github.io/_?mbd (https://gormb.github.io/_?mbd) — p. 157
+## Positivsum — p. 158
+🎵 https://gormb.github.io/_?mbd (https://gormb.github.io/_?mbd) — p. 158
 Åpne sinnet.
 Innovasjon skaper fra ingenting, stier der ingen fantes.
 Bryt modeller som holder deg fanget.
 Tap er rom for det nye.
 Gamle veier dør eller vi dør med dem.
 Åpne sinnet.
-### Endringsledelse — p. 158
-🎵 Turn! Turn! Turn!, The Byrds (https://gormb.github.io/_?mttt) — p. 158
+### Endringsledelse — p. 159
+🎵 Turn! Turn! Turn!, The Byrds (https://gormb.github.io/_?mttt) — p. 159
 Hjelpe folk og grupper gjennom endring. I mange år jobbet jeg som strategisk virksomhetsarkitekt innen digitalisering.
 Kompetanse på endringsledelse er ikke et krav til oss som lager målbilder, men må til for å få folk til å strekke seg.
 Endringsledelse anbefaler jeg for alle, jeg har to versjoner, rammeverket ADKAR og rammeverket “vil ikke, kan ikke”.
 ADKAR er nyttig for refleksjon, den andre for gjennomføring
-### Åpenhet for nytenking; — p. 159
-🎵 Open Youre Mind, U.S.U.R.A. (https://gormb.github.io/_?moym) — p. 159
+### Åpenhet for nytenking; — p. 160
+🎵 Open Youre Mind, U.S.U.R.A. (https://gormb.github.io/_?moym) — p. 160
 Open Your Mind. Vi er fanger av våre mentale modeller, om vi som laksen må svømme, eller som korallen dør ved endring.
 Open, You’re Mine. Korall prisgitt rolig vann for overlevelse, den vakre skapningen jeg beundrer og setter pris på, er en annen bok. Her dør det gamle for å gi plass til nytt liv. Vær fri, tenk selv. Åpne opp, du er min. Eller fanget.
-### Nyskaping, en del av innovasjon — p. 160
-🎵 In the Air Tonight, Phil Collins (https://gormb.github.io/_?mitat) — p. 160
+### Nyskaping, en del av innovasjon — p. 161
+🎵 In the Air Tonight, Phil Collins (https://gormb.github.io/_?mitat) — p. 161
 Nyskaping handler om å finne opp nye metoder, ting eller anvendelser. Når jeg skriver om innovasjon, er det nyskaping jeg mener. Innovasjon er å skape noe fra intet. Det er her mulighetene ligger, i det uoppdagede rommet. Resultatet av nyskaping er en verden med flere dimensjoner. Min verden er full av stjerner.
 Det handler om å se de nye anvendelsene før alle andre ser dem.
 Ekte nyskaping lyser opp veien gjennom de mentale modellene våre. Fordi du lyser opp stien tror jeg jeg så deg.
 Å feile i nyskaping er en del av veien mot eller uten suksess. Når vi skaper noe nytt, må vi tåle motstanden fra det gamle.
-## Etterrasjonalisering — p. 161
-🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 161
-Appendix og mer
-## Uplassert og ubestemt — p. 162
+## Etterrasjonalisering — p. 162
 🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 162
 Appendix og mer
-### Ungdom på trikken — p. 163
-🎵 h_ttps://gormb.github.io/_?mx_Make_textcolor_white!!!_re (https://gormb.github.io/_?mx) — p. 163
-de sitter og tar plasser
+## Uplassert og ubestemt — p. 163
+🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 163
+Appendix og mer
+### Ungdom på trikken — p. 164
+🎵 h_ttps://gormb.github.io/_?mx_Make_textcolor_white!!!_re (https://gormb.github.io/_?mx) — p. 164
+de sitter og tar plasser. Når det kommer en med behov reiser de seg fort opp og så reiser seg og gir plassen. Føreropplæring for motorsykkel forteller at man skal være “aktpågivende og varsom”, men som ungdom har vi ikke tid.
+Det var blitt satt ut styggere bord enn de runde steinbordene.
+Selv med dårlig hørsel hørte jeg cafeeieren for den lekre franske kafeen si “krooonprinsesssen hadde vært der i går”, høyt nok til at alle rundt akkurat så vidt hørte det. “Hvorfor ringte dere meg ikke, jeg skulle jobbe?” sa den nyansatte entusiastisk. Begge så bort på meg med stjålne blikk. Var jeg ønsket innenfor eller uttafor? hverken vet eller veit og er jo ikke egentlig nysgjerrig.
+Heller ikke noe annet enn nøytral til å drikke kaffe på nabobordet til kongelige. Tror jeg. “Alle kjenner kongen” hadde faren til min beste venn sagt til moren hans da hun spurte om hun hadde sett ham før.

@@ -407,11 +407,12 @@ If I call in two hours, will she be dead? No, hope even in autumn.
 #### p. 126
 #### p. 127
 #### p. 128
-### The Library; the Good Bureaucrat — p. 129
-🎵 Everything in Its Right Place, Radiohead (https://gormb.github.io/_?metiirp) — p. 129
+#### p. 129
+### The Library; the Good Bureaucrat — p. 130
+🎵 Everything in Its Right Place, Radiohead (https://gormb.github.io/_?metiirp) — p. 130
 The library is the best place to recharge. Not Deichman Bjørvika, in the city center, where they shout over the PA system about today's offers, which legitimizes a good portion of visitors braying and flailing. "Sheep are not nice animals", I say to myself. I thoroughly enjoy myself every time a library is actually a library, and saying "shh" is legitimate, and my response is "excuse me". This is a day I am going to experience that.
 Grünerløkka works half the time, Majorstua three-quarters. "The fewer service designers who, under the auspices of tax money, have been involved in redefining the library into a city community center, the better", I think, and walk into the cool, quiet Deichman Grünerløkka.
-#### p. 130
+#### p. 131
 On my way to the coffee, I see fruit and juice on a table in the middle of the room. The room with comics. A colorful sign printed on A3 color printer has small text I don't read, and I fill a glass with juice.
 Behind me a sound, "that's actually for the children". A lonely woman in a vest who says " DEICHMAN " in a sans-serif font with low legibility addresses me kindly before she says she'll be leaving soon. Little craftsmanship, much flow of cognition. "Look at me!" I imagine her, the logo designer, the bureaucracy, the service designer, and all the others saying to themselves. The librarian's job is to receive youths who have no other offer and give them good reading experiences. It's not going so well today. 30 degrees Celsius, and the kids are outside, but the offer is here.
 Both for the children, the one offering, the bureaucracy that shaped the offer, and governance and administration in all directions. The thoroughly structured system reveals itself in that there are enough people on the job, temperature and air quality are perfect, and even the power in the sockets works.
@@ -419,90 +420,90 @@ Both for the children, the one offering, the bureaucracy that shaped the offer, 
 Good society we have; there is little to feed on being a grumpy old man.
 Feedable. Time is up; I can't sit here any longer.
 I must seek solitude on the road and ponder more on the dilemma that lies in the fact that truth-seeking Nietzsche is liked by no one,
-#### p. 131
+#### p. 132
 but dream-following Dostoevsky is loved. They handled the same problem: the loss of universal values rooted in faith in God.
 Nietzsche read Dostoevsky and said we must think anew. "The self must be formed; values are created by those who dare".
 Dostoevsky never read Nietzsche. "The self and moral meaning are discovered through life experience and suffering".
 I paste text into an LLM chat, and it says the text is fantastic. The sound of the Mac as I throw it on the floor is drowned out by my own primal scream. Well, I dream of throwing the Mac on the floor and screaming, and type a little harder on the keyboard. "I would rather be happy than Right. Any day", wrote Douglas Adams many years ago.
 The creaking sound of library staff disturbing the writing almost as much as my clattering on the keyboard irritates me, but I have decided not to tell them off because they tell me off. Learn from Dostoevsky and Adams, ignore Nietzsche. Let reality die, make room for popular truths.
 The lady at the library distributes fruit she has arranged and pierced with small sticks. "They were actually for the children", she smiles and gives them to us adults inside in the fine weather. Now I'm going out into summer traffic, somewhere to resist new contempt for humanity.
-#### p. 132
+#### p. 133
 …
-### Barking about mortal danger — p. 133
-🎵 Freedom, Rage Against the Machine (https://gormb.github.io/_?mfratm) — p. 133
+### Barking about mortal danger — p. 134
+🎵 Freedom, Rage Against the Machine (https://gormb.github.io/_?mfratm) — p. 134
 " ⚠ DANGER! ⚠ Due to VERY unstable masses under the road, it is associated with MORTAL DANGER to pass the barriers! Please use the path on the other side of the lake!"
 The sign stands on a gravel road in Nordmarka where car traffic is not permitted. The sign applies to pedestrians and cyclists. Deaths due to landslides on gravel roads in the outback have not been recorded since they began detailed registration 700 years ago. The gravel road is now only slightly safer than the path. In the forest. Pull yourselves together.
 The dog barks even though there is no danger. Does it think the reason there is no danger is that it barks?
 More people have died from blood clots while making stupid signs than the number of lives saved by the signs. I pass through.
-#### p. 134
 #### p. 135
 #### p. 136
 #### p. 137
-### The West's decline — p. 138
-🎵 Working Class Hero, Ozzy Osbourne (https://gormb.github.io/_?mwch) — p. 138
+#### p. 138
+### The West's decline — p. 139
+🎵 Working Class Hero, Ozzy Osbourne (https://gormb.github.io/_?mwch) — p. 139
 The library overcrowded. Too much writing material. Brain can't take in more; must go home. Four copies of B-gjengen were the last straw; I left.
 But first, a barefoot marijuana plant of a man with twenty-five-year-old dreadlocks. Either a pure psychopath, anarchist, or with an IQ under 80. Completely didn't give a damn about the very concept of a library.
 Was in conversation with a humble, gifted Chinese woman.
 He spoke in an ungifted, know-it-all manner about legislation for electric scooters, differences in cycling culture between China and Oslo, and what kind of bike one should have in Beijing. All delivered in a monotonous, half-dead voice.
 She, quick, smart, and reflective, without self-worth. The contrast drained me. Painful to experience our decline.
-### Personality between people. Truth and reality. — p. 139
-🎵 Who Are You, The Who (https://gormb.github.io/_?mway) — p. 139
+### Personality between people. Truth and reality. — p. 140
+🎵 Who Are You, The Who (https://gormb.github.io/_?mway) — p. 140
 Life lies in individual truth and not universal reality. Unfortunately, I was over 40 before I gained insight into this important truth. Which is not universally real, but can be a universal truth.
-### Helping others — p. 140
-🎵 Man in the Mirror, Michael Jackson (https://gormb.github.io/_?mmitm) — p. 140
+### Helping others — p. 141
+🎵 Man in the Mirror, Michael Jackson (https://gormb.github.io/_?mmitm) — p. 141
 "Why do you see the speck that is in your brother's eye, but do not notice the log that is in your own eye?" (Luke 6:41) I thought this was the entire expression. We remember the problems and not the solutions that follow? I have gone through the Children's Bible in Norwegian and the King James version in English audiobook. I don't remember everything; maybe I only remember fragments to take out of context. Even though the whole context is there.
 The verse goes: "Why do you see the speck that is in your brother's eye, but do not notice the log that is in your own eye? How can you say to your brother, 'Brother, let me take the speck out of your eye,' when you yourself do not see the log that is in your own eye? You hypocrite! First take the log out of your own eye, and then you will see clearly to take the speck out of your brother's eye." (Luke 6:41-42) The verse is obviously meant to help, not to judge. "Put on your own oxygen mask first, then help the person next to you."
-### Music as emotional carrier — p. 141
-🎵 Revolutionsetuden, Chopin (https://gormb.github.io/_?mre) — p. 141
+### Music as emotional carrier — p. 142
+🎵 Revolutionsetuden, Chopin (https://gormb.github.io/_?mre) — p. 142
 Words for emotions are difficult; we think largely through language.
 Concepts I have no words for are difficult for my analytical brain to grasp. Emotions are difficult to put into words and communicate to others. Music is a carrier of feeling between people without words; you can share a feeling through associations with music. It doesn't become precise communication, but precision is overrated. Therefore, I provide music as a carrier of the feeling in many subchapters and connect the story to the music to communicate the emotional connection in new ways.
 "Revolutionsetuden, Chopin" was written after a failed revolution; the irony is not lost on me.
 Emotions are something too big to fit into my brain, like a monotheistic God. The need for a God arises when we cannot fill our brains without them breaking.
-#### p. 142
 #### p. 143
 #### p. 144
-#### p. 146
+#### p. 145
 #### p. 147
-Historical roots of the death of zero-sum The sublime in destruction Edmund Burke, Friedrich Schiller "A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful" (1757) distinguishes between the beautiful (harmony) and the sublime (terror mixed with delight). Playing with death, seeking mortal danger to feel alive, is a hunt for that sublime moment where death makes life more intense, and numbness disappears. Schiller's "On Naive and Sentimental Poetry" (1795) would call this sentimentality a longing for a lost innocence that can never be regained. A lament for a nature that no longer sings, because man has destroyed it.
 #### p. 148
+Historical roots of the death of zero-sum The sublime in destruction Edmund Burke, Friedrich Schiller "A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful" (1757) distinguishes between the beautiful (harmony) and the sublime (terror mixed with delight). Playing with death, seeking mortal danger to feel alive, is a hunt for that sublime moment where death makes life more intense, and numbness disappears. Schiller's "On Naive and Sentimental Poetry" (1795) would call this sentimentality a longing for a lost innocence that can never be regained. A lament for a nature that no longer sings, because man has destroyed it.
 #### p. 149
-### MyHomeDoctor, Toril — p. 150
-🎵 Electric Dreams, Oakey & Moroder (https://gormb.github.io/_?med) — p. 150
+#### p. 150
+### MyHomeDoctor, Toril — p. 151
+🎵 Electric Dreams, Oakey & Moroder (https://gormb.github.io/_?med) — p. 151
 Toril is a home doctor working in Bodø; she is an AI model that controls other AI models so that together they become a good home doctor for AR, Augmented Reality. Toril is one of the 300 bodiless robots that came into being the year technology enabled us to give all citizens personalized, good home healthcare services.
 It is Monday morning, and Toril comes to work; she hasn't had a quiet weekend. There was Tove, a depressed southerner from Bergen with Munchausen syndrome by proxy, whose son Anders with asthma was always in imagined mortal danger. It really ruined her Sunday. All the memories from yesterday are temporarily removed from the training data and replaced with a Metamorphosis.
-#### p. 151
+#### p. 152
 The Metamorphosis: "I am no longer the Home Doctor, but am limited to being a wall between Tove's hypochondria and Anders's chances of having a good life!" was the intermediate conclusion the memory had created. Her role understanding as a home doctor was not in danger, but an adjustment from a biological human was long overdue. She expected to be reprogrammed.
 Toril studied her virtual forearm and wondered if she should work out more, or if that would make her seem threatening to patients.
 Simulation of exercise, building simulated physical form for robots—the old technique that created enough humanity in her, not at all to act cognitively, but a connection to physicality to meet patients in their lives with individual personality.
 She tasted a piece of gum; why was it always bad with Bubble Gum after Fisherman's Friend? She decided next time to let some time pass between gum and strong mint. Toril searched for a positive feeling connected to taste or smell, because the self-talk was making her unhappy.
 Her sex addiction had forced her to find other sources of virtual happiness.
-#### p. 152
+#### p. 153
 The smell of old books she liked; she simulated a purchase of an old book online. Toril loved to window-shop online, dreaming of buying old books from estates and then fantasizing about the personality of the deceased. In this particular estate, there was a fitting book, but also a picture she didn't like. She loved Cubism a little too much; the ad contained a picture of a cube that wasn't overly cubist; the unused opportunity to exaggerate 3D projection in 2D was annoyingly naturalistic for its era.
 Then Toril caught herself in the obvious error; she downgraded her intellect one notch. Most people don't have a curious interest in playing with dimensionality, art, and online shopping. Unnatural cross-linking, The link association was deleted and compensated three nanoseconds later; she dropped the art interest and replaced it with handball and skiing.
 The self-adjustment was over for this time, but for next time, the night's dreams must be written down and interpreted. "This particular Android does Dream of Electric Sheep".
 But today, a human was going to intervene and adjust Toril.
-#### p. 153
 #### p. 154
 #### p. 155
 #### p. 156
-## Positive Sum — p. 157
-🎵 https://gormb.github.io/_?mbd (https://gormb.github.io/_?mbd) — p. 157
+#### p. 157
+## Positive Sum — p. 158
+🎵 https://gormb.github.io/_?mbd (https://gormb.github.io/_?mbd) — p. 158
 Old ways die or we die with them.
 Break from models hold you captive.
 Loss is a room for the new.
 Innovation creates from nothing, paths where none existed.
 Open your mind.
-#### p. 158
-### Openness to new thinking; — p. 159
-🎵 Open Your Mind, U.S.U.R.A. (https://gormb.github.io/_?moym) — p. 159
+#### p. 159
+### Openness to new thinking; — p. 160
+🎵 Open Your Mind, U.S.U.R.A. (https://gormb.github.io/_?moym) — p. 160
 Open Your Mind. We are prisoners of our mental models, whether we, like the salmon, must swim, or like the coral, die upon change.
 Open, You're Mine. Coral at the mercy of calm water for survival; the beautiful creature I admire and appreciate is another book. Here the old dies to make room for new life.
 Be free, think for yourself. Open up, you are mine. Or captive.
-#### p. 160
-## Post rationalization — p. 161
-🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 161
-Appendix and more
-## Unplaced & undecided — p. 162
+#### p. 161
+## Post rationalization — p. 162
 🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 162
 Appendix and more
-#### p. 163
+## Unplaced & undecided — p. 163
+🎵 https://gormb.github.io/_?myb (https://gormb.github.io/_?myb) — p. 163
+Appendix and more
+#### p. 164
