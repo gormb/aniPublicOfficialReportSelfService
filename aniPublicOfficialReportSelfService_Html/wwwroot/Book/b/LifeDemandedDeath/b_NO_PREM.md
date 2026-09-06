@@ -730,10 +730,10 @@ Ringer jeg om to timer, er hun død? Nei håp også om høsten.
 ### Alle kjenner kongen — p. 125
 🎵 Every Breath You Take, The Police (https://gormb.github.io/_?mebyt) — p. 125
 Det var blitt satt ut styggere bord enn de runde steinbordene.
-Selv med dårlig hørsel hørte jeg cafeeieren for den lekre franske kafeen si “krooonprinsesssen hadde vært der i går”, høyt nok til at alle rundt akkurat så vidt hørte det.
-“Hvorfor ringte dere meg ikke, jeg skulle jobbe?” sa den nyansatte entusiastisk. Begge så bort på meg med stjålne blikk.
-Var jeg ønsket innenfor eller uttafor? hverken vet eller veit og er jo ikke egentlig nysgjerrig. Heller ikke noe annet enn nøytral til å drikke kaffe på nabobordet til kongelige. Tror jeg.
-“Alle kjenner kongen” hadde faren til min beste venn sagt til moren hans da hun spurte om hun hadde sett ham før. Vet ikke om det er sant at alle kjenner kongen, men kongelighet er bra for den fantastiske kafeen.
+Selv med dårlig hørsel hørte jeg cafeeieren for den lekre franske kafeen si “krooonprinsesssen har vært kunde her i går”, høyt nok til at alle rundt akkurat så vidt hørte det.
+“Hvorfor ringte dere meg ikke, jeg skulle jobbe?” sa den relativt nyansatte entusiastisk. Begge så bort på meg med stjålne blikk.
+Var jeg ønsket innenfor eller uønska uttafor? hverken vet eller veit jeg, og er ikke nysgjerrig. Nøytral til å drikke kaffe på nabobordet til kongelige. Tror jeg.
+“Alle kjenner kongen” hadde faren til min beste barndomsvenn sagt. Det som skulle bli moren hadde spurt “Har jeg sett deg før”. Vet ikke om det er sant at alle kjenner eller vil kjenne kongen, men kongelighet er bra for den fantastiske kafeen.
 ### Takk for to normale år — p. 126
 🎵 Praise You, Fatboy Slim (https://gormb.github.io/_?mpy) — p. 126
 Jeg var trygg hos henne, mens kropp og sjel leget seg, men plutselig var det over. Hva som gjorde at det slutt vet jeg like lite om som hvordan forholdet begynte, men jeg trenger ikke vite noe av det. Hun er et av mine topp tre forhold gjennom livet, og skal huskes slik. Vi fikk ikke barn, men en liten hund jeg savner bunnløst.
