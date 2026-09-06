@@ -8,7 +8,7 @@ const books={
             ,parse:()=>{
                 const md=books.play.md.txt.split(/\n/);
                 books.play.md.title=md[0].replace(/^#\s*/,'').trim();
-                books.play.md.pages=[];
+                books.play.md.pages=[];books.play.md.pgs=[];
                 let cur=null,par=[],last='';
                 const flush=()=>{if(cur&&par.length){cur.ps.push(par.join(' '));par=[];}};
                 md.slice(1).forEach(l=>{
@@ -20,6 +20,7 @@ const books={
                     else{
                         if(!cur)cur={h:null,ps:[]};
                         const _l=l.trim(),_m=/^\u{1F3B5}/u.test(_l);
+                        if(!_m&&_l)books.play.md.pgs.push({pn:cur.pn||0,txt:_l});
                         if(cur.h&&!cur.ps.length&&!par.length&&_m&&_l.match(/https?:\/\/[^\s)]+/))cur.mu=_l.match(/https?:\/\/[^\s)]+/)[0];
                         else par.push(_m?books.play.render.mus(_l):books.play.render.esc(_l));
                         last=_l;
@@ -27,6 +28,10 @@ const books={
                 });
                 flush();
                 if(cur&&(cur.h||cur.ps.length)){cur.e=books.play.render.sent(last);books.play.md.pages.push(cur);}
+                books.play.md.sts=[];
+                books.play.md.pgs.forEach(p=>{const ss=books.play.render.sentT(p.txt);ss.forEach(s=>books.play.md.sts.push({pn:p.pn,txt:s}));});
+                books.play.md.tr=[];
+                md.slice(1).forEach(l=>{const h=l.match(/^(#{2,4})\s+(.*)$/),s=l.trim(),_m=/^\u{1F3B5}/u.test(s);if(h)books.play.md.tr.push({h:1,d:h[1].length-2,t:h[2].trim()});else if(s&&!_m)books.play.md.tr.push({h:0,t:s});});
                 books.play.md.index();
                 books.play.render.reset();
                 books.play.render.draw();
@@ -74,6 +79,12 @@ const books={
                 ,{pl:'pl1',ic:'📖',nm:'Boka'}
                 ,{pl:'pl2',ic:'📑',nm:'Seksjon'}
                 ,{pl:'pl3',ic:'📄',nm:'Kapittel'}
+                ,{pl:'pl4',ic:'📃',nm:'Side'}
+                ,{pl:'pl5',ic:'¶',nm:'Paragraf'}
+                ,{pl:'pl6',ic:'✍️',nm:'Setning'}
+                ,{pl:'pl7',ic:'🔤',nm:'Ord'}
+                ,{pl:'pl8',ic:'🔠',nm:'Bokstav'}
+                ,{pl:'pl9',ic:'🎨',nm:'Color'}
             ]
             ,mode:0,idx:0
             ,setMode:()=>{[...books.play.render.el.lvBars.children].forEach((b,i)=>b.classList.toggle('on',i===books.play.render.mode));books.play.render.el.zout.disabled=books.play.render.mode===0;books.play.render.el.zin.disabled=books.play.render.mode===books.play.render.lv.length-1;}
@@ -86,7 +97,13 @@ const books={
                     ()=>books.play.md.books.map(bk=>'<a data-book="'+bk+'">📚&nbsp;'+books.play.render.esc(bk)+'</a>')
                     ,()=>books.play.md.chs.map((ch,i)=>a(ch[0].h[1],i,0,'📖'))
                     ,()=>books.play.md.subs.map((su,i)=>a(su[0].h[1],i,su[0].h[0]===2?0:1,ic[su[0].h[0]]||'📑'))
+                    ,()=>['']
                     ,()=>{let l=0;return books.play.md.pages.map((pg,i)=>pg.h?(l=pg.h[0]===2?0:1,a(pg.h[1],i+1,l,ic[pg.h[0]]||'📄')):pg.pn?a('p.'+pg.pn,i+1,l+1,'📄'):'');}
+                    ,()=>{let o=[],d=0,pi=0;books.play.md.tr.forEach(r=>{if(r.h){d=r.d;o.push('<div class="th">'+'&nbsp;'.repeat(2*d)+books.play.render.esc(r.t)+'</div>');}else{o.push(a(r.t.slice(0,20),pi,d+1,'¶'));pi++;}});return o;}
+                    ,()=>{let o=[],d=0,si=0;books.play.md.tr.forEach(r=>{if(r.h){d=r.d;o.push('<div class="th">'+'&nbsp;'.repeat(2*d)+books.play.render.esc(r.t)+'</div>');}else{const ss=books.play.render.sentT(r.t);ss.forEach(s=>{if(s){o.push(a(s.slice(0,20),si,d+1,'✍️'));si++;}});}});return o;}
+                    ,()=>['']
+                    ,()=>['']
+                    ,()=>['']
                 ];
                 books.play.render.el.nav.innerHTML=o[books.play.render.mode]().join('');
             }
@@ -95,6 +112,7 @@ const books={
             ,qr:u=>'<img src="https://gormb.github.io/_/i/'+u.split('?')[1]+'.qr1.png" style="height:66px;image-rendering:pixelated;">'
             ,mus:l=>{const u=(l.match(/https?:\/\/[^\s)]+/)||[''])[0];return '<a href="'+u+'">\u{1F3B5}</a>'+books.play.render.qr(u);}
             ,sent:s=>/[.!?\u2026]["'\u201D\u2019\u00BB]?$/.test(s.trim())
+            ,sentT:s=>(s.match(/[^.!?\u2026]+[.!?\u2026]+["'\u201D\u2019\u00BB]?|\S[^.!?\u2026]*$/g)||[]).map(x=>x.trim()).filter(Boolean)
             ,head:p=>{const t=p.h&&p.h[1];if(!t)return '';const h=p.h[0]===2?'h2':'h3',s=books.play.render.slug(t);return '<'+h+(s?' id="'+s+'"':'')+'>'+books.play.render.esc(t)+(p.mu?' <a href="'+p.mu+'">\u{1F3B5}'+books.play.render.qr(p.mu):'')+'</'+h+'></a>'}
             ,page:p=>{return (p.pn?'<a id="p'+p.pn+'"></a>':'')+(p.t?'<h1>'+books.play.render.esc(books.play.md.title)+'</h1>':books.play.render.head(p)+p.ps.join('<br>'));}
             ,flow:a=>{let o='',br=1;a.forEach(p=>{const f=books.play.render.page(p);o+=o?(br?'<br>':' ')+f:f;br=p.e?1:0;});return o;}
@@ -102,14 +120,22 @@ const books={
                 ()=>['<h1>'+books.play.render.esc(books.play.md.title)+'</h1>'+books.play.render.flow(books.play.md.pages)]
                 ,()=>books.play.md.chs.map(books.play.render.flow)
                 ,()=>books.play.md.subs.map(books.play.render.flow)
+                ,()=>[books.play.render.lv[3].nm+' – zoom inn fra «Boka» for å se sidene']
                 ,()=>[{t:1}].concat(books.play.md.pages).map(books.play.render.page)
+                ,()=>books.play.md.pgs.map(p=>books.play.render.esc(p.txt))
+                ,()=>books.play.md.sts.map(s=>books.play.render.esc(s.txt))
+                ,()=>[books.play.render.lv[7].nm+' – dette nivået er ikke implementert ennå']
+                ,()=>[books.play.render.lv[8].nm+' – dette nivået er ikke implementert ennå']
+                ,()=>[books.play.render.lv[9].nm+' – dette nivået er ikke implementert ennå']
             ][books.play.render.mode]()
             ,reset:()=>{books.play.render.mode=0;books.play.render.idx=0;books.play.render.setMode();books.play.render.el.title.textContent=books.play.md.title;books.play.render.toc();}
             ,draw:()=>{
                 const v=books.play.render.views();
                 books.play.render.idx=Math.max(0,Math.min(v.length-1,books.play.render.idx));
                 books.play.render.el.page.innerHTML=v[books.play.render.idx];
+                books.play.render.hl();
             }
+            ,hl:()=>{const m=books.play.render.mode;books.play.render.el.nav.querySelectorAll('a[data-i]').forEach(a=>a.classList.toggle('on',+a.dataset.m===m&&+a.dataset.i===books.play.render.idx));}
             ,show:k=>{books.play.render.idx=k;books.play.render.draw();}
             ,nav:d=>{
                 if(books.play.render.mode!==0){books.play.render.show(books.play.render.idx+d);return;}
