@@ -2,6 +2,22 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "git: pull on workspace open",
+            "type": "process",
+            "command": "git",
+            "args": [
+                "pull",
+                "--ff-only"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
             "label": "build",
             "command": "dotnet",
             "type": "process",
