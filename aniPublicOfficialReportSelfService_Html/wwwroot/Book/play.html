@@ -2,8 +2,35 @@
 <head><meta charset="utf-8"><link rel="stylesheet" href="play.css"></head>
 <body>
     <div id="dpMenu"><button id="mode" onclick="books.play.render.cycle()">☰</button><span id="modeLbl">�</span><button id="prev" onclick="books.play.render.show(books.play.render.idx-1)">🫲</button><button id="next" onclick="books.play.render.show(books.play.render.idx+1)">🫱</button></div>
+
     <div id="dbNav"><div id="dbNavHead"><button id="lang">🇳🇴</button><span id="dbTitle"></span></div><div id="dbNavList"></div></div>
     <div id="dpBook"><div id="page"></div></div>
+    <div id="dbPlay"><div id="dbPlayHead">
+        <button id="play">🇳</button>
+        <span id="dbPlayTitle">Play</span>
+        </div><div id="dbPlayArea">
+            Lekegrind for KI med verktøy for å lage, utbedre og nyte bøker på forskjellige semantiske zoom- og detaljnivåer:
+            <ol>
+            <li id="pl0">Bokhylla – Hvilke bøkererrelevant etgittinnhold?
+            <ol>    <li>Konsept eller sjanger</li>
+                    <li>Stil eller språk</li>
+            </ol></li>
+            <li>«Boka» – Hva er den overordnede strukturen for innholdet?
+            <ol>    <li>«Hero's Journey»</li>
+                    <li>Hva bør jobbes med</li>
+            </ol></li>
+            <li>Seksjon</li>
+            <li>Kapittel</li>
+            <li>Side</li>
+            <li>Paragraf</li>
+            <li>Setning</li>
+            <li>Ord
+            <ol>    <li>Hva betyr ordet</li>
+                    <li>Hva bør jobbes med</li>
+            </ol></li>
+            </ol>
+            </div>
+    </div>
     <script src="play.js"></script>
 </body>
 </html>
