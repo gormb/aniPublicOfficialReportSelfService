@@ -1,10 +1,13 @@
 <!doctype html>
 <head><meta charset="utf-8"><link rel="stylesheet" href="play.css"></head>
 <body>
-    <div id="dpMenu"><button id="mode" onclick="books.play.render.cycle()">☰</button><span id="modeLbl">�</span><button id="prev" onclick="books.play.render.show(books.play.render.idx-1)">🫲</button><button id="next" onclick="books.play.render.show(books.play.render.idx+1)">🫱</button></div>
-
-    <div id="dbNav"><div id="dbNavHead"><button id="lang">🇳🇴</button><span id="dbTitle"></span></div><div id="dbNavList"></div></div>
+<!-- menu -->
+    <div id="dpMenu"><span id="lvBars"></span><button id="zin" onclick="books.play.render.zoom(1)">+</button><button id="zout" onclick="books.play.render.zoom(-1)">−</button><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button></div>
+<!-- nav -->
+    <div id="dbNav"><div id="dbNavHead"><button id="lang">🇳🇴</button><button id="ver">👑</button><span id="dbTitle"></span></div><div id="dbNavList"></div></div>
+<!-- book -->
     <div id="dpBook"><div id="page"></div></div>
+<!-- play -->
     <div id="dbPlay"><div id="dbPlayHead">
         <button id="play">🇳</button>
         <span id="dbPlayTitle">Play</span>
@@ -13,7 +16,7 @@
             <ul>
             <li id="pl_dev_0">Dev – what structure is relevant for this list?<details><summary>Thoughts</summary>Keep extremely short as usual! put under books.play so that it can be integrated other places later</details>
             <ol>    <li>Make existing navigation match the list pl0..pl6<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
-                    <li>Create a "navigation" mode and make it possible<details>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
+                    <li>Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
                     <li class="hide">What to hold this text (to guide user)<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
                     <li class="hide">What to hold features (to make available to user)<details><summary>Thoughts</summary>plN sets levels (0-8), so binary filters make sense for mapping features to levels: each feature gets a 9-bit mask of the levels where it applies. Example: "look up word" only on pl7/pl8, "pick book" only on pl0.</details></li>
                     <li class="hide">What to map features to levels and other structures<details><summary>Thoughts</summary>Keep the mapping as data, not code: feature ↔ level mask, plus optional anchors into the other structures (book, chapter, page, paragraph, word), so one feature list drives navigation, help text and AI tools alike.</details></li>
@@ -33,24 +36,44 @@
                     <li class="hide">«Hero's Journey» – hvilken fase?<details><summary>Thoughts</summary>Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.</details></li>
                     <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Collect book-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.</details></li>
                 </ol></li>
-            <li id="pl2">Seksjon - Hva er i denne seksjonen, og hva er kapitlene?
-                <ol>    <li class="hide">todo</li>
+            <li id="pl2">Seksjon - Hva er i denne seksjonen, og hva er kapitlene?<details><summary>Thoughts</summary>At section scale the units are groups of chapters that share a theme; the section acts as the coarser parent of its chapters.</details>
+                <ol>    <li class="hide">Hvilke kapitler?<details><summary>Thoughts</summary>List the chapters inside this section and their order.</details></li>
+                        <li class="hide">Hvilket tema?<details><summary>Thoughts</summary>The theme or arc that binds the section's chapters together.</details></li>
+                        <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Section-level improvements: pacing, ordering and balance across chapters.</details></li>
                 </ol></li>
-            <li id="pl3">Kapittel - Hva er i dette kapittelet?
-                <ol>    <li class="hide">todo</li>
+            <li id="pl3">Kapittel - Hva er i dette kapittelet?<details><summary>Thoughts</summary>At chapter scale the units are single chapters; the nav jumps into the chapter and its pages.</details>
+                <ol>    <li class="hide">Hvilke sider?<details><summary>Thoughts</summary>Which pages belong to the chapter, and in which order.</details></li>
+                        <li class="hide">Hva skjer?<details><summary>Thoughts</summary>What the chapter advances in the story or argument.</details></li>
+                        <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Chapter-level improvements: too thin, too dense or out of order.</details></li>
                 </ol></li>
-            <li id="pl4">Side - Hva er på denne siden?
-                <ol>    <li class="hide">todo</li>
+            <li id="pl4">Side - Hva er på denne siden?<details><summary>Thoughts</summary>At page scale the units are pages (with p.N anchors); the nav jumps between pages.</details>
+                <ol>    <li class="hide">Hvilke paragrafer?<details><summary>Thoughts</summary>The paragraphs that make up this page.</details></li>
+                        <li class="hide">Hva formidles?<details><summary>Thoughts</summary>What the page communicates: content, mood or key point.</details></li>
+                        <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Page-level polish: flow, rhythm and visual balance.</details></li>
                 </ol></li>
-            <li id="pl5">Paragraf - Hva er i denne paragrafen?
-                <ol>    <li class="hide">todo</li>
+            <li id="pl5">Paragraf - Hva er i denne paragrafen?<details><summary>Thoughts</summary>At paragraph scale the units are paragraphs – blocks of related sentences.</details>
+                <ol>    <li class="hide">Hvilke setninger?<details><summary>Thoughts</summary>The sentences that build this paragraph.</details></li>
+                        <li class="hide">Hva sies?<details><summary>Thoughts</summary>The paragraph's main point or idea.</details></li>
+                        <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Paragraph-level edits: clarity, rhythm and transitions.</details></li>
                 </ol></li>
-            <li id="pl7">Setning - Hva er i denne setningen?
-                <ol>    <li class="hide">todo</li>
+            <li id="pl6">Setning - Hva er i denne setningen?<details><summary>Thoughts</summary>At sentence scale the units are sentences; grammar and style tools live here.</details>
+                <ol>    <li class="hide">Hvilke ord?<details><summary>Thoughts</summary>The words that form the sentence and their roles.</details></li>
+                        <li class="hide">Hva betyr den?<details><summary>Thoughts</summary>The meaning and function of the sentence in context.</details></li>
+                        <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Sentence-level improvements: grammar, word order and tone.</details></li>
                 </ol></li>
-            <li id="pl8">Ord - Hva er i dette ordet?
-                <ol>    <li class="hide">Hva betyr ordet</li>
-                        <li class="hide">Hva bør jobbes med</li>
+            <li id="pl7">Ord - Hva er i dette ordet?<details><summary>Thoughts</summary>At word scale the units are words: meaning, inflection and what to improve. Word-level features (lookup, glossary) apply here and deeper.</details>
+                <ol>    <li class="hide">Hva betyr ordet<details><summary>Thoughts</summary>Look up meaning, inflections and usage – the finest content level where dictionary lookup applies.</details></li>
+                        <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Which word needs editorial attention: clarity, style or accuracy.</details></li>
+                </ol></li>
+            <li id="pl8">Bokstav - Hva er i denne bokstaven?<details><summary>Thoughts</summary>At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.</details>
+                <ol>    <li class="hide">Font<details><summary>Thoughts</summary>Which typeface renders the glyph; changing font restyles the whole letter.</details></li>
+                        <li class="hide">Size<details><summary>Thoughts</summary>Point size of the glyph, e.g. relative to body text.</details></li>
+                        <li class="hide">Dekorasjon / ligaturer<details><summary>Thoughts</summary>Stylistic variants and ligature pairs (fi, fl) that join glyphs.</details></li>
+                        <li class="hide">Tegnavstand (kerning)<details><summary>Thoughts</summary>Space between letter pairs; pairs naturally with ligatures at glyph level.</details></li>
+                </ol></li>
+            <li id="pl9">Color - Forgrunn og bakgrunn<details><summary>Thoughts</summary>At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.</details>
+                <ol>    <li class="hide">Color<details><summary>Thoughts</summary>Which color renders the glyph; changing color restyles the whole letter.</details></li>
+                        <li class="hide">Background<details><summary>Thoughts</summary>Which background color renders behind the glyph; changing background restyles the whole letter.</details></li>
                 </ol></li>
             </ul>
             </div>

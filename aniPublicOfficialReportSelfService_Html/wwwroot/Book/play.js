@@ -43,17 +43,42 @@ const books={
                 if(su)books.play.md.subs.push(su);
             }
         }
-        ,book:'LifeDemandedDeath'
-        ,open:lg=>books.play.md.set('b/'+books.play.book+'/b_'+lg+'_FREE.md')+(lang.textContent=lg==='NO'?'🇳🇴':'🇬🇧')
+        ,book:'LifeDemandedDeath',lg:'NO',ed:'PREM',shelf:null
+        ,fnOf:()=>'b/'+books.play.book+'/b_'+books.play.lg+'_'+books.play.ed+'.md'
+        ,open:(lg,ed)=>{books.play.lg=lg||books.play.lg;books.play.ed=ed||books.play.ed;lang.textContent=books.play.lg==='NO'?'🇳🇴':'🇬🇧';ver.textContent=books.play.ed==='PREM'?'👑':'🔓';books.play.md.set(books.play.fnOf());}
         ,lang:()=>{books.play.open(/NO_/.test(books.play.md.fn)?'EN':'NO');}
-        ,pick:b=>{
-            books.play.book=b;
-            books.play.open(/NO_/.test(books.play.md.fn)?'NO':'EN');
+        ,ver:()=>{books.play.open(books.play.lg,books.play.ed==='PREM'?'FREE':'PREM');}
+        ,pick:b=>{books.play.book=b;books.play.open(/NO_/.test(books.play.md.fn)?'NO':'EN');}
+        ,probe:async()=>{
+            const cs=[];
+            books.play.md.books.forEach(b=>['NO','EN'].forEach(lg=>['FREE','PREM'].forEach(ed=>cs.push({book:b,lg,ed,fn:'b/'+b+'/b_'+lg+'_'+ed+'.md'}))));
+            const ok=[];
+            for(const c of cs){let good=false;try{const r=await fetch(c.fn,{cache:'no-store'});good=r.ok;}catch(e){}if(good)ok.push(c);}
+            books.play.shelf=ok;
         }
+        ,loc:()=>({book:books.play.book,lg:books.play.lg,ed:books.play.ed,pg:0})
+        ,step:(l,v,c)=>{
+            const t=(v||'').toLowerCase().replace(/\s/g,''),o={lg:c.lg,ed:c.ed,book:c.book,pg:c.pg};
+            if(l===0){
+                if(/^(no|en)$/.test(t))o.lg=t.toUpperCase();
+                else if(/^(pre|free)$/.test(t))o.ed=t==='pre'?'PREM':'FREE';
+                else{const m=books.play.md.books.find(b=>{const n=b.toLowerCase();return n.startsWith(t)||n.includes(t);});if(m)o.book=m;}
+            }else if(l===4&&/^\d+$/.test(t))o.pg=+t;
+            return o;
+        }
+        ,ref:(p,c)=>((a,c0)=>a.length<2?c0:books.play.ref(a.slice(2),books.play.step(+a[0],a[1],c0)))(typeof p==='string'?p.split('_'):p,c||books.play.loc())
         ,render:{
-            el:{page,nav:dbNavList,title:dbTitle,prev,next,mode,modeLbl}
-            ,mode:0,idx:0,icons:['📚','📖','📑','📄']
-            ,setMode:()=>{books.play.render.el.modeLbl.textContent=books.play.render.icons[books.play.render.mode];}
+            el:{page,nav:dbNavList,title:dbTitle,prev,next,zout,zin,lvBars}
+            ,lv:[
+                {pl:'pl0',ic:'📚',nm:'Bokhylla'}
+                ,{pl:'pl1',ic:'📖',nm:'Boka'}
+                ,{pl:'pl2',ic:'📑',nm:'Seksjon'}
+                ,{pl:'pl3',ic:'📄',nm:'Kapittel'}
+            ]
+            ,mode:0,idx:0
+            ,setMode:()=>{[...books.play.render.el.lvBars.children].forEach((b,i)=>b.classList.toggle('on',i===books.play.render.mode));books.play.render.el.zout.disabled=books.play.render.mode===0;books.play.render.el.zin.disabled=books.play.render.mode===books.play.render.lv.length-1;}
+            ,bar:()=>{books.play.render.el.lvBars.innerHTML=books.play.render.lv.map((l,i)=>'<button title="'+l.pl+' '+l.nm+'" data-lv="'+i+'">'+l.ic+'</button>').join('');books.play.render.el.lvBars.onclick=ev=>{const x=ev.target.closest('button');if(x)books.play.render.go(+x.dataset.lv);};books.play.render.setMode();}
+            ,go:n=>{books.play.render.mode=n;books.play.render.setMode();books.play.render.toc();books.play.render.draw();}
             ,toc:()=>{
                 const ic={2:'📖',3:'📑'}
                 ,a=(t,i,l,ico)=>t===''?'':'<a data-i="'+i+'" data-m="'+books.play.render.mode+'">'+'&nbsp;'.repeat(2*l)+ico+'&nbsp;'+books.play.render.esc(t)+'</a>'
@@ -84,10 +109,20 @@ const books={
                 const v=books.play.render.views();
                 books.play.render.idx=Math.max(0,Math.min(v.length-1,books.play.render.idx));
                 books.play.render.el.page.innerHTML=v[books.play.render.idx];
-                books.play.render.el.prev.hidden=books.play.render.el.next.hidden=books.play.render.mode===0;
             }
             ,show:k=>{books.play.render.idx=k;books.play.render.draw();}
-            ,cycle:()=>{books.play.render.mode=(books.play.render.mode+1)%4;books.play.render.setMode();books.play.render.toc();books.play.render.draw();}
+            ,nav:d=>{
+                if(books.play.render.mode!==0){books.play.render.show(books.play.render.idx+d);return;}
+                const s=books.play.shelf;
+                if(!s||!s.length)return;
+                const cur=books.play.md.fn;
+                let i=s.findIndex(x=>x.fn===cur); if(i<0)i=0;
+                i=(i+d+s.length)%s.length;
+                const it=s[i];
+                books.play.book=it.book;
+                books.play.open(it.lg,it.ed);
+            }
+            ,zoom:d=>{books.play.render.go(Math.max(0,Math.min(books.play.render.lv.length-1,books.play.render.mode+d)));}
             ,hash:()=>{
                 const h=location.hash.toLowerCase().slice(1);
                 if(!h)return;
@@ -108,6 +143,9 @@ const books={
             };
             window.onhashchange=()=>books.play.render.hash();
             lang.onclick=books.play.lang;
+            ver.onclick=books.play.ver;
+            books.play.render.bar();
+            books.play.probe();
             books.play.lang();
         }
     }
