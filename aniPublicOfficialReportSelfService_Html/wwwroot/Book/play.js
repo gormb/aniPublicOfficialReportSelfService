@@ -4,7 +4,7 @@ const books={
             fn:'',txt:'',title:'',pages:[],chs:[],subs:[]
             ,books:['LifeDemandedDeath','CV','ABook']
             ,set:_fn=>{if(_fn!==books.play.md.fn){books.play.md.fn=_fn;books.play.md.load();}}
-            ,load:()=>fetch(books.play.md.fn).then(r=>r.text()).then(t=>{books.play.md.txt=t;books.play.md.parse();}).catch(()=>{books.play.render.el.page.innerHTML='Fant ikke '+books.play.md.fn;})
+            ,load:()=>fetch(books.play.md.fn,{cache:'no-store'}).then(r=>r.text()).then(t=>{books.play.md.txt=t;books.play.md.parse();}).catch(()=>{books.play.render.el.page.innerHTML='Fant ikke '+books.play.md.fn;})
             ,parse:()=>{
                 const md=books.play.md.txt.split(/\n/);
                 books.play.md.title=md[0].replace(/^#\s*/,'').trim();
