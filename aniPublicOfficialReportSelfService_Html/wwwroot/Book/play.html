@@ -13,70 +13,101 @@
         <span id="dbPlayTitle">Play</span>
         </div><div id="dbPlayArea">
             Lekegrind for KI med verktøy for å lage, utbedre og nyte bøker på forskjellige semantiske zoom- og detaljnivåer:
+            Book Version (on Shelf), Main Chapter (of book), Sub Chapter (of main chapter), Page (in sub chapter), Paragraph (in sub chapter), Sentence (in paragraph), Word (in sentence), Character (of word), Presentation (of Character).
+            Each level has a guiding line for the reader and a set of features for the AI to apply. The levels are pl0..pl9, with pl_dev_0 for development notes.
             <ul>
-            <li id="pl_dev_0">Dev – what structure is relevant for this list?<details><summary>Thoughts</summary>Keep extremely short as usual! put under books.play so that it can be integrated other places later</details>
-            <ol>    <li>Make existing navigation match the list pl0..pl6<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
-                    <li>Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
-                    <li class="hide">What to hold this text (to guide user)<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
-                    <li class="hide">What to hold features (to make available to user)<details><summary>Thoughts</summary>plN sets levels (0-8), so binary filters make sense for mapping features to levels: each feature gets a 9-bit mask of the levels where it applies. Example: "look up word" only on pl7/pl8, "pick book" only on pl0.</details></li>
-                    <li class="hide">What to map features to levels and other structures<details><summary>Thoughts</summary>Keep the mapping as data, not code: feature ↔ level mask, plus optional anchors into the other structures (book, chapter, page, paragraph, word), so one feature list drives navigation, help text and AI tools alike.</details></li>
-                    <li class="hide">One axis, two directions<details><summary>Thoughts</summary>Zoom out (Ord → Bokhylla) trades detail for overview; zoom in trades overview for detail. Each level knows its coarser parent and finer child, so one-step navigation is always defined.</details></li>
-                    <li class="hide">Levels as data, not headings<details><summary>Thoughts</summary>Treat pl0…pl8 as an ordered array with a stable numeric id (plN), so features can reference levels by number and bitmask instead of by duplicated markup.</details></li>
+            <li id="pl0">Bokhylla <i>Book Shelf</i> – Hvilke bøker er relevante for gitt innhold?
+                <details><summary>Nav shows</summary>List of books <i>Book versions</i></details>
+                <details><summary>Page shows</summary>Available languages and versions for chosen book as links</details>
+                <details><summary>Thoughts</summary>At shelf scale the units are books, which are filtered by concept, genre and language. Each book can be in different versions and languages (especially now premium/freemium and NO/EN but later also eg DK) The nav jumps straight to a book, which then acts as parent for the finer levels below it.</details>
+                <ol>    <li class="hide">Hvilken bok? og versjon?
+                        <details><summary>Thoughts</summary>The shelf is the entry point: pick a book (LifeDemandedDeath, CV, ABook) plus variant – language (NO/EN) × edition (FREE/PREM). The variant pins the source file b/{book}/b_{NO|EN}_{FREE|PREM}.md.</details></li>
+                        <li class="hide">Konsept eller sjanger
+                        <details><summary>Thoughts</summary>Filter the shelf by concept or genre (memoir, fiction, essay) so a theme-led reader reaches the right book without knowing the title in advance.</details></li>
+                        <li class="hide">Stil eller språk
+                        <details><summary>Thoughts</summary>Style (poetic/plain) and language narrow the shelf further, and are reused as filters at the deeper levels described in pl_dev_0.</details></li>
                 </ol></li>
-            <li id="pl0">Bokhylla – Hvilke bøker er relevante for gitt innhold?<details><summary>Thoughts</summary>At shelf scale the units are books, which are filtered by concept, genre and language. Each book can be in different versions and languages (especially now premium/freemium and NO/EN but later also eg DK) The nav jumps straight to a book, which then acts as parent for the finer levels below it.</details>
-            <ol>    <li class="hide">Hvilken bok? og versjon?
-                    <details><summary>Thoughts</summary>The shelf is the entry point: pick a book (LifeDemandedDeath, CV, ABook) plus variant – language (NO/EN) × edition (FREE/PREM). The variant pins the source file b/{book}/b_{NO|EN}_{FREE|PREM}.md.</details></li>
-                    <li class="hide">Konsept eller sjanger
-                    <details><summary>Thoughts</summary>Filter the shelf by concept or genre (memoir, fiction, essay) so a theme-led reader reaches the right book without knowing the title in advance.</details></li>
-                    <li class="hide">Stil eller språk
-                    <details><summary>Thoughts</summary>Style (poetic/plain) and language narrow the shelf further, and are reused as filters at the deeper levels described in pl_dev_0.</details></li>
+            <li id="pl1">«Boka» <i>Book on shelf</i> – Hva er den overordnede strukturen for innholdet?
+                <details><summary>Nav shows</summary>Main Chapters of Book version (LDS EN PREM) <i>Book on shelf with chapters</i> </details>
+                <details><summary>Page shows</summary>Subchapters of Main Chapter chosen, all if none selected, text in details-tags (summary subchapter name)</details>
+                <details><summary>Thoughts</summary>At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.</details>
+                <ol>    <li class="hide">Hvilket kapittel?<details><summary>Thoughts</summary>At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.</details></li>
+                        <li class="hide">«Hero's Journey» – hvilken fase?<details><summary>Thoughts</summary>Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.</details></li>
+                        <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Collect book-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.</details></li>
                 </ol></li>
-            <li id="pl1">«Boka» – Hva er den overordnede strukturen for innholdet?<details><summary>Thoughts</summary>At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.</details>
-            <ol>    <li class="hide">Hvilket kapittel?<details><summary>Thoughts</summary>At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.</details></li>
-                    <li class="hide">«Hero's Journey» – hvilken fase?<details><summary>Thoughts</summary>Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.</details></li>
-                    <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Collect book-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.</details></li>
-                </ol></li>
-            <li id="pl2">Seksjon - Hva er i denne seksjonen, og hva er kapitlene?<details><summary>Thoughts</summary>At section scale the units are groups of chapters that share a theme; the section acts as the coarser parent of its chapters.</details>
+            <li id="pl2">Seksjon <i>Main Chapter</i> - Hva er i denne Main Chapter, og hva er Sub Chapters?
+                <details><summary>Nav shows</summary>Selected Main Chapter and Sub Chapters for it</details>
+                <details><summary>Page shows</summary>Selected Sub Chapter, all if none selected</details>
+                <details><summary>Thoughts</summary>At Main Chapter scale the units are groups of chapters that share a theme; the section acts as the coarser parent of its chapters.</details>
                 <ol>    <li class="hide">Hvilke kapitler?<details><summary>Thoughts</summary>List the chapters inside this section and their order.</details></li>
                         <li class="hide">Hvilket tema?<details><summary>Thoughts</summary>The theme or arc that binds the section's chapters together.</details></li>
                         <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Section-level improvements: pacing, ordering and balance across chapters.</details></li>
                 </ol></li>
-            <li id="pl3">Kapittel - Hva er i dette kapittelet?<details><summary>Thoughts</summary>At chapter scale the units are single chapters; the nav jumps into the chapter and its pages.</details>
+            <li id="pl3">Kapittel <i>Sub Chapter</i> - Hva er i dette Sub Chapter?
+                <details><summary>Nav shows</summary>todo</details>
+                <details><summary>Page shows</summary>todo</details>
+                <details><summary>Thoughts</summary>At Sub Chapters scale the units are single chapters; the nav jumps into the chapter and its pages.</details>
                 <ol>    <li class="hide">Hvilke sider?<details><summary>Thoughts</summary>Which pages belong to the chapter, and in which order.</details></li>
                         <li class="hide">Hva skjer?<details><summary>Thoughts</summary>What the chapter advances in the story or argument.</details></li>
                         <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Chapter-level improvements: too thin, too dense or out of order.</details></li>
                 </ol></li>
-            <li id="pl4">Side - Hva er på denne siden?<details><summary>Thoughts</summary>At page scale the units are pages (with p.N anchors); the nav jumps between pages.</details>
+            <li id="pl4">Side <i>Page</i> - Hva er på denne siden?
+                <details><summary>Nav shows</summary>todo</details>
+                <details><summary>Page shows</summary>todo</details>
+                <details><summary>Thoughts</summary>At page scale the units are pages (with p.N anchors); the nav jumps between pages.</details>
                 <ol>    <li class="hide">Hvilke paragrafer?<details><summary>Thoughts</summary>The paragraphs that make up this page.</details></li>
                         <li class="hide">Hva formidles?<details><summary>Thoughts</summary>What the page communicates: content, mood or key point.</details></li>
                         <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Page-level polish: flow, rhythm and visual balance.</details></li>
                 </ol></li>
-            <li id="pl5">Paragraf - Hva er i denne paragrafen?<details><summary>Thoughts</summary>At paragraph scale the units are paragraphs – blocks of related sentences.</details>
+            <li id="pl5">Paragraf <i>Paragraph</i> - Hva er i denne paragrafen?
+                <details><summary>Nav shows</summary>todo</details>
+                <details><summary>Page shows</summary>todo</details>
+                <details><summary>Thoughts</summary>At paragraph scale the units are paragraphs – blocks of related sentences.</details>
                 <ol>    <li class="hide">Hvilke setninger?<details><summary>Thoughts</summary>The sentences that build this paragraph.</details></li>
                         <li class="hide">Hva sies?<details><summary>Thoughts</summary>The paragraph's main point or idea.</details></li>
                         <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Paragraph-level edits: clarity, rhythm and transitions.</details></li>
                 </ol></li>
-            <li id="pl6">Setning - Hva er i denne setningen?<details><summary>Thoughts</summary>At sentence scale the units are sentences; grammar and style tools live here.</details>
+            <li id="pl6">Setning <i>Sentence</i> - Hva er i denne setningen?
+                <details><summary>Nav shows</summary>todo</details>
+                <details><summary>Page shows</summary>todo</details>
+                <details><summary>Thoughts</summary>At sentence scale the units are sentences; grammar and style tools live here.</details>
                 <ol>    <li class="hide">Hvilke ord?<details><summary>Thoughts</summary>The words that form the sentence and their roles.</details></li>
                         <li class="hide">Hva betyr den?<details><summary>Thoughts</summary>The meaning and function of the sentence in context.</details></li>
                         <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Sentence-level improvements: grammar, word order and tone.</details></li>
                 </ol></li>
-            <li id="pl7">Ord - Hva er i dette ordet?<details><summary>Thoughts</summary>At word scale the units are words: meaning, inflection and what to improve. Word-level features (lookup, glossary) apply here and deeper.</details>
+            <li id="pl7">Ord <i>Word</i> - Hva er i dette ordet?
+                <details><summary>Nav shows</summary>todo</details>
+                <details><summary>Page shows</summary>todo</details>
+                <details><summary>Thoughts</summary>At word scale the units are words: meaning, inflection and what to improve. Word-level features (lookup, glossary) apply here and deeper.</details>
                 <ol>    <li class="hide">Hva betyr ordet<details><summary>Thoughts</summary>Look up meaning, inflections and usage – the finest content level where dictionary lookup applies.</details></li>
                         <li class="hide">Hva bør jobbes med<details><summary>Thoughts</summary>Which word needs editorial attention: clarity, style or accuracy.</details></li>
                 </ol></li>
-            <li id="pl8">Bokstav - Hva er i denne bokstaven?<details><summary>Thoughts</summary>At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.</details>
+            <li id="pl8">Bokstav <i>Character</i> - Hva er i denne bokstaven?
+                <details><summary>Nav shows</summary>todo</details>
+                <details><summary>Page shows</summary>todo</details>
+                <details><summary>Thoughts</summary>At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.</details>
                 <ol>    <li class="hide">Font<details><summary>Thoughts</summary>Which typeface renders the glyph; changing font restyles the whole letter.</details></li>
                         <li class="hide">Size<details><summary>Thoughts</summary>Point size of the glyph, e.g. relative to body text.</details></li>
                         <li class="hide">Dekorasjon / ligaturer<details><summary>Thoughts</summary>Stylistic variants and ligature pairs (fi, fl) that join glyphs.</details></li>
                         <li class="hide">Tegnavstand (kerning)<details><summary>Thoughts</summary>Space between letter pairs; pairs naturally with ligatures at glyph level.</details></li>
                 </ol></li>
-            <li id="pl9">Color - Forgrunn og bakgrunn<details><summary>Thoughts</summary>At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.</details>
+            <li id="pl9">Presentasjon <i>Presentation</i> - Forgrunn og bakgrunn
+                <details><summary>Nav shows</summary>todo</details>
+                <details><summary>Page shows</summary>todo</details>
+                <details><summary>Thoughts</summary>At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.</details>
                 <ol>    <li class="hide">Color<details><summary>Thoughts</summary>Which color renders the glyph; changing color restyles the whole letter.</details></li>
                         <li class="hide">Background<details><summary>Thoughts</summary>Which background color renders behind the glyph; changing background restyles the whole letter.</details></li>
                 </ol></li>
-            </ul>
-            </div>
+            <li id="pl_dev_0">Dev – what structure is relevant for this list?<details><summary>Thoughts</summary>Keep extremely short as usual! put under books.play so that it can be integrated other places later</details>
+                <ol>    <li>Make existing navigation match the list pl0..pl6<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
+                        <li>Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
+                        <li class="hide">What to hold this text (to guide user)<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
+                        <li class="hide">What to hold features (to make available to user)<details><summary>Thoughts</summary>plN sets levels (0-8), so binary filters make sense for mapping features to levels: each feature gets a 9-bit mask of the levels where it applies. Example: "look up word" only on pl7/pl8, "pick book" only on pl0.</details></li>
+                        <li class="hide">What to map features to levels and other structures<details><summary>Thoughts</summary>Keep the mapping as data, not code: feature ↔ level mask, plus optional anchors into the other structures (book, chapter, page, paragraph, word), so one feature list drives navigation, help text and AI tools alike.</details></li>
+                        <li class="hide">One axis, two directions<details><summary>Thoughts</summary>Zoom out (Ord → Bokhylla) trades detail for overview; zoom in trades overview for detail. Each level knows its coarser parent and finer child, so one-step navigation is always defined.</details></li>
+                        <li class="hide">Levels as data, not headings<details><summary>Thoughts</summary>Treat pl0…pl8 as an ordered array with a stable numeric id (plN), so features can reference levels by number and bitmask instead of by duplicated markup.</details></li>
+                </ol></li>
+            </ul></div>
     </div>
     <script src="play.js"></script>
 </body>
