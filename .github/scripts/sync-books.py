@@ -31,7 +31,7 @@ _ARIAL_RE    = re.compile(r'arial')
 _PREM_RE     = re.compile(r'ebgaramond|cegaramond')
 _FREE_RE     = re.compile(r'calibri')
 _GARAMOND_RE = re.compile(r'garamond')
-_SPOT_RE     = re.compile(r'https://gormb\.github\.io/_/?\?m(?!.*qr$)\S*', re.I)
+_SPOT_RE     = re.compile(r'https://(?:gormb\.github\.io/_/?\?m|aigap\.no/m)[a-z0-9]+(?<!qr)\b', re.I)
 _MODE_LABEL_RE = re.compile(r'^(?:gratisversjon|premiumversjon|free version|premium version)$', re.I)  # cover-/vannmerke-label – ikke bokinnhold (droppes fra .md)
 _COVER_TEMPLATE_RE = re.compile(r'Navnet På Boken|The Name of the Book')  # cover-malens plassholder – anker for template-blokka på slutten
 
