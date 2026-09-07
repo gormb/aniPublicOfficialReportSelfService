@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=44"></script>
+        <script type="module" src="LdD.js?v=46"></script>
         <link rel="stylesheet" href="LdD.css?v=23">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
@@ -462,8 +462,7 @@
                     const spotMap=await window.cBook.SpotLoad();
                     const resolveSpot=url=>{
                         if(!url||!window.cBook.SpotRe.test(url))return url;
-                        const key=new URL(url).search.slice(1);
-                        return spotMap[key]||url;
+                        return spotMap[window.cBook.SpotKey(url)]||url;
                     };
                     const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[`${b.lang}:${b.page}`,resolveSpot(b.url)]));
                     const musicUrl=page=>music.get(`${want}:${page}`)||'';

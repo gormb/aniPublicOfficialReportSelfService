@@ -304,20 +304,26 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                     m[r.id]=r.url;
                     if(r.id[0]==='m')m[r.id.slice(1)]=r.url;
                     else m['m'+r.id]=r.url;
-                    if(r.id.endsWith('qr'))m[r.id.slice(0,-2)]=r.url;
+                    if(r.id.endsWith('qr'))m[r.id.slice(0,-2)]=r.url;   // QR-variant ids: the bare code is what the book uses
+                    if(r.id.endsWith('qra'))m[r.id.slice(0,-3)]=r.url;  // e.g. 'msoeqra' -> 'msoe'
                 });
             }catch(e){console.error('[Spotify] Supabase lookup failed',e);}
         }
         return cBook.SpotMap=m;
     }
+    ,SpotKey:function(url){ // song code: gormb query (?msoe) or aigap path (/msoe)
+        if(!url)return '';
+        try{
+            const u=new URL(url);
+            if(/^https:\/\/gormb\.github\.io\//.test(url))return u.search.slice(1);
+            if(/^https:\/\/aigap\.no\//.test(url))return u.pathname.replace(/^\//,'');
+        }catch(e){}
+        return '';
+    }
     ,SpotUrl:async function(url){
         if(!url)return url;
-        const map=await cBook.SpotLoad();
-        // code = gormb query (?mncty) or aigap path (/mncty) – both resolve via the redir table → open.spotify embed
-        let key;
-        if(/^https:\/\/gormb\.github\.io\//.test(url))key=new URL(url).search.slice(1);
-        else if(/^https:\/\/aigap\.no\//.test(url))key=new URL(url).pathname.replace(/^\//,'');
-        else return url;
+        const map=await cBook.SpotLoad(), key=cBook.SpotKey(url);
+        if(!key)return url;
         const resolved=map[key]||url;
         console.log('[Spotify] URL resolve', {key, resolved, found:resolved!==url});
         return resolved;
@@ -344,7 +350,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 const it=row.items.find(i=>i.str?.match(cBook.SpotRe));
                 if(!it)continue;
                 const raw=it.str.match(cBook.SpotRe)[0], col=it.transform[4]>mid;
-                const key=raw.split('?')[1]||'';
+                const key=cBook.SpotKey(raw);
                 const lh=(it.height||10)*cBook.scale;
                 const above=rows.filter(r=>r!==row&&r.yc<row.yc-4&&r.items.some(i=>(i.transform[4]>mid)===col))
                     .sort((a,b)=>b.yc-a.yc)[0];
@@ -380,7 +386,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         }
         cBook.SpotLoad().then(map=>{
             box.querySelectorAll('a.play').forEach(a=>{
-                const k=new URL(a.dataset.u||a.href,location.href).search.slice(1);
+                const k=cBook.SpotKey(a.dataset.u||a.href);
                 if(map[k])a.dataset.u=map[k];
             });
         });
