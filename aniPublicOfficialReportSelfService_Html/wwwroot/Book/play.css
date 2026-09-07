@@ -3,12 +3,28 @@ body{
     display:grid;grid-template-columns:20vw 1fr 30%;grid-template-rows:auto 1fr;
 }
 #dpMenu{grid-column:1/-1;display:flex;gap:.5em;align-items:center;border-bottom:1px solid #999;}
+#dpCur{margin-left:auto;font-style:italic;color:#555;padding:0 .4em;font-size:.95em;white-space:nowrap;}
+#lvCtl{display:inline-flex;flex-direction:column;align-items:stretch;gap:1px;margin-left:.4em;}
+#lvCtl button{font-size:1em;line-height:1;padding:.1em .3em;}
 #zout,#zin{font-size:1.4em;line-height:1;padding:.05em .3em;}
 #zout:disabled,#zin:disabled{opacity:.3;cursor:default;}
 #lvBars{display:flex;gap:.2em;align-items:center;}
 #lvBars button{padding:.1em .25em;font-size:1.3em;line-height:1;border:1px solid transparent;background:none;cursor:pointer;border-radius:.2em;opacity:.45;}
 #lvBars button:hover{opacity:1;}
 #lvBars button.on{border-color:#999;opacity:1;background:#f2f2f2;}
+#lvBars{display:block;}
+#lvBars table{border-collapse:separate;border-spacing:2px 1px;margin:0;}
+#lvBars td{padding:0;text-align:center;vertical-align:middle;}
+#lvBars td.zbox{border-left:1px solid #bbb;padding-left:3px;}
+#lvBars .z{font-size:1.1em;line-height:1;padding:.05em .22em;}
+#lvBars td.txt{border-bottom:1px dashed #b8b8b8;}
+#lvBars td.zp{padding-left:3px;border-left:1px solid #ccc;}
+#lvBars td.zm{padding-left:4px;border-left:1px solid #ccc;text-align:center;}
+#lvBars .pp{font-size:1.05em;padding:.05em .25em;}
+#lvBars .fork{font-size:.75em;padding:0 .2em;opacity:.65;line-height:1;}
+#lvBars .forks{display:flex;justify-content:center;gap:2px;margin-top:2px;}
+#lvBars td.zoom{padding-left:4px;border-left:1px solid #ccc;}
+#lvBars td.zoom button{display:block;margin:0 auto;font-size:1em;}
 #dbNav{display:flex;flex-direction:column;min-height:0;border-right:1px solid #999;}
 #dbNavHead{display:flex;align-items:center;gap:.3em;padding:0 .4em;border-bottom:1px solid #999;}
 #dbNavHead button{padding:.1em .3em;font-size:1.6em;}
@@ -24,6 +40,9 @@ body{
 #dbPlayHead{display:flex;align-items:center;gap:.3em;padding:0 .4em;border-bottom:1px solid #999;}
 #dbPlayHead button{padding:.1em .3em;font-size:1.6em;}
 #dbPlayTitle{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+#lvGuide li.on{border-left:3px solid #777;background:#f0f0f0;padding-left:.3em;}
+#lvGuide details{margin-top:.1em;}
+#lvGuide .lvpath{font-size:.8em;color:#888;font-style:italic;margin-bottom:.1em;}
 #dbPlayArea{flex:1;min-height:0;overflow:auto;padding:.5em .6em;}
 .hide{display:none;}
 h2 a,h3 a{color:inherit;text-decoration:none;}
