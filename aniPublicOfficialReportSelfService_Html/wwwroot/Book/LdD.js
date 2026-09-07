@@ -289,7 +289,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             return blocks.length?{title,blocks}:null;
         }
     }
-    ,SpotRe:/^https:\/\/gormb\.github\.io\/_\/?\?m(?!.*qr$)\S*/i
+    ,SpotRe:/^https:\/\/(?:gormb\.github\.io\/_\/?\?m|aigap\.no\/m)(?!.*qr$)\S*/i
     ,SpotMap:null
     ,SpotLoad:async function(force=false){
         if(cBook.SpotMap&&!force)return cBook.SpotMap;
@@ -311,8 +311,14 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         return cBook.SpotMap=m;
     }
     ,SpotUrl:async function(url){
-        if(!url||!cBook.SpotRe.test(url))return url;
-        const map=await cBook.SpotLoad(), key=new URL(url).search.slice(1), resolved=map[key]||url;
+        if(!url)return url;
+        const map=await cBook.SpotLoad();
+        // code = gormb query (?mncty) or aigap path (/mncty) – both resolve via the redir table → open.spotify embed
+        let key;
+        if(/^https:\/\/gormb\.github\.io\//.test(url))key=new URL(url).search.slice(1);
+        else if(/^https:\/\/aigap\.no\//.test(url))key=new URL(url).pathname.replace(/^\//,'');
+        else return url;
+        const resolved=map[key]||url;
         console.log('[Spotify] URL resolve', {key, resolved, found:resolved!==url});
         return resolved;
     }
