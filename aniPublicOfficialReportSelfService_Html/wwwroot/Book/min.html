@@ -1,0 +1,14 @@
+<div id=c></div>
+<main id=o></main>
+<script>
+fetch(new URLSearchParams(location.search).get('b')).then(r=>r.text()).then(p);
+esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+id=s=>s.toLowerCase().replace(/[^a-z0-9\u00e0-\u00ff]+/g,'');
+function p(md){
+let v=0;
+for(l of md.split('\n'))
+if(h=l.match(/^(#{2,3})\s+(.*)$/)){k=id(h[2]);c.innerHTML+='<a href="#'+k+'">'+esc(h[2])+'</a><br>';o.innerHTML+='<h'+h[1].length+' id="'+k+'">'+esc(h[2])+'</h'+h[1].length+'>';v=0;}
+else if(s=l.trim()){o.innerHTML+=(v?'<br>':'')+esc(s);v=1;}
+else v=0;
+}
+</script>
