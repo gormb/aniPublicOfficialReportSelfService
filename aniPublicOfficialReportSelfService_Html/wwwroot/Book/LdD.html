@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=46"></script>
+        <script type="module" src="LdD.js?v=48"></script>
         <link rel="stylesheet" href="LdD.css?v=23">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
@@ -643,7 +643,7 @@
                     const bk=await nav.BookVersions();
                     if(!bk){_dTocList.dataset.bk='';_dTocList.innerHTML='⚠ could not load books';return;}
                     // real deep links + TOC rows (flag + localized title); nLg0=NO, nLg1=EN
-                    const href=(src,no)=>'https://gormb.github.io/_?b&book='+encodeURIComponent(src)+'&page='+(cBook.pn||1)+'&c=w,1000,'+(no?'nLg0':'nLg1');
+                    const href=(src,no)=>'https://aigap.no/b?book='+encodeURIComponent(src)+'&page='+(cBook.pn||1)+'&c=w,1000,'+(no?'nLg0':'nLg1');
                     const H=h=>h.replace(/&/g,'&amp;');
                     const esc=nav.esc;
                     const a=(b,v,no)=>`<a class="toc-nav" href="${H(href(bk[b].src,no))}"><span>${no?'🇳🇴 ':''}${esc((v&&v.name)||b)}${no?'':' 🇬🇧'}</span></a>`; // NO: flag first · EN: flag last
@@ -763,8 +763,8 @@
                 ,MusicPage:async key=>{
                     const T=cBook.data.type;
                     const data=await cBook.data.get();
-                    const linkKey=url=>{
-                        try{return new URL(url).search.slice(1).replace(/qr$/i,'');}
+                    const linkKey=url=>{ // song code: gormb query (?msoe) or aigap path (/msoe) – gormb.github.io/?id har flyttet til aigap.no/id
+                        try{const p=new URL(url);const k=/^https:\/\/gormb\.github\.io\//.test(url)?p.search.slice(1):/^https:\/\/aigap\.no\//.test(url)?p.pathname.replace(/^\//,''):'';return k.replace(/qr$/i,'');}
                         catch{return url.split('?')[1]?.replace(/qr$/i,'')||'';}
                     };
                     const link=data.find(b=>b.type===T.LINK&&b.spotify&&linkKey(b.url)===key.replace(/qr$/i,''));

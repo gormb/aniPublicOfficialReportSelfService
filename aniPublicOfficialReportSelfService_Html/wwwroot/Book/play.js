@@ -118,7 +118,15 @@ const books={
             }
             ,esc:x=>x.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
             ,slug:s=>(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'')
-            ,qr:u=>'<img src="https://gormb.github.io/_/i/'+u.split('?')[1]+'.qr1.png" style="height:66px;image-rendering:pixelated;">'
+            ,spotKey:u=>{ // song code: gormb query (?msoe) or aigap path (/msoe) – gormb.github.io/?id har flyttet til aigap.no/id
+                if(!u)return '';
+                try{const p=new URL(u);
+                    if(/^https:\/\/gormb\.github\.io\//.test(u))return p.search.slice(1);
+                    if(/^https:\/\/aigap\.no\//.test(u))return p.pathname.replace(/^\//,'');
+                }catch(e){}
+                return '';
+            }
+            ,qr:u=>{const k=books.play.render.spotKey(u);return k?'<img src="https://aigap.no/i/'+k+'.qr1.png" style="height:66px;image-rendering:pixelated;">':'';}
             ,mus:l=>{const u=(l.match(/https?:\/\/[^\s)]+/)||[''])[0];return '<a href="'+u+'">\u{1F3B5}</a>'+books.play.render.qr(u);}
             ,sent:s=>/[.!?\u2026]["'\u201D\u2019\u00BB]?$/.test(s.trim())
             ,sentT:s=>(s.match(/[^.!?\u2026]+[.!?\u2026]+["'\u201D\u2019\u00BB]?|\S[^.!?\u2026]*$/g)||[]).map(x=>x.trim()).filter(Boolean)

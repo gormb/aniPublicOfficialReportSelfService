@@ -134,16 +134,16 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
     ,QrUrlScrollY:0
     ,QrUrl:async function(deep=false,ht=35,img="b/LifeDemandedDeath/bqrmid.png",opt={}) {
         if (cBook._qrUrl) URL.revokeObjectURL(cBook._qrUrl);
-        const u = new URL("https://gormb.github.io/_");
-        u.search = '?b';
-        if (opt.book!==false) u.search += '&book=' + encodeURIComponent(book.src);
+        const u = new URL("https://aigap.no/b"); // gormb.github.io/_?b&book… har flyttet til aigap.no/b?book…
+        const qs=k=>u.search=u.search?(u.search+'&'+k):('?'+k);
+        if (opt.book!==false) qs('book=' + encodeURIComponent(book.src));
         if (deep) {
             let c='w,100';
             if (opt.lang!==false) c+=book.hAlign._?',nLg0':',nLg1'; // deterministic language – nLg0=NO, nLg1=EN
             if (opt.idx!==false) c+=',nTc';
             if (opt.pos!==false && cBook.QrUrlScrollY>0) c+=',s,'+cBook.QrUrlScrollY;
-            if (opt.page!==false) u.search += '&page=' + cBook.pn;
-            u.search += '&c=' + c;
+            if (opt.page!==false) qs('page=' + cBook.pn);
+            qs('c=' + c);
         }
         const sz = Math.round(ht/100*innerHeight);
         await loadScript('https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js');
@@ -409,7 +409,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
 };
 
 window.cBook=cBook;
-loadScript('https://gormb.github.io/_/db.js?v=8').catch(()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen')); // db.js = SUPABASE config + window.db (PIN) – load in background, never block the book // ?v=8: db.js updated (bookInterval → premiumCheckInterval)
+loadScript('https://aigap.no/db.js?v=8').catch(()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen')); // db.js = SUPABASE config + window.db (PIN) – load in background, never block the book // ?v=8: db.js updated (bookInterval → premiumCheckInterval)
 const _dPlay=document.createElement('div'); _dPlay.id='_dPlay';
 document.getElementById('_dBook').appendChild(_dPlay);
 const _dPage=document.createElement('div'); _dPage.id='_dPage';
