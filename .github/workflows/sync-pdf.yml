@@ -28,6 +28,8 @@ jobs:
         run: pip install --quiet pymupdf
 
       - name: Sync all books from the `books` table
+        env:
+          AIGAP_PAT: ${{ secrets.AIGAP_PAT }}
         run: python3 .github/scripts/sync-books.py
 
       - name: Commit & Push if Updated

@@ -2,7 +2,7 @@
 """Auto-deploy bøker: leser alle rader fra Supabase `books`-tabellen og laster ned
 prod-PDF (Google Slides) til `deployed`-stien, dersom nå er innenfor autosync-vinduet.
 Brukes av .github/workflows/sync-pdf.yml."""
-import datetime, json, os, re, subprocess, sys
+import datetime, json, os, re, shutil, subprocess, sys, tempfile
 
 REPO = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode().strip()
 BOOK_DIR = os.path.join(REPO, 'aniPublicOfficialReportSelfService_Html', 'wwwroot', 'Book')
@@ -332,6 +332,43 @@ def log_error(url, key, book, kind, message):
 def log_ok(url, key, book, message):
     _log(url, key, book, 'sync', 'ok', message)
 
+def publish_md_to_aigap():
+    """Publiser b/LifeDemandedDeath/b_NO_FREE.md som aigap.no/m.md (www.aigap.no-repoet).
+    Kjøres i CI: krever AIGAP_PAT (cross-repo-token med contents:write på www.aigap.no).
+    Uten token gjør funksjonen ingenting (f.eks. ved lokal kjøring)."""
+    pat = os.environ.get('AIGAP_PAT')
+    if not pat:
+        gh('notice', 'AIGAP_PAT ikke satt – hopper over publisering av m.md (aigap.no)')
+        return
+    src = os.path.join(BOOK_DIR, 'b', 'LifeDemandedDeath', 'b_NO_FREE.md')
+    if not os.path.isfile(src):
+        gh('warning', f'[{src}] finnes ikke – kan ikke publisere aigap.no/m.md')
+        return
+    repo = os.environ.get('AIGAP_REPO', 'gormb/www.aigap.no')
+    branch = os.environ.get('AIGAP_BRANCH', 'main')
+    url = f'https://x-access-token:{pat}@github.com/{repo}.git'
+    tmp = tempfile.mkdtemp(prefix='aigap-m-')
+    try:
+        subprocess.run(['git', 'clone', '--depth', '1', '-b', branch, url, tmp],
+                       check=True, capture_output=True)
+        shutil.copy(src, os.path.join(tmp, 'm.md'))
+        for k, v in (('user.name', 'github-actions[bot]'),
+                     ('user.email', 'github-actions[bot]@users.noreply.github.com')):
+            subprocess.run(['git', '-C', tmp, 'config', k, v], check=True, capture_output=True)
+        subprocess.run(['git', '-C', tmp, 'add', 'm.md'], check=True, capture_output=True)
+        if subprocess.run(['git', '-C', tmp, 'diff', '--cached', '--quiet']).returncode == 0:
+            gh('notice', 'aigap.no/m.md uendret – ingen push')
+            return
+        subprocess.run(['git', '-C', tmp, 'commit', '-m', 'sync m.md from LifeDemandedDeath b_NO_FREE [skip ci]'],
+                       check=True, capture_output=True)
+        subprocess.run(['git', '-C', tmp, 'push', 'origin', f'HEAD:{branch}'],
+                       check=True, capture_output=True)
+        gh('notice', f'publiserte m.md -> {repo} ({branch})')
+    except subprocess.CalledProcessError as e:
+        gh('error', f'publisering av aigap.no/m.md FEIL: {(e.stderr or e.stdout or b"").decode(errors="replace").strip()[:400]}')
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
 def main():
     marker = os.path.join(REPO, '.sync-books-errors')
     if os.path.exists(marker):
@@ -392,6 +429,7 @@ def main():
     print(f'ferdig: {n} bok(er) synkronisert')
     if errors:
         open(marker, 'w').write(f'{errors}\n')  # workflow fails AFTER valid books are pushed
+    publish_md_to_aigap()
 
 if __name__ == '__main__':
     main()
