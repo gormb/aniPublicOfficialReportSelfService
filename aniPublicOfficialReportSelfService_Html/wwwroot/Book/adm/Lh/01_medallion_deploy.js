@@ -11,7 +11,7 @@ const LAYERS = [
 async function init() {
   // Short link to Supabase SQL editor on the right DB
   const edit = document.getElementById('sqlEdit');
-  edit.href = 'https://gormb.github.io/_/?eds';
+  edit.href = 'https://aigap.no/eds';
   edit.textContent = 'Åpne Supabase SQL-editor ↗';
 
   // One source: 01_medallion_deploy.sql – split by layer markers

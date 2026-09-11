@@ -37,7 +37,7 @@ const gridB=async()=>{const{data,error}=await (await db()).from('books').select(
   const st=u=>{const a=hist[u]||[];if(!a.length)return ['exp','aldri ok / tom logg'];const last=a[a.length-1];
     return last.k==='sync'?['ok','siste synk ok']:(a.some(x=>x.k==='sync')?['soon','siste synk feilet (tidligere ok)']:['exp','aldri ok'])};
   gridBEl.innerHTML=(data||[]).length?`<table><tr><th>book</th><th>deployed</th><th>prod</th><th>autosync from</th><th>autosync to</th><th>premCheck (s)</th><th></th></tr>`+data.map(r=>{const[c,tip]=st(r.book);
-    return `<tr><td>${r.book}</td><td>${r.deployed?`<a class="${c}" title="${tip}" href="https://gormb.github.io/_?b&book=${encodeURIComponent(r.deployed)}" target="_blank">${r.deployed}</a>`:'—'}</td><td>${r.prod?`<a href="${r.prod}" target="_blank">link</a>`:'—'}</td>
+    return `<tr><td>${r.book}</td><td>${r.deployed?`<a class="${c}" title="${tip}" href="https://aigap.no/b?book=${encodeURIComponent(r.deployed)}" target="_blank">${r.deployed}</a>`:'—'}</td><td>${r.prod?`<a href="${r.prod}" target="_blank">link</a>`:'—'}</td>
       <td>${(r.dtautosyncfrom||'').slice(0,16)||'—'}</td><td>${(r.dtautosyncto||'').slice(0,16)||'—'}</td>
       <td>${r.premiumCheckInterval??60}</td>
       <td><button onclick="editB('${r.book}')">✎</button> <button onclick="bookLog('${r.book}')" title="siste synk">⏱</button> <button onclick="delB('${r.book}')">×</button></td></tr>`}).join('')+'</table>':'<p>(empty)</p>'}
