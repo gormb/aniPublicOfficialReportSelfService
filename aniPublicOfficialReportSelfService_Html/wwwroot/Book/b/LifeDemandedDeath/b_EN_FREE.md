@@ -552,3 +552,4 @@ Appendix and more
 #### p. 166
 #### p. 167
 "Garamond" After the book, you remember the feeling it gave you, not what it was about. Written in the font "Garamond". This is the standard typeface used for the free text. It represents the open and accessible content of the book, and is characterized by a clean, modern, and standardized expression with good readability. Freemium “Calibri” (Buy the whole text in menu)
+#### p. 168
