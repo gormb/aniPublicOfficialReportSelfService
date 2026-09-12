@@ -303,8 +303,7 @@ Jeg vet at blodproppen som beveget seg rundt i kroppen er en av tingene som kunn
 Min yngste søster trodde aldri jeg skulle bli den samme igjen.
 Mens legene kjempet for livet mitt så hun tre mulige utfall.
 Eldste bror skulle dø, miste forstanden eller bli så sterkt handicappet at livet ble totalt forandret. Sjansen for at alt skulle bli som før var for henne minimal. Jeg får aldri vite om jeg ble som før, bare hun vet.
-Fordelen med å bli gal er, som det også sies om døden og dumskap, at det ikke er ens eget problem, bare et problem for de nærmeste. Ulempen med å bli gal er at det er et problem for de rundt deg. Det er ikke viktig for meg å vite om jeg har endt opp med en varig personlighetsendring eller lavere kognitive evner, det ligger utenfor horisonten og gir ikke noe glede å vite det.
-Ikke mulig for meg å se eller måle, og hvis jeg spør noen av mine nærmeste, kan de være for formet av egne traumer, av å tro de skulle miste meg, til å være i stand til å svare.
+Fordelen med å bli gal er, som det også sies om døden og dumskap, at det ikke er ens eget problem, bare et problem for de nærmeste. Ulempen med å bli gal er at det er et problem for de rundt deg. Det er ikke viktig for meg å vite om jeg har endt opp med en varig personlighetsendring eller lavere kognitive evner, det ligger utenfor horisonten og gir ikke noe glede å vite det. Ikke mulig for meg å se eller måle, og hvis jeg spør noen av mine nærmeste, kan de være for formet av egne traumer, av å tro de skulle miste meg, til å være i stand til å svare.
 Jeg sitter fast i den kollapserte versjonen av meg selv, kan ikke tillate å flyte tilbake til et farlig liv uten å skade dem jeg elsker.
 Vurderinger rundt eget og andres potensial blir fort begrenset av hvordan man observerer, akkurat som at kvantefysikk er utilgjengelig for hjernen vår. Superposisjoner i kvanteverden blir begrenset ned til å følge behovet til den som observerer. Vil vurderinger av meg være i kontekst av forholdet jeg har til den som observerer, vår intuitive forståelse av både
 #### p. 49
@@ -700,11 +699,13 @@ Reidar skal dø i senga av hjerteinnfarkt mens han har sex med overvektig dame t
 ### Sygemannen — p. 113
 🎵 https://aigap.no/mtmwstw (https://aigap.no/mtmwstw) — p. 113
 The Man Who Sold the World, Bowie
-Gutter på de greske øyene får høre at mannen er viktigst og at de er vakrere enn noen vesen på jorden. De norske greske guttene har jeg funnet på sørlandet, det fordrer at far er tildlig ute av bildet og at de har snille kvinner som mødre. Når vestkantfolket kommer på hytteferie til Sørlandet, ser de at feriefolket har ting de selv ikke har, de bygger avstand gjennom misunnelse og manglende selvtillit med en høy selvfølelse grodd ut av deres mors bunnløse kjærlighet. Sårbarheten ender med en del angstbiting og styrken ender med å skade venner og familie.
+Gutter på de greske øyene får høre at mannen er viktigst og at de er vakrere enn noen vesen på jorden. De norske greske guttene har jeg funnet på sørlandet, det fordrer at far er tidlig ute av bildet og at de har snille kvinner som mødre.
+Når vestkantfolket kommer på hytteferie til Sørlandet, ser de at feriefolket har ting de selv ikke har, de bygger avstand gjennom misunnelse og manglende selvtillit med en høy selvfølelse grodd ut av deres mors bunnløse kjærlighet. Sårbarheten ender med en del angstbiting og styrken ender med å skade venner og familie.
 ### Gaute; Ro! — p. 114
 🎵 https://aigap.no/mtwtia (https://aigap.no/mtwtia) — p. 114
 The Winner Takes It All, Abba
-Gaute er lastebilsjåfør. Han sitter på den rolige puben og hyler og skriker, men med ekte glede. Hun har tatt seg en Tequila og ser beundrende på ham. “Den apen som skriker høyest formerer seg” tenker jeg, han er ufyselig, men med en gang han ser henne from og hyggelig. Egentlig en hyggelig fyr, men tilpasningsdyktig nok til å se at han må være mest høylytt for å formere seg. Ikke mest høyreist, ikke rikest, ikke vakrest, ikke smartest, ikke, ikke noen av de andre. Mest høylytt. Riktige kvinner elsker det. Kanskje er det dem det blir, han er hyggelig og jovial, og kanskje en koneplager. Jeg vet ikke. Hun har sitt, han har sitt, det er fair game, de er folk. Ingen av dem har i sitt liv hatt overskudd til altruisme. De har ikke overskudd til “det som oppleves som empati”, “dannelse” eller noen av de andre, de bare gjør så godt de kan. Han heier på laget som vinner i fotball. Nyansene i spillet er utilgjengelig for ham. Regler og taktikk er underordnet. Vi heier! Ro!
+Gaute er lastebilsjåfør. Han sitter på den rolige puben og hyler og skriker, men med ekte glede. Hun har tatt seg en Tequila og ser beundrende på ham. “Den apen som skriker høyest formerer seg” tenker jeg, han er ufyselig, men med en gang han ser henne from og hyggelig. Egentlig en hyggelig fyr, men tilpasningsdyktig nok til å se at han må være mest høylytt for å formere seg. Ikke mest høyreist, ikke rikest, ikke vakrest, ikke smartest, ikke, ikke noen av de andre. Mest høylytt. Riktige kvinner elsker det. Kanskje er det dem det blir, han er hyggelig og jovial, og kanskje en koneplager. Jeg vet ikke. Hun har sitt, han har sitt, det er fair game, de er folk. Ingen av dem har i sitt liv hatt overskudd til altruisme. De har ikke overskudd til “det som oppleves som empati”, “dannelse” eller noen av de andre, de bare gjør så godt de kan. Han heier på laget som vinner i fotball. Nyansene i spillet er utilgjengelig for ham.
+Regler og taktikk er underordnet. Vi heier! Ro!
 ### Elghjerte; E — p. 115
 🎵 https://aigap.no/mhltw (https://aigap.no/mhltw) — p. 115
 Hungry Like the Wolf, Duran Duran
@@ -787,7 +788,8 @@ Var jeg ønsket innenfor eller uønska uttafor? hverken vet eller veit jeg, og e
 Praise You, Fatboy Slim
 Jeg var trygg hos henne, mens kropp og sjel leget seg, men plutselig var det over. Hva som gjorde at det slutt vet jeg like lite om som hvordan forholdet begynte, men jeg trenger ikke vite noe av det. Hun er et av mine topp tre forhold gjennom livet, og skal huskes slik. Vi fikk ikke barn, men en liten hund jeg savner bunnløst.
 Selv om jeg ikke savner kvinnen like mye som hunden var kvinnen hele verden for meg frem til hun en dag ikke ville være det lengre. Jeg lærte at jeg fortsatt er i stand til å elske på den tradisjonelle måten jeg idealiserer. Tårene jeg feller er av takknemlighet.
-Jeg var trygg. Kropp og sjel leget seg, deretter var det slutt. Hva som gjorde det slutt vet jeg ikke, takk for tiden vi fikk.
+Jeg var trygg. Kropp og sjel leget seg, deretter var det slutt.
+Hva som gjorde det slutt vet jeg ikke, takk for tiden vi fikk.
 #### p. 127
 Det vi hadde mellom oss hadde virket for meg, og ikke henne.
 Mine fødselsdager ble plutselig feiret og ikke ignorert, det motsatte skjedde gradvis med henne, forholdet som for meg var perfekt champagneglass som knuste, var for henne et fengsel hun fant veien ut av.
@@ -841,7 +843,7 @@ Flere har dødd av blodpropp mens de laget dumme skilt enn antall liv reddet av 
 ### Styrken er som før — p. 136
 🎵 https://aigap.no/msh (https://aigap.no/msh) — p. 136
 Stranglehold
-Dansken satt over bordet, han hadde lang erfaring med MC fra MC-klubber som Rabis MC. Jeg har ikke mye erfaring med MC-klubber, men pleide å feste på Rabis MC i Lillestrøm da jeg var 20 år gammel og hadde kjæreste fra området, de holdt åpent hus lengre enn “Martins” og andre lokale vannhull i nærheten.
+Dansken satt over bordet, han hadde lang erfaring med MC fra MC-klubber som Rabis MC. Jeg har ikke mye erfaring med MC-klubber , men pleide å feste på Rabis MC i Lillestrøm da jeg var 20 år gammel og hadde kjæreste fra området, de holdt åpent hus lengre enn “Martins” og andre lokale vannhull i nærheten.
 Jeg delte i stedenfor med ham at jeg hadde snakket med SBS i militæret, de er del av den engelske spesialstyrken SAS, som har tradisjoner med MC-klubber. Han ble stille en stund, og sa plutselig at han ikke kan noe om HA, som er kortnavnet på Hells Angels. Kanskje han var redd jeg hadde kobling til HA, noe jeg ikke har, og at han hadde fornærmet noen med kobling til Hells Angels.
 #### p. 137
 Jeg sa vi kunne være venner, og gav ham navnet mitt med det fonetiske alfabetet, han hadde delt at han hadde drept over 100 mennesker i tjeneste, men kunne ikke det internasjonale stavealfabetet militæret bruker, som ville ha vært måten man kommuniserte på da han skulle ha utført oppdragene. Enten hadde han strukket litt på sannheten, eller mer sannsynlig gjenfortalt ting han hadde hørt fra andre.
@@ -852,7 +854,7 @@ Lag på lag med løgn, er det måten vi holder på selvfølelsen der alle lider 
 Da jeg sto utenfor tenkte jeg på alle gangene nære venner av meg hadde fortalt damer om deres tid i militæret, og deres dype elobarative historier bygget opp gjennom et halvt liv med gjenfortelling av halve sannheter og ting de har fra media.
 Elitesoldat Militærnekteren som til damer sa han var del av en nasjonal spesialstyrke hvor han gjorde MMA, ny personlighet for en hver anledning, men lite nok kommunikasjon til at man sjelden blir avslørt.
 Etterretningsmann Helikopertpiloten som hadde galmannskjørt mye MC i Athen på 90-tallet. Historier fra avsløringer fra CIA blandet med mindre løgner om at han fløy helikopter i forsvaret, de store løgnene ble indirekte hintet og de små fortalt ut i lange historier som utviklet seg etterhvert. Giftet seg med en asiater som sikkert får høre historiene hver dag og smiler høflig.
-Pilote De to var helikopterpiloter, det var hele historien. De mente at løgnen var midre enn om de hadde sagt de fløy jagerfly. Slik kom de i kontakt med damer, men tror ikke de kysset noen av dem noen gang, om det var fordi de virket uoppnåelige eller ikke ble trodd vet jeg ikke, kanskje litt av hvert?
+Piloter De to var helikopterpiloter, det var hele historien. De mente at løgnen var midre enn om de hadde sagt de fløy jagerfly. Slik kom de i kontakt med damer, men tror ikke de kysset noen av dem noen gang, om det var fordi de virket uoppnåelige eller ikke ble trodd vet jeg ikke, kanskje litt av hvert?
 #### p. 139
 Heltene De administrativt ansatte ved den Engelske ambasaden sa de var i MI-6. Historiene var mange, og de fortsatte etter at de var avslørt.
 Jeg undret på om jeg selv har pyntet på historier fra forsvaret, eller om jeg er annerledes, og sterkere enn disse historiefortellerne, Var jeg så svak at jeg omskrev min egen historie så mye at jeg løy for andre? løy for meg selv?
@@ -887,7 +889,7 @@ Følelser er noe som er for stort til å passe inn i min hjerne, som med en mono
 ### Nyskaping på jobben — p. 144
 🎵 https://aigap.no/mobb (https://aigap.no/mobb) — p. 144
 On Being Blue, Art of Noise
-Nyskapning på moder jord handler om å finne opp nye metoder, ting eller anvendelser; innovasjon er både nyskaping og forbedring. Klatrer inni henne, jeg drømmer i farger nå.
+Nyskapning på moder jord handler om å finne opp nye metoder, ting eller anvendelser; innovasjon er både nyskaping og forbedring.
 Morfar drev sammen med en kompanjong firmaet Hougen & Larsen. På sine gamle dager ville han være sin egen herre etter å ha vært teknisk sjef i prosessindustrien mange år. Fordi far var fraværende fylte forfatteren farfar og gründeren morfar roller som gode mannlige forbilder. Morfar lærte meg som liten at det finnes to typer arbeidsfolk, de som bygger opp og de som river ned. Min reise begynte med denne innsikten.
 Hvorfor innovasjon, selv om de som river ned bare er nødvendig for å gi plass til de som faktisk skal bygge noe opp.
 Det er få som bygger opp og mange som river ned, folk er
@@ -899,7 +901,8 @@ Jeg deler flere av min morfars syn, men har respekt for at andre ser ting annerl
 Jeg laget dataspill tidlig i tenårene og hadde min første oppstart før jeg var fylt 20 år. Da jeg helt fra starten laget spill mine venner likte å spille har jeg helt fra ungdomstiden skapt egne digitale verdener og løsninger. Det har ikke gjort meg rik, men nysgjerrigheten er vedvarende, og selvtilliten med å lage ting selv, og ikke bare anvende det andre har laget, er vedvarende.
 Berøring av nerdehimmelen og å lage egne verdener kom kanskje alt for tidlig.
 #### p. 146
-Veien til å bli voksen kan kreve et mytologisk rituale der systemet svikter deg og du finner din egen kjerne. For eksempel har Amish-folket noe som heter Rumspringa, der ungdommene som 16-åringer kastes ut i verdens mørkeste hjørner og blir utsatt for moralsk fritt fall gjennom dop og prosititusjon. De unge voksne som vender tilbake, gjør det med en herdet tro på folkets idealer og tradisjoner. Motstandskraft kan oppstå i gapet mellom det trygge og det destruktive.
+Veien til å bli voksen kan kreve et mytologisk rituale der systemet svikter deg og du finner din egen kjerne. For eksempel har Amish-folket noe som heter Rumspringa, der ungdommene som 16-åringer kastes ut i verdens mørkeste hjørner og blir utsatt for moralsk fritt fall gjennom dop og prosititusjon. De unge voksne som vender tilbake, gjør det med en herdet tro på folkets idealer og tradisjoner.
+Motstandskraft kan oppstå i gapet mellom det trygge og det destruktive.
 Min far er professor ved universitetet, og det kan hende jeg hadde hatt mindre mot utdanningssystemet hvis han var et godt menneske. Konsekvensen av det å forakte universitetet er jo betydelig for muligheter i livet. Jeg valgte igjen ikke å immatrikulere meg på universitetet i år, noe som får meg til å lure på hvorfor trangen til motstand mot akademia kan sitte i meg nesten 40 år senere.
 Det at fokus endrer virkeligheten gjennom observasjon finner paralleller i moderne fysikk. Med gjeldende modell for de minste elementene vi kjenner, kvantefysikken, er massens tilstand uavklart før den blir observert, før man observerer er ingenting fastlagt, sannhet er bare teoretisk. På samme måte vet man ikke om en krise før man har stått i den. Mytologi har virkeligheter som er sanne, uten å være faktuelt reelle. Mørket vi omfavner ved systemers sammenbrudd, der vi går fra å
 #### p. 147
@@ -995,10 +998,11 @@ Ekte nyskaping lyser opp veien gjennom de mentale modellene våre. Fordi du lyse
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 163
 Appendix og mer
 ### Meta for bok, musikk og mer — p. 164
-🎵 freemium (https://aigap.no/mx) — p. 164
+🎵 premium freemium (https://aigap.no/mx) — p. 164
 Jeg hadde ikke hørt musikk på lenge. Utsultet på musikk.Bare skriving. Så sattejeg på spillelista for denne boka etter to uker.
 For envariasjon! For et overlesset inntrykk!
-To ytterpunkter for musikkens rolle er bakgrunnsmusikk ift assosiert musikk. Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk gi mer dybde til innholdet. Vi kjenner dette fra film og serier. Da TV-serien Miami Vice laget musikk beskrev Jan Hammer musikken som den tredje rolleinnehaveren, og filmskapere har både før og etter hatt denne innstillingen. Musikken til det enkelte kapittel representerer følelser da det bleskrevet. Du som leser kan lage alternativ spilleliste på https://aigap..no/mx
+To ytterpunkter for musikkens rolle er bakgrunnsmusikk ift assosiert musikk. Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk gi mer dybde til innholdet. Vi kjenner dette fra film og serier. Da TV-serien Miami Vice laget musikk beskrev Jan Hammer musikken som den tredje rolleinnehaveren, og filmskapere har både før og etter hatt denne innstillingen.
+Musikken til det enkelte kapittel representerer følelser da det bleskrevet. Du som leser kan lage alternativ spilleliste på https://aigap..no/mx
 ## Uplassert og ubestemt — p. 165
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 165
 Appendix og mer
@@ -1008,11 +1012,8 @@ de sitter og tar plasser. Når det kommer en med behov reiser de seg fort opp og
 Det var blitt satt ut styggere bord enn de runde steinbordene.
 Selv med dårlig hørsel hørte jeg cafeeieren for den lekre franske kafeen si “krooonprinsesssen hadde vært der i går”, høyt nok til at alle rundt akkurat så vidt hørte det. “Hvorfor ringte dere meg ikke, jeg skulle jobbe?” sa den nyansatte entusiastisk. Begge så bort på meg med stjålne blikk. Var jeg ønsket innenfor eller uttafor? hverken vet eller veit og er jo ikke egentlig nysgjerrig.
 Heller ikke noe annet enn nøytral til å drikke kaffe på nabobordet til kongelige. Tror jeg. “Alle kjenner kongen” hadde faren til min beste venn sagt til moren hans da hun spurte om hun hadde sett ham før.
-#### p. 167
-“Garamond” Etter boken husker du fortsatt følelsen den gav deg, ikke hva den handlet om. Skrevet i fonten “Garamond”.
-Dette er den vanlige skrifttypen som benyttes for gratisteksten. Den representerer det åpne og tilgjengelige innholdet i boken, og kjennetegnes av et rent, moderne og standardisert uttrykk med god lesbarhet. Freemium Premium “EB Garamond” Etter boken husker du fortsatt følelsen den gav deg, ikke hva den handlet om.. Dette er betalt tekst, den er i “EB Garamond”. Dette er den spesifikke skrifttypen som benyttes for den betalte teksten. Den er basert på et klassisk, historisk trykk fra 1592, noe som gir teksten et litt mørkere, mykere og mer tradisjonelt boktrykkerpreg. For systemet fungerer den som en helt egen font-ID som gjør at visningsprogrammet ditt kan låse opp eller skjule teksten automatisk basert på betalingsstatus.
-### Alle kan fortsette å endre seg — p. 168
-🎵 freemium (https://aigap.no/mx) — p. 168
+### Alle kan fortsette å endre seg — p. 167
+🎵 https://aigap.no/mx (https://aigap.no/mx) — p. 167
 Folk som er flinke utvikler seg og blir bedre Jeg tror alle kan endre seg og opplever at alle bare endrer seg i samme retning. Forsetter å endre seg som før.
 Jeg går ut i fra at jeg ikke skal skjønne hvorfor bden ikke virker.
 Det som ligger bak er at mennesket er overlegen.

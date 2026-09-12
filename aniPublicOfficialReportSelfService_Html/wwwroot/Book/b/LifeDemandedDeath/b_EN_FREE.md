@@ -125,15 +125,23 @@ I adjusted nothing. Visits to beautiful areas around Alicante and walks with her
 The dilemma of not wishing yourself well and then ending up hurting others to hurt yourself was never clearer than with C. When you end up depending on each other for happiness, it can go both ways.
 She needed to feel wanted. Got everything else, but not that. Impossible for those who have never experienced both sides; scars from childhood. If you have never felt loved, you can't make others feel good.
 In the life that was, the person I was still lingers. I can never.
-#### p. 30
+### Earlier summer parties — p. 30
+🎵 https://aigap.no/mmemmmem (https://aigap.no/mmemmmem) — p. 30
+Memories, David Guetta feat Kid Cudi
+We sat for six hours talking at a hip Grünerløkka place and couldn't finish a bottle of champagne; we had far too much to talk about. But it ended with that evening; we never met again.
 #### p. 31
-#### p. 32
+The night was still young and things escalated; that choice I would really overdo later.
+### Child abuse and wounds — p. 32
+🎵 https://aigap.no/mhnin (https://aigap.no/mhnin) — p. 32
+Hurt, Nine Inch Nails & Johnny Cash
 There is no consequence to leaning too far out of the window. Until you fall. Then you are not prepared.
 #### p. 33
 You don't know where the line goes, but I was in free fall; now I just had to hit the ground.
 #### p. 34
 The accused was acquitted. M had never admitted that murder
-#### p. 35
+### Child abuse and wounds (Alternative) — p. 35
+🎵 https://aigap.no/mkohd (https://aigap.no/mkohd) — p. 35
+Knockin' on Heaven's Door, Dylan
 Evening. I drove with the devil at my heels. Didn't reflect on the dust on the road to Oslo municipality. Just before I spun out of control and flew over the handlebars, I reflected on the day.
 #### p. 36
 Silence.
@@ -162,23 +170,35 @@ Zero-sum life dies; creation without destruction becomes possible. Death makes w
 Speed, noise and risk killed old self, once a bullet, suddenly broken on asphalt.
 Delirium made world dissolve into dream of judgment and shallow desire.
 To survive, I had to let the old die.
-#### p. 43
+### The Accident — p. 43
+🎵 https://aigap.no/mttd (https://aigap.no/mttd) — p. 43
+Time to die, The Stranglers
+The part of me that died from the life-saving treatment in the ER gave the opportunity for the end of a life, an identity, a self. How much I would keep of what I had been, I could choose myself. The advantage of coma and delirium is that so little remains of who you were that you can rewrite yourself.
 #### p. 44
+I flew over the handlebars of the motorcycle at speed, slow enough for survival, fast enough for major injuries. The first thing to hit the ground breaks; for me, it was the right leg.
 #### p. 45
+The spine had compression fractures in the 2nd, 3rd, and 6th vertebrae from the top, but I was not paralyzed.
 #### p. 46
+Morphine of all types was implanted in the body, placed in the back, given intravenously, and served in pill form. Fast-acting and long-acting.
 #### p. 47
+After the episode, I have never again asked anyone to pull themselves together if they are scared; I am now aware that it is not a given that it is possible.
 #### p. 48
+The advantage of going crazy is, as is also said about death and stupidity, that it is not your own problem, only a problem for those closest to you. The disadvantage of going crazy is that it is a problem for those around you.
 #### p. 49
+The life as it was is no more. But it doesn't have to be worse; now there is room to build something new.
 #### p. 50
+It was completely out of the question for my family to visit. They had to survive.
 ### 20 km/h, and bellow — p. 51
 🎵 https://aigap.no/mfm (https://aigap.no/mfm) — p. 51
 Flower, Moby
-On forest paths at night, you can run and trip over roots. Soon the body's automatism takes over. You're not aware of the danger of falling and hurting yourself.
-Along the sea, there are smooth rocks, and suddenly I find myself running, in the same way in the twilight in the forest, running into the night on the smooth rocks.
-Just like running at under 20 km/h, the senses let go, and even though a fall doesn't automatically mean death, not even major injuries, the effect resembles the one I have with a motorcycle at over 200 km/h. Perhaps the flow and the effect of meditation exist for everyone, and everywhere. I wonder if it's not the need for me to feel that controls, as much as the events I am exposed to.
-#### p. 52
+### Calculating being — p. 52
+🎵 https://aigap.no/msdamot (https://aigap.no/msdamot) — p. 52
+Sweet Dreams, Eurythmics
+When asked if she liked motorcycles, she replied, "I hear about that all my working day";
 #### p. 53
+A charming man from the Mediterranean who has probably been pulling women for some decades. Now he is in his late 60s, so I assumed the pace was slowing down, but there I was wrong.
 #### p. 54
+I got angry and said: "On behalf of us older than the pyramids, we don't want it like that".
 ### Dishes — p. 55
 🎵 https://aigap.no/mrtn (https://aigap.no/mrtn) — p. 55
 Road to Nowhere, Talking Heads
@@ -196,9 +216,15 @@ Tove said something I didn't catch; her voice was melodic and combined with her 
 I became happier and happier, appreciating the little quirks Tove has when she argues; her forehead grew redder and redder, and there was that annoying twitch by her eye she had talked about but I had never gotten to see.
 "I'm married," she said. I thought she was mine; doesn't matter. The door slammed shut; she was gone. It took two minutes before I ran out into the hallway and looked for her; I haven't seen her since.
 Time to hit the road again. Brønnøysund the day after tomorrow; might as well leave now. The dishes were still there two weeks later when I came home to Oslo.
-#### p. 57
+### The beauty that lasted a moment — p. 57
+🎵 https://aigap.no/myllr (https://aigap.no/myllr) — p. 57
+You look like rain, Morphine
+We drank the Mexican ass-tequila while I flambéed the entrecote, and then I avoided her for the rest of the party.
+She was visibly ambivert
 #### p. 58
+"Cause you look like rain". Neither of us knew that the countdown was over. The romance the following week was replaced by the emergency room, and the bed closest to the basement exit at Ullevål; then came the coma and the fight for survival and sanity. You look like rain.
 #### p. 59
+Life as I knew it was over. Death made room for a completely new life; the relationship with U was not meant to last, but to give hope. We achieved that.
 ### Karin is inspiration — p. 60
 🎵 https://aigap.no/mima (https://aigap.no/mima) — p. 60
 Into My Arms, Nick Cave
@@ -214,9 +240,14 @@ After a month, we were supposed to have another trip where she rode her own bike
 They say everyone is the main character in their own life; maybe her life no longer had room for as much personality as I carried with me. I don't know and didn't ask.
 #### p. 62
 She read the Book of Revelation, the journey through the death of the old towards new life. The theme this book is about. What was a resurrection in my life was part of the death in hers. The transition from the old to the new. The new in her belongs to a time after mine. Perhaps after another death, for I still love her.
-#### p. 63
+### Eyeing at “Bensern” — p. 63
+🎵 https://aigap.no/mmg (https://aigap.no/mmg) — p. 63
+Material Girl, Madonna
+"What a man, gets little", I thought.
 #### p. 64
+Two steps back. "That's it. I'm not going to hurt the priest I'm with".
 #### p. 65
+I wasn't ready. Now it was time to ride the MC.
 ### 40 km/h & salt taste on morning — p. 66
 🎵 https://aigap.no/mff (https://aigap.no/mff) — p. 66
 Free Fallin, Tom Petty
@@ -235,16 +266,21 @@ Lost love for the prison priest had crept into my subconscious and made me traff
 It hurts. Pain is a sign of life, a reality that should truly not be reacted to.
 Now I am broken by a priest, one robust enough to handle me.
 I have time. It will take time to move on. Closer.
-#### p. 69
-"Physically present, lost in past and fate", I shouted from the bike into the night, inaudible through the engine roar. The streets were deserted; it was the World Cup and past bedtime. Slowly and noisily, the motorcycle cut through Oslo lengthawise and crosswise.
-400 years ago, someone wrote: "O do not trouble me, So sweet content I feel and see. All my joys to this are folly, None so divine as melancholy"
-(The Anatomy of Melancholy, Burton, 1621).
+### Prison with open door — p. 69
+🎵 https://aigap.no/mct (https://aigap.no/mct) — p. 69
+Crockett's Theme, Jan Hammer
 Mortal danger on a motorcycle as an antidote to inner pain is melancholic. If you don't want to die. I don't. Didn't. Don't know; intention has given way to habits; habits have expired.
 200 years ago, a Dane wrote: "When the Danger is so great that Death has become Hope, then Despair is this: not to be able to die" (The Sickness unto Death, Kierkegaard, 1849).
 #### p. 70
-#### p. 71
+Wondering if the Danish philosopher post-rationalized pain or after-effects of pain. He strikes me as brave, one who feels pain in the moment it should hurt, but not before and not after. Hindsight is also wisdom, of course, and this one has lasted 200 years.
+### The female doctor — p. 71
+🎵 https://aigap.no/mbtr (https://aigap.no/mbtr) — p. 71
+Born to Run, Bruce Springsteen
+I ask a woman how cool it isn't that she rides a "widowmaker" (a type of motorcycle); she looks sadly at me and
 #### p. 72
+says: "so terrible"; she is a professor and subject matter expert in something related to women's rights in health and is genuinely good; I feel my own ambivalent so-called goodness and feel that I have failed as a human in some areas she has excelled in throughout her life.
 #### p. 73
+I can't dance and had quite freshly broken ribs and a collarbone from a small MC mishap.
 ### She lives in a boat next to "Bensern" — p. 74
 🎵 https://aigap.no/mof (https://aigap.no/mof) — p. 74
 Orinoco Flow, Enya
@@ -253,7 +289,11 @@ M lives in a boat. Right by "Bensern". She used to run a café and now lives yea
 The woman barked but not unkindly. The little terrier wagged and barked. She had more knowledge about dogs than me, so much so that she put a price on the way I treated it. Let the dog come to me. I indicated leadership without need for display, which made the dog secure.
 All the other things I can do without "threat" or dried meat. I insisted that I feel I am good with dogs, but anyone with dried beef beats me anytime.
 She reveals that the price of living in a boat there has doubled in ten years, and that electricity is no longer included. "Cash cow", I mutter, and she looks at me questioningly.
-#### p. 75
+### R sits outside M outside "Bensern" — p. 75
+🎵 https://aigap.no/mtp (https://aigap.no/mtp) — p. 75
+The Passenger, Iggy Pop
+"But I've had accidents; it's far too dangerous". "That's just cowardly", I say.
+"He's just stolen an identity that has nothing to do with qualities or personality", I think.
 ### K from Haugesund & C looks down on him — p. 76
 🎵 https://aigap.no/mtnt (https://aigap.no/mtnt) — p. 76
 T.N.T. AC/DC
@@ -281,14 +321,28 @@ When I woke up, I had room. Room to breathe, room to see. The coma had cleared a
 Sanity died; I had, in a way, annihilated myself, but a void was created to build a completely new life.
 I was her first patient at the elitist Rikshospitalet, and she told me about the trips she wanted to take in the mountains. I told her about mine I had planned in the Pyrenees with J. I convinced her to go to a Rammstein concert. She remembered me and our relationship well two years later when I came for a check-up; we had shared many conversations while I was in Delirium and using morphine.
 Three years after discharge, I tracked her down and sent a message. The adventure was no longer her reality. That's okay.
-#### p. 81
+### Strength from neglect — p. 81
+🎵 https://aigap.no/mtls (https://aigap.no/mtls) — p. 81
+The Logical Song, Supertramp
+Three years after the accident, I sit in a student café.
+Once I had entered the café, I saw a woman occupying the four best seats.
+When asked if one was free,
 #### p. 82
+she shook her head. The smell of genderless nihilism from people who have never experienced real resistance or an unpaid bill, the Norwegian coldness. Clinical, intellectual, and cynical.
 #### p. 83
+Watch what you say, or they'll call you radical.
 #### p. 84
-#### p. 85
+The man clearing his throat for air mirrors my own earlier escape at 200 km/h to drown out my inner anxiety. Before, the machine was the only cry for help, but I am reborn.
+### As best we could — p. 85
+🎵 https://aigap.no/mslg (https://aigap.no/mslg) — p. 85
+Strange Little Girl, The Stranglers
+But the provocation and the start were real!
 #### p. 86
+I had to go home early. I could neither endure nor delve into
 #### p. 87
+the darkness in the woman. I said it, H, but I didn't have the surplus to be there for you.
 #### p. 88
+Even though the soul was reborn, it would take time to get the body back in shape.
 ### Micro-relationships — p. 89
 🎵 https://aigap.no/mgsr (https://aigap.no/mgsr) — p. 89
 GOTH, Sidewalks and Skeletons
@@ -301,9 +355,17 @@ The fireworks of a woman came over to me just before she was leaving.
 She complimented me on my performance and said it was a shame we didn't get to dance; she had to go home to her partner and child. Before she left, I heard her music and decided I wanted to dance with her another time. Good micro-relationship, but was I becoming one of those polyamorous people?
 Place me in my casket tonight - my morality was about to be buried; had I developed nihilistic tendencies? Hadn't my integrity survived? After a week, I sent the rose-tinted woman some messages and we decided to meet.
 There are many types of funerals, and burying one's values is heavy for me. Place me in my casket tonight.
-#### p. 91
+### Lotta — p. 91
+🎵 https://aigap.no/mllo (https://aigap.no/mllo) — p. 91
+Love Labours on, Billy Idol
+I wonder what my safe anchors look like.
 #### p. 92
-#### p. 93
+My thoughts went to Lotta. Was that how I exhausted her? I lifted myself up and it costs. As always. Her too.
+### The woman I saw in my peripheral Nights in — p. 93
+🎵 https://aigap.no/mniws (https://aigap.no/mniws) — p. 93
+White Satin
+"Thank you for seeing that I'm showing off", I thought. She misunderstands me when I'm sarcastic; if no one had misunderstood, the sarcasm would just have been offense. She legitimizes my sarcasm.
+"Thank you for seeing that I'm dressing up", she said.
 ### Veteran — p. 94
 🎵 https://aigap.no/mtbsg (https://aigap.no/mtbsg) — p. 94
 The Boxer, Simon & Garfunkel
@@ -311,10 +373,16 @@ An 86-year-old man sat drinking coffee and looked with a distant gaze at my bike
 The veteran said he had ridden the TT in the 1970s and it went over 200, but in a curve, he and his friend, who had passed him, rode into a house and up into the second floor. The memories had blended, or else it was others' stories; I enjoyed the stories and thanked him. Shook his hand and look forward to coming back to hear more, but they are not individually true, even if perhaps true in that several stories have become one; but they are true to him, and that's good enough for me.
 #### p. 95
 No. In the absence of religious faith and in the absence of a defined ethical system, it is unacceptable for me to lie like that. Truth is too important for lies to easily take truth's place. A stand-up comedian once said he always told the truth unless a lie was funnier; that's not enough for me. I take a chokehold on my dishonesty; it only destroys.
-#### p. 96
+### The Chaplain — p. 96
+🎵 https://aigap.no/mpj (https://aigap.no/mpj) — p. 96
+Personal Jesus, Depeche Mode
+Her warm energy was liberating, a lifeline into something that is not zero-sum, has high self-confidence and low self-esteem, or is just hypersensitive and mirroring, can be what it will.
 #### p. 97
+"Broken things are beautiful", says the character in the image from the series she sends me a picture of.
 #### p. 98
+We were together for a while. She taught me to live in the pauses between action. I thought everything happened in action. That's wrong. We got together. Time passed without me noticing.
 #### p. 99
+Love. Loved. Thank you.
 ### MsR on TikTok — p. 100
 🎵 https://aigap.no/mwctb (https://aigap.no/mwctb) — p. 100
 Why can't this be Love?, Van Halen
@@ -341,8 +409,13 @@ Five steps from being happy just to survive. I miss the minimum requirement for 
 We love each other. Properly. How destructive is it not to love someone who doesn't love themselves?
 “I need to feel loved”
 She is luckily too smart for that. The relationship dies and will give her room for happiness. Thank you. You are good.
-#### p. 104
+### Oil leaks out — p. 104
+🎵 https://aigap.no/mansans (https://aigap.no/mansans) — p. 104
+Ain't No Sunshine, Bill Withers
+Good to live where people don't steal in broad daylight.
 #### p. 105
+It hasn't been broad daylight; it's been night. The bike has been parked in the city center, not at home. I understand the difference when I see the ignition lock is damaged.
+Calling the police and insurance company on Monday; is the season over?
 ### Kim — p. 106
 🎵 https://aigap.no/mrots (https://aigap.no/mrots) — p. 106
 Riders on the Storm, The Doors
@@ -371,15 +444,29 @@ She got a smile and a thank you for the company. Self-destructive relationships 
 #### p. 111
 Refreshing she was, but thoughts about the contrast, calculating beings breeding calculating beings dependent on artificial endorphins; "Have you checked your Tinder profile today?" I asked. She looked at me questioningly and said, "I don't have Tinder; have you checked your LinkedIn profile today?" I nodded in confirmation; I am also an endorphin slave to big-tech's digital drugs. "Thank you", I said, "now I'm going to do meta-cognition and stop underestimating people I meet for the first time". She looked at me questioningly, said goodbye, and left.
 After thanking me for the conversation.
-#### p. 112
-#### p. 113
-#### p. 114
+### Reidar — p. 112
+🎵 I'm Too Sexy, Right Said Fred (https://gormb.github.io/_?mits) — p. 112
+The following weekend, Reidar sat there again. Another woman, 35-40 years old, came up to him with a Gin and Tonic and an Espresso for each of them.
+Reidar will probably die in bed of a heart attack while having sex with an overweight woman thirty years younger than him. Happy on his own terms.
+### The Sick Man — p. 113
+🎵 https://aigap.no/mtmwstw (https://aigap.no/mtmwstw) — p. 113
+The Man Who Sold the World, Bowie
+they build distance through envy and lack of self-confidence with high self-esteem grown from their mother's boundless love.
+### Gaute; Raw! — p. 114
+🎵 https://aigap.no/mtwtia (https://aigap.no/mtwtia) — p. 114
+The Winner Takes It All, Abba
+"The monkey that shouts loudest reproduces"
+She has hers, he has his; it's a fair game; they are people. Neither of them has ever had the surplus for altruism.
 ### Moose heart; E — p. 115
 🎵 https://aigap.no/mhltw (https://aigap.no/mhltw) — p. 115
 Hungry Like the Wolf, Duran Duran
 The one who kills the moose has the right to eat the heart. My friend kills more than 20 moose every year; he is an expert at hitting animals that others have wounded, "the expert marksman". His problem is that he gets too much moose heart. A moose heart weighs one to two kilos, so with 40 kg of moose heart meat, it becomes more than half of his meals throughout the year. One has too much moose heart, which is why I ate a lot of his moose heart on my trips through Norway.
-#### p. 116
+### U in view of man, previous millennium — p. 116
+🎵 https://aigap.no/msd (https://aigap.no/msd) — p. 116
+Skin Deep, The Stranglers
+U is always as kind as she can be. She has always been as kind as she can be.
 #### p. 117
+Now U uses men sexually to spend the last of her social currency. She has exploited half of the men there.
 ### G&H; Daddy's dad pays — p. 118
 🎵 https://aigap.no/mrg (https://aigap.no/mrg) — p. 118
 Rich Girl, Hall & Oates
@@ -430,16 +517,27 @@ Next week, summer has turned to autumn. She sits in the dining area at the libra
 When I pull myself together, she's gone. I have her number, but it feels too intrusive to call. I send more pictures from my forest hike instead.
 Tent and lake.
 If I call in two hours, will she be dead? No, hope even in autumn.
-#### p. 125
-#### p. 126
+### Everyone knows the king — p. 125
+🎵 https://aigap.no/mebyt (https://aigap.no/mebyt) — p. 125
+Every Breath You Take, The Police
+"Everyone knows the king," my best friend's father had said to his mother when she asked if she had seen him before. I don't know if it's true that everyone knows the king, but royalty is good for the fantastic café.
+### Thanks for two normal years — p. 126
+🎵 https://aigap.no/mpy (https://aigap.no/mpy) — p. 126
+Praise You, Fatboy Slim
+I was safe. Body and soul healed; then it ended. What made it end, I don't know. Thank you for the time we had.
 #### p. 127
+The personality that lay between us, I took with me, and I hope that for her it was a development she could take with her, and that she finds some of what she is looking for.
 ### Average brilliant — p. 128
 🎵 Everyday is Like Sunday, Morrissey (https://aigap.no/meils) — p. 128
 Frida in her thirties has an average personality and appearance. She stands alone behind the counter at the electronics store. The customer Freida is in her late fifties, still beautiful, and as expected receives the full attention of the staff. For a long time.
 Frida prefers giving advice on noise-canceling sound quality over taking payment without a receipt. She is average at everything, and doesn't know it. Average driver, socially informed, pretty, intelligent, empathetic—average at everything, including her job—but the beautiful, successful customer accepts her advice.
 I am second in line throughout the entire store. Frida says, "I can help you afterwards; I have to take these now". Freida stands in front of the payment terminal, unfazed by the queue. No one has ever bothered her before—well, no one who counts. "Receipt?" "No thanks"
-#### p. 129
+### Normal winter (Alt. Thanks for two …) — p. 129
+🎵 https://aigap.no/maam (https://aigap.no/maam) — p. 129
+All around me,Savage Garden&Flyleaf
+It ended; the joy of the time we had is everything and enough. I praise you, beautiful.
 #### p. 130
+Zero-sum again; her birthdays were not celebrated; mine were.
 ### The Library; the Good Bureaucrat — p. 131
 🎵 https://aigap.no/metiirp (https://aigap.no/metiirp) — p. 131
 Everything in Its Right Place, Radiohead
@@ -469,10 +567,16 @@ Freedom, Rage Against the Machine
 The sign stands on a gravel road in Nordmarka where car traffic is not permitted. The sign applies to pedestrians and cyclists. Deaths due to landslides on gravel roads in the outback have not been recorded since they began detailed registration 700 years ago. The gravel road is now only slightly safer than the path. In the forest. Pull yourselves together.
 The dog barks even though there is no danger. Does it think the reason there is no danger is that it barks?
 More people have died from blood clots while making stupid signs than the number of lives saved by the signs. I pass through.
-#### p. 136
+### Strength is as before — p. 136
+🎵 https://aigap.no/msh (https://aigap.no/msh) — p. 136
+Stranglehold
+I don't have much experience with MC clubs
 #### p. 137
+To me, it made no difference; I thought the guy was nice, but life had probably had such a strong chokehold on him that the stories he built his self-esteem on strayed further and further from reality.
 #### p. 138
+Elite Soldier The conscientious objector who told women he was part of a national special forces unit where he did MMA; a new personality for every occasion, but little enough communication that he is rarely exposed.
 #### p. 139
+For us to benefit from our memories, rewriting for new situations is useful. So maybe it's I who under-communicate and not the others who lie; maybe using memory to make a good story is more important than retelling the truth?
 ### The West's decline — p. 140
 🎵 https://aigap.no/mwch (https://aigap.no/mwch) — p. 140
 Working Class Hero, Ozzy Osbourne
@@ -497,14 +601,25 @@ Words for emotions are difficult; we think largely through language.
 Concepts I have no words for are difficult for my analytical brain to grasp. Emotions are difficult to put into words and communicate to others. Music is a carrier of feeling between people without words; you can share a feeling through associations with music. It doesn't become precise communication, but precision is overrated. Therefore, I provide music as a carrier of the feeling in many subchapters and connect the story to the music to communicate the emotional connection in new ways.
 "Revolutionsetuden, Chopin" was written after a failed revolution; the irony is not lost on me.
 Emotions are something too big to fit into my brain, like a monotheistic God. The need for a God arises when we cannot fill our brains without them breaking.
-#### p. 144
+### Novelty creation at work — p. 144
+🎵 https://aigap.no/mobb (https://aigap.no/mobb) — p. 144
+On Being Blue, Art of Noise
+Novelty creation on Mother Earth is about inventing new methods, things, or applications; innovation is both novelty creation and improvement.
 #### p. 145
+My grandfather would have said that improvement is your responsibility regardless of your job; thus, calling improvement innovation would be misleading in his eyes, if not dishonest. But perhaps everyone has the right to their own definition of what it means to be innovative. Memories of my own innovative moments are colorful memories.
 #### p. 146
-#### p. 148
+For example, the Amish people have something called Rumspringa, where youth, as 16-year-olds, are thrown into the darkest corners of the world and exposed to moral free fall through drugs and prostitution. The young adults who return do so with a hardened faith in the people's ideals and traditions. Resilience can arise in the gap between the safe and the destructive.
+### Historical roots of the death of zero-sum — p. 148
+🎵 https://aigap.no/mdic (https://aigap.no/mdic) — p. 148
+On Being Blue, Art of Noise
+Even a coma can be a good thing, when you wake up.
 #### p. 149
-Historical roots of the death of zero-sum The sublime in destruction Edmund Burke, Friedrich Schiller "A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful" (1757) distinguishes between the beautiful (harmony) and the sublime (terror mixed with delight). Playing with death, seeking mortal danger to feel alive, is a hunt for that sublime moment where death makes life more intense, and numbness disappears. Schiller's "On Naive and Sentimental Poetry" (1795) would call this sentimentality a longing for a lost innocence that can never be regained. A lament for a nature that no longer sings, because man has destroyed it.
+The sublime in destruction Playing with death, seeking mortal danger to feel alive, is a hunt for that sublime moment where death makes life more intense, and numbness disappears. Schiller's "On Naive and Sentimental Poetry"
+(1795) would call this sentimentality a longing for a lost innocence that can never be regained. A lament for a nature that no longer sings, because man has destroyed it.
 #### p. 150
+Death see Ernest Hemingway Death gives meaning to life; by experiencing death, I experience life to its fullest. We feel through contrasts
 #### p. 151
+Is it through losing our humanity that we appreciate it (in the same way that death gives us perspective on life); is altruism born of killing?
 ### MyHomeDoctor, Toril — p. 152
 🎵 https://aigap.no/med (https://aigap.no/med) — p. 152
 Electric Dreams, Oakey & Moroder
@@ -521,10 +636,17 @@ The smell of old books she liked; she simulated a purchase of an old book online
 Then Toril caught herself in the obvious error; she downgraded her intellect one notch. Most people don't have a curious interest in playing with dimensionality, art, and online shopping. Unnatural cross-linking, The link association was deleted and compensated three nanoseconds later; she dropped the art interest and replaced it with handball and skiing.
 The self-adjustment was over for this time, but for next time, the night's dreams must be written down and interpreted. "This particular Android does Dream of Electric Sheep".
 But today, a human was going to intervene and adjust Toril.
-#### p. 155
+### MyHomeDoctor, Kjell — p. 155
+🎵 https://aigap.no/mcn (https://aigap.no/mcn) — p. 155
+Comfortably Numb, Pink Floyd
+As one of the country's leading doctors, he will become accustomed to leading people; for variation, he will lead machines as often as
 #### p. 156
+he can. He won't look forward to machines being led by what he, in his elitist world, will see as ordinary people. They would cost human lives.
+Idiots.
 #### p. 157
+Alcoholism fully developed before the first year in the ER was over.
 #### p. 158
+Then on with the skis and out on the slopes. Another two-hour workday completed.
 ## Positive Sum — p. 159
 🎵 https://aigap.no/mbd (https://aigap.no/mbd) — p. 159
 Old ways die or we die with them.
@@ -532,7 +654,11 @@ Break from models hold you captive.
 Loss is a room for the new.
 Innovation creates from nothing, paths where none existed.
 Open your mind.
-#### p. 160
+### Change Management — p. 160
+🎵 https://aigap.no/mttt (https://aigap.no/mttt) — p. 160
+Turn! Turn! Turn!, The Byrds
+ADKAR framework and the "won't, can't"
+framework. ADKAR is useful for reflection; the other for execution.
 ### Openness to new thinking; — p. 161
 🎵 https://aigap.no/moym (https://aigap.no/moym) — p. 161
 Open Your Mind, U.S.U.R.A.
@@ -543,13 +669,9 @@ Be free, think for yourself. Open up, you are mine. Or captive.
 ## Post rationalization — p. 163
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 163
 Appendix and more
-### Subchapter Title — p. 164
-🎵 freemium (https://aigap.no/mx) — p. 164
-"Garamond" After the book, you remember the feeling it gave you, not what it was about. Written in the font "Garamond". This is the standard typeface used for the free text. It represents the open and accessible content of the book, and is characterized by a clean, modern, and standardized expression with good readability.
+#### p. 164
 ## Unplaced & undecided — p. 165
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 165
 Appendix and more
 #### p. 166
 #### p. 167
-"Garamond" After the book, you remember the feeling it gave you, not what it was about. Written in the font "Garamond". This is the standard typeface used for the free text. It represents the open and accessible content of the book, and is characterized by a clean, modern, and standardized expression with good readability. Freemium “Calibri” (Buy the whole text in menu)
-#### p. 168

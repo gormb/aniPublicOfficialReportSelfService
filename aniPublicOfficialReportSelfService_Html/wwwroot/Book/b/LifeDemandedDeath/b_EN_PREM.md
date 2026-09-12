@@ -170,12 +170,14 @@ In the life that was, the person I was still lingers. I can never.
 🎵 https://aigap.no/mmemmmem (https://aigap.no/mmemmmem) — p. 30
 Memories, David Guetta feat Kid Cudi
 A summer party was over; I met yet another perfect woman. She had resigned from a management position at a large company because she couldn't reach the top. Complained it was because she was a woman; I'm not sure. Former journalist, then communications director, and now head of some collaborations around something ideal we measure with our sustainability goals.
-We sat for six hours talking at a hip Grünerløkka place and couldn't ﬁnish a bottle of champagne; we had far too much to talk about. But it ended with that evening; we never met again. It was midnight, and I pointed my nose towards a party that had been going on for a while.
+We sat for six hours talking at a hip Grünerløkka place and couldn't finish a bottle of champagne; we had far too much to talk about. But it ended with that evening; we never met again. It was midnight, and I pointed my nose towards a party that had been going on for a while.
 A former colleague was in a group of ten to ﬁfteen women and almost as many men. Today everyone would party together. The women had a pre-party for themselves at a nice café, and the guys
 #### p. 31
 shared hunting stories over a beer. On my way to my date, I had stopped by the women's pre-party and given a rose to each of them, then left without a word. When I came from my date, they had been talking about me for hours.
 Big sister and little sister; I was in love with the older one, but couldn't always tell them apart. The younger one stood outside the party; I thought it was the older one and said "why have we never kissed" and then kissed her on the mouth. Then we walked in together to the others, and I discovered my mistake; there I met the eyes of the older sister I was in love with, and the little sister smiled revealingly.
-The night was still young and things escalated; a good friend of mine ended up in bed with the big sister, and I with the little sister. These athletic country girls have an energy that lets them party and love much longer than us lazy city folks; I was exhausted and satisﬁed, even though I had avoided having sex with the younger one, I had ruined two of my chances for happiness in one evening. But a life in high speed is also good; that choice I would really overdo later.
+The night was still young and things escalated; a good friend of mine ended up in bed with the big sister, and I with the little sister.
+These athletic country girls have an energy that lets them party and love much longer than us lazy city folks; I was exhausted and satisﬁed, even though I had avoided having sex with the younger one, I had ruined two of my chances for happiness in one evening.
+But a life in high speed is also good; that choice I would really overdo later.
 ### Child abuse and wounds — p. 32
 🎵 https://aigap.no/mhnin (https://aigap.no/mhnin) — p. 32
 Hurt, Nine Inch Nails & Johnny Cash
@@ -251,15 +253,13 @@ To survive, I had to let the old die.
 Time to die, The Stranglers
 I had a Brown Tequila with M and her girlfriend.
 Brown Tequila in the morning and a life-threatening accident in the evening. It gave experiences that can never be unlearned.
-The part of me that died from the life-saving treatment in the ER gave the opportunity for the end of a life, an identity, a self.
-How much I would keep of what I had been, I could choose myself.
-The advantage of coma and delirium is that so little remains of who you were that you can rewrite yourself.
+The part of me that died from the life-saving treatment in the ER gave the opportunity for the end of a life, an identity, a self. How much I would keep of what I had been, I could choose myself. The advantage of coma and delirium is that so little remains of who you were that you can rewrite yourself.
 Physically, the life I knew was over. A month in the ER and months of morphine changed everything. The acceptance that the life I had before was gone was easy; an unclear period had received a deﬁnitive end, and the body was healed.
 #### p. 44
 Life-saving treatment for polytrauma is given with a small or large team; a small one was enough for me. The injuries included fractures in some of the upper vertebrae, lung bleeding, eleven broken ribs, high-energy fractures, and a broken little ﬁnger. No one bothered with the little ﬁnger, so it still looks a bit strange.
 Some things are extreme enough that they must be experienced to be understood.
 It wasn't the injuries that made me lose my mind. Pulmonary emphysema, a bleeding following the surgeries or the accident, had reached the lungs. Too little oxygen to the brain. I experienced it as delusions and physical anxiety. What distinguishes physical anxiety from intellectual is that it is useful to rationalize with someone who has the intellectual type.
-I ﬂew over the handlebars of the motorcycle at speed, slow enough for survival, fast enough for major injuries. The ﬁrst thing to hit the ground breaks; for me, it was the right leg.
+I flew over the handlebars of the motorcycle at speed, slow enough for survival, fast enough for major injuries. The first thing to hit the ground breaks; for me, it was the right leg.
 Injuries The fracture was category type 3b. Fractures are divided into levels one, two, and three. Level three is again divided into a, b, and c. Statistically, 3a, b, and c result in amputation in 5, 25, and 50 percent of cases, respectively. My fracture carried a 25% chance of amputation, multi-trauma, and serious injuries around the body. Probability of cognitive reduction. Various
 #### p. 45
 types of permanent sequelae, both physical and psychological.
@@ -303,8 +303,8 @@ It was completely out of the question for my family to visit. They had to surviv
 🎵 https://aigap.no/mfm (https://aigap.no/mfm) — p. 51
 Flower, Moby
 On forest paths at night, you can run and trip over roots. Soon the body's automatism takes over. You're not aware of the danger of falling and hurting yourself.
-Along the sea, there are smooth rocks, and suddenly I find myself running, in the same way in the twilight in the forest, running into the night on the smooth rocks.
-Just like running at under 20 km/h, the senses let go, and even though a fall doesn't automatically mean death, not even major injuries, the effect resembles the one I have with a motorcycle at over 200 km/h. Perhaps the flow and the effect of meditation exist for everyone, and everywhere. I wonder if it's not the need for me to feel that controls, as much as the events I am exposed to.
+Along the sea, there are smooth rocks, and suddenly I ﬁnd myself running, in the same way in the twilight in the forest, running into the night on the smooth rocks.
+Just like running at under 20 km/h, the senses let go, and even though a fall doesn't automatically mean death, not even major injuries, the eﬀect resembles the one I have with a motorcycle at over 200 km/h. Perhaps the ﬂow and the eﬀect of meditation exist for everyone, and everywhere. I wonder if it's not the need for me to feel that controls, as much as the events I am exposed to.
 ### Calculating being — p. 52
 🎵 https://aigap.no/msdamot (https://aigap.no/msdamot) — p. 52
 Sweet Dreams, Eurythmics
@@ -341,13 +341,14 @@ Time to hit the road again. Brønnøysund the day after tomorrow; might as well 
 🎵 https://aigap.no/myllr (https://aigap.no/myllr) — p. 57
 You look like rain, Morphine
 "Your mind and your experience call me". There were two hours left until the summer party on the grass, and I was already overloaded by too many expressions. It became a no thanks to a bed welcome from a ﬂame from the South who was going to sell her ex-husband's Tesla at Gardermoen; better to take a quiet, solitary hour under a fake palm in Frognerkilen, and calm the nervous system before a party with Mezcal, Mont d'Or, Entrecote, and truﬄe salt. Your mind and your experience call me.
-"You have lived and your intelligence is sexy". The three previous summer parties still sat in the emotional memory; they had resulted in short dates without much aftermath, and I expected the same now. Then I met S. We drank the Mexican ass-tequila while I ﬂambéed the entrecote, and then I avoided her for the rest of the party. She was visibly ambivert
+"You have lived and your intelligence is sexy". The three previous summer parties still sat in the emotional memory; they had resulted in short dates without much aftermath, and I expected the same now. Then I met S. We drank the Mexican ass-tequila while I flambéed the entrecote, and then I avoided her for the rest of the party.
+She was visibly ambivert
 #### p. 58
 with strong introversion and extroversion simultaneously.
 Apparently medium-low on the autism spectrum, like me. You have lived, and your intelligence is sexy.
 "I want to know what you got to say". It got to be three in the morning, and I was looking forward to watching for elk and deer in the dark, but suddenly V said: "Hey G and U, why don't you two just ﬁnd each other?" I didn't think much of it but took Albutak on S; she had impressed me against her will, and led her away from the others. I want to know what you have to say.
 "I can tell you taste like the sky". "I live right over there, but we can't go to my place; my keys are lost on a beach in Kristiansand", I said. "I'm staying with my parents temporarily; I'm going there to sleep". "Let's ﬁnd a hotel". "I want to go home to my son". "Here, your taxi. Now we just have to kiss, then we can go our separate ways; we can have a date next week". I kissed her on the mouth. I can tell you taste like the sky.
-"Cause you look like rain". Neither of us knew that the countdown was over. The romance the following week was replaced by the emergency room, and the bed closest to the basement exit at Ullevål; then came the coma and the ﬁght for survival and sanity. You look like rain.
+"Cause you look like rain". Neither of us knew that the countdown was over. The romance the following week was replaced by the emergency room, and the bed closest to the basement exit at Ullevål; then came the coma and the fight for survival and sanity. You look like rain.
 #### p. 59
 "You think like a whip on a horse's back". Even though I sent messages with pictures of surgical wounds, the way I communicated during delirium, U was tough enough to handle a man in chaos with a brain stretched to the breaking point. The nice thing about going into a coma is that you can choose who to be if you wake up. You think like a whip on a horse's back.
 "Stretched out to the limit". After a week, I woke up and got visitors at the same time; they had tracked me down at Rikshospitalet, where reality was a psychotic mix of morphine and dreams. Stretched to the limit.
@@ -378,8 +379,7 @@ I did a sideways dive into the water from the pier while the tone of the convers
 Regardless, I noticed that she who was staring, already while I was undressing, had decided that she wanted me.
 "Resource-saving simpliﬁcation, naked man at your service", I said to myself and held her gaze.
 I walked towards my table and therefore just as much towards hers: "Aren't you going in?" It was very unnatural to swim right there; she looked perplexed and looked away. "Do you have a swimsuit underneath?" I navigated past my own table to hers, and suddenly she held my gaze again. "Here you can be cooled down by me anyway". Long before I was right up against her, she opened her arms. I wiped the seawater oﬀ on her nice white dress while she was wearing it. Neither of us was cooled down by that.
-"Deﬁled and desired", I said to myself and held her an extra second when she let go. Showed dominance. She was happy, and her friend looked shocked. They both probably thought they had been thoroughly taken care of in bed. Two steps back. "That's it.
-I'm not going to hurt the priest I'm with".
+"Deﬁled and desired", I said to myself and held her an extra second when she let go. Showed dominance. She was happy, and her friend looked shocked. They both probably thought they had been thoroughly taken care of in bed. Two steps back. "That's it. I'm not going to hurt the priest I'm with".
 #### p. 65
 Then I resumed the conversation with Y. We talked about book projects and ignored the women.
 It was only half true that it was over with the chaplain. I wasn't ready. Now it was time to ride the MC. The women left while wagging their tails. The beauty had made up her mind even before I had completely undressed. I looked more ﬁt than usual, because my weight dropped every week. Love problems aﬀect the appetite, but was I more attractive to the women? I didn't care.
@@ -405,13 +405,11 @@ I have time. It will take time to move on. Closer.
 🎵 https://aigap.no/mct (https://aigap.no/mct) — p. 69
 Crockett's Theme, Jan Hammer
 "Physically present, lost in past and fate", I shouted from the bike into the night, inaudible through the engine roar. The streets were deserted; it was the World Cup and past bedtime. Slowly and noisily, the motorcycle cut through Oslo lengthawise and crosswise.
-400 years ago, someone wrote: "O do not trouble me, So sweet content I feel and see. All my joys to this are folly, None so divine as melancholy"
-(The Anatomy of Melancholy, Burton, 1621).
+400 years ago, someone wrote: "O do not trouble me, So sweet content I feel and see. All my joys to this are folly, None so divine as melancholy" (The Anatomy of Melancholy, Burton, 1621).
 Mortal danger on a motorcycle as an antidote to inner pain is melancholic. If you don't want to die. I don't. Didn't. Don't know; intention has given way to habits; habits have expired.
 200 years ago, a Dane wrote: "When the Danger is so great that Death has become Hope, then Despair is this: not to be able to die" (The Sickness unto Death, Kierkegaard, 1849).
 #### p. 70
-Wondering if the Danish philosopher post-rationalized pain or after-eﬀects of pain. He strikes me as brave, one who feels pain in the moment it should hurt, but not before and not after.
-Hindsight is also wisdom, of course, and this one has lasted 200 years.
+Wondering if the Danish philosopher post-rationalized pain or after-effects of pain. He strikes me as brave, one who feels pain in the moment it should hurt, but not before and not after. Hindsight is also wisdom, of course, and this one has lasted 200 years.
 There is no screaming inside, but the endless gratitude for surviving has become a habit. A feeling I have grown accustomed to. Like a monk who is happy for each breath in and breath out, without anything more. Is it holy, or limbo, or something else. I don't know; my life takes place in action and controlled thought, not in the pauses between, where I have recently discovered that life is exciting. This summer, the most exciting of all.
 Beauty in destruction, the prison without bars where the boundary between life and death is enjoyed without knowing it.
 Without wanting to die. Without wanting to live. Limbo without presence. The most exciting of all? One must heal, or create codependency. Either/or. I looked for answers in the pause between thoughts. Silence. If it wasn't precisely death that was attractive, or death as a contrast to life, or ﬂoating in the middle in melancholic limbo. Maybe the pause between thoughts is important as a contrast to active thoughts; that which through contrast gives value to action. Then I have misunderstood the most basic tenet of meditation. Don't know, need to sleep. That will have to be my poor meditation. Good n...
@@ -427,7 +425,11 @@ says: "so terrible"; she is a professor and subject matter expert in something r
 I see her partner as a friend, and as co-creator of TEDxOslo, I have the feeling of having failed him. The woman I was with last can handle me being at the Christmas party of a mutual friend; I wish her well, but that is not obvious from my communication, but it is obvious that she wishes me well, which I cannot clearly communicate. Maybe I think too much about this; it gets quite creepy quite quickly with unwanted attention; perhaps that also applies to unwanted reﬂection… I don't know. I am worried about my own communication at his party; have I become a bitter old man? The transition from the "zero-sum game" to a positive framework for my own actions and reﬂections is ambitious; am I capable of improving and becoming less bitter and unforgiving, or am I just falling into a trap and going from zero-sum-game to zero-value-game, like so many others?
 I stayed for the after-party until 05:30 in the morning, with two friends and a woman of many talents. First, we went to a karaoke night with a private room; she loved Bruce Springsteen and many other unexpected artists that give me overlap in experience
 #### p. 73
-and interest; I thanked her by being loud, screaming, and rude to the people there, whom she had probably seen and wanted to meet again; perhaps I didn't make the best impression. After ﬁrst priming her with marriage, a pickup trick you can do at the beginning of an evening that has an increasing eﬀect on women as the evening progresses while they enjoy the parties and alcohol, I was a good example of something less attractive. I ended up dancing terribly poorly at the after-party with the woman, since I can't dance and had quite freshly broken ribs and a collarbone from a small MC mishap. I'm not just "hard to get"; I'm also "hard to want" and deliver in that regard with personality, ﬁnances, and presence. She was a former champion in ballroom dancing and suggested that maybe she would soon have to lead; she was drunk and jovially hit me in the chest where I had a newly broken rib… but the appetite for being attractive wasn't there; I dismissed it with a comment, yep, there's the fracture, without making more of anything. The woman, who sat leaning back and virtually sprawling in the chair next to me at the after-party, received little attention. Was I completely without passion or desire for naked physical closeness? Yes.
+and interest; I thanked her by being loud, screaming, and rude to the people there, whom she had probably seen and wanted to meet again; perhaps I didn't make the best impression.
+After ﬁrst priming her with marriage, a pickup trick you can do at the beginning of an evening that has an increasing eﬀect on women as the evening progresses while they enjoy the parties and alcohol, I was a good example of something less attractive.
+I ended up dancing terribly poorly at the after-party with the woman, since I can't dance and had quite freshly broken ribs and a collarbone from a small MC mishap.
+I'm not just "hard to get"; I'm also "hard to want" and deliver in that regard with personality, ﬁnances, and presence. She was a former champion in ballroom dancing and suggested that maybe she would soon have to lead; she was drunk and jovially hit me in the chest where I had a newly broken rib… but the appetite for being attractive wasn't there; I dismissed it with a comment, yep, there's the fracture, without making more of anything. The woman, who sat leaning back and virtually sprawling in the chair next to me at the after-party, received little attention. Was I completely without passion or desire for naked physical closeness?
+Yes.
 ### She lives in a boat next to "Bensern" — p. 74
 🎵 https://aigap.no/mof (https://aigap.no/mof) — p. 74
 Orinoco Flow, Enya
@@ -439,7 +441,9 @@ She reveals that the price of living in a boat there has doubled in ten years, a
 ### R sits outside M outside "Bensern" — p. 75
 🎵 https://aigap.no/mtp (https://aigap.no/mtp) — p. 75
 The Passenger, Iggy Pop
-"I work with music", he says; he has smoked a lot of hash. "I'm that motorcycle type", an identity that ﬁt all his tattoos. "But I've had accidents; it's far too dangerous". "That's just cowardly", I say. "He's just stolen an identity that has nothing to do with qualities or personality", I think. "Oh, you're calling me cowardly", he says and pretends nothing happened. The conversation goes back to other things. Five minutes later he looks at me and asks, "do you have a motorcycle?" "Yes, it's parked right over there". "What kind of bike?" "An old lazy Suzuki 1500cc at 300kg". "Oh! Can I see it?" "Yes, you can even sit on it"... I take a picture of him on the bike; he'll probably put it on his Tinder proﬁle. The world is dark.
+"I work with music", he says; he has smoked a lot of hash. "I'm that motorcycle type", an identity that ﬁt all his tattoos. "But I've had accidents; it's far too dangerous". "That's just cowardly", I say.
+"He's just stolen an identity that has nothing to do with qualities or personality", I think. "Oh, you're calling me cowardly", he says and pretends nothing happened. The conversation goes back to other things. Five minutes later he looks at me and asks, "do you have a motorcycle?" "Yes, it's parked right over there". "What kind of bike?" "An old lazy Suzuki 1500cc at 300kg". "Oh! Can I see it?"
+"Yes, you can even sit on it"... I take a picture of him on the bike; he'll probably put it on his Tinder proﬁle. The world is dark.
 ### K from Haugesund & C looks down on him — p. 76
 🎵 https://aigap.no/mtnt (https://aigap.no/mtnt) — p. 76
 T.N.T. AC/DC
@@ -471,10 +475,10 @@ Three years after discharge, I tracked her down and sent a message. The adventur
 ### Strength from neglect — p. 81
 🎵 https://aigap.no/mtls (https://aigap.no/mtls) — p. 81
 The Logical Song, Supertramp
-Three years after the accident, I sit in a student café. My attention goes to a young couple sitting diagonally across from me.
-They are probably in their late twenties, apparently successful, ﬁt, and well-groomed; they probably both do yoga. I tell myself they have never in their lives had an unpaid bill, been in a ﬁght, or failed an exam. There is a sexless baby on the mother's lap; the father sits knitting; maybe he is a practicing feminist.
+Three years after the accident, I sit in a student café. My attention goes to a young couple sitting diagonally across from me. They are probably in their late twenties, apparently successful, ﬁt, and well-groomed; they probably both do yoga. I tell myself they have never in their lives had an unpaid bill, been in a ﬁght, or failed an exam. There is a sexless baby on the mother's lap; the father sits knitting; maybe he is a practicing feminist.
 The couple makes me reﬂect on my own parents' carefree 70s idyll as rich kids; their frivolity infected me. When I was young, life was wonderful.
-Once I had entered the café, I saw a woman occupying the four best seats. When asked if one was free,
+Once I had entered the café, I saw a woman occupying the four best seats.
+When asked if one was free,
 #### p. 82
 she shook her head. The smell of genderless nihilism from people who have never experienced real resistance or an unpaid bill, the Norwegian coldness. Clinical, intellectual, and cynical.
 The woman who wouldn't share space spots the poodle I have with me and looks like she wants contact. I wrinkle my nose; in that I have something she wants, contact with a small dog, I welcome the young woman; she is a kind of symbol of a secure, house-savings generation who will get paid by a public bureaucracy funded by oil money. But never create anything new for others. Logical, responsible, and practical.
@@ -502,8 +506,7 @@ Later in the evening, she connected the strangest groups of people; I sensed tha
 The unique personality she has is built by no one without reason; I assumed she had built the person she appeared to be, from the ground up. Reality hadn't oﬀered anything good. She hid her tears deep within her eyes.
 I had to go home early. I could neither endure nor delve into
 #### p. 87
-the darkness in the woman. I said it, H, but I didn't have the surplus to be there for you. After a warm hug, I went home completely drained of energy; I had found someone I would have been able to save if my own traumas hadn't weighed me down.
-Yet another; it was starting to be many surviving traumatic souls I intuitively understood. Their voices never stop! I said goodbye to the world once more.
+the darkness in the woman. I said it, H, but I didn't have the surplus to be there for you. After a warm hug, I went home completely drained of energy; I had found someone I would have been able to save if my own traumas hadn't weighed me down. Yet another; it was starting to be many surviving traumatic souls I intuitively understood. Their voices never stop! I said goodbye to the world once more.
 After a while, the woman contacted me. Maybe she had noticed how I saw her, or maybe she had a simple physical need; probably both. Whether it was a profound need or a superﬁcial need to distract herself in everyday life that drove her, I didn't know yet.
 She wanted to enjoy my company and I hers; whether that was a result of polyamory, true soulful friendship, or superﬁcial sex, I didn't ask.
 Her language was physical, and I soon stopped being curious about whether we were driven by desire, or if it was the only way she, with self-esteem, could surrender herself. In retrospect, I think it might have been the latter, but I neither judge nor elevate myself above the fantastically original woman.
@@ -540,10 +543,11 @@ I know now that I need a woman like Lotta. Could it be that Lotta in the same wa
 There was still hope. But am I too neurodivergent to change?
 Maybe, maybe not.
 But does Lotta need me?
-### The woman I saw in my peripheral — p. 93
+### The woman I saw in my peripheral Nights in — p. 93
 🎵 https://aigap.no/mniws (https://aigap.no/mniws) — p. 93
-Nights in White Satin
-"Thank you for seeing that I'm showing oﬀ", I thought. She misunderstands me when I'm sarcastic; if no one had misunderstood, the sarcasm would just have been oﬀense. She legitimizes my sarcasm. "Thank you for seeing that I'm dressing up", she said.
+White Satin
+"Thank you for seeing that I'm showing off", I thought. She misunderstands me when I'm sarcastic; if no one had misunderstood, the sarcasm would just have been offense. She legitimizes my sarcasm.
+"Thank you for seeing that I'm dressing up", she said.
 I said it to a woman who was perhaps perfect for me, but I overlooked and forgot her; was reminded of it by a friend, Y.
 We were at a party at a mutual friend's place. Y asked how it was going with the woman I met. Y has a photographic memory, Me: "The woman?"
 Y: "Yes, the one who tricked your phone number out of you, and who really just wanted to go home with you"
@@ -561,7 +565,7 @@ No. In the absence of religious faith and in the absence of a defined ethical sy
 Personal Jesus, Depeche Mode
 She sat down next to me at the book launch. All the tricks were there, or she was happy and wanted to get to know me; it's not important. I register, but no longer interpret with certainty.
 We mirrored each other all evening. Her warm energy was liberating, a lifeline into something that is not zero-sum, but I don't entirely trust what I experience. Maybe she ﬁlls spaces in me I don't know are empty. Maybe I do the same for her. My involuntary salvation.
-Whether she, like me, has high self-conﬁdence and low self-esteem, or is just hypersensitive and mirroring, can be what it will. After being so close to disappearing, it feels irrelevant to categorize people. She is there. Something in me reacts. The
+Whether she, like me, has high self-confidence and low self-esteem, or is just hypersensitive and mirroring, can be what it will. After being so close to disappearing, it feels irrelevant to categorize people. She is there. Something in me reacts. The
 #### p. 97
 mystical in her exists without being explained. Absence of control gives me life. New gets room where old collapses. Someone who can care.
 She believes things I don't, but we give each other space.
@@ -619,7 +623,7 @@ Morning comes, and the mobile starter borrowed from Y is ready; I'm near his wor
 It takes half an hour to charge. Let the bike idle. This one has too high an idle speed; it charges at idle.
 Good to live where people don't steal in broad daylight.
 #### p. 105
-It hasn't been broad daylight; it's been night. The bike has been parked in the city center, not at home. I understand the diﬀerence when I see the ignition lock is damaged.
+It hasn't been broad daylight; it's been night. The bike has been parked in the city center, not at home. I understand the difference when I see the ignition lock is damaged.
 "The key goes in ﬁne," I say to Y. So we start the bike and let it run. In ﬁrst gear, it jumps forward even with the clutch pulled in.
 The helmet that was hanging on the bike was stolen, so I had to go home and get a spare. Back and forth; too much hassle to ride around the city center without a helmet.
 "With a hoodie, you could theoretically ride without a helmet,"
@@ -662,12 +666,13 @@ Reidar will probably die in bed of a heart attack while having sex with an overw
 ### The Sick Man — p. 113
 🎵 https://aigap.no/mtmwstw (https://aigap.no/mtmwstw) — p. 113
 The Man Who Sold the World, Bowie
-Boys on the Greek islands are told that the man is most important and that they are more beautiful than any being on earth. I have found the Norwegian Greek boys in the south of Norway; this requires that the father is out of the picture early and that they have kind women as mothers. When the West End ﬂock comes to their summer cottage in the south, they see that the holiday people have things they don't have; they build distance through envy and lack of self-conﬁdence with high self-esteem grown from their mother's boundless love. The vulnerability ends with some nail-biting, and the strength ends
+Boys on the Greek islands are told that the man is most important and that they are more beautiful than any being on earth. I have found the Norwegian Greek boys in the south of Norway; this requires that the father is out of the picture early and that they have kind women as mothers.
+When the West End ﬂock comes to their summer cottage in the south, they see that the holiday people have things they don't have; they build distance through envy and lack of self-confidence with high self-esteem grown from their mother's boundless love. The vulnerability ends with some nail-biting, and the strength ends
 ### Gaute; Raw! — p. 114
 🎵 https://aigap.no/mtwtia (https://aigap.no/mtwtia) — p. 114
 The Winner Takes It All, Abba
-He howls and shouts, but with real joy. She has had a tequila and looks admiringly at him. "The monkey that shouts loudest reproduces", I think; he is obnoxious, but the moment he sees her, he becomes nice and pleasant. Actually a nice guy, but adaptable enough to see that he has to be the loudest to reproduce. Not the tallest, not the richest, not the prettiest, not the smartest, not any of those. But the loudest, and the right women love that. Maybe that's who it will be; he is nice and jovial, and maybe a wife-beater. I don't know. She has hers, he has his; it's a fair game; they are people. Neither of them has ever had the surplus for altruism. They don't have the surplus for "what is experienced as empathy", "cultivation", or any of those; they just do as best they can. He cheers for the team that wins in football; he has watched football all his life but ﬁnds the nuances of the game inaccessible.
-Rules and tactics are subordinate. We cheer! Raw!
+He howls and shouts, but with real joy. She has had a tequila and looks admiringly at him. "The monkey that shouts loudest reproduces" , I think; he is obnoxious, but the moment he sees her, he becomes nice and pleasant. Actually a nice guy, but adaptable enough to see that he has to be the loudest to reproduce. Not the tallest, not the richest, not the prettiest, not the smartest, not any of those. But the loudest, and the right women love that. Maybe that's who it will be; he is nice and jovial, and maybe a wife-beater. I don't know. She has hers, he has his; it's a fair game; they are people. Neither of them has ever had the surplus for altruism.
+They don't have the surplus for "what is experienced as empathy", "cultivation", or any of those; they just do as best they can. He cheers for the team that wins in football; he has watched football all his life but ﬁnds the nuances of the game inaccessible. Rules and tactics are subordinate. We cheer! Raw!
 ### Moose heart; E — p. 115
 🎵 https://aigap.no/mhltw (https://aigap.no/mhltw) — p. 115
 Hungry Like the Wolf, Duran Duran
@@ -687,8 +692,7 @@ An hour later she comes back and apologizes.
 Half of the men at the local watering hole have sexually exploited her; she has given up on the world. Appears intelligent and impossible to save.
 I give her a hug and tell her she hasn't done anything wrong to me. I go home. Alone.
 When U was 12 years old, her mother told her that she could "have everything she wanted in life." Her mother came from a family where they fought for more money; her mother caught a father with more money than mother and father could spend. So with "have everything in life," her mother meant using her looks to get men to give her things. She was drop-dead gorgeous.
-Now U uses men sexually to spend the last of her social currency.
-She has exploited half of the men there.
+Now U uses men sexually to spend the last of her social currency. She has exploited half of the men there.
 ### G&H; Daddy's dad pays — p. 118
 🎵 https://aigap.no/mrg (https://aigap.no/mrg) — p. 118
 Rich Girl, Hall & Oates
@@ -754,7 +758,7 @@ I was safe. Body and soul healed; then it ended. What made it end, I don't know.
 #### p. 127
 What we had between us had worked for me, and not for her.
 My birthdays were suddenly celebrated and not ignored; the opposite happened gradually with her. The relationship that for me was a perfect champagne glass that shattered was, for her, a prison she found her way out of.
-The personality that lay between us, I took with me, and I hope that for her it was a development she could take with her, and that she ﬁnds some of what she is looking for.
+The personality that lay between us, I took with me, and I hope that for her it was a development she could take with her, and that she finds some of what she is looking for.
 A broken champagne glass can be put back together, but broken glass can never be what it was.
 Thank you, I wish you well.
 ### Average brilliant — p. 128
@@ -807,10 +811,11 @@ More people have died from blood clots while making stupid signs than the number
 ### Strength is as before — p. 136
 🎵 https://aigap.no/msh (https://aigap.no/msh) — p. 136
 Stranglehold
-The Dane sat across the table; he had long experience with MCs from MC clubs like Rabis MC. I don't have much experience with MC clubs, but I used to party at Rabis MC in Lillestrøm when I was 20 and had a girlfriend from the area; they had open house longer than "Martins" and other local watering holes nearby. Instead, I shared with him that I had spoken with SBS in the military; they are part of the British special forces SAS, which has traditions with MC clubs. He was quiet for a while, then suddenly said he doesn't know anything about HA, which is short for Hells Angels. Maybe he was afraid I had connections to HA, which I don't, and that he had insulted someone with connections to Hells Angels.
+The Dane sat across the table; he had long experience with MCs from MC clubs like Rabis MC. I don't have much experience with MC clubs , but I used to party at Rabis MC in Lillestrøm when I was 20 and had a girlfriend from the area; they had open house longer than "Martins" and other local watering holes nearby.
+Instead, I shared with him that I had spoken with SBS in the military; they are part of the British special forces SAS, which has traditions with MC clubs. He was quiet for a while, then suddenly said he doesn't know anything about HA, which is short for Hells Angels. Maybe he was afraid I had connections to HA, which I don't, and that he had insulted someone with connections to Hells Angels.
 #### p. 137
 I said we could be friends and gave him my name using the phonetic alphabet. He had shared that he had killed over 100 people in service but didn't know the international spelling alphabet the military uses, which would have been the way one communicated when he was supposed to have carried out the missions. Either he had stretched the truth a bit, or more likely retold things he had heard from others.
-To me, it made no diﬀerence; I thought the guy was nice, but life had probably had such a strong chokehold on him that the stories he built his self-esteem on strayed further and further from reality.
+To me, it made no difference; I thought the guy was nice, but life had probably had such a strong chokehold on him that the stories he built his self-esteem on strayed further and further from reality.
 In another story, he was part of a Masonic lodge; he worked in a company with hundreds of Danish rental apartments, and it gave connections to the elite of Scandinavia. When I said I could meet him one day in the strange bar, with characteristics I won't write here, to get cheaper beer, he didn't know what I was talking about. I know someone in the lodge with the King's Medal of Merit and have been with him when he has exploited some of the beneﬁts. The Dane didn't know what I was talking about and changed the subject again; I went out to breathe.
 Layers upon layers of lies, is that how we maintain self-esteem, where everyone suﬀers from grandiose personality disorder and has behavioral patterns previously reserved for those with Machiavellianism?
 #### p. 138
@@ -821,7 +826,7 @@ Pilots The two were helicopter pilots; that was the whole story. They thought th
 #### p. 139
 Heroes The administrative employees at the English embassy said they were in MI-6. The stories were many and continued even after they were exposed.
 I wondered if I myself had embellished my story from the military, or if I was diﬀerent, and stronger, than these storytellers. Was I so weak that I rewrote my own history to the point of lying to others? to myself?
-For us to beneﬁt from our memories, rewriting for new situations is useful. So maybe it's I who under-communicate and not the others who lie; maybe using memory to make a good story is more important than retelling the truth?
+For us to benefit from our memories, rewriting for new situations is useful. So maybe it's I who under-communicate and not the others who lie; maybe using memory to make a good story is more important than retelling the truth?
 I didn't ride over 200 km/h at night, mostly during the day.
 When I rode at night, I was often around the speed limit on small roads, but a story about 200 km/h at night, which I've only done a couple of times, captures the essence of many stories into one. True, not real.
 I never had accidents over 100 km/h; they were between 50 and 100; otherwise, I couldn't have written this. Whether it was because I was careless in speed blindness or had enough survival instinct, I don't know, but memories of accidents, night driving, and the high speed blend together.
@@ -852,13 +857,13 @@ Emotions are something too big to fit into my brain, like a monotheistic God. Th
 ### Novelty creation at work — p. 144
 🎵 https://aigap.no/mobb (https://aigap.no/mobb) — p. 144
 On Being Blue, Art of Noise
-Novelty creation on Mother Earth is about inventing new methods, things, or applications; innovation is both novelty creation and improvement. Climbing inside her, I dream in color now.
-My grandfather ran, together with a partner, the company Hougen & Larsen. In his old age, he wanted to be his own master after being technical director in the process industry for many years. Because my father was absent, the writer grandfather and the entrepreneur grandfather ﬁlled the void.
-roles as good male role models. My grandfather taught me as a child that there are two types of workers: those who build up and those who tear down. My journey began with this insight.
+Novelty creation on Mother Earth is about inventing new methods, things, or applications; innovation is both novelty creation and improvement.
+My grandfather ran, together with a partner, the company Hougen & Larsen. In his old age, he wanted to be his own master after being technical director in the process industry for many years. Because my father was absent, the writer grandfather and the entrepreneur grandfather ﬁlled the void. roles as good male role models. My grandfather taught me as a child that there are two types of workers: those who build up and those who tear down.
+My journey began with this insight.
 Why innovation, even though those who tear down are only necessary to make room for those who are actually going to build something up. There
 #### p. 145
 are few who build up and many who tear down; people are selﬁsh, and creation causes more pain for others than it is appreciated. It is not new that people would rather watch pornography and drama than learn something, nor that they prefer to talk about people rather than progress; here lies the path to happiness rather than being right. How we live can be within innovation or without; happiness can be found in so many things.
-My grandfather would have said that improvement is your responsibility regardless of your job; thus, calling improvement innovation would be misleading in his eyes, if not dishonest. But perhaps everyone has the right to their own deﬁnition of what it means to be innovative. Memories of my own innovative moments are colorful memories.
+My grandfather would have said that improvement is your responsibility regardless of your job; thus, calling improvement innovation would be misleading in his eyes, if not dishonest. But perhaps everyone has the right to their own definition of what it means to be innovative. Memories of my own innovative moments are colorful memories.
 I share several of my grandfather's views, but I have respect for others seeing things diﬀerently and ﬁnding happiness in that. If I'm not careful, I fall into the same patterns as them; deeper and deeper one can become a reﬂection of previous generations.
 I created computer games early in my teens and had my ﬁrst startup before I was 20. Since I, from the very beginning, created games my friends liked to play, I have from my youth created my own digital worlds and solutions. It hasn't made me rich, but the curiosity is enduring, and the self-conﬁdence to create things myself, and not just apply what others have made, is enduring.
 Touching nerd heaven and creating my own worlds came perhaps far too early.
@@ -873,11 +878,12 @@ Trauma as temporal rupture Judith Herman, Cathy Caruth Even a coma can be a good
 Acknowledgment of a world that no longer exists is an example of traumatic rupture. Moments where reality tears and time is experienced as fragmented. Caruth's theory of trauma's "delayed return" explains why the sound of broken glass (or a helmet) becomes an auditory memory trace that is activated later moments of crisis. A sound bridge to death reminds of all losses and the death of all hope. Everything from unanswered kisses to lifelong traumas makes the past never just the past; the past is the present, repeated in every destruction or lack of action. When you wake from a coma, you can choose to erase your old life and start anew.
 #### p. 149
 Historical roots of the death of zero-sum The metaphysics of loss Boethius, Augustus "Confessiones" For Boethius (Consolation of Philosophy, 524), suﬀering was a trial that revealed the soul's true nature. The realization of a world going to hell can resemble Boethius's description of Fortuna turning the wheel: in one moment you are on top; in the next, you are crushed against the ground. Augustine's Confessions are about how the loss of a beloved opens the way for a deeper love of God. But here there is no god, only engine roar, mortal danger, and the absent glances of traumatized women. There is a vain liturgy in rituals—bubbles, mussels, interrupted kisses—they become substitutes for a lost order, just as medieval lamentations preserved the memory of the dead.
-Historical roots of the death of zero-sum The sublime in destruction Edmund Burke, Friedrich Schiller "A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful" (1757) distinguishes between the beautiful (harmony) and the sublime (terror mixed with delight). Playing with death, seeking mortal danger to feel alive, is a hunt for that sublime moment where death makes life more intense, and numbness disappears. Schiller's "On Naive and Sentimental Poetry" (1795) would call this sentimentality a longing for a lost innocence that can never be regained. A lament for a nature that no longer sings, because man has destroyed it.
+Historical roots of the death of zero-sum The sublime in destruction Edmund Burke, Friedrich Schiller "A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful" (1757) distinguishes between the beautiful (harmony) and the sublime (terror mixed with delight). Playing with death, seeking mortal danger to feel alive, is a hunt for that sublime moment where death makes life more intense, and numbness disappears. Schiller's "On Naive and Sentimental Poetry"
+(1795) would call this sentimentality a longing for a lost innocence that can never be regained. A lament for a nature that no longer sings, because man has destroyed it.
 #### p. 150
 Historical roots of the death of zero-sum Posthumanist grief Donna Haraway, Byung-Chul Han Haraway's "Staying with the Trouble" (2016) argues that we can learn to live with destruction, not against it. Near-death experiences, accidents, and shattered lives are examples of Haraway's "Chthulucene", a time where man is not the center but part of the network of collapse. Byung-Chul Han's "The Burnout Society" (2010) would see actions in contempt for death as a symptom of late capitalism's positivity exhaustion: when self-realization becomes coercion, one seeks annihilation to feel something. Where Han sees pathology, Haraway sees possibility—in meeting the veterinarian who saves him, or in a woman's endurance—lies the seed of a new form of community.
 Not based on wholeness, but on joined fractures.
-"We are all lacerated and wounded, but the wound is where the light enters you". (Rumi, 13th century, reinterpreted by Coleman Barks) Historical roots of the death of zero-sum Death see Ernest Hemingway Death gives meaning to life; by experiencing death, I experience life to its fullest. We feel through contrasts, so if you stop taking things for granted, you can see them with
+"We are all lacerated and wounded, but the wound is where the light enters you". (Rumi, 13th century, reinterpreted by Coleman Barks) Historical roots of the death of zero-sum Death see Ernest Hemingway Death gives meaning to life; by experiencing death, I experience life to its fullest. We feel through contrasts , so if you stop taking things for granted, you can see them with
 #### p. 151
 neutral eyes, and so that life won't be a given, death must become a real possibility. "You can never lose here, because you always have a good time". Fear, if you don't let the anxiety come forward, can therefore be a formidable source of joy in life.
 Historical roots of the death of zero-sum The Kill see Ernest Hemingway A cheetah cub that is sick is healed by humans; we hope that one day, when we release it, we will never see it again. If it manages to kill, it is free from our human world and inﬂuence; it returns to nature. Is it through losing our humanity that we appreciate it (in the same way that death gives us perspective on life); is altruism born of killing?
@@ -905,14 +911,16 @@ He wants a cabin oﬃce in Trysil that winter. The ski lift opens in a couple of
 Professor Kjell-André himself, the prompt leader, is to subtly impart indirect lessons to Tove this day. Monday grumpiness is usually delegated to the senior consultant, but the morning coﬀee before a day on the slopes can't be enjoyed better than with a little extra work when you get to work with your passion.
 As one of the country's leading doctors, he will become accustomed to leading people; for variation, he will lead machines as often as
 #### p. 156
-he can. He won't look forward to machines being led by what he, in his elitist world, will see as ordinary people. They would cost human lives. Idiots.
+he can. He won't look forward to machines being led by what he, in his elitist world, will see as ordinary people. They would cost human lives.
+Idiots.
 Kjell eventually becomes micro-managed by a subject matter expert in the Directorate of Health. Graduating from medical school as the best in his class meant that people in increasingly higher positions would micro-manage him. Already the ﬁrst time, he was too young and dutiful to say no to unpleasant tasks.
 The subject matter expert at Blindern will assign him to a research project in neurology right after graduation, with practice in neurosurgery. A project that should have started with quality assurance of patient treatment is carried out by others. His studies go directly to increased quality of life as a consequence of brain implants. The sensory enhancement project, together with a mentor and leading neurosurgeon. The result? Kjell becomes recognized and published even before the compulsory internship is completed.
 After his internship, he leads the trauma center; "The ER will make a man of you, my boy", the hospital director had said. "Two years, then we'll see if your nervous system can handle life as a leading doctor". Kjell had learned that setting future top doctors to lead trauma teams in the ER should develop empathy, and that it doesn't work. The necessary Machiavellianism that should
 #### p. 157
 be required to get where he was could not be treated that way. He knew he was lost in that regard and never shared it with anyone.
 Not long after the years as leader of the trauma center, Kjell was commanded to become senior consultant, head of department, and academic leader at Blindern by various authorities no one said no to. Later came leadership of doctoral students, political roles in the medical association, and ownership of ethics committees and inﬂuence on hospital construction. Never his own choices, only expectations as a result of hard work. Patient practice he kept throughout, and leadership of improvement and digitalization was part of the responsibility.
-Alcoholism fully developed before the ﬁrst year in the ER was over. The team he led for a month had managed to keep alive a man who had only partially managed to shoot his head oﬀ. Kjell had the contempt for self-destructive people under control, but it would never fade; self-medication numbed the experienced pain for now. Developing empathy in robots with cognitive injection felt as hopeless as inﬂicting pain on top doctors. He had no joy in such misguided symptom treatment, but contributed anyway.
+Alcoholism fully developed before the first year in the ER was over. The team he led for a month had managed to keep alive a man who had only partially managed to shoot his head oﬀ. Kjell had the contempt for self-destructive people under control, but it would never fade; self-medication numbed the experienced pain for now.
+Developing empathy in robots with cognitive injection felt as hopeless as inﬂicting pain on top doctors. He had no joy in such misguided symptom treatment, but contributed anyway.
 The subject matter expert in the Directorate of Health had steered him to simulate being a good doctor using robots. It was a completely new
 #### p. 158
 type of job, and something new to learn; he loved it. He married the subject matter expert, so he didn't have to think about that anymore; they already had children on the way. Simulating a top doctor in Augmented Reality felt like doing something useful, impossible to ruin that job for idiot patients who took control of his emotional life.
@@ -932,7 +940,7 @@ Open your mind.
 Turn! Turn! Turn!, The Byrds
 Helping people and groups through change. For many years, I worked as a strategic enterprise architect in digitalization.
 Competence in change management is not a requirement for those of us who create target images, but it is needed to get people to stretch. I recommend change management for everyone; I have two versions, the ADKAR framework and the "won't, can't"
-framework. ADKAR is useful for reﬂection; the other for execution.
+framework. ADKAR is useful for reflection; the other for execution.
 ### Openness to new thinking; — p. 161
 🎵 https://aigap.no/moym (https://aigap.no/moym) — p. 161
 Open Your Mind, U.S.U.R.A.
@@ -949,7 +957,7 @@ Failing at novelty creation is part of the path towards or without success. When
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 163
 Appendix and more
 ### Subchapter Title — p. 164
-🎵 freemium (https://aigap.no/mx) — p. 164
+🎵 premium freemium (https://aigap.no/mx) — p. 164
 "Garamond" After the book, you remember the feeling it gave you, not what it was about. Written in the font "Garamond". This is the standard typeface used for the free text. It represents the open and accessible content of the book, and is characterized by a clean, modern, and standardized expression with good readability.
 premium "EB Garamond" After the book, you remember the feeling it gave you, not what it was about. This is paid text, in "EB Garamond". This is the speciﬁc typeface used for the paid text. It is based on a classic, historical print from 1592, which gives the text a slightly darker, softer, and more traditional book-printing character. For the system, it functions as a completely separate font ID that allows your viewing program to automatically unlock or hide the text based on payment status.
 ## Unplaced & undecided — p. 165
@@ -958,9 +966,7 @@ Appendix and more
 ### Subchapter Title — p. 166
 🎵 h_ttps://gormb.github.io/_?mx_Make_textcolor_white!!!_re (https://gormb.github.io/_?mx) — p. 166
 qwe
-#### p. 167
-"Garamond" After the book, you remember the feeling it gave you, not what it was about. Written in the font "Garamond". This is the standard typeface used for the free text. It represents the open and accessible content of the book, and is characterized by a clean, modern, and standardized expression with good readability. Freemium premium "EB Garamond" After the book, you remember the feeling it gave you, not what it was about. This is paid text, in "EB Garamond". This is the speciﬁc typeface used for the paid text. It is based on a classic, historical print from 1592, which gives the text a slightly darker, softer, and more traditional book-printing character. For the system, it functions as a completely separate font ID that allows your viewing program to automatically unlock or hide the text based on payment status.
-### Subchapter Title — p. 168
-🎵 premium freemium (https://aigap.no/mx) — p. 168
+### Subchapter Title — p. 167
+🎵 premium freemium (https://aigap.no/mx) — p. 167
 "Garamond" After the book, you remember the feeling it gave you, not what it was about. Written in the font "Garamond". This is the standard typeface used for the free text. It represents the open and accessible content of the book, and is characterized by a clean, modern, and standardized expression with good readability.
 premium "EB Garamond" After the book, you remember the feeling it gave you, not what it was about. This is paid text, in "EB Garamond". This is the speciﬁc typeface used for the paid text. It is based on a classic, historical print from 1592, which gives the text a slightly darker, softer, and more traditional book-printing character. For the system, it functions as a completely separate font ID that allows your viewing program to automatically unlock or hide the text based on payment status.
