@@ -666,10 +666,13 @@ Open Your Mind. We are prisoners of our mental models, whether we, like the salm
 Open, You're Mine. Coral at the mercy of calm water for survival; the beautiful creature I admire and appreciate is another book. Here the old dies to make room for new life.
 Be free, think for yourself. Open up, you are mine. Or captive.
 #### p. 162
+It's about seeing the new applications before everyone else sees them. True novelty creation lights the way through our mental models.
 ## Post rationalization — p. 163
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 163
-Appendix and more
-#### p. 164
+Appendix and loose thoughts
+### Meta for book, music, and more — p. 164
+🎵 https://aigap.no/mx (https://aigap.no/mx) — p. 164
+Background music can give atmosphere to the text; associated music can give more depth to the content.
 ## Unplaced & undecided — p. 165
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 165
 Appendix and more

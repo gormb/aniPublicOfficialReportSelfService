@@ -951,15 +951,17 @@ Be free, think for yourself. Open up, you are mine. Or captive.
 🎵 https://aigap.no/mitat (https://aigap.no/mitat) — p. 162
 In the Air Tonight, Phil Collins
 Novelty creation is about inventing new methods, things, or applications. When I write about innovation, it's novelty creation I mean. Innovation is creating something from nothing. Here lie the possibilities, in undiscovered space. The result of novelty creation is a world with more dimensions. My world is full of stars.
-It's about seeing the new applications before everyone else sees them. True novelty creation lights the way through our mental models. Because you light the path, I thought I saw you.
+It's about seeing the new applications before everyone else sees them. True novelty creation lights the way through our mental models.
 Failing at novelty creation is part of the path towards or without success. When we create something new, we must endure the resistance from the old.
 ## Post rationalization — p. 163
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 163
-Appendix and more
-### Subchapter Title — p. 164
-🎵 premium freemium (https://aigap.no/mx) — p. 164
-"Garamond" After the book, you remember the feeling it gave you, not what it was about. Written in the font "Garamond". This is the standard typeface used for the free text. It represents the open and accessible content of the book, and is characterized by a clean, modern, and standardized expression with good readability.
-premium "EB Garamond" After the book, you remember the feeling it gave you, not what it was about. This is paid text, in "EB Garamond". This is the speciﬁc typeface used for the paid text. It is based on a classic, historical print from 1592, which gives the text a slightly darker, softer, and more traditional book-printing character. For the system, it functions as a completely separate font ID that allows your viewing program to automatically unlock or hide the text based on payment status.
+Appendix and loose thoughts
+### Meta for book, music, and more — p. 164
+🎵 https://aigap.no/mx (https://aigap.no/mx) — p. 164
+I hadn't listened to music for a long time. Starved for music.
+Only writing. Then I put on the playlist for this book after two weeks. What a variation! What an overloaded impression!
+Two extremes for the role of music are background music and associated music. Background music can give atmosphere to the text; associated music can give more depth to the content. We know this from ﬁlm and TV series. When the TV series Miami Vice made music, Jan Hammer described the music as the third lead actor; ﬁlmmakers both before and after have had that attitude. The music of each chapter represents feelings from when it was written.
+You, the reader, can make an alternative playlist at
 ## Unplaced & undecided — p. 165
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 165
 Appendix and more

@@ -991,18 +991,17 @@ Open, You’re Mine. Korall prisgitt rolig vann for overlevelse, den vakre skapn
 🎵 https://aigap.no/mitat (https://aigap.no/mitat) — p. 162
 In the Air Tonight, Phil Collins
 Nyskaping handler om å finne opp nye metoder, ting eller anvendelser. Når jeg skriver om innovasjon, er det nyskaping jeg mener. Innovasjon er å skape noe fra intet. Det er her mulighetene ligger, i det uoppdagede rommet. Resultatet av nyskaping er en verden med flere dimensjoner. Min verden er full av stjerner.
-Det handler om å se de nye anvendelsene før alle andre ser dem.
-Ekte nyskaping lyser opp veien gjennom de mentale modellene våre. Fordi du lyser opp stien tror jeg jeg så deg.
+Det handler om å se de nye anvendelsene før alle andre ser dem. Ekte nyskaping lyser opp veien gjennom de mentale modellene våre.
 Å feile i nyskaping er en del av veien mot eller uten suksess. Når vi skaper noe nytt, må vi tåle motstanden fra det gamle.
 ## Etterrasjonalisering — p. 163
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 163
-Appendix og mer
+Appendix og løse tanker
 ### Meta for bok, musikk og mer — p. 164
-🎵 premium freemium (https://aigap.no/mx) — p. 164
-Jeg hadde ikke hørt musikk på lenge. Utsultet på musikk.Bare skriving. Så sattejeg på spillelista for denne boka etter to uker.
-For envariasjon! For et overlesset inntrykk!
-To ytterpunkter for musikkens rolle er bakgrunnsmusikk ift assosiert musikk. Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk gi mer dybde til innholdet. Vi kjenner dette fra film og serier. Da TV-serien Miami Vice laget musikk beskrev Jan Hammer musikken som den tredje rolleinnehaveren, og filmskapere har både før og etter hatt denne innstillingen.
-Musikken til det enkelte kapittel representerer følelser da det bleskrevet. Du som leser kan lage alternativ spilleliste på https://aigap..no/mx
+🎵 https://aigap.no/mx (https://aigap.no/mx) — p. 164
+Jeg hadde ikke hørt musikk på lenge. Utsultet på musikk.Bare skriving. Så satte jeg på spillelista for denne boka etter to uker.
+For en variasjon! For et overlesset inntrykk!
+To ytterpunkter for musikkens rolle er bakgrunnsmusikk og assosiert musikk. Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk kan gi mer dybde til innholdet. Vi kjenner dette fra film og serier. Da TV-serien Miami Vice laget musikk beskrev Jan Hammer musikken som den tredje hovedrolleinnehaveren, filmskapere har både før og etter hatt den innstillingen. Musikken til det enkelte kapittel representerer følelser fra da det ble skrevet.
+Du som leser kan lage alternativ spilleliste på
 ## Uplassert og ubestemt — p. 165
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 165
 Appendix og mer

@@ -680,10 +680,12 @@ Open, You’re Mine. Korall prisgitt rolig vann for overlevelse, den vakre skapn
 ### Nyskaping, en del av innovasjon — p. 162
 🎵 https://aigap.no/mitat (https://aigap.no/mitat) — p. 162
 In the Air Tonight, Phil Collins
+Det handler om å se de nye anvendelsene før alle andre ser dem. Ekte nyskaping lyser opp veien gjennom de mentale modellene våre.
 ## Etterrasjonalisering — p. 163
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 163
-Appendix og mer
+Appendix og løse tanker
 #### p. 164
+Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk kan gi mer dybde til innholdet.
 ## Uplassert og ubestemt — p. 165
 🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 165
 Appendix og mer
