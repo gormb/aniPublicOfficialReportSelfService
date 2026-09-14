@@ -952,6 +952,6 @@ Heller ikke noe annet enn nøytral til å drikke kaffe på nabobordet til kongel
 ### Alle kan fortsette å endre seg — p. 167
 🎵 https://aigap.no/mx (https://aigap.no/mx) — p. 167
 Folk som er flinke utvikler seg og blir bedre Jeg tror alle kan endre seg og opplever at alle bare endrer seg i samme retning. Forsetter å endre seg som før.
-Jeg går ut i fra at jeg ikke skal skjønne hvorfor bden ikke virker.
+Jeg går ut i fra at jeg ikke skal skjønne hvorfor den ikke virker.
 Det som ligger bak er at mennesket er overlegen.
 Vi har Dett er gøy å snakke med Skrive kode er som å synge i dusjen
