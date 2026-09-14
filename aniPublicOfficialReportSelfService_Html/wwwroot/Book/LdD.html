@@ -339,7 +339,10 @@
                     ,wheel:(e)=>{
                         const g=nav.gest;
                         if(g.suppressed()){g._d=0;g.setState(GEST.NONE);return;} // TOC/share/export open: no gesture – native scroll (never preventDefault)
-                        const dx=e.deltaX||0, dy=e.deltaY||0;
+                        // The machine works in FINGER direction (dx>0 = fingers moved right): the touch adapter feeds it finger deltas.
+                        // A real wheel/trackpad event instead reports SCROLL delta, whose sign is opposite (natural scrolling: fingers left
+                        // → content left → deltaX>0). Flip it so a trackpad swipe turns pages the same way as an iOS swipe.
+                        const dx=(e.deltaX||0)*(e.touch?1:-1), dy=e.deltaY||0;
                         const ax=Math.abs(dx), ay=Math.abs(dy);
                         const horiz=ax>ay*g._ratio, vert=ay>ax*g._ratio; // 2× rule: horizontal only when |dx|>2·|dy|, vertical only when |dy|>2·|dx|
                         if(g.newState===GEST.NONE && !horiz&&!vert){ g._d=0; g.setState(GEST.NONE); return; } // ambiguous/diagonal + no active gesture → native scroll (never flips)
@@ -775,6 +778,35 @@
                     const link=data.find(b=>b.type===T.LINK&&b.spotify&&linkKey(b.url)===key.replace(/qr$/i,''));
                     if(link&&book.pn()!==link.page)await nav.Page(link.page, 0);
                 }
+                ,Music:async ()=>{ // 🎵 shortcut: open the TOC (it holds the players) and bring the active player / playlist into view
+                    await nav.ShowToc(true);
+                    const sp=document.getElementById('_spPlayer');
+                    const f=(sp&&sp.style.display!='none'&&sp.src&&sp.src!='about:blank')
+                        ?sp:_dToc.querySelector('iframe[src*="open.spotify.com"]'); // dynamic player first, else the TOC playlist
+                    f?.scrollIntoView({block:'center'});
+                }
+                // Keyboard mirrors the buttons: Home·←·PgUp·⌘G·PgDn·→·End·⌘F, plus T (TOC) and M (music)
+                ,key:e=>{
+                    const t=e.target;
+                    if(t&&(t.tagName=='INPUT'||t.tagName=='TEXTAREA'||t.isContentEditable))return; // typing (page no. / find / PIN) – never hijack
+                    if(e.metaKey||e.ctrlKey){ // ⌘/Ctrl combinations
+                        if(e.key.toLowerCase()=='g'){e.preventDefault();return nav.EdPage();} // 🔢 go to page
+                        if(e.key.toLowerCase()=='f'){e.preventDefault();return nav.find();}   // 🔍 find
+                        return; // other combos (⌘R, ⌘P…) – leave to the browser
+                    }
+                    if(e.altKey)return;
+                    if(e.key=='t'||e.key=='T'){e.preventDefault();return nav.ShowToc();} // 📚 TOC (also closes)
+                    if(e.key=='m'||e.key=='M'){e.preventDefault();return nav.Music();}   // 🎵 music
+                    if(_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none')return; // overlay open: let it scroll natively
+                    switch(e.key){
+                        case 'Home':e.preventDefault();return nav.Page(1,0);                                                 // ⏮️
+                        case 'End':e.preventDefault();return nav.Page(book.np(), _dBook.scrollHeight-window.innerHeight);   // ⏭️
+                        case 'ArrowLeft':e.preventDefault();return nav.Page(book.pn()-1,0);                                  // ◀️
+                        case 'ArrowRight':e.preventDefault();return nav.Page(book.pn()+1,0);                                 // ▶️
+                        case 'PageUp':e.preventDefault();return nav.ScrollUp();                                              // ⏫
+                        case 'PageDown':e.preventDefault();return nav.ScrollDn();                                            // ⏬
+                    }
+                }
                 ,memGet:async(k,d)=>{
                     const p=k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`; // per-book namespace (except the 'book' key itself)
                     return localStorage.getItem(p) ?? localStorage.getItem(`LdD.${k}`) ?? d; // read new → fallback to legacy flat key
@@ -830,8 +862,8 @@
             window.spTgl=(...args)=>nav.spTgl(...args);
             async function loaded() {
                 nav.menu(false);
-                // auto lang-swap on horizontal scroll removed – language only via nLg button
                 window.addEventListener('wheel',nav.gest.wheel,{passive:false}); // gesture: one decision per scroll; swallow momentum after page change
+                document.addEventListener('keydown', e=>nav.key(e)); // keyboard parities the nav buttons + T (TOC) / M (music)
                 // touch (iPhone): iOS gives no wheel on touch-scroll → translate to synthetic wheel events for the same gesture machine
                 let _tX=0,_tY=0,_tA=0,_tSX=0,_tSY=0; // _tA: locked axis (1=horizontal, 0=ambiguous/native, -1=vertical)
                 document.addEventListener('touchstart', e=>{
