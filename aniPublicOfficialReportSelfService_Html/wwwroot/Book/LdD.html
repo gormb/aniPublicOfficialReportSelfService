@@ -345,6 +345,10 @@
                         const dx=(e.deltaX||0)*(e.touch?1:-1), dy=e.deltaY||0;
                         const ax=Math.abs(dx), ay=Math.abs(dy);
                         const horiz=ax>ay*g._ratio, vert=ay>ax*g._ratio; // 2× rule: horizontal only when |dx|>2·|dy|, vertical only when |dy|>2·|dx|
+                        // A page flip owns the HORIZONTAL axis only, yet it swallows events for as long as it runs (state LEFT/RIGHT/… or BUSY).
+                        // Any non-horizontal input belongs to the native scroller – hand it straight through. Otherwise an ongoing scroll keeps
+                        // re-arming the busy timer below, so every event is preventDefault-ed and the view hangs until the trackpad goes quiet.
+                        if((g.isPage(g.newState)||g.newState===GEST.BUSY)&&!horiz) return;
                         if(g.newState===GEST.NONE && !horiz&&!vert){ g._d=0; g.setState(GEST.NONE); return; } // ambiguous/diagonal + no active gesture → native scroll (never flips)
                         const d=horiz?(dx>0?1:-1):vert?(dy>0?1:-1):0; // d=0 only mid-gesture (ambiguous) – 2× rule applies only to first decision
                         const k=horiz?(d>0?'right':'left'):vert?(d>0?'dn':'up'):g._d||''; // direction key for gesture split (keep direction mid-gesture)
@@ -354,7 +358,7 @@
                         const ns=g.detectState(d,horiz,e.touch);
                         g.setState(ns); // decision (no-op mid-gesture, resets stop detection)
                         const fresh=ns!==prev; // fresh decision (transition from none)
-                        if (g.isPage(ns)||ns===GEST.BUSY) e.preventDefault(); // swallow momentum for page ops (+ busy)
+                        if (horiz&&(g.isPage(ns)||ns===GEST.BUSY)) e.preventDefault(); // swallow momentum only for the horizontal axis we consume – never block native vertical scroll
                         if (fresh&&g.isPage(ns)){ // flip page once, await, then busy
                             const done=()=>{ g._pg--; if(!g._pg&&g.newState===ns) g.setState(GEST.BUSY); };
                             g._pg++;
