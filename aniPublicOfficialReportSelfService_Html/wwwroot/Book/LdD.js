@@ -1,4 +1,5 @@
 import * as _cBookJLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
+import {music} from './music.js';
 _cBookJLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
 
 // lazy-load 3rd-party scripts (qr-code-styling, html2pdf, db.js) – never block the book on slow CDNs
@@ -59,7 +60,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         const ctx=cBook.ctx; if(!ctx)return;
         ctx.clearRect(0,0,_cBook.width,_cBook.height);
         ctx.drawImage(off,0,0);
-        cBook.Play().catch(e=>console.error('[cBook] Play', e)); // after swap: getTextContent won't compete with renderer for the worker
+        music.Play().catch(e=>console.error('[music] Play', e)); // after swap: getTextContent won't compete with renderer for the worker
         cBook.HideLater(cBook.pn); // tier text removed in background (idle) – never blocks first paint
     }
     ,waitRender:async (canvas, task, ms=10000)=>{ // wait until the whole page is painted (task.promise incl. images) – stability poll alone jumps too early
@@ -217,8 +218,8 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                         const text=i.str.trim();
                         if(!text)continue;
                         const bx=[i.transform[4],i.transform[5],i.transform[4]+i.width,i.transform[5]+H(i)];
-                        const lk=ann.find(a=>ov(bx,a.rect)), m=text.match(cBook.SpotRe);
-                        if(lk){flush();out.push({type:T.LINK,page:p,lang,text,url:lk.url,spotify:cBook.SpotRe.test(lk.url)});}
+                        const lk=ann.find(a=>ov(bx,a.rect)), m=text.match(music.Re);
+                        if(lk){flush();out.push({type:T.LINK,page:p,lang,text,url:lk.url,spotify:music.Re.test(lk.url)});}
                         else if(m){flush();out.push({type:T.LINK,page:p,lang,text,url:m[0],spotify:true});}
                         else if(st.coverH&&H(i)>=st.coverH*.85){flush();out.push({type:T.P,page:p,lang,text});}
                         else if(near(H(i),title,tolH)){
@@ -288,108 +289,6 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             }
             return blocks.length?{title,blocks}:null;
         }
-    }
-    ,SpotRe:/^https:\/\/(?:gormb\.github\.io\/_\/?\?m|aigap\.no\/m)(?!.*qr$)\S*/i
-    ,SpotMap:null
-    ,SpotLoad:async function(force=false){
-        if(cBook.SpotMap&&!force)return cBook.SpotMap;
-        const m={},cfg=window.SUPABASE||{};
-        if(cfg.url&&!cfg.url.includes('YOUR-')){
-                try{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
-                const{data,error}=await createClient(cfg.url,cfg.publishableKey).from('redir').select('id,url,"group"');
-                // music links may be tracks and/or playlists (groups 'music', 'playlist', ...)
-                const mappings=(data||[]).filter(r=>/music|playlist/i.test(String(r.group||'').trim()));
-                mappings.forEach(r=>{
-                    if(!r.id)return;
-                    m[r.id]=r.url;
-                    if(r.id[0]==='m')m[r.id.slice(1)]=r.url;
-                    else m['m'+r.id]=r.url;
-                    if(r.id.endsWith('qr'))m[r.id.slice(0,-2)]=r.url;   // QR-variant ids: the bare code is what the book uses
-                    if(r.id.endsWith('qra'))m[r.id.slice(0,-3)]=r.url;  // e.g. 'msoeqra' -> 'msoe'
-                });
-            }catch(e){console.error('[Spotify] Supabase lookup failed',e);}
-        }
-        return cBook.SpotMap=m;
-    }
-    ,SpotKey:function(url){ // song code: gormb query (?msoe) or aigap path (/msoe)
-        if(!url)return '';
-        try{
-            const u=new URL(url);
-            if(/^https:\/\/gormb\.github\.io\//.test(url))return u.search.slice(1);
-            if(/^https:\/\/aigap\.no\//.test(url))return u.pathname.replace(/^\//,'');
-        }catch(e){}
-        return '';
-    }
-    ,SpotUrl:async function(url){
-        if(!url)return url;
-        const map=await cBook.SpotLoad(), key=cBook.SpotKey(url);
-        if(!key)return url;
-        const resolved=map[key]||url;
-        console.log('[Spotify] URL resolve', {key, resolved, found:resolved!==url});
-        return resolved;
-    }
-    ,_spots:null
-    ,Play:async function(){
-        const box=document.getElementById('_dPlay');
-        if(cBook.view)box.style.width=cBook.view.width+'px';
-        if(!cBook.page||!cBook.view||_cBook.style.display=='none'){ if(box)box.innerHTML=''; return; }
-        if(!cBook._spots||cBook._spots.pn!==cBook.pn){
-            const {items}=await cBook.page.getTextContent();
-            const mid=cBook.viewport.width/2;
-            const rows=[];
-            for(const i of [...items].sort((a,b)=>b.transform[5]-a.transform[5])){
-                const [,y1,,y2]=cBook.view.convertToViewportRectangle(
-                    [i.transform[4],i.transform[5],i.transform[4]+i.width,i.transform[5]+(i.height||10)]);
-                const yc=(y1+y2)/2;
-                const last=rows[rows.length-1];
-                if(last&&Math.abs(last.yc-yc)<(i.height||10)*0.6){ last.items.push(i); last.yc=(last.yc+yc)/2; }
-                else rows.push({yc,items:[i]});
-            }
-            const list=[];
-            for(const row of rows){
-                const it=row.items.find(i=>i.str?.match(cBook.SpotRe));
-                if(!it)continue;
-                const raw=it.str.match(cBook.SpotRe)[0], col=it.transform[4]>mid;
-                const key=cBook.SpotKey(raw);
-                const lh=(it.height||10)*cBook.scale;
-                const above=rows.filter(r=>r!==row&&r.yc<row.yc-4&&r.items.some(i=>(i.transform[4]>mid)===col))
-                    .sort((a,b)=>b.yc-a.yc)[0];
-                const gap=above?row.yc-above.yc:lh*1.5;
-                const yc=(above&&gap<lh*3)?above.yc-gap/2:row.yc-lh*1.5;
-                if(list.some(s=>Math.abs(s.yc-yc)<(it.height||10)*0.7))continue;
-                list.push({url:raw,key,col,yc});
-            }
-            cBook._spots={pn:cBook.pn,list};
-        }
-        box.innerHTML='';
-        if(!cBook._spots.list.length)return;
-        const top0=_cBook.offsetTop, overlayHeight=box.clientHeight||1;
-        for(const s of cBook._spots.list){
-            const b=document.createElement('a');
-            b.className='play'; b.id=`${s.key}_${s.col?'r':'l'}`; b.dataset.u=s.url; b.href='#'; b.textContent='\u266A'; // ♪ – one note per line
-            const playClick=event=>{
-                event.preventDefault();
-                event.stopPropagation();
-                window.spTgl(b,event);
-            };
-            b.addEventListener('mousedown',playClick);
-            b.dataset.top=((top0+s.yc)/overlayHeight)*100;
-            b.style.top=`${b.dataset.top}%`;
-            box.appendChild(b);
-            const r=b.cloneNode(true); r.className='play right';
-            r.addEventListener('mousedown',event=>{
-                event.preventDefault();
-                event.stopPropagation();
-                window.spTgl(r,event);
-            });
-            box.appendChild(r);
-        }
-        cBook.SpotLoad().then(map=>{
-            box.querySelectorAll('a.play').forEach(a=>{
-                const k=cBook.SpotKey(a.dataset.u||a.href);
-                if(map[k])a.dataset.u=map[k];
-            });
-        });
     }
     ,PageNo:async function(){ // page number in top margin, centered per half; landscape also in bottom
         const box=document.getElementById('_dPage');

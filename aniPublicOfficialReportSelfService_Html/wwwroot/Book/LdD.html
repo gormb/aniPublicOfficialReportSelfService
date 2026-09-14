@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=51"></script>
+        <script type="module" src="LdD.js?v=52"></script>
         <link rel="stylesheet" href="LdD.css?v=23">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
@@ -385,43 +385,6 @@
                     nav.ShowToc();
                     nav.Page(n, 0);
                 }
-                ,spTgl:async(e,ev=window.event)=>{
-                    const u=e.dataset?.u||e.href||'', toc=!!e.closest('.toc-play');
-                    const stop=()=>{
-                        document.querySelectorAll('[data-spotify-play-active]').forEach(b=>{b.style.visibility='';b.removeAttribute('data-spotify-play-active');});
-                        const f=document.getElementById('_spPlayer'),c=document.getElementById('_spCollapse');
-                        if(f){f.src='about:blank';f.style.display='none';f.title='';}
-                        if(c)c.style.display='none';
-                    };
-                    // ONE shared player inline under the chapter in TOC + ONE 🎶 stop button
-                    let f=document.getElementById('_spPlayer');
-                    if(!f){
-                        f=document.createElement('iframe');
-                        f.id='_spPlayer';f.className='spotify-inline';
-                        f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-                        document.body.appendChild(f);
-                    }
-                    let c=document.getElementById('_spCollapse');
-                    if(!c){
-                        c=document.createElement('button');
-                        c.id='_spCollapse';c.textContent='🎶';c.title='Stop music';
-                        c.style.display='none';c.onmousedown=stop;
-                        document.body.appendChild(c);
-                    }
-                    document.querySelectorAll('[data-spotify-play-active]').forEach(b=>{b.style.visibility='';b.removeAttribute('data-spotify-play-active');});
-                    const url=await window.cBook.SpotUrl(u);
-                    const embed=url.replace('open.spotify.com/','open.spotify.com/embed/');
-                    f.dataset.u=url;
-                    e.style.setProperty('visibility','hidden','important');
-                    e.setAttribute('data-spotify-play-active','');
-                    // player lives in TOC – playing from page opens TOC so it's visible
-                    if(!toc)await nav.ShowToc(true);
-                    f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
-                    if(f.src==='about:blank'){f.style.border='0.2vw solid #c00';f.title='Music unavailable';}else{f.style.border='0';f.title='';}
-                    f.style.display='block'; // player may have been hidden by 🎶 – show again
-                    c.style.display='block';
-                    window.spAnchor?.(); // anchor player inline under chapter row (nice look)
-                }
                 ,Toc:async ()=>{
                     const T=cBook.data.type, want=book.hAlign._?'no':'en';
                     // try the generated tiered .md first (fast, no PDF parsing); fall back to PDF parsing
@@ -459,10 +422,10 @@
                         chaps=await ok(chaps);
                         subs=await ok(subs);
                     }
-                    const spotMap=await window.cBook.SpotLoad();
+                    const spotMap=await window.music.Load();
                     const resolveSpot=url=>{
-                        if(!url||!window.cBook.SpotRe.test(url))return url;
-                        return spotMap[window.cBook.SpotKey(url)]||url;
+                        if(!url||!window.music.Re.test(url))return url;
+                        return spotMap[window.music.Key(url)]||url;
                     };
                     const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[`${b.lang}:${b.page}`,resolveSpot(b.url)]));
                     const musicUrl=page=>music.get(`${want}:${page}`)||'';
@@ -473,7 +436,7 @@
                         if(c.page<=cur)curPage=c.page;
                         for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
                     }
-                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n},0);nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="nav.spTgl(this,event);return false;" href="#">\u266B</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n},0);nav.ShowToc()">${n}</a>`;
+                    const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n},0);nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="window.music.Tgl(this);return false;" href="#">\u266B</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n},0);nav.ShowToc()">${n}</a>`;
                     const html='<ul>'+chaps.map((c,i)=>{
                         const end=chaps[i+1]?.page??1e9;
                         const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
@@ -748,7 +711,7 @@
                         nPr.style.position=nPr.style.left=nPr.style.top=nPr.style.transform=nPr.style.filter='';nPr.classList.remove('floatingControl');
                         nFd.style.position=nFd.style.left=nFd.style.top=nFd.style.transform=nFd.style.filter='';nFd.classList.remove('floatingControl');
                         nFdWrap.style.left='50%';nFdWrap.style.top='15%';nFdWrap.style.transform='translate(-50%,-50%)';}
-                    if(cBook.page){cBook.Play();cBook.PageNo();} // page moved – move buttons and page number with it
+                    if(cBook.page){window.music.Play();cBook.PageNo();} // page moved – move buttons and page number with it
                 }
                 ,btSimul:(a,i)=>{
                     if(i>=a.length) return;
@@ -764,16 +727,6 @@
                         window.scrollTo(window.scrollX, a[(++i)]);
                     else console.log(`btSimul ${c} button not found`);
                     nav.btSimul(a,i+1);
-                }
-                ,MusicPage:async key=>{
-                    const T=cBook.data.type;
-                    const data=await cBook.data.get();
-                    const linkKey=url=>{ // song code: gormb query (?msoe) or aigap path (/msoe) – gormb.github.io/?id har flyttet til aigap.no/id
-                        try{const p=new URL(url);const k=/^https:\/\/gormb\.github\.io\//.test(url)?p.search.slice(1):/^https:\/\/aigap\.no\//.test(url)?p.pathname.replace(/^\//,''):'';return k.replace(/qr$/i,'');}
-                        catch{return url.split('?')[1]?.replace(/qr$/i,'')||'';}
-                    };
-                    const link=data.find(b=>b.type===T.LINK&&b.spotify&&linkKey(b.url)===key.replace(/qr$/i,''));
-                    if(link&&book.pn()!==link.page)await nav.Page(link.page, 0);
                 }
                 ,memGet:async(k,d)=>{
                     const p=k=='book'?`LdD.${k}`:`LdD.${book.name()}.${k}`; // per-book namespace (except the 'book' key itself)
@@ -805,7 +758,7 @@
                     const musicCommand=commands.find(c=>c.startsWith('m')&&c!=='menu');
                     if(musicCommand) {
                     scY=0; // music nav always scrolls to top
-                        await nav.MusicPage(musicCommand);
+                        await window.music.Page(musicCommand);
                     }
                     nav.btSimul(commands, 0);
                     window.scrollTo(window.scrollX, scY);
@@ -819,15 +772,6 @@
                     setInterval(()=>{nav.RecheckPin().catch(e=>console.error('[recheck]',e));},premSec*1000);
                 }
             }
-            const spAnchor=(el)=>{ // player sits inline under the chapter row in TOC – TOC builds once so it survives re-enter
-                const f=el||document.getElementById('_spPlayer');
-                if(!f||f.style.display==='none'||!f.dataset.u)return;
-                const b=[...document.querySelectorAll('#_dTocList a.toc-play')].find(a=>a.dataset.u===f.dataset.u);
-                if(b){b.closest('li').insertAdjacentElement('afterend',f);}
-                f.style.cssText='display:block;width:min(60vw,70vh);height:min(16vw,18.6vh);margin:.4em 0 .5em 1.5em;border:0;border-radius:1vw;';
-            };
-            window.spAnchor=spAnchor;
-            window.spTgl=(...args)=>nav.spTgl(...args);
             async function loaded() {
                 nav.menu(false);
                 // auto lang-swap on horizontal scroll removed – language only via nLg button
