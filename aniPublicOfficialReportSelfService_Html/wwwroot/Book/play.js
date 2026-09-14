@@ -61,6 +61,68 @@ const books={
             for(const c of cs){let good=false;try{const r=await fetch(c.fn,{cache:'no-store'});good=r.ok;}catch(e){}if(good)ok.push(c);}
             books.play.shelf=ok;
         }
+        // --- Spotify, as-is from LdD.* ---
+        ,SpotRe:/^https:\/\/(?:gormb\.github\.io\/_\/?\?m|aigap\.no\/m)(?!.*qr$)\S*/i
+        ,SpotMap:null
+        ,SpotLoad:async(force)=>{ // redir table (db.js → window.SUPABASE): code → spotify url
+            if(books.play.SpotMap&&!force)return books.play.SpotMap;
+            const m={},cfg=window.SUPABASE||{};
+            if(cfg.url&&!cfg.url.includes('YOUR-')){
+                try{const{createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+                    const{data}=await createClient(cfg.url,cfg.publishableKey).from('redir').select('id,url,"group"');
+                    // music links may be tracks and/or playlists (groups 'music', 'playlist', ...)
+                    (data||[]).filter(r=>/music|playlist/i.test(String(r.group||'').trim())).forEach(r=>{
+                        if(!r.id)return;
+                        m[r.id]=r.url;
+                        if(r.id[0]==='m')m[r.id.slice(1)]=r.url; else m['m'+r.id]=r.url;
+                        if(r.id.endsWith('qr'))m[r.id.slice(0,-2)]=r.url;   // QR-variant ids: the bare code is what the book uses
+                        if(r.id.endsWith('qra'))m[r.id.slice(0,-3)]=r.url;  // e.g. 'msoeqra' -> 'msoe'
+                    });
+                }catch(e){console.error('[Spotify] Supabase lookup failed',e);}
+            }
+            return books.play.SpotMap=m;
+        }
+        ,SpotKey:(url)=>{ // song code: gormb query (?msoe) or aigap path (/msoe)
+            if(!url)return '';
+            try{const u=new URL(url);
+                if(/^https:\/\/gormb\.github\.io\//.test(url))return u.search.slice(1);
+                if(/^https:\/\/aigap\.no\//.test(url))return u.pathname.replace(/^\//,'');
+            }catch(e){}
+            return '';
+        }
+        ,SpotUrl:async(url)=>{
+            if(!url)return url;
+            const map=await books.play.SpotLoad(),key=books.play.SpotKey(url);
+            if(!key)return url;
+            const resolved=map[key]||url;
+            console.log('[Spotify] URL resolve',{key,resolved,found:resolved!==url});
+            return resolved;
+        }
+        ,spStop:()=>{
+            document.querySelectorAll('[data-spotify-play-active]').forEach(b=>{b.style.visibility='';b.removeAttribute('data-spotify-play-active');});
+            const f=document.getElementById('_spPlayer'),c=document.getElementById('_spCollapse');
+            if(f){f.src='about:blank';f.style.display='none';f.title='';}
+            if(c)c.style.display='none';
+        }
+        ,spTgl:async(e)=>{ // ONE shared player (in the pl9 media view) + ONE 🎶 stop button
+            const u=e.dataset?.u||e.href||'';
+            const holder=document.getElementById('spHolder')||document.body;
+            let f=document.getElementById('_spPlayer');
+            if(!f){f=document.createElement('iframe');f.id='_spPlayer';f.className='spotify-inline';f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';}
+            holder.appendChild(f); // holder is rebuilt on each draw → re-attach
+            let c=document.getElementById('_spCollapse');
+            if(!c){c=document.createElement('button');c.id='_spCollapse';c.textContent='\u{1F3B6}';c.title='Stop music';c.style.display='none';c.onmousedown=books.play.spStop;document.body.appendChild(c);}
+            document.querySelectorAll('[data-spotify-play-active]').forEach(b=>{b.style.visibility='';b.removeAttribute('data-spotify-play-active');});
+            const url=await books.play.SpotUrl(u);
+            const embed=url.replace('open.spotify.com/','open.spotify.com/embed/');
+            f.dataset.u=url;
+            e.style.setProperty('visibility','hidden','important');
+            e.setAttribute('data-spotify-play-active','');
+            f.src=embed.includes('open.spotify.com/embed/')?embed:'about:blank';
+            if(f.src==='about:blank'){f.style.border='0.2vw solid #c00';f.title='Music unavailable';}else{f.style.border='0';f.title='';}
+            f.style.display='block'; // player may have been hidden by 🎶 – show again
+            c.style.display='block';
+        }
         ,LV:[
             {pl:'pl0',no:'Bokhylle',en:'Book Shelf',q:'Hvilke bøker er relevante for gitt innhold?',nav:'List of books (Book versions)',page:'Available languages and versions for chosen book as links',thoughts:'At shelf scale the units are books, which are filtered by concept, genre and language. Each book can be in different versions and languages (especially now premium/freemium and NO/EN but later also eg DK) The nav jumps straight to a book, which then acts as parent for the finer levels below it.',child:[{t:'Hvilken bok? og versjon?',w:'The shelf is the entry point: pick a book (LifeDemandedDeath, CV, ABook) plus variant – language (NO/EN) × edition (FREE/PREM). The variant pins the source file b/{book}/b_{NO|EN}_{FREE|PREM}.md.'},{t:'Konsept eller sjanger',w:'Filter the shelf by concept or genre (memoir, fiction, essay) so a theme-led reader reaches the right book without knowing the title in advance.'},{t:'Stil eller språk',w:'Style (poetic/plain) and language narrow the shelf further, and are reused as filters at the deeper levels described in pl_dev_0.'}]}
             ,{pl:'pl1',no:'Bokeksemplar',en:'Book Copy',q:'Hva er den overordnede strukturen for innholdet?',nav:'Main Chapters of Book version (Book on shelf with chapters)',page:'Subchapters of Main Chapter chosen, all if none selected, text in details-tags (summary subchapter name)',thoughts:'At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.',child:[{t:'Hvilket kapittel?',w:'At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.'},{t:'«Hero\u2019s Journey» – hvilken fase?',w:'Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.'},{t:'Hva bør jobbes med',w:'Collect book-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.'}]}
@@ -71,7 +133,7 @@ const books={
             ,{pl:'pl6',no:'Setning',en:'Sentence',q:'Hva er i denne setningen?',nav:'todo',page:'todo',thoughts:'At sentence scale the units are sentences; grammar and style tools live here.',child:[{t:'Hvilke ord?',w:'The words that form the sentence and their roles.'},{t:'Hva betyr den?',w:'The meaning and function of the sentence in context.'},{t:'Hva bør jobbes med',w:'Sentence-level improvements: grammar, word order and tone.'}]}
             ,{pl:'pl7',no:'Ord',en:'Word',q:'Hva er i dette ordet?',nav:'todo',page:'todo',thoughts:'At word scale the units are words: meaning, inflection and what to improve. Word-level features (lookup, glossary) apply here and deeper.',child:[{t:'Hva betyr ordet',w:'Look up meaning, inflections and usage – the finest content level where dictionary lookup applies.'},{t:'Hva bør jobbes med',w:'Which word needs editorial attention: clarity, style or accuracy.'}]}
             ,{pl:'pl8',no:'Bokstav',en:'Character',q:'Hva er i denne bokstaven?',nav:'todo',page:'todo',thoughts:'At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.',child:[{t:'Font',w:'Which typeface renders the glyph; changing font restyles the whole letter.'},{t:'Size',w:'Point size of the glyph, e.g. relative to body text.'},{t:'Dekorasjon / ligaturer',w:'Stylistic variants and ligature pairs (fi, fl) that join glyphs.'},{t:'Tegnavstand (kerning)',w:'Space between letter pairs; pairs naturally with ligatures at glyph level.'}]}
-            ,{pl:'pl9',no:'Medieform',en:'Media Form',q:'Forgrunn og bakgrunn',nav:'todo',page:'todo',thoughts:'At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.',child:[{t:'Color',w:'Which color renders the glyph; changing color restyles the whole letter.'},{t:'Background',w:'Which background color renders behind the glyph; changing background restyles the whole letter.'}]}
+            ,{pl:'pl9',no:'Medieform',en:'Media Form',q:'Hvilke modaliteter former det presenterte?',nav:'Materialisation of the chosen node as media (one row per modality)',page:'The presented unit and its media: foreground, background, sound, motion',thoughts:'At media-form scale the unit is the presented materialisation of the finer node: the same content carried by a modality – visual (colour, background, image), auditory (music/Spotify), motion (video). Modalities are dimensions, so each is one row here; Spotify playback is the auditory dimension, anchored to the page (🎵 … — p. N).',child:[{t:'🎨 Forgrunn (farge)',w:'Which colour renders the presented unit; changing colour restyles it as a whole.'},{t:'🖼️ Bakgrunn',w:'What renders behind the unit: solid colour, gradient or image.'},{t:'🎵 Lyd – Spotify Play',w:'The song is a media form anchored to its Underkapittel (### — p. N) heading; pages inside that subchapter inherit it. Decode the aigap.no/m-code (SpotKey), resolve it to a Spotify URL and embed the player here.'},{t:'🎬 Bevegelse / video',w:'Motion or video as a media form for the presented unit.'}]}
         ]
         ,up:{pl0:null,pl1:'pl0',pl2:'pl1',pl3:'pl2',pl4:'pl3',pl5:'pl3',pl6:'pl5',pl7:'pl6',pl8:'pl4',pl9:'pl8'}
         ,child:pl=>books.play.LV.filter(x=>books.play.up[x.pl]===pl).map(x=>x.pl)
@@ -94,7 +156,7 @@ const books={
             ,ic:['📚','📖','📑','📄','📃','¶','✍️','🔤','🔠','🎨']
             ,lv:[]
             ,ax:{t:['pl0','pl1','pl2','pl3','pl5','pl6','pl7'],p:['pl4','pl8','pl9']}
-            ,mode:0,idx:0
+            ,mode:0,idx:0,pi:0
             ,setMode:()=>{books.play.render.el.lvBars.querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.lv===books.play.render.mode));}
             ,bar:()=>{const lv=books.play.render.lv,cld=books.play.child,btn=p=>{const o=lv[+p.slice(2)]||{pl:p,nm:p,ic:'•'};return '<button data-lv="'+(+p.slice(2))+'" title="'+o.pl+' '+o.nm+'">'+o.ic+'</button>';},td1=p=>'<td rowspan="2">'+btn(p)+'</td>',tdx=p=>'<td>'+btn(p)+'</td>',chain=p=>{const a=[p];let c=cld(p);while(c.length===1){a.push(c[0]);c=cld(c[0]);}return a;};let node='pl0',cc=cld(node);while(cc.length===1){node=cc[0];cc=cld(node);}const spine=books.play.path(node),cols=cld(node).slice().reverse().map(chain);books.play.render.el.lvBars.innerHTML='<table><tr>'+spine.map(td1).join('')+(cols[0]||[]).map(p=>'<td class="txt">'+btn(p)+'</td>').join('')+'<td rowspan="2" class="zm"><button data-zm="up" title="coarser">−</button></td></tr><tr>'+(cols[1]||[]).map(p=>'<td class="pag">'+btn(p)+'</td>').join('')+'</tr></table>';books.play.render.el.lvBars.onclick=ev=>{const x=ev.target.closest('button');if(!x)return;if(x.dataset.zm==='up'){const p=books.play.up['pl'+books.play.render.mode];if(p)books.play.render.go(+p.slice(2));}else if(x.dataset.lv!==undefined){books.play.render.go(+x.dataset.lv);}};books.play.render.setMode();}
             ,rowZoom:(r,d)=>{const ax=Object.values(books.play.render.ax)[r],i=ax.indexOf('pl'+books.play.render.mode);let j=(i<0?0:i)+d;j=Math.max(0,Math.min(ax.length-1,j));books.play.render.go(+ax[j].slice(2));}
@@ -118,16 +180,22 @@ const books={
             }
             ,esc:x=>x.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
             ,slug:s=>(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'')
-            ,spotKey:u=>{ // song code: gormb query (?msoe) or aigap path (/msoe) – gormb.github.io/?id har flyttet til aigap.no/id
-                if(!u)return '';
-                try{const p=new URL(u);
-                    if(/^https:\/\/gormb\.github\.io\//.test(u))return p.search.slice(1);
-                    if(/^https:\/\/aigap\.no\//.test(u))return p.pathname.replace(/^\//,'');
-                }catch(e){}
-                return '';
-            }
+            ,spotKey:u=>books.play.SpotKey(u) // song code: gormb query (?msoe) or aigap path (/msoe) – gormb.github.io/?id har flyttet til aigap.no/id
             ,qr:u=>{const k=books.play.render.spotKey(u);return k?'<img src="https://aigap.no/i/'+k+'.qr1.png" style="height:66px;image-rendering:pixelated;">':'';}
             ,mus:l=>{const u=(l.match(/https?:\/\/[^\s)]+/)||[''])[0];return '<a href="'+u+'">\u{1F3B5}</a>'+books.play.render.qr(u);}
+            ,songOf:p=>{const a=books.play.md.pages||[],i=a.indexOf(p);for(let k=i;k>=0;k--)if(a[k].mu)return a[k].mu;return '';} // nearest 🎵 at or before page p (songs live on the Underkapittel heading)
+            ,media:p=>{ // pl9: the presented unit + one row per modality
+                const mu=books.play.render.songOf(p),key=books.play.render.spotKey(mu)
+                    ,node=p&&p.h?p.h[1]:(p&&p.pn?'p. '+p.pn:books.play.md.title)
+                    ,row=(ic,t,w,x)=>'<div class="mf"><b>'+ic+' '+books.play.render.esc(t)+'</b><div class="mfw">'+books.play.render.esc(w)+'</div>'+(x||'')+'</div>';
+                return '<h1>'+books.play.render.esc(books.play.render.lv[9].nm)+'</h1>'
+                    +'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl9'))+(node?' – '+books.play.render.esc(node):'')+'</p>'
+                    +row('\u{1F3A8}','Forgrunn (farge)','Fargen som former det presenterte.')
+                    +row('\u{1F5BC}\uFE0F','Bakgrunn','Det som står bak det presenterte.')
+                    +row('\u{1F3B5}','Lyd – Spotify Play',mu?'Kode '+key+' – sang knyttet til dette nivået.':'Ingen sang knyttet til dette nivået.',mu?'<button class="spPlay" data-u="'+mu+'">\u25B6 \u266A</button> '+books.play.render.qr(mu):'')
+                    +row('\u{1F3AC}','Bevegelse / video','Bevegelse eller video som medieform.')
+                    +'<div id="spHolder"></div>';
+            }
             ,sent:s=>/[.!?\u2026]["'\u201D\u2019\u00BB]?$/.test(s.trim())
             ,sentT:s=>(s.match(/[^.!?\u2026]+[.!?\u2026]+["'\u201D\u2019\u00BB]?|\S[^.!?\u2026]*$/g)||[]).map(x=>x.trim()).filter(Boolean)
             ,head:p=>{const t=p.h&&p.h[1];if(!t)return '';const h=p.h[0]===2?'h2':'h3',s=books.play.render.slug(t);return '<'+h+(s?' id="'+s+'"':'')+'>'+books.play.render.esc(t)+(p.mu?' <a href="'+p.mu+'">\u{1F3B5}'+books.play.render.qr(p.mu):'')+'</'+h+'></a>'}
@@ -143,10 +211,11 @@ const books={
                 ,()=>books.play.md.sts.map(s=>books.play.render.esc(s.txt))
                 ,()=>[books.play.render.lv[7].nm+' – dette nivået er ikke implementert ennå']
                 ,()=>[books.play.render.lv[8].nm+' – dette nivået er ikke implementert ennå']
-                ,()=>[books.play.render.lv[9].nm+' – dette nivået er ikke implementert ennå']
+                ,()=>[books.play.render.media(books.play.md.pages[books.play.render.pi]||{})]
             ][books.play.render.mode]()
             ,reset:()=>{books.play.render.mode=0;books.play.render.idx=0;books.play.render.setMode();books.play.render.el.title.textContent=books.play.md.title;books.play.render.toc();books.play.render.sync();}
             ,draw:()=>{
+                if(books.play.render.mode===4)books.play.render.pi=Math.max(0,books.play.render.idx-1); // remember the page (views[4]: idx 0 = title)
                 const v=books.play.render.views();
                 books.play.render.idx=Math.max(0,Math.min(v.length-1,books.play.render.idx));
                 books.play.render.el.page.innerHTML=v[books.play.render.idx];
@@ -196,6 +265,8 @@ const books={
             books.play.render.guide();
             books.play.probe();
             books.play.lang();
+            books.play.render.el.page.addEventListener('click',ev=>{const b=ev.target.closest('.spPlay');if(b){ev.preventDefault();books.play.spTgl(b);}});
+            const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=8';dbjs.onerror=()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen');document.head.appendChild(dbjs); // SUPABASE config → songs resolve to spotify urls
         }
     }
 };
