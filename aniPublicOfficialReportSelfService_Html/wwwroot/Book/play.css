@@ -48,4 +48,12 @@ body{
 h2 a,h3 a{color:inherit;text-decoration:none;}
 #page h2,#page h3{display:flex;align-items:center;}
 #page h2>a,#page h3>a{margin-left:auto;display:inline-flex;align-items:center;}
+/* pl9 Medieform – multi-modal rows */
+.mf{border-top:1px solid #ccc;padding:.35em 0;}
+.mf b{display:block;}
+.mfw{font-size:.85em;color:#666;}
+.mfpath{font-size:.85em;color:#888;font-style:italic;}
+.spPlay{font-size:1.05em;line-height:1;padding:.1em .45em;cursor:pointer;margin-right:.4em;}
+.spotify-inline{display:none;width:100%;border:0;border-radius:12px;margin:.5em 0;}
+#_spCollapse{position:fixed;left:0;top:60%;transform:translateY(-50%) scale(.7);filter:grayscale(1);z-index:100;background:transparent;border:0;box-shadow:none;padding:0;}
 

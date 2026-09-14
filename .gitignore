@@ -361,6 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 /aniPublicOfficialReportSelfService_Html/wwwroot/StratCreator.biz/StratCreatorK.html
-aniPublicOfficialReportSelfService_Html/wwwroot/Book/adm/.DS_Store
-aniPublicOfficialReportSelfService_Html/wwwroot/Book/.DS_Store
-aniPublicOfficialReportSelfService_Html/wwwroot/.DS_Store
+
+# macOS
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+._*
+

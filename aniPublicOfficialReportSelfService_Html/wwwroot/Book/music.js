@@ -91,6 +91,7 @@ const music={
         const f=document.getElementById('_spPlayer'),c=document.getElementById('_spCollapse');
         if(f){f.src='about:blank';f.style.display='none';f.title='';}
         if(c)c.style.display='none';
+        music.Btn();
     }
     ,Frame:()=>{
         let f=document.getElementById('_spPlayer');
@@ -129,11 +130,28 @@ const music={
         f.style.display='block';
         document.getElementById('_spCollapse').style.display='block';
         music.Anchor();
+        music.Btn();
     }
     ,Page:async key=>{
         const T=window.cBook.data.type,k=key.replace(/qr$/i,''),data=await window.cBook.data.get();
         const l=data.find(b=>b.type===T.LINK&&b.spotify&&music.Key(b.url).replace(/qr$/i,'')===k);
         if(l&&book.pn()!==l.page)await nav.Page(l.page,0);
+    }
+    ,Playing:()=>{const c=document.getElementById('_spCollapse');return !!(c&&c.style.display!='none');}
+    ,Link:()=>[...document.querySelectorAll('a.play[id^="m"], a.toc-play[id^="m"]')].find(a=>a.offsetParent!==null&&a.style.visibility!='hidden')||null
+    ,Btn:()=>{
+        const b=document.getElementById('nMu');if(!b)return false;
+        const on=music.Playing(),a=on?null:music.Link();
+        b.textContent=on?'🎶':'🎵';
+        b.dataset.act=on?'stop':a?'play':'none';
+        b.dataset.u=a?(a.dataset.u||a.href):'';
+        if(typeof nav!=='undefined'&&nav.Able)nav.Able(b,on||!!a);
+        return on||!!a;
+    }
+    ,BtnTgl:async()=>{
+        if(music.Playing())music.Stop();
+        else{const a=music.Link();if(a)await music.Tgl(a);}
+        music.Btn();
     }
     ,_spots:null
     ,Play:async function(){

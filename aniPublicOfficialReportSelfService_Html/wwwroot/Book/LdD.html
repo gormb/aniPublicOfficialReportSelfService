@@ -3,8 +3,8 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=52"></script>
-        <link rel="stylesheet" href="LdD.css?v=23">
+        <script type="module" src="LdD.js?v=55"></script>
+        <link rel="stylesheet" href="LdD.css?v=25">
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -185,6 +185,7 @@
                     //nav.Able(nFd, false);
                     nav.Able(nEx, book.prem._); // export only in premium
                     nav.nShFit(); // hide nSh only if nPv2/nPv3 overlap it visually
+                    window.music?.Btn?.(); // nMu → most relevant music action
                 }
                 ,nShFit:()=>{ // hide nSh only if ◄ (nPv2/nPv3) overlaps it vertically
                     const b=[nPv2,nPv3].find(b=>b.style.display!='none');
@@ -380,6 +381,7 @@
                     if(nFdTxt.style.display!='none')nav.findRoute(); 
                     nav.Able(nLg,!s); // nLg deaktivert i TOC
                     if(s){const cur=_dTocList.querySelector('.cur'); if(cur)cur.scrollIntoView({block:'center'});}
+                    window.music?.Btn?.(); // nMu → most relevant music action
                 }
                 ,TocPage:async n=>{
                     nav.ShowToc();
@@ -696,8 +698,8 @@
 
                     uishow(nPr,uishow(nLg,uishow(nFt,uishow(nPv,
                         uishow(nUp,uishow(nGo,uishow(nTc,uishow(nDn,
-                        uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,h))
-                        ))))))))));
+                        uishow(nNt,uishow(nLt,uishow(nFd,uishow(nEx,uishow(nMu,h))
+                        )))))))))));
                     // nTc: fixed button mid-left when menu hidden
                     if(!h){nTc.style.position='fixed';nTc.style.left='0';nTc.style.top='50%';nTc.style.transform='translateY(-50%)';nTc.style.display='inline';nTc.style.filter='grayscale(1)';nTc.classList.add('floatingControl');
                         // nPr: floating 🔓 at 70%, only in freemium mode
@@ -816,6 +818,7 @@
                 <button id="nNt" onmousedown="nav.Page(book.pn()+1, 0)">▶️</button>
                 <button id="nLt" onmousedown="nav.Page(book.np(), _dBook.scrollHeight - window.innerHeight)">⏭️</button>
             &nbsp;&nbsp;<button id="nFd" onmousedown="nav.find()">🔍</button>
+                <button id="nMu" onmousedown="window.music.BtnTgl()">🎵</button>
                 <button id="nSh" onmousedown="nav.Share()">📲</button>
                 <button id="nEx" onmousedown="nav.Export()">📤</button>
                 <button id="nLg" onmousedown="book.hAlign.L(!book.hAlign._)">🇳🇴</button>
