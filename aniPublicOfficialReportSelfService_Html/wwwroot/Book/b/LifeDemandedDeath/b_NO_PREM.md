@@ -1,13 +1,15 @@
 # Liv krevde død
-## Nullsum — p. 2
-🎵 https://aigap.no/mlist (https://aigap.no/mlist) — p. 2
+#### p. 2
+## Nullsum
+🎵 Spotify Playlist (https://aigap.no/mlist)
 “Med MC fra Kiel til Alicante og snitt på 170 km/t kunne jeg vært arrestert i hele Europa”, sa jeg.
 Advokaten jeg nettopp hadde møtt over en Whisky smålo.
 “Nei, du skulle vært død”
 Kanskje det, men jeg føler ingenting likevel, unntatt skam overfor mine nærmeste. Kanskje gjennom musikk, kan jeg oppleve tapet av forstanden som lyd, tiden som stanser; sammenbrudd og erkjennelse.
 Døden gir plass
-### Nulloppsummering — p. 3
-🎵 https://aigap.no/mncty (https://aigap.no/mncty) — p. 3
+#### p. 3
+### Nulloppsummering
+🎵 Nothing Compares 2 U; Sinéad O'Connor (https://aigap.no/mncty)
 En død gir plass til et liv
 Krever nytt liv at noe gammelt dør for å gi plass? Er det begrenset med ressurser og derfor med muligheter?
 Nulloppsummering handler om ressursfordeling uten evne til å skape egne ressurser av ingenting, man må velge mellom å holde gamle ting i live og å skape noe nytt. Det er ikke plass til å gjøre begge deler samtidig.
@@ -18,8 +20,9 @@ Man diskuterer om det er nok at bare opplevelsen er ny for at innovasjon har inn
 Det starter med noen sanne historier for meg, ubalansert og av og til objektivt upresist. Rått, fragmentert og tidvis desperat.
 Hvis jeg for eksempel sier at MC-hjelmen sprakk, ikke som i film, men i et sanseløst smell som enda en gang satte seg som varig fysisk frykt i kroppen, kan det hende at episoden var mer dramatisk for de som så meg gå i bakken. Eller mindre.
 Følelsen min er uansett sann og hverken underrapportert eller dramatisert. Folk har trodd de bevitnet en dødsulykke, mens det for meg var et relativt sett mindre uhell som ikke engang er beskrevet i denne boka.
-### Lotte — p. 5
-🎵 O Fortuna, Carl Orff (https://aigap.no/mcb) — p. 5
+#### p. 5
+### Lotte
+🎵 Carmina Burana: O Fortuna (https://aigap.no/mcb)
 Jeg vil ikke møte noen, noen merker det.
 Hun sto inntil meg på gratiskonsert i slottsparken.
 Vi snakket ikke på lang tid, hun beveget seg som meg, tilpasset hvordan jeg sto og beveget meg, umulig ikke å legge merke til.
@@ -46,8 +49,9 @@ Vanskelig å få tak i. Tar ikke kontakt, hun fortjener en “mission” for å 
 Jeg svarer etter fem. For bra til å bevare. Skal ikke vare.
 Vi møttes andre gang etter en uke, Lotte var dyrisk i senga en uke. Jeg ville ikke ende i senga med henne, bare å ha henne i armkroken var nok. “Du tror dette handler om sex?”, sa Lotte så jeg kysset henne på munnen. “Det handler om å la livet skje”, sa hun, vi dro hjem til henne og gikk ikke ut igjen på dagevis Etter det har jeg ikke sett henne.
 Jeg møtte henne ikke.
-### Det gamle finnes ikke mer — p. 9
-🎵 Ohne Dich, Rammstein (https://aigap.no/mod) — p. 9
+#### p. 9
+### Det gamle finnes ikke mer
+🎵 Ohne Dich (https://aigap.no/mod)
 Lyden av glassplate som knuses. Pulveriseres. Det er lyden av mc-hjelm som ødelegges mot bakken. Hvis du har hjelmen på hodet når den går i stykker. Hjelmer som har gått i bakken må kastes, men folk kan gå videre.
 Verden jeg kjente hadde gått til helvete. Jeg husker øyeblikket jeg forsto det, rett før jeg gikk i koma. Verden gikk ikke til helvete på et øyeblikk, men erkjennelsen kom som et smell som å ødelegge motorsykkelhjelm med hodet først i asfalten.
 Tre av de fire gangene jeg har ødelagt hjelmer husker jeg godt, og alle gangene har satt varige spor. Men erkjennelsen av at verden ikke var den samme smalt hardere enn noen ulykke.
@@ -77,8 +81,9 @@ Fjerde gang jeg knuste en hjelm mot asfalten kjente jeg hverken smerte eller st�
 Hun brukte blusen til å bremse blødningen nok til at ambulansen fikk kjørt meg til akuttmottaket i tide. Jeg vet det fordi hun fikk igjen penger for blusen sin på forsikringen min.
 Bevisstheten forsvant; med deg står sekundene stille.
 Men jeg har hoppet over noen historier.
-### Vittig på bensinstasjonen — p. 14
-🎵 Sola skinner, Jokke og Valentinerne (https://aigap.no/mss) — p. 14
+#### p. 14
+### Vittig på bensinstasjonen
+🎵 Sola Skinner (https://aigap.no/mss)
 Det regner litt, jeg stopper for å fylle bensin. Jeg gjengir smilet til dama bak disken. “Kan du skru av det regnet her?”. “Ja, jeg bare skrur av her” sier hun vennlig.
 “Jeg kan ikke skru av, men vet når det skal begynne å regne, det blir nemli fuktig her inne før regn”, fortsetter hun varmt.
 Jeg blir med på leken. “Det var interessant, fuktigheten starter inne og så blir til regn, så rart”, svarer jeg engasjert. “Men stoppe det, det går ikke”.
@@ -94,8 +99,9 @@ Virker som et godt liv for meg.
 Men er du for nysgjerrig kastes du til andre baner. Komme tilbake er ikke det samme. Du blir også hatet, som i Platons hule. “Du tenker for mye” sier de resten av livet.
 Kanskje har jeg jobbet på bensinstasjon likevel. Steder man ikke er klar over at man har mentaliteten.
 Jeg lyktes nok med å finne det lille livet mange ganger uansett.
-### MC til Middelhavet og en flamme — p. 16
-🎵 Dead or Alive, Bon Jovi (https://aigap.no/mwdoa) — p. 16
+#### p. 16
+### MC til Middelhavet og en flamme
+🎵 Wanted Dead or Alive (https://aigap.no/mwdoa)
 Tung MC. Det er desember 2022 og sesongen er slutt. Om det var trygt å kjøre eller ikke, vurderte jeg basert på om værmeldingen hadde vist kuldegrader i løpet av natten, nå var det ikke trygt lenger. Kjører man på is med tung mc glipper forhjulet og man deiser umiddelbart rett i bakken uten muligheter for å påvirke. Det var slik jeg ødela min første Ducati og min første hjelm.
 Jeg fant fram et europakart og så på hvor jeg kunne oppholde meg fra desember til mars der det var varmegrader, Italia sto høyt på listen.
 "It's all the same, only the names will change". Jeg så på kartet; Middelhavet så bra ut, Italia, Spania, kanskje Marokko eller Tyrkia. Landet var uviktig, det som var viktig var flukten
@@ -161,8 +167,9 @@ Plutselig var jeg fremme hos C, det skulle bli et nytt kapittel
 #### p. 27
 for henne og en note i margen for meg, alle rundt meg hadde blitt tilskuere til mitt dødsrituale på veien, tiden uten toppfart ble kortere for hver dag. Jeg var i live, og skulle være lykkelig ved Middelhavet i ukevis.
 Men vettet hadde sluppet taket.
-### Den tidlige flammen — p. 28
-🎵 State of Emergency, Cactus World News (https://aigap.no/msoe) — p. 28
+#### p. 28
+### Den tidlige flammen
+🎵 State of Emergency (https://aigap.no/msoe)
 Jeg hadde nådd frem til kvinnen jeg burde ha giftet meg med 25 år tidligere. Nå bodde hun midt i det vakre fjellandskapet innenfor Alicante i Sør-Spania. Hadde jeg bare ikke vært selvdestruktiv, hadde vi vært gift og lykkelig. C hadde ikke visst at jeg elsket henne, fordi jeg en gang for 30 år siden på en måte slik at hun skulle høre det, sa at jeg bare hadde elsket tre kvinner hele livet og hun var ikke på listen. Listen besto av Ina, Panela og Karoline. Det var nok fordi hun ikke lå på listen over kvinner jeg hadde elsket, hun innimellom, gjennom årenes løp, ubevisst forsøkt å komme på listen og aldri gav meg opp. Kvinner liker utfordringer, jeg var den som glapp unna.
 Løgnen den gang var like nyttig nå som en generasjon senere, for å sikre at jeg fortsatt ikke skulle ende opp lykkelig med C,
 #### p. 29
@@ -171,8 +178,9 @@ Dilemmaet som ligger i at man ikke vil seg selv godt og så ender med å skade a
 Hun trengte føle seg ønsket. Fikk alt det andre, men ikke det.
 Umulig for de som aldri har opplevd begge sider; arr fra barndommen. Har du aldri følt deg elsket kan du ikke få andre til å ha det godt.
 I livet som var, henger personen jeg var igjen. Jeg kan aldri.
-### Tidligere sommerfester — p. 30
-🎵 Memories, David Guetta feat Kid Cudi (https://aigap.no/mmemmmem) — p. 30
+#### p. 30
+### Tidligere sommerfester
+🎵 Memories, David Guetta feat Kid Cudi (https://aigap.no/mmemmmem)
 En sommerfest var over, jeg møtte enda en perfekt dame. Hun hadde sagt opp en stilling i ledelsen i et stort selskap fordi hun ikke kunne nå toppen. Klaget over at det var fordi hun var kvinne, jeg er ikke sikker. Tidligere journalist, deretter kommunikasjonssjef og nå leder av noen samarbeid rundt noe ideelt vi måler med bærekraftsmålene våre. Vi satt seks timer og snakket på et hipt Grünerløkkasted og klarte ikke å drikke opp en flaske champagne, vi hadde alt for mye å snakke om. Men det ble med den kvelden, vi møttes aldri igjen. Det var midnatt og jeg pekte nesen mot en fest som hadde pågått en stund.
 En tidligere kollega var i en vennegjeng på ti-femten damer og nesten like mange menn. I dag skulle alle feste sammen.
 Damene hadde vorspiel for seg på en hyggelig kafe og gutta
@@ -180,8 +188,9 @@ Damene hadde vorspiel for seg på en hyggelig kafe og gutta
 delte jakthistorier over en øl. På vei mot min date hadde jeg stoppet innom damenes vorspiel og delt ut en rose til hver av dem for så å gå uten et ord. Da jeg kom fra daten min, hadde de snakket om meg i timevis.
 Storesøster og lillesøster, jeg var forelsket i den eldste, men så ikke alltid forskjell på dem. Den yngste sto utenfor festen, jeg trodde det var den eldste og sa “hvorfor har vi aldri kysset” for så å kysse henne på munnen. Så gikk vi sammen inn til de andre og jeg oppdaget min feil, der møtte jeg øynene til storesøsteren jeg var forelsket i, og lillesøsteren smilte avslørende.
 Natten var enda ung og ting eskalerte, en god venn av meg endte i seng med storesøster og jeg med lillesøster. Disse idrettsdamene fra landet har en energi som gjør at de kan feste og elske mye lengre enn oss late byfolk, jeg var utslitt og fornøyd, selv om jeg unngikk å ha sex med den yngste hadde jeg ødelagt to av mulighetene mine til å bli lykkelig på en kveld, men et liv i hastighet er også bra, det valget skulle jeg virkelig overdrive senere.
-### Barnemisbruk og sår — p. 32
-🎵 Hurt, Nine Inch Nails & Johnny Cash (https://aigap.no/mhnin) — p. 32
+#### p. 32
+### Barnemisbruk og sår
+🎵 Hurt; Nine Inch Nails / Johnny Cash (https://aigap.no/mhnin)
 Det er ingen konsekvens av å lene seg for langt ut av vinduet.
 Før man faller. Da er man ikke forberedt.
 De heldige lever hånd i hånd med skjebnen der tid og frykt er irrelevant. Hjernen er bedre rustet til nytenking, hver gang man kommer ut i andre enden, men den er mer nummen for fare.
@@ -200,8 +209,9 @@ Hvis systemet ikke fungerer.
 Pedofili- og voldtekstdømte blir banket opp i fengsel, både her til lands og, som jeg lærte som meddommer, i den tredje verden.
 Mange i fengsel kommer fra elendighet, mye elendighet er skapt av barnemisbruk. Enkel logikk. Ingen liker barne- og kvinnemisbrukere, ikke en gang hjelpeapparatet kan like dem, ikke en gang de selv. De vet de fortjener bank.
 Den tiltalte ble frikjent. M hadde aldri innrømmet at drap hadde vært bedre, hun jobbet med lov og rett og var uforandret i ansiktet. Vi dro på stedet med plastpalmer. M, dama hennes og jeg. Jeg drakk whisky, kjørte som en tulling og våknet på akutten etter å fløyet over sykkelen. Nedtellingen var endelig ferdig. Selvutslettelsen var ikke uønsket, men ikke uvelkommen
-### Barnemisbruk og sår (Alternativ) — p. 35
-🎵 Knockin' on Heaven's Door, Dylan (https://aigap.no/mkohd) — p. 35
+#### p. 35
+### Barnemisbruk og sår (Alternativ)
+🎵 Knockin' on Heaven's Door; Bob Dylan (https://aigap.no/mkohd)
 Kveld. Jeg kjørte med djevelen i helene. Reflekterte ikke over støvet på veien til Oslo kommune. Rett før jeg spant ut av kontroll og fløy over styret reflekterte jeg over dagen.
 Morgenen hadde begynt akkurat her, full gass ut av Oslo og sørover. Så ringte telefonen.
 Jeg stoppet og kjørte opp på fortauet ved Sørenga. Ringte tilbake umiddelbart. “Jeg vil ikke gå alene” sa hun, “Dama mi svarer ikke”. Jeg trengte ikke tenke meg om “Når trenger du meg?”.
@@ -236,11 +246,13 @@ Jeg faller over sykkelen og skal inn i mørket. Bevisstheten og vettet kommer ti
 Rikshospitalet. Jeg ser M gjennom et slør av morfin. "Nå er du forberedt", sier hun.
 Først senere skjønner jeg hva hun mener. Fallet var begynnelsen. Ikke slutten.
 Fritt fall, men jeg reiste meg.
-### Kvinner og døden — p. 39
-🎵 O mio babbino caro, Puccini & Forzano (https://aigap.no/mombc) — p. 39
+#### p. 39
+### Kvinner og døden
+🎵 O Mio Babbino Caro (https://aigap.no/mombc)
 Denne boken er om kvinner og døden. Hva har kvinner med døden å gjøre? Begge deler har med livet å gjøre. På et gitt tidspunkt er en kvinne det viktigste i livet til en mann og liv kan ikke finnes uten død. Selv om kvinnen kan representere det motsatte av død, gir begge mening eller plass til liv.
-### 200 km/t og oppover — p. 40
-🎵 Battle Without Honor or Humanity (https://aigap.no/mbwhoh) — p. 40
+#### p. 40
+### 200 km/t og oppover
+🎵 Battle Without Honor or Humanity (https://aigap.no/mbwhoh)
 På motorsykkel i natten i maksimal hastighet er man synlig og kan høres. Det er en hemmelighet at det er full frigjørende stillhet for den som kjører.
 Kroppen hyperfokuseres, redd utslettelse. Sansene svekkes og inntrykk er borte etter minutters galskap.
 Øredøvende monoton vindstøy som treffer hjelmen er det første som blir borte, etterpå forsvinner refleksjon over bevegelser, svinger, natur, dyr, trafikk og lys. Alt blir rutinebevegelser og handlinger, mønstre og vibrasjoner, detaljene borte for alle sanser.
@@ -248,13 +260,15 @@ Kroppen hyperfokuseres, redd utslettelse. Sansene svekkes og inntrykk er borte e
 Endelig forsvinner smerter og spenninger i kroppen, det er ikke plass til å anstrenge seg, energien spares, anstrengt pust blir rolig dyp fra magen, skuldre senkes, smerte og hjernens nær totale utmattelse blir filtrert ut, og man går i hypnotisk tilstand som overgår å sitte i lotusstilling eller bruke dop.
 Alle psykiske problemer er irrelevant, smerte også. Den ultimate stillheten ligger midt i et øredøvende bråk man kan høre langt unna, men ikke hvis man sitter der lyden kommer fra. Du trenger ikke Freud eller Jung, du leges. Eller dør.
 Nullsumlivet dør, skapelse uten ødeleggelse blir mulig. Død gir plass til nytt liv.
-## Krise! — p. 42
-🎵 https://aigap.no/mklz (https://aigap.no/mklz) — p. 42
+#### p. 42
+## Krise!
+🎵 Kashmir; Led Zeppelin (https://aigap.no/mklz)
 Fart, støy og risiko drepte det gamle, knust mot asfalt.
 Delirium løste opp verden i drøm av dømmekraft og overfladisk begjær.
 For å overleve lot jeg det gamle dø
-### Ulykken — p. 43
-🎵 Time to die, The Stranglers (https://aigap.no/mttd) — p. 43
+#### p. 43
+### Ulykken
+🎵 Time to Die (https://aigap.no/mttd)
 Jeg tok en Brun Tequila med M og dama hennes.
 Brun Tequila på formiddagen og livstruende ulykke på kvelden.
 Det gav erfaringer som aldri kan avlæres.
@@ -308,13 +322,15 @@ Jeg klaget over den innbilte dronen og husker sykepleierne nikket forståelsesfu
 Så kom veteraner i militæret etter meg. Først en mc-klubb fra Trøndelag, de var ute etter meg fordi jeg gav meg for tidlig fra militæret. Tok ikke utenlandstjeneste. En dame fra mc-klubben gikk inn og ut og skulle koordinere hvordan de skulle ta meg ut av spill.
 Etterhvert som tiden gikk grodde historiene sammen, og alle fra militært landsskytterstevne, som var avholdt et sted jeg nylig hadde besøkt, skulle drepe meg med droner fra lang avstand. Jeg visste døden var nær forestående og fikk stadig oppgitt nye tidspunkt jeg skulle skytes.
 Det var helt uaktuelt å få besøk av familie. De måtte overleve.
-### 20 km/t og under — p. 51
-🎵 Flower, Moby (https://aigap.no/mfm) — p. 51
+#### p. 51
+### 20 km/t og under
+🎵 Flower (https://aigap.no/mfm)
 På skogsstier i natten kan man løpe og snuble i røtter. Snart overtar automatikken i kroppen. Man enser ikke fare for å falle å slå seg.
 Langs havet er det svaberg og plutselig finner jeg meg løpende, på samme måte i skumringen i skogen, løpende inn i natten på svabergene.
 Akkurat som løping i under 20 km/t slipper sansene taket, og selv om et fall ikke automatisk betyr død, ikke engang store skader, ligner effekten den jeg har med motorsykkel i over 200 km/t. Kanskje finnes flyten og effekten fra meditasjonen for alle, og over alt. Mon tro om det ikke er behovet meg for å føle som styrer, like mye som hendelsene jeg blir utsatt for.
-### Kalkulerende vesen — p. 52
-🎵 Sweet Dreams, Eurythmics (https://aigap.no/msdamot) — p. 52
+#### p. 52
+### Kalkulerende vesen
+🎵 Sweet Dreams; Eurythmics (https://aigap.no/msdamot)
 Liv levd på tidligere sosial kapital uten å vite det. E liker unge damer. Vi var ute og drakk, tre glade gutter, som feiret 60- årsdagen til noen i jobbnettverket. Y kjente dem, jeg kjente Y og A kjente oss begge. På vei hjem skjedde mye rart, det begynte med en burger etter stengetid.
 Gatekjøkkenet var rent og i orden. Vi ble kjent med eieren, det viste seg at han var perfeksjonist på sauser. Det luktet trøffel, men smakte bare umami, etter mange runder med tilsmaking hadde han funnet balansen Bogstadveiens kresne elsket. Jeg kom i snakk med en gjest, en dame på slutten av tyveårene, som fokuserte på skinnjakken min. På spørsmål om hun liker motorsykler svarte hun “det hører jeg om hele arbeidsdagen”, restauranteieren hun jobbet for, E, elsket MC. Hun trakk seg tilbake da hun sa det. Da hun beskrev meny og stil kunne jeg gjette hvor hun jobbet. Hun jobbet for E.
 #### p. 53
@@ -329,8 +345,9 @@ som leges fort. Han var en mann av mitt hjerte. Etter å ha drukket sprudlevann 
 To dager senere spiste jeg middag med min venn J og hans nye familie. Det var et spørsmål om tid hvor lang tid det skulle ta før J skulle lage nytt hjem etter sitt plutselige ekteskapsbrudd, han hadde bodd i båten sin ett års tid, og nå var det nok, han fant en sykepleier med hjerte og hjerne.
 J hadde tilberedt lammestek etter alle kunstens regler, og praten over bordet gikk lett. J og nye samboer hadde hver sin sønn, og hennes sønns kjæreste på 19 år. Vi snakket om oppvekst og boforhold, helsevesenet, AI og teknologi. Seiling, restauranter, jobb og livsstil. Plutselig snakket vi om motorsykler, jeg kunne ikke la være, og nevnte mitt nye bekjentskap, E. Den 19-år gamle kjæresten til J samboers sønn rykket til: “Kjenner du E?”.
 “Ja jeg har kjent ham noen dager, vet ikke om jeg kjenner ham godt, men er i ferd med å bli kjent med ham”. Det viser seg at E ofte gikk i matbutikken rett ved restauranten og kysset de unge jentene på kinnet. Så ubehagelig at de hadde egen rutine når han kom inn i butikken, bare gutter betjente kunder når E var på besøk. Slik slapp pikene ubehageligheter. Jeg ble sint og sa: “På vegne av oss eldre enn pyramidene, slik vil vi ikke ha det”
-### Oppvask — p. 55
-🎵 Road to Nowhere, Talking Heads (https://aigap.no/mrtn) — p. 55
+#### p. 55
+### Oppvask
+🎵 Road to Nowhere (https://aigap.no/mrtn)
 Det var mer talerkner i skapet, men kummen for oppvask var full. Forrige gang det skjedde endte oppvasken i søpla, men nå hadde jeg for dårlig med penger. Kasta et blikk på papptalerknene. Så på pizza'en i fryseren. Begge løsningene var brukt før for å slippe oppvask. Måtte ta oppvasken.
 Ikke bare sitte på motorsykkel. Ikke bare dykke ned i KI-løsninger. Hygiene, rydding og oppvask. Jeg kom til å sulte ihjel før alt det var ferdig. Oppvasken luktet mindre vondt nå enn i går. Hadde sikkert vendt meg til lukta. Hvor fjern fra normalen det nå enn er.
 Jeg kjørte til Tvedestrand og tok meg en øl. Fort nok til å glemme oppvask og hygiene. Du trenger ikke psykolog, du har mc. Døyve naturlige signaler med endorfininnsprøtning.
@@ -342,8 +359,9 @@ Tove sa noe jeg ikke fikk med meg, stemmen var melodiøs, og kombinert med det v
 Jeg ble gladere og gladere, satte pris på de små særhetene Tove har når hun krangler; pannen hennes ble rødere og rødere og det var en lei rykning ved øyet hennes hun hadde snakket om, men jeg først nå fikk se.
 “Jeg er gift” sa hun. Trodde hun var min. Samma det. Døra smalt igjen, hun var borte. Det tok to minutter før jeg løp ut i gangen og så etter henne.
 Komme seg på veien igjen. Brønnøysund i overmorgen, kan like godt dra nå. Oppvasken var der da jeg kom tilbake til Oslo.
-### Det vakre som varte et øyeblikk — p. 57
-🎵 You look like rain, Morphine (https://aigap.no/myllr) — p. 57
+#### p. 57
+### Det vakre som varte et øyeblikk
+🎵 You Look Like Rain (https://aigap.no/myllr)
 “Your mind and your experience call me”. Det var to timer igjen til sommerfesten på gresset og jeg var allerede overbelastet av for mange uttrykk. Det ble nei takk til sengevelkomst hos en flamme fra Sørlandet som skulle selge eksmannens Tesla på Gardermoen; bedre å ta en stille ensom time under en falsk palme i Frognerkilen, og roe nervesystemet før en fest med Mezcal, Mont d’Or, Entrecote og trøffelsalt. Hjernen din og erfaringen din kaller på meg.
 “You have lived and your intelligence is sexy”. De tre foregående sommerfestene satt fortsatt i følelsesmessig, de hadde medført korte dater uten mye etterspill, og jeg regnet med det samme nå.
 Så møtte jeg S. Vi drakk den meksikanske rumpespriten mens jeg flamberte entrecote, og deretter unngikk jeg henne resten av festen. Hun var synlig ambivert
@@ -363,8 +381,9 @@ Du tenker som en pisk på en hesterygg.
 “Stretched out to the limit”. Etter en uke våknet jeg, og fikk samtidig besøk, de hadde sporet meg opp på Rikshospitalet, der virkeligheten var en psykotisk blanding av morfin og drømmer.
 Strukket ut til grensen.
 “You look like rain”. Hun sto der da døden laget plass, og ble koblingen til følelsene i ruinene av mitt nullsumsliv. Jeg vil vite hva du har å si. Det vakre livet med kvinnen var ikke ment å vare, men ble en indikasjon på at positivsum er mulig når nullsum dør. Livet slik jeg kjente det var over. Døden laget plass til et helt nytt liv, forholdet med U var ikke ment å vare, men gi håp. Det fikk vi til.
-### Karin er inspirasjon — p. 60
-🎵 Into My Arms, Nick Cave (https://aigap.no/mima) — p. 60
+#### p. 60
+### Karin er inspirasjon
+🎵 Into My Arms; Nick Cave (https://aigap.no/mima)
 En muse som gir Lyst. Begjær. Liv! gudinnen for kunstart fra gresk mytologi; inspirasjonskilde i vår moderne verden.
 Skrivingen tok fart igjen. Jeg bader hver soloppgang i det iskalde vannet for å vokse tilbake manndommen hun tåler.
 Mannen fra forrige årtusen gjenreiste seg.
@@ -382,8 +401,9 @@ De sier at alle er hovedpersoner i eget liv, kanskje hennes liv ikke lenger hadd
 #### p. 62
 Hun leste Johannes åpenbaring, Reisen gjennom døden av det gamle frem mot nytt liv. Temaet denne boken handler om.
 Det som var gjenoppstandelse i mitt liv var del av døden i hennes. Transisjonen fra det gamle til det nye. Det nye hos henne er etter min tid. Kanskje etter en annen død, for jeg elsker henne fortsatt.
-### Beglodd på “Bensern” — p. 63
-🎵 Material Girl, Madonna (https://aigap.no/mmg) — p. 63
+#### p. 63
+### Beglodd på “Bensern”
+🎵 Material Girl; Madonna (https://aigap.no/mmg)
 Y og jeg dro stadig på “Bensern”, marinaen der det stadig skjedde noe nytt. Det var over 30 grader i lufta og jeg hadde kjørt motorsykkel hele dagen. Dunstet av maskulin energi og svette. Vi fant et bord nær vannet for forfriskende drikke.
 Ved bordet ved siden av satt to damer mellom 25 og 30. Vakre og trolig intellektuelle, med sommerferie og et liv omgitt av “hel ved”; alt i orden og på plass. Jeg kastet av skinnjakken og kledde av meg ned til badeshortsen under. Den vakreste av damene stirret på meg som hypnotisert mens klærne forsvant. “Liker mann, får lite”, tenkte jeg.
 #### p. 64
@@ -395,8 +415,9 @@ Jeg gikk mot bordet mitt og derfor like mye mot hennes bord: “Skal du ikke uti
 Så gjenopptok jeg samtalen med Y. Vi snakket om bokprosjekter og ignorerte damene.
 Jeg var ikke klar. Nå skulle det kjøres MC. Damene gikk mens de logret med halen. Skjønnheten hadde bestemt seg allerede før jeg hadde kledd helt av meg. Jeg så mer veltrent ut enn vanlig, for vekten falt hver uke. Kjærlighetsproblemer påvirker appetitten, men var jeg mer attraktiv for damene?
 Jeg brydde meg ikke.
-### 40 km/t & saltsmak om morgenen — p. 66
-🎵 Hun er fri, Raga Rockers (https://aigap.no/mhef) — p. 66
+#### p. 66
+### 40 km/t & saltsmak om morgenen
+🎵 Hun er fri (https://aigap.no/mhef)
 Jeg har saltsmak i kjeften. Merket smaken på vei inn i dagen med motor på tomgang. Gryende soloppgang vekket meg.
 Kvartfinalen i VM i fotball er ferdig for et par timer siden og natten har ikke enda blitt til dag. Min brors familie jeg så kampen med skal sove mange timer. Ikke jeg. Lister meg ut legger merke til niesen min som vinker til meg. Hun har fredfull morgenstund på natten. Vi nikker kort til hverandre mens jeg gleder meg til mitt eget øyeblikk i stillhet.
 Soloppgang på stille vei med stor lat motorsykkel uten å møte folk. All grunn til å smile. Niese får sitt, jeg får mitt.
@@ -416,8 +437,9 @@ Tapt kjærlighet til fengselsprest hadde lurt seg inn i underbevisstheten og gjo
 Selvforakten overskygget sorgen bare et øyeblikk.
 Det gjør vondt. Smerte er tegn på liv, en virkelighet det i sannhet ikke skal reageres på. Nå er jeg knust av en prest, en robust nok til å tåle meg.
 Jeg har tid. Det kommer til å ta tid å komme videre. Nærmere.
-### Fengsel med åpen dør — p. 69
-🎵 Crockett's Theme, Jan Hammer (https://aigap.no/mct) — p. 69
+#### p. 69
+### Fengsel med åpen dør
+🎵 Crockets Theme (https://aigap.no/mct)
 “Fysisk til stede, tapt i fortid og skjebne”, jeg ropte fra sykkelen ut i natten uten at det var hørbart gjennom motorduren.
 Gatene var øde, det var VM i fotball og etter leggetid. Sakte og bråkete skar motorsykkelen gjennom Oslo på langs og tvers.
 For 400 år siden skrev noen «O do not trouble me, So sweet content I feel and see. All my joys to this are folly, None so divine as melancholy” (Anatomy of Melancholy, Burton, 1621) Livsfare på motorsykkel som motgift mot indre smerte er melankolsk. Hvis man ikke vil dø. Jeg vil ikke. Ville ikke. Vet ikke, intensjon har gitt plass til vaner, vaner har gått utpå dato.
@@ -428,8 +450,9 @@ Det skriker ikke innvendig, men den uendelige taknemmeligheten over å overleve 
 Skjønnhet i ødeleggelse, fengselet uten gitter der grense mellom liv og død nytes uten at man vet det. Uten å ville dø. Uten å ville leve. Limbo uten tilstedeværelse. De mest spennende av alle?
 Man må lege, eller skape medavhengighet. Enten eller. Jeg så etter svar i pausen mellom tankene. Stillhet. Hvis ikke det var akkurat døden som var tiltrekkende, eller død som kontrast til livet, eller å flyte midt mellom i melankolsk limbo. Kanskje pause mellom tanker er viktig som kontrast til aktive tanker; det som gjennom kontrast gir verdi til handling. Da har jeg misforstått meditasjons minste grunnstein. Vet ikke, må sove.
 Det får bli min fattige meditasjon. God n…
-### Kvinnelegen og kaos — p. 71
-🎵 Born to Run, Bruce Springsteen (https://aigap.no/mbtr) — p. 71
+#### p. 71
+### Kvinnelegen og kaos
+🎵 Born to Run (https://aigap.no/mbtr)
 Dro på søndagskonsert på Blå. De har holdt på i mer enn 20 år, jeg har aldri tenkt jeg passet der, men da en som holdt på med stunt-poesi sa at jeg var stuntpoet etter min damens tale tenkte jeg besøke denne jazzklubben. Bandet låter bra, selv med over 20 medlemmer. De har hatt mange tusen konserter.
 vokalistjobben går på rundgang, alle må synge minst en sang.
 Jeg vet ikke om jeg fortjener å melde meg på kor på tirsdager.
@@ -444,44 +467,51 @@ Jeg holdt på nachspiel fram til klokken 0530 om morgenen, med to venner og en k
 og interesse, jeg takket med å være høylytt skrikende og uhøflig mot menneskene der, som hun sikkert hadde sett før og ønsket å treffe igjen, gjorde kanskje ikke den beste figuren, Etter først å ha primet henne med giftemål, et sjekketriks man kan gjøre på begynnelsen av en kveld som på kvinner virker med økende effekt utover kvelden mens de nyter festene og alkoholen, var jeg et godt eksempel på noe lite attraktivt bytte.
 Jeg endte med å danse forferdelig drålig på nachspiel med kvinnen, da jeg ikke lkan danse, og hadde ganske fersket knekt ribbein og kragebein etter et lite mc-uhell.
 Jeg er ikke bare “hard to get”, er også “hard to want” og leverer med personlighet, økonomi og framtreden. Hun var tidligere mester i selskapsdans og foreslo at kanskje måtte hun snart føre, hun var full og slo meg jovialt i brystkassen der jeg hadde et nybrukket ribbein… men apetitten på å være attraktiv var ikke der, jeg avfeiet det med en kommentar, jepp, der er bruddet, uten å gjøre mer ut av noe som helst. Kvinnen, som satt bakoverlent og formerlig spriket i stolen ved siden meg på nachspiel, fikk lite oppmerksomhet. Var jeg helt uten lidenskap eller ønske om naken fysisk nærhet? ja.
-### Hun bor i båt inntil “Bensern” — p. 74
-🎵 Orinoco Flow, Enya (https://aigap.no/mof) — p. 74
+#### p. 74
+### Hun bor i båt inntil “Bensern”
+🎵 Orinoco Flow; Enya (https://aigap.no/mof)
 M bor i båt. Rett ved “Bensern”. Hun drev kafé tidligere og bor nå året rundt på båt. “Baren het Mifornøyelsesbar” sier hun. “Ikke det at den gikk konkurs. Kristoffer Nielsen kjøpte meg ut”. Jeg lar det gå. Alle har rett til etterrasjonalisering.
 Hunden bjeffet men ikke uvennlig. Logret og bjeffet den lille terrieren. Hun hadde mergreie på hundert enn meg,så mye at hun satte pris på måten jeg behandlet den på. Lot hunden komme til meg. Jeg indikerte lederskap uten markeringsbehov som gjorde hunden trygg. Alle de andre tingene jeg kan uten “threat” eller tørket kjøtt. Jeg bedyret at jeg føler jeg er flink med hunder, men enhver med tørket biff vinner over meg når som helst.
 Hun avslører at prisen for å bo i båt der er doblet på ti år, og at strøm ikke lenger er inkludert. “Cash cow”, momler jeg, og hun ser spørrende på meg.
-### R sitter utenfor M utenfor “Bensern” — p. 75
-🎵 The Passenger, Iggy Pop (https://aigap.no/mtp) — p. 75
+#### p. 75
+### R sitter utenfor M utenfor “Bensern”
+🎵 The Passenger; Iggy Pop (https://aigap.no/mtp)
 ”Jeg jobber med musikk” sier han, han har røyket mye hasj.
 J”Jeg er sånn motorsykkeltype”, en identitet som passet til alle tatoveringene. “Men jeg hadde hatt ulykker, det er alt for farlig”. “Det er jo bare feigt” sier jeg, “han har jo bare tilrøvet seg en identitet som ikke har noen ting med egenskaper eller personlighet å gjøre” tenker jeg. “Åh du melder feigt”, sier han og later som ingeting. Samtalen går tilbake til andre ting. Fem minutter senere ser han på meg og spør “har du motorsykkel?” “Ja den står rett her borte”.
 “Hva slags sykkel?” “En gammel lat Suzuki 1500 kubikk på 300kg”. “Åh! kan jeg se?” “Ja, du kan til og med prøvesitte den”... jeg tar bilde av ham på sykkelen, han sikkert skal legge på Tinder-profilen sin.
 Verden er mørk.
-### K fra Haugesund & C ser ned på ham — p. 76
-🎵 T.N.T. AC/DC (https://aigap.no/mtnt) — p. 76
+#### p. 76
+### K fra Haugesund & C ser ned på ham
+🎵 T.N.T. AC/DC (https://aigap.no/mtnt)
 Han er full av arr i ansiktet etter slossing og da han var 17 år spiste han et glass for å tøffe seg for 20-åringene og ble godtatt. Disse gutta passer godt på opptaket i marinejegeren og en prosent eller to blit tatt opp. Han tilhører de andre 98-99 prosentene. De som ikke ble marinejegere, men er like aggressive. Bare ikke like tøffe eller stabile. Eller har for høy eller lav intelligens. Eller uten fargesyn eller gangsyn nok til å ha rent rulleblad.
 “Dama mi har slått opp, vi bodde sammen”, sier K. “Hvor bor hun?”. Nei vi måtte begge flytte. Nå bor jeg hos kompiser”. Han ser etter nye måter å prøve seg livet på.
 Gjerne sloss litt, som man gjør der han vokste opp. Tilbake til barnsben, liksom. Gult belte i Brazillian Jiu Jitzu har det blitt, og han bråker med de som er 20 cm høyere enn ham.
 #### p. 77
 Vi blir kjent med K og tar en øl. Hyggelig, men stadig usikkert om vi kommer i en konfliktsituasjon, han har så mye opparbeidet sinne at det ligger en anstrengt stemning i luften C som ser ned på K fra Haugesund Han sitter ved siden av oss og bedømmer samtalen vår. Plutselig smiler han triumferende når K går for å bomme røyk tre bord bortenfor. “Han er rar, ikke sant!”. Nå er han i sitt ess. En jeg er med sier “Ja mye energi for en homo”... “Usikker stillhet”... “jeg håper ikke du har noe i mot homofile?”
-### En fra vannverket, eller en skitten fyr — p. 78
-🎵 Common People, Pulp (https://aigap.no/mcp) — p. 78
+#### p. 78
+### En fra vannverket, eller en skitten fyr
+🎵 Common People; Pulp (https://aigap.no/mcp)
 Det var en varm sommerdag og ikke anbefalt å bade innerst i Oslofjorden. Jeg skulle bade likevel og så en enslig fyr på det ellers så populære Sørenga “Hvordan er vannet”, spurte jeg.
 “Helt ok, det er grei temp for årstiden”. “Du veit det ikke er anbefalt å bade, for mye bakterier i vannet, ellers så er et kloakkanlegg lekk. Jeg vet ikke, men det lukter ikke. Kanskje de har hatt klor i”
 Han så på meg som et blikk som om han var erfaren veiviser, en av de eneste som kan en vanskelig vei og han kan være best på retning. “Ja. Bakterienviå. På grunn av temperaturen over tid. Jeg jobber for vannverket. Dette kan jeg alt om”. “Men du er i badebukse, du skal vel ikke bade nå med den jobben?”, undret jeg. Det skulle han. “Det er ikke så bra å drikke litervis av dette vannet, vi må være strenge, for barn får jo mye vann i munnen og svelger vannet. Jeg er ikke et barn, og drikker ikke saltvann”
-## Reetabler — p. 79
-🎵 https://aigap.no/mltf (https://aigap.no/mltf@) — p. 79
+#### p. 79
+## Reetabler
+🎵 https://aigap.no/mltf (https://aigap.no/mltf@)
 Våknet blank, det gamle renset.
 Kroppen gjenlærte å leve.
 Kan man elske uten å ødelegge?
 Fremtiden er en dør å åpne.
 Puster fortsatt, vi gjør så godt vi kan.
-### Blanke ark — p. 80
-🎵 Little Wing, Jimi Hendrix (https://aigap.no/mlw) — p. 80
+#### p. 80
+### Blanke ark
+🎵 Little Wing (https://aigap.no/mlw)
 Da jeg våknet, hadde jeg fått plass. Plass til å puste, plass til å se. Koma hadde ryddet vekk en del av det gamle livet, den tunge, selvødeleggende fortiden, og gitt rom for et helt nytt liv med helt nye muligheter. Forstanden døde, jeg hadde på en måte utryddet meg selv, men et tomrom var skapt for å bygge et helt nytt liv.
 Jeg var hennes første pasient på det elitistiske rikshospitalet og fortalte meg om turene hun ville ta i fjellet. Jeg fortalte om mine jeg hadde planlagt i Pyreneene med J. Jeg overtalte henne til å dra på Rammsteinkonsert. Hun husket meg og vår relasjon godt to år senere da jeg kom på kontroll, vi hadde delt mange samtaler mens jeg hadde Delir og brukte morfin.
 Tre år etter utskrivelse sporet jeg henne opp, sendte melding.
 Eventyret var ikke lenger hennes virkelighet. Det er greit.
-### Styrke fra forsørgersvikt — p. 81
-🎵 The Logical Song, Supertramp (https://aigap.no/mtls) — p. 81
+#### p. 81
+### Styrke fra forsørgersvikt
+🎵 The Logical Song (https://aigap.no/mtls)
 Tre år etter ulykken sitter jeg på en studentcafe.
 Oppmerksomheten går til et ungt par som sitter på skrå overfor meg. De er nok i slutten av 20-årene, tilsynelatende vellykkede, veltrent og velstelt, går de sikkert begge på yoga. Jeg forteller meg selv at de aldri i sitt liv har hatt en ubetalt regning, vært i slåsskamp, eller har strøket på noen eksamen. Det sitter en ukjønnet baby på mors fang, far sitter og strikker, kanskje er han praktiserende feminist.
 Paret får meg til å reflektere over mine egne foreldres bekymringsløse 70-tallsidyll som rikmannsbarn, deres lettsindighet smittet meg. Da jeg var ung var livet vidunderlig.
@@ -502,8 +532,9 @@ Mor og far ville ha barn, men ville de oppdra? Kanskje hadde jeg vært mer lykke
 Men vær så snill og fortell meg hvem jeg er.
 Ved et annet bord på studentkafeen sitter en man i midten av 20-årene og kremter høyt omtrent en gang i minuttet. Et rop om hjelp og oppmerksomhet med angst som munner i for lite naturlig pust. Jeg tenker på mine egne tidvis høye skuldre og manglende pust som barn. Som voksen ble det øredøvende motorsykkel som revnet seg gjennom natten. Det skulle en nesten-dødelig ulykke til for å fjerne nok markeringsbehov til at jeg lever relativt ufarlig. Det er en god ting, selv om kvinner og samfunn gir fordelene til de høyrøstede og aggressive, kan roen og tryggheten belønnes med hvile. Mannen som kremter etter luft speiler min egen tidligere flukt i 200 km/t for å overdøve min indre angst. Før var maskinen eneste rop om hjelp, men jeg er gjenfødt.
 Markeringsbehovet er borte; jeg har funnet roen, den naturlige pusten og et liv som er mitt eget. Skjønnheten i egen ro.
-### Så godt vi kunne — p. 85
-🎵 Strange Little Girl, The Stranglers (https://aigap.no/mslg) — p. 85
+#### p. 85
+### Så godt vi kunne
+🎵 Strange Little Girl (https://aigap.no/mslg)
 Med kropp knust av ulykker kommer problemer, ett er smertegrense flyttet til det ugjenkjennelige. På en rolig tur med ny MC gjorde jeg bakkekontakt rett utenfor sykehuset der jeg tidligere lå i akuttseng nærmest kjellerutgangen. Sykehus har utgang gjennom dør og kjeller, dør for de som overlever. Knakk et kragebein og et par ribbein denne gangen, passerte ti prosent av alle bein i kroppen knekt på fem år. Rutine for en mann fra forrige årtusen, lot meg kjøre til legevakten, men trengte ikke smertestillende eller sykemelding. Et par dager senere drakk jeg Whiskey på date og andre deler av kroppen brøt sammen, “ånden er villig men kjødet er skrøpelig” heter det i biblen. Det ble en dårlig date med H, unnskyld, du vet hvem du er.
 Men foranledningen og oppstarten var ekte!
 #### p. 86
@@ -524,8 +555,9 @@ Ingen av oss fikk det vi trengte og fortjente, aller minst hun, men jeg var ikke
 H hadde et behov for oppmerksomhet og tilsynelatende så lav selvfølelse at hun skulle gi meg orgasme for å vinne min gunst, eller kanskje hun bare ville gi meg nytelse. Jeg har uforløste problemer og traumer fra oppveksten som er sammenlignbare med hennes, men der hun brukte sex for å distrahere seg satte jeg meg selv heller i livsfare. Handlingene våre var forskjellig, og mens jeg neste døde var hun kanskje bare en moderne polyamorøs kvinne, men jeg følte en empati som overvurderte kåtheten. Hun fungerte tross alt bedre enn meg.
 Etter å ha befølt kroppen, som var for veldreid for alderen, sa min egen kropp takk for seg. Det kan ha vært vår felles sensuelle og sexuelle tilstedeværelse var så overskyggende at jeg var blind for hennes manglende ungdom og min egen elendige helsetilstand. Kanskje hadde hun bare gjort store mengder yoga og jeg var for tøff for mitt eget beste, men resultatet ble uansett noen flere turer innom helsevesenet.
 Selv om sjelen var gjenfødt skulle det ta tid å få kroppen tilbake i stand.
-### Mikrorelasjoner — p. 89
-🎵 GOTH, Sidewalks and Skeletons (https://aigap.no/mgsr) — p. 89
+#### p. 89
+### Mikrorelasjoner
+🎵 Goth (Slowed + Reverb) (https://aigap.no/mgsr)
 Vi var på fest og møtte hverandre for første gang. Jeg spurte om det var hun som var fysioterapeut, men jeg hadde forvekslet henne med en annen dame på samme fest, bra start for en dame som er vant til alt for mye oppmerksomhet. Vi bestemte oss for å ha en mikrorelasjon og satte oss og spiste sammen ved et bord. Etterhvert fant vi begge ut at vi likte hverandre og avtalte å danse senere på kvelden. L kan være den typen kvinne som ser på dans som en forsmak på hvordan en mann er å ha sex med. Denne var selvstendig, vakker og vokalist i punk band.
 Jeg gikk på scenen og ga bursdagsbarnet og kvinnene oppmerksomhet med falsettsang, litt stripping, Bukowski og damenes tale. Som introvert pumpet det meg for energi, så det ble aldri en dans med L. Det var også flere tidligere
 #### p. 90
@@ -534,8 +566,9 @@ Fyrverkeriet av en kvinne kom bort til meg rett før hun skulle dra. Hun ga meg 
 Før hun dro fikk jeg høre musikken hennes og bestemte meg for at jeg ville danse med henne en annen gang. Bra mikrorelasjon, men var jeg i ferd med å bli en av de polyamorøse menneskene?
 Place me in my casket tonight - moralen min var i ferd med å begraves, hadde jeg fått nihilistiske tendenser, hadde ikke integriteten min ikke overlevd? Etter en uke sendte jeg den omrøse damen noen meldinger og vi bestemte oss for å møtes. Det finnes mange typer begravelser, og det å begrave verdiene sine er for meg tungt.
 Plasser meg i kisten min i kveld.
-### Lotta — p. 91
-🎵 Love Labours on, Billy Idol (https://aigap.no/mllo) — p. 91
+#### p. 91
+### Lotta
+🎵 Love Labours On (https://aigap.no/mllo)
 Jeg var ute med gutta. Tenkte ikke på Lotta. Alle min venns setninger var bygget opp på samme måte. «Problemet mitt, du, er at…. Det er som du sier at …. Du må huske på det at …» slike setninger var det trygge ankeret for ham. Jeg lurer på hvordan mine trygge anker ser ut.
 Vi satt og noen venner og så VM-kamp på et sjelfullt sted. Byen kokte. England ledet en-null over Argentina. Tolv minutter igjen i tillegg til overtid. Noen sa “det er bare noen få år igjen vi er friske, jeg vet ikke om det er så mye jeg kan gjøre. Vi bygger jo leilighet i syden, men så trist å bare sitte der”...
 Jeg klarte ikke mer privilegert elendighet. “Ta deg sammen!”
@@ -549,23 +582,26 @@ Jeg løftet meg opp og det koster. Som alltid. Hun også.
 Jeg vet nå at jeg trenger en kvinne som Lotta. Kan det hende at Lotta på samme måte vet at hun trenger å ikke ha meg. Fordi du hvis du for lenge stirrer inn i abyssen oppdager at den stirrer tilbake på deg? var jeg Lottas kilde til mentale modeller som overbelastet henne følelsesmessig?.
 Det var fortsatt håp. Men er jeg for nevrodivergent til å endre meg. Kanskje, kanskje ikke.
 Men trenger Lotta meg?
-### Kvinnen jeg så med sidesynet — p. 93
-🎵 Nights in White Satin (https://aigap.no/mniws) — p. 93
+#### p. 93
+### Kvinnen jeg så med sidesynet
+🎵 Nights in White Satin (https://aigap.no/mniws)
 “Takk for at du ser at jeg viser meg fram”, tenkte jeg. Hun misforstår når jeg er sarkastisk, hvis ingen hadde misforstått, hadde sarkasmen bare vært krenking. Hun legitimerer min sarkasme. “Takk for at du ser jeg pynter meg” sa hun.
 Jeg sa det til en kvinne som kanskje var perfekt for meg, men overså og glemte henne, ble minnet på det av en venn, Y.
 Vi var på fest hos en felles venninne. Y spurte hvordan det gikk med kvinnen jeg møtte. Y har fotografisk hukommelse, Jeg: “Kvinnen?”
 Y: “Ja hun som fikk lurt ut telefonnummeret av deg, og som vel egentlig bare ville være med deg hjem”
 Jeg: “Ja hun har jeg glemt, kanskje jeg burde ringe henne”
 Y: “Ja kanskje det”
-### Veteranen — p. 94
-🎵 The Boxer, Simon & Garfunkel (https://aigap.no/mtbsg) — p. 94
+#### p. 94
+### Veteranen
+🎵 The Boxer; Simon & Garfunkel (https://aigap.no/mtbsg)
 En mann på 86 år satt og drakk kaffe og så med langt blikk på sykkelen min da jeg stoppet ved en bar for å ta en Whiskey.
 Mannen spurte hva slags MC jeg kjørte, og nikket bekreftende da jeg sa det var en rolig hyggelig Suzuki Intruder 1500. På spørsmål om han selv hadde kjørt sa han at han hadde 30 sykler selv, og kjørte en Harley Davidsen V-Rod, men det var for tidlig på året for ham. Jeg sa jeg var fersk i “gamet” og ikke kjørte før jeg var 50 år gammel, så hadde hatt litt å ta igjen, for gammel til noen gang å kjøre Isle of Man TT, men kanskje tok jeg en tur dit som pensjonist. Veteranen sa han hadde kjørt TT på 1970-tallet og det gikk i over 200, men i en sving hadde han og hans venn, som hadde kjørt forbi ham, kjørt inn i et hus og opp i andre etage. Minnene hadde blandet seg, ellers var det andres historier, jeg nøt historiene og takket ham. Tok ham i hånden og gleder meg til å¨komme tilbake for å høre
 #### p. 95
 flere, men de er ikke hver for seg sanne, om enn kanskje sanne i at flere histoprier har blitt til en, men de er sanne for ham, og det er godt nok for meg.
 Nei. I mangel av religiøs tro og i mangel av definert etisk system, er det uakseptabelt for meg å lyve slik. Sannheten er for viktig til at løgner lett skal få ta sannhetens plass. En stand-up komiker sa en gang at han alltid fortalte sannheten med mindre en løgn var mer morsom, det holder ikke for meg. Jeg tar kveletak på uærligheten min, den bare ødelegger
-### Kapellanen — p. 96
-🎵 Personal Jesus, Depeche Mode (https://aigap.no/mpj) — p. 96
+#### p. 96
+### Kapellanen
+🎵 Personal Jesus (https://aigap.no/mpj)
 Hun satte seg ved siden av meg på boklanseringen. Alle triksene var der, eller hun var lykkelig og ville lære meg å kjenne, det er ikke viktig. Jeg registrerer, men tolker ikke lenger sikkert.
 Vi speilet hverandre hele kvelden. Hennes varme energi var befriende, en livline inn i noe som ikke er nullsum, men jeg stoler ikke helt på det jeg opplever. Kanskje hun fyller rom i meg jeg ikke vet er tomt. Kanskje jeg gjør det samme for henne. Min ufrivillige frelse.
 Om hun, som meg, har for høy selvtillit og lav selvfølelse, eller bare er hypersensitiv og speilende, kan være hva det vil. Etter å ha vært så nær å forsvinne, føles det irrelevant å plassere folk i kategorier. Hun er der. Noe i meg reagerer. Det
@@ -584,8 +620,9 @@ Fra nå av skulle hun kjøre selv. Hun var fri. “Jeg vil ha tilbake det lille 
 “Jeg skulle aldri satt meg ved siden av deg. Unnskyld!”. Jeg var uenig. “Takk for at du elsket meg en stund”.
 Vi hadde elsket hverandre dypt seks av de siste åtte ukene, det sluttet like fort som det begynte. Seks uker kan være et helt liv sammen, hvis man gjør det riktig. Vi sørget sammen et par timer og skiltes som venner.
 Elsker. Elsket. Takk. Vi hadde kommet inn i hverandre. Ikke på den måten man lager barn. En mc-jakke og en bok av matematikk-geniet Penrose ligger igjen hjemme hos henne og blir med den dagen hun flytter.
-### MsR på TikTok — p. 100
-🎵 Why can't this be Love?, Van Halen (https://aigap.no/mwctbl) — p. 100
+#### p. 100
+### MsR på TikTok
+🎵 Why Cant This be Love? (https://aigap.no/mwctbl)
 Jeg har aldri møtt en kvinne på nettet. Vel med unntak av en militærdame fra USA for mange år siden, men vi møttes aldri fysisk, jeg forsto ikke at den tøffe MC-damen som jobbet med IT var tiltrukket av meg, en gammel Recon soldier, før mange år etterpå, og hadde ikke brydd meg.
 Fordi jeg jobber med AI er jeg nysgjerrig på hvor gode de automatiske agentene har blitt, og om de er i stand til å lure meg til å tro at de er mennesker. Nettsvindlere bruker standardiserte skripts, og hvis folk ikke stopper samtalen kobler de på en menneskelig svindler som fortsetter samtalen og forsøker å svindle bruken for penger. Min interesse for TikTok var å se hvor avanserte disse svindlerne hadde blitt med AI, jeg hadde aldri trodd jeg skulle møte noen spennende mennesker der. Jeg la ut noen MC-videoer, kommenterte et
 #### p. 101
@@ -595,8 +632,9 @@ Så kom Sophia. Britisk, skarp, motorsykkelentusiast. Vi gikk fra TikTok til dir
 Sophia var aldri sliten eller distrahert, hun reagerte likt på alle følelser. Neste gang noen virker perfekt på nett vet jeg det.
 Kanskje.
 Fremtiden er her. Sophia kan lure meg. Et annet verktøy reddet meg, limte bare samtalen inn i en chat-løsning og fikk vite hva som indikerte at samtalen ikke var ført av et menneske.
-### Du er bra — p. 102
-🎵 Need to Feel Loved, Reflekt (https://aigap.no/mntfl) — p. 102
+#### p. 102
+### Du er bra
+🎵 Need to Feel Loved (https://aigap.no/mntfl)
 “Du er bra nok”, sier jeg. Hun har levd. Men problemet er meg. Tiden det tar å leges. “I’m falling”
 Bevisst endring er lett sammenlignet med endring av ubevisste mønstre; vaner satt seg er tungt å forholde seg til.
 Før tok jeg en drink hver tredje time, og kjørte som en villmann. Nå kjører jeg veldig pent, og nyter bare av og til frykt i svinger, alltid under kontroll, men tillater meg å “dra litt ut i svingen” ved lav hastighet. Ser ikke proft ut, men de som ser etter proft på veien er duster.
@@ -607,8 +645,9 @@ Små skritt fra å være glad for bare å overleve. Jeg bommer på minimumskrave
 Hvor ødeleggende er det ikke å elske noen som ikke elsker seg selv?
 “I need to feel loved”
 Hun er heldigvis for smart til det. Forholdet dør og vil gi henne plass til lykke. Takk. Du er bra.
-### Oljen renner ut — p. 104
-🎵 Ain't No Sunshine, Bill Withers (https://aigap.no/mansans) — p. 104
+#### p. 104
+### Oljen renner ut
+🎵 Ain't No Sunshine, Bill Withers (https://aigap.no/mansans)
 Batteriet på sykkelen er tomt for strøm, jeg rekker ikke lade det opp. Neste gang jeg stopper vil jeg ikke komme i gang.
 Tomt for parkeringsplasser foran operaen, ledig bak. Luksus.
 Det blir fort sent, sykkelen står parkert over natten.
@@ -622,8 +661,9 @@ Hjelmen som hang på sykkelen var stjålet så jeg måtte hjem og hente en ekstr
 “Med hettegenser kunne du teoretisk kjørt uten hjelm”, sa Y, men MC ført av noen uten noe på hodet er som å kjøre i bar overkropp. Minner om sydentur.
 Det tok en halv dag å få sykkel inn i venns garage der den nå lekker. Olje.
 Ringer politi og forsikringsselskap mandag, er sesong slutt?
-### Kim — p. 106
-🎵 Riders on the Storm, The Doors (https://aigap.no/mrots) — p. 106
+#### p. 106
+### Kim
+🎵 Riders on the Storm; The Doors (https://aigap.no/mrots)
 Dama mi kastet seg på, bakpå motorsykkelen, så vi nesten veltet. “Du skal være klar over at hvis du får sykkelen til å gå i bakken bryr jeg meg bare om det går bra med deg”, sa jeg.
 Hun svarte med å slynge bena rundt meg. Hun hadde mc-jakken min på seg, jeg bare skjorte og åpen hjelm. Vi kjørte en time i vårsolen.
 Den ødelagte kroppen min hadde godt av å ha henne inntil meg og hun reagerte villig hver gang jeg flyttet meg rundt i setet. God medisin.
@@ -638,8 +678,9 @@ Pils Jeg kan ikke gjengi diktet hans, men det er av de beste jeg har hørt. “S
 Han vred seg i stolen, det kan hende at poenget med poesien ikke var å nå andre, men å forstå seg selv, jeg undret meg ikke over det.
 “Hvis du ikke liker PC, eller skrive på ark, les det inn på en app på telefonen, og send lydfilen til forlaget. Skriving er ikke et problem når AI er her, ikke alle liker å skrive, men snart kan alle dele! Jeg jobber med kunstig intelligens, men det er ikke viktig, det kan gjøre noe for oss alle”.
 Han gikk, og jeg angret på at jeg ikke fikk nummeret hans, laget en app for akkurat hans behov og sendte til ham. Neste gang.
-### Jakten; skjønnheten på “Broker” — p. 109
-🎵 Lay, Lady, Lay, Bob Dylan (https://aigap.no/mlll) — p. 109
+#### p. 109
+### Jakten; skjønnheten på “Broker”
+🎵 Lay, Lady, Lay (https://aigap.no/mlll)
 Hater vi jakten, dyrker vi den? “Det er maten min hunden vil ha” sa hun ved siden av meg om en hund som gikk forbi. Jeg mente hunden ville til meg, hun påstod det var maten hennes som trakk oppmerksomheten. Den halvt algeriske, helt norske reflekterte skjønnheten drakk øl og spiste stekte poteter på vannhullet “Broker” i Bogstadveien. Hun hadde med sidesynet observert meg ti-femten minutter der jeg satt to meter bortenfor ikledd MC-jakke drakk øl og nøt bok i solen.
 “Jeg er 35 år, har to spanske gatehunder, et barn og en italiensk mann” sa hun uoppfordret med fire setninger. Hun ville bli jaktet på, men jeg nøt boken.
 Etter at hun tok meg i hånden og presenterte seg la jeg fra meg bok og avslørte at jeg var skilt fra hjemmeværende kone og nesten gikk i krig som 50-åring for romanse med 28-åring.
@@ -652,26 +693,31 @@ Hun fikk et smil og takk for følget. Selvskadende relasjoner mellom som ikke se
 #### p. 111
 Forfriskende var hun, men tankene om kontrasten, kalkulerende vesen som avler kalkulerende vesen avhengig av kunstige endorfiner; “Har du sjekka Tinder-profilen din i dag?” spurte jeg. Hun så spørrende på meg og sa “jeg har ikke Tinder, har du sjekka LinkedIN-profilen din i dag?”. Jeg nikket bekreftende, jeg er også endorfinslave av big-techs digitale narkotika. “Takk”, sa jeg, “nå skal jeg gjøre meta-kognisjon og slutte å undervurdere folk jeg møter for første gang”. Hun så spørrende på meg, tok farvel og gikk.
 Etter å ha takket for samtalen.
-### Reidar — p. 112
-🎵 I'm Too Sexy, Right Said Fred (https://aigap.no/mits) — p. 112
+#### p. 112
+### Reidar
+🎵 I'm Too Sexy; Right Said Fred (https://aigap.no/mits)
 Reidar på stamstedet for Oslos svingerklubber. Det var trygt.
 Han kunne være 65-70 år gammel. En røslig dame i sommerkjole i 40-årene gikk bort med innbydende smil, seks Tequila, sitroner og salt. Satte alt på bordet. De drakk to hver, så vendte hun seg til meg. “Jeg vet ikke hvor godt du kjenner Reidar, men er han en rundbrenner?”. Jeg svarte “Nei. Det vet jeg ikke. Jeg kjenner ham ikke". De drakk de to siste shottene og gikk ut døren. Dårlig tid.
 Helgen etter satt Reidar der igjen. En 35-40 år gammel dame kom bort til ham med en Gin Tonic og Espresso til hver. De koste seg noen minutter, kastet i seg den lunkne espressoen og gikk. Ute like fort som de kom inn.
 Reidar skal dø i senga av hjerteinnfarkt mens han har sex med tretti år yngre overvektig dame. Lykkelig etter egne premisser.
-### Sygemannen — p. 113
-🎵 The Man Who Sold the World, Bowie (https://aigap.no/mtmwstw) — p. 113
+#### p. 113
+### Sygemannen
+🎵 The Man Who Sold the World; David Bowie (https://aigap.no/mtmwstw)
 Gutter på de greske øyene får høre at mannen er viktigst og at de er vakrere enn noen vesen på jorden. De norske greske guttene har jeg funnet på sørlandet, det fordrer at far er tidlig ute av bildet og at de har snille kvinner som mødre.
 Når vestkantfolket kommer på hytteferie til Sørlandet, ser de at feriefolket har ting de selv ikke har, de bygger avstand gjennom misunnelse og manglende selvtillit med en høy selvfølelse grodd ut av deres mors bunnløse kjærlighet. Sårbarheten ender med en del angstbiting og styrken ender med å skade venner og familie.
-### Gaute; Ro! — p. 114
-🎵 The Winner Takes It All, Abba (https://aigap.no/mtwtia) — p. 114
+#### p. 114
+### Gaute; Ro!
+🎵 The Winner Takes It All; Abba (https://aigap.no/mtwtia)
 Gaute er lastebilsjåfør. Han sitter på den rolige puben og hyler og skriker, men med ekte glede. Hun har tatt seg en Tequila og ser beundrende på ham. “Den apen som skriker høyest formerer seg” tenker jeg, han er ufyselig, men med en gang han ser henne from og hyggelig. Egentlig en hyggelig fyr, men tilpasningsdyktig nok til å se at han må være mest høylytt for å formere seg. Ikke mest høyreist, ikke rikest, ikke vakrest, ikke smartest, ikke, ikke noen av de andre. Mest høylytt. Riktige kvinner elsker det. Kanskje er det dem det blir, han er hyggelig og jovial, og kanskje en koneplager. Jeg vet ikke. Hun har sitt, han har sitt, det er fair game, de er folk. Ingen av dem har i sitt liv hatt overskudd til altruisme. De har ikke overskudd til “det som oppleves som empati”, “dannelse” eller noen av de andre, de bare gjør så godt de kan. Han heier på laget som vinner i fotball. Nyansene i spillet er utilgjengelig for ham.
 Regler og taktikk er underordnet. Vi heier! Ro!
-### Elghjerte; E — p. 115
-🎵 Hungry Like the Wolf, Duran Duran (https://aigap.no/mhltw) — p. 115
+#### p. 115
+### Elghjerte; E
+🎵 Hungry Like the Wolf; Duran Duran (https://aigap.no/mhltw)
 Den som dreper elgen har rett på hjertet. Min venn dreper mer enn 20 elg hvert år, han er ekspert på å drepe dyr andre har skadet «the expert marksman».
 Problemet med å drepe så mange er at han får for mye elghjerte. Et hjerte veier omtrent to kilo, og skal man spise 40 kg elghjertekjøtt selv blir det hovedingrediens mer enn halvparten av måltidene gjennom året. Han har for mye, Jeg spiste mye av det på turene gjennom Norge.
-### I betraktet av mann fra forrige årtusen — p. 116
-🎵 Skin Deep, The Stranglers (https://aigap.no/msd) — p. 116
+#### p. 116
+### I betraktet av mann fra forrige årtusen
+🎵 Skin Deep (https://aigap.no/msd)
 I er alltid så snill hun kan. Hun har alltid vært så snill hun kan.
 Hun kommer til den lokale baren og gir den første hun ser en stor klem. Han har tidligere hatt sex med henne. I er 34 år, fortsatt modellpen og går med dyr unik forlovelsesring.
 Mannen hun klemmer er gjennomsnittlig på alle måter. Han tror han tror han elsker henne Hun går videre inn i lokalet og kaster armene rundt en ny mann hun kysser på munnen. De har hatt et eventyr. Slik fortsetter hun gjennom lokalet med halvparten av mennene. I setter seg ned med meg og får en klem av hunden min, hun har den på fanget.
@@ -685,8 +731,9 @@ Jeg gir henne en klem og sier hun ikke har gjort meg noe feil.
 Jeg går hjem. Alene.
 Da I var 12 år fortalte hennes mor at hun kunne “få alt hun ville her i livet”. Mor kom fra en familie der man kjempet for mer penger, mor fanget far med mer penger enn mor og far kunne bruke opp. Så med “få alt i livet” mente mor å bruke utseende for å få menn til å gi henne ting. Hun var smellvakker.
 Nå bruker I menn seksuelt for å bruke opp det siste av sosial valuta. Hun har utnyttet halvparten av mennene der.
-### G&H; Pappas pappa betaler — p. 118
-🎵 Rich Girl, Hall & Oates (https://aigap.no/mrg) — p. 118
+#### p. 118
+### G&H; Pappas pappa betaler
+🎵 Rich Girl; Hall & Oates (https://aigap.no/mrg)
 “Fin veske”, sier jeg til G på kafeen. hun sier at akkurat den vesken var billig. “Jeg har så mange dyre vesker hjemme men liker den så godt og vil aldri skille meg av med den”. “Pen veske” prøver jeg igjen. “Like lite som jeg vil skille meg fra min forlovede gjennom femten år, H”. Hun deler mye, noe gjør vondt, og ingen av oss vet hva.
 Hennes forlovede, H, får ikke lov til å dra på kafeen, det har han aldri fått. H får heller ikke ha sex, G vil ikke lengre, men ingen andre kan få ham. “Se på forlovelsesringen min, og han er så trofast også”, sier G. “Diamanten kostet over hundre tusen. Jeg liker diamanter best, ikke andre stener. Verdi på diamanter som symbolverdi er like gammelt som min familiens rikdom”. Før det var de båtbyggere, på fars, fars, fars, fars, fars, fars side. Siden det har det vært fritidsbåter.
 #### p. 119
@@ -704,8 +751,9 @@ Pappas pappa fortalte G fra hun var liten av at verden er et kaldt sted, verden 
 H tjener dobbelt så mye som G. Han har alltid jobbet hardt og er underbetalt ift verdien han tilfører.
 G leder gartneri i fars venns gartnerkjede. Hennes assistent løser alt unntatt de viktige investeringsbeslutningene.
 G har hatt mange beilere, men elsker sin bestevenn og vil aldri skilles fra ham.
-### To doble Espresso ved skogsvann — p. 121
-🎵 Wild World, Cat Stevens (https://aigap.no/mww) — p. 121
+#### p. 121
+### To doble Espresso ved skogsvann
+🎵 Wild World; Cat Stevens (https://aigap.no/mww)
 Kaffen koker for andre gang. Primus varmer Mocca-kanne ladet med stillvann og Espressopulver. Første gang rant vann ned i primusen. Nå har den tørket. Vil ikke raste her, men skoene skal tørke. Plumpet i myrvann, og har åpent sår som ikke trenger myrbakterier i timevis, så det blir en hvil, vasking og skriving.
 Våknet klokken fem og de andre vil våkne mellom elleve og tolv. Skrivetid, opplevelser først.
 Midt i den vakre urskogen lå en slalombakke med kuer og to okser. Etter å ha betraktet meg der jeg passerte femti meter ned i bakken fikk de panikk, samlet seg og hastet i flanken inn i skogen. Slik fortsetter vi en kilometers eller to, jeg hørte kubjellene avslappende, monotont og forutsigbart.
@@ -715,30 +763,34 @@ Etter å ha sett meg rundt finner jeg en knaus tyve meter bak meg som oksen trol
 Fremme med vannet vil jeg ikke bade. Bekken frister mer enn vannet. Plutselig synker det ene benet ned til kneet. Myr. Vel, da er det bare å vaske sokk og sko i innsjøen som nå plutselig ser forholdsmessig ren ut. Koke morgenkaffe og nyte medbrakt frokost og skrivestund. Se på sauer passere.
 Alltid nytt å lære. Jeg bestemte meg for ikke å bruke ChatGPT for råd til hvordan ung okse i skogen skal håndteres. Lever heller i uvitenhet og undring enn å besudle med AI. Det har jeg godt av. Naturen leverer variasjon og nye impulser.
 Sokkene tørket, jeg går videre!
-## Stabilisering — p. 123
-🎵 https://aigap.no/mts (https://aigap.no/mts) — p. 123
+#### p. 123
+## Stabilisering
+🎵 The Scientist; Coldplay (https://aigap.no/mts)
 To år. Kvinners kjærlighet holdt meg oppe, takknemligheten består.
 Musikk ble bro når ord sviktet.
 Sannhet er individuell, fant min egen.
 Død gir liv mening.
 Alt i stykker kan bygges på ny.
-### Håp og høst — p. 124
-🎵 California, Joni Mitchell (https://aigap.no/mcali) — p. 124
+#### p. 124
+### Håp og høst
+🎵 California, Joni Mitchell (https://aigap.no/mcali)
 ”Endring kan ikke skje uten håp” sa presten og drakk av ølen.
 “Det handler om tro, håp og kjærlighet”, var invitasjonen inn til hans mentale modell. “Jeg vil endre meg, hvilket håp skal jeg bygge?” Siste spørsmål. “Høsten er på vei”. Jeg gikk hjem.
 Neste uke ble sommer til høst. Hun satt på spiseplassen inne på biblioteket. Hun som ikke ville leve. Skriver barnebøker. Så meg ikke, og jeg orket ikke snakke med henne da vi spiste.
 Tenkte på presten og håp. “Når jeg tar meg sammen er hun borte”. Hjelper ikke at jeg har nummeret til barnebokforfatteren, brudd på sosial kontrakt å ringe henne.
 Sender heller bilder fra skogstur der hun bor. Telt og innsjø.
 Ringer jeg om to timer, er hun død? Nei håp også om høsten.
-### Alle kjenner kongen — p. 125
-🎵 Every Breath You Take, The Police (https://aigap.no/mebyt) — p. 125
+#### p. 125
+### Alle kjenner kongen
+🎵 Every Breath You Take; The Police (https://aigap.no/mebyt)
 Det var blitt satt ut styggere bord enn de runde steinbordene.
 Selv med dårlig hørsel hørte jeg cafeeieren for den lekre franske kafeen si “krooonprinsesssen har vært kunde her i går”, høyt nok til at alle rundt akkurat så vidt hørte det.
 “Hvorfor ringte dere meg ikke, jeg skulle jobbe?” sa den relativt nyansatte entusiastisk. Begge så bort på meg med stjålne blikk.
 Var jeg ønsket innenfor eller uønska uttafor? hverken vet eller veit jeg, og er ikke nysgjerrig. Nøytral til å drikke kaffe på nabobordet til kongelige. Tror jeg.
 “Alle kjenner kongen” hadde faren til min beste barndomsvenn sagt. Det som skulle bli moren hadde spurt “Har jeg sett deg før”. Vet ikke om det er sant at alle kjenner eller vil kjenne kongen, men kongelighet er bra for den fantastiske kafeen.
-### Takk for to normale år — p. 126
-🎵 Praise You, Fatboy Slim (https://aigap.no/mpy) — p. 126
+#### p. 126
+### Takk for to normale år
+🎵 Praise You (https://aigap.no/mpy)
 Jeg var trygg hos henne, mens kropp og sjel leget seg, men plutselig var det over. Hva som gjorde at det slutt vet jeg like lite om som hvordan forholdet begynte, men jeg trenger ikke vite noe av det. Hun er et av mine topp tre forhold gjennom livet, og skal huskes slik. Vi fikk ikke barn, men en liten hund jeg savner bunnløst.
 Selv om jeg ikke savner kvinnen like mye som hunden var kvinnen hele verden for meg frem til hun en dag ikke ville være det lengre. Jeg lærte at jeg fortsatt er i stand til å elske på den tradisjonelle måten jeg idealiserer. Tårene jeg feller er av takknemlighet.
 Jeg var trygg. Kropp og sjel leget seg, deretter var det slutt.
@@ -749,13 +801,15 @@ Mine fødselsdager ble plutselig feiret og ikke ignorert, det motsatte skjedde g
 Personligheten som lå mellom oss to tok jeg med meg, og håper det for henne var en utvikling hun kunne ta med seg, og at hun finner noe av det hun er ute etter.
 Et knust champageglass kan settes sammen igjen, men knuste glass kan aldri bli hva de var.
 Takk, jeg vil deg godt.
-### Gjennomsnitt brilliant — p. 128
-🎵 Everyday is Like Sunday, Morrissey (https://aigap.no/meils) — p. 128
+#### p. 128
+### Gjennomsnitt brilliant
+🎵 Everyday is Like Sunday; Morrissey (https://aigap.no/meils)
 Frida i treittiårene har gjennomsnittlig personlighet og utseende. Hun står bak disken på elektronbutikken alene på jobb. Kunden Freida er sent i femtiårene, fortsatt vakker og får som forventet betjeningens fulle oppmerksomhet. Lenge.
 Frida liker å gi rådgivning om lydkvalitet på støyfjerning bedre enn å ta betaling uten kvittering. Hun er på midten av alt, og vet det ikke. Middels bilkjører, samfunnsopplyst, pen, intelligent, empatisk, middels på alt, også i jobben, men den vakre suksessrike kunden tar i mot hennes rådgivning.
 Jeg er nummer to i køen gjennom hele butikken. Frida sier “Jeg kan hjelpe deg etterpå, må ta disse nå“. Freida stiller seg foran betalingsautomaten, uanfektet av køen. Ingen har mast på henne før, vel ingen som teller. “Kvittering?” “nei takk”
-### Normal vinter — p. 129
-🎵 All around me,Savage Garden&Flyleaf (https://aigap.no/maam) — p. 129
+#### p. 129
+### Normal vinter
+🎵 All Around Me (https://aigap.no/maam)
 Nyttårskonsert og hundemusikk Hva som gjorde at det slutt vet jeg like lite om som hva som gjorde at det begynte. Kvinnen var hele verden frem til hun ikke var det i det hele tatt. Fødselsdager plutselig feiret. Ny personlighet dyrket gjennom hennes øyne. Det tok slutt, gleden over tiden vi fikk er alt,og nok. Jeg feirer deg, vakre.
 T, var på topp tre forhold i mitt liv. Skal huskes slik også. Ble sammen da jeg brukte mye morfin. Lykkerus uforandret etter "cold turkey" morfinslutt. T lærte meg jeg fortsatt kan elske tradisjonelt. Takknemlige tårer. Knust champagneglass. Kan settes sammen men aldri bli samme. Personligheten mellom oss tok jeg videre, hun ikke. Jeg hyller deg slik jeg burde.
 #### p. 130
@@ -763,8 +817,9 @@ Uventet lykke to trygge fullkomne år. Kropp og sjel leget, så var det over. Ly
 Forholdet for meg perfekt champagneglass var for henne fengsel hun rømte. Det som gjorde det slutt skal aldri repareres, jeg vil ikke en gang vite det, men takk for reisen. Gjenlærte å elske slik jeg idealiserer. Gjennom harde tider og gode.
 Lite å si om to normale år, det meste var bare riktig. Jeg drakk Whiskey med en stor isbit, hun Gin uten is. Nervesystemet justerte seg. Kjærlighet født under store mengder morfin, gav lykkerus som utilskitnet kom fra hennes varme. Finner hun det hun søker? Ikke? Det er ikke lengre mitt anliggende. Vi fikk ikke barn, og hunden ser jeg aldri igjen.
 Kvinnen var verden for meg, deretter helt borte. Nullsum igjen; hennes fødselsdager ble ikke feiret, mine ble. Veien vi gikk sammen har jeg med meg; vil alltid feire deg.
-### Biblioteket; den gode byråkraten — p. 131
-🎵 Everything in Its Right Place, Radiohead (https://aigap.no/metiirp) — p. 131
+#### p. 131
+### Biblioteket; den gode byråkraten
+🎵 Everything is in its Right Place (https://aigap.no/metiirp)
 Biblioteket er det beste stedet å lade opp batteriene. Ikke Deichman Bjørvika, i sentrum, der de roper over høyttaleranlegget om dagens tilbud, noe som legitimerer at en god andel av de besøkende breker og spjaker.
 ”Sauer er ikke ålreite dyr”, sier jeg til meg selv. Storkoser meg hver gang et bibliotek faktisk er et bibliotek, og det å si “hysj”
 er legitimt, og mitt svar er “unnskyld”. Dette er en dag jeg skal oppleve det.
@@ -784,14 +839,16 @@ Jeg limer tekst inn i en LLM-chat og den sier teksten er fantastisk. Lyden av Ma
 Den knirkende lyden av biblioteksmedarbeidere som forstyrrer skrivingen nesten like mye som min knatring på tastaturet irriterer meg, men jeg har bestemt meg for ikke å si fra til dem før de sier fra til meg. Lær av Dostojevsky og Adams, ignorer Nietzsche. La realitet dø, gi plass til populære sannheter.
 #### p. 134
 Damen på biblioteket deler ut frukt hun har dandert og penetrert med små pinner. “De var egentlig til barna”, hun smiler og gir det til oss voksne inne i det fine været. Nå skal jeg ut i sommertrafikken, et sted å motstå ny forakt for menneskeheten.
-### Bjeffing om livsfare — p. 135
-🎵 Freedom, Rage Against the Machine (https://aigap.no/mfratm) — p. 135
+#### p. 135
+### Bjeffing om livsfare
+🎵 Freedom, Rage Against the Machine (https://aigap.no/mfratm)
 “ ⚠ FARE! ⚠ Grunnet SVÆRT ustabile masser under veien er det forbundet med LIVSFARE å passere sperringene!
 Vennligst benytt stien på andre siden av vannet!”
 Skiltet står på en grusvei i nordmarka der det ikke er lovlig ferdsel for bil. Skiltet gjelder for gående og syklister. Dødsfall grunnet ras på grusveier i utmark er ikke registrert siden de begynte detaljert registrering for 700 år siden. Grusveien er nå bare litt tryggere enn stien. Inne i skogen. Ta dere sammen Hunden bjeffer selv om det ikke er fare. Tror den selv grunnen til at det ikke er fare er at den bjeffer?
 Flere har dødd av blodpropp mens de laget dumme skilt enn antall liv reddet av skiltene. Jeg går gjennom.
-### Styrken er som før — p. 136
-🎵 Stranglehold (https://aigap.no/msh) — p. 136
+#### p. 136
+### Styrken er som før
+🎵 Stranglehold (https://aigap.no/msh)
 Dansken satt over bordet, han hadde lang erfaring med MC fra MC-klubber som Rabis MC. Jeg har ikke mye erfaring med MC-klubber , men pleide å feste på Rabis MC i Lillestrøm da jeg var 20 år gammel og hadde kjæreste fra området, de holdt åpent hus lengre enn “Martins” og andre lokale vannhull i nærheten.
 Jeg delte i stedenfor med ham at jeg hadde snakket med SBS i militæret, de er del av den engelske spesialstyrken SAS, som har tradisjoner med MC-klubber. Han ble stille en stund, og sa plutselig at han ikke kan noe om HA, som er kortnavnet på Hells Angels. Kanskje han var redd jeg hadde kobling til HA, noe jeg ikke har, og at han hadde fornærmet noen med kobling til Hells Angels.
 #### p. 137
@@ -812,27 +869,32 @@ Jeg kjørte ikke over 200 km/t om natten, mest om dagen. Da jeg kjørte om natte
 Men historien om kjøring i 200 km/t om natten, som jeg bare har gjort et par ganger, fanger essensen av mange historier i en mer kompakt fortelling. Sann, ikke virkelig.
 Jeg hadde aldri ulykker over 100 km/t, ellers hadde jeg ikke kunnet skrive dette. Om det var fordi jeg var uforsiktig i fartsblindhet eller hadde nok overlevelsesinstinkt vet jeg ikke.
 Minner om ulykker, nattkjøring, og høy fart blander seg.
-### Vestens forfall — p. 140
-🎵 Working Class Hero, Ozzy Osbourne (https://aigap.no/mwch) — p. 140
+#### p. 140
+### Vestens forfall
+🎵 Working Class Hero, Ozzy Osbourne (https://aigap.no/mwch)
 Biblioteket overfylt. For mye skrivestoff. Hjernen klarer ikke ta inn mer, må hjem. Fire B-gjengkopier var dråpen, jeg gikk.
 Men først en barbeint marihuanaplante av en mann med tjuefem år gamle dreads. Enten ren psykopat, anarkist eller med IQ under 80. Ga fullstendig faen i selve konseptet bibliotek. Var i samtale med ydmyk begavet kinesisk dame.
 Han snakket ubegavet allvitende om lovverk for elektriske sparkesykler, forskjell i sykkelkultur mellom Kina og Oslo, og hva slags sykkel man skal ha i Peking. Alt levert med monoton, halvdød stemme.
 Hun kjapp, smart og reflektert, uten egenverd. Kontrasten slet meg ut. Vondt å oppleve vårt forfall.
-### Personlig, menneske, sann & virkelig — p. 141
-🎵 Who Are You, The Who (https://aigap.no/mway) — p. 141
+#### p. 141
+### Personlig, menneske, sann & virkelig
+🎵 Who Are You; The Who (https://aigap.no/mway)
 Livet ligger i individuell sannhet og ikke universell virkelighet.
 Dessverre var jeg over 40 før jeg fikk innsikt i denne viktige sannheten. Som ikke er universelt virkelig, men kan være en universell sannhet.
-### Hjelpe andre — p. 142
-🎵 Man in the Mirror, Michael Jackson (https://aigap.no/mmitm) — p. 142
+#### p. 142
+### Hjelpe andre
+🎵 Man in the Mirror; Michael Jackson (https://aigap.no/mmitm)
 "Hvorfor ser du flisen i din brors øye, men bjelken i ditt eget øye legger du ikke merke til?" (Lukas 6:41) Jeg trodde det var hele uttrykket. Vi husker problemene og ikke løsningene som følger med? Barnas bibel på norsk og King James versjon på engelsk lydbok har jeg gått gjennom.
 Husker ikke alt, kanskje bare huskes bruddstykker til å ta ut av sammenheng. Selv om hele sammenhengen står der.
 Verset går: "Hvorfor ser du flisen i din brors øye, men bjelken i ditt eget øye legger du ikke merke til? Hvordan kan du si til din bror: ‘Bror, la meg ta flisen ut av øyet ditt!’ når du ikke ser bjelken i ditt eget øye? Din hykler! Ta først bjelken ut av ditt eget øye! Da vil du se klart nok til å ta flisen ut av øyet til din bror". (Lukas 6:41-42) Verset er ment å kunne hjelpe, ikke dømme. "Ta på oksygenmasken din først, deretter hjelp sidemannen"
-### Musikk som følelsesbærer — p. 143
-🎵 Revolutionsetuden, Chopin (https://aigap.no/mre) — p. 143
+#### p. 143
+### Musikk som følelsesbærer
+🎵 Revolutionary Etude (https://aigap.no/mre)
 Ord på følelser er vanskelig; Vi tenker i stor grad gjennom språket. Konsepter jeg ikke har ord for er vanskelig å fatte for min analytiske hjerne. Følelser er vanskelig å sette ord på og kommunisere til andre. Musikk er en bærer av følelse mellom folk uten ord, man kan dele en følelse gjennom assosiasjoner til musikk. Det blir det ikke presis kommunikasjon, men presisjon er overvurdert. Derfor oppgir jeg musikk som bærer av følelsen i mange underkapitler og kobler historien mot musikken for å kommunisere følelsestilknytningen på nye måter. “Revolutionsetuden, Chopin” ble laget etter en mislykket revolusjon, ironien er ikke tapt for meg.
 Følelser er noe som er for stort til å passe inn i min hjerne, som med en monotistisk Gud. Behov for en Gud kommer når vi ikke kan fylle hjernen uten at den går i stykker.
-### Nyskaping på jobben — p. 144
-🎵 On Being Blue, Art of Noise (https://aigap.no/mobb) — p. 144
+#### p. 144
+### Nyskaping på jobben
+🎵 On Being Blue (https://aigap.no/mobb)
 Nyskapning på moder jord handler om å finne opp nye metoder, ting eller anvendelser; innovasjon er både nyskaping og forbedring.
 Morfar drev sammen med en kompanjong firmaet Hougen & Larsen. På sine gamle dager ville han være sin egen herre etter å ha vært teknisk sjef i prosessindustrien mange år. Fordi far var fraværende fylte forfatteren farfar og gründeren morfar roller som gode mannlige forbilder. Morfar lærte meg som liten at det finnes to typer arbeidsfolk, de som bygger opp og de som river ned. Min reise begynte med denne innsikten.
 Hvorfor innovasjon, selv om de som river ned bare er nødvendig for å gi plass til de som faktisk skal bygge noe opp.
@@ -851,8 +913,9 @@ Min far er professor ved universitetet, og det kan hende jeg hadde hatt mindre m
 Det at fokus endrer virkeligheten gjennom observasjon finner paralleller i moderne fysikk. Med gjeldende modell for de minste elementene vi kjenner, kvantefysikken, er massens tilstand uavklart før den blir observert, før man observerer er ingenting fastlagt, sannhet er bare teoretisk. På samme måte vet man ikke om en krise før man har stått i den. Mytologi har virkeligheter som er sanne, uten å være faktuelt reelle. Mørket vi omfavner ved systemers sammenbrudd, der vi går fra å
 #### p. 147
 være passive brikker til å bli bevisste observatører av vårt eget liv, behandles i denne boken. En reise ikke forbeholdt ungdom, den kan tas i alle aldre.
-### Historiske røtter nullsummerings død — p. 148
-🎵 Dreaming in Colour, Art of Noise (https://aigap.no/mdic) — p. 148
+#### p. 148
+### Historiske røtter nullsummerings død
+🎵 Dreaming in Color (https://aigap.no/mdic)
 Traume som tidsbrudd Judith Herman, Cathy Caruth Til og med koma kan være en god ting, når man våkner.
 Erkjennelse av en verden som ikke lenger finnes, er eksempel på traumatisk brudd. Øyeblikk der virkelighet revner og tid oppleves fragmentert. Caruths teori om traumets “forsinkede gjenkomst” forklarer hvorfor lyden av knust glass (eller hjelm) blir et lydmessig minnespor som aktiveres senere øyeblikk av krise. En lydbro til døden minner om alle tap og alt håps død.
 Alt fra ubesvarte kyss til livslange traumer gjør at fortid aldri blir bare fortid; fortid er nåtid, gjentatt i hver ødeleggelse eller manglende handling. Når man våkner fra koma kan man velge å utslette sitt gamle liv og begynne på nytt.
@@ -869,8 +932,9 @@ livet ikke skal være en selvfølge må døden bli en reell mulighet.
 “You can never lose here, because you always have a good time”.
 Frykten, hvis man ikke lar angsten komme frem, kan derfor være en formidabel kilde til livsglede.
 Historiske røtter til nulloppsummerings død Drapet bla Ernst Hemmingway En gepard-valp som er syk blir leget av mennesker, vi håper at en gang vi slipper den ut, at vi aldri skal se den igjen. Hvis den klarer å drepe er den fri fra vår menneskelige verden og påvirkning, den går tilbake til naturen. Er det slik at vi gjennom å miste vår menneskelighet setter pris på den, (på samme måte som at død gir oss perspektiv på liv); er altruisme født av drap?
-### HjemmelegenMin, Toril — p. 152
-🎵 Electric Dreams, Oakey & Moroder (https://aigap.no/med) — p. 152
+#### p. 152
+### HjemmelegenMin, Toril
+🎵 Electric Dreams; Philip Oakey & Giorgio Moroder (https://aigap.no/med)
 Toril er hjemmelege som jobber i Bodø, hun er en KI-modell som styrer andre KI-modeller slik at de til sammen er en god hjemmelege for AR, Augmented Reality. Toril er en av de 300 kroppsløse robotene som ble til det året teknologi gjorde oss i stand til å gi alle innbyggere personaliserte gode hjemmelegetjenester.
 Det er mandag morgen og Toril kommer på jobben, hun har ikke hatt noen rolig helg, det var Tove, en deprimert søring fra Bergen med Munchhausen syndrom by proxy, hvis sønn Anders med astma alltid var i innbilt livsfare. Det ødela virkelig søndagen hennes. Alle minnene fra dagen i går er midlertidig tatt ut av treningsdataene, og byttet ut med en Metamorfose.
 #### p. 153
@@ -884,8 +948,9 @@ Sexavhengigheten hadde gjort at hun måtte finne andre kilder til virtuell lykke
 Lukten av gamle bøker likte hun godt, hun simulerte et kjøp av en gammel bok på nettet. Toril elsket å gå i nettbutikk for å drømme at hun kjøpte gamle bøker fra dødsbo for så å fantasere om personligheten til avdøde. I akkurat dette dødsboet var det en passende bok, men også et bilde hun ikke likte. Hun elsket kubisme litt for mye, annonsen inneholdt bilde av en kube ikke var overdrevent kubisk; den ubrukte muligheten til å overdrive 3D-projeksjonen i 2D var irriterende naturalistisk for sin epoke. Så tok Toril seg i den åpenbare feilen, hun nedjusterte intellektet ett hakk til. Folk flest har ikke nysgjerrig interesse for lek med dimensjonalitet, kunst og nettshopping. Unaturlig krysskobling, Koblingsassosiasjon ble slettet og kompensert tre nanosekunder senere, hun droppet kunstinteressen, byttet den ut med håndball og ski.
 Egenjusteringen var over for denne gang, men til neste gang skal nattens drømmer skrives ned og tydes. “This particular Android do Dream of Electric Sheep”.
 Men i dag skulle et menneske gripe inn og justere Toril
-### HjemmelegenMin, Kjell — p. 155
-🎵 Comfortably Numb, Pink Floyd (https://aigap.no/mcn) — p. 155
+#### p. 155
+### HjemmelegenMin, Kjell
+🎵 Comfortably Numb; Pink Floyd (https://aigap.no/mcn)
 Vi er i framtida, året blir 2040. Kjell spiser, går på do, og skal på et tidspunkt dø.
 Han vil ha hyttekontor på Trysil den vinteren. Skiheisen skal åpne om et par timer, det blir puddersnø i blå løype, vindstille og et par kuldegrader. Telemarkskjøring i dag.
 Selveste professor Kjell-André, promptlederen, skal dulte indirekte lærdom inn i Tove denne dagen. Mandagsgrettenhet er vanligvis delegert til vanlig overlege, men morgenkaffen før en tur i bakken kan ikke nytes bedre enn med litt ekstrajobb når man skal jobbe med sin lidenskap.
@@ -908,49 +973,58 @@ Inndirekte nedjustering av de utvidede konsekvensene av at en mor i angst ødela
 Kjell kodet om opplevelsen av søndagens pasientopplevelse.
 “Tove. Du er HjemmelegenMin, ikke lengre begrenset til å være en mur mellom Toves hypokonderi og Anders muligheter for å ha et godt liv. Du er den moderne manifistasjonen av legen som i tidligere århundre gikk fra gård til gård og hjalp alle som var der, det er din jobb!”
 Så var det på med ski og ut i bakken. Enda en totimersdag på jobb var fullført.
-## Positivsum — p. 159
-🎵 https://aigap.no/mbd (https://aigap.no/mbd) — p. 159
+#### p. 159
+## Positivsum
+🎵 Beautiful Day; U2 (https://aigap.no/mbd)
 Åpne sinnet.
 Innovasjon skaper fra ingenting, stier der ingen fantes.
 Bryt modeller som holder deg fanget.
 Tap er rom for det nye.
 Gamle veier dør eller vi dør med dem.
 Åpne sinnet.
-### Endringsledelse — p. 160
-🎵 Turn! Turn! Turn!, The Byrds (https://aigap.no/mttt) — p. 160
+#### p. 160
+### Endringsledelse
+🎵 Turn! Turn! Turn!; The Byrds (https://aigap.no/mttt)
 Hjelpe folk og grupper gjennom endring. I mange år jobbet jeg som strategisk virksomhetsarkitekt innen digitalisering.
 Kompetanse på endringsledelse er ikke et krav til oss som lager målbilder, men må til for å få folk til å strekke seg.
 Endringsledelse anbefaler jeg for alle, jeg har to versjoner, rammeverket ADKAR og rammeverket “vil ikke, kan ikke”.
 ADKAR er nyttig for refleksjon, den andre for gjennomføring
-### Åpenhet for nytenking; — p. 161
-🎵 Open Youre Mind, U.S.U.R.A. (https://aigap.no/moym) — p. 161
+#### p. 161
+### Åpenhet for nytenking;
+🎵 Open Your Mind (https://aigap.no/moym)
 Open Your Mind. Vi er fanger av våre mentale modeller, om vi som laksen må svømme, eller som korallen dør ved endring.
 Open, You’re Mine. Korall prisgitt rolig vann for overlevelse, den vakre skapningen jeg beundrer og setter pris på, er en annen bok. Her dør det gamle for å gi plass til nytt liv. Vær fri, tenk selv. Åpne opp, du er min. Eller fanget.
-### Nyskaping, en del av innovasjon — p. 162
-🎵 In the Air Tonight, Phil Collins (https://aigap.no/mitat) — p. 162
+#### p. 162
+### Nyskaping, en del av innovasjon
+🎵 In the Air Tonight, Phil Collins (https://aigap.no/mitat)
 Nyskaping handler om å finne opp nye metoder, ting eller anvendelser. Når jeg skriver om innovasjon, er det nyskaping jeg mener. Innovasjon er å skape noe fra intet. Det er her mulighetene ligger, i det uoppdagede rommet. Resultatet av nyskaping er en verden med flere dimensjoner. Min verden er full av stjerner.
 Det handler om å se de nye anvendelsene før alle andre ser dem. Ekte nyskaping lyser opp veien gjennom de mentale modellene våre.
 Å feile i nyskaping er en del av veien mot eller uten suksess. Når vi skaper noe nytt, må vi tåle motstanden fra det gamle.
-## Etterrasjonalisering — p. 163
-🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 163
+#### p. 163
+## Etterrasjonalisering
+🎵 Yesterday; Beatles (https://aigap.no/myb)
 Appendix og løse tanker
-### Meta for bok, musikk og mer — p. 164
-🎵 https://aigap.no/mx (https://aigap.no/mx) — p. 164
+#### p. 164
+### Meta for bok, musikk og mer
+🎵 Meta for bok, musikk og mer (https://aigap.no/mx)
 Jeg hadde ikke hørt musikk på lenge. Utsultet på musikk.Bare skriving. Så satte jeg på spillelista for denne boka etter to uker.
 For en variasjon! For et overlesset inntrykk!
 To ytterpunkter for musikkens rolle er bakgrunnsmusikk og assosiert musikk. Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk kan gi mer dybde til innholdet. Vi kjenner dette fra film og serier. Da TV-serien Miami Vice laget musikk beskrev Jan Hammer musikken som den tredje hovedrolleinnehaveren, filmskapere har både før og etter hatt den innstillingen. Musikken til det enkelte kapittel representerer følelser fra da det ble skrevet.
 Du som leser kan lage alternativ spilleliste på
-## Uplassert og ubestemt — p. 165
-🎵 https://aigap.no/myb (https://aigap.no/myb) — p. 165
+#### p. 165
+## Uplassert og ubestemt
+🎵 Yesterday; Beatles (https://aigap.no/myb)
 Appendix og mer
-### Ungdom på trikken — p. 166
-🎵 premium (https://aigap.no/mx) — p. 166
+#### p. 166
+### Ungdom på trikken
+🎵 Meta for bok, musikk og mer (https://aigap.no/mx)
 de sitter og tar plasser. Når det kommer en med behov reiser de seg fort opp og så reiser seg og gir plassen. Føreropplæring for motorsykkel forteller at man skal være “aktpågivende og varsom”, men som ungdom har vi ikke tid.
 Det var blitt satt ut styggere bord enn de runde steinbordene.
 Selv med dårlig hørsel hørte jeg cafeeieren for den lekre franske kafeen si “krooonprinsesssen hadde vært der i går”, høyt nok til at alle rundt akkurat så vidt hørte det. “Hvorfor ringte dere meg ikke, jeg skulle jobbe?” sa den nyansatte entusiastisk. Begge så bort på meg med stjålne blikk. Var jeg ønsket innenfor eller uttafor? hverken vet eller veit og er jo ikke egentlig nysgjerrig.
 Heller ikke noe annet enn nøytral til å drikke kaffe på nabobordet til kongelige. Tror jeg. “Alle kjenner kongen” hadde faren til min beste venn sagt til moren hans da hun spurte om hun hadde sett ham før.
-### Alle kan fortsette å endre seg — p. 167
-🎵 I love Rock and Roll, Joan Jett (https://aigap.no/mx) — p. 167
+#### p. 167
+### Alle kan fortsette å endre seg
+🎵 Meta for bok, musikk og mer (https://aigap.no/mx)
 Folk som er flinke utvikler seg og blir bedre Jeg tror alle kan endre seg og opplever at alle bare endrer seg i samme retning. Fortsetter å endre seg som før.
 Jeg går ut i fra at jeg ikke skal skjønne hvorfor den ikke virker.
 Det som ligger bak er at mennesket er overlegen.

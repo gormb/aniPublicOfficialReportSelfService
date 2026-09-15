@@ -205,6 +205,25 @@ def _title(doc, style, lang):
     items.sort()
     return ' '.join(t for _, _, t in items)
 
+REDIR = {}  # kode → desc fra Supabase `redir` (samme tabell som play.js/music.js leser)
+
+def _redir_name(text, url):
+    """Sangnavn fra redir.desc. PDF-en viser ofte bare kort-URL-en (aigap.no/mncty),
+    noen steder en egen tekst – navnet skal være det samme begge steder."""
+    k = (url or '').rstrip('/').rsplit('/', 1)[-1]
+    for key in (k, k[1:] if k.startswith('m') else 'm' + k, k[:-2] if k.endswith('qr') else ''):
+        if key and REDIR.get(key):
+            return REDIR[key]
+    return text
+
+def load_redir(url, headers):
+    for r in json.loads(get(f'{url}/rest/v1/redir?select=id,desc', headers)):
+        i, d = (r.get('id') or '').strip(), (r.get('desc') or '').strip()
+        if i and d:
+            for k in (i, i[1:] if i.startswith('m') else 'm' + i, i[:-2] if i.endswith('qr') else ''):
+                if k:
+                    REDIR.setdefault(k, d)
+
 def _better_song(a, b):
     def bare_url(t):
         m = _SPOT_RE.search(t or '')
@@ -246,9 +265,9 @@ def _md_lines(data, lang, keep, title):
     songs = {}
     for b in data:
         if b.get('type') == 'link' and b.get('spotify') and b.get('lang') == lang:
-            k = (b['page'], b['url'])
-            if k not in songs or _better_song(b['text'], songs[k]['text']):
-                songs[k] = {'text': b['text'], 'url': b['url']}
+            k, t = (b['page'], b['url']), _redir_name(b['text'], b['url'])
+            if k not in songs or _better_song(t, songs[k]['text']):
+                songs[k] = {'text': t, 'url': b['url']}
     by_page = {}
     for (p, _), s in songs.items():
         by_page.setdefault(p, []).append(s)
@@ -263,10 +282,10 @@ def _md_lines(data, lang, keep, title):
         t = b['type']
         if t == 'chapter' and b['tier'] in keep:
             lines.append(f'## {b["text"]}')
-            lines.extend(f"🎵 {s['text']} ({s['url']})" for s in by_page.get(b['page'], []))
+            lines.extend(f"🎵 [{s['text']}]({s['url']})" for s in by_page.get(b['page'], []))
         elif t == 'sub' and b['tier'] in keep:
             lines.append(f'### {b["text"]}')
-            lines.extend(f"🎵 {s['text']} ({s['url']})" for s in by_page.get(b['page'], []))
+            lines.extend(f"🎵 [{s['text']}]({s['url']})" for s in by_page.get(b['page'], []))
         elif t == 'p':
             lines.extend(_para_lines(b['spans'], keep))
     return lines
@@ -376,6 +395,10 @@ def main():
     url, key = m.group(1), m.group(2)
 
     headers = {'apikey': key, 'Authorization': f'Bearer {key}'}
+    try:
+        load_redir(url, headers)
+    except Exception as e:
+        gh('warning', f'[redir] kunne ikke hente sangnavn: {e}')
     q = f'{url}/rest/v1/books?select=book,deployed,prod,dtautosyncfrom,dtautosyncto'
     rows = json.loads(get(q, headers))
 
