@@ -620,7 +620,10 @@ My grandfather would have said that improvement is your responsibility regardles
 For example, the Amish people have something called Rumspringa, where youth, as 16-year-olds, are thrown into the darkest corners of the world and exposed to moral free fall through drugs and prostitution. The young adults who return do so with a hardened faith in the people's ideals and traditions. Resilience can arise in the gap between the safe and the destructive.
 #### p. 148
 ### Everyone can keep changing
-🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
+🎵 [I love Rock and Roll; Joan Jett](https://aigap.no/milrr)
+People who are skilled develop and get better. I believe everyone can change, and I experience that one changes in the same direction; better and better or worse and worse.
+If we are replaced by artificial intelligence, is it because we have already been replaced by machines or something else? If we are not replaced by artificial intelligence, is it because we haven't already been replaced by something else?
+"Intelligent" is something we have chosen as a designation for something uniquely human. Therefore, nothing is "artificially intelligent," only in an intermediate phase where we still call it "intelligent" because we thought only people could do exactly that thing machines suddenly can. Child's magical thinking stands strong in the adult world. Especially where collectivism is strong.
 #### p. 149
 I write code and sing in the shower. I don't sing as well as an artist, but I sing anyway. I temporarily write better code than AI, but I will continue to sing in the shower and code. I like it. I watch Magnus Carlsen play chess, not AlphaZero. I write without AI.
 "I assume I'm not supposed to understand why it doesn't work," she says; it is superior to humans. The magic of "Artificial" is strengthened, and everyone becomes afraid that a statistical model will take over the world, because that happened in "Terminator II."

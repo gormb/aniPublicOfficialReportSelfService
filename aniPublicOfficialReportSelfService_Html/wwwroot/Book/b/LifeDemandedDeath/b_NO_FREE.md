@@ -631,8 +631,17 @@ Motstandskraft kan oppstå i gapet mellom det trygge og det destruktive.
 #### p. 147
 #### p. 148
 ### Alle kan fortsette å endre seg
-🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
+🎵 [I love Rock and Roll; Joan Jett](https://aigap.no/milrr)
+Folk som er flinke utvikler seg og blir bedre. Jeg tror alle kan endre seg og opplever at man endrer seg i samme retning; bedre og bedre eller verre og verre.
+Hvis vi blir byttet ut av kunstig intelligens, er det fordi vi allerede har blitt byttet ut av maskiner eller noe annet? Hvis vi ikke blir byttet ut av kunstig intelligens, er det fordi vi ikke har blitt byttet ut av noe annet allerede?
+“Inteligent” er noe vi har valgt som betegnelse av noe enestående menneskelig.  Derfor er ikke noe “kunstig intelligent”, bare i en mellomfase der vi fortsatt kaller det “intelligent” fordi vi trodde bare folk kunne gjøre akkurat den tingen maskiner plutselig kan. Barnets magiske tankegang står sterkt i de voksnes verden. Særlig der kollektivisme står sterkt.
 #### p. 149
+Jeg skriver kode og synger i dusjen. Synger ikke like godt som en artist, synger likevel. Skriver midlertidig bedre kode enn AI, men skal fortsette p synge i dusjen og kode. Liker det. Ser på Magnus Karlsen spille sjakk, ikke AlphaZero. Skriver uten KI.
+“Jeg går ut i fra at jeg ikke skal skjønne hvorfor den ikke virker” sier hun, den er mennesket overlegen. Magien i “Artificial” styrkes og alle blir redd for at en statistikkmodell skal overta verden, for det skjedde i ”Terminator II”
+Hun var gøy å snakke med og tøffere enn de fleste.
+Tatoveringene viste livserfaring, ADHD sikret sterk energi og arbeidsmoral gjorde henne til en populær konsulent. Hun var en god IT-leder. Hun kalte det ikke AI, men maskinlæring, hun sa ikke LLM, men Transformer-løsning, men ble utbrent.
+Får du ledergruppper til å føle seg dumme, blir du upopulær, utbrent og ufør. Det gyldne snitt er dyrket av mennesker estetisk, den gyldne middelmådighet dyrket i organisasjoners ledelse. Folkene. Jo høyere opp, desto større behov for middelmådighet. I “exploit” er det viktigste alle har det bra.
+“Jeg er veldig hyggelig å spise lunch med” sa advokaten som i flere tiår ikke-elitistisk hadde lykkes med kollektivistiske grupper på høyeste nivå. Nå hadde han ikke lenger gitt opp, og ble kastet ut. Gikk frivillig tilbake i Platons hule og ble drept.
 #### p. 150
 ### Historiske røtter nullsummerings død
 🎵 [Dreaming in Color](https://aigap.no/mdic)
