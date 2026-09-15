@@ -1028,4 +1028,5 @@ Heller ikke noe annet enn nøytral til å drikke kaffe på nabobordet til kongel
 Folk som er flinke utvikler seg og blir bedre Jeg tror alle kan endre seg og opplever at alle bare endrer seg i samme retning. Fortsetter å endre seg som før.
 Jeg går ut i fra at jeg ikke skal skjønne hvorfor den ikke virker.
 Det som ligger bak er at mennesket er overlegen.
-Vi har Dett er gøy å snakke med Skrive kode er som å synge i dusjen, vi synger ikke bedre enn en lkjent artist men ligker det likevel. AI kan kanskje skrive bedre kode, men vi liker det likevel.
+Vi har hatt kontroll på våre egne prosesser og vår egeninfrastruktur.
+Det er gøy å snakke med Skrive kode er som å synge i dusjen, vi synger ikke bedre enn en lkjent artist men ligker det likevel. AI kan kanskje skrive bedre kode, men vi liker det likevel.
