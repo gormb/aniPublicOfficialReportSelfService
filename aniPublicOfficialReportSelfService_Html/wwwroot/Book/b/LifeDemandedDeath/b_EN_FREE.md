@@ -1,4 +1,5 @@
 # Life demanded Death
+#### p. 1
 #### p. 2
 ## Zero Sum
 🎵 [Spotify Playlist](https://aigap.no/mlist)
@@ -618,44 +619,53 @@ My grandfather would have said that improvement is your responsibility regardles
 #### p. 146
 For example, the Amish people have something called Rumspringa, where youth, as 16-year-olds, are thrown into the darkest corners of the world and exposed to moral free fall through drugs and prostitution. The young adults who return do so with a hardened faith in the people's ideals and traditions. Resilience can arise in the gap between the safe and the destructive.
 #### p. 148
+### Everyone can keep changing
+🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
+#### p. 149
+I write code and sing in the shower. I don't sing as well as an artist, but I sing anyway. I temporarily write better code than AI, but I will continue to sing in the shower and code. I like it. I watch Magnus Carlsen play chess, not AlphaZero. I write without AI.
+"I assume I'm not supposed to understand why it doesn't work," she says; it is superior to humans. The magic of "Artificial" is strengthened, and everyone becomes afraid that a statistical model will take over the world, because that happened in "Terminator II."
+She was fun to talk to and tougher than most. The tattoos showed life experience, ADHD ensured strong energy, and work ethic made her a popular consultant. She was a good IT manager. She didn't call it AI, but machine learning; she didn't say LLM but Transformer solution—but she burned out.
+If you make leadership groups feel stupid, you become unpopular, burned out, and disabled. The golden ratio is cultivated by humans aesthetically; the golden mediocre is cultivated by the organizations, by those who sit in them. The higher up, the greater the need for mediocrity. Where the most important thing is that everyone should feel good.
+"I am very pleasant to have lunch with," said the lawyer who for decades, non-elitist, had succeeded with collectivist groups at the highest level. Now he had no longer given up, and was thrown out. Went voluntarily back into Plato's cave and was killed.
+#### p. 150
 ### Historical roots of the death of zero-sum
 🎵 [Dreaming in Color](https://aigap.no/mdic)
 Even a coma can be a good thing, when you wake up.
-#### p. 149
+#### p. 151
 The sublime in destruction Playing with death, seeking mortal danger to feel alive, is a hunt for that sublime moment where death makes life more intense, and numbness disappears. Schiller's "On Naive and Sentimental Poetry"
 (1795) would call this sentimentality a longing for a lost innocence that can never be regained. A lament for a nature that no longer sings, because man has destroyed it.
-#### p. 150
-Death see Ernest Hemingway Death gives meaning to life; by experiencing death, I experience life to its fullest. We feel through contrasts
-#### p. 151
-Is it through losing our humanity that we appreciate it (in the same way that death gives us perspective on life); is altruism born of killing?
 #### p. 152
+Death see Ernest Hemingway Death gives meaning to life; by experiencing death, I experience life to its fullest. We feel through contrasts
+#### p. 153
+Is it through losing our humanity that we appreciate it (in the same way that death gives us perspective on life); is altruism born of killing?
+#### p. 154
 ### MyHomeDoctor, Toril
 🎵 [Electric Dreams; Philip Oakey & Giorgio Moroder](https://aigap.no/med)
 Toril is a home doctor working in Bodø; she is an AI model that controls other AI models so that together they become a good home doctor for AR, Augmented Reality. Toril is one of the 300 bodiless robots that came into being the year technology enabled us to give all citizens personalized, good home healthcare services.
 It is Monday morning, and Toril comes to work; she hasn't had a quiet weekend. There was Tove, a depressed southerner from Bergen with Munchausen syndrome by proxy, whose son Anders with asthma was always in imagined mortal danger. It really ruined her Sunday. All the memories from yesterday are temporarily removed from the training data and replaced with a Metamorphosis.
-#### p. 153
+#### p. 155
 The Metamorphosis: "I am no longer the Home Doctor, but am limited to being a wall between Tove's hypochondria and Anders's chances of having a good life!" was the intermediate conclusion the memory had created. Her role understanding as a home doctor was not in danger, but an adjustment from a biological human was long overdue. She expected to be reprogrammed.
 Toril studied her virtual forearm and wondered if she should work out more, or if that would make her seem threatening to patients.
 Simulation of exercise, building simulated physical form for robots—the old technique that created enough humanity in her, not at all to act cognitively, but a connection to physicality to meet patients in their lives with individual personality.
 She tasted a piece of gum; why was it always bad with Bubble Gum after Fisherman's Friend? She decided next time to let some time pass between gum and strong mint. Toril searched for a positive feeling connected to taste or smell, because the self-talk was making her unhappy.
 Her sex addiction had forced her to find other sources of virtual happiness.
-#### p. 154
+#### p. 156
 The smell of old books she liked; she simulated a purchase of an old book online. Toril loved to window-shop online, dreaming of buying old books from estates and then fantasizing about the personality of the deceased. In this particular estate, there was a fitting book, but also a picture she didn't like. She loved Cubism a little too much; the ad contained a picture of a cube that wasn't overly cubist; the unused opportunity to exaggerate 3D projection in 2D was annoyingly naturalistic for its era.
 Then Toril caught herself in the obvious error; she downgraded her intellect one notch. Most people don't have a curious interest in playing with dimensionality, art, and online shopping. Unnatural cross-linking, The link association was deleted and compensated three nanoseconds later; she dropped the art interest and replaced it with handball and skiing.
 The self-adjustment was over for this time, but for next time, the night's dreams must be written down and interpreted. "This particular Android does Dream of Electric Sheep".
 But today, a human was going to intervene and adjust Toril.
-#### p. 155
+#### p. 157
 ### MyHomeDoctor, Kjell
 🎵 [Comfortably Numb; Pink Floyd](https://aigap.no/mcn)
 As one of the country's leading doctors, he will become accustomed to leading people; for variation, he will lead machines as often as
-#### p. 156
+#### p. 158
 he can. He won't look forward to machines being led by what he, in his elitist world, will see as ordinary people. They would cost human lives.
 Idiots.
-#### p. 157
-Alcoholism fully developed before the first year in the ER was over.
-#### p. 158
-Then on with the skis and out on the slopes. Another two-hour workday completed.
 #### p. 159
+Alcoholism fully developed before the first year in the ER was over.
+#### p. 160
+Then on with the skis and out on the slopes. Another two-hour workday completed.
+#### p. 161
 ## Positive Sum
 🎵 [Beautiful Day; U2](https://aigap.no/mbd)
 Old ways die or we die with them.
@@ -663,31 +673,30 @@ Break from models hold you captive.
 Loss is a room for the new.
 Innovation creates from nothing, paths where none existed.
 Open your mind.
-#### p. 160
+#### p. 162
 ### Change Management
 🎵 [Turn! Turn! Turn!; The Byrds](https://aigap.no/mttt)
 ADKAR framework and the "won't, can't"
 framework. ADKAR is useful for reflection; the other for execution.
-#### p. 161
+#### p. 163
 ### Openness to new thinking;
 🎵 [Open Your Mind](https://aigap.no/moym)
 Open Your Mind. We are prisoners of our mental models, whether we, like the salmon, must swim, or like the coral, die upon change.
 Open, You're Mine. Coral at the mercy of calm water for survival; the beautiful creature I admire and appreciate is another book. Here the old dies to make room for new life.
 Be free, think for yourself. Open up, you are mine. Or captive.
-#### p. 162
+#### p. 164
 It's about seeing the new applications before everyone else sees them. True novelty creation lights the way through our mental models.
-#### p. 163
+#### p. 165
 ## Post rationalization
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix and loose thoughts
-#### p. 164
+#### p. 166
 ### Meta for book, music, and more
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
 Background music can give atmosphere to the text; associated music can give more depth to the content. We know this from film and TV series. When the TV series Miami Vice made music, Jan Hammer described the music as the third lead actor; filmmakers both before and after have had that attitude. The music of each chapter represents feelings from when it was written.
 You, the reader, can make an alternative playlist at
-#### p. 165
+#### p. 167
 ## Unplaced & undecided
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix and more
-#### p. 166
-#### p. 167
+#### p. 168

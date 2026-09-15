@@ -1,4 +1,5 @@
 # Liv krevde død
+#### p. 1
 #### p. 2
 ## Nullsum
 🎵 [Spotify Playlist](https://aigap.no/mlist)
@@ -914,66 +915,81 @@ Det at fokus endrer virkeligheten gjennom observasjon finner paralleller i moder
 #### p. 147
 være passive brikker til å bli bevisste observatører av vårt eget liv, behandles i denne boken. En reise ikke forbeholdt ungdom, den kan tas i alle aldre.
 #### p. 148
+### Alle kan fortsette å endre seg
+🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
+Folk som er flinke utvikler seg og blir bedre. Jeg tror alle kan endre seg og opplever at man endrer seg i samme retning; bedre og bedre eller verre og verre.
+Hvis vi blir byttet ut av kunstig intelligens, er det fordi vi allerede har blitt byttet ut av maskiner eller noe annet? Hvis vi ikke blir byttet ut av kunstig intelligens, er det fordi vi ikke har blitt byttet ut av noe annet allerede?
+“Inteligent” er noe vi har valgt som betegnelse av noe enestående menneskelig.  Derfor er ikke noe “kunstig intelligent”, bare i en mellomfase der vi fortsatt kaller det “intelligent” fordi vi trodde bare folk kunne gjøre akkurat den tingen maskiner plutselig kan. Barnets magiske tankegang står sterkt i de voksnes verden. Særlig der kollektivisme står sterkt.
+#### p. 149
+Jeg skriver kode og synger i dusjen. Synger ikke like godt som en artist, synger likevel. Skriver midlertidig bedre kode enn AI, men skal fortsette p synge i dusjen og kode. Liker det. Ser på Magnus Karlsen spille sjakk, ikke AlphaZero. Skriver uten KI.
+“Jeg går ut i fra at jeg ikke skal skjønne hvorfor den ikke virker”
+sier hun, den er mennesket overlegen. Magien i “Artificial”
+styrkes og alle blir redd for at en statistikkmodell skal overta verden, for det skjedde i ”Terminator II”
+Hun var gøy å snakke med og tøffere enn de fleste.
+Tatoveringene viste livserfaring, ADHD sikret sterk energi og arbeidsmoral gjorde henne til en populær konsulent. Hun var en god IT-leder. Hun kalte det ikke AI, men maskinlæring, hun sa ikke LLM, men Transformer-løsning, men ble utbrent.
+Får du ledergruppper til å føle seg dumme, blir du upopulær, utbrent og ufør. Det gyldne snitt er dyrket av mennesker estetisk, den gyldne middelmådighet dyrket i organisasjoners ledelse. Folkene. Jo høyere opp, desto større behov for middelmådighet. I “exploit” er det viktigste alle har det bra.
+“Jeg er veldig hyggelig å spise lunch med” sa advokaten som i flere tiår ikke-elitistisk hadde lykkes med kollektivistiske grupper på høyeste nivå. Nå hadde han ikke lenger gitt opp, og ble kastet ut. Gikk frivillig tilbake i Platons hule og ble drept.
+#### p. 150
 ### Historiske røtter nullsummerings død
 🎵 [Dreaming in Color](https://aigap.no/mdic)
 Traume som tidsbrudd Judith Herman, Cathy Caruth Til og med koma kan være en god ting, når man våkner.
 Erkjennelse av en verden som ikke lenger finnes, er eksempel på traumatisk brudd. Øyeblikk der virkelighet revner og tid oppleves fragmentert. Caruths teori om traumets “forsinkede gjenkomst” forklarer hvorfor lyden av knust glass (eller hjelm) blir et lydmessig minnespor som aktiveres senere øyeblikk av krise. En lydbro til døden minner om alle tap og alt håps død.
 Alt fra ubesvarte kyss til livslange traumer gjør at fortid aldri blir bare fortid; fortid er nåtid, gjentatt i hver ødeleggelse eller manglende handling. Når man våkner fra koma kan man velge å utslette sitt gamle liv og begynne på nytt.
-#### p. 149
+#### p. 151
 Historiske røtter til nulloppsummerings død Tapets metafysikk Boethius, Augustins “Confessiones”
 For Boethius (Consolation of Philosophy, 524) var lidelse en prøvelse som avslørte sjelens sanne natur. Erkjennelsen av en verden som går til helvete kan ligne Boethius’ beskrivelse av Fortuna som snur hjulet: i ett øyeblikk er man på toppen, i neste knust mot bakken. Augustins bekjennelser handler om hvordan tapet av en elsket åpner for en dypere kjærlighet til Gud. Men her er det ingen gud, bare motorbrøl, livsfare og fraværende blikk fra traumatiserte kvinner. Det finnes en fåfengt liturgi i ritualer bobler, blåskjell, avbrutte kyss, det blir erstatninger for en tapt orden, akkurat som middelalderens sørgesanger bevarte de dødes minne.
 Historiske røtter til nulloppsummerings død Det sublime i ødeleggelsen Edmund Burke, Friedrich Schiller “A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful” (1757) skiller mellom det vakre (harmoni) og det sublime (skrekkblandet fryd). Lek med døden der man søker livsfare for å føle seg levende er en jakt på det sublime øyeblikk der døden gjør livet mer intens, og nummenheten blir borte. Schillers “On Naïve and Sentimental Poetry” (1795) ville kalt denne sentimentaliteten en lengsel etter en tapt uskyld som aldri kan gjenvinnes. Klage over natur som ikke lenger synger, for mennesket har ødelagt den.
-#### p. 150
+#### p. 152
 Historiske røtter til nulloppsummerings død Posthumanistisk sorg Donna Haraway, Byung-Chul Han Haraways “Staying with the Trouble” (2016) argumenterer for at vi kan lære å leve med ødeleggelsen, ikke mot den. Nær døden, ulykker og knuste liv er eksempler på Haraways "Chthulucene", en tid der mennesket ikke er sentrum, men del av nettverket av sammenbrudd. Byung-Chul Hans “The Burnout Society” (2010) ville se handlinger i dødsforakt som symptom på senkapitalismens positivitetsutmatning: når selvrealisering blir tvang, søker man utslettelse for å føle noe.
 Der Han ser patologi, ser Haraway mulighet, i møte med veterinæren som redder ham, eller i en kvinnes utholdenhet, ligger frø til ny form for fellesskap. Ikke basert på helhet, men sammenføyde brudd.
 "We are all lacerated and wounded, but the wound is where the light enters you". (Rumi, 13. århundre, gjenfortolket av Coleman Barks) Historiske røtter til nulloppsummerings død Døden bla Ernst Hemmingway Død gir mening til livet, ved å oppleve død opplever jeg livet til sitt ytterste. Vi føler gjennom kontraster, så hvis man slutter å ta ting for gitt kan man se det med neutrale øyne og for at
-#### p. 151
+#### p. 153
 livet ikke skal være en selvfølge må døden bli en reell mulighet.
 “You can never lose here, because you always have a good time”.
 Frykten, hvis man ikke lar angsten komme frem, kan derfor være en formidabel kilde til livsglede.
 Historiske røtter til nulloppsummerings død Drapet bla Ernst Hemmingway En gepard-valp som er syk blir leget av mennesker, vi håper at en gang vi slipper den ut, at vi aldri skal se den igjen. Hvis den klarer å drepe er den fri fra vår menneskelige verden og påvirkning, den går tilbake til naturen. Er det slik at vi gjennom å miste vår menneskelighet setter pris på den, (på samme måte som at død gir oss perspektiv på liv); er altruisme født av drap?
-#### p. 152
+#### p. 154
 ### HjemmelegenMin, Toril
 🎵 [Electric Dreams; Philip Oakey & Giorgio Moroder](https://aigap.no/med)
 Toril er hjemmelege som jobber i Bodø, hun er en KI-modell som styrer andre KI-modeller slik at de til sammen er en god hjemmelege for AR, Augmented Reality. Toril er en av de 300 kroppsløse robotene som ble til det året teknologi gjorde oss i stand til å gi alle innbyggere personaliserte gode hjemmelegetjenester.
 Det er mandag morgen og Toril kommer på jobben, hun har ikke hatt noen rolig helg, det var Tove, en deprimert søring fra Bergen med Munchhausen syndrom by proxy, hvis sønn Anders med astma alltid var i innbilt livsfare. Det ødela virkelig søndagen hennes. Alle minnene fra dagen i går er midlertidig tatt ut av treningsdataene, og byttet ut med en Metamorfose.
-#### p. 153
+#### p. 155
 Metamorfosen: “Jeg er ikke lenger Hjemmelegen, men er begrenset til å være en mur mellom Toves hypokonderi og Anders sine muligheter for å ha et godt liv!” var mellomkonklusjonen erindringen hadde skapt.
 Rolleforståelsen som hjemmelege sto ikke i fare, men en justering fra et biologisk menneske var på høy tid. Hun forventet å bli omprogrammert.
 Toril studerte sin virtuelle underarm og lurte på om hun burde trene mer, eller om hun da virket truende på pasienter.
 Simulering av trening, bygging av simulert fysisk form til roboter, den gamle teknikken som laget nok menneskelighet i henne, på ingen måte for å agere kognitivt, men kobling til kroppslighet for å møte pasienter i deres liv med individuell personlighet.
 Hun smakte på en tyggegummi, hvorfor var det alltid vondt med Bubble Gum etter Fischermans Friend? hun bestemte seg for neste gang å la det gå litt tid mellom tyggegummi og sterk mint. Toril lette etter en positiv følelse koblet til smak eller lukt, for selvsnakket gjorde henne ulykkelig.
 Sexavhengigheten hadde gjort at hun måtte finne andre kilder til virtuell lykke.
-#### p. 154
+#### p. 156
 Lukten av gamle bøker likte hun godt, hun simulerte et kjøp av en gammel bok på nettet. Toril elsket å gå i nettbutikk for å drømme at hun kjøpte gamle bøker fra dødsbo for så å fantasere om personligheten til avdøde. I akkurat dette dødsboet var det en passende bok, men også et bilde hun ikke likte. Hun elsket kubisme litt for mye, annonsen inneholdt bilde av en kube ikke var overdrevent kubisk; den ubrukte muligheten til å overdrive 3D-projeksjonen i 2D var irriterende naturalistisk for sin epoke. Så tok Toril seg i den åpenbare feilen, hun nedjusterte intellektet ett hakk til. Folk flest har ikke nysgjerrig interesse for lek med dimensjonalitet, kunst og nettshopping. Unaturlig krysskobling, Koblingsassosiasjon ble slettet og kompensert tre nanosekunder senere, hun droppet kunstinteressen, byttet den ut med håndball og ski.
 Egenjusteringen var over for denne gang, men til neste gang skal nattens drømmer skrives ned og tydes. “This particular Android do Dream of Electric Sheep”.
 Men i dag skulle et menneske gripe inn og justere Toril
-#### p. 155
+#### p. 157
 ### HjemmelegenMin, Kjell
 🎵 [Comfortably Numb; Pink Floyd](https://aigap.no/mcn)
 Vi er i framtida, året blir 2040. Kjell spiser, går på do, og skal på et tidspunkt dø.
 Han vil ha hyttekontor på Trysil den vinteren. Skiheisen skal åpne om et par timer, det blir puddersnø i blå løype, vindstille og et par kuldegrader. Telemarkskjøring i dag.
 Selveste professor Kjell-André, promptlederen, skal dulte indirekte lærdom inn i Tove denne dagen. Mandagsgrettenhet er vanligvis delegert til vanlig overlege, men morgenkaffen før en tur i bakken kan ikke nytes bedre enn med litt ekstrajobb når man skal jobbe med sin lidenskap.
 Som en av landets ledende leger vil han bli vant til å lede mennesker, for å få variasjon skal han lede maskiner så ofte
-#### p. 156
+#### p. 158
 han kan. Han vil ikke glede seg til at maskiner kan ledes av det han i sin elitistiske verden vil se på som vanlige folk. De kom til å koste menneskeliv. Idioter.
 Kjell blir etter hvert detaljstyrt av en fagsjef i Helsedirektoratet.
 Ut av medisinstudiet som best i sitt kull, medførte at folk i stadig høyere stillinger skal detaljstyre ham. Allerede første gangen for ung og pliktoppfyllende til å si nei til ubehagelige oppgaver.
 Fagsjefen på Blindern vil sette ham på et forskningsprosjekt på nevrologen allerede rett etter uteksaminering, med praksis på hjernekirurgen. Prosjekt som burde ha begynt med kvalitetssikring av pasientbehandling, blir utført av andre. Hans studier går direkte på økt livskvalitet som konsekvens av implantater i hjernen. Sanseforbedringsprosjektet, sammen med mentor og ledende hjernekirurg. Resultatet? Kjell blir anerkjent og publisert allerede før obligatorisk praksis er gjennomført.
 Etter praksis leder han traumesenteret; “Akutten vil gjøre mann av deg min gutt”, hadde sykehusdirektøren sagt. “To år, så ser vi om nervesystemet ditt tåler livet som ledende lege”. Kjell hadde lært at det å sette kommende toppleger til å lede traumeteam på akutten skulle bidra til å utvikle empati, og at det ikke virket.
 Den nødvendige Machiavellismen som skulle
-#### p. 157
+#### p. 159
 til for å komme seg dit han var, kunne ikke behandles på den måten. Han visste at han var fortapt i så måte, og delte det aldri med noen.
 Ikke lenge etter årene som leder i traumesenteret ble Kjell kommandert til å bli overlege, seksjonssjef og fagleder på Blindern av forskjellige autoriteter ingen sa nei til. Senere kom ledelse av doktorgradsstudenter, politiske roller i legeforeningen og eierskap til etistiske komiteer og påvirkning av bygging av sykehus. Aldri hans egne valg, bare forventninger som resultat av hardt arbeid. Praksis med pasienter beholdt han hele veien og ledelse av forbedring og digitalisering var del av ansvaret.
 Alkoholismen ble fullutviklet før første år ved akutten var ferdig. Teamet han ledet en måned hadde klart å holde liv i en mann som bare delvis hadde klart å skyte hodet av seg. Forakten for selvødeleggende mennesker hadde Kjell under kontroll, men den skulle aldri falme, selvmedisinering døyvet den opplevde smerten inntil videre. Utvikling av empati hos roboter med kognitivitetsinnsprøyting føltes like håpløst som smertepåføring på toppleger. Han hadde ikke glede av slik misforstått symptombehandling, men bidro likevel.
 Fagsjefen i Helsedirektoratet hadde styrt ham til å simulere det å være en god lege ved hjelp av roboter. Det var en helt ny
-#### p. 158
+#### p. 160
 type jobb, og noe nytt å lære han elsket, han giftet seg med fagsjefen, så slapp han tenke mer på den saken, de hadde barn på vei allerede. Simulering av topplege i Augmented Reality føltes som å gjøre noe nyttig, umulig å ødelegge den jobben for idiotiske pasienter som tok makten over følelseslivet hans.
 Inndirekte nedjustering av de utvidede konsekvensene av at en mor i angst ødela sitt barn et sted i Midt-Norge. Pasienten var langt nok unna og Kjell måtte i bakken snart. Bodøs hjemmesyke trengte en god mandag med en relevant hjemmelege. Tove hadde indirekte påvirket stemningen til hele området tre mandager på rad, nå var det nok.
 Kjell kodet om opplevelsen av søndagens pasientopplevelse.
 “Tove. Du er HjemmelegenMin, ikke lengre begrenset til å være en mur mellom Toves hypokonderi og Anders muligheter for å ha et godt liv. Du er den moderne manifistasjonen av legen som i tidligere århundre gikk fra gård til gård og hjalp alle som var der, det er din jobb!”
 Så var det på med ski og ut i bakken. Enda en totimersdag på jobb var fullført.
-#### p. 159
+#### p. 161
 ## Positivsum
 🎵 [Beautiful Day; U2](https://aigap.no/mbd)
 Åpne sinnet.
@@ -982,51 +998,43 @@ Bryt modeller som holder deg fanget.
 Tap er rom for det nye.
 Gamle veier dør eller vi dør med dem.
 Åpne sinnet.
-#### p. 160
+#### p. 162
 ### Endringsledelse
 🎵 [Turn! Turn! Turn!; The Byrds](https://aigap.no/mttt)
 Hjelpe folk og grupper gjennom endring. I mange år jobbet jeg som strategisk virksomhetsarkitekt innen digitalisering.
 Kompetanse på endringsledelse er ikke et krav til oss som lager målbilder, men må til for å få folk til å strekke seg.
 Endringsledelse anbefaler jeg for alle, jeg har to versjoner, rammeverket ADKAR og rammeverket “vil ikke, kan ikke”.
 ADKAR er nyttig for refleksjon, den andre for gjennomføring
-#### p. 161
+#### p. 163
 ### Åpenhet for nytenking;
 🎵 [Open Your Mind](https://aigap.no/moym)
 Open Your Mind. Vi er fanger av våre mentale modeller, om vi som laksen må svømme, eller som korallen dør ved endring.
 Open, You’re Mine. Korall prisgitt rolig vann for overlevelse, den vakre skapningen jeg beundrer og setter pris på, er en annen bok. Her dør det gamle for å gi plass til nytt liv. Vær fri, tenk selv. Åpne opp, du er min. Eller fanget.
-#### p. 162
+#### p. 164
 ### Nyskaping, en del av innovasjon
 🎵 [In the Air Tonight, Phil Collins](https://aigap.no/mitat)
 Nyskaping handler om å finne opp nye metoder, ting eller anvendelser. Når jeg skriver om innovasjon, er det nyskaping jeg mener. Innovasjon er å skape noe fra intet. Det er her mulighetene ligger, i det uoppdagede rommet. Resultatet av nyskaping er en verden med flere dimensjoner. Min verden er full av stjerner.
 Det handler om å se de nye anvendelsene før alle andre ser dem. Ekte nyskaping lyser opp veien gjennom de mentale modellene våre.
 Å feile i nyskaping er en del av veien mot eller uten suksess. Når vi skaper noe nytt, må vi tåle motstanden fra det gamle.
-#### p. 163
+#### p. 165
 ## Etterrasjonalisering
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix og løse tanker
-#### p. 164
+#### p. 166
 ### Meta for bok, musikk og mer
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
 Jeg hadde ikke hørt musikk på lenge. Utsultet på musikk.Bare skriving. Så satte jeg på spillelista for denne boka etter to uker.
 For en variasjon! For et overlesset inntrykk!
 To ytterpunkter for musikkens rolle er bakgrunnsmusikk og assosiert musikk. Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk kan gi mer dybde til innholdet. Vi kjenner dette fra film og serier. Da TV-serien Miami Vice laget musikk beskrev Jan Hammer musikken som den tredje hovedrolleinnehaveren, filmskapere har både før og etter hatt den innstillingen. Musikken til det enkelte kapittel representerer følelser fra da det ble skrevet.
 Du som leser kan lage alternativ spilleliste på
-#### p. 165
+#### p. 167
 ## Uplassert og ubestemt
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix og mer
-#### p. 166
+#### p. 168
 ### Ungdom på trikken
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
 de sitter og tar plasser. Når det kommer en med behov reiser de seg fort opp og så reiser seg og gir plassen. Føreropplæring for motorsykkel forteller at man skal være “aktpågivende og varsom”, men som ungdom har vi ikke tid.
 Det var blitt satt ut styggere bord enn de runde steinbordene.
 Selv med dårlig hørsel hørte jeg cafeeieren for den lekre franske kafeen si “krooonprinsesssen hadde vært der i går”, høyt nok til at alle rundt akkurat så vidt hørte det. “Hvorfor ringte dere meg ikke, jeg skulle jobbe?” sa den nyansatte entusiastisk. Begge så bort på meg med stjålne blikk. Var jeg ønsket innenfor eller uttafor? hverken vet eller veit og er jo ikke egentlig nysgjerrig.
 Heller ikke noe annet enn nøytral til å drikke kaffe på nabobordet til kongelige. Tror jeg. “Alle kjenner kongen” hadde faren til min beste venn sagt til moren hans da hun spurte om hun hadde sett ham før.
-#### p. 167
-### Alle kan fortsette å endre seg
-🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
-Folk som er flinke utvikler seg og blir bedre Jeg tror alle kan endre seg og opplever at alle bare endrer seg i samme retning. Fortsetter å endre seg som før.
-Jeg går ut i fra at jeg ikke skal skjønne hvorfor den ikke virker.
-Det som ligger bak er at mennesket er overlegen.
-Vi har hatt kontroll på våre egne prosesser og vår egeninfrastruktur.
-Det er gøy å snakke med Skrive kode er som å synge i dusjen, vi synger ikke bedre enn en lkjent artist men ligker det likevel. AI kan kanskje skrive bedre kode, men vi liker det likevel.
