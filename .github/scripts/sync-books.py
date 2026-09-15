@@ -252,25 +252,21 @@ def _md_lines(data, lang, keep, title):
     by_page = {}
     for (p, _), s in songs.items():
         by_page.setdefault(p, []).append(s)
-    # Sider som allerede har synlig overskrift (kapittel/underkapittel) viser «p. N» selv.
     lang_pages = {b['page'] for b in data if b.get('lang') == lang}
-    headed = {b['page'] for b in data
-              if b.get('lang') == lang and b.get('type') in ('chapter', 'sub') and b.get('tier') in keep}
     for b in data:
         if b.get('type') == 'page':
-            p = b['page']
-            if p in lang_pages and p not in headed:
-                lines.append(f'#### p. {p}')  # sidetall for sider uten overskrift
+            if b['page'] in lang_pages:
+                lines.append(f'#### p. {b["page"]}')
             continue
         if b.get('lang') != lang:
             continue
         t = b['type']
         if t == 'chapter' and b['tier'] in keep:
-            lines.append(f'## {b["text"]} — p. {b["page"]}')
-            lines.extend(f"🎵 {s['text']} ({s['url']}) — p. {b['page']}" for s in by_page.get(b['page'], []))
+            lines.append(f'## {b["text"]}')
+            lines.extend(f"🎵 {s['text']} ({s['url']})" for s in by_page.get(b['page'], []))
         elif t == 'sub' and b['tier'] in keep:
-            lines.append(f'### {b["text"]} — p. {b["page"]}')
-            lines.extend(f"🎵 {s['text']} ({s['url']}) — p. {b['page']}" for s in by_page.get(b['page'], []))
+            lines.append(f'### {b["text"]}')
+            lines.extend(f"🎵 {s['text']} ({s['url']})" for s in by_page.get(b['page'], []))
         elif t == 'p':
             lines.extend(_para_lines(b['spans'], keep))
     return lines

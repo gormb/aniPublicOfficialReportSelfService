@@ -9,8 +9,7 @@ body {
 button { font-size:var(--fsMenu); padding:var(--padMenu);}
 .floatingControl, #nUp2, #nUp3, #nNt2, #nNt3, #nPv2, #nPv3, #nSv {
     background:transparent; border:0; box-shadow:none; padding:0; color:#999; filter:grayscale(1);
-    scale:.5; z-index:1;position:absolute; 
-}
+    scale:.5; z-index:1;position:absolute;}
     #nUp2 {top:calc(var(--paddingTop1)); right:0;}
     #nNt2 { right:0; bottom:0;}
     #nPv2 { left:0; bottom:0;}
