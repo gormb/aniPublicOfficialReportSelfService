@@ -19,7 +19,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: master
           fetch-depth: 0
@@ -50,6 +50,6 @@ jobs:
       - name: Fail if any book sync error (so you get notified)
         run: |
           if [ -f .sync-books-errors ]; then
-            echo "::error::Books sync reported errors – see annotations in the 'Sync all books' step. Valid updates were still committed."
+            echo "::error::Books sync or aigap.no/m.md publish reported errors – see annotations in the 'Sync all books' step. Valid updates were still committed."
             exit 1
           fi

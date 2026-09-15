@@ -349,16 +349,16 @@ def log_ok(url, key, book, message):
 
 def publish_md_to_aigap():
     """Publiser b/LifeDemandedDeath/b_NO_FREE.md som aigap.no/m.md (www.aigap.no-repoet).
-    Kjøres i CI: krever AIGAP_PAT (cross-repo-token med contents:write på www.aigap.no).
-    Uten token gjør funksjonen ingenting (f.eks. ved lokal kjøring)."""
+    Krever AIGAP_PAT (cross-repo-token med contents:write på www.aigap.no).
+    Returnerer False når m.md ikke ble publisert – feilen feiler workflowen, ikke bare en annotation."""
     pat = os.environ.get('AIGAP_PAT')
     if not pat:
-        gh('notice', 'AIGAP_PAT ikke satt – hopper over publisering av m.md (aigap.no)')
-        return
+        gh('error', 'AIGAP_PAT mangler – aigap.no/m.md blir ikke oppdatert')
+        return False
     src = os.path.join(BOOK_DIR, 'b', 'LifeDemandedDeath', 'b_NO_FREE.md')
     if not os.path.isfile(src):
-        gh('warning', f'[{src}] finnes ikke – kan ikke publisere aigap.no/m.md')
-        return
+        gh('error', f'[{src}] finnes ikke – kan ikke publisere aigap.no/m.md')
+        return False
     repo = os.environ.get('AIGAP_REPO', 'gormb/www.aigap.no')
     branch = os.environ.get('AIGAP_BRANCH', 'main')
     url = f'https://x-access-token:{pat}@github.com/{repo}.git'
@@ -373,14 +373,16 @@ def publish_md_to_aigap():
         subprocess.run(['git', '-C', tmp, 'add', 'm.md'], check=True, capture_output=True)
         if subprocess.run(['git', '-C', tmp, 'diff', '--cached', '--quiet']).returncode == 0:
             gh('notice', 'aigap.no/m.md uendret – ingen push')
-            return
+            return True
         subprocess.run(['git', '-C', tmp, 'commit', '-m', 'sync m.md from LifeDemandedDeath b_NO_FREE [skip ci]'],
                        check=True, capture_output=True)
         subprocess.run(['git', '-C', tmp, 'push', 'origin', f'HEAD:{branch}'],
                        check=True, capture_output=True)
         gh('notice', f'publiserte m.md -> {repo} ({branch})')
+        return True
     except subprocess.CalledProcessError as e:
         gh('error', f'publisering av aigap.no/m.md FEIL: {(e.stderr or e.stdout or b"").decode(errors="replace").strip()[:400]}')
+        return False
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -446,9 +448,10 @@ def main():
             log_error(url, key, book, 'download', str(e))
             errors += 1
     print(f'ferdig: {n} bok(er) synkronisert')
+    if not publish_md_to_aigap():
+        errors += 1
     if errors:
         open(marker, 'w').write(f'{errors}\n')  # workflow fails AFTER valid books are pushed
-    publish_md_to_aigap()
 
 if __name__ == '__main__':
     main()
