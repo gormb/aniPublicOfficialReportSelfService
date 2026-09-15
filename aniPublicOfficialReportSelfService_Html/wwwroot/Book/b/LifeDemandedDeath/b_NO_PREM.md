@@ -950,8 +950,8 @@ Det var blitt satt ut styggere bord enn de runde steinbordene.
 Selv med dårlig hørsel hørte jeg cafeeieren for den lekre franske kafeen si “krooonprinsesssen hadde vært der i går”, høyt nok til at alle rundt akkurat så vidt hørte det. “Hvorfor ringte dere meg ikke, jeg skulle jobbe?” sa den nyansatte entusiastisk. Begge så bort på meg med stjålne blikk. Var jeg ønsket innenfor eller uttafor? hverken vet eller veit og er jo ikke egentlig nysgjerrig.
 Heller ikke noe annet enn nøytral til å drikke kaffe på nabobordet til kongelige. Tror jeg. “Alle kjenner kongen” hadde faren til min beste venn sagt til moren hans da hun spurte om hun hadde sett ham før.
 ### Alle kan fortsette å endre seg — p. 167
-🎵 https://aigap.no/mx (https://aigap.no/mx) — p. 167
-Folk som er flinke utvikler seg og blir bedre Jeg tror alle kan endre seg og opplever at alle bare endrer seg i samme retning. Forsetter å endre seg som før.
+🎵 I love Rock and Roll, Joan Jett (https://aigap.no/mx) — p. 167
+Folk som er flinke utvikler seg og blir bedre Jeg tror alle kan endre seg og opplever at alle bare endrer seg i samme retning. Fortsetter å endre seg som før.
 Jeg går ut i fra at jeg ikke skal skjønne hvorfor den ikke virker.
 Det som ligger bak er at mennesket er overlegen.
 Vi har Dett er gøy å snakke med Skrive kode er som å synge i dusjen
