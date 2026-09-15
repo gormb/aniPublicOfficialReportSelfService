@@ -320,7 +320,7 @@ Det var en varm sommerdag og ikke anbefalt å bade innerst i Oslofjorden. Jeg sk
 Han så på meg som et blikk som om han var erfaren veiviser, en av de eneste som kan en vanskelig vei og han kan være best på retning. “Ja. Bakterienviå. På grunn av temperaturen over tid. Jeg jobber for vannverket. Dette kan jeg alt om”. “Men du er i badebukse, du skal vel ikke bade nå med den jobben?”, undret jeg. Det skulle han. “Det er ikke så bra å drikke litervis av dette vannet, vi må være strenge, for barn får jo mye vann i munnen og svelger vannet. Jeg er ikke et barn, og drikker ikke saltvann”
 #### p. 79
 ## Reetabler
-🎵 [https://aigap.no/mltf](https://aigap.no/mltf@)
+🎵 [Learning to Fly; Pink Floyd](https://aigap.no/mltf@)
 Våknet blank, det gamle renset.
 Kroppen gjenlærte å leve.
 Kan man elske uten å ødelegge?

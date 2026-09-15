@@ -462,7 +462,7 @@ He looked at me with a gaze as if he were an experienced guide, one of the few w
 The bacteria level. Due to the temperature over time. I work for the waterworks. I know everything about this". "But you're in swimming trunks; you're not going to swim now with that job?" I wondered. He was. "It's not good to drink liters of this water; we have to be strict, because children get a lot of water in their mouths and swallow water. I'm not a child, and I don't drink saltwater".
 #### p. 79
 ## Rebuild
-🎵 [https://aigap.no/mltf](https://aigap.no/mltf@)
+🎵 [Learning to Fly; Pink Floyd](https://aigap.no/mltf@)
 Woke up blank, old self gone.
 Body learning to live again.
 Can I love without breaking?
@@ -664,7 +664,7 @@ After thanking me for the conversation.
 #### p. 112
 ### Reidar
 🎵 [I'm Too Sexy; Right Said Fred](https://aigap.no/mits)
-🎵 [/gormb.github.io/_?mits](https://gormb.github.io/_?mits)
+🎵 [I'm Too Sexy; Right Said Fred](https://gormb.github.io/_?mits)
 Reidar at the regular haunt for Oslo's swingers clubs. It was safe.
 He could be 65-70 years old. A buxom woman in a summer dress in her 40s walked over with an inviting smile, six Tequilas, lemons, and salt. Set everything on the table. They drank two each, then she turned to me. "I don't know how well you know Reidar, but is he a player?" I replied, "No. I don't know. I don't know him." They drank the last two shots and went out the door.
 In a hurry.
