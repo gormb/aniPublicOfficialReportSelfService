@@ -210,7 +210,7 @@ REDIR = {}  # kode → desc fra Supabase `redir` (samme tabell som play.js/music
 def _redir_name(text, url):
     """Sangnavn fra redir.desc. PDF-en viser ofte bare kort-URL-en (aigap.no/mncty),
     noen steder en egen tekst – navnet skal være det samme begge steder."""
-    k = (url or '').rstrip('/').rsplit('/', 1)[-1]
+    k = re.sub(r'[^a-z0-9]', '', (url or '').rstrip('/').rsplit('/', 1)[-1].lower())
     for key in (k, k[1:] if k.startswith('m') else 'm' + k, k[:-2] if k.endswith('qr') else ''):
         if key and REDIR.get(key):
             return REDIR[key]
