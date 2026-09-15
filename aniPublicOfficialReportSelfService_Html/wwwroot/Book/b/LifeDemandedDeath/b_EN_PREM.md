@@ -462,7 +462,7 @@ He looked at me with a gaze as if he were an experienced guide, one of the few w
 The bacteria level. Due to the temperature over time. I work for the waterworks. I know everything about this". "But you're in swimming trunks; you're not going to swim now with that job?" I wondered. He was. "It's not good to drink liters of this water; we have to be strict, because children get a lot of water in their mouths and swallow water. I'm not a child, and I don't drink saltwater".
 #### p. 79
 ## Rebuild
-🎵 [Learning to Fly; Pink Floyd](https://aigap.no/mltf@)
+🎵 [Learning to Fly; Pink Floyd](https://aigap.no/mltf)
 Woke up blank, old self gone.
 Body learning to live again.
 Can I love without breaking?
