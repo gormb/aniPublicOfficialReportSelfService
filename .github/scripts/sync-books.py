@@ -262,6 +262,7 @@ def _para_lines(spans, keep):
 
 def _md_lines(data, lang, keep, title):
     lines = [f'# {title}'] if title else ['# TOC']
+    lines.append('#### p. 1')  # cover-siden uttrekket hopper over
     songs = {}
     for b in data:
         if b.get('type') == 'link' and b.get('spotify') and b.get('lang') == lang:
