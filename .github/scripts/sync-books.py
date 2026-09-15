@@ -265,9 +265,9 @@ def _md_lines(data, lang, keep, title):
     songs = {}
     for b in data:
         if b.get('type') == 'link' and b.get('spotify') and b.get('lang') == lang:
-            k, t = (b['page'], b['url']), _redir_name(b['text'], b['url'])
+            k, u, t = (b['page'], b['url']), re.sub(r'[@\s]+$', '', b['url']), _redir_name(b['text'], b['url'])
             if k not in songs or _better_song(t, songs[k]['text']):
-                songs[k] = {'text': t, 'url': b['url']}
+                songs[k] = {'text': t, 'url': u}
     by_page = {}
     for (p, _), s in songs.items():
         by_page.setdefault(p, []).append(s)
