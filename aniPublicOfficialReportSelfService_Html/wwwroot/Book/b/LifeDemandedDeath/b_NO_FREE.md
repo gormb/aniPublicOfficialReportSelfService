@@ -708,7 +708,9 @@ Det handler om å se de nye anvendelsene før alle andre ser dem. Ekte nyskaping
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix og løse tanker
 #### p. 166
-Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk kan gi mer dybde til innholdet. Vi kjenner dette fra film og serier. Da TV-serien Miami Vice laget musikk beskrev Jan Hammer musikken som den tredje hovedrolleinnehaveren, filmskapere har både før og etter hatt den innstillingen. Musikken til det enkelte kapittel representerer følelser fra da det ble skrevet.
+Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk dybde og nytt innhold.
+Et eksempel fra film og serier og TV er serien Miami Vice. Jan Hammer, ansvarlig for musikken, så musikken som den tredje hovedrolleinnehaveren i tillegg til Ricardo og Tubbs.
+Filmskapere har både før og etter hatt samme innstilling. I denne boka er musikken til det enkelte kapittel uttrykk for følelser da kapittelet ble skrevet.
 Du som leser kan lage alternativ spilleliste på
 #### p. 167
 ## Uplassert og ubestemt

@@ -701,7 +701,7 @@ Appendix and loose thoughts
 #### p. 166
 ### Meta for book, music, and more
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
-Background music can give atmosphere to the text; associated music can give more depth to the content. We know this from film and TV series. When the TV series Miami Vice made music, Jan Hammer described the music as the third lead actor; filmmakers both before and after have had that attitude. The music of each chapter represents feelings from when it was written.
+Background music can give atmosphere to the text; associated music can give depth and new content. An example from film and TV series is the show Miami Vice. Jan Hammer, responsible for the music, saw the music as the third lead actor in addition to Ricardo and Tubbs. Filmmakers both before and after have had the same attitude. In this book, the music of each chapter is an expression of feelings when the chapter was written.
 You, the reader, can make an alternative playlist at
 #### p. 167
 ## Unplaced & undecided

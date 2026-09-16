@@ -1027,8 +1027,10 @@ Appendix og løse tanker
 ### Meta for bok, musikk og mer
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
 Jeg hadde ikke hørt musikk på lenge. Utsultet på musikk.Bare skriving. Så satte jeg på spillelista for denne boka etter to uker.
-For en variasjon! For et overlesset inntrykk!
-To ytterpunkter for musikkens rolle er bakgrunnsmusikk og assosiert musikk. Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk kan gi mer dybde til innholdet. Vi kjenner dette fra film og serier. Da TV-serien Miami Vice laget musikk beskrev Jan Hammer musikken som den tredje hovedrolleinnehaveren, filmskapere har både før og etter hatt den innstillingen. Musikken til det enkelte kapittel representerer følelser fra da det ble skrevet.
+For en variasjon! Hjernen ble overstimulert av inntrykkene!
+To ytterpunkter for musikkens rolle i historiefortelling er bakgrunnsmusikk og assosiert musikk. Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk dybde og nytt innhold.
+Et eksempel fra film og serier og TV er serien Miami Vice. Jan Hammer, ansvarlig for musikken, så musikken som den tredje hovedrolleinnehaveren i tillegg til Ricardo og Tubbs.
+Filmskapere har både før og etter hatt samme innstilling. I denne boka er musikken til det enkelte kapittel uttrykk for følelser da kapittelet ble skrevet.
 Du som leser kan lage alternativ spilleliste på
 #### p. 167
 ## Uplassert og ubestemt
