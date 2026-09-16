@@ -267,6 +267,7 @@ const books={
             books.play.lang();
             books.play.render.el.page.addEventListener('click',ev=>{const b=ev.target.closest('.spPlay');if(b){ev.preventDefault();books.play.spTgl(b);}});
             const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=8';dbjs.onerror=()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen');document.head.appendChild(dbjs); // SUPABASE config → songs resolve to spotify urls
+            const musicjs=document.createElement('script');musicjs.src='../music.js?v=8';musicjs.onerror=()=>console.warn('[music.js] kunne ikke lastes i bakgrunnen');document.head.appendChild(musicjs); // Music player for Spotify links (aigap.no/m-code) – gormb.github.io/?id har flyttet til aigap.no/id
         }
     }
 };
