@@ -489,18 +489,18 @@ Nå bruker I menn seksuelt for å bruke opp det siste av sosial valuta. Hun har 
 ### G&H; Pappas pappa betaler
 🎵 [Rich Girl; Hall & Oates](https://aigap.no/mrg)
 “Fin veske”, sier jeg til G på kafeen. hun sier at akkurat den vesken var billig. “Jeg har så mange dyre vesker hjemme men liker den så godt og vil aldri skille meg av med den”. “Pen veske” prøver jeg igjen. “Like lite som jeg vil skille meg fra min forlovede gjennom femten år, H”. Hun deler mye, noe gjør vondt, og ingen av oss vet hva.
-Hennes forlovede, H, får ikke lov til å dra på kafeen, det har han aldri fått. H får heller ikke ha sex, G vil ikke lengre, men ingen andre kan få ham. “Se på forlovelsesringen min, og han er så trofast også”, sier G. “Diamanten kostet over hundre tusen. Jeg liker diamanter best, ikke andre stener. Verdi på diamanter som symbolverdi er like gammelt som min familiens rikdom”. Før det var de båtbyggere, på fars, fars, fars, fars, fars, fars side. Siden det har det vært fritidsbåter.
+Hennes forlovede, H, får ikke lov til å dra på kafeen, det har han aldri fått. H får heller ikke ha sex, G vil ikke lenger, men ingen andre kan få ham. “Se på forlovelsesringen min, og han er så trofast også”, sier G. “Diamanten kostet over hundre tusen. Jeg liker diamanter best, ikke andre stener. Verdi på diamanter som symbolverdi er like gammelt som min familiens rikdom”. Før det var de båtbyggere, på fars, fars, fars, fars, fars, fars side. Siden det har det vært fritidsbåter.
 #### p. 119
 G har utnyttet og blitt utnyttet av stamgjestene hun finner attraktive. Sier aldri noe stygt til noen. Unntatt den lille mannen H som sitter hjemme. “Han prøver seg", sier hun. "H minner litt om gartneren til far, han må nesten dresseres”.
-streng tone, som fort faller tilbake i den lune personligheten.
-Søsteren til G har ingen penger. Forskudd på arv endte opp hos en lykkejeger fra Vestlandet, eller rettere sagt en pengeinnkrever noen skyldte penger. En ved Bjerke travbane.
+streng tone, som fort faller tilbake til lun fremtreden.
+Søsteren til G har ingen penger. Forskudd på arv endte opp hos en lykkejeger fra Vestlandet, eller rettere sagt en endte hos en pengeinnkrever man skyldte penger. Ved Bjerke travbane.
 G skal arve tresifret antall millioner, og bestevennen skal være trygg økonomisk. “H skal aldri mangle noe”, sier hun stolt.
 “Utenom frihet, seksualitet, egenverd og handlingsrom”
 hvisker en kafegjest til meg.
-Hennes tilkomne H har paralell til den norske innbygger. G er som norsk offentlig forvaltning. Han tilsvarer norges innovatører. Oljepenger skal gi trygghet, “big mother” skal bestemme alt, folket skal være trygge og beskyttes mot seg selv. “Du vet det ikke er din sterkeste side å behandle penger”, sier G og styrter Tequila nummer tre. Både hun og staten har sett at det går dårlig med innovasjon i frihet i andre land.
-Pengene til G kommer fra at hennes familie, for fem generasjoner siden, startet forfar landhandleri alle måtte passere på vei til brygge på Sørlandet. Penger fra båtbygging og eierandeler fra seilskip..Verken butikk eller båter har
+Hennes tilkomne H har parallell til den norske borger. Som G tilsvarer norsk offentlig forvaltning. Han har samme situasjon som Norges innovatører. Oljepenger skal gi trygghet, så “big mother” skal bestemme alt. Folket skal være trygge og beskyttes mot seg selv. “Det er ikke din sterkeste side å behandle penger”, hadde G sagt til H. Nå styrter hun Tequila nummer tre. Både hun og staten har sett at det går dårlig med innovasjon under frihet i andre land. Man taper alt.
+Pengene til G kommer fra at hennes familie, fem generasjoner siden, startet landhandleri alle måtte passere på vei til en
 #### p. 120
-fantes på over 100 år. Heller ikke arbeidende kapital; bare passivt eierskap. Alle pengene er ikke brukt opp enda. Gamle passive penger uten tilskudd av skapelse.
+brygge på Sørlandet. Penger fra båtbygging og eierandeler fra seilskip. Båter har man ikke eid på over 100 år, ikke landhandleri heller. Heller ikke arbeidende kapital; bare passivt eierskap. Alle pengene er ikke brukt opp enda. Gamle passive bankforvaltede penger uten tilskudd eller tap fra skapelse.
 Pappas pappa fortalte G fra hun var liten av at verden er et kaldt sted, verden består av folk med mye, og folk med for lite. G har forstått at hun alltid skal ha mye, og bestemt seg for at hennes bestevenn H aldri skal ha for lite.
 H tjener dobbelt så mye som G. Han har alltid jobbet hardt og er underbetalt ift verdien han tilfører.
 G leder gartneri i fars venns gartnerkjede. Hennes assistent løser alt unntatt de viktige investeringsbeslutningene.
