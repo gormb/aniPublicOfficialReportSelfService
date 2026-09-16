@@ -1,0 +1,26 @@
+{
+	"_comment": "Bokhylle / shelf – the source of truth for what exists. play.js reads this instead of guessing filenames, which would log a 404 per missing combination.",
+	"_title": "title = custom shelf title, most specific wins: {lg:{ed:'…'}} > {lg:'…'} > '…'. Lookup never crosses languages (NO/EN differ, and PREM/FREE may too). Omit → the open file's own H1, else the folder name.",
+	"_titleShape": "{ \"NO\": { \"PREM\": \"Liv krevde død – Premium\", \"FREE\": \"Liv krevde død\" }, \"EN\": \"Life demanded Death\" }  ·  flat \"NO_PREM\" keys also work",
+	"_editions": "lg × ed must exist as b/<book>/b_<lg>_<ed>.md . A book that only has a PDF omits lg/ed and sets pdf instead.",
+	"_files": "b/<book>/b_<lg>_<ed>.md  ·  b/<book>/b.pdf",
+	"books": [
+		{
+			"book": "LifeDemandedDeath",
+			"title": { "NO": "Liv krevde død", "EN": "Life demanded Death" },
+			"lg": ["NO", "EN"],
+			"ed": ["PREM", "FREE"]
+		},
+		{
+			"book": "ABook",
+			"title": { "NO": "Navnet På Boken", "EN": "The Name of the Book" },
+			"lg": ["NO", "EN"],
+			"ed": ["PREM", "FREE"]
+		},
+		{
+			"book": "CV",
+			"title": "CV Gorm Braarvig",
+			"pdf": "b/CV/b.pdf"
+		}
+	]
+}

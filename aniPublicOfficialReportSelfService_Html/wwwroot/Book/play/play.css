@@ -34,6 +34,40 @@ body{
 #dbNavList a{display:block;padding:.05em .4em;color:inherit;text-decoration:none;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 #dbNavList a:hover{background:#eee;}
 #dbNavList a.on{font-weight:700;background:#ececec;}
+/* "go to level above" – always the first entry in a level's nav list */
+#dbNavList a.lvup{font-style:italic;color:#666;border-bottom:1px solid #ddd;margin-bottom:.2em;}
+#dbNavList .off{display:block;padding:.05em .4em;font-style:italic;color:#bbb;white-space:nowrap;}
+/* nav rows: the node you are on (lvnode) vs the leaves inside it */
+#dbNavList a.lvnode{box-shadow:inset 3px 0 0 #bbb;}
+#dbNavList .lvleaf{opacity:.85;display:block;padding:.05em .4em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+/* pl3 – two hierarchies side by side: pages │ paragraphs, both cells drillable */
+#dbNavList .navhier{display:block;border-left:2px solid #ccc;margin:.1em 0 .35em .15em;padding-left:.15em;}
+#dbNavList table.navtab{width:100%;border-collapse:collapse;table-layout:fixed;margin:0;border:1px solid #ccc;} /* boxed in */
+#dbNavList table.navtab td{vertical-align:top;padding:0;border:0;}
+#dbNavList table.navtab td.navnode{border-bottom:1px solid #ddd;background:#f7f7f7;}
+#dbNavList table.navtab td.navpg{width:4.2em;white-space:nowrap;}
+#dbNavList table.navtab td.navpg a{padding:.05em .2em;}
+#dbNavList table.navtab td.navpar{border:1px solid #999;border-radius:2px;} /* solid frame around the paragraph */
+#dbNavList table.navtab td.navpar a{padding:.05em .25em;}
+/* pl7/pl8 – the word or glyph itself */
+.wbig{font-size:2.4em;line-height:1.2;margin:.2em 0;word-break:break-word;}
+/* pl0 – the edit window for what books and versions are available */
+.seBook{border:1px solid #ddd;border-radius:4px;padding:.4em .5em;margin:.5em 0;background:#fafafa;}
+.seRow{display:flex;gap:.4em;align-items:center;margin:.15em 0;}
+.seBook .seRow .seId{flex:1;font-weight:700;}
+.seV{display:flex;gap:.35em;align-items:center;margin:.12em 0 .12em 1.2em;font-size:.95em;}
+.seV .seT{flex:1;min-width:0;}
+.seId,.seT{font:inherit;padding:.05em .3em;border:1px solid #ccc;border-radius:3px;background:#fff;}
+.seHint{font-size:.85em;color:#666;}
+.seMsg{margin-left:.5em;font-size:.9em;color:#070;}
+.seOpen{margin-left:.2em;color:#0645ad;text-decoration:none;white-space:nowrap;font-size:.9em;}
+.seOpen:hover{text-decoration:underline;}
+.seVers{display:flex;flex-direction:column;gap:.15em;margin:.3em 0;}
+.seVers .seOpen{display:block;margin:0;font-size:1.05em;}
+#dbNavList a.lvup.on{color:#0645ad;font-style:normal;font-weight:700;}
+.seJson{font-size:.8em;background:#f4f4f4;border:1px solid #e0e0e0;border-radius:4px;padding:.5em;overflow:auto;max-height:40vh;}
+/* shelf: folder name shown after the title when the two differ */
+#dbNavList .bid{opacity:.45;font-size:.8em;font-style:normal;}
 #dbNavList .th{font-weight:700;color:#555;margin-top:.25em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 #dpBook{grid-column:2;min-height:0;overflow:auto;padding:20mm;}
 #dbPlay{grid-column:3;display:flex;flex-direction:column;min-height:0;border-left:1px solid #999;}
@@ -55,5 +89,11 @@ h2 a,h3 a{color:inherit;text-decoration:none;}
 .mfpath{font-size:.85em;color:#888;font-style:italic;}
 .spPlay{font-size:1.05em;line-height:1;padding:.1em .45em;cursor:pointer;margin-right:.4em;}
 .spotify-inline{display:none;width:100%;border:0;border-radius:12px;margin:.5em 0;}
-#_spCollapse{position:fixed;left:0;top:60%;transform:translateY(-50%) scale(.7);filter:grayscale(1);z-index:100;background:transparent;border:0;box-shadow:none;padding:0;}
+/* pl3 Underkapittel – the song carried by the chosen sub chapter */
+.subsong{border-top:1px solid #ccc;border-bottom:1px solid #ccc;padding:.3em 0;margin:.2em 0 .6em;font-size:.95em;color:#333;}
+.subsong b{font-family:monospace;}
+.subsong a{color:inherit;}
+.subsong img{height:48px;vertical-align:middle;image-rendering:pixelated;}
+/* PDF-only book (no markdown yet) – the PDF is the whole content */
+.pdfview{width:100%;height:80vh;border:0;}
 
