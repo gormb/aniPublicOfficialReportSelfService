@@ -1,5 +1,5 @@
-# Liv krevde død
 #### p. 1
+# Liv krevde død
 #### p. 2
 ## Nullsum
 🎵 [Spotify Playlist](https://aigap.no/mlist)
@@ -1007,7 +1007,7 @@ Gamle veier dør eller vi dør med dem.
 Hjelpe folk og grupper gjennom endring. I mange år jobbet jeg som strategisk virksomhetsarkitekt innen digitalisering.
 Kompetanse på endringsledelse er ikke et krav til oss som lager målbilder, men må til for å få folk til å strekke seg.
 Endringsledelse anbefaler jeg for alle, jeg har to versjoner, rammeverket ADKAR og rammeverket “vil ikke, kan ikke”.
-ADKAR er nyttig for refleksjon, den andre for gjennomføring
+Den ene er nyttig for refleksjon, den andre for gjennomføring
 #### p. 163
 ### Åpenhet for nytenking;
 🎵 [Open Your Mind; U.S.U.R.A.](https://aigap.no/moym)

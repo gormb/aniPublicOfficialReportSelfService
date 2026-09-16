@@ -1,5 +1,5 @@
-# Life demanded Death
 #### p. 1
+# Life demanded Death
 #### p. 2
 ## Zero Sum
 🎵 [Spotify Playlist](https://aigap.no/mlist)
@@ -972,7 +972,7 @@ Open your mind.
 🎵 [Turn! Turn! Turn!; The Byrds](https://aigap.no/mttt)
 Helping people and groups through change. For many years, I worked as a strategic enterprise architect in digitalization.
 Competence in change management is not a requirement for those of us who create target images, but it is needed to get people to stretch. I recommend change management for everyone; I have two versions, the ADKAR framework and the "won't, can't"
-framework. ADKAR is useful for reflection; the other for execution.
+framework. The first is useful for reflection; the other for execution.
 #### p. 163
 ### Openness to new thinking;
 🎵 [Open Your Mind; U.S.U.R.A.](https://aigap.no/moym)

@@ -1,5 +1,5 @@
-# Life demanded Death
 #### p. 1
+# Life demanded Death
 #### p. 2
 ## Zero Sum
 🎵 [Spotify Playlist](https://aigap.no/mlist)
@@ -685,7 +685,7 @@ Open your mind.
 ### Change Management
 🎵 [Turn! Turn! Turn!; The Byrds](https://aigap.no/mttt)
 ADKAR framework and the "won't, can't"
-framework. ADKAR is useful for reflection; the other for execution.
+framework. The first is useful for reflection; the other for execution.
 #### p. 163
 ### Openness to new thinking;
 🎵 [Open Your Mind; U.S.U.R.A.](https://aigap.no/moym)

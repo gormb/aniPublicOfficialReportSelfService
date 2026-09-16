@@ -1,5 +1,5 @@
-# Liv krevde død
 #### p. 1
+# Liv krevde død
 #### p. 2
 ## Nullsum
 🎵 [Spotify Playlist](https://aigap.no/mlist)
@@ -693,7 +693,7 @@ Gamle veier dør eller vi dør med dem.
 ### Endringsledelse
 🎵 [Turn! Turn! Turn!; The Byrds](https://aigap.no/mttt)
 ADKAR og rammeverket “vil ikke, kan ikke”.
-ADKAR er nyttig for refleksjon, den andre for gjennomføring
+Den ene er nyttig for refleksjon, den andre for gjennomføring
 #### p. 163
 ### Åpenhet for nytenking;
 🎵 [Open Your Mind; U.S.U.R.A.](https://aigap.no/moym)
