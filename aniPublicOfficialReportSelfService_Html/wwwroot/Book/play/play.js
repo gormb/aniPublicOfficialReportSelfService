@@ -49,14 +49,15 @@ const books={
             }
         }
         ,book:'LifeDemandedDeath',lg:'NO',ed:'PREM',shelf:null
-        ,fnOf:()=>'b/'+books.play.book+'/b_'+books.play.lg+'_'+books.play.ed+'.md'
+        ,root:'../' // play/ lives under Book/ – data root (b/, music.js) sits one level up
+        ,fnOf:()=>books.play.root+'b/'+books.play.book+'/b_'+books.play.lg+'_'+books.play.ed+'.md'
         ,open:(lg,ed)=>{books.play.lg=lg||books.play.lg;books.play.ed=ed||books.play.ed;lang.textContent=books.play.lg==='NO'?'🇳🇴':'🇬🇧';ver.textContent=books.play.ed==='PREM'?'👑':'🔓';books.play.md.set(books.play.fnOf());}
         ,lang:()=>{books.play.open(/NO_/.test(books.play.md.fn)?'EN':'NO');}
         ,ver:()=>{books.play.open(books.play.lg,books.play.ed==='PREM'?'FREE':'PREM');}
         ,pick:b=>{books.play.book=b;books.play.open(/NO_/.test(books.play.md.fn)?'NO':'EN');}
         ,probe:async()=>{
             const cs=[];
-            books.play.md.books.forEach(b=>['NO','EN'].forEach(lg=>['FREE','PREM'].forEach(ed=>cs.push({book:b,lg,ed,fn:'b/'+b+'/b_'+lg+'_'+ed+'.md'}))));
+            books.play.md.books.forEach(b=>['NO','EN'].forEach(lg=>['FREE','PREM'].forEach(ed=>cs.push({book:b,lg,ed,fn:books.play.root+'b/'+b+'/b_'+lg+'_'+ed+'.md'}))));
             const ok=[];
             for(const c of cs){let good=false;try{const r=await fetch(c.fn,{cache:'no-store'});good=r.ok;}catch(e){}if(good)ok.push(c);}
             books.play.shelf=ok;
@@ -267,7 +268,7 @@ const books={
             books.play.lang();
             books.play.render.el.page.addEventListener('click',ev=>{const b=ev.target.closest('.spPlay');if(b){ev.preventDefault();books.play.spTgl(b);}});
             const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=8';dbjs.onerror=()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen');document.head.appendChild(dbjs); // SUPABASE config → songs resolve to spotify urls
-            const musicjs=document.createElement('script');musicjs.src='../music.js?v=8';musicjs.onerror=()=>console.warn('[music.js] kunne ikke lastes i bakgrunnen');document.head.appendChild(musicjs); // Music player for Spotify links (aigap.no/m-code) – gormb.github.io/?id har flyttet til aigap.no/id
+            const musicjs=document.createElement('script');musicjs.src=books.play.root+'music.js?v=8';musicjs.onerror=()=>console.warn('[music.js] kunne ikke lastes i bakgrunnen');document.head.appendChild(musicjs); // Music player for Spotify links (aigap.no/m-code) – gormb.github.io/?id har flyttet til aigap.no/id
         }
     }
 };
