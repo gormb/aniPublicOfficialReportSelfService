@@ -261,8 +261,7 @@ def _para_lines(spans, keep):
     return paras
 
 def _md_lines(data, lang, keep, title):
-    lines = [f'# {title}'] if title else ['# TOC']
-    lines.append('#### p. 1')  # cover-siden uttrekket hopper over
+    lines = ['#### p. 1', f'# {title}']  # side 1 er cover – sidemarkøren kommer først
     songs = {}
     for b in data:
         if b.get('type') == 'link' and b.get('spotify') and b.get('lang') == lang:
@@ -291,9 +290,9 @@ def _md_lines(data, lang, keep, title):
             lines.extend(_para_lines(b['spans'], keep))
     return lines
 
-def _md_files(base, doc, style, data):
+def _md_files(base, doc, style, data, book):
     for lang, label in (('no', 'NO'), ('en', 'EN')):
-        title = _title(doc, style, lang) or 'TOC'
+        title = _title(doc, style, lang) or book
         for mode, keep in (('FREE', {'free', 'common'}), ('PREM', {'premium', 'common'})):
             lines = _md_lines(data, lang, keep, title)
             with open(f'{base}_{label}_{mode}.md', 'w', encoding='utf-8') as f:
@@ -315,7 +314,7 @@ def extract(pdf_path):
     doc = _fitz.open(pdf_path)
     style = _pdf_style(doc)
     data = _data(doc, style)  # port av cBook.data.get(): kapittel/sub via y-posisjon
-    _md_files(base, doc, style, data)
+    _md_files(base, doc, style, data, os.path.basename(os.path.dirname(pdf_path)))
     print(f'[{os.path.basename(pdf_path)}] tekstuttrekk: NO/EN × FREE/PREM .md')
 
 def gh(kind, msg):
