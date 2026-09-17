@@ -1,8 +1,8 @@
 <!doctype html>
-<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=1"></head>
+<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=2"></head>
 <body>
 <!-- menu -->
-    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><span id="dpCur"></span></div>
+    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><span id="hiId">L.N.F.R.Ka.Vib.T</span><span id="dpCur"></span></div>
 <!-- nav -->
     <div id="dbNav"><div id="dbNavHead"><button id="lang">🇳🇴</button><button id="ver">👑</button><span id="dbTitle"></span></div><div id="dbNavList"></div></div>
 <!-- book -->
@@ -14,26 +14,25 @@
         </div><div id="dbPlayArea">
             <hr>
             <ul id="lvGuide"></ul></div>
-            <!-- Edit lvGuide content in play.js bellow books.play.LV  -->
+            <!-- Populated by play.js books.play.LV  -->
             <hr>
             Lekegrind for KI med verktøy for å lage, utbedre og nyte bøker på forskjellige semantiske zoom- og detaljnivåer:
-            Book Version (on Shelf), Main Chapter (of book), Sub Chapter (of main chapter), Page (in sub chapter), Paragraph (in sub chapter), Sentence (in paragraph), Word (in sentence), Character (of word), Presentation (of Character).
             Each level has a guiding line for the reader and a set of features for the AI to apply. The levels are pl0..pl3, then pl4a/pl4b, pl5a/pl5b, pl6a/pl6b (a = text spine, b = page spine), with pl_dev_0 for development notes.
             <hr>
             <div id="pl_dev_0">Dev – what is relevant?
                 <details><summary>Thoughts</summary>Keep extremely short as usual! put under books.play so that it can be integrated other places later</details>
-                <details><summary>Structure</summary>Bokhylle › Bokeksemplar › Hovedkapittel › Underkapittel — which splits into<br>• Bokside → Bokstav, Medieform (the presented unit &amp; its media)<br>• Paragraf → Setning → Ord (the text)<br>Medieform is multi-modal: one row per modality – visual (forgrunn/bakgrunn/bilde), auditory (Spotify Play), motion (video) – so a 🎵 song is the auditory media form of its page.<br>Hierarchy is data, not code: parents in books.play.up, names/text in books.play.LV.
-                        <ol>    <li>Make existing navigation match the level list pl0..pl6b<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
-                                <li>Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
-                                <li>Hold this text (to guide user)<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
-                                <li>Hold features (to make available to user)<details><summary>Thoughts</summary>plN sets levels, so binary filters make sense for mapping features to levels: each feature gets a bitmask of the levels where it applies. Example: "look up word" only on pl6a/pl5b, "pick book" only on pl0.</details></li>
-                                <li>Map features to levels and other structures<details><summary>Thoughts</summary>Keep the mapping as data, not code: feature ↔ level mask, plus optional anchors into the other structures (book, chapter, page, paragraph, word), so one feature list drives navigation, help text and AI tools alike.</details></li>
-                                <li>One axis, two directions<details><summary>Thoughts</summary>Zoom out (Ord → Bokhylle) trades detail for overview; zoom in trades overview for detail. Each level knows its coarser parent and finer child, so one-step navigation is always defined.</details></li>
-                                <li>Levels as data, not headings<details><summary>Thoughts</summary>Treat pl0…pl6b as an ordered array with a stable id (plN), so features can reference levels by id and bitmask instead of by duplicated markup.</details></li>
+                <details><summary>Structure</summary>Bokhylle › Bokeksemplar › Hovedkapittel › Underkapittel — which splits into<br>• Bokside → Bokstav → Medieform (the presentation)<br>• Paragraf → Setning → Ord (the text)<br>The spines never cross: a page carries its characters and its media, a word ends the text spine.<br>One source line = one paragraph; a line that resumes a sentence cut by a page marker or a line break joins the same paragraph, which can span pages (pn–pn2).<br>Medieform is multi-modal – Forgrunn, Bakgrunn, Lyd (Spotify Play), Bevegelse – one row per modality, drawn in the page.<br>Hierarchy is data: parents in books.play.up, names/text/features in books.play.LV. The nav shows the selected node and its leaves, ⬆ goes to the parent node, 🫲/🫱 walk the siblings.<br>Levels: pl0 shelf, pl1 version, pl2 main chapter, pl3 sub chapter (the fork: pages │ paragraphs), pl4b page, pl5b character, pl6b media form, pl4a paragraph, pl5a sentence, pl6a word.
+                        <ol>    <li>DONE: Make existing navigation match the level list pl0..pl6b<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
+                                <li>DOING: Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
+                                <li>DONE: Hold this text (to guide user)<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
+                                <li>DOING: Hold features (to make available to user)<details><summary>Thoughts</summary>plN sets levels, so binary filters make sense for mapping features to levels: each feature gets a bitmask of the levels where it applies. Example: "look up word" only on pl6a/pl5b, "pick book" only on pl0.</details></li>
+                                <li>DOING: Map features to levels and other structures<details><summary>Thoughts</summary>Keep the mapping as data, not code: feature ↔ level mask, plus optional anchors into the other structures (book, chapter, page, paragraph, word), so one feature list drives navigation, help text and AI tools alike.</details></li>
+                                <li>DONE: One axis, two directions<details><summary>Thoughts</summary>Zoom out (Ord → Bokhylle) trades detail for overview; zoom in trades overview for detail. Each level knows its coarser parent and finer child, so one-step navigation is always defined.</details></li>
+                                <li>DONE: Levels as data, not headings<details><summary>Thoughts</summary>Treat pl0…pl6b as an ordered array with a stable id (plN), so features can reference levels by id and bitmask instead of by duplicated markup.</details></li>
                         </ol></div>
                 </details>
     </div>
     <hr>
-    <script src="play.js?v=1"></script>
+    <script src="play.js?v=2"></script>
 </body>
 </html>
