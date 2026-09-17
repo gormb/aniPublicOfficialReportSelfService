@@ -14,25 +14,35 @@ const books={
                 books.play.md.title=(md[ti]||'').replace(/^#+\s*/,'').trim();
                 const body=md.filter((_,i)=>i!==ti); // the title is drawn from {t:1} – keep it out of the body
                 books.play.md.pages=[];books.play.md.pgs=[];
-                let cur=null,par=[],last='',pnCur=0; // pnCur = running page cursor: "#### p. N" sets it, every block inherits it
-                const flush=()=>{if(cur&&par.length){cur.ps.push(par.join(' '));par=[];}};
+                let cur=null,last='',pnCur=0,tail=null; // pnCur = running page cursor: "#### p. N" sets it, every block inherits it. tail = the paragraph last written, so a cut line can be continued
                 body.forEach(l=>{
-                    const h=l.match(/^(#{2,4})\s+(.*)$/);
-                    if(h){flush();if(cur&&(cur.h||cur.ps.length)){cur.e=books.play.render.sent(last);books.play.md.pages.push(cur);} 
+                    const pm=l.match(/^#{3,4}\s*p\.\s*(\d+)\s*$/i),h=pm?null:l.match(/^(#{2,4})\s+(.*)$/);
+                    if(pm){ // a page marker: a new page and nothing more – whether the text continues is decided by the next line
+                        if(cur&&(cur.h||cur.ps.length)){cur.e=books.play.render.sent(last);books.play.md.pages.push(cur);}
+                        pnCur=+pm[1];
+                        cur={h:null,pn:pnCur,ps:[]};
+                    }else if(h){if(cur&&(cur.h||cur.ps.length)){cur.e=books.play.render.sent(last);books.play.md.pages.push(cur);} 
                         const k=h[1].length,raw=h[2].trim(),own=+(raw.match(/p\.\s*(\d+)/i)||[,0])[1];
                         if(own)pnCur=own; // page markers ("#### p. N") advance the cursor; a heading may also carry "- p. N"
-                        cur={h:k>=4?null:[k,raw.replace(/\s*[\u2013\u2014-]\s*p\.\s*\d+\s*$/i,'').trim()],pn:pnCur,ps:[]};last='';
-                    }else if(!l.trim())flush();
-                    else{
+                        cur={h:k>=4?null:[k,raw.replace(/\s*[\u2013\u2014-]\s*p\.\s*\d+\s*$/i,'').trim()],pn:pnCur,ps:[]};last='';tail=null;
+                    }else{
+                        const _l=l.trim();if(!_l)return; // one line = one paragraph
                         if(!cur)cur={h:null,pn:pnCur,ps:[]};
-                        const _l=l.trim(),_m=/^\u{1F3B5}/u.test(_l);
-                        if(!_m&&_l)books.play.md.pgs.push({pn:cur.pn||pnCur,txt:_l});
-                        if(cur.h&&!cur.ps.length&&!par.length&&_m&&_l.match(/https?:\/\/[^\s)]+/))cur.mu=_l.match(/https?:\/\/[^\s)]+/)[0];
-                        else par.push(_m?books.play.render.mus(_l):books.play.render.esc(_l));
+                        const _m=/^\u{1F3B5}/u.test(_l),pn=cur.pn||pnCur;
+                        if(!_m&&tail&&!books.play.render.sent(last)&&(books.play.render.hangs(tail.p.txt)||/^[a-zæøåäöéü,;:.)”»]/.test(_l))){ // the line above was cut mid-sentence – this is the rest of that paragraph
+                            tail.p.txt+=' '+_l;tail.ps[tail.ps.length-1]+=' '+books.play.render.esc(_l);
+                            if(tail.p.pn!==pn){tail.p.pn2=pn;cur.fr=(cur.fr?cur.fr+' ':'')+books.play.render.esc(_l);} // it ran onto this page, which starts with the fragment
+                            if(books.play.render.sent(_l))tail=null;
+                        }else{
+                            tail=null;
+                            if(!_m)books.play.md.pgs.push({pn,txt:_l});
+                            if(cur.h&&!cur.ps.length&&_m&&_l.match(/https?:\/\/[^\s)]+/))cur.mu=_l.match(/https?:\/\/[^\s)]+/)[0];
+                            else cur.ps.push(_m?books.play.render.mus(_l):books.play.render.esc(_l));
+                            tail=_m?null:{p:books.play.md.pgs[books.play.md.pgs.length-1],ps:cur.ps};
+                        }
                         last=_l;
                     }
                 });
-                flush();
                 if(cur&&(cur.h||cur.ps.length)){cur.e=books.play.render.sent(last);books.play.md.pages.push(cur);}
                 books.play.md.sts=[];
                 books.play.md.pages.forEach((p,i)=>p.pgi=i); // global page index – lets a page node address its own layer (pl4b)
@@ -303,18 +313,23 @@ const books={
                     // The vertical line divides the columns, the paragraph cell is framed solid, and BOTH cells drill
                     // (page → pl4b, paragraph → pl4a). Rows run to the longer of the two lists; the shorter column stays blank.
                     ,()=>{const su=md.subs[R.su];if(!su)return [];
-                        const h=su[0].h,pns=new Set(su.map(p=>p.pn)),pars=md.pgs.map((p,i)=>({p,i})).filter(x=>pns.has(x.p.pn)),rows=Math.max(su.length,pars.length);
+                        const h=su[0].h,pns=new Set(su.map(p=>p.pn)),pars=md.pgs.map((p,i)=>({p,i})).filter(x=>pns.has(x.p.pn));
                         let t='<table class="navtab"><tr><td colspan="2" class="navnode">'
                             +a2(h?h[1]:'','data-su="'+R.su+'" class="lvnode on"',0,(h&&ic[h[0]])||'📑')+'</td></tr>';
-                        for(let j=0;j<rows;j++){const pg=su[j],p=pars[j];
-                            t+='<tr><td class="navpg">'+(pg?a2('#'+pg.pn,'data-i="'+(pg.pgi+1)+'" data-m="4" data-su="'+R.su+'"',0,'📄'):'')+'</td>'
-                              +'<td class="navpar">'+(p?a2(p.p.txt.slice(0,60),'data-i="'+p.i+'" data-m="5" data-su="'+R.su+'"',0,'¶'):'')+'</td></tr>';}
+                        for(let j=0;j<pars.length;){ // one row per paragraph; the page cell spans every paragraph on that page
+                            const p=pars[j].p,pn=p.pn,lab='#'+pn+(p.pn2&&p.pn2!==pn?'–'+p.pn2:'');let nc=1;
+                            while(j+nc<pars.length&&pars[j+nc].p.pn===pn)nc++;
+                            const row=k=>'<td class="navpar">'+a2(pars[j+k].p.txt.slice(0,60),'data-i="'+pars[j+k].i+'" data-m="5" data-su="'+R.su+'"',0,'¶')+'</td>';
+                            t+='<tr><td class="navpg" rowspan="'+nc+'">'+a2(lab,'data-i="'+(R.pgiOf(pn)+1)+'" data-m="4" data-su="'+R.su+'"',0,'📄')+'</td>'+row(0)+'</tr>';
+                            for(let k=1;k<nc;k++)t+='<tr>'+row(k)+'</tr>';
+                            j+=nc;
+                        }
                         return ['<div class="navhier">'+t+'</table></div>'];
                     }
                     // pl4b – the page you are on (node) with its paragraphs beneath it (leaves)
                     ,()=>{const pg=md.pages[R.pi];if(!pg)return [];
                         return [a2(pg.h?pg.h[1]:'#'+pg.pn,'class="lvnode on"',0,'📄')]
-                            .concat(md.pgs.map((p,i)=>({p,i})).filter(x=>x.p.pn===pg.pn).map(x=>a(x.p.txt.slice(0,32),x.i,1,'¶',5)));}
+                            .concat(md.pgs.map((p,i)=>({p,i})).filter(x=>x.p.pn===pg.pn||x.p.pn2===pg.pn).map(x=>a(x.p.txt.slice(0,32),x.i,1,'¶',5)));}
                     // pl4a – the paragraph you are on (node) with its sentences beneath it (leaves)
                     ,()=>{const p=md.pgs[R.idx];if(!p)return [];
                         return [a2(p.txt.slice(0,34),'class="lvnode on"',0,'¶')]
@@ -423,10 +438,11 @@ const books={
                     +bar+'</div>';
             }
             ,sent:s=>/[.!?\u2026]["'\u201D\u2019\u00BB]?$/.test(s.trim())
+            ,hangs:s=>/(^|[\s"'“‘(\[«])(på|i|og|som|til|med|av|for|en|et|den|det|de|at|om|men|å|er|var|fra|ved|ut|inn|opp|ned|seg|ikke|så|når|da|her|der|hva|hvis|enn|mens|etter|før|under|over|mellom|mot|blir|ble|har|hadde|kan|skal|vil|må|the|of|and|to|a|in|is|was|it|that|with|for|on|as|at|by|from|but|or)$/i.test(s.trim()) // a line that cannot end there
             ,sentT:s=>(s.match(/[^.!?\u2026]+[.!?\u2026]+["'\u201D\u2019\u00BB]?|\S[^.!?\u2026]*$/g)||[]).map(x=>x.trim()).filter(Boolean)
             ,head:p=>{const t=p.h&&p.h[1];if(!t)return '';const h=p.h[0]===2?'h2':'h3',s=books.play.render.slug(t);return '<'+h+(s?' id="'+s+'"':'')+'>'+books.play.render.esc(t)+(p.mu?' <a href="'+p.mu+'">\u{1F3B5}'+books.play.render.qr(p.mu):'')+'</'+h+'></a>'}
-            ,page:p=>{return (p.pn?'<a id="p'+p.pn+'"></a>':'')+(p.t?'<h1>'+books.play.render.esc(books.play.md.title)+'</h1>':books.play.render.head(p)+p.ps.join('<br>'));}
-            ,flow:a=>{let o='',br=1;a.forEach(p=>{const f=books.play.render.page(p);o+=o?(br?'<br>':' ')+f:f;br=p.e?1:0;});return o;}
+            ,page:(p,fr)=>(p.pn?'<a id="p'+p.pn+'"></a>':'')+(p.t?'<h1>'+books.play.render.esc(books.play.md.title)+'</h1>':books.play.render.head(p)+(fr&&p.fr?'<p>'+p.fr+'</p>':'')+p.ps.map(x=>'<p>'+x+'</p>').join(''))
+            ,flow:a=>a.map(p=>books.play.render.page(p)).join('') // the reading view: a paragraph is drawn once, where it starts
             ,views:()=>books.play.pdf // a PDF-only book has no levels to zoom through – the PDF is the whole content
                 ?['<embed class="pdfview" src="'+books.play.root+books.play.pdf+'" type="application/pdf">']
                 :books.play.render.viewsMd()
@@ -439,8 +455,8 @@ const books={
                 ,()=>[books.play.render.flow(books.play.md.chs[books.play.render.ch]||[])]
                 // pl3 – the selected sub chapter: 🎵 song + text, one item per page (pages listed in the nav)
                 ,()=>[books.play.render.subView()]
-                ,()=>[{t:1}].concat(books.play.md.pages).map(books.play.render.page)
-                ,()=>books.play.md.pgs.map(p=>books.play.render.esc(p.txt))
+                ,()=>[{t:1}].concat(books.play.md.pages).map((p,i)=>books.play.render.page(p,i>0)) // a page also opens with the fragment a paragraph continues with
+                ,()=>books.play.md.pgs.map(p=>'<p>'+books.play.render.esc(p.txt)+'</p>')
                 ,()=>books.play.md.sts.map(s=>books.play.render.esc(s.txt))
                 // pl6a Ord – the word itself
                 ,()=>{const st=books.play.md.sts[books.play.render.si],w=st?((st.txt.match(/\S+/g)||[])[books.play.render.wi]||''):'';
