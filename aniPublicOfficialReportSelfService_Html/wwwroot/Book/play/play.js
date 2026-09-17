@@ -1,7 +1,7 @@
 const books={
     play:{
         md:{
-            fn:'',txt:'',title:'',pages:[],chs:[],subs:[],subCh:[]
+            fn:'',txt:'',title:'',pages:[],pgs:[],sts:[],tr:[],chs:[],subs:[],subCh:[]
             ,books:['LifeDemandedDeath','CV','ABook']
             ,set:_fn=>{if(_fn!==books.play.md.fn){books.play.md.fn=_fn;books.play.md.load();}}
             ,load:()=>fetch(books.play.md.fn,{cache:'no-store'}).then(r=>r.text()).then(t=>{books.play.md.txt=t;books.play.md.parse();}).catch(()=>{books.play.render.el.page.innerHTML='Fant ikke '+books.play.md.fn;})
@@ -35,7 +35,7 @@ const books={
                 flush();
                 if(cur&&(cur.h||cur.ps.length)){cur.e=books.play.render.sent(last);books.play.md.pages.push(cur);}
                 books.play.md.sts=[];
-                books.play.md.pages.forEach((p,i)=>p.pgi=i); // global page index – lets a page node address its own layer (pl4)
+                books.play.md.pages.forEach((p,i)=>p.pgi=i); // global page index – lets a page node address its own layer (pl4b)
                 books.play.md.pgs.forEach(p=>{const ss=books.play.render.sentT(p.txt);ss.forEach(s=>books.play.md.sts.push({pn:p.pn,txt:s}));});
                 books.play.md.tr=[];
                 body.forEach(l=>{const h=l.match(/^(#{2,4})\s+(.*)$/),s=l.trim(),_m=/^\u{1F3B5}/u.test(s);if(h)books.play.md.tr.push({h:1,d:h[1].length-2,t:h[2].trim()});else if(s&&!_m)books.play.md.tr.push({h:0,t:s});});
@@ -88,18 +88,18 @@ const books={
         }
         ,nodename:pl=>{ // the ACTUAL node sitting at that level right now – the level's own name is only metadata
             const md=books.play.md,R=books.play.render,sg=books.play.render.slug;
-            const bk=books.play.book,bt=books.play.titleOf(bk);
-            const ch=(md.chs[R.ch]||[])[0],su=(R.cSub()||[])[0],pg=md.pages[R.pi]||{};
+            const bk=books.play.book,bt=books.play.titleOf(bk),w=(((md.sts[R.curSent()]||{}).txt||'').match(/\S+/g)||[])[R.wi]||'';
+            const ch=(md.chs[R.ch]||[])[0],su=(R.cSub()||[])[0],pg=md.pages[R.curPage()]||{};
             const one=s=>String(s||'').slice(0,40);
             return ({
                 pl0:bk?(bk+(sg(bt)===sg(bk)?'':' · '+bt)):'',                                    // the book on the shelf
                 pl1:md.title?(books.play.flag(books.play.lg)+books.play.edIc(books.play.ed)+' '+books.play.titleOf(bk,books.play.lg,books.play.ed)):'', // the book copy you are reading
-                pl2:ch?ch.h[1]:'',                                                               // the main chapter
-                pl3:su?su.h[1]:'',                                                               // the sub chapter
-                pl4:pg.h?pg.h[1]:(pg.pn?'#'+pg.pn:''),                                          // the page
-                pl5:one((md.pgs[R.idx]||{}).txt),                                                // the paragraph
-                pl6:one((md.sts[R.idx]||{}).txt),                                                // the sentence
-                pl7:'',pl8:'',pl9:''                                                             // not tracked yet → caller falls back to the level name
+                pl2:ch&&ch.h?ch.h[1]:'',                                                               // the main chapter
+                pl3:su&&su.h?su.h[1]:'',                                                               // the sub chapter
+                pl4b:pg.h?pg.h[1]:(pg.pn?'#'+pg.pn:''),                                          // the page
+                pl4a:one((md.pgs[R.curPar()]||{}).txt),                                                // the paragraph
+                pl5a:one((md.sts[R.curSent()]||{}).txt),                                                // the sentence
+                pl6a:w,pl5b:[...w][R.idx]||'',pl6b:pg.h?pg.h[1]:(pg.pn?'p. '+pg.pn:'')                                                           // not tracked yet → caller falls back to the level name
             })[pl]||'';
         }
         ,pick:b=>{books.play.book=b;const vs=(books.play.shelf||[]).filter(x=>x.book===b); // keep the variant if this book has it, else take one it does
@@ -208,7 +208,7 @@ const books={
             if(f){f.src='about:blank';f.style.display='none';f.title='';}
             if(c)c.style.display='none';
         }
-        ,spTgl:async(e)=>{ // ONE shared player (in the pl9 media view) + ONE 🎶 stop button
+        ,spTgl:async(e)=>{ // ONE shared player (in the pl6b media view) + ONE 🎶 stop button
             const u=e.dataset?.u||e.href||'';
             const holder=document.getElementById('spHolder')||document.body;
             let f=document.getElementById('_spPlayer');
@@ -232,15 +232,17 @@ const books={
             ,{pl:'pl1',no:'Bokeksemplar',en:'Book Copy',q:'Hva er den overordnede strukturen for innholdet?',nav:'Main Chapters of Book version (Book on shelf with chapters)',page:'Subchapters of Main Chapter chosen, all if none selected, text in details-tags (summary subchapter name)',thoughts:'At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.',child:[{t:'Hvilket kapittel?',w:'At book scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.'},{t:'«Hero\u2019s Journey» – hvilken fase?',w:'Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.'},{t:'Hva bør jobbes med',w:'Collect book-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.'}]}
             ,{pl:'pl2',no:'Hovedkapittel',en:'Main Chapter',q:'Hva er i denne Main Chapter, og hva er Sub Chapters?',nav:'Selected Main Chapter and Sub Chapters for it',page:'Selected Sub Chapter, all if none selected',thoughts:'At Main Chapter scale the units are groups of chapters that share a theme; the section acts as the coarser parent of its chapters.',child:[{t:'Hvilke kapitler?',w:'List the chapters inside this section and their order.'},{t:'Hvilket tema?',w:'The theme or arc that binds the section\u2019s chapters together.'},{t:'Hva bør jobbes med',w:'Section-level improvements: pacing, ordering and balance across chapters.'}]}
             ,{pl:'pl3',no:'Underkapittel',en:'Sub Chapter',q:'Hva er i dette Sub Chapter?',nav:'todo',page:'todo',thoughts:'At Sub Chapters scale the units are single chapters; the nav jumps into the chapter and its pages.',child:[{t:'Hvilke sider?',w:'Which pages belong to the chapter, and in which order.'},{t:'Hva skjer?',w:'What the chapter advances in the story or argument.'},{t:'Hva bør jobbes med',w:'Chapter-level improvements: too thin, too dense or out of order.'}]}
-            ,{pl:'pl4',no:'Bokside',en:'Page',q:'Hva er på denne siden?',nav:'todo',page:'todo',thoughts:'At page scale the units are pages (with p.N anchors); the nav jumps between pages.',child:[{t:'Hvilke paragrafer?',w:'The paragraphs that make up this page.'},{t:'Hva formidles?',w:'What the page communicates: content, mood or key point.'},{t:'Hva bør jobbes med',w:'Page-level polish: flow, rhythm and visual balance.'}]}
-            ,{pl:'pl5',no:'Paragraf',en:'Paragraph',q:'Hva er i denne paragrafen?',nav:'todo',page:'todo',thoughts:'At paragraph scale the units are paragraphs – blocks of related sentences.',child:[{t:'Hvilke setninger?',w:'The sentences that build this paragraph.'},{t:'Hva sies?',w:'The paragraph\u2019s main point or idea.'},{t:'Hva bør jobbes med',w:'Paragraph-level edits: clarity, rhythm and transitions.'}]}
-            ,{pl:'pl6',no:'Setning',en:'Sentence',q:'Hva er i denne setningen?',nav:'todo',page:'todo',thoughts:'At sentence scale the units are sentences; grammar and style tools live here.',child:[{t:'Hvilke ord?',w:'The words that form the sentence and their roles.'},{t:'Hva betyr den?',w:'The meaning and function of the sentence in context.'},{t:'Hva bør jobbes med',w:'Sentence-level improvements: grammar, word order and tone.'}]}
-            ,{pl:'pl7',no:'Ord',en:'Word',q:'Hva er i dette ordet?',nav:'todo',page:'todo',thoughts:'At word scale the units are words: meaning, inflection and what to improve. Word-level features (lookup, glossary) apply here and deeper.',child:[{t:'Hva betyr ordet',w:'Look up meaning, inflections and usage – the finest content level where dictionary lookup applies.'},{t:'Hva bør jobbes med',w:'Which word needs editorial attention: clarity, style or accuracy.'}]}
-            ,{pl:'pl8',no:'Bokstav',en:'Character',q:'Hva er i denne bokstaven?',nav:'todo',page:'todo',thoughts:'At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.',child:[{t:'Font',w:'Which typeface renders the glyph; changing font restyles the whole letter.'},{t:'Size',w:'Point size of the glyph, e.g. relative to body text.'},{t:'Dekorasjon / ligaturer',w:'Stylistic variants and ligature pairs (fi, fl) that join glyphs.'},{t:'Tegnavstand (kerning)',w:'Space between letter pairs; pairs naturally with ligatures at glyph level.'}]}
-            ,{pl:'pl9',no:'Medieform',en:'Media Form',q:'Hvilke modaliteter former det presenterte?',nav:'Materialisation of the chosen node as media (one row per modality)',page:'The presented unit and its media: foreground, background, sound, motion',thoughts:'At media-form scale the unit is the presented materialisation of the finer node: the same content carried by a modality – visual (colour, background, image), auditory (music/Spotify), motion (video). Modalities are dimensions, so each is one row here; Spotify playback is the auditory dimension, anchored to the page (🎵 … — p. N).',child:[{t:'🎨 Forgrunn (farge)',w:'Which colour renders the presented unit; changing colour restyles it as a whole.'},{t:'🖼️ Bakgrunn',w:'What renders behind the unit: solid colour, gradient or image.'},{t:'🎵 Lyd – Spotify Play',w:'The song is a media form anchored to its Underkapittel (### — p. N) heading; pages inside that subchapter inherit it. Decode the aigap.no/m-code (SpotKey), resolve it to a Spotify URL and embed the player here.'},{t:'🎬 Bevegelse / video',w:'Motion or video as a media form for the presented unit.'}]}
+            ,{pl:'pl4b',no:'Bokside',en:'Page',q:'Hva er på denne siden?',nav:'todo',page:'todo',thoughts:'At page scale the units are pages (with p.N anchors); the nav jumps between pages.',child:[{t:'Hvilke paragrafer?',w:'The paragraphs that make up this page.'},{t:'Hva formidles?',w:'What the page communicates: content, mood or key point.'},{t:'Hva bør jobbes med',w:'Page-level polish: flow, rhythm and visual balance.'}]}
+            ,{pl:'pl4a',no:'Paragraf',en:'Paragraph',q:'Hva er i denne paragrafen?',nav:'todo',page:'todo',thoughts:'At paragraph scale the units are paragraphs – blocks of related sentences.',child:[{t:'Hvilke setninger?',w:'The sentences that build this paragraph.'},{t:'Hva sies?',w:'The paragraph\u2019s main point or idea.'},{t:'Hva bør jobbes med',w:'Paragraph-level edits: clarity, rhythm and transitions.'}]}
+            ,{pl:'pl5a',no:'Setning',en:'Sentence',q:'Hva er i denne setningen?',nav:'todo',page:'todo',thoughts:'At sentence scale the units are sentences; grammar and style tools live here.',child:[{t:'Hvilke ord?',w:'The words that form the sentence and their roles.'},{t:'Hva betyr den?',w:'The meaning and function of the sentence in context.'},{t:'Hva bør jobbes med',w:'Sentence-level improvements: grammar, word order and tone.'}]}
+            ,{pl:'pl6a',no:'Ord',en:'Word',q:'Hva er i dette ordet?',nav:'todo',page:'todo',thoughts:'At word scale the units are words: meaning, inflection and what to improve. Word-level features (lookup, glossary) apply here and deeper.',child:[{t:'Hva betyr ordet',w:'Look up meaning, inflections and usage – the finest content level where dictionary lookup applies.'},{t:'Hva bør jobbes med',w:'Which word needs editorial attention: clarity, style or accuracy.'}]}
+            ,{pl:'pl5b',no:'Bokstav',en:'Character',q:'Hva er i denne bokstaven?',nav:'todo',page:'todo',thoughts:'At glyph scale the units are letters: font, size, ligatures and kerning shape how the word is set. Typography features live here.',child:[{t:'Font',w:'Which typeface renders the glyph; changing font restyles the whole letter.'},{t:'Size',w:'Point size of the glyph, e.g. relative to body text.'},{t:'Dekorasjon / ligaturer',w:'Stylistic variants and ligature pairs (fi, fl) that join glyphs.'},{t:'Tegnavstand (kerning)',w:'Space between letter pairs; pairs naturally with ligatures at glyph level.'}]}
+            ,{pl:'pl6b',no:'Medieform',en:'Media Form',q:'Hvilke modaliteter former det presenterte?',nav:'Materialisation of the chosen node as media (one row per modality)',page:'The presented unit and its media: foreground, background, sound, motion',thoughts:'At media-form scale the unit is the presented materialisation of the finer node: the same content carried by a modality – visual (colour, background, image), auditory (music/Spotify), motion (video). Modalities are dimensions, so each is one row here; Spotify playback is the auditory dimension, anchored to the page (🎵 … — p. N).',child:[{t:'🎨 Forgrunn (farge)',w:'Which colour renders the presented unit; changing colour restyles it as a whole.'},{t:'🖼️ Bakgrunn',w:'What renders behind the unit: solid colour, gradient or image.'},{t:'🎵 Lyd – Spotify Play',w:'The song is a media form anchored to its Underkapittel (### — p. N) heading; pages inside that subchapter inherit it. Decode the aigap.no/m-code (SpotKey), resolve it to a Spotify URL and embed the player here.'},{t:'🎬 Bevegelse / video',w:'Motion or video as a media form for the presented unit.'}]}
         ]
-        ,up:{pl0:null,pl1:'pl0',pl2:'pl1',pl3:'pl2',pl4:'pl3',pl5:'pl3',pl6:'pl5',pl7:'pl6',pl8:'pl4',pl9:'pl8'}
+        ,up:{pl0:null,pl1:'pl0',pl2:'pl1',pl3:'pl2',pl4a:'pl3',pl4b:'pl3',pl5a:'pl4a',pl5b:'pl4b',pl6a:'pl5a',pl6b:'pl5b'}
         ,child:pl=>books.play.LV.filter(x=>books.play.up[x.pl]===pl).map(x=>x.pl)
+        ,ix:pl=>{const i=books.play.LV.findIndex(x=>x.pl===pl);return i<0?0:i;}
+        ,id:i=>(books.play.LV[i]||{}).pl||('pl'+i)
         ,ancestors:pl=>{const a=[];let p=books.play.up[pl];while(p){a.unshift(p);p=books.play.up[p];}return a;}
         ,path:pl=>books.play.ancestors(pl).concat(pl)
         ,chain:pl=>books.play.path(pl).map(p=>{const L=books.play.LV.find(x=>x.pl===p);return L?L.no:'';}).filter(Boolean).join(' › ')
@@ -259,11 +261,9 @@ const books={
             el:{page,nav:dbNavList,title:dbTitle,prev,next,lvBars}
             ,ic:['📚','📖','📑','📄','📃','¶','✍️','🔤','🔠','🎨']
             ,lv:[]
-            ,ax:{t:['pl0','pl1','pl2','pl3','pl5','pl6','pl7'],p:['pl4','pl8','pl9']}
             ,mode:0,idx:0,pi:0,ch:0,su:0,pending:null,si:0,wi:0 // ch/su = active chapter/sub, pending = layer after an async load, si/wi = sentence+word we drilled from
             ,setMode:()=>{books.play.render.el.lvBars.querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.lv===books.play.render.mode));}
-            ,bar:()=>{const lv=books.play.render.lv,cld=books.play.child,btn=p=>{const o=lv[+p.slice(2)]||{pl:p,nm:p,ic:'•'};return '<button data-lv="'+(+p.slice(2))+'" title="'+o.pl+' '+o.nm+'">'+o.ic+'</button>';},td1=p=>'<td rowspan="2">'+btn(p)+'</td>',tdx=p=>'<td>'+btn(p)+'</td>',chain=p=>{const a=[p];let c=cld(p);while(c.length===1){a.push(c[0]);c=cld(c[0]);}return a;};let node='pl0',cc=cld(node);while(cc.length===1){node=cc[0];cc=cld(node);}const spine=books.play.path(node),cols=cld(node).slice().reverse().map(chain);books.play.render.el.lvBars.innerHTML='<table><tr>'+spine.map(td1).join('')+(cols[0]||[]).map(p=>'<td class="txt">'+btn(p)+'</td>').join('')+'<td rowspan="2" class="zm"><button data-zm="up" title="coarser">−</button></td></tr><tr>'+(cols[1]||[]).map(p=>'<td class="pag">'+btn(p)+'</td>').join('')+'</tr></table>';books.play.render.el.lvBars.onclick=ev=>{const x=ev.target.closest('button');if(!x)return;if(x.dataset.zm==='up'){const p=books.play.up['pl'+books.play.render.mode];if(p)books.play.render.go(+p.slice(2));}else if(x.dataset.lv!==undefined){books.play.render.go(+x.dataset.lv);}};books.play.render.setMode();}
-            ,rowZoom:(r,d)=>{const ax=Object.values(books.play.render.ax)[r],i=ax.indexOf('pl'+books.play.render.mode);let j=(i<0?0:i)+d;j=Math.max(0,Math.min(ax.length-1,j));books.play.render.go(+ax[j].slice(2));}
+            ,bar:()=>{const lv=books.play.render.lv,cld=books.play.child,ix=books.play.ix,btn=p=>{const o=lv[ix(p)]||{pl:p,nm:p,ic:'•'};return '<button data-lv="'+ix(p)+'" title="'+o.pl+' '+o.nm+'">'+o.ic+'</button>';},td1=p=>'<td rowspan="2">'+btn(p)+'</td>',tdx=p=>'<td>'+btn(p)+'</td>',chain=p=>{const a=[p];let c=cld(p);while(c.length===1){a.push(c[0]);c=cld(c[0]);}return a;};let node='pl0',cc=cld(node);while(cc.length===1){node=cc[0];cc=cld(node);}const spine=books.play.path(node),cols=cld(node).slice().reverse().map(chain);books.play.render.el.lvBars.innerHTML='<table><tr>'+spine.map(td1).join('')+(cols[0]||[]).map(p=>'<td class="txt">'+btn(p)+'</td>').join('')+'<td rowspan="2" class="zm"><button data-zm="up" title="coarser">−</button></td></tr><tr>'+(cols[1]||[]).map(p=>'<td class="pag">'+btn(p)+'</td>').join('')+'</tr></table>';books.play.render.el.lvBars.onclick=ev=>{const x=ev.target.closest('button');if(!x)return;if(x.dataset.zm==='up'){const p=books.play.up[books.play.id(books.play.render.mode)];if(p)books.play.render.go(books.play.ix(p));}else if(x.dataset.lv!==undefined){books.play.render.go(+x.dataset.lv);}};books.play.render.setMode();}
             ,chSubs:i=>books.play.md.subCh.map((c,k)=>c===i?k:-1).filter(k=>k>=0) // sub chapters of main chapter i
             ,cSub:()=>books.play.md.subs[books.play.render.su]||null
             ,setCh:i=>{ // selecting a main chapter moves the sub selection with it
@@ -274,100 +274,78 @@ const books={
                 books.play.render.idx=0;
             }
             ,setSu:i=>{const s=books.play.md.subs[i];if(!s)return;books.play.render.su=i;books.play.render.ch=books.play.md.subCh[i];books.play.render.idx=0;}
-            ,go:n=>{books.play.render.mode=n;books.play.render.setMode();books.play.render.toc();books.play.render.draw();books.play.render.sync();}
+            ,go:(n,keep)=>{if(!keep)books.play.render.align(n);books.play.render.mode=n;books.play.render.setMode();books.play.render.toc();books.play.render.draw();books.play.render.sync();}
             ,toc:()=>{
-                const ic={2:'📖',3:'📑'}
-                ,sep='<div class="navsep"></div>' // the line between a node and its leaves, and between two hierarchies
-                ,a2=(t,at,l,ico)=>'<a '+at+'>'+'&nbsp;'.repeat(2*l)+ico+'&nbsp;'+books.play.render.esc(t)+'</a>'
-                ,a=(t,i,l,ico,m)=>t===''?'':a2(t,'data-i="'+i+'" data-m="'+(m===undefined?books.play.render.mode:m)+'"',l,ico) // m = the layer the node belongs to
+                const R=books.play.render,md=books.play.md,esc=R.esc,ic={2:'📖',3:'📑'}
+                ,sep='<div class="navsep"></div>'
+                ,a2=(t,at,l,ico)=>'<a '+at+'>'+'&nbsp;'.repeat(2*l)+ico+'&nbsp;'+esc(t)+'</a>'
+                ,a=(t,i,l,ico,m)=>t===''?'':a2(t,'data-i="'+i+'" data-m="'+(m===undefined?R.mode:m)+'"',l,ico)
+                ,wOf=(si,wi)=>(((md.sts[si]||{}).txt||'').match(/\S+/g)||[])[wi]||''
                 ,o=[
                     // pl0 – books on top, each book's own versions (🇳🇴/🇬🇧 × 👑/🔓) beneath it
-                    ()=>{const s=books.play.shelf;
-                        if(!s||!s.length)return books.play.md.books.map(bk=>a2(bk,'data-book="'+bk+'"',0,'📚')); // manifest not ready/absent
-                        return [s.filter((x,i)=>s.findIndex(y=>y.book===x.book)===i).map(bk=>{
-                            const vs=s.filter(x=>x.book===bk.book);
-                            // book row = the book (folder name) is the parent; every version title hangs beneath it
-                            const n=bk.book,t=books.play.titleOf(bk.book),esc=books.play.render.esc;
-                            const sub=books.play.render.slug(t)===books.play.render.slug(n)?'':' <i class="bid">('+esc(t)+')</i>'; // title only when it says something the name does not
-                            const on=' class="lvnode'+(books.play.book===n?' on':'')+'"'; // node: the book; its versions below are the leaves
-                            return '<a data-book="'+esc(n)+'"'+on+' title="'+esc(n+(sub?' – '+t:''))+'">📚&nbsp;'+esc(n)+sub+'</a>' // node (selectable)
-                                +vs.map(v=>{ // leaves (drill): each version carries its OWN title – it differs per language, and may differ per edition
-                                    const vt=books.play.titleOf(v.book,v.lg,v.ed);
-                                    return v.pdf // leaves never carry selection – you drill in, and select at that level
-                                        ?a2(vt,'data-book="'+books.play.render.esc(v.book)+'" data-pdf="'+books.play.render.esc(v.pdf)+'"'
-                                            +' title="'+books.play.render.esc(vt+' – PDF')+'" aria-label="'+books.play.render.esc(vt+' PDF')+'"',1,'📕')
-                                        :a2(vt,'data-book="'+books.play.render.esc(v.book)+'" data-lg="'+v.lg+'" data-ed="'+v.ed+'"'
-                                            +' title="'+books.play.render.esc(vt+' – '+v.lg+' '+v.ed)+'"'
-                                            +' aria-label="'+books.play.render.esc(vt+' '+v.lg+' '+v.ed)+'"',1,books.play.flag(v.lg)+books.play.edIc(v.ed));
-                                }).join(''); // the shelf has ONE hierarchy – no separator lines here
-                        }).join('')]; // one nav item carrying the whole shelf tree
-                    }
-                    // pl1 – every version (node) with its OWN chapters beneath it (leaves). Only the loaded version's text is known.
-                    ,()=>{const esc=books.play.render.esc;
-                        return (books.play.shelf||[]).filter(x=>x.book===books.play.book).map(v=>{
-                            const cur=(v.fn&&books.play.md.fn===v.fn)||(v.pdf&&books.play.pdf===v.pdf);
-                            return a2(books.play.titleOf(v.book,v.lg,v.ed),
-                                'data-book="'+esc(v.book)+'"'+(v.pdf?' data-pdf="'+esc(v.pdf)+'"':' data-lg="'+v.lg+'" data-ed="'+v.ed+'"')+' class="lvnode'+(cur?' on':'')+'"',0,books.play.flag(v.lg)+books.play.edIc(v.ed))
-                                +(cur?books.play.md.chs.map((c,i)=>a2(c[0].h[1],'data-ch="'+i+'"',1,'📖')).join(''):'');});}
-                    // pl2 – every chapter (node) with its OWN sub chapters beneath it (leaves)
-                    ,()=>{const R=books.play.render,md=books.play.md;
-                        return md.chs.map((c,i)=>a2(c[0].h[1],'data-ch="'+i+'" class="lvnode'+(i===R.ch?' on':'')+'"',0,'📖')
-                            +R.chSubs(i).map(k=>{const h=md.subs[k][0].h;return a2(h[1],'data-su="'+k+'"',1,ic[h[0]]||'📑');}).join(''));}
+                    ()=>{const s=books.play.shelf,bk=books.play.book,vs=(s||[]).filter(x=>x.book===bk)
+                        ,t=books.play.titleOf(bk),sub=R.slug(t)===R.slug(bk)?'':' <i class="bid">('+esc(t)+')</i>';
+                        return ['<a data-book="'+esc(bk)+'" class="lvnode on" title="'+esc(bk+(sub?' – '+t:''))+'">📚&nbsp;'+esc(bk)+sub+'</a>']
+                            .concat(vs.map(v=>{const vt=books.play.titleOf(v.book,v.lg,v.ed);
+                                return v.pdf
+                                    ?a2(vt,'data-book="'+esc(v.book)+'" data-pdf="'+esc(v.pdf)+'" title="'+esc(vt+' – PDF')+'" aria-label="'+esc(vt+' PDF')+'"',1,'📕')
+                                    :a2(vt,'data-book="'+esc(v.book)+'" data-lg="'+v.lg+'" data-ed="'+v.ed+'" title="'+esc(vt+' – '+v.lg+' '+v.ed)+'" aria-label="'+esc(vt+' '+v.lg+' '+v.ed)+'"',1,books.play.flag(v.lg)+books.play.edIc(v.ed));}));}
+                    // pl1 – the version you are reading (node) with its main chapters beneath it (leaves)
+                    ,()=>{const v=(books.play.shelf||[]).find(x=>x.book===books.play.book&&((x.fn&&x.fn===md.fn)||(x.pdf&&x.pdf===books.play.pdf)))
+                            ,nd=v?a2(books.play.titleOf(v.book,v.lg,v.ed),'data-book="'+esc(v.book)+'"'+(v.pdf?' data-pdf="'+esc(v.pdf)+'"':' data-lg="'+v.lg+'" data-ed="'+v.ed+'"')+' class="lvnode on"',0,books.play.flag(v.lg)+books.play.edIc(v.ed))
+                                :a2(md.title,'class="lvnode on"',0,'📖');
+                        return [nd].concat(md.chs.map((c,i)=>a2(c[0].h[1],'data-ch="'+i+'"',1,'📖')));}
+                    // pl2 – the chapter you are on (node) with its sub chapters beneath it (leaves)
+                    ,()=>{const c=md.chs[R.ch];if(!c)return [];
+                        return [a2(c[0].h[1],'data-ch="'+R.ch+'" class="lvnode on"',0,'📖')]
+                            .concat(R.chSubs(R.ch).map(k=>{const h=md.subs[k][0].h;return a2(h[1],'data-su="'+k+'"',1,ic[h[0]]||'📑');}));}
                     // pl3 – the two hierarchies sit side by side as a two-column table: pages (Bokside) │ paragraphs (Paragraf).
                     // The vertical line divides the columns, the paragraph cell is framed solid, and BOTH cells drill
-                    // (page → pl4, paragraph → pl5). Rows run to the longer of the two lists; the shorter column stays blank.
-                    ,()=>{const R=books.play.render,md=books.play.md;
-                        return [R.chSubs(R.ch).map(k=>{const su=md.subs[k],h=su[0].h,pns=new Set(su.map(p=>p.pn));
-                            const pars=md.pgs.map((p,i)=>({p,i})).filter(x=>pns.has(x.p.pn));
-                            const rows=Math.max(su.length,pars.length);
-                            let t='<table class="navtab"><tr><td colspan="2" class="navnode">'
-                                +a2(h?h[1]:'','data-su="'+k+'" class="lvnode'+(k===R.su?' on':'')+'"',0,(h&&ic[h[0]])||'📑')+'</td></tr>';
-                            for(let j=0;j<rows;j++){const pg=su[j],p=pars[j];
-                                t+='<tr><td class="navpg">'+(pg?a2('#'+pg.pn,'data-i="'+(pg.pgi+1)+'" data-m="4" data-su="'+k+'"',0,'📄'):'')+'</td>'
-                                  +'<td class="navpar">'+(p?a2(p.p.txt.slice(0,60),'data-i="'+p.i+'" data-m="5" data-su="'+k+'"',0,'¶'):'')+'</td></tr>';}
-                            return '<div class="navhier">'+t+'</table></div>';}).join('')];
+                    // (page → pl4b, paragraph → pl4a). Rows run to the longer of the two lists; the shorter column stays blank.
+                    ,()=>{const su=md.subs[R.su];if(!su)return [];
+                        const h=su[0].h,pns=new Set(su.map(p=>p.pn)),pars=md.pgs.map((p,i)=>({p,i})).filter(x=>pns.has(x.p.pn)),rows=Math.max(su.length,pars.length);
+                        let t='<table class="navtab"><tr><td colspan="2" class="navnode">'
+                            +a2(h?h[1]:'','data-su="'+R.su+'" class="lvnode on"',0,(h&&ic[h[0]])||'📑')+'</td></tr>';
+                        for(let j=0;j<rows;j++){const pg=su[j],p=pars[j];
+                            t+='<tr><td class="navpg">'+(pg?a2('#'+pg.pn,'data-i="'+(pg.pgi+1)+'" data-m="4" data-su="'+R.su+'"',0,'📄'):'')+'</td>'
+                              +'<td class="navpar">'+(p?a2(p.p.txt.slice(0,60),'data-i="'+p.i+'" data-m="5" data-su="'+R.su+'"',0,'¶'):'')+'</td></tr>';}
+                        return ['<div class="navhier">'+t+'</table></div>'];
                     }
-                    // pl4 – every page of the sub chapter (node) with the paragraphs ON that page beneath it (leaves)
-                    ,()=>{const R=books.play.render,md=books.play.md,cur=md.pages[R.pi];
-                        return (R.cSub()||[]).map(pg=>a2(pg.h?pg.h[1]:'#'+pg.pn,'data-i="'+(pg.pgi+1)+'" data-m="4" class="lvnode'+(pg===cur?' on':'')+'"',0,'📄')
-                            +md.pgs.map((p,i)=>({p,i})).filter(x=>x.p.pn===pg.pn).map(x=>a(x.p.txt.slice(0,32),x.i,1,'¶',5)).join(''));}
-                    // pl5 – every paragraph of the sub chapter (node) with its OWN sentences beneath it (leaves)
-                    ,()=>{const R=books.play.render,md=books.play.md,pns=new Set((R.cSub()||[]).map(p=>p.pn));
-                        const baseOf=i=>md.pgs.slice(0,i).reduce((n,q)=>n+R.sentT(q.txt).length,0);
-                        return md.pgs.map((p,i)=>({p,i})).filter(x=>pns.has(x.p.pn)).map(x=>a2(x.p.txt.slice(0,34),'data-i="'+x.i+'" data-m="5" class="lvnode'+(x.i===R.idx?' on':'')+'"',0,'¶')
-                            +R.sentT(x.p.txt).map((s,k)=>a(s.slice(0,32),baseOf(x.i)+k,1,'✍️',6)).join(''));}
-                    // pl6 – every sentence of this paragraph (node) with its OWN words beneath it (leaves)
-                    ,()=>{const R=books.play.render,md=books.play.md;let pi=0,n=0;
-                        for(let k=0;k<md.pgs.length;k++){n+=R.sentT(md.pgs[k].txt).length;if(n>R.idx){pi=k;break;}}
-                        const base=md.pgs.slice(0,pi).reduce((a,x)=>a+R.sentT(x.txt).length,0);
-                        return R.sentT((md.pgs[pi]||{}).txt||'').map((s,k)=>{const gi=base+k;
-                            return a2(s.slice(0,34),'data-i="'+gi+'" data-m="6" class="lvnode'+(gi===R.idx?' on':'')+'"',0,'✍️')
-                                +((s.match(/\S+/g)||[]).slice(0,40).map((w,j)=>a2(w,'data-i="'+j+'" data-m="7" data-si="'+gi+'" data-w="'+j+'"',1,'🔤')).join(''));});}
-                    // pl7 Ord – every word of this sentence (node) with its OWN characters beneath it (leaves)
-                    ,()=>{const R=books.play.render,st=books.play.md.sts[R.si]||{},ws=((st.txt||'').match(/\S+/g)||[]);
-                        return ws.map((w,k)=>a2(w,'data-i="'+k+'" data-m="7" data-si="'+R.si+'" data-w="'+k+'" class="lvnode'+(k===R.wi?' on':'')+'"',0,'🔤')
-                            +[...w].map((c,j)=>a(c,j,1,'🔠',8)).join(''));}
-                    // pl8 Bokstav – every character of this word (node) with its media forms beneath it (leaves)
-                    ,()=>{const R=books.play.render,st=books.play.md.sts[R.si]||{},w=(((st.txt||'').match(/\S+/g)||[])[R.wi]||'');
-                        const mm=[['🎨','Forgrunn'],['🖼️','Bakgrunn'],['🎵','Lyd'],['🎬','Bevegelse']];
-                        return [...w].map((c,k)=>a2(c,'data-i="'+k+'" data-m="8" class="lvnode'+(k===R.idx?' on':'')+'"',0,'🔠')
-                            +mm.map((m,j)=>a(m[1],j,1,m[0],9)).join(''));}
-                    // pl9 Medieform – node: the presented unit. leaves: one row per modality (exactly what LV.pl9.nav prescribes)
+                    // pl4b – the page you are on (node) with its paragraphs beneath it (leaves)
+                    ,()=>{const pg=md.pages[R.pi];if(!pg)return [];
+                        return [a2(pg.h?pg.h[1]:'#'+pg.pn,'class="lvnode on"',0,'📄')]
+                            .concat(md.pgs.map((p,i)=>({p,i})).filter(x=>x.p.pn===pg.pn).map(x=>a(x.p.txt.slice(0,32),x.i,1,'¶',5)));}
+                    // pl4a – the paragraph you are on (node) with its sentences beneath it (leaves)
+                    ,()=>{const p=md.pgs[R.idx];if(!p)return [];
+                        return [a2(p.txt.slice(0,34),'class="lvnode on"',0,'¶')]
+                            .concat(R.sentT(p.txt).map((s,k)=>a(s.slice(0,32),R.baseOf(R.idx)+k,1,'✍️',6)));}
+                    // pl5a – the sentence you are on (node) with its words beneath it (leaves)
+                    ,()=>{const s=md.sts[R.idx];if(!s)return [];
+                        return [a2(s.txt.slice(0,34),'class="lvnode on"',0,'✍️')]
+                            .concat((s.txt.match(/\S+/g)||[]).slice(0,40).map((w,j)=>a2(w,'data-i="'+j+'" data-m="7" data-si="'+R.idx+'" data-w="'+j+'"',1,'🔤')));}
+                    // pl6a Ord – the word you are on (node) with its characters beneath it (leaves)
+                    ,()=>{const w=wOf(R.si,R.wi);
+                        return [a2(w,'class="lvnode on"',0,'🔤')].concat([...w].map((c,j)=>a(c,j,1,'🔠',8)));}
+                    // pl5b Bokstav – the character you are on (node) with its media forms beneath it (leaves)
+                    ,()=>{const w=wOf(R.si,R.wi),mm=[['\u{1F3A8}','Forgrunn'],['\u{1F5BC}\uFE0F','Bakgrunn'],['\u{1F3B5}','Lyd'],['\u{1F3AC}','Bevegelse']];
+                        return [a2([...w][R.idx]||'','class="lvnode on"',0,'🔠')].concat(mm.map(m=>a2(m[1],'data-m="9"',1,m[0])));}
+                    // pl6b Medieform – node: the presented unit. leaves: one row per modality (exactly what LV.pl6b.nav prescribes)
                     ,()=>{const pg=books.play.md.pages[books.play.render.pi]||{},node=pg.h?pg.h[1]:(pg.pn?'p. '+pg.pn:books.play.md.title);
                         const mm=[['\u{1F3A8}','Forgrunn'],['\u{1F5BC}\uFE0F','Bakgrunn'],['\u{1F3B5}','Lyd'],['\u{1F3AC}','Bevegelse']];
                         return ['<a data-go="9" class="lvnode on" title="'+books.play.render.esc(node||'')+'">🎨&nbsp;'+books.play.render.esc(node||'')+'</a>',sep]
-                            .concat(mm.map(m=>'<span class="lvleaf">'+'&nbsp;'.repeat(2)+m[0]+'&nbsp;'+books.play.render.esc(m[1])+'</span>'));} // leaves: terminal here – nothing below pl9, so they are not selectable rows
+                            .concat(mm.map(m=>'<span class="lvleaf">'+'&nbsp;'.repeat(2)+m[0]+'&nbsp;'+books.play.render.esc(m[1])+'</span>'));} // leaves: terminal here – nothing below pl6b, so they are not selectable rows
                 ];
                 // The nav frame is just the TOP row: drill up (or (edit) on the shelf). Drilling down is what the leaf rows do.
-                const par=books.play.up['pl'+books.play.render.mode];
+                const par=books.play.up[books.play.id(books.play.render.mode)];
                 const jump=p=>{ // up = the actual node above you, not the level's name
                     const L=books.play.LV.find(x=>x.pl===p)||{no:p,en:''},node=books.play.nodename(p);
-                    return a2(node||L.no,'data-go="'+(+p.slice(2))+'" class="lvup"'
+                    return a2(node||L.no,'data-go="'+books.play.ix(p)+'" class="lvup"'
                         +' title="'+books.play.render.esc('opp til '+(node?node+' – ':'')+L.no+' ('+L.pl+' '+L.en+')')+'"',0,'\u2B06');
                 };
                 const up=par?jump(par)
                     :'<a data-edit="1" class="lvup'+(books.play.editOn?' on':'')+'" title="'+books.play.render.esc(books.play.editOn?'ferdig – vis versjonene som lenker':'rediger hvilke bøker og versjoner som finnes')+'">✎ '+(books.play.editOn?'(ferdig)':'(edit)')+'</a>'; // nothing above the shelf, so the slot edits the shelf itself
-                books.play.render.el.nav.innerHTML=up+o[books.play.render.mode]().join('');
+                R.el.nav.innerHTML=up+o[R.mode]().join('');
+                R.hands();
             }
             ,esc:x=>x.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
             ,slug:s=>(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'')
@@ -375,12 +353,12 @@ const books={
             ,qr:u=>{const k=books.play.render.spotKey(u);return k?'<img src="https://aigap.no/i/'+k+'.qr1.png" style="height:66px;image-rendering:pixelated;">':'';}
             ,mus:l=>{const u=(l.match(/https?:\/\/[^\s)]+/)||[''])[0];return '<a href="'+u+'">\u{1F3B5}</a>'+books.play.render.qr(u);}
             ,songOf:p=>{const a=books.play.md.pages||[],i=a.indexOf(p);for(let k=i;k>=0;k--)if(a[k].mu)return a[k].mu;return '';} // nearest 🎵 at or before page p (songs live on the Underkapittel heading)
-            ,media:p=>{ // pl9: the presented unit + one row per modality
+            ,media:p=>{ // pl6b: the presented unit + one row per modality
                 const mu=books.play.render.songOf(p),key=books.play.render.spotKey(mu)
                     ,node=p&&p.h?p.h[1]:(p&&p.pn?'p. '+p.pn:books.play.md.title)
                     ,row=(ic,t,w,x)=>'<div class="mf"><b>'+ic+' '+books.play.render.esc(t)+'</b><div class="mfw">'+books.play.render.esc(w)+'</div>'+(x||'')+'</div>';
                 return '<h1>'+books.play.render.esc(books.play.render.lv[9].nm)+'</h1>'
-                    +'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl9'))+(node?' – '+books.play.render.esc(node):'')+'</p>'
+                    +'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl6b'))+(node?' – '+books.play.render.esc(node):'')+'</p>'
                     +row('\u{1F3A8}','Forgrunn (farge)','Fargen som former det presenterte.')
                     +row('\u{1F5BC}\uFE0F','Bakgrunn','Det som står bak det presenterte.')
                     +row('\u{1F3B5}','Lyd – Spotify Play',mu?'Kode '+key+' – sang knyttet til dette nivået.':'Ingen sang knyttet til dette nivået.',mu?'<button class="spPlay" data-u="'+mu+'">\u25B6 \u266A</button> '+books.play.render.qr(mu):'')
@@ -455,7 +433,8 @@ const books={
             ,viewsMd:()=>[
                 // pl0 – the shelf itself: the edit window for what books and versions are available
                 ()=>[books.play.render.shelfEdit()]
-                ,()=>books.play.md.chs.map(books.play.render.flow)
+                // pl1 – the whole version: every main chapter in one view, its chapters are the leaves in the nav
+                ,()=>[books.play.md.chs.map(books.play.render.flow).join('')]
                 // pl2 – ONLY the active main chapter; its sub chapters are picked in the nav
                 ,()=>[books.play.render.flow(books.play.md.chs[books.play.render.ch]||[])]
                 // pl3 – the selected sub chapter: 🎵 song + text, one item per page (pages listed in the nav)
@@ -463,28 +442,28 @@ const books={
                 ,()=>[{t:1}].concat(books.play.md.pages).map(books.play.render.page)
                 ,()=>books.play.md.pgs.map(p=>books.play.render.esc(p.txt))
                 ,()=>books.play.md.sts.map(s=>books.play.render.esc(s.txt))
-                // pl7 Ord – the word itself
+                // pl6a Ord – the word itself
                 ,()=>{const st=books.play.md.sts[books.play.render.si],w=st?((st.txt.match(/\S+/g)||[])[books.play.render.wi]||''):'';
                     return ['<h1>'+books.play.render.esc(books.play.LV[7].no)+'</h1>'
                         ,'<p class="wbig">'+books.play.render.esc(w)+'</p>'
-                        ,'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl7'))+(w?' – '+books.play.render.esc(w):'')+'</p>'
+                        ,'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl6a'))+(w?' – '+books.play.render.esc(w):'')+'</p>'
                         ,'<p>'+books.play.render.esc(books.play.LV[7].q)+'</p>'];} // ordbok-oppslag, bøyning og bruk hører hit
-                // pl8 Bokstav – the glyph
+                // pl5b Bokstav – the glyph
                 ,()=>{const st=books.play.md.sts[books.play.render.si],w=st?((st.txt.match(/\S+/g)||[])[books.play.render.wi]||''):'',ch=[...w][books.play.render.idx]||'';
                     return ['<h1>'+books.play.render.esc(books.play.LV[8].no)+'</h1>'
                         ,'<p class="wbig">'+books.play.render.esc(ch)+'</p>'
-                        ,'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl8'))+(w?' – '+books.play.render.esc(w):'')+'</p>'
+                        ,'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl5b'))+(w?' – '+books.play.render.esc(w):'')+'</p>'
                         ,'<p>'+books.play.render.esc(books.play.LV[8].q)+'</p>'];} // font, størrelse, ligaturer og kerning hører hit
                 ,()=>[books.play.render.media(books.play.md.pages[books.play.render.pi]||{})]
             ][books.play.render.mode]()
             ,reset:()=>{books.play.render.mode=books.play.render.pending||0;books.play.render.pending=null;books.play.render.idx=0;books.play.render.setMode();books.play.render.el.title.textContent=books.play.md.title;books.play.render.toc();books.play.render.sync();}
             ,draw:()=>{
-                if(books.play.render.mode===4)books.play.render.pi=Math.max(0,books.play.render.idx-1); // remember the page (views[4]: idx 0 = title)
-                const v=books.play.render.views();
-                books.play.render.idx=Math.max(0,Math.min(v.length-1,books.play.render.idx));
-                books.play.render.el.page.innerHTML=v[books.play.render.idx]||''; // an empty level (eg a book with no chapters yet) must not print "undefined"
-                books.play.render.hl();
-                books.play.render.focus();
+                const R=books.play.render,v=R.views();
+                if(R.mode===4)R.pi=Math.max(0,R.idx-1); // the page layer: idx 0 is the title, so the page is one back
+                R.el.page.innerHTML=v[Math.max(0,Math.min(v.length-1,R.idx))]||''; // an empty level (eg a book with no chapters yet) must not print "undefined"
+                R.hl();
+                R.focus();
+                R.hands();
             }
             ,hl:()=>{const m=books.play.render.mode;books.play.render.el.nav.querySelectorAll('a[data-i]').forEach(a=>a.classList.toggle('on',+a.dataset.m===m&&+a.dataset.i===books.play.render.idx));}
             ,focus:()=>{ // keep the active node in view – the lists get long (pl3 is ~260 rows)
@@ -496,22 +475,50 @@ const books={
             ,lvitem:x=>{const up=books.play.ancestors(x.pl).map(p=>{const L=books.play.LV.find(l=>l.pl===p);return L?L.no:'';}).filter(Boolean).join(' › ');return '<li id="'+x.pl+'">'+(up?'<div class="lvpath">'+books.play.render.esc(up)+' ›</div>':'')+books.play.render.esc(x.no)+' <i>'+books.play.render.esc(x.en)+'</i> – '+books.play.render.esc(x.q)+(x.nav&&x.nav!=='todo'?'<details><summary>Nav shows</summary>'+books.play.render.esc(x.nav)+'</details>':'')+(x.page&&x.page!=='todo'?'<details><summary>Page shows</summary>'+books.play.render.esc(x.page)+'</details>':'')+(x.thoughts?'<details open><summary>Thoughts</summary>'+books.play.render.esc(x.thoughts)+'</details>':'')+(x.child&&x.child.length?'<details open><summary>Planned</summary><ol>'+x.child.map(c=>'<li>'+books.play.render.esc(c.t)+(c.w?'<details><summary>Thoughts</summary>'+books.play.render.esc(c.w)+'</details>':'')+'</li>').join('')+'</ol></details>':'')+'</li>';}
             ,guide:()=>{const g=document.getElementById('lvGuide');if(!g)return;g.innerHTML=books.play.LV.map(x=>books.play.render.lvitem(x)).join('');}
             ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.no+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.en;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);books.play.render.ctl();}
-            ,ctl:()=>{const c=document.getElementById('lvCtl');if(!c)return;const pl='pl'+books.play.render.mode,L=books.play.LV[books.play.render.mode]||books.play.LV[0],up=books.play.up[pl],kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV.find(x=>x.pl===k);h+='<button data-go="'+k.slice(2)+'" title="finer: '+(K?K.no:k)+'">+</button>';});c.innerHTML=h;c.onclick=ev=>{const x=ev.target.closest('button');if(!x||x.dataset.go===undefined)return;if(x.dataset.go==='up'){const p=books.play.up['pl'+books.play.render.mode];if(p)books.play.render.go(+p.slice(2));}else books.play.render.go(+x.dataset.go);};}
-            ,show:k=>{books.play.render.idx=k;books.play.render.draw();}
-            ,nav:d=>{
-                // pl2 shows ONE main chapter at a time → 🫲/🫱 move between main chapters
-                if(books.play.render.mode===2){books.play.render.setCh(books.play.render.ch+d);books.play.render.toc();books.play.render.draw();books.play.render.sync();return;}
-                if(books.play.render.mode!==0){books.play.render.show(books.play.render.idx+d);return;}
-                const s=books.play.shelf;
-                if(!s||!s.length)return;
-                const cur=books.play.md.fn;
-                let i=s.findIndex(x=>x.fn===cur); if(i<0)i=0;
-                i=(i+d+s.length)%s.length;
-                const it=s[i];
-                books.play.book=it.book;
-                books.play.open(it.lg,it.ed);
+            ,ctl:()=>{const c=document.getElementById('lvCtl');if(!c)return;const pl=books.play.id(books.play.render.mode),kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV[books.play.ix(k)];h+='<button data-go="'+books.play.ix(k)+'" title="finer: '+(K?K.no:k)+'">+</button>';});c.innerHTML=h;c.onclick=ev=>{const x=ev.target.closest('button');if(!x||x.dataset.go===undefined)return;if(x.dataset.go==='up'){const p=books.play.up[pl];if(p)books.play.render.go(books.play.ix(p));}else books.play.render.go(+x.dataset.go);};}
+            ,baseOf:i=>books.play.md.pgs.slice(0,i).reduce((n,q)=>n+books.play.render.sentT(q.txt).length,0)
+            ,pgOf:si=>{let n=0;for(let k=0;k<books.play.md.pgs.length;k++){n+=books.play.render.sentT(books.play.md.pgs[k].txt).length;if(n>si)return k;}return 0;}
+            ,pgiOf:pn=>{const i=books.play.md.pages.findIndex(p=>p.pn===pn);return i<0?books.play.render.pi:i;}
+            ,curPar:()=>{const R=books.play.render,md=books.play.md,m=R.mode,su=R.cSub()||[],pn=m===4?((md.pages[R.pi]||{}).pn):((su[0]||{}).pn);
+                if(m===5)return R.idx;
+                if(m>=6)return R.pgOf(m===6?R.idx:R.si);
+                const i=md.pgs.findIndex(p=>p.pn===pn);return i<0?0:i;}
+            ,curSent:()=>{const R=books.play.render,m=R.mode;return m===6?R.idx:(m>=7?R.si:R.baseOf(R.curPar()));}
+            ,curPage:()=>{const R=books.play.render,md=books.play.md,m=R.mode,su=R.cSub()||[]
+                ,pn=m===5?((md.pgs[R.curPar()]||{}).pn):(m>=6?((md.sts[R.curSent()]||{}).pn):((su[0]||{}).pn));
+                return m===4?R.pi:R.pgiOf(pn);}
+            ,align:n=>{ // a coarser level opens on the parent that holds you, a finer one on the first leaf
+                const R=books.play.render;if(n===R.mode)return;
+                if(n===4){R.pi=R.curPage();R.idx=R.pi+1;}
+                else if(n===5)R.idx=R.curPar();
+                else if(n===6){const k=R.curSent();R.idx=k;R.si=k;}
+                else if(n===7){R.si=R.curSent();R.wi=0;R.idx=0;}
+                else if(n===8){R.si=R.curSent();R.pi=R.curPage();R.wi=0;R.idx=0;}
+                else if(n===9)R.pi=R.curPage();}
+            ,sibs:()=>{ // the nodes of this level and which one is on – the hands walk these and stop at the ends
+                const R=books.play.render,md=books.play.md,s=books.play.shelf,su=R.cSub()||[]
+                    ,pns=new Set(su.map(p=>p.pn)),pars=md.pgs.map((p,i)=>i).filter(i=>pns.has(md.pgs[i].pn))
+                    ,ws=k=>(((md.sts[k]||{}).txt||'').match(/\S+/g)||[]),w=ws(R.si)[R.wi]||'',nc=[...w].length
+                    ,pg=p=>{R.pi=p.pgi;R.idx=p.pgi+1;}
+                    ,pgI=()=>Math.max(0,su.findIndex(p=>p.pgi===R.pi));
+                return [
+                    ()=>{const bs=s&&s.length?[...new Set(s.map(x=>x.book))]:md.books;
+                        return {l:bs,i:Math.max(0,bs.indexOf(books.play.book)),go:b=>books.play.pick(b)};}
+                    ,()=>{const vs=(s||[]).filter(x=>x.book===books.play.book);
+                        return {l:vs,i:Math.max(0,vs.findIndex(v=>(v.fn&&v.fn===md.fn)||(v.pdf&&v.pdf===books.play.pdf))),go:v=>v.pdf?books.play.openPdf(v.pdf):books.play.open(v.lg,v.ed,1)};}
+                    ,()=>({l:md.chs.map((_,i)=>i),i:R.ch,go:c=>R.setCh(c)})
+                    ,()=>{const ks=R.chSubs(R.ch);return {l:ks,i:Math.max(0,ks.indexOf(R.su)),go:k=>R.setSu(k)};}
+                    ,()=>({l:su,i:pgI(),go:pg})
+                    ,()=>({l:pars,i:Math.max(0,pars.indexOf(R.idx)),go:i=>{R.idx=i;}})
+                    ,()=>{const p=R.pgOf(R.idx),b=R.baseOf(p),c=R.sentT((md.pgs[p]||{}).txt||'').length;
+                        return {l:Array.from({length:c},(_,k)=>b+k),i:R.idx-b,go:i=>{R.idx=i;R.si=i;}};}
+                    ,()=>({l:Array.from({length:ws(R.si).length},(_,k)=>k),i:R.wi,go:i=>{R.wi=i;R.idx=i;}})
+                    ,()=>({l:Array.from({length:nc},(_,k)=>k),i:R.idx,go:i=>{R.idx=i;}})
+                    ,()=>({l:su,i:pgI(),go:pg})
+                ][R.mode]();
             }
-            ,zoom:d=>{books.play.render.go(Math.max(0,Math.min(books.play.render.lv.length-1,books.play.render.mode+d)));}
+            ,hands:()=>{const S=books.play.render.sibs(),e=books.play.render.el;if(e.prev)e.prev.disabled=S.i<=0;if(e.next)e.next.disabled=S.i>=S.l.length-1;}
+            ,nav:d=>{const R=books.play.render,S=R.sibs(),k=S.i+d;if(k<0||k>=S.l.length)return;S.go(S.l[k]);R.toc();R.draw();R.sync();}
             ,hash:()=>{
                 const h=location.hash.toLowerCase().slice(1);
                 if(!h)return;
@@ -525,7 +532,7 @@ const books={
         }
         ,wire:()=>{
             dbNav.onclick=ev=>{
-                const a=ev.target.closest('a[data-book],a[data-i],a[data-ch],a[data-su],a[data-go],a[data-edit]');
+                const a=ev.target.closest('a[data-book],a[data-i],a[data-m],a[data-ch],a[data-su],a[data-go],a[data-edit]');
                 if(!a)return;
                 if(a.dataset.pdf!==undefined){books.play.book=a.dataset.book;books.play.openPdf(a.dataset.pdf);return;} // shelf: PDF-only book
                 if(a.dataset.lg!==undefined){books.play.book=a.dataset.book;books.play.open(a.dataset.lg,a.dataset.ed,1);return;} // version leaf → its layer (pl1 Book Copy)
@@ -534,10 +541,10 @@ const books={
                 if(a.dataset.go!==undefined){books.play.render.go(+a.dataset.go);return;}                     // "⬆ level above"
                 if(a.dataset.ch!==undefined){books.play.render.setCh(+a.dataset.ch);books.play.render.go(2);return;} // node = select (next/prev); drilling happens on the leaf rows
                 if(a.dataset.su!==undefined){books.play.render.setSu(+a.dataset.su);if(a.dataset.i===undefined){books.play.render.go(3);return;}} // sub chapter node → select it (stay); a leaf also names its sub chapter, so fall through and drill   // sub chapter → pl3
-                books.play.render.idx=+a.dataset.i; // remember which sentence/word we drilled from, so pl7/pl8 can name the node
+                if(a.dataset.i!==undefined)books.play.render.idx=+a.dataset.i; // remember which sentence/word we drilled from, so pl6a/pl5b can name the node
                 if(a.dataset.si!==undefined)books.play.render.si=+a.dataset.si;
                 if(a.dataset.w!==undefined)books.play.render.wi=+a.dataset.w;
-                books.play.render.go(+a.dataset.m); // the layer the node belongs to (same layer = just select it)
+                books.play.render.go(+a.dataset.m,a.dataset.i!==undefined); // the layer the node belongs to (same layer = just select it)
             };
             window.onhashchange=()=>books.play.render.hash();
             lang.onclick=books.play.lang;

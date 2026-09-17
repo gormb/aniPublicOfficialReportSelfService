@@ -8,6 +8,7 @@ body{
 #lvCtl button{font-size:1em;line-height:1;padding:.1em .3em;}
 #zout,#zin{font-size:1.4em;line-height:1;padding:.05em .3em;}
 #zout:disabled,#zin:disabled{opacity:.3;cursor:default;}
+#prev:disabled,#next:disabled{opacity:.3;cursor:default;}
 #lvBars{display:flex;gap:.2em;align-items:center;}
 #lvBars button{padding:.1em .25em;font-size:1.3em;line-height:1;border:1px solid transparent;background:none;cursor:pointer;border-radius:.2em;opacity:.45;}
 #lvBars button:hover{opacity:1;}
@@ -49,7 +50,7 @@ body{
 #dbNavList table.navtab td.navpg a{padding:.05em .2em;}
 #dbNavList table.navtab td.navpar{border:1px solid #999;border-radius:2px;} /* solid frame around the paragraph */
 #dbNavList table.navtab td.navpar a{padding:.05em .25em;}
-/* pl7/pl8 – the word or glyph itself */
+/* pl6a/pl5b – the word or glyph itself */
 .wbig{font-size:2.4em;line-height:1.2;margin:.2em 0;word-break:break-word;}
 /* pl0 – the edit window for what books and versions are available */
 .seBook{border:1px solid #ddd;border-radius:4px;padding:.4em .5em;margin:.5em 0;background:#fafafa;}
@@ -82,7 +83,7 @@ body{
 h2 a,h3 a{color:inherit;text-decoration:none;}
 #page h2,#page h3{display:flex;align-items:center;}
 #page h2>a,#page h3>a{margin-left:auto;display:inline-flex;align-items:center;}
-/* pl9 Medieform – multi-modal rows */
+/* pl6b Medieform – multi-modal rows */
 .mf{border-top:1px solid #ccc;padding:.35em 0;}
 .mf b{display:block;}
 .mfw{font-size:.85em;color:#666;}
