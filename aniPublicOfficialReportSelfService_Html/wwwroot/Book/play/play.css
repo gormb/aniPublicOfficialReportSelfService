@@ -50,8 +50,10 @@ body{
 #dbNavList table.navtab td.navpg a{padding:.05em .2em;}
 #dbNavList table.navtab td.navpar{border:1px solid #999;border-radius:2px;} /* solid frame around the paragraph */
 #dbNavList table.navtab td.navpar a{padding:.05em .25em;}
-/* pl6a/pl5b – the word or glyph itself */
+/* pl6a – the word itself */
 .wbig{font-size:2.4em;line-height:1.2;margin:.2em 0;word-break:break-word;}
+/* pl5b – the line, shown in the same measure the model wraps at (≈66ch at 1.15) */
+.lbig{font-size:1.3em;line-height:1.15;max-width:66ch;margin:.2em 0;}
 /* pl0 – the edit window for what books and versions are available */
 .seBook{border:1px solid #ddd;border-radius:4px;padding:.4em .5em;margin:.5em 0;background:#fafafa;}
 .seRow{display:flex;gap:.4em;align-items:center;margin:.15em 0;}

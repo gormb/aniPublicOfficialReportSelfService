@@ -1,10 +1,13 @@
 <!doctype html>
-<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=2"></head>
+<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=6"></head>
 <body>
 <!-- menu -->
-    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><span id="hiId">L.N.F.R.Ka.Vib.T</span><span id="dpCur"></span></div>
+    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><span id="hiId">L*NO*FR.R.Ka.Vib.T</span><span id="dpCur"></span></div>
 <!-- nav -->
-    <div id="dbNav"><div id="dbNavHead"><button id="lang">🇳🇴</button><button id="ver">👑</button><span id="dbTitle"></span></div><div id="dbNavList"></div></div>
+    <!--div id="dbNav"><div id="dbNavHead">
+        <button id="lang">🇳🇴</button><button id="ver">👑</button><span id="dbTitle"></span>
+    </div-->
+        <div id="dbNavList"></div></div>
 <!-- book -->
     <div id="dpBook"><div id="page"></div></div>
 <!-- play -->
@@ -21,7 +24,7 @@
             <hr>
             <div id="pl_dev_0">Dev – what is relevant?
                 <details><summary>Thoughts</summary>Keep extremely short as usual! put under books.play so that it can be integrated other places later</details>
-                <details><summary>Structure</summary>Bokhylle › Bokeksemplar › Hovedkapittel › Underkapittel — which splits into<br>• Bokside → Bokstav → Medieform (the presentation)<br>• Paragraf → Setning → Ord (the text)<br>The spines never cross: a page carries its characters and its media, a word ends the text spine.<br>One source line = one paragraph; a line that resumes a sentence cut by a page marker or a line break joins the same paragraph, which can span pages (pn–pn2).<br>Medieform is multi-modal – Forgrunn, Bakgrunn, Lyd (Spotify Play), Bevegelse – one row per modality, drawn in the page.<br>Hierarchy is data: parents in books.play.up, names/text/features in books.play.LV. The nav shows the selected node and its leaves, ⬆ goes to the parent node, 🫲/🫱 walk the siblings.<br>Levels: pl0 shelf, pl1 version, pl2 main chapter, pl3 sub chapter (the fork: pages │ paragraphs), pl4b page, pl5b character, pl6b media form, pl4a paragraph, pl5a sentence, pl6a word.
+                <details><summary>Structure</summary>Bokhylle › Bokeksemplar › Hovedkapittel › Underkapittel — which splits into<br>• Bokside → Linje → Medieform (the presentation)<br>• Paragraf → Setning → Ord (the text)<br>The spines never cross: the page carries its lines and their media, a word ends the text spine.<br>One source line = one paragraph; a line that resumes a sentence cut by a page marker or a line break joins the same paragraph, which can span pages (pn–pn2).<br>A page's lines are word wrapped at the golden-ratio measure (≈66 characters) at 1.15 line spacing, so every line of a page can be addressed – the level a gaze maps to when eye tracking comes.<br>Medieform is multi-modal – Forgrunn, Bakgrunn, Lyd (Spotify Play), Bevegelse – one row per modality, drawn in the page.<br>Hierarchy is data: parents in books.play.up, names/text/features in books.play.LV. The nav shows the selected node and its leaves, ⬆ goes to the parent node, 🫲/🫱 walk the siblings.<br>Levels: pl0 shelf, pl1 version, pl2 main chapter, pl3 sub chapter (the fork: pages │ paragraphs), pl4b page, pl5b line, pl6b media form, pl4a paragraph, pl5a sentence, pl6a word.
                         <ol>    <li>DONE: Make existing navigation match the level list pl0..pl6b<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
                                 <li>DOING: Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
                                 <li>DONE: Hold this text (to guide user)<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
@@ -33,6 +36,6 @@
                 </details>
     </div>
     <hr>
-    <script src="play.js?v=2"></script>
+    <script src="play.js?v=6"></script>
 </body>
 </html>
