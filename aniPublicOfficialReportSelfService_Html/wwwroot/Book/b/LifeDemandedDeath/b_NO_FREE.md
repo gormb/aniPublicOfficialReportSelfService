@@ -380,11 +380,15 @@ Jeg løftet meg opp og det koster. Som alltid. Hun også.
 #### p. 94
 ### Veteranen
 🎵 [The Boxer; Simon & Garfunkel](https://aigap.no/mtbsg)
-En mann på 86 år satt og drakk kaffe og så med langt blikk på sykkelen min da jeg stoppet ved en bar for å ta en Whiskey.
-Mannen spurte hva slags MC jeg kjørte, og nikket bekreftende da jeg sa det var en rolig hyggelig Suzuki Intruder 1500. På spørsmål om han selv hadde kjørt sa han at han hadde 30 sykler selv, og kjørte en Harley Davidsen V-Rod, men det var for tidlig på året for ham. Jeg sa jeg var fersk i “gamet” og ikke kjørte før jeg var 50 år gammel, så hadde hatt litt å ta igjen, for gammel til noen gang å kjøre Isle of Man TT, men kanskje tok jeg en tur dit som pensjonist. Veteranen sa han hadde kjørt TT på 1970-tallet og det gikk i over 200, men i en sving hadde han og hans venn, som hadde kjørt forbi ham, kjørt inn i et hus og opp i andre etage. Minnene hadde blandet seg, ellers var det andres historier, jeg nøt historiene og takket ham. Tok ham i hånden og gleder meg til å¨komme tilbake for å høre
+V, senior mann på 80 år, er fra drabantby. Han sitter og drikker og drikker kaffe mens han ser med langt blikk på sykkelen min, der jeg stopper ved en bar for å ta en Whiskey.
+Mannen spurte hva slags MC jeg kjører, og nikket bekreftende når jeg sier det er en rolig, hyggelig Suzuki Intruder 1500. På spørsmål om han selv har kjørt sier han “Jeg har 30 sykler stående, og kjører en Harley Davidsen V-Rod”, men det var for tidlig på året for ham.
+“Jeg sa jeg var fersk i gamet, kjørte ikke før jeg var 50 år gammel og har mye å ta igjen” sier jeg, “for gammel til noen gang å kjøre Isle of Man TT, men kanskje tar jeg en tur som pensjonist”.
+“Jeg kjørte TT på 1970-tallet og det gikk i over 200, vi kom i
 #### p. 95
-flere, men de er ikke hver for seg sanne, om enn kanskje sanne i at flere histoprier har blitt til en, men de er sanne for ham, og det er godt nok for meg.
-Nei. I mangel av religiøs tro og i mangel av definert etisk system, er det uakseptabelt for meg å lyve slik. Sannheten er for viktig til at løgner lett skal få ta sannhetens plass. En stand-up komiker sa en gang at han alltid fortalte sannheten med mindre en løgn var mer morsom, det holder ikke for meg. Jeg tar kveletak på uærligheten min, den bare ødelegger
+avisa der borte”, uten å lure på hvordan jeg reagerte på historien fortsatte han. “Vi klarte ikke stoppe i svingen noen av oss, og kompisen min endte opp i andreetasje hos en hyggelig dame. Inn i et hus, og opp i andre etasje. Jeg klarte å stoppe utafor”. Minnene hadde blandet seg, ellers var det andres historier?
+Jeg nøt historiene tok ham i hånden og takket, gleder meg til å komme tilbake for å høre flere, men de er ikke hver for seg sanne, om enn kanskje sanne i at flere historier har blitt til en, men de er sanne for ham, og det er godt nok for meg.
+Nei. I mangel av religiøs tro og i mangel av definert etisk system, er det uakseptabelt for meg å lyve slik. Sannheten er for viktig til at løgner lett skal få ta sannhetens plass. En stand-up komiker sa en gang at han alltid fortalte sannheten med mindre en løgn var mer morsom, det holder ikke for meg. Jeg tar kveletak på uærligheten min, den bare ødelegger.
+To uker senere møter jeg ham uten skinnjakke ogMC og han ikjenner meg ikke iogjen.
 #### p. 96
 ### Kapellanen
 🎵 [Personal Jesus; Depeche Mode](https://aigap.no/mpj)
