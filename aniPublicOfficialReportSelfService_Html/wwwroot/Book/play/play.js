@@ -370,15 +370,11 @@ const books={
                 ,a2=(t,at,l,ico)=>'<a '+at+'>'+'&nbsp;'.repeat(2*l)+(ico?ico+'&nbsp;':'')+esc(t)+'</a>'
                 ,a=(t,i,l,ico,m)=>t===''?'':a2(t,'data-i="'+i+'" data-m="'+(m===undefined?R.mode:m)+'"',l,ico)
                 ,wOf=(si,wi)=>(((md.sts[si]||{}).txt||'').match(/\S+/g)||[])[wi]||''
+                // o0 – the shelf row (pl0): one node per book concept, with each version (🇳🇴/🇬🇧 × 👑/🔓, or a PDF) as a leaf
+                ,o0=(s=books.play.shelf||[],bk=books.play.book)=>[...new Set(s.map(x=>x.book))].flatMap(b=>{const t=books.play.titleOf(b),sub=R.slug(t)===R.slug(b)?'':' <i class="bid">('+esc(t)+')</i>';return ['<a data-book="'+esc(b)+'" class="lvnode'+(b===bk?' on':'')+'" title="'+esc(b+(sub?' – '+t:''))+'">📚&nbsp;'+esc(b)+sub+'</a>'].concat(s.filter(x=>x.book===b).map(v=>{const vt=books.play.titleOf(v.book,v.lg,v.ed);return v.pdf?a2(vt,'data-book="'+esc(v.book)+'" data-pdf="'+esc(v.pdf)+'" title="'+esc(vt+' – PDF')+'" aria-label="'+esc(vt+' PDF')+'"',1,'📕'):a2(vt,'data-book="'+esc(v.book)+'" data-lg="'+v.lg+'" data-ed="'+v.ed+'" title="'+esc(vt+' – '+v.lg+' '+v.ed)+'" aria-label="'+esc(vt+' '+v.lg+' '+v.ed)+'"',1,books.play.flag(v.lg)+books.play.edIc(v.ed));}));})
                 ,o=[
                     // pl0 – the whole shelf: every book concept, each with its own versions (🇳🇴/🇬🇧 × 👑/🔓, or a PDF) beneath it
-                    ()=>{const s=books.play.shelf||[],bk=books.play.book;
-                        return [...new Set(s.map(x=>x.book))].flatMap(b=>{const t=books.play.titleOf(b),sub=R.slug(t)===R.slug(b)?'':' <i class="bid">('+esc(t)+')</i>';
-                            return ['<a data-book="'+esc(b)+'" class="lvnode'+(b===bk?' on':'')+'" title="'+esc(b+(sub?' – '+t:''))+'">📚&nbsp;'+esc(b)+sub+'</a>']
-                                .concat(s.filter(x=>x.book===b).map(v=>{const vt=books.play.titleOf(v.book,v.lg,v.ed);
-                                    return v.pdf
-                                        ?a2(vt,'data-book="'+esc(v.book)+'" data-pdf="'+esc(v.pdf)+'" title="'+esc(vt+' – PDF')+'" aria-label="'+esc(vt+' PDF')+'"',1,'📕')
-                                        :a2(vt,'data-book="'+esc(v.book)+'" data-lg="'+v.lg+'" data-ed="'+v.ed+'" title="'+esc(vt+' – '+v.lg+' '+v.ed)+'" aria-label="'+esc(vt+' '+v.lg+' '+v.ed)+'"',1,books.play.flag(v.lg)+books.play.edIc(v.ed));}));});}
+                    ()=>o0()
                     // pl1 – the version you are reading (node) with its main chapters beneath it (leaves)
                     ,()=>{const v=(books.play.shelf||[]).find(x=>x.book===books.play.book&&((x.fn&&x.fn===md.fn)||(x.pdf&&x.pdf===books.play.pdf)))
                             ,nd=v?a2(books.play.titleOf(v.book,v.lg,v.ed),'data-book="'+esc(v.book)+'"'+(v.pdf?' data-pdf="'+esc(v.pdf)+'"':' data-lg="'+v.lg+'" data-ed="'+v.ed+'"')+' class="lvnode on"',0,books.play.flag(v.lg)+books.play.edIc(v.ed))
