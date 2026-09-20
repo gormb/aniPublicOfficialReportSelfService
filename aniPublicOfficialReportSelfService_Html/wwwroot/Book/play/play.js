@@ -349,7 +349,7 @@ const books={
         }
         ,render:{
             el:{page,nav:dbNavList,title:document.getElementById('dbTitle'),prev,next,lvBars}
-            ,ic:['📚','📖','📑','📄','📃','¶','✍️','🔤','�','🎨']
+            ,ic:['📚','📖','📑','📄','📃','¶','✍️','🔤','⎶','🎨']
             ,lv:[]
             ,mode:0,idx:0,pi:0,ch:0,su:0,pending:null,si:0,wi:0,li:0 // ch/su = active chapter/sub, pending = layer after an async load, si/wi = sentence+word we drilled from, li = line of the page (pl5b)
             ,setMode:()=>{books.play.render.el.lvBars.querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.lv===books.play.render.mode));}
@@ -413,7 +413,7 @@ const books={
                     ,()=>{const w=wOf(R.si,R.wi);return [a2(w,'class="lvnode on"',0,'🔤')];}
                     // pl5b Linje – the line you are on (node) with its media forms beneath it (leaves)
                     ,()=>{const l=R.curLine(),mm=[['\u{1F3A8}','Forgrunn'],['\u{1F5BC}\uFE0F','Bakgrunn'],['\u{1F3B5}','Lyd'],['\u{1F3AC}','Bevegelse']];
-                        return [a2(l?l.t:'','class="lvnode on"',0,'📏')].concat(mm.map(m=>a2(m[1],'data-m="9"',1,m[0])));}
+                        return [a2(l?l.t:'','class="lvnode on"',0,R.lv[8].ic)].concat(mm.map(m=>a2(m[1],'data-m="9"',1,m[0])));}
                     // pl6b Medieform – the line alone: the modalities are drawn in the page, not in the nav
                     ,()=>{const l=R.curLine(),pg=md.pages[R.pi]||{},nn=l?l.t:(pg.h?pg.h[1]:(pg.pn?'p. '+pg.pn:md.title));
                         return [a2(nn||'','class="lvnode on"',0,'🎨')];}
@@ -533,12 +533,11 @@ const books={
                         ,'<p class="wbig">'+books.play.render.esc(w)+'</p>'
                         ,'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl6a'))+(w?' – '+books.play.render.esc(w):'')+'</p>'
                         ,'<p>'+books.play.render.esc(books.play.LV[7].q)+'</p>'];} // ordbok-oppslag, bøyning og bruk hører hit
-                // pl5b Linje – the line as it sits in the measure
+                // pl5b Linje – the line as it sits in the measure: ONE item, because draw() renders only v[idx]
                 ,()=>{const l=books.play.render.curLine(),t=l?l.t:'';
                     return ['<h1>'+books.play.render.esc(books.play.LV[8].no)+'</h1>'
                         ,'<p class="lbig">'+books.play.render.esc(t)+'</p>'
-                        ,'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl5b'))+(t?' – '+books.play.render.esc(t):'')+'</p>'
-                        ,'<p>'+books.play.render.esc(books.play.LV[8].q)+'</p>'];} // lengde mot målet, linjebrudd, skrift og leading hører hit
+                        ,'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl5b'))+'</p>'];} // the line itself – never the hardcoded guiding question
                 ,()=>[books.play.render.media(books.play.md.pages[books.play.render.pi]||{})]
             ][books.play.render.mode]()
             ,reset:()=>{books.play.render.mode=books.play.render.pending||0;books.play.render.pending=null;books.play.render.idx=0;books.play.render.setMode();const t=books.play.render.el.title;if(t)t.textContent=books.play.md.title;books.play.render.toc();books.play.render.sync();}
