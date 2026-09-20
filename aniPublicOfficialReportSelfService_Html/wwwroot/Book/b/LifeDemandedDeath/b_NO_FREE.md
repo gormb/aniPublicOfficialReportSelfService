@@ -715,7 +715,6 @@ Appendix og løse tanker
 Bakgrunnsmusikk kan gi stemning til tekst, assosiert musikk dybde og nytt innhold.
 Et eksempel fra film og serier og TV er serien Miami Vice. Jan Hammer, ansvarlig for musikken, så musikken som den tredje hovedrolleinnehaveren i tillegg til Ricardo og Tubbs.
 Filmskapere har både før og etter hatt samme innstilling. I denne boka er musikken til det enkelte kapittel uttrykk for følelser da kapittelet ble skrevet.
-Du som leser kan lage alternativ spilleliste på
 #### p. 167
 ## Uplassert og ubestemt
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
