@@ -625,9 +625,8 @@ const books={
             Z:{
                 ov:null,m:0,t:0,sp:'a' // sp = the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in; pl4a until then
                 ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
-                ,show:()=>{const o=books.play.sem.Z.box(),r=document.getElementById('dpBook').getBoundingClientRect();
-                    o.style.display='block';o.style.left=r.left+'px';o.style.top=r.top+'px';o.style.width=r.width+'px';o.style.height=r.height+'px';}
-                ,hide:()=>{const z=books.play.sem.Z;if(z.ov)z.ov.style.display='none';z.m=z.t=0;}
+                ,show:()=>{books.play.sem.Z.box().style.display='block';document.body.classList.add('zoom');} // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
+                ,hide:()=>{const z=books.play.sem.Z;if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');}
                 ,enter:()=>books.play.sem.Z.show()
                 ,drill:d=>{const R=books.play.render,z=books.play.sem.Z,pl=books.play.id(R.mode),ks=books.play.child(pl)
                     ,k=d>0?(ks.length>1?'pl4'+z.sp:ks[0]):books.play.up[pl]; // + = finer (the fork goes where the user last was), − = coarser
@@ -635,12 +634,17 @@ const books={
                 ,init:()=>{
                     const z=books.play.sem.Z,db=()=>document.getElementById('dpBook');
                     document.onkeydown=e=>{
-                        if(e.key==='Control'){if(db().matches(':hover'))z.enter();return;}
-                        if(!e.ctrlKey)return;
-                        if(e.key==='+'||e.key==='='){e.preventDefault();z.drill(1);}
-                        else if(e.key==='-'||e.key==='_'){e.preventDefault();z.drill(-1);}
+                        if(e.key==='Control'||e.key==='Shift'){if(e.ctrlKey&&e.shiftKey)z.enter();return;} // ⌃⇧ anywhere is Z-mode – not only while hovering the book; ⌃ alone does nothing (and bare ⌃arrows belong to Mission Control)
+                        if(!e.ctrlKey||!e.shiftKey)return;
+                        const k=e.key;
+                        if(k==='ArrowLeft' ||k===','||k==='<'){e.preventDefault();books.play.render.nav(-1);}  // 🫲
+                        else if(k==='ArrowRight'||k==='.'||k==='>'){e.preventDefault();books.play.render.nav(1);}  // 🫱
+                        else if(k==='ArrowUp'  ){e.preventDefault();z.drill(-1);} // ↑ = up the tree, like the nav's ⬆ (coarser)
+                        else if(k==='ArrowDown'){e.preventDefault();z.drill(1);}   // ↓ = into the children (finer)
+                        else if(k==='='||k==='+'){e.preventDefault();z.drill(1);}  // + = finer
+                        else if(k==='-'||k==='_'){e.preventDefault();z.drill(-1);} // − = coarser
                     };
-                    document.onkeyup=e=>{if(e.key==='Control'||!e.ctrlKey)z.hide();};
+                    document.onkeyup=e=>{if(!e.ctrlKey||!e.shiftKey)z.hide();}; // releasing either key ends Z-mode
                     document.onmousedown=e=>{if(e.buttons===3&&db().contains(e.target)){z.m=1;z.enter();}};
                     document.onmouseup=e=>{if(z.m&&e.buttons<3)z.hide();};
                     document.ontouchstart=e=>{if(e.touches.length>1&&db().contains(e.target)){z.t=1;z.enter();}};

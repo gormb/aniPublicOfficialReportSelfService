@@ -2,8 +2,17 @@ body{
     font-family:Garamond;font-size:12pt;margin:0;height:100vh;
     display:grid;grid-template-columns:20vw 1fr 30%;grid-template-rows:auto 1fr;
 }
-#dpMenu{grid-column:1/-1;display:flex;gap:.5em;align-items:center;border-bottom:1px solid #999;}
+#dpMenu{grid-column:1/-1;display:flex;gap:.5em;align-items:center;border-bottom:1px solid #999;position:relative;z-index:60;} /* above the blue area, so the menu (and the qr) stays readable while zooming */
 #dpCur{margin-left:auto;font-style:italic;color:#555;padding:0 .4em;font-size:.95em;white-space:nowrap;}
+#hiQr,#hiUrl{display:none;} /* only while zooming (sem.Z sets body.zoom) */
+body.zoom #hiQr{display:inline-flex;}
+body.zoom #hiUrl{display:inline;}
+body.zoom #hiUrl:empty{display:none;}
+#hiQr{position:relative;z-index:9;height:2em;width:2em;top:-1em;} /* keeps the hover area when the canvas leaves the flow */
+#hiQr canvas{height:4em;width:4em;display:block;cursor:zoom-in;}
+#hiQr:hover canvas{position:absolute;top:0;left:0;height:9em;width:9em;padding:3px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);cursor:default;} /* ~144px ≈ 4px per module – small in the bar, readable by a phone on hover */
+#hiUrl{font-size:.75em;color:#777;max-width:24ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+#hiUrl:empty{display:none;}
 #lvCtl{display:inline-flex;flex-direction:column;align-items:stretch;gap:1px;margin-left:.4em;}
 #lvCtl button{font-size:1em;line-height:1;padding:.1em .3em;}
 #zout,#zin{font-size:1.4em;line-height:1;padding:.05em .3em;}
@@ -99,5 +108,10 @@ h2 a,h3 a{color:inherit;text-decoration:none;}
 .subsong img{height:48px;vertical-align:middle;image-rendering:pixelated;}
 /* PDF-only book (no markdown yet) – the PDF is the whole content */
 .pdfview{width:100%;height:80vh;border:0;}
-#semOv{position:fixed;display:none;background:rgba(0,70,190,.9);pointer-events:none;z-index:50;}
+/* help text in the url slot (tester: MISSING HELP TEXT) */
+#hiUrl,#hiUrl:empty{display:inline!important;font-size:0;max-width:none;overflow:visible;color:#888;font-style:italic;white-space:nowrap;text-decoration:none;pointer-events:none;} /* max-width:none because ch is font-relative – at font-size:0 the old 24ch would collapse to 0 */
+#hiUrl::before{content:'Press ctrl-shift';font-size:.75rem;}
+body.zoom #hiUrl{font-size:.75rem!important;color:#777;font-style:normal;text-decoration:underline;pointer-events:auto;cursor:pointer;max-width:24ch;overflow:hidden;text-overflow:ellipsis;}
+body.zoom #hiUrl::before{content:none;}
+#semOv{position:fixed;display:none;inset:-50vmax;background:rgba(0,70,190,.9);pointer-events:none;z-index:50;} /* the blue area covers the whole screen itself – -50vmax reaches well outside the page, so no other zoom can leave screen uncovered */
 

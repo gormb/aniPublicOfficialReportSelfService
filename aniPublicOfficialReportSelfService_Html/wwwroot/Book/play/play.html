@@ -1,8 +1,8 @@
 <!doctype html>
-<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=7"></head>
+<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=10"></head>
 <body>
 <!-- menu -->
-    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><span id="hiId">L*NO*FR.R.Ka.Vib.T</span><span id="dpCur"></span></div>
+    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><span id="hiId">L*NO*FR.R.Ka.Vib.T</span><span id="hiQr"></span><a id="hiUrl"></a><span id="dpCur"></span></div>
 <!-- nav -->
     <!--div id="dbNav"><div id="dbNavHead">
         <button id="lang">🇳🇴</button><button id="ver">👑</button><span id="dbTitle"></span>
@@ -36,6 +36,21 @@
                 </details>
     </div>
     <hr>
-    <script src="play.js?v=7"></script>
+    <script src="play.js?v=11"></script>
+    <!-- #hiId › its deep link as qr + url. Nothing is added to aigap.no/qr.js: only its generic API is reused (qr.g, qr.sizes), and play's own glue – the ?p= url and the two elements – stays here, taking the id as a parameter -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+    <script src="https://aigap.no/i/u/qrmetrics.js"></script>
+    <script src="https://aigap.no/qr.js"></script>
+    <script>
+        books.play.hiQr=id=>{ // id in → qr + url out. The id is a parameter; the common qr never learns about play
+            if(!window.qr||id===books.play.hiQrId)return;books.play.hiQrId=id;
+            const u=id?'https://aigap.no/play?p='+id:'',q=document.getElementById('hiQr'),a=document.getElementById('hiUrl');
+            if(u)qr.g(u,null,qr.sizes(u).find(n=>n>21)||29).then(cv=>{if(cv&&q)q.replaceChildren(cv);}); // coarsest code that holds the link: 25x25 before 29x29…
+            if(q&&!u)q.textContent='';
+            if(a){a.textContent=u;a.href=u;}
+        };
+        books.play.hiQr(document.getElementById('hiId').textContent); // what is there now
+        new MutationObserver(()=>books.play.hiQr(document.getElementById('hiId').textContent)).observe(document.getElementById('hiId'),{childList:1,characterData:1,subtree:1}); // hi() is the only writer of #hiId → observe it and hand the id over
+    </script>
 </body>
 </html>
