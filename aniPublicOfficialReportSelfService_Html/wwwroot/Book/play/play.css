@@ -99,4 +99,5 @@ h2 a,h3 a{color:inherit;text-decoration:none;}
 .subsong img{height:48px;vertical-align:middle;image-rendering:pixelated;}
 /* PDF-only book (no markdown yet) – the PDF is the whole content */
 .pdfview{width:100%;height:80vh;border:0;}
+#semOv{position:fixed;display:none;background:rgba(0,70,190,.9);pointer-events:none;z-index:50;}
 

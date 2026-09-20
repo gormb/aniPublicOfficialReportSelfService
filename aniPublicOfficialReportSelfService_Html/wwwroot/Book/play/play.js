@@ -364,7 +364,7 @@ const books={
                 books.play.render.idx=0;
             }
             ,setSu:i=>{const s=books.play.md.subs[i];if(!s)return;books.play.render.su=i;books.play.render.ch=books.play.md.subCh[i];books.play.render.idx=0;}
-            ,go:(n,keep)=>{if(!keep)books.play.render.align(n);books.play.render.mode=n;books.play.render.setMode();books.play.render.toc();books.play.render.draw();books.play.render.sync();}
+            ,go:(n,keep)=>{if(!keep)books.play.render.align(n);books.play.render.mode=n;const sp=/^(pl\d+)([ab])$/.exec(books.play.id(n));if(sp)books.play.sem.Z.sp=sp[2];books.play.render.setMode();books.play.render.toc();books.play.render.draw();books.play.render.sync();}
             ,toc:()=>{
                 const R=books.play.render,md=books.play.md,esc=R.esc,ic={2:'📖',3:'📑'}
                 ,a2=(t,at,l,ico)=>'<a '+at+'>'+'&nbsp;'.repeat(2*l)+(ico?ico+'&nbsp;':'')+esc(t)+'</a>'
@@ -621,6 +621,35 @@ const books={
                 document.getElementById(t?books.play.render.slug(t.h[1]):h).scrollIntoView();
             }
         }
+        ,sem:{
+            Z:{
+                ov:null,m:0,t:0,sp:'a' // sp = the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in; pl4a until then
+                ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
+                ,show:()=>{const o=books.play.sem.Z.box(),r=document.getElementById('dpBook').getBoundingClientRect();
+                    o.style.display='block';o.style.left=r.left+'px';o.style.top=r.top+'px';o.style.width=r.width+'px';o.style.height=r.height+'px';}
+                ,hide:()=>{const z=books.play.sem.Z;if(z.ov)z.ov.style.display='none';z.m=z.t=0;}
+                ,enter:()=>books.play.sem.Z.show()
+                ,drill:d=>{const R=books.play.render,z=books.play.sem.Z,pl=books.play.id(R.mode),ks=books.play.child(pl)
+                    ,k=d>0?(ks.length>1?'pl4'+z.sp:ks[0]):books.play.up[pl]; // + = finer (the fork goes where the user last was), − = coarser
+                    if(k)R.go(books.play.ix(k));}
+                ,init:()=>{
+                    const z=books.play.sem.Z,db=()=>document.getElementById('dpBook');
+                    document.onkeydown=e=>{
+                        if(e.key==='Control'){if(db().matches(':hover'))z.enter();return;}
+                        if(!e.ctrlKey)return;
+                        if(e.key==='+'||e.key==='='){e.preventDefault();z.drill(1);}
+                        else if(e.key==='-'||e.key==='_'){e.preventDefault();z.drill(-1);}
+                    };
+                    document.onkeyup=e=>{if(e.key==='Control'||!e.ctrlKey)z.hide();};
+                    document.onmousedown=e=>{if(e.buttons===3&&db().contains(e.target)){z.m=1;z.enter();}};
+                    document.onmouseup=e=>{if(z.m&&e.buttons<3)z.hide();};
+                    document.ontouchstart=e=>{if(e.touches.length>1&&db().contains(e.target)){z.t=1;z.enter();}};
+                    document.ontouchend=e=>{if(z.t&&e.touches.length<2)z.hide();};
+                    window.onblur=z.hide;
+                    window.onresize=()=>{if(z.ov&&z.ov.style.display==='block')z.show();};
+                }
+            }
+        }
         ,wire:()=>{
             dbNavList.onclick=ev=>{
                 const a=ev.target.closest('a[data-book],a[data-i],a[data-m],a[data-ch],a[data-su],a[data-go],a[data-edit]');
@@ -643,6 +672,7 @@ const books={
             books.play.render.lv=books.play.render.ic.map((ic,i)=>({pl:(books.play.LV[i]&&books.play.LV[i].pl)||'pl'+i,ic,nm:(books.play.LV[i]&&books.play.LV[i].no)||''}));
             books.play.render.bar();
             books.play.render.guide();
+            books.play.sem.Z.init();
             books.play.ready=books.play.probe().then(s=>{if(s&&s.length)books.play.render.toc();books.play.hi();}); // shelf arrives async → redraw the nav and the id once it lands; parse() waits on this for a deep link
             books.play.lang();
             books.play.render.el.page.addEventListener('click',ev=>{
