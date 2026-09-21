@@ -13,28 +13,16 @@ body.zoom #hiUrl:empty{display:none;}
 #hiQr:hover canvas{position:absolute;top:0;left:0;height:9em;width:9em;padding:3px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);cursor:default;} /* ~144px ≈ 4px per module – small in the bar, readable by a phone on hover */
 #hiUrl{font-size:.75em;color:#777;max-width:24ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 #hiUrl:empty{display:none;}
-#lvCtl{display:inline-flex;flex-direction:column;align-items:stretch;gap:1px;margin-left:.4em;}
-#lvCtl button{font-size:1em;line-height:1;padding:.1em .3em;}
-#zout,#zin{font-size:1.4em;line-height:1;padding:.05em .3em;}
-#zout:disabled,#zin:disabled{opacity:.3;cursor:default;}
-#prev:disabled,#next:disabled{opacity:.3;cursor:default;}
-#lvBars{display:flex;gap:.2em;align-items:center;}
-#lvBars button{padding:.1em .25em;font-size:1.3em;line-height:1;border:1px solid transparent;background:none;cursor:pointer;border-radius:.2em;opacity:.45;}
-#lvBars button:hover{opacity:1;}
-#lvBars button.on{border-color:#999;opacity:1;background:#f2f2f2;}
+#lvCtl{display:inline-flex;flex-direction:column;align-items:stretch;gap:1px;}
 #lvBars{display:block;}
+#lvBars button,#lvCtl button{font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.45;}
+#lvBars button:hover,#lvCtl button:hover{opacity:1;}
+#lvBars button.on{border-color:#999;opacity:1;background:#f2f2f2;}
+#lvBars button:disabled,#lvCtl button:disabled,#prev:disabled,#next:disabled{opacity:.3;cursor:default;}
 #lvBars table{border-collapse:separate;border-spacing:2px 1px;margin:0;}
 #lvBars td{padding:0;text-align:center;vertical-align:middle;}
-#lvBars td.zbox{border-left:1px solid #bbb;padding-left:3px;}
-#lvBars .z{font-size:1.1em;line-height:1;padding:.05em .22em;}
 #lvBars td.txt{border-bottom:1px dashed #b8b8b8;}
-#lvBars td.zp{padding-left:3px;border-left:1px solid #ccc;}
 #lvBars td.zm{padding-left:4px;border-left:1px solid #ccc;text-align:center;}
-#lvBars .pp{font-size:1.05em;padding:.05em .25em;}
-#lvBars .fork{font-size:.75em;padding:0 .2em;opacity:.65;line-height:1;}
-#lvBars .forks{display:flex;justify-content:center;gap:2px;margin-top:2px;}
-#lvBars td.zoom{padding-left:4px;border-left:1px solid #ccc;}
-#lvBars td.zoom button{display:block;margin:0 auto;font-size:1em;}
 #dbNav{display:flex;flex-direction:column;min-height:0;border-right:1px solid #999;}
 #dbNavHead{display:flex;align-items:center;gap:.3em;padding:0 .4em;border-bottom:1px solid #999;}
 #dbNavHead button{padding:.1em .3em;font-size:1.6em;}
