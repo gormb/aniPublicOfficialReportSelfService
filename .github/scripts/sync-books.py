@@ -298,6 +298,87 @@ def _md_files(base, doc, style, data, book):
             with open(f'{base}_{label}_{mode}.md', 'w', encoding='utf-8') as f:
                 f.write('\n'.join(lines) + '\n')
 
+GOLD_TOP, GOLD_BOT = (0.933, 0.855, 0.624), (0.839, 0.741, 0.482)  # gullstiftens gradient, rgba(.62) oppå hvitt
+
+def _gold_brush(page, _fitz, r):
+    """Rundet penselstrøk med gullgradient over skjult premium-tekst (som cBook.Hide())."""
+    rr = min(5.0, r.height / 2)
+    n = 12
+    for i in range(n):
+        y0, y1 = r.y0 + r.height * i / n, r.y0 + r.height * (i + 1) / n
+        t = i / (n - 1)
+        c = tuple(a + (b - a) * t for a, b in zip(GOLD_TOP, GOLD_BOT))
+        k = max(rr - (rr * rr - (rr - min(rr, y0 - r.y0)) ** 2) ** .5,
+                rr - (rr * rr - (rr - min(rr, r.y1 - y1)) ** 2) ** .5)
+        if r.x1 - k > r.x0 + k:
+            page.draw_rect(_fitz.Rect(r.x0 + k, y0, r.x1 - k, y1), fill=c)
+
+def _locked(page, _fitz, left, hide):
+    """Tekst som ikke hører til denne versjonen: skjult tier per halvdel, slått sammen til linjestrøk."""
+    mid, rects = page.rect.width / 2, []
+    for block in page.get_text('dict')['blocks']:
+        if block.get('type') != 0:
+            continue
+        for line in block['lines']:
+            run = None
+            for s in line['spans']:
+                bx = s['bbox']
+                if not s['text'].strip() or (((bx[0] + bx[2]) / 2 < mid) != left):  # feil halvdel eller tom
+                    run = None
+                    continue
+                tier = _font_tier(s['font'])
+                if tier not in (hide, 'comment'):
+                    run = None
+                    continue
+                r = _fitz.Rect(bx)
+                if run and run[0] == tier and r.x0 - run[1].x1 < s['size'] * .5:
+                    run[1] |= r
+                else:
+                    rects.append([tier, r])
+                    run = rects[-1]
+    return rects
+
+def render_pdfs(pdf_path):
+    """Skriv de fire PDF-bøkene ved siden av bok-PDF-en: én halvside per språk, låst tier fjernet
+    (gullstift over skjult premium i FREE, hvitt over skjult freemium i PREM). Bilder og lenker følger med."""
+    try:
+        import pymupdf as _fitz
+    except ImportError:
+        import fitz as _fitz
+    base = os.path.splitext(pdf_path)[0]
+    src = _fitz.open(pdf_path)
+    style = _pdf_style(src)
+    last = _template_start(src) - 1  # cover + brødtekst; mal-sidene til slutt er ikke bokinnhold
+    meta = src.metadata or {}
+    for left, lu in ((True, 'NO'), (False, 'EN')):
+        for mode in ('FREE', 'PREM'):
+            doc = _fitz.open(pdf_path)
+            gold, hide = mode == 'FREE', 'premium' if mode == 'FREE' else 'freemium'
+            for pno in range(1, last + 1):
+                page = doc[pno - 1]
+                w = page.rect.width
+                rects = _locked(page, _fitz, left, hide)
+                for _, r in rects:
+                    page.add_redact_annot(r, fill=(1, 1, 1))
+                if rects:
+                    page.apply_redactions(images=_fitz.PDF_REDACT_IMAGE_NONE,
+                                          graphics=_fitz.PDF_REDACT_LINE_ART_NONE,
+                                          text=_fitz.PDF_REDACT_TEXT_REMOVE)
+                    if gold:
+                        for tier, r in rects:
+                            if tier == 'premium':
+                                _gold_brush(page, _fitz, r)
+                for lk in page.get_links():
+                    if ((lk['from'].x0 + lk['from'].x1) / 2 < w / 2) != left:
+                        page.delete_link(lk)
+                page.set_cropbox(_fitz.Rect(0 if left else w / 2, 0, w / 2 if left else w, page.rect.height))
+            doc.set_metadata({'title': _title(src, style, 'no' if left else 'en') or meta.get('title') or '',
+                              'author': meta.get('author') or ''})
+            doc.save(f'{base}_{lu}_{mode}.pdf', garbage=4, deflate=True, clean=True)
+            doc.close()
+    src.close()
+    print(f'[{os.path.basename(pdf_path)}] PDF-versjoner: NO/EN × FREE/PREM .pdf')
+
 def extract(pdf_path):
     """Lag 4 tiered .md-bøker ved siden av en bok-PDF:
     name_NO_FREE.md, name_NO_PREM.md, name_EN_FREE.md, name_EN_PREM.md
@@ -316,6 +397,7 @@ def extract(pdf_path):
     data = _data(doc, style)  # port av cBook.data.get(): kapittel/sub via y-posisjon
     _md_files(base, doc, style, data, os.path.basename(os.path.dirname(pdf_path)))
     print(f'[{os.path.basename(pdf_path)}] tekstuttrekk: NO/EN × FREE/PREM .md')
+    render_pdfs(pdf_path)
 
 def gh(kind, msg):
     """GitHub Actions annotation – surfaces on the run summary as a warning/error badge."""
@@ -454,4 +536,7 @@ def main():
         open(marker, 'w').write(f'{errors}\n')  # workflow fails AFTER valid books are pushed
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) > 2 and sys.argv[1] == '--pdf':  # lokal kjøring: bare PDF-versjonene
+        render_pdfs(sys.argv[2])
+    else:
+        main()
