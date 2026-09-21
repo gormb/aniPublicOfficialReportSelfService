@@ -9,7 +9,7 @@ body.zoom #hiQr{display:inline-flex;}
 body.zoom #hiUrl{display:inline;}
 body.zoom #hiUrl:empty{display:none;}
 #hiQr{position:relative;z-index:9;height:2em;width:2em;top:-1em;} /* keeps the hover area when the canvas leaves the flow */
-#hiQr canvas{height:4em;width:4em;display:block;cursor:zoom-in;}
+#hiQr canvas{height:5em;width:5em;display:block;cursor:zoom-in;}
 #hiQr:hover canvas{position:absolute;top:0;left:0;height:9em;width:9em;padding:3px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);cursor:default;} /* ~144px ≈ 4px per module – small in the bar, readable by a phone on hover */
 #hiUrl{font-size:.75em;color:#777;max-width:24ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 #hiUrl:empty{display:none;}
@@ -71,6 +71,7 @@ body.zoom #hiUrl:empty{display:none;}
 .seV{display:flex;gap:.35em;align-items:center;margin:.12em 0 .12em 1.2em;font-size:.95em;}
 .seV .seT{flex:1;min-width:0;}
 .seId,.seT{font:inherit;padding:.05em .3em;border:1px solid #ccc;border-radius:3px;background:#fff;}
+.seB{width:4.5em;font:inherit;padding:.05em .3em;border:1px solid #ccc;border-radius:3px;background:#fff;} /* bind – den fysiske boka, ett av flere når verket går over flere bind */
 .seHint{font-size:.85em;color:#666;}
 .seMsg{margin-left:.5em;font-size:.9em;color:#070;}
 .seOpen{margin-left:.2em;color:#0645ad;text-decoration:none;white-space:nowrap;font-size:.9em;}

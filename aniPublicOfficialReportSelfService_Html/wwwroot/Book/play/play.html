@@ -2,7 +2,7 @@
 <head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=10"></head>
 <body>
 <!-- menu -->
-    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><span id="hiId">L*NO*FR.R.Ka.Vib.T</span><span id="hiQr"></span><a id="hiUrl"></a><span id="dpCur"></span></div>
+    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><!-- ?p=<book*language*edition*bind>.<chapter>.<sub chapter>… – a token of * means any, ie the first; the bind token is empty when the work is one bind --><span id="hiId">L*NO*FR.R.Ka.Vib.T</span><span id="hiQr"></span><a id="hiUrl"></a><span id="dpCur"></span></div>
 <!-- nav -->
     <!--div id="dbNav"><div id="dbNavHead">
         <button id="lang">🇳🇴</button><button id="ver">👑</button><span id="dbTitle"></span>
@@ -27,8 +27,10 @@
                 <details><summary>Structure</summary>
                     Bokhylle › Bokeksemplar › Hovedkapittel › Underkapittel — which splits into<br>
                     • Bokside → Linje → Medieform (the presentation)<br>• Paragraf → Setning → Ord (the text)<br>
+                    Bind: a work may be published in several binds — a bind is the physical book, one of a series — so the copy at pl1 is bind × language × edition. Those three point at their own file, b/{book}/b_{lang}_{edition}[_{bind}].md, with its own chapter sequence, its own start and its own numbering; the bind belongs to the copy, not to the concept.<br>
+                    • Bokside → Linje → Medieform (the presentation)<br>• Paragraf → Setning → Ord (the text)<br>
                     The spines never cross: the page carries its lines and their media, a word ends the text spine.<br>
-                    One source line = one paragraph; a line that resumes a sentence cut by a page marker or a line break joins the same paragraph, which can span pages (pn–pn2).<br>A page's lines are word wrapped at the golden-ratio measure (≈66 characters) at 1.15 line spacing, so every line of a page can be addressed – the level a gaze maps to when eye tracking comes.<br>Medieform is multi-modal – Forgrunn, Bakgrunn, Lyd (Spotify Play), Bevegelse – one row per modality, drawn in the page.<br>Hierarchy is data: parents in books.play.up, names/text/features in books.play.LV. The nav shows the selected node and its leaves, ⬆ goes to the parent node, 🫲/🫱 walk the siblings.<br>Levels: pl0 shelf, pl1 version, pl2 main chapter, pl3 sub chapter (the fork: pages │ paragraphs), pl4b page, pl5b line, pl6b media form, pl4a paragraph, pl5a sentence, pl6a word.
+                    One source line = one paragraph; a line that resumes a sentence cut by a page marker or a line break joins the same paragraph, which can span pages (pn–pn2).<br>A page's lines are word wrapped at the golden-ratio measure (≈66 characters) at 1.15 line spacing, so every line of a page can be addressed – the level a gaze maps to when eye tracking comes.<br>Medieform is multi-modal – Forgrunn, Bakgrunn, Lyd (Spotify Play), Bevegelse – one row per modality, drawn in the page.<br>Hierarchy is data: parents in books.play.up, names/text/features in books.play.LV. The nav shows the selected node and its leaves, ⬆ goes to the parent node, 🫲/🫱 walk the siblings.<br>Levels: pl0 shelf, pl1 copy (bind × language × edition), pl2 main chapter, pl3 sub chapter (the fork: pages │ paragraphs), pl4b page, pl5b line, pl6b media form, pl4a paragraph, pl5a sentence, pl6a word.
                 <ol><li>DOING: Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>
                         to the right add a lookingglass and after it buttons for the levels (with iocons).
                         Clicking changes cursor and then clicking on area in text jumps into the correct 
