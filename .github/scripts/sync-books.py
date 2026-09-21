@@ -402,6 +402,10 @@ def render_pdfs(pdf_path):
     style = _pdf_style(src)  # leser tier-fontene og struktur-målene fra template-sidene
     last = _template_start(src) - 1  # cover + brødtekst; mal-sidene til slutt er ikke bokinnhold
     meta = src.metadata or {}
+    if last < 1:  # bare template-slides (boken har ikke innhold ennå) – ingen versjoner å lage
+        src.close()
+        print(f'[{os.path.basename(pdf_path)}] ingen bokinnhold (bare templates) – hopper over PDF-versjoner')
+        return
     for left, lu in ((True, 'NO'), (False, 'EN')):
         for mode in ('FREE', 'PREM'):
             doc = _fitz.open(pdf_path)

@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install PDF text extraction lib
-        run: pip install --quiet pymupdf
+        run: pip install --quiet pymupdf pillow
 
       - name: Sync all books from the `books` table
         env:

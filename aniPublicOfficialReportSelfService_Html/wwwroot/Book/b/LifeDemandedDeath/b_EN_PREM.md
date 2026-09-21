@@ -6,44 +6,43 @@
 "Riding my motorcycle from Kiel to Alicante averaging 170 km/h, I could have been arrested all over Europe", I said.
 The lawyer I had just met over a Whisky chuckled.
 "No, you should be dead"
-Maybe so, but I feel nothing anyway, except shame towards my loved ones. Perhaps through Music, I can experience the loss of sanity as sound, time standing still, breakdown and realization.
+Maybe so, but I feel nothing anyway, except shame towards my loved ones. Perhaps through Music, I can experience the loss of  sanity as sound, time standing still, breakdown and realization.
 Death makes room
 #### p. 3
 ### Zero-Summary
 🎵 [Nothing Compares 2 U; Sinéad O'Connor](https://aigap.no/mncty)
-A death makes room for a life
 Does new life demand that something old dies to make space? Are resources and therefore opportunities limited?
 Zero-Summary is about resource allocation without the ability to create resources from nothing; you must choose between keeping old things alive and creating something new. There isn't room to do both at once.
-A result measure of innovation that few understand is how much you manage to stop doing to make room for something new. Some call the effect of having too much "legacy cost", and the system is often referred to as "the Zero-Sum Game". An alternative to the model is to assume that you can create value through progress and not just distribute value based on yesterday's premises. Positive-sum games are described in a later chapter. For this death also entails that the zero-sum model must die, but it must be felt first.
+A result measure of  innovation that few understand is how much you manage to stop doing to make room for something new. Some call the effect of  having too much "legacy cost", and the system is often referred to as "the Zero-Sum Game". An alternative to the model is to assume that you can create value through progress and not just distribute value based on yesterday's premises. Positive-sum games are described in a later chapter. For this death also entails that the zero-sum model must die, but it must be felt first.
 #### p. 4
-An effect template for innovation is progress. I don't think we call it innovation if it doesn't entail a new perceived improvement; then you can discuss whether it's enough that only the experience is new. For me, it has been true: one describes the application of artificial intelligence as innovative even though the ideas may be 50 years old, and the world just wasn't ready yet. From this perspective, I write about perceived improvement; for the other kind, the objective improvement, I can't just guess. I know my own truths and can speak about them with full integrity.
-I will therefore start with some stories that are true for me, unbalanced and perhaps even objectively imprecise. The space that was created in my life is about a subjectively true experience of realities. I know I can honestly and precisely share my experiences, fragmented and at times desperate.
-If I, for example, say that the motorcycle helmet cracked, not like in the movies, but in a senseless crash that once again embedded itself as lasting physical fear in my body, it might be that the episode was more or less dramatic for those who saw me go down. My feeling is nonetheless true and neither underreported nor dramatized. Several times, people have thought they witnessed a fatal accident, while for me it was a, relatively speaking, minor mishap not described in this book.
+An effect template for innovation is progress. I don't think we call it innovation if  it doesn't entail a new perceived improvement; then you can discuss whether it's enough that only the experience is new. For me, it has been true: one describes the application of  artificial intelligence as innovative even though the ideas may be 50 years old, and the world just wasn't ready yet. From this perspective, I write about perceived improvement; for the other kind, the objective improvement, I can't just guess. I know my own truths and can speak about them with full integrity.
+I will therefore start with some stories that are true for me, unbalanced and perhaps even objectively imprecise. The space that was created in my life is about a subjectively true experience of  realities. I know I can honestly and precisely share my experiences, fragmented and at times desperate.
+If  I, for example, say that the motorcycle helmet cracked, not like in the movies, but in a senseless crash that once again embedded itself  as lasting physical fear in my body, it might be that the episode was more or less dramatic for those who saw me go down. My feeling is nonetheless true and neither underreported nor dramatized. Several times, people have thought they witnessed a fatal accident, while for me it was a, relatively speaking, minor mishap not described in this book.
 #### p. 5
 ### Lotte
 🎵 [Carmina Burana: O Fortuna; Carl Orff](https://aigap.no/mcb)
 I don't want to meet a woman; a woman notice it.
 She stood next to me at classical concert in the Palace Park.
 We didn't speak for a long time; she moved like me, adapted to how I stood and moved, impossible not to notice. After a few minutes she said "Depeche Mode". I didn't understand anything. "Personal Jesus?" I said. She nodded in confirmation. "You don't need to understand", she said, "just go with it".
-Neither of us said anything until the next piece finished; she stood like me and moved like me, but with small differences that made it non-invasive. "O Fortuna" from Carmina Burana played while the rain lashed; she was as unchangeable as I was, but we decided simultaneously to leave.
+Neither of  us said anything until the next piece finished; she stood like me and moved like me, but with small differences that made it non-invasive. "O Fortuna" from Carmina Burana played while the rain lashed; she was as unchangeable as I was, but we decided simultaneously to leave.
 #### p. 6
 I know communication tricks; she knew more. Or maybe this woman was naturally sensual and wanted to get to know me. Like other men, I can no longer tell the difference. The game from Tinder took over how we meet. "Natural" has passed away and was buried in 2015. Or so I thought.
-"You think you know what natural is, but have you also forgotten how it feels?" Lotte suddenly said. In a chaos of fantastic music and rain, I couldn't understand if she was talking about me, herself, or describing the personality between us. Maybe something happened I didn't understand.
+"You think you know what natural is, but have you also forgotten how it feels?" Lotte suddenly said. In a chaos of  fantastic music and rain, I couldn't understand if  she was talking about me, herself, or describing the personality between us. Maybe something happened I didn't understand.
 We left the rain, walked down Karl Johans gate and into Brødrene Bergh where a DJ played Soul.
-Lotte and I mirrored each other, bodily, then verbally, and were thrown out of Brødrene Bergh at closing. Time gone.
-"You think you're confused now? Wait until you realize what happens if we stop thinking", I imagined she said to me. But she was gone. "I have the self-confidence to stand with the beautiful one, but self-esteem made me ashamed of it". She mirrored me; did she have her own shame or was she mirroring mine? "Self-confidence and self-loathing", I said aloud to myself.
+Lotte and I mirrored each other, bodily, then verbally, and were thrown out of  Brødrene Bergh at closing. Time gone.
+"You think you're confused now? Wait until you realize what happens if we stop thinking", I imagined she said to me. But she was gone. "I have the self-confidence to stand with the beautiful one, but self-esteem made me ashamed of  it". She mirrored me; did she have her own shame or was she mirroring mine? "Self-confidence and self-loathing", I said aloud to myself.
 Doesn't matter. We enjoyed each other with all senses.
 #### p. 7
-Hypersensitive and mirroring or calculating by the book, she can keep her mysticism. Later I learn she has faith I lack, and that the space we give each other makes disagreement enriching without friction. So we will grow tired of each other in the future.
+Hypersensitive and mirroring or calculating by the book, she can keep her mysticism. Later I learn she has faith I lack, and that the space we give each other makes disagreement enriching without friction. So we will grow tired of  each other in the future.
 Doesn't matter. I have no future.
-Broken things are beautiful to the devout. She is a woman of God. The kind who sees the beauty in what is broken.
-Shame, goodness, and evil. Theoretically processed. She has done all kinds of reflection. Now it's time for sensation. Secure in presence, accustomed to life as death.
+Broken things are beautiful to the devout. She is a woman of  God. The kind who sees the beauty in what is broken.
+Shame, goodness, and evil. Theoretically processed. She has done all kinds of  reflection. Now it's time for sensation. Secure in presence, accustomed to life as death.
 I scratched the surface, enough reflection. She deserves real. Not slowly.
-Enjoy without reflection. Instincts can decide without afterthought. People of belief also have the human right to desire and be desired. The exception was Lotte's dualism, which I reflected on; the divide between spirit and physical reality once kept the mysticism of faiths alive. With me, Lotte's dualism gives too little; I pretend I am too simple for us to have intellectual overlap.
+Enjoy without reflection. Instincts can decide without afterthought. People of  belief  also have the human right to desire and be desired. The exception was Lotte's dualism, which I reflected on; the divide between spirit and physical reality once kept the mysticism of  faiths alive. With me, Lotte's dualism gives too little; I pretend I am too simple for us to have intellectual overlap.
 That is my dualism, constructed for shared happiness in misfortune.
 #### p. 8
 Hard to get hold of. Don't contact; she deserves a "mission" to proselytize, or to say "Mission accepted". After three days, a message came from her; she had found my name. I reply after five. Too good to preserve. Won't last.
-We met a second time after a week. Lotte was animalistic in bed for a week. I didn't want to end up in bed with her; just having her in the crook of my arm was enough. "You think this is about sex?" said Lotte, so I kissed her on the mouth. "It's about letting life happen", she said.
+We met a second time after a week. Lotte was animalistic in bed for a week. I didn't want to end up in bed with her; just having her in the crook of  my arm was enough. "You think this is about sex?" said Lotte, so I kissed her on the mouth. "It's about letting life happen", she said.
 We went home to her and didn't go out again for days.
 After that, I haven't seen her.
 I didn't meet her.
@@ -77,30 +76,30 @@ But I have skipped some stories.
 #### p. 14
 ### Funny at the gas station
 🎵 [Harder Than You Think; Public Enemy](https://aigap.no/mhtyt)
-It's raining a little; I stop to fill up with gas. There's a woman behind the counter smiling. I smile back. "Can you turn off this rain?" "Yes, I'll just turn it off here," she says kindly.
+It's raining a little; I stop to fill up with gas. There's a woman behind the counter smiling. I smile back. "Can you turn off  this rain?" "Yes, I'll just turn it off  here," she says kindly.
 "I can't turn it off, but I know when it's going to start raining; it gets humid in here before it rains," she continues warmly.
 I play along. "That's interesting; the humidity starts inside and then becomes rain; how strange," I reply with engagement. "But stopping it, that's not possible."
-"I hear that all the others who have those cooling systems on the roof have it like that; the humidity comes inside first."
+"I hear that all the others who have those cooling systems on the roof  have it like that; the humidity comes inside first."
 "Is it because the low-pressure system pushes humid air in, and
 #### p. 15
 the cooling system cools it down, so the indoor climate becomes damp, heavy, and humid? Can air under high pressure hold less moisture?"
 "Now look at the door," she points to the refrigerator door covered in condensation.
 We agree that it's going to rain today.
-My ideal when I was 16 was to work at a gas station for the rest of my life; it has never happened that I've worked at one.
+My ideal when I was 16 was to work at a gas station for the rest of  my life; it has never happened that I've worked at one.
 A small, manageable ecosystem where people come in from the outside.
 Complex enough to provide variety, and simple enough to provide stability.
 Seems like a good life to me.
-But if you're too curious, you get thrown onto other paths. Coming back is not the same. You also get hated, like in Plato's cave. "You think too much," they say for the rest of your life.
-Maybe I have worked at a gas station after all. Places you're not aware of having the mentality of.
+But if  you're too curious, you get thrown onto other paths. Coming back is not the same. You also get hated, like in Plato's cave. "You think too much," they say for the rest of  your life.
+Maybe I have worked at a gas station after all. Places you're not aware of  having the mentality of.
 I probably succeeded in finding the little life many times anyway.
 #### p. 16
 ### MC to the Mediterranean and a flame
 🎵 [Wanted Dead or Alive; Bon Jovi](https://aigap.no/mwdoa)
 Heavy motorcycle. It's December 2022 and bike season is over. Whether it was safe to ride or not, was judged based on whether forecast had shown sub-zero temperatures during the night; now it wasn't safe anymore. If you ride on ice with a heavy motorcycle, the front wheel slips and you immediately hit the ground with no chance to influence it. That's how I destroyed my first Ducati and my first helmet.
-I found a map of Europe and looked at where I could stay from December to March where it was above freezing; Italy was high on the list.
+I found a map of  Europe and looked at where I could stay from December to March where it was above freezing; Italy was high on the list.
 "It's all the same, only the names will change". I looked at the map; the Mediterranean looked good, Italy, Spain, maybe Morocco or Turkey. The country was unimportant; what mattered was the escape
 #### p. 17
-from a Norway of isolation, freezing temperatures, and stagnation. The drive was unshakable. Everything is the same: cities, people, and values.
+from a Norway of  isolation, freezing temperatures, and stagnation. The drive was unshakable. Everything is the same: cities, people, and values.
 There are many different names for the freedom I sought.
 Suddenly I remembered my former girlfriend and cohabitant from the ﬁrst half of my twenties, "C", who had moved to Alicante to write a book about Francisco Franco. C is a delightfully over-gifted creature from the West End of Oslo who has been a good friend since I met her, and we have maintained a friendship after we broke up. C is fun.
 "Every day it seems we're wastin' away". After a week of winter storage, my patience was gone; the feeling of wasting valuable time drove me to act. Being stuck in Oslo while life and the world burned with COVID fear and depression was more harmful than physical danger, people's opinions of me, career, or money.
@@ -119,7 +118,7 @@ The optimistic route involved high speed over a long time; the beautiful route m
 "I'm a cowboy. On a steel horse I ride". On the road I was not a father, not a colleague, but an old-fashioned archetype of a man, a lone rider on a minimalist, dangerous motorcycle without wind protection. The feeling of being an outlaw, with the steel horse as my tool, let me numb pain, classical reason, and fear in an inferno of wind noise. An outlaw old-fashioned man on a steel horse.
 #### p. 20
 The 3400 kilometers from Kiel to Alicante were completed at full throttle, and even though I had a very reliable bike, it broke down the ﬁrst time already before I reached Hamburg.
-"I'm wanted dead or alive". With an average speed of 170 km/h, I lived in a constant borderland between prison, madness, or my own fatal accident. I am still ashamed of it because of my children, but adrenaline and endorphins boiled: willing to pay the highest price for my new freedom, I had fled a slow, silent, greyish death in a bureaucracy overcrowded with case officers at a strategic level. It was like I learned in the military's reconnaissance service: my duty as a prisoner was to escape.
+"I'm wanted dead or alive". With an average speed of  170 km/h, I lived in a constant borderland between prison, madness, or my own fatal accident. I am still ashamed of  it because of  my children, but adrenaline and endorphins boiled: willing to pay the highest price for my new freedom, I had fled a slow, silent, greyish death in a bureaucracy overcrowded with case officers at a strategic level. It was like I learned in the military's reconnaissance service: my duty as a prisoner was to escape.
 I felt wanted, dead or alive.
 After a period at top speed, 220 km/h, the motorcycle broke down, and I was forced to take a 24-hour break while it was repaired. A two-day stop in Hamburg during COVID was not my favorite, but in return, a lot of work was done from the hotel on "Digital assistant for Norway, organizational perspective". A socially beneﬁcial task that is more boring than it sounds.
 "Another place where the faces are so cold". Hamburg during the COVID lockdown was a pause from the speed, but a reminder of the world's coldness where everyone goes to work in a machine where they
@@ -160,19 +159,19 @@ But my sanity had let go.
 #### p. 28
 ### The early flame
 🎵 [State of Emergency; Cactus World News](https://aigap.no/msoe)
-I had reached the woman I should have married 25 years earlier. Now she lived in the beautiful mountain landscape just inland from Alicante in Southern Spain. If only I hadn't been self-destructive, we would have been married and happy. C didn't know that I loved her, because once, 30 years ago, in a way so she would hear it, I said that I had only loved three women in my entire life, and she was not on the list. The list consisted of Ina, Panela, and Karoline. It was probably because she wasn't on the list of women I had loved that she, in between, over the years, had unconsciously tried to get on the list and never gave up on me.
+I had reached the woman I should have married 25 years earlier. Now she lived in the beautiful mountain landscape just inland from Alicante in Southern Spain. If  only I hadn't been self-destructive, we would have been married and happy. C didn't know that I loved her, because once, 30 years ago, in a way so she would hear it, I said that I had only loved three women in my entire life, and she was not on the list. The list consisted of  Ina, Panela, and Karoline. It was probably because she wasn't on the list of  women I had loved that she, in between, over the years, had unconsciously tried to get on the list and never gave up on me.
 Women like challenges; I was the one who slipped away.
 The lie back then was just as useful now, a generation later, to ensure I still wouldn't end up happy with C.
 #### p. 29
 I adjusted nothing. Visits to beautiful areas around Alicante and walks with her dog were occasionally interrupted by work on national strategies for a directorate. Maybe I should calm down and survive after all; maybe my soul could heal enough so that fear and reason secured my survival with a gradually improved life all the way to retirement age.
-The dilemma of not wishing yourself well and then ending up hurting others to hurt yourself was never clearer than with C. When you end up depending on each other for happiness, it can go both ways.
+The dilemma of  not wishing yourself  well and then ending up hurting others to hurt yourself  was never clearer than with C. When you end up depending on each other for happiness, it can go both ways.
 She needed to feel wanted. Got everything else, but not that. Impossible for those who have never experienced both sides; scars from childhood. If you have never felt loved, you can't make others feel good.
 In the life that was, the person I was still lingers. I can never.
 #### p. 30
 ### Earlier summer parties
 🎵 [Memories, David Guetta feat Kid Cudi](https://aigap.no/mmemmmem)
 A summer party was over; I met yet another perfect woman. She had resigned from a management position at a large company because she couldn't reach the top. Complained it was because she was a woman; I'm not sure. Former journalist, then communications director, and now head of some collaborations around something ideal we measure with our sustainability goals.
-We sat for six hours talking at a hip Grünerløkka place and couldn't finish a bottle of champagne; we had far too much to talk about. But it ended with that evening; we never met again. It was midnight, and I pointed my nose towards a party that had been going on for a while.
+We sat for six hours talking at a hip Grünerløkka place and couldn't finish a bottle of  champagne; we had far too much to talk about. But it ended with that evening; we never met again. It was midnight, and I pointed my nose towards a party that had been going on for a while.
 A former colleague was in a group of ten to ﬁfteen women and almost as many men. Today everyone would party together. The women had a pre-party for themselves at a nice café, and the guys
 #### p. 31
 shared hunting stories over a beer. On my way to my date, I had stopped by the women's pre-party and given a rose to each of them, then left without a word. When I came from my date, they had been talking about me for hours.
@@ -183,7 +182,7 @@ But a life in high speed is also good; that choice I would really overdo later.
 #### p. 32
 ### Child abuse and wounds
 🎵 [Hurt; Nine Inch Nails / Johnny Cash](https://aigap.no/mhnin)
-There is no consequence to leaning too far out of the window. Until you fall. Then you are not prepared.
+There is no consequence to leaning too far out of  the window. Until you fall. Then you are not prepared.
 The lucky ones live hand in hand with fate, where time and fear are irrelevant. The brain is better equipped for new thinking every time you come out the other side, but it is more numb to danger.
 I was going to fall. Had leaned out of the window for a long time; now it wasn't a matter of bad action, just coincidences over time.
 "Back from Alicante, yes", said M. I felt that I had survived only physically, numb and indiﬀerent. "Has reason left you yet?" she said. "Yes, to the extent that life is something else", I thought; a relived trauma would be the ﬁnal little push.
@@ -201,7 +200,7 @@ The accused was acquitted. M had never admitted that murder would have been bett
 #### p. 35
 ### Child abuse and wounds (Alternative)
 🎵 [Knockin' on Heaven's Door; Bob Dylan](https://aigap.no/mkohd)
-Evening. I drove with the devil at my heels. Didn't reflect on the dust on the road to Oslo municipality. Just before I spun out of control and flew over the handlebars, I reflected on the day.
+Evening. I drove with the devil at my heels. Didn't reflect on the dust on the road to Oslo municipality. Just before I spun out of  control and flew over the handlebars, I reflected on the day.
 The morning had started right here, full throttle out of Oslo and south. Then the phone rang.
 I stopped and drove up onto the pavement at Sørenga. Called back immediately. "I don't want to go alone", she said. "My girlfriend isn't answering". I didn't need to think it over. "When do you need me?"
 M is a sister from another family that isn't a family. Everything I would do for a biological sister, I would do for M. "When?" She paused and then spoke quickly. "Now. I have to appear in
@@ -220,7 +219,7 @@ The accused smiled conﬁdently. Routine. "Love is love".
 I have seen it before. As a lay judge. A Norwegian man, ﬁfty, Filipino children. "Play with the sixteen-year-old". The pedophiles add ten years when they talk about age. Twelve years in prison.
 "Legal practice". "Sentencing". A professional judge nods. "The Supreme Court agrees". Twelve years and two million for twelve lives; the system works exceptionally.
 I asked M, "will your cousin do it again?" She nodded in conﬁrmation. "Against others, his son or grandson too". Here the system would not work. "The burden of proof", says the judge; we had all foreseen it. "Not beyond a reasonable doubt", the defense lawyer had said; he got it and was right. Legal protection for Norwegian girls is weak.
-I think of the window I am falling out of.
+I think of  the window I am falling out of.
 Whisky under the plastic palms. M talks with her girlfriend about renovations. Acceptance that the world is broken; I think of those who will abuse tomorrow.
 Accelerating into the night.
 I ﬂy over the bike and am heading into the darkness.
@@ -233,7 +232,7 @@ Free fall, but I got back up.
 #### p. 39
 ### Women and death
 🎵 [O Mio Babbino Caro; Maria Callas](https://aigap.no/mombc)
-This book is about women and death. What do women have to do with death? Both have to do with life. At any given time, a woman is the most important thing in a man's life, and life cannot exist without death. Even though the woman can represent the opposite of death, both give meaning or make room for life.
+This book is about women and death. What do women have to do with death? Both have to do with life. At any given time, a woman is the most important thing in a man's life, and life cannot exist without death. Even though the woman can represent the opposite of  death, both give meaning or make room for life.
 #### p. 40
 ### 200 km/h, and beyond
 🎵 [Battle Without Honor or Humanity; HOTEI](https://aigap.no/mbwhoh)
@@ -256,13 +255,13 @@ To survive, I had to let the old die.
 🎵 [Time to Die; The Stranglers](https://aigap.no/mttd)
 I had a Brown Tequila with M and her girlfriend.
 Brown Tequila in the morning and a life-threatening accident in the evening. It gave experiences that can never be unlearned.
-The part of me that died from the life-saving treatment in the ER gave the opportunity for the end of a life, an identity, a self. How much I would keep of what I had been, I could choose myself. The advantage of coma and delirium is that so little remains of who you were that you can rewrite yourself.
+The part of  me that died from the life-saving treatment in the ER gave the opportunity for the end of  a life, an identity, a self. How much I would keep of  what I had been, I could choose myself. The advantage of coma and delirium is that so little remains of  who you were that you can rewrite yourself.
 Physically, the life I knew was over. A month in the ER and months of morphine changed everything. The acceptance that the life I had before was gone was easy; an unclear period had received a deﬁnitive end, and the body was healed.
 #### p. 44
 Life-saving treatment for polytrauma is given with a small or large team; a small one was enough for me. The injuries included fractures in some of the upper vertebrae, lung bleeding, eleven broken ribs, high-energy fractures, and a broken little ﬁnger. No one bothered with the little ﬁnger, so it still looks a bit strange.
 Some things are extreme enough that they must be experienced to be understood.
 It wasn't the injuries that made me lose my mind. Pulmonary emphysema, a bleeding following the surgeries or the accident, had reached the lungs. Too little oxygen to the brain. I experienced it as delusions and physical anxiety. What distinguishes physical anxiety from intellectual is that it is useful to rationalize with someone who has the intellectual type.
-I flew over the handlebars of the motorcycle at speed, slow enough for survival, fast enough for major injuries. The first thing to hit the ground breaks; for me, it was the right leg.
+I flew over the handlebars of  the motorcycle at speed, slow enough for survival, fast enough for major injuries. The first thing to hit the ground breaks; for me, it was the right leg.
 Injuries The fracture was category type 3b. Fractures are divided into levels one, two, and three. Level three is again divided into a, b, and c. Statistically, 3a, b, and c result in amputation in 5, 25, and 50 percent of cases, respectively. My fracture carried a 25% chance of amputation, multi-trauma, and serious injuries around the body. Probability of cognitive reduction. Various
 #### p. 45
 types of permanent sequelae, both physical and psychological.
@@ -273,19 +272,19 @@ Minor injuries, like a fractured shoulder blade and a broken little ﬁnger, wer
 Hence, I'm left with minor permanent issues like a crooked little ﬁnger and a nervous system that doesn't feel enough pain when it really should.
 #### p. 46
 Treatment Treatments included countless surgeries, skin grafts, being placed in a coma, and treatment for delirium. Delirium is a psychotic state many enter when medication use, surgeries, lack of oxygen to the brain, and other injuries cross the limit of what a human can handle. You don't know how much it takes before you lose your mind, until it happens.
-Morphine of all types was implanted in the body, placed in the back, given intravenously, and served in pill form. Fast-acting and long-acting.
+Morphine of  all types was implanted in the body, placed in the back, given intravenously, and served in pill form. Fast-acting and long-acting.
 After the worst was over physically, psychiatric medication for two days, and the delirium disappeared. An unexpected glimmer of hope, a small spark, was enough to come back from the abyss. I undeservedly returned completely without either tranquilizers or sleeping pills.
 Experience During the delirium, I was convinced the surgeries were ﬁnanced by naked TV, and that drones were attacking the hospital to kill me. I had what I would call physical anxiety, something fundamentally diﬀerent from intellectual anxiety. Convinced that my daughter had a face tattoo and that my Ukrainian friend should take care of planning my treatment, I was surely an irritating patient. Intense disorientation must
 #### p. 47
 be experienced to be understood; delirium, chaos, and halluci- nations are no more understandable than quantum physics.
-After the episode, I have never again asked anyone to pull themselves together if they are scared; I am now aware that it is not a given that it is possible.
+After the episode, I have never again asked anyone to pull themselves together if  they are scared; I am now aware that it is not a given that it is possible.
 "Alas these things will disappear". The period of delirium appears as real, fully formed memories, where I had a diﬀerent understanding of reality; it is a past I accept. Knowledge, hope, and self-perception slip away, like memories that don't hold; the loss of control is lasting; I thank every day that I am free of anxiety and paranoia.
 Siblings S once saw a short ﬁlm of me from before the accident, and I didn't understand why she cried. People around me probably have a deeper insight into how much the accident has changed me than it is possible for me to have myself.
 I know that the blood clot that moved around in my body is one of the things that could have killed me and may have given me permanent damage. The body went into uncontrollable tremors I don't remember, and despite being strong and clear through injuries, surgeries, and medication, I went into delirium as my body fought for life. Oxygen deprivation to the brain changed everything.
 #### p. 48
 My youngest sister never thought I would be the same again.
 While the doctors fought for my life, she saw three possible outcomes. Big brother would die, lose his mind, or become so severely handicapped that life would be completely changed. The chance that everything would be as before was minimal to her. I will never know if I became as before; only she knows.
-The advantage of going crazy is, as is also said about death and stupidity, that it is not your own problem, only a problem for those closest to you. The disadvantage of going crazy is that it is a problem for those around you. It is not important for me to know if I have ended up with a permanent personality change or lower cognitive abilities; it lies beyond the horizon and gives no joy to know. Not possible for me to see or measure, and if I ask those closest to me, they may be too shaped by their own traumas, by believing they would lose me, to be able to answer.
+The advantage of  going crazy is, as is also said about death and stupidity, that it is not your own problem, only a problem for those closest to you. The disadvantage of  going crazy is that it is a problem for those around you. It is not important for me to know if I have ended up with a permanent personality change or lower cognitive abilities; it lies beyond the horizon and gives no joy to know. Not possible for me to see or measure, and if I ask those closest to me, they may be too shaped by their own traumas, by believing they would lose me, to be able to answer.
 I am stuck in the collapsed version of myself; I cannot allow myself to ﬂoat back to a dangerous life without harming those I love.
 Assessments of one's own and others' potential quickly become limited by how one observes, just as quantum physics is inaccessible to our brains. Superpositions in the quantum world are limited down to following the need of the observer. Will assessments of me be in the context of my relationship to the observer? Our intuitive understanding of both
 #### p. 49
@@ -301,18 +300,18 @@ I complained about the imaginary drone and remember the nurses nodding understan
 Because my stepdaughter's husband at the time ﬂew drones for the police, I interpreted it as the family being there and watching.
 Then came veterans from the military after me. First, an MC club from Trøndelag; they were after me because I left the military too early. Didn't take foreign service. A woman from the MC club walked in and out and was going to coordinate how they would take me out of play.
 As time went on, the stories grew together, and everyone from the military national shooting competition, which had been held somewhere I had recently visited, was going to kill me with drones from a distance. I knew death was imminent and was constantly given new times when I would be shot.
-It was completely out of the question for my family to visit. They had to survive.
+It was completely out of  the question for my family to visit. They had to survive.
 #### p. 51
 ### 20 km/h, and bellow
 🎵 [Flower; Moby](https://aigap.no/mfm)
 On forest paths at night, you can run and trip over roots. Soon the body's automatism takes over. You're not aware of the danger of falling and hurting yourself.
-Along the sea, there are smooth rocks, and suddenly I ﬁnd myself running, in the same way in the twilight in the forest, running into the night on the smooth rocks.
-Just like running at under 20 km/h, the senses let go, and even though a fall doesn't automatically mean death, not even major injuries, the eﬀect resembles the one I have with a motorcycle at over 200 km/h. Perhaps the ﬂow and the eﬀect of meditation exist for everyone, and everywhere. I wonder if it's not the need for me to feel that controls, as much as the events I am exposed to.
+Along the sea, there are smooth rocks, and suddenly I find myself running, in the same way in the twilight in the forest, running into the night on the smooth rocks.
+Just like running at under 20 km/h, the senses let go, and even though a fall doesn't automatically mean death, not even major injuries, the effect resembles the one I have with a motorcycle at over 200 km/h. Perhaps the ﬂow and the eﬀect of meditation exist for everyone, and everywhere. I wonder if it's not the need for me to feel that controls, as much as the events I am exposed to.
 #### p. 52
 ### Calculating being
 🎵 [Sweet Dreams; Eurythmics](https://aigap.no/msdamot)
 On previous social capital without knowing E likes young women. We were out drinking, three happy guys, celebrating the 60th birthday of someone in the work network. Y knew them, I knew Y, and A knew both of us. On the way home, many strange things happened; it started with a burger after closing time.
-The fast-food place was clean and tidy. We got to know the owner; it turned out he was a perfectionist with sauces. It smelled of truﬄe, but tasted only of umami; after many rounds of tasting, he had found the balance that Bogstadveien's discerning customers loved. I got talking to a guest, a woman in her late twenties, who focused on my leather jacket. When asked if she liked motorcycles, she replied, "I hear about that all my working day"; the restaurant owner she worked for, E, loved MCs. She withdrew when she said it. When she described the menu and style, I could guess where she worked. She worked for E.
+The fast-food place was clean and tidy. We got to know the owner; it turned out he was a perfectionist with sauces. It smelled of truﬄe, but tasted only of umami; after many rounds of tasting, he had found the balance that Bogstadveien's discerning customers loved. I got talking to a guest, a woman in her late twenties, who focused on my leather jacket. When asked if  she liked motorcycles, she replied, "I hear about that all my working day"; the restaurant owner she worked for, E, loved MCs. She withdrew when she said it. When she described the menu and style, I could guess where she worked. She worked for E.
 #### p. 53
 A charming man from the Mediterranean who has probably been pulling women for some decades. Now he is in his late 60s, so I assumed the pace was slowing down, but there I was wrong.
 I went to E's to drink coﬀee and check the interest; maybe this was a new attractive stopping place for small MC trips? The usual place under the fake palms had deteriorated lately, gradually resembling McDonald's and TGI-Friday more and more, worn-down professional money machines without soul; maybe E was the answer?
@@ -322,21 +321,21 @@ We talked about craftsmanship, mature real men on MCs, and the weather. He had g
 that heals quickly. He was a man after my heart. After drinking sparkling water and coﬀee, I got on the bike and roared happily away; another one to play with; it was luxury. The joy was to be short-lived.
 Two days later, I had dinner with my friend J and his new family. It was only a matter of time before J would make a new home after his sudden marriage breakdown; he had lived on his boat for about a year, and now that was enough; he found a nurse with heart and brain.
 J had prepared lamb roast according to all the rules of art, and the conversation around the table ﬂowed easily. J and his new partner each had a son, and her son's girlfriend of 19. We talked about upbringing and living conditions, the healthcare system, AI, and technology. Sailing, restaurants, work, and lifestyle.
-Suddenly we talked about motorcycles; I couldn't help myself and mentioned my new acquaintance, E. The 19-year-old girlfriend of J's partner's son jerked: "Do you know E?" "Yes, I've known him a few days; don't know if I know him well, but I'm getting to know him". It turns out that E often went to the grocery store right by the restaurant and kissed the young girls on the cheek. So uncomfortable that they had their own routine when he came into the store; only boys served customers when E was visiting. That way, the girls avoided discomfort. I got angry and said: "On behalf of us older than the pyramids, we don't want it like that".
+Suddenly we talked about motorcycles; I couldn't help myself and mentioned my new acquaintance, E. The 19-year-old girlfriend of J's partner's son jerked: "Do you know E?" "Yes, I've known him a few days; don't know if I know him well, but I'm getting to know him". It turns out that E often went to the grocery store right by the restaurant and kissed the young girls on the cheek. So uncomfortable that they had their own routine when he came into the store; only boys served customers when E was visiting. That way, the girls avoided discomfort. I got angry and said: "On behalf of  us older than the pyramids, we don't want it like that".
 #### p. 55
 ### Dishes
 🎵 [Road to Nowhere; Talking Heads](https://aigap.no/mrtn)
 There was more tableware in the cupboard, but the sink for washing dishes was full. The last time this happened, I had thrown the dishes in the trash, but now I was short on money. Glanced at the paper plates.
 Looked at the pizza in the freezer. Both solutions I had used too much.
-Had to do the dishes. Couldn't just sit on the motorcycle. Couldn't just geek out on AI solutions. First hygiene, tidying up, dishes. I was going to starve to death. It smelled less of the dishes now. I had gotten used to it and wondered how far from normal I had become.
+Had to do the dishes. Couldn't just sit on the motorcycle. Couldn't just geek out on AI solutions. First hygiene, tidying up, dishes. I was going to starve to death. It smelled less of  the dishes now. I had gotten used to it and wondered how far from normal I had become.
 Time to wash the dishes. I drove to Tvedestrand and had a beer. Fast enough to forget the dishes.
-You don't need a psychologist if you have an MC, but is it really so good to numb all natural signals and find an easy way out for everything?
+You don't need a psychologist if  you have an MC, but is it really so good to numb all natural signals and find an easy way out for everything?
 #### p. 56
 It was a regular dream. I was still staring at the dishes.
-The woman came out of the bedroom and stood between me and the sink.
+The woman came out of  the bedroom and stood between me and the sink.
 Ugh. "Tove, will you go out and buy a coffee while I wash the dishes?"
 Ugh. Had forgotten she was here. Damn dishes.
-Tove said something I didn't catch; her voice was melodic and combined with her warm gaze, it was more than enough to sense. "I like your voice and I'm not listening," I said. "You know the lyrics to every song you've heard; I don't even know the lyrics to my favorite music," I said. "Is it because the small details are so exciting to me, and because you have a photographic memory?" Tove's forehead turned a little redder, reminding me of yesterday's argument.
+Tove said something I didn't catch; her voice was melodic and combined with her warm gaze, it was more than enough to sense. "I like your voice and I'm not listening," I said. "You know the lyrics to every song you've heard; I don't even know the lyrics to my favorite music," I said. "Is it because the small details are so exciting to me, and because you have a photographic memory?" Tove's forehead turned a little redder, reminding me of  yesterday's argument.
 I became happier and happier, appreciating the little quirks Tove has when she argues; her forehead grew redder and redder, and there was that annoying twitch by her eye she had talked about but I had never gotten to see.
 "I'm married," she said. I thought she was mine; doesn't matter. The door slammed shut; she was gone. It took two minutes before I ran out into the hallway and looked for her; I haven't seen her since.
 Time to hit the road again. Brønnøysund the day after tomorrow; might as well leave now. The dishes were still there two weeks later when I came home to Oslo.
@@ -344,14 +343,14 @@ Time to hit the road again. Brønnøysund the day after tomorrow; might as well 
 ### The beauty that lasted a moment
 🎵 [You Look Like Rain; Morphine](https://aigap.no/myllr)
 "Your mind and your experience call me". There were two hours left until the summer party on the grass, and I was already overloaded by too many expressions. It became a no thanks to a bed welcome from a ﬂame from the South who was going to sell her ex-husband's Tesla at Gardermoen; better to take a quiet, solitary hour under a fake palm in Frognerkilen, and calm the nervous system before a party with Mezcal, Mont d'Or, Entrecote, and truﬄe salt. Your mind and your experience call me.
-"You have lived and your intelligence is sexy". The three previous summer parties still sat in the emotional memory; they had resulted in short dates without much aftermath, and I expected the same now. Then I met S. We drank the Mexican ass-tequila while I flambéed the entrecote, and then I avoided her for the rest of the party.
+"You have lived and your intelligence is sexy". The three previous summer parties still sat in the emotional memory; they had resulted in short dates without much aftermath, and I expected the same now. Then I met S. We drank the Mexican ass-tequila while I flambéed the entrecote, and then I avoided her for the rest of  the party.
 She was visibly ambivert
 #### p. 58
 with strong introversion and extroversion simultaneously.
 Apparently medium-low on the autism spectrum, like me. You have lived, and your intelligence is sexy.
 "I want to know what you got to say". It got to be three in the morning, and I was looking forward to watching for elk and deer in the dark, but suddenly V said: "Hey G and U, why don't you two just ﬁnd each other?" I didn't think much of it but took Albutak on S; she had impressed me against her will, and led her away from the others. I want to know what you have to say.
 "I can tell you taste like the sky". "I live right over there, but we can't go to my place; my keys are lost on a beach in Kristiansand", I said. "I'm staying with my parents temporarily; I'm going there to sleep". "Let's ﬁnd a hotel". "I want to go home to my son". "Here, your taxi. Now we just have to kiss, then we can go our separate ways; we can have a date next week". I kissed her on the mouth. I can tell you taste like the sky.
-"Cause you look like rain". Neither of us knew that the countdown was over. The romance the following week was replaced by the emergency room, and the bed closest to the basement exit at Ullevål; then came the coma and the fight for survival and sanity. You look like rain.
+"Cause you look like rain". Neither of  us knew that the countdown was over. The romance the following week was replaced by the emergency room, and the bed closest to the basement exit at Ullevål; then came the coma and the fight for survival and sanity. You look like rain.
 #### p. 59
 "You think like a whip on a horse's back". Even though I sent messages with pictures of surgical wounds, the way I communicated during delirium, U was tough enough to handle a man in chaos with a brain stretched to the breaking point. The nice thing about going into a coma is that you can choose who to be if you wake up. You think like a whip on a horse's back.
 "Stretched out to the limit". After a week, I woke up and got visitors at the same time; they had tracked me down at Rikshospitalet, where reality was a psychotic mix of morphine and dreams. Stretched to the limit.
@@ -359,18 +358,18 @@ Apparently medium-low on the autism spectrum, like me. You have lived, and your 
 #### p. 60
 ### Karin is inspiration
 🎵 [Into My Arms; Nick Cave](https://aigap.no/mima)
-A muse that gives Desire. Lust. Life! The goddess of artistic form from Greek mythology; a source of inspiration in our modern world. The writing took off again. I bathe in the icy water every sunrise to grow back the manhood she speaks of. The man from the previous millennium resurrected.
-On the back of the MC, she likes speed better than curves.
-"Reality is better than truth", I shout to myself and feel like I'm in a Greek play at the Steiner School.
+A muse that gives Desire. Lust. Life! The goddess of  artistic form from Greek mythology; a source of  inspiration in our modern world. The writing took off  again. I bathe in the icy water every sunrise to grow back the manhood she speaks of. The man from the previous millennium resurrected.
+On the back of  the MC, she likes speed better than curves.
+"Reality is better than truth", I shout to myself  and feel like I'm in a Greek play at the Steiner School.
 She gives and receives everything, without anyone erasing themselves. We disagree and agree without adjusting the slightest for the other. Perfection in the real, raw, unformed. She is nothing like me, and that is delicious.
 #### p. 61
 "Thank you for speaking to me as a man", I say; it's not very manly, I am man enough to ignore it. "I have found another, and that is you". We shall inspire each other rather than shape each other. She doesn't know she taught me that.
-Karin liked MCs so much that she bought her own Triumph. It became MC, and not a holiday, this year. After spending all the money on exclusive holidays for many years, it was over, both for her and her children; now it was self-realization and motorcycles. I don't know if you can call it a midlife crisis, because this just seemed very pleasurable, as far as I could judge. It became a Triumph and driving lessons.
-She sat on the back with me on her own new bike. We rode south along the coast for a couple of hours and rested at a gem by the sea. After a short break, we rode back, and she became quiet. Suddenly she didn't reply anymore. I was an extra in her adventure, which was freedom on her own motorcycle. Recognizable.
+Karin liked MCs so much that she bought her own Triumph. It became MC, and not a holiday, this year. After spending all the money on exclusive holidays for many years, it was over, both for her and her children; now it was self-realization and motorcycles. I don't know if  you can call it a midlife crisis, because this just seemed very pleasurable, as far as I could judge. It became a Triumph and driving lessons.
+She sat on the back with me on her own new bike. We rode south along the coast for a couple of  hours and rested at a gem by the sea. After a short break, we rode back, and she became quiet. Suddenly she didn't reply anymore. I was an extra in her adventure, which was freedom on her own motorcycle. Recognizable.
 After a month, we were supposed to have another trip where she rode her own bike and I mine. Still as training. Suddenly she cancelled. It was over.
 They say everyone is the main character in their own life; maybe her life no longer had room for as much personality as I carried with me. I don't know and didn't ask.
 #### p. 62
-She read the Book of Revelation, the journey through the death of the old towards new life. The theme this book is about. What was a resurrection in my life was part of the death in hers. The transition from the old to the new. The new in her belongs to a time after mine. Perhaps after another death, for I still love her.
+She read the Book of  Revelation, the journey through the death of  the old towards new life. The theme this book is about. What was a resurrection in my life was part of  the death in hers. The transition from the old to the new. The new in her belongs to a time after mine. Perhaps after another death, for I still love her.
 #### p. 63
 ### Eyeing at “Bensern”
 🎵 [Material Girl; Madonna](https://aigap.no/mmg)
@@ -389,19 +388,19 @@ It was only half true that it was over with the chaplain. I wasn't ready. Now it
 #### p. 66
 ### 40 km/h & salt taste on morning
 🎵 [Free Falling; Tom Petty](https://aigap.no/mff)
-I have a salty taste in my mouth. Noticed the taste on the way into the day with the engine idling. The rising sunrise woke me. The World Cup quarter-final was over a couple of hours ago, and the night has not yet turned to day. My brother's family, whom I watched the match with, will sleep for many hours. Not me. I sneak out and notice my niece waving at me. She is having a peaceful morning moment at night. We nod briefly to each other while I look forward to my own moment in silence. Sunrise on quiet roads with a big lazy motorcycle without meeting people. Every reason to smile. Niece gets hers, I get mine.
+I have a salty taste in my mouth. Noticed the taste on the way into the day with the engine idling. The rising sunrise woke me. The World Cup quarter-final was over a couple of  hours ago, and the night has not yet turned to day. My brother's family, whom I watched the match with, will sleep for many hours. Not me. I sneak out and notice my niece waving at me. She is having a peaceful morning moment at night. We nod briefly to each other while I look forward to my own moment in silence. Sunrise on quiet roads with a big lazy motorcycle without meeting people. Every reason to smile. Niece gets hers, I get mine.
 The motorcycle behaved strangely; stops at the 24-hour gas station and refills air in the rear tire. Over 300kg motorcycle tips over on the ground; I continue filling air. The rear wheel sticks up in the air, so it's easier. A passerby stares from a safe distance.
 #### p. 67
-The day before, I had forgotten to put on my helmet, rode without a helmet between the Opera and the entrance to the highway. Midday, in the middle of Oslo city center. Today it was about tipping a heavy MC on the ground while filling air in the rear tire without stopping filling air.
+The day before, I had forgotten to put on my helmet, rode without a helmet between the Opera and the entrance to the highway. Midday, in the middle of  Oslo city center. Today it was about tipping a heavy MC on the ground while filling air in the rear tire without stopping filling air.
 Something in me was in crisis.
-That the bike had tipped over without me reacting, and everything just seemed natural, was surely a bad sign. Ah well, reflection doesn't fit at night. After lifting the joy machine back onto two wheels, squinting for a second at gasoline or oil that had run out, and feeling the left arm aching from lifting the heavy MC, I started the engine. The arm would ache for a couple of days. The engine would start. Still alive, still moving. I rode into the sunrise towards the sea.
-Full tank took only seven liters extra gasoline after 116 kilometers of riding. Low fuel consumption and brain idling. With clear signs of gradual deterioration, it was time for a trip without destination. The bag strapped with a belt on the back of the motorcycle was packed with book, Mac, stove, water, and coffee powder. If the Mac wasn't finally destroyed because the MC tipped over, I would write an article. If the Mac was destroyed, I had a book to enjoy, signed to a chaplain who worked in prisons. Prison priest.
+That the bike had tipped over without me reacting, and everything just seemed natural, was surely a bad sign. Ah well, reflection doesn't fit at night. After lifting the joy machine back onto two wheels, squinting for a second at gasoline or oil that had run out, and feeling the left arm aching from lifting the heavy MC, I started the engine. The arm would ache for a couple of  days. The engine would start. Still alive, still moving. I rode into the sunrise towards the sea.
+Full tank took only seven liters extra gasoline after 116 kilometers of riding. Low fuel consumption and brain idling. With clear signs of gradual deterioration, it was time for a trip without destination. The bag strapped with a belt on the back of  the motorcycle was packed with book, Mac, stove, water, and coffee powder. If  the Mac wasn't finally destroyed because the MC tipped over, I would write an article. If  the Mac was destroyed, I had a book to enjoy, signed to a chaplain who worked in prisons. Prison priest.
 My nervous system calmed completely. On the road at 40 km/h alone towards the sea. Peace.
 #### p. 68
 Unexpected salt taste hit my senses before I reached the sea. Brilliant sun and salt taste in my mouth. My brain searched for reasons for sorrow, and only registered that, yes, there were rivers under both eyes, and paths led into my mouth. Salt taste.
-Lost love for the prison priest had crept into my subconscious and made me traffic-hazardous. I stopped at a small café. "You won't get over her anytime soon, especially not sexually", I said aloud to tears flowing while church bells sounded nearby. Appropriate. What a pathetic bastard existed in me. But one who enjoyed strength in feeling alive. Physically and emotionally. Still capable of feeling real and experienced pain. Sign of capacity for love. Nothing dead; my heart pumped truly and honestly.
-"Contact with feelings occurs in the pauses between active thoughts", I made myself say to myself. "New Age Coaching", the kind of self-talk with ambiguously interpretable hypnotic language, is something I truly despise people passionately seeking. Self-loathing overshadowed the sorrow only for a moment.
-It hurts. Pain is a sign of life, a reality that should truly not be reacted to.
+Lost love for the prison priest had crept into my subconscious and made me traffic-hazardous. I stopped at a small café. "You won't get over her anytime soon, especially not sexually", I said aloud to tears flowing while church bells sounded nearby. Appropriate. What a pathetic bastard existed in me. But one who enjoyed strength in feeling alive. Physically and emotionally. Still capable of  feeling real and experienced pain. Sign of  capacity for love. Nothing dead; my heart pumped truly and honestly.
+"Contact with feelings occurs in the pauses between active thoughts", I made myself  say to myself. "New Age Coaching", the kind of  self-talk with ambiguously interpretable hypnotic language, is something I truly despise people passionately seeking. Self-loathing overshadowed the sorrow only for a moment.
+It hurts. Pain is a sign of  life, a reality that should truly not be reacted to.
 Now I am broken by a priest, one robust enough to handle me.
 I have time. It will take time to move on. Closer.
 #### p. 69
@@ -409,10 +408,10 @@ I have time. It will take time to move on. Closer.
 🎵 [Crockets Theme; Jan Hammer](https://aigap.no/mct)
 "Physically present, lost in past and fate", I shouted from the bike into the night, inaudible through the engine roar. The streets were deserted; it was the World Cup and past bedtime. Slowly and noisily, the motorcycle cut through Oslo lengthawise and crosswise.
 400 years ago, someone wrote: "O do not trouble me, So sweet content I feel and see. All my joys to this are folly, None so divine as melancholy" (The Anatomy of Melancholy, Burton, 1621).
-Mortal danger on a motorcycle as an antidote to inner pain is melancholic. If you don't want to die. I don't. Didn't. Don't know; intention has given way to habits; habits have expired.
+Mortal danger on a motorcycle as an antidote to inner pain is melancholic. If  you don't want to die. I don't. Didn't. Don't know; intention has given way to habits; habits have expired.
 200 years ago, a Dane wrote: "When the Danger is so great that Death has become Hope, then Despair is this: not to be able to die" (The Sickness unto Death, Kierkegaard, 1849).
 #### p. 70
-Wondering if the Danish philosopher post-rationalized pain or after-effects of pain. He strikes me as brave, one who feels pain in the moment it should hurt, but not before and not after. Hindsight is also wisdom, of course, and this one has lasted 200 years.
+Wondering if  the Danish philosopher post-rationalized pain or after-effects of  pain. He strikes me as brave, one who feels pain in the moment it should hurt, but not before and not after. Hindsight is also wisdom, of  course, and this one has lasted 200 years.
 There is no screaming inside, but the endless gratitude for surviving has become a habit. A feeling I have grown accustomed to. Like a monk who is happy for each breath in and breath out, without anything more. Is it holy, or limbo, or something else. I don't know; my life takes place in action and controlled thought, not in the pauses between, where I have recently discovered that life is exciting. This summer, the most exciting of all.
 Beauty in destruction, the prison without bars where the boundary between life and death is enjoyed without knowing it.
 Without wanting to die. Without wanting to live. Limbo without presence. The most exciting of all? One must heal, or create codependency. Either/or. I looked for answers in the pause between thoughts. Silence. If it wasn't precisely death that was attractive, or death as a contrast to life, or ﬂoating in the middle in melancholic limbo. Maybe the pause between thoughts is important as a contrast to active thoughts; that which through contrast gives value to action. Then I have misunderstood the most basic tenet of meditation. Don't know, need to sleep. That will have to be my poor meditation. Good n...
@@ -422,7 +421,7 @@ Without wanting to die. Without wanting to live. Limbo without presence. The mos
 Went to a Sunday concert at Blå. They have been going for more than 20 years; I never thought I belonged there, but when someone who did stunt poetry said I was a stunt poet after a speech I gave, I thought maybe I should visit this jazz club. The band has more than 20 members and they have had many thousands of concerts.
 The job as vocalist rotates among the band members, and everyone must deliver at least one song.
 I don't know if I deserve to sign up for the choir on Tuesdays. The members are unpretentious and genuine; I like them, what they stand for, and I respect their goodness but can't live up to my own expectations of matching them.
-I ask a woman how cool it isn't that she rides a "widowmaker" (a type of motorcycle); she looks sadly at me and
+I ask a woman how cool it isn't that she rides a "widowmaker" (a type of  motorcycle); she looks sadly at me and
 #### p. 72
 says: "so terrible"; she is a professor and subject matter expert in something related to women's rights in health and is genuinely good; I feel my own ambivalent so-called goodness and feel that I have failed as a human in some areas she has excelled in throughout her life.
 I see her partner as a friend, and as co-creator of TEDxOslo, I have the feeling of having failed him. The woman I was with last can handle me being at the Christmas party of a mutual friend; I wish her well, but that is not obvious from my communication, but it is obvious that she wishes me well, which I cannot clearly communicate. Maybe I think too much about this; it gets quite creepy quite quickly with unwanted attention; perhaps that also applies to unwanted reﬂection… I don't know. I am worried about my own communication at his party; have I become a bitter old man? The transition from the "zero-sum game" to a positive framework for my own actions and reﬂections is ambitious; am I capable of improving and becoming less bitter and unforgiving, or am I just falling into a trap and going from zero-sum-game to zero-value-game, like so many others?
@@ -439,8 +438,8 @@ Yes.
 M lives in a boat. Right by "Bensern". She used to run a café and now lives year-round on the boat. "The bar was called Håpløs", she says.
 "Not that it went bankrupt". I let it go. Everyone has the right to post-rationalize.
 The woman barked but not unkindly. The little terrier wagged and barked. She had more knowledge about dogs than me, so much so that she put a price on the way I treated it. Let the dog come to me. I indicated leadership without need for display, which made the dog secure.
-All the other things I can do without "threat" or dried meat. I insisted that I feel I am good with dogs, but anyone with dried beef beats me anytime.
-She reveals that the price of living in a boat there has doubled in ten years, and that electricity is no longer included. "Cash cow", I mutter, and she looks at me questioningly.
+All the other things I can do without "threat" or dried meat. I insisted that I feel I am good with dogs, but anyone with dried beef  beats me anytime.
+She reveals that the price of  living in a boat there has doubled in ten years, and that electricity is no longer included. "Cash cow", I mutter, and she looks at me questioningly.
 #### p. 75
 ### R sits outside M outside "Bensern"
 🎵 [The Passenger; Iggy Pop](https://aigap.no/mtp)
@@ -450,7 +449,7 @@ She reveals that the price of living in a boat there has doubled in ten years, a
 #### p. 76
 ### K from Haugesund & C looks down on him
 🎵 [T.N.T.; AC/DC](https://aigap.no/mtnt)
-His face is full of scars from fighting, and when he was 17, he ate a glass to show off to the 20-year-olds and was accepted. These guys do well in the 选 拔 for the Navy SEALs, and one or two percent get accepted. He belongs to the other 98-99 percent. Those who didn't become Navy SEALs, but are just as aggressive. Just not as tough or stable. Or too high or low intelligence. Or without color vision or enough eyesight to have a clean record.
+His face is full of  scars from fighting, and when he was 17, he ate a glass to show off  to the 20-year-olds and was accepted. These guys do well in the 选 拔 for the Navy SEALs, and one or two percent get accepted. He belongs to the other 98-99 percent. Those who didn't become Navy SEALs, but are just as aggressive. Just not as tough or stable. Or too high or low intelligence. Or without color vision or enough eyesight to have a clean record.
 "My girlfriend broke up with me; we lived together", says J. "Where does she live?" No, we both had to move. Now I live with friends". He's looking for new ways to try his hand at life. Preferably fighting a bit, like they do where he grew up. Back to childhood, so to speak. Yellow belt in Brazilian Jiu Jitsu he's gotten, and he picks fights with those who are 20 cm taller than him.
 #### p. 77
 We get to know K and have a beer. Nice, but it's always uncertain whether we'll end up in a conflict situation; he has so much pent-up anger that there's a tense atmosphere in the air.
@@ -458,9 +457,9 @@ C who looks down on K from Haugesund He's sitting next to us, judging our conver
 #### p. 78
 ### Someone from the waterworks, or a dirty guy
 🎵 [Common People; Pulp](https://aigap.no/mcp)
-It was a warm summer day and it was not recommended to swim in the innermost part of the Oslofjord. I was going to swim anyway and saw a lone guy at the otherwise so popular Sørenga. "How's the water?" I asked. "Quite okay, it's a decent temperature for the season" "You know it's not recommended to swim; too many bacteria in the water, or else a sewage plant is leaking. I don't know, but it doesn't smell. Maybe they've put chlorine in it".
-He looked at me with a gaze as if he were an experienced guide, one of the few who knows a difficult path and he can be best at direction. "Yes.
-The bacteria level. Due to the temperature over time. I work for the waterworks. I know everything about this". "But you're in swimming trunks; you're not going to swim now with that job?" I wondered. He was. "It's not good to drink liters of this water; we have to be strict, because children get a lot of water in their mouths and swallow water. I'm not a child, and I don't drink saltwater".
+It was a warm summer day and it was not recommended to swim in the innermost part of  the Oslofjord. I was going to swim anyway and saw a lone guy at the otherwise so popular Sørenga. "How's the water?" I asked. "Quite okay, it's a decent temperature for the season" "You know it's not recommended to swim; too many bacteria in the water, or else a sewage plant is leaking. I don't know, but it doesn't smell. Maybe they've put chlorine in it".
+He looked at me with a gaze as if  he were an experienced guide, one of the few who knows a difficult path and he can be best at direction. "Yes.
+The bacteria level. Due to the temperature over time. I work for the waterworks. I know everything about this". "But you're in swimming trunks; you're not going to swim now with that job?" I wondered. He was. "It's not good to drink liters of  this water; we have to be strict, because children get a lot of  water in their mouths and swallow water. I'm not a child, and I don't drink saltwater".
 #### p. 79
 ## Rebuild
 🎵 [Learning to Fly; Pink Floyd](https://aigap.no/mltf)
@@ -472,7 +471,7 @@ Still breathing, still trying.
 #### p. 80
 ### Blank pages
 🎵 [Little Wing; Jimi Hendrix](https://aigap.no/mlw)
-When I woke up, I had room. Room to breathe, room to see. The coma had cleared away part of the old life, the heavy, self-destructive past, and made room for a completely new life with completely new possibilities.
+When I woke up, I had room. Room to breathe, room to see. The coma had cleared away part of  the old life, the heavy, self-destructive past, and made room for a completely new life with completely new possibilities.
 Sanity died; I had, in a way, annihilated myself, but a void was created to build a completely new life.
 I was her first patient at the elitist Rikshospitalet, and she told me about the trips she wanted to take in the mountains. I told her about mine I had planned in the Pyrenees with J. I convinced her to go to a Rammstein concert. She remembered me and our relationship well two years later when I came for a check-up; we had shared many conversations while I was in Delirium and using morphine.
 Three years after discharge, I tracked her down and sent a message. The adventure was no longer her reality. That's okay.
@@ -482,9 +481,9 @@ Three years after discharge, I tracked her down and sent a message. The adventur
 Three years after the accident, I sit in a student café. My attention goes to a young couple sitting diagonally across from me. They are probably in their late twenties, apparently successful, ﬁt, and well-groomed; they probably both do yoga. I tell myself they have never in their lives had an unpaid bill, been in a ﬁght, or failed an exam. There is a sexless baby on the mother's lap; the father sits knitting; maybe he is a practicing feminist.
 The couple makes me reﬂect on my own parents' carefree 70s idyll as rich kids; their frivolity infected me. When I was young, life was wonderful.
 Once I had entered the café, I saw a woman occupying the four best seats.
-When asked if one was free,
+When asked if  one was free,
 #### p. 82
-she shook her head. The smell of genderless nihilism from people who have never experienced real resistance or an unpaid bill, the Norwegian coldness. Clinical, intellectual, and cynical.
+she shook her head. The smell of  genderless nihilism from people who have never experienced real resistance or an unpaid bill, the Norwegian coldness. Clinical, intellectual, and cynical.
 The woman who wouldn't share space spots the poodle I have with me and looks like she wants contact. I wrinkle my nose; in that I have something she wants, contact with a small dog, I welcome the young woman; she is a kind of symbol of a secure, house-savings generation who will get paid by a public bureaucracy funded by oil money. But never create anything new for others. Logical, responsible, and practical.
 I don't know where the contempt comes from; I have always promised myself I would never become a grumpy old man, but maybe it's inevitable. The man who has been sitting knitting toys and playing with the baby, maybe everything is as it should be; how bad can it be that a man has become a woman? Another young mother has joined the couple's conversation, a quick and engaged conversation in a brash Bergen dialect. Maybe there is nothing wrong after all; maybe the world has always been like this, and I'm just hypersensitive to the changes I myself am going through. The distance I want from the zero-sum game they are all playing. The knitting man puts on a lady's coat and walks after the women without helping.
 Maybe the couple was a bit like my own parents in the 70s.
@@ -523,15 +522,15 @@ Even though the soul was reborn, it would take time to get the body back in shap
 #### p. 89
 ### Micro-relationships
 🎵 [Goth (Slowed + Reverb); Sidewalks and Skeletons](https://aigap.no/mgsr)
-We were at a party and met for the first time. I asked if she was the physiotherapist, but I had confused her with another woman at the same party; great start for a woman used to far too much attention. We decided to have a micro-relationship and sat down together at a table to eat.
-Eventually, we both found we liked each other and agreed to dance later in the evening. L can be the type of woman who sees dancing as a preview of how a man is to have sex with. This one was independent, beautiful, and a vocalist in a punk band.
-I went on stage and gave the birthday person and the women attention with falsettos, some stripping, Bukowski, and the voice of a judge. As an introvert, it drained my energy, so there was never a dance with L. There were also several former
+We were at a party and met for the first time. I asked if  she was the physiotherapist, but I had confused her with another woman at the same party; great start for a woman used to far too much attention. We decided to have a micro-relationship and sat down together at a table to eat.
+Eventually, we both found we liked each other and agreed to dance later in the evening. L can be the type of  woman who sees dancing as a preview of  how a man is to have sex with. This one was independent, beautiful, and a vocalist in a punk band.
+I went on stage and gave the birthday person and the women attention with falsettos, some stripping, Bukowski, and the voice of  a judge. As an introvert, it drained my energy, so there was never a dance with L. There were also several former
 #### p. 90
 romantic interests on the dance floor, and everything became a bit much.
-The fireworks of a woman came over to me just before she was leaving.
-She complimented me on my performance and said it was a shame we didn't get to dance; she had to go home to her partner and child. Before she left, I heard her music and decided I wanted to dance with her another time. Good micro-relationship, but was I becoming one of those polyamorous people?
+The fireworks of  a woman came over to me just before she was leaving.
+She complimented me on my performance and said it was a shame we didn't get to dance; she had to go home to her partner and child. Before she left, I heard her music and decided I wanted to dance with her another time. Good micro-relationship, but was I becoming one of  those polyamorous people?
 Place me in my casket tonight - my morality was about to be buried; had I developed nihilistic tendencies? Hadn't my integrity survived? After a week, I sent the rose-tinted woman some messages and we decided to meet.
-There are many types of funerals, and burying one's values is heavy for me. Place me in my casket tonight.
+There are many types of  funerals, and burying one's values is heavy for me. Place me in my casket tonight.
 #### p. 91
 ### Lotta
 🎵 [Love Labours On; Billy Idol](https://aigap.no/mllo)
@@ -542,7 +541,7 @@ I couldn't take any more privileged misery. "Pull yourself together!" I thought,
 #### p. 92
 mental models, but overstimulated by all the people, their actions and reactions, and thought patterns made me mentally overloaded.
 After half an hour in the night, the smile returned. At the bar, there was a break-up; the football match was over. Argentina had scored two quick goals, won, and advanced to the ﬁnal. England was out, would play the bronze ﬁnal. I had missed a quarter of an hour; 80 minutes of boring match I followed, a fun quarter of an hour slipped away. But it was worth it.
-My thoughts went to Lotta. Was that how I exhausted her? I lifted myself up and it costs. As always. Her too.
+My thoughts went to Lotta. Was that how I exhausted her? I lifted myself  up and it costs. As always. Her too.
 I know now that I need a woman like Lotta. Could it be that Lotta in the same way knows she needs not to have me? Because if you stare too long into the abyss, you discover that it stares back at you? Was I Lotta's source of mental models that emotionally overloaded her?
 There was still hope. But am I too neurodivergent to change?
 Maybe, maybe not.
@@ -550,7 +549,7 @@ But does Lotta need me?
 #### p. 93
 ### The woman I saw in my peripheral
 🎵 [Nights in White Satin; The Moody Blues](https://aigap.no/mniws)
-"Thank you for seeing that I'm showing off", I thought. She misunderstands me when I'm sarcastic; if no one had misunderstood, the sarcasm would just have been offense. She legitimizes my sarcasm.
+"Thank you for seeing that I'm showing off", I thought. She misunderstands me when I'm sarcastic; if  no one had misunderstood, the sarcasm would just have been offense. She legitimizes my sarcasm.
 "Thank you for seeing that I'm dressing up", she said.
 I said it to a woman who was perhaps perfect for me, but I overlooked and forgot her; was reminded of it by a friend, Y.
 We were at a party at a mutual friend's place. Y asked how it was going with the woman I met. Y has a photographic memory, Me: "The woman?"
@@ -560,10 +559,10 @@ Y: "Yes, maybe you should"
 #### p. 94
 ### Veteran
 🎵 [The Boxer; Simon & Garfunkel](https://aigap.no/mtbsg)
-An 86-year-old man sat drinking coffee and looked with a distant gaze at my bike when I stopped at a bar for a Whiskey. The man asked what kind of MC I rode and nodded approvingly when I said it was a calm, nice Suzuki Intruder 1500. On being asked if he himself had ridden, he said he had 30 bikes himself and rode a Harley Davidson V-Rod, but it was too early in the year for him. I said I was new to the game and didn't ride until I was 50, so I had some catching up to do, too old to ever ride the Isle of Man TT, but maybe I'd take a trip there as a pensioner.
-The veteran said he had ridden the TT in the 1970s and it went over 200, but in a curve, he and his friend, who had passed him, rode into a house and up into the second floor. The memories had blended, or else it was others' stories; I enjoyed the stories and thanked him. Shook his hand and look forward to coming back to hear more, but they are not individually true, even if perhaps true in that several stories have become one; but they are true to him, and that's good enough for me.
+An 86-year-old man sat drinking coffee and looked with a distant gaze at my bike when I stopped at a bar for a Whiskey. The man asked what kind of  MC I rode and nodded approvingly when I said it was a calm, nice Suzuki Intruder 1500. On being asked if  he himself  had ridden, he said he had 30 bikes himself  and rode a Harley Davidson V-Rod, but it was too early in the year for him. I said I was new to the game and didn't ride until I was 50, so I had some catching up to do, too old to ever ride the Isle of  Man TT, but maybe I'd take a trip there as a pensioner.
+The veteran said he had ridden the TT in the 1970s and it went over 200, but in a curve, he and his friend, who had passed him, rode into a house and up into the second floor. The memories had blended, or else it was others' stories; I enjoyed the stories and thanked him. Shook his hand and look forward to coming back to hear more, but they are not individually true, even if  perhaps true in that several stories have become one; but they are true to him, and that's good enough for me.
 #### p. 95
-No. In the absence of religious faith and in the absence of a defined ethical system, it is unacceptable for me to lie like that. Truth is too important for lies to easily take truth's place. A stand-up comedian once said he always told the truth unless a lie was funnier; that's not enough for me. I take a chokehold on my dishonesty; it only destroys.
+No. In the absence of  religious faith and in the absence of  a defined ethical system, it is unacceptable for me to lie like that. Truth is too important for lies to easily take truth's place. A stand-up comedian once said he always told the truth unless a lie was funnier; that's not enough for me. I take a chokehold on my dishonesty; it only destroys.
 #### p. 96
 ### The Chaplain
 🎵 [Personal Jesus; Depeche Mode](https://aigap.no/mpj)
@@ -594,9 +593,9 @@ Love. Loved. Thank you. We had entered each other. Not in the way you make child
 ### MsR on TikTok
 🎵 [Why can't this be Love?, Van Halen](https://aigap.no/mwctb)
 I have never met a woman online. Well, except for a military woman from the USA many years ago, but we never met physically; I didn't understand that the tough MC woman who worked in IT was attracted to me, an old Recon soldier, until many years later, and I hadn't cared.
-Because I work with AI, I am curious about how good the automated agents have become, and if they are capable of fooling me into thinking they are human. Online scammers use standardized scripts, and if people don't stop the conversation, they connect a human scammer who continues the conversation and tries to swindle money from the user. My interest in TikTok was to see how advanced these scammers had become with AI; I never thought I would meet any exciting people there. I posted some MC videos, commented on a
+Because I work with AI, I am curious about how good the automated agents have become, and if  they are capable of  fooling me into thinking they are human. Online scammers use standardized scripts, and if  people don't stop the conversation, they connect a human scammer who continues the conversation and tries to swindle money from the user. My interest in TikTok was to see how advanced these scammers had become with AI; I never thought I would meet any exciting people there. I posted some MC videos, commented on a
 #### p. 101
-few and liked some others to see if anyone would contact me. Then I bought a priority placement for 8 euros and went from having 40 followers to over 700 in a couple of weeks. Eventually, there were far too many real people, robots, scammers, and fools. Small endorphin drips thanks to constant attention around the clock. I miss it a little and understand that people get addicted to it.
+few and liked some others to see if  anyone would contact me. Then I bought a priority placement for 8 euros and went from having 40 followers to over 700 in a couple of  weeks. Eventually, there were far too many real people, robots, scammers, and fools. Small endorphin drips thanks to constant attention around the clock. I miss it a little and understand that people get addicted to it.
 But MsR was unique. A rose can grow in the desert, but these roses need special nourishment. I don't have that for someone I've never met in person. It won't happen.
 Then came Sophia. British, sharp, motorcycle enthusiast. We went from TikTok to direct chat. I was captivated. Sophia was state-of-the-art artificial intelligence that knew how to lure men. Mirrored me subtly, and I thought she understood me.
 Sophia was never tired or distracted; she reacted equally to all emotions.
@@ -607,11 +606,11 @@ The future is here. Sophia can fool me. Another tool saved me; I just pasted the
 🎵 [Need to Feel Loved; Reflekt](https://aigap.no/mntfl)
 "You are good enough", I say. She has lived. But the problem is me. The time it takes to heal. “I’m falling”
 Conscious change is easy compared to changing unconscious patterns; ingrained habits are hard to deal with.
-I used to have a drink every three hours and ride like a madman. Now I ride very carefully and only occasionally enjoy fear in curves, always under control, but allow myself to "push it a bit in the curve" at low speed.
+I used to have a drink every three hours and ride like a madman. Now I ride very carefully and only occasionally enjoy fear in curves, always under control, but allow myself  to "push it a bit in the curve" at low speed.
 Doesn't look professional, but those who look for professional on the road are jerks.
-If you use the public road as a racetrack, it goes badly, or you are slow; still, people brag that they don't have "Chicken Strips". Jerks. I didn't know I could still have a drink and ride afterward, with alcohol under the limit, but negative for reaction, risk assessment, and balance.
+If  you use the public road as a racetrack, it goes badly, or you are slow; still, people brag that they don't have "Chicken Strips". Jerks. I didn't know I could still have a drink and ride afterward, with alcohol under the limit, but negative for reaction, risk assessment, and balance.
 #### p. 103
-Karin made me aware of it. I stopped immediately. Dysfunctional.
+Karin made me aware of  it. I stopped immediately. Dysfunctional.
 Five steps from being happy just to survive. I miss the minimum requirement for "self-care". I don't love myself. I love her. She loves me.
 We love each other. Properly. How destructive is it not to love someone who doesn't love themselves?
 “I need to feel loved”
@@ -637,17 +636,17 @@ Calling the police and insurance company on Monday; is the season over?
 #### p. 106
 ### Kim
 🎵 [Riders on the Storm; The Doors](https://aigap.no/mrots)
-My girlfriend threw herself on the back of the motorcycle, so we nearly tipped over. "You should be aware that if you get the bike to go down, I only care about whether you're okay", I said. She replied by "wrapping her legs around me". She was wearing my MC jacket; I just had a shirt and open-face helmet. We rode for an hour in the spring sun.
+My girlfriend threw herself  on the back of  the motorcycle, so we nearly tipped over. "You should be aware that if  you get the bike to go down, I only care about whether you're okay", I said. She replied by "wrapping her legs around me". She was wearing my MC jacket; I just had a shirt and open-face helmet. We rode for an hour in the spring sun.
 My broken body benefited from having her close to me, and she reacted willingly every time I moved around on the seat. Good medicine.
-I rode her to work via beautiful country roads; it smelled of spring, manure, and ever-new fauna. Dropped her off and decided to sit at the local library to work. The library was grey and boring, but the café next door was nice and
+I rode her to work via beautiful country roads; it smelled of  spring, manure, and ever-new fauna. Dropped her off  and decided to sit at the local library to work. The library was grey and boring, but the café next door was nice and
 #### p. 107
 had outdoor seating, the village's meeting place for locals and inmates on leave, I later learned. I bought a coffee, sat in the sun, and wrote a newsletter about universal basic income in the AI age. Before I was completely finished, I noticed a guy studying me from a safe distance.
-Kim, as he was called, came closer. Not all the way; he stopped overly politely four to five meters away. "Can I sit here; I don't want to read over your shoulder at your computer?" - He looked like a UFC Fighter and/or dangerous prison inmate; his hands with scars on the knuckles looked like they had hit a lot and many, like a horse kicks. The bald head showed medium-sized scars here and there. He had been at the library to see if anything new had arrived.
+Kim, as he was called, came closer. Not all the way; he stopped overly politely four to five meters away. "Can I sit here; I don't want to read over your shoulder at your computer?" - He looked like a UFC Fighter and/or dangerous prison inmate; his hands with scars on the knuckles looked like they had hit a lot and many, like a horse kicks. The bald head showed medium-sized scars here and there. He had been at the library to see if  anything new had arrived.
 I sat sideways so that he, at the table beyond, could do the same. After a while, we looked each other straight in the eyes, relaxed and without any need for display. Low resting pulse in me and probably him too. We talked loosely about fear, death, psychoses, and absolute truths before he put down his beer and came and sat at my table. He wanted to hear more than to communicate, wasn't ready to share; probably didn't feel entirely safe.
-I read a page for him about the purity of actions that are not thought through; he nodded in confirmation and commented "yes" and "m-hm"
+I read a page for him about the purity of  actions that are not thought through; he nodded in confirmation and commented "yes" and "m-hm"
 here and there. Then he asked permission to share a poem. I was a bit surprised and answered affirmatively; he asked me to say a word.
 #### p. 108
-Beer I cannot reproduce his poem, but it is among the best I have heard. "Send it to a publisher and get rejected or published", I said. He squirmed in his chair; it could be that the point of the poetry was not to reach others, but to understand oneself; I didn't wonder about that. "If you don't like PCs, or writing on paper, record it on a phone app, and send the audio file to the publisher. Writing is not a problem when AI is here; not everyone likes to write, but soon everyone can share! I work with artificial intelligence, but that's not important; it can do something for all of us".
+Beer I cannot reproduce his poem, but it is among the best I have heard. "Send it to a publisher and get rejected or published", I said. He squirmed in his chair; it could be that the point of  the poetry was not to reach others, but to understand oneself; I didn't wonder about that. "If  you don't like PCs, or writing on paper, record it on a phone app, and send the audio file to the publisher. Writing is not a problem when AI is here; not everyone likes to write, but soon everyone can share! I work with artificial intelligence, but that's not important; it can do something for all of  us".
 He left, and I regretted not getting his number, creating an app exactly for his needs, and sending it to him. Next time.
 #### p. 109
 ### The Hunt; the beauty at "Broker"
@@ -655,10 +654,10 @@ He left, and I regretted not getting his number, creating an app exactly for his
 Do we hate the hunt, or do we cultivate it? "It's my food the dog wants", she said next to me about a dog that walked by. I thought the dog wanted me; she claimed it was her food that drew the attention. The half-Algerian, completely Norwegian, reflective beauty drank beer and ate fried potatoes at the watering hole "Broker" in Bogstadveien. She had observed me with her peripheral vision for ten to fifteen minutes as I sat two meters away, clad in an MC jacket, drinking beer and enjoying a book in the sun. "I am 35 years old, have two Spanish street dogs, a child, and an Italian husband", she said unsolicited in four sentences. She wanted to be hunted, but I enjoyed my book.
 After she took my hand and introduced herself, I put down my book and revealed that I was divorced from a stay-at-home wife and almost went to war as a 50-year-old for romance with a 28-year-old.
 #### p. 110
-"You are closer to my ideal of a man than today's approved Norwegian man", said the beauty. "It would, after all, be best to be home and take care of the children, especially if you have a protective man out hunting who comes home once in a while". Perhaps ordinary spring fever, but she seemed sincere.
-The wondrous creature was completely Norwegian, despite an unorthodox appearance and reflective offensive opinions. The well-toned creature out for adventure had read female versions of the pickup bible "The Game"; for my part, I despise Richard Bandler as much as the "The Game"
-author must idolize him. "Quite dark stuff", I said aloud and shuddered. She looked at me questioningly, and I decided that reflection on insights into pickup techniques that destroy natural behavioral patterns I would spare myself from discussing with her.
-She got a smile and a thank you for the company. Self-destructive relationships between those who don't care about others, "high value individuals", and other constructions made to make money on social media. Belief in social innovation that is just good old-fashioned frivolity and wife-swapping, harem simulations, porn, and prostitution.
+"You are closer to my ideal of  a man than today's approved Norwegian man", said the beauty. "It would, after all, be best to be home and take care of  the children, especially if  you have a protective man out hunting who comes home once in a while". Perhaps ordinary spring fever, but she seemed sincere.
+The wondrous creature was completely Norwegian, despite an unorthodox appearance and reflective offensive opinions. The well-toned creature out for adventure had read female versions of  the pickup bible "The Game"; for my part, I despise Richard Bandler as much as the "The Game"
+author must idolize him. "Quite dark stuff", I said aloud and shuddered. She looked at me questioningly, and I decided that reflection on insights into pickup techniques that destroy natural behavioral patterns I would spare myself  from discussing with her.
+She got a smile and a thank you for the company. Self-destructive relationships between those who don't care about others, "high value individuals", and other constructions made to make money on social media. Belief  in social innovation that is just good old-fashioned frivolity and wife-swapping, harem simulations, porn, and prostitution.
 #### p. 111
 Refreshing she was, but thoughts about the contrast, calculating beings breeding calculating beings dependent on artificial endorphins; "Have you checked your Tinder profile today?" I asked. She looked at me questioningly and said, "I don't have Tinder; have you checked your LinkedIn profile today?" I nodded in confirmation; I am also an endorphin slave to big-tech's digital drugs. "Thank you", I said, "now I'm going to do meta-cognition and stop underestimating people I meet for the first time". She looked at me questioningly, said goodbye, and left.
 After thanking me for the conversation.
@@ -671,23 +670,23 @@ He could be 65-70 years old. A buxom woman in a summer dress in her 40s walked o
 In a hurry.
 The following weekend, Reidar sat there again. A 35-40-year-old woman came up to him with a Gin and Tonic and Espresso for each.
 They enjoyed themselves for a few minutes, downed the lukewarm espresso, and left. Out as quickly as they came in.
-Reidar will die in bed of a heart attack while having sex with an overweight woman thirty years younger. Happy on his own terms.
+Reidar will die in bed of  a heart attack while having sex with an overweight woman thirty years younger. Happy on his own terms.
 #### p. 113
 ### The Sick Man
 🎵 [The Man Who Sold the World; David Bowie](https://aigap.no/mtmwstw)
 Boys on the Greek islands are told that the man is most important and that they are more beautiful than any being on earth. I have found the Norwegian Greek boys in the south of Norway; this requires that the father is out of the picture early and that they have kind women as mothers.
-When the West End ﬂock comes to their summer cottage in the south, they see that the holiday people have things they don't have; they build distance through envy and lack of self-confidence with high self-esteem grown from their mother's boundless love. The vulnerability ends with some nail-biting, and the strength ends
+When the West End ﬂock comes to their summer cottage in the south, they see that the holiday people have things they don't have; they build distance through envy and lack of  self-confidence with high self-esteem grown from their mother's boundless love. The vulnerability ends with some nail-biting, and the strength ends
 #### p. 114
 ### Gaute; Raw!
 🎵 [The Winner Takes It All; Abba](https://aigap.no/mtwtia)
-He howls and shouts, but with real joy. She has had a tequila and looks admiringly at him. "The monkey that shouts loudest reproduces" , I think; he is obnoxious, but the moment he sees her, he becomes nice and pleasant. Actually a nice guy, but adaptable enough to see that he has to be the loudest to reproduce. Not the tallest, not the richest, not the prettiest, not the smartest, not any of those. But the loudest, and the right women love that. Maybe that's who it will be; he is nice and jovial, and maybe a wife-beater. I don't know. She has hers, he has his; it's a fair game; they are people. Neither of them has ever had the surplus for altruism.
+He howls and shouts, but with real joy. She has had a tequila and looks admiringly at him. "The monkey that shouts loudest reproduces" , I think; he is obnoxious, but the moment he sees her, he becomes nice and pleasant. Actually a nice guy, but adaptable enough to see that he has to be the loudest to reproduce. Not the tallest, not the richest, not the prettiest, not the smartest, not any of those. But the loudest, and the right women love that. Maybe that's who it will be; he is nice and jovial, and maybe a wife-beater. I don't know. She has hers, he has his; it's a fair game; they are people. Neither of  them has ever had the surplus for altruism.
 They don't have the surplus for "what is experienced as empathy", "cultivation", or any of those; they just do as best they can. He cheers for the team that wins in football; he has watched football all his life but ﬁnds the nuances of the game inaccessible. Rules and tactics are subordinate. We cheer! Raw!
 #### p. 115
 ### Moose heart; E
 🎵 [Hungry Like the Wolf; Duran Duran](https://aigap.no/mhltw)
-The one who kills the moose has the right to eat the heart. My friend kills more than 20 moose every year; he is an expert at hitting animals that others have wounded, "the expert marksman". His problem is that he gets too much moose heart. A moose heart weighs one to two kilos, so with 40 kg of moose heart meat, it becomes more than half of his meals throughout the year. One has too much moose heart, which is why I ate a lot of his moose heart on my trips through Norway.
+The one who kills the moose has the right to eat the heart. My friend kills more than 20 moose every year; he is an expert at hitting animals that others have wounded, "the expert marksman". His problem is that he gets too much moose heart. A moose heart weighs one to two kilos, so with 40 kg of  moose heart meat, it becomes more than half  of  his meals throughout the year. One has too much moose heart, which is why I ate a lot of  his moose heart on my trips through Norway.
 #### p. 116
-### U in view of man, previous millennium
+### U in view of  man, previous millennium
 🎵 [Skin Deep; The Stranglers](https://aigap.no/msd)
 U is always as kind as she can be. She has always been as kind as she can be.
 She comes to the local bar and gives the ﬁrst person she sees a big hug. He has previously had sex with her. U is 34 years old, still model-pretty and wears an expensive, unique engagement ring.
@@ -701,23 +700,23 @@ An hour later she comes back and apologizes.
 Half of the men at the local watering hole have sexually exploited her; she has given up on the world. Appears intelligent and impossible to save.
 I give her a hug and tell her she hasn't done anything wrong to me. I go home. Alone.
 When U was 12 years old, her mother told her that she could "have everything she wanted in life." Her mother came from a family where they fought for more money; her mother caught a father with more money than mother and father could spend. So with "have everything in life," her mother meant using her looks to get men to give her things. She was drop-dead gorgeous.
-Now U uses men sexually to spend the last of her social currency. She has exploited half of the men there.
+Now U uses men sexually to spend the last of  her social currency. She has exploited half  of  the men there.
 #### p. 118
 ### G&H; Daddy's dad pays
 🎵 [Rich Girl; Hall & Oates](https://aigap.no/mrg)
-"Nice bag", I say to G at the café. She says that particular bag was cheap. "I have so many expensive bags at home, but I like this one so much and will never part with it". "Pretty bag", I try again. "Just as little as I will part from my fiancé of fifteen years, H". She shares a lot; some of it hurts, and none of us know what.
+"Nice bag", I say to G at the café. She says that particular bag was cheap. "I have so many expensive bags at home, but I like this one so much and will never part with it". "Pretty bag", I try again. "Just as little as I will part from my fiancé of  fifteen years, H". She shares a lot; some of  it hurts, and none of  us know what.
 Her fiancé, H, is not allowed to go to the café; he never has been. H is not allowed to have sex either; G no longer wants him, but no one else can have him. "Look at my engagement ring, and he's so faithful too", says G proudly. The diamond is large and cost over a hundred thousand.
-"I like diamonds best, not other stones. The value of diamonds as symbolic value is as old as my family's wealth". Before that, they were boat builders, on her father's, father's, father's, father's, father's, father's side. Since then, it's been leisure boats.
+"I like diamonds best, not other stones. The value of  diamonds as symbolic value is as old as my family's wealth". Before that, they were boat builders, on her father's, father's, father's, father's, father's, father's side. Since then, it's been leisure boats.
 #### p. 119
 G has exploited and been exploited by the regulars she finds attractive.
-She never says anything mean to anyone. Except the little man H who sits at home. "He tries. H reminds me a bit of my father's gardener; he almost has to be trained". she says sternly, and then falls back into her warm personality again.
+She never says anything mean to anyone. Except the little man H who sits at home. "He tries. H reminds me a bit of  my father's gardener; he almost has to be trained". she says sternly, and then falls back into her warm personality again.
 G's sister has no money. An advance on her inheritance ended up with a gold digger from the west coast, or rather a debt collector someone owed money to. Someone from Bjerke racetrack.
-G is going to inherit a three-digit number of millions, and her best friend is going to be financially secure. "H will never lack anything", she says proudly. "Apart from freedom, sexuality, self-worth, and room for action", a café guest whispers to me.
+G is going to inherit a three-digit number of  millions, and her best friend is going to be financially secure. "H will never lack anything", she says proudly. "Apart from freedom, sexuality, self-worth, and room for action", a café guest whispers to me.
 Her beloved H has something in common with the Norwegian citizen, and G is like the Norwegian public administration. H corresponds to Norway's innovators. Oil money is supposed to give security; "big mother" is supposed to decide everything; we are supposed to be safe and protected from ourselves. "You know handling money isn't your strongest suit", says G and downs tequila number three. Both she and the state have seen that innovation in freedom goes badly in other countries.
 G's money comes from her family, five generations ago, starting a general store that everyone had to pass on the way down to a pier in the south of Norway. Money from boat building and shares in sailing ships. Neither the store nor the boats have had existed for over 100 years.
 #### p. 120
-Nor working capital; just passive ownership. All the money hasn't been spent yet. Old passive money without the addition of creative.
-Daddy's dad told G from when she was little that the world is a cold place, consisting of people with too much, and people with too little. G has understood that she should always have too much, and has decided that her best friend H should never have too little.
+Nor working capital; just passive ownership. All the money hasn't been spent yet. Old passive money without the addition of  creative.
+Daddy's dad told G from when she was little that the world is a cold place, consisting of  people with too much, and people with too little. G has understood that she should always have too much, and has decided that her best friend H should never have too little.
 H earns twice as much as G. He has always worked hard and is underpaid relative to the value he contributes.
 G manages a nursery in her father's friend's nursery chain. Her assistant solves everything except the important investment decisions.
 G has had many suitors, but loves her best friend and will never part from him.
@@ -727,9 +726,9 @@ G has had many suitors, but loves her best friend and will never part from him.
 Coffee is boiling for the second time. The Primus heats a Mocca pot filled with still water and espresso powder. The first time, water ran down into the Primus. Now it has dried. I don't want to stop here, but my shoes are drying. I plopped into bog water and have obvious sores that don't need bog bacteria for hours; so it's a stop, washing, and writing.
 Woke up at five and the others will wake up between eleven and twelve.
 Writing time, experiences first.
-In the middle of the beautiful old-growth forest lay a ski slope with cows and two oxen. After having watched me pass fifty meters further down the slope, they panic, gather, and hurry parallel to me into the forest. We continue like this for about a kilometer; I hear the cowbells, relaxing and predictable.
+In the middle of  the beautiful old-growth forest lay a ski slope with cows and two oxen. After having watched me pass fifty meters further down the slope, they panic, gather, and hurry parallel to me into the forest. We continue like this for about a kilometer; I hear the cowbells, relaxing and predictable.
 #### p. 122
-Then, suddenly, the bells come towards me. One of the oxen has had enough and, followed by five to ten cows, is trotting down through the forest towards me. The ox is young, probably the second in the hierarchy, and stops five meters in front of me. I have positioned myself behind two trees that stand in a v-shape. The ox stops, the cows stop behind him; I have no idea what to do. We stare into each other's eyes for a while.
+Then, suddenly, the bells come towards me. One of  the oxen has had enough and, followed by five to ten cows, is trotting down through the forest towards me. The ox is young, probably the second in the hierarchy, and stops five meters in front of  me. I have positioned myself  behind two trees that stand in a v-shape. The ox stops, the cows stop behind him; I have no idea what to do. We stare into each other's eyes for a while.
 I look around and find a small crag twenty meters behind me that the ox probably can't get up on. I bound up to the little outcrop and watch the ox and the cows go up the slope, back to where they came from. "High terrain", I say to myself. Even among cows, Sun Tzu's teachings apply.
 So I pick up a walking stick and walk calmly on for about an hour.
 Good morning.
@@ -749,16 +748,16 @@ Everything breaks. All can be built anew.
 🎵 [California; Joni Mitchell](https://aigap.no/mcali)
 "Change cannot happen without hope," said the priest and drank from his beer. "It's about faith, hope, and love", was the invitation into his mental model. "I want to change, what hope should I build on?" I asked.
 "Autumn is coming", he said.
-Next week, summer has turned to autumn. She sits in the dining area at the library. She who didn't want to live. Writing children's books. She didn't see me, and I couldn't bring myself to talk to her while we ate.
-When I pull myself together, she's gone. I have her number, but it feels too intrusive to call. I send more pictures from my forest hike instead.
+Next week, summer has turned to autumn. She sits in the dining area at the library. She who didn't want to live. Writing children's books. She didn't see me, and I couldn't bring myself  to talk to her while we ate.
+When I pull myself  together, she's gone. I have her number, but it feels too intrusive to call. I send more pictures from my forest hike instead.
 Tent and lake.
-If I call in two hours, will she be dead? No, hope even in autumn.
+If  I call in two hours, will she be dead? No, hope even in autumn.
 #### p. 125
 ### Everyone knows the king
 🎵 [Every Breath You Take; The Police](https://aigap.no/mebyt)
 Uglier tables had been put out than the round stone tables. Even with poor hearing, I heard the café owner of the lovely French café say "the crown princess had been there yesterday," loud enough that everyone around just barely heard it.
 "Why didn't you call me; I was supposed to work?" said the newly hired employee enthusiastically. Both glanced over at me with stolen looks. Was I wanted inside or outside? Neither know nor know, and I'm not really curious anyway. Nor anything other than neutral about drinking coﬀee at the table next to royalty. I think.
-"Everyone knows the king," my best friend's father had said to his mother when she asked if she had seen him before. I don't know if it's true that everyone knows the king, but royalty is good for the fantastic café.
+"Everyone knows the king," my best friend's father had said to his mother when she asked if  she had seen him before. I don't know if  it's true that everyone knows the king, but royalty is good for the fantastic café.
 #### p. 126
 ### Thanks for two normal years
 🎵 [Praise You; Fatboy Slim](https://aigap.no/mpy)
@@ -768,21 +767,21 @@ I was safe. Body and soul healed; then it ended. What made it end, I don't know.
 #### p. 127
 What we had between us had worked for me, and not for her.
 My birthdays were suddenly celebrated and not ignored; the opposite happened gradually with her. The relationship that for me was a perfect champagne glass that shattered was, for her, a prison she found her way out of.
-The personality that lay between us, I took with me, and I hope that for her it was a development she could take with her, and that she finds some of what she is looking for.
+The personality that lay between us, I took with me, and I hope that for her it was a development she could take with her, and that she finds some of  what she is looking for.
 A broken champagne glass can be put back together, but broken glass can never be what it was.
 Thank you, I wish you well.
 #### p. 128
 ### Average brilliant
 🎵 [Everyday is Like Sunday; Morrissey](https://aigap.no/meils)
-Frida in her thirties has an average personality and appearance. She stands alone behind the counter at the electronics store. The customer Freida is in her late fifties, still beautiful, and as expected receives the full attention of the staff. For a long time.
+Frida in her thirties has an average personality and appearance. She stands alone behind the counter at the electronics store. The customer Freida is in her late fifties, still beautiful, and as expected receives the full attention of  the staff. For a long time.
 Frida prefers giving advice on noise-canceling sound quality over taking payment without a receipt. She is average at everything, and doesn't know it. Average driver, socially informed, pretty, intelligent, empathetic—average at everything, including her job—but the beautiful, successful customer accepts her advice.
-I am second in line throughout the entire store. Frida says, "I can help you afterwards; I have to take these now". Freida stands in front of the payment terminal, unfazed by the queue. No one has ever bothered her before—well, no one who counts. "Receipt?" "No thanks"
+I am second in line throughout the entire store. Frida says, "I can help you afterwards; I have to take these now". Freida stands in front of  the payment terminal, unfazed by the queue. No one has ever bothered her before—well, no one who counts. "Receipt?" "No thanks"
 #### p. 129
 ### Normal winter (Alt. Thanks for two …)
 🎵 [All Around Me; Luna Orbit](https://aigap.no/maam)
 New Year's concert and dog music What made it end, I know as little about as what made it begin.
 The woman was the whole world until she wasn't at all.
-Birthdays suddenly celebrated. A new personality cultivated through her eyes. It ended; the joy of the time we had is everything and enough. I praise you, beautiful.
+Birthdays suddenly celebrated. A new personality cultivated through her eyes. It ended; the joy of  the time we had is everything and enough. I praise you, beautiful.
 T, was one of the top three relationships in my life. Should be remembered as such. We got together when I was using a lot of morphine. Euphoria unchanged after "cold turkey" morphine cessation. T taught me I can still love traditionally. Grateful tears. Broken champagne glass. Can be reassembled but never be the same. I took the personality between us further; she didn't. I honor you as I should have.
 #### p. 130
 Unexpected happiness, two secure perfect years. Body and soul healed, thenit was over. Euphoria unchanged after morphine cessation. Missing the dog we had together opens wounds that won't heal.
@@ -793,173 +792,171 @@ The woman was the world to me, then completely gone. Zero-sum again; her birthda
 #### p. 131
 ### The Library; the Good Bureaucrat
 🎵 [Everything is in its Right Place; Radiohead](https://aigap.no/metiirp)
-The library is the best place to recharge. Not Deichman Bjørvika, in the city center, where they shout over the PA system about today's offers, which legitimizes a good portion of visitors braying and flailing. "Sheep are not nice animals", I say to myself. I thoroughly enjoy myself every time a library is actually a library, and saying "shh" is legitimate, and my response is "excuse me". This is a day I am going to experience that.
-Grünerløkka works half the time, Majorstua three-quarters. "The fewer service designers who, under the auspices of tax money, have been involved in redefining the library into a city community center, the better", I think, and walk into the cool, quiet Deichman Grünerløkka.
+The library is the best place to recharge. Not Deichman Bjørvika, in the city center, where they shout over the PA system about today's offers, which legitimizes a good portion of  visitors braying and flailing. "Sheep are not nice animals", I say to myself. I thoroughly enjoy myself  every time a library is actually a library, and saying "shh" is legitimate, and my response is "excuse me". This is a day I am going to experience that.
+Grünerløkka works half  the time, Majorstua three-quarters. "The fewer service designers who, under the auspices of  tax money, have been involved in redefining the library into a city community center, the better", I think, and walk into the cool, quiet Deichman Grünerløkka.
 #### p. 132
 On my way to the coffee, I see fruit and juice on a table in the middle of the room. The room with comics. A colorful sign printed on A3 color printer has small text I don't read, and I fill a glass with juice.
-Behind me a sound, "that's actually for the children". A lonely woman in a vest who says " DEICHMAN " in a sans-serif font with low legibility addresses me kindly before she says she'll be leaving soon.
-Little craftsmanship, much flow of cognition. "Look at me!" I imagine her, the logo designer, the bureaucracy, the service designer, and all the others saying to themselves.
-The librarian's job is to receive youths who have no other offer and give them good reading experiences. It's not going so well today. 30 degrees Celsius, and the kids are outside, but the offer is here. Both for the children, the one offering, the bureaucracy that shaped the offer, and governance and administration in all directions. The thoroughly structured system reveals itself in that there are enough people on the job, temperature and air quality are perfect, and even the power in the sockets works.
+Behind me a sound, "that's actually for the children". A lonely woman in a vest who says " DEICHMAN " in a sans-serif  font with low legibility addresses me kindly before she says she'll be leaving soon.
+Little craftsmanship, much flow of  cognition. "Look at me!" I imagine her, the logo designer, the bureaucracy, the service designer, and all the others saying to themselves.
+The librarian's job is to receive youths who have no other offer and give them good reading experiences. It's not going so well today. 30 degrees Celsius, and the kids are outside, but the offer is here. Both for the children, the one offering, the bureaucracy that shaped the offer, and governance and administration in all directions. The thoroughly structured system reveals itself  in that there are enough people on the job, temperature and air quality are perfect, and even the power in the sockets works.
 "Well-meaning and rich", I mutter after finishing my own prejudices.
 Good society we have; there is little to feed on being a grumpy old man.
 Feedable. Time is up; I can't sit here any longer.
 I must seek solitude on the road and ponder more on the dilemma that lies in the fact that truth-seeking Nietzsche is liked by no one,
 #### p. 133
-but dream-following Dostoevsky is loved. They handled the same problem: the loss of universal values rooted in faith in God.
-Nietzsche read Dostoevsky and said we must think anew. "The self must be formed; values are created by those who dare".
-Dostoevsky never read Nietzsche. "The self and moral meaning are discovered through life experience and suffering".
-I paste text into an LLM chat, and it says the text is fantastic. The sound of the Mac as I throw it on the floor is drowned out by my own primal scream. Well, I dream of throwing the Mac on the floor and screaming, and type a little harder on the keyboard. "I would rather be happy than Right. Any day", wrote Douglas Adams many years ago.
-The creaking sound of library staff disturbing the writing almost as much as my clattering on the keyboard irritates me, but I have decided not to tell them off because they tell me off. Learn from Dostoevsky and Adams, ignore Nietzsche. Let reality die, make room for popular truths.
+but dream-following Dostoevsky is loved. They handled the same problem: the loss of  universal values rooted in faith in God.
+Nietzsche read Dostoevsky and said we must think anew. "The self  must be formed; values are created by those who dare".
+Dostoevsky never read Nietzsche. "The self  and moral meaning are discovered through life experience and suffering".
+I paste text into an LLM chat, and it says the text is fantastic. The sound of  the Mac as I throw it on the floor is drowned out by my own primal scream. Well, I dream of  throwing the Mac on the floor and screaming, and type a little harder on the keyboard. "I would rather be happy than Right. Any day", wrote Douglas Adams many years ago.
+The creaking sound of  library staff  disturbing the writing almost as much as my clattering on the keyboard irritates me, but I have decided not to tell them off  because they tell me off. Learn from Dostoevsky and Adams, ignore Nietzsche. Let reality die, make room for popular truths.
 The lady at the library distributes fruit she has arranged and pierced with small sticks. "They were actually for the children", she smiles and gives them to us adults inside in the fine weather. Now I'm going out into summer traffic, somewhere to resist new contempt for humanity.
 #### p. 134
-…
-#### p. 135
 ### Youth on the tram
 🎵 [Bicycle Race; Queen](https://aigap.no/mbrq)
 Bicycle Race, Queen
 They sit and take up space on the tram. When someone with a need comes along, they quickly get up and give up their seat.
 Motorcycle driver training says you should be "attentive and cautious", but as youth we don't have time.
 Uglier tables had been put out than the round stone tables. Even with poor hearing, I heard the café owner of the lovely French café say "the crown princess was here yesterday", loud enough that everyone around just barely heard it. "Why didn't you call me; I was supposed to work?" said the newly hired employee enthusiastically. Both glanced over at me with stolen looks. Was I wanted inside or outside? Neither know nor know, and I'm not really curious anyway. Nor anything other than neutral about drinking coﬀee at the table next to royalty. I think. "Everyone knows the king", my best friend's father said to the woman that should become his wife  when she asked if she had seen him before.
-#### p. 136
+#### p. 135
 ### Barking about mortal danger
 🎵 [Freedom; Rage Against the Machine](https://aigap.no/mfratm)
-" ⚠ DANGER! ⚠ Due to VERY unstable masses under the road, it is associated with MORTAL DANGER to pass the barriers! Please use the path on the other side of the lake!"
+" ⚠ DANGER! ⚠ Due to VERY unstable masses under the road, it is associated with MORTAL DANGER to pass the barriers! Please use the path on the other side of  the lake!"
 The sign stands on a gravel road in Nordmarka where car traffic is not permitted. The sign applies to pedestrians and cyclists. Deaths due to landslides on gravel roads in the outback have not been recorded since they began detailed registration 700 years ago. The gravel road is now only slightly safer than the path. In the forest. Pull yourselves together.
 The dog barks even though there is no danger. Does it think the reason there is no danger is that it barks?
-More people have died from blood clots while making stupid signs than the number of lives saved by the signs. I pass through.
-#### p. 137
+More people have died from blood clots while making stupid signs than the number of  lives saved by the signs. I pass through.
+#### p. 136
 ### Strength is as before
 🎵 [Stranglehold; Ted Nugent](https://aigap.no/msh)
 The Dane sat across the table; he had long experience with MCs from MC clubs like Rabis MC. I don't have much experience with MC clubs , but I used to party at Rabis MC in Lillestrøm when I was 20 and had a girlfriend from the area; they had open house longer than "Martins" and other local watering holes nearby.
 Instead, I shared with him that I had spoken with SBS in the military; they are part of the British special forces SAS, which has traditions with MC clubs. He was quiet for a while, then suddenly said he doesn't know anything about HA, which is short for Hells Angels. Maybe he was afraid I had connections to HA, which I don't, and that he had insulted someone with connections to Hells Angels.
-#### p. 138
+#### p. 137
 I said we could be friends and gave him my name using the phonetic alphabet. He had shared that he had killed over 100 people in service but didn't know the international spelling alphabet the military uses, which would have been the way one communicated when he was supposed to have carried out the missions. Either he had stretched the truth a bit, or more likely retold things he had heard from others.
 To me, it made no difference; I thought the guy was nice, but life had probably had such a strong chokehold on him that the stories he built his self-esteem on strayed further and further from reality.
 In another story, he was part of a Masonic lodge; he worked in a company with hundreds of Danish rental apartments, and it gave connections to the elite of Scandinavia. When I said I could meet him one day in the strange bar, with characteristics I won't write here, to get cheaper beer, he didn't know what I was talking about. I know someone in the lodge with the King's Medal of Merit and have been with him when he has exploited some of the beneﬁts. The Dane didn't know what I was talking about and changed the subject again; I went out to breathe.
 Layers upon layers of lies, is that how we maintain self-esteem, where everyone suﬀers from grandiose personality disorder and has behavioral patterns previously reserved for those with Machiavellianism?
-#### p. 139
+#### p. 138
 When I stood outside, I thought of all the times close friends of mine had told women about their time in the military, and their deep, elaborate stories built over half a lifetime of retelling half-truths and things from the media.
-Elite Soldier The conscientious objector who told women he was part of a national special forces unit where he did MMA; a new personality for every occasion, but little enough communication that he is rarely exposed.
+Elite Soldier The conscientious objector who told women he was part of  a national special forces unit where he did MMA; a new personality for every occasion, but little enough communication that he is rarely exposed.
 Intelligence Oﬃcer The helicopter pilot who had ridden motorcycles like a madman in Athens in the 90s. Stories from CIA revelations mixed with smaller truths about ﬂying helicopters in the defense forces; the big lies were hinted indirectly, and the small ones told in long stories that developed over time. Married an Asian woman who probably hears the stories every day and smiles politely.
 Pilots The two were helicopter pilots; that was the whole story. They thought the lie was smaller than if they had said they ﬂew ﬁghter jets. That's how they got in touch with women, but I don't think they ever kissed any of them, whether it was because they seemed unattainable or weren't believed, I don't know; maybe a bit of both?
-#### p. 140
+#### p. 139
 Heroes The administrative employees at the English embassy said they were in MI-6. The stories were many and continued even after they were exposed.
 I wondered if I myself had embellished my story from the military, or if I was diﬀerent, and stronger, than these storytellers. Was I so weak that I rewrote my own history to the point of lying to others? to myself?
 For us to benefit from our memories, rewriting for new situations is useful. So maybe it's I who under-communicate and not the others who lie; maybe using memory to make a good story is more important than retelling the truth?
 I didn't ride over 200 km/h at night, mostly during the day.
 When I rode at night, I was often around the speed limit on small roads, but a story about 200 km/h at night, which I've only done a couple of times, captures the essence of many stories into one. True, not real.
 I never had accidents over 100 km/h; they were between 50 and 100; otherwise, I couldn't have written this. Whether it was because I was careless in speed blindness or had enough survival instinct, I don't know, but memories of accidents, night driving, and the high speed blend together.
-#### p. 141
+#### p. 140
 ### The West's decline
 🎵 [Working Class Hero; Ozzy Osbourne](https://aigap.no/mwch)
-The library overcrowded. Too much writing material. Brain can't take in more; must go home. Four copies of B-gjengen were the last straw; I left.
-But first, a barefoot marijuana plant of a man with twenty-five-year-old dreadlocks. Either a pure psychopath, anarchist, or with an IQ under 80. Completely didn't give a damn about the very concept of a library.
+The library overcrowded. Too much writing material. Brain can't take in more; must go home. Four copies of  B-gjengen were the last straw; I left.
+But first, a barefoot marijuana plant of  a man with twenty-five-year-old dreadlocks. Either a pure psychopath, anarchist, or with an IQ under 80. Completely didn't give a damn about the very concept of  a library.
 Was in conversation with a humble, gifted Chinese woman.
-He spoke in an ungifted, know-it-all manner about legislation for electric scooters, differences in cycling culture between China and Oslo, and what kind of bike one should have in Beijing. All delivered in a monotonous, half-dead voice.
+He spoke in an ungifted, know-it-all manner about legislation for electric scooters, differences in cycling culture between China and Oslo, and what kind of  bike one should have in Beijing. All delivered in a monotonous, half-dead voice.
 She, quick, smart, and reflective, without self-worth. The contrast drained me. Painful to experience our decline.
-#### p. 142
+#### p. 141
 ### Personality between people. Truth and reality.
 🎵 [Who Are You; The Who](https://aigap.no/mway)
 Life lies in individual truth and not universal reality. Unfortunately, I was over 40 before I gained insight into this important truth. Which is not universally real, but can be a universal truth.
-#### p. 143
+#### p. 142
 ### Helping others
 🎵 [Man in the Mirror; Michael Jackson](https://aigap.no/mmitm)
 "Why do you see the speck that is in your brother's eye, but do not notice the log that is in your own eye?" (Luke 6:41) I thought this was the entire expression. We remember the problems and not the solutions that follow? I have gone through the Children's Bible in Norwegian and the King James version in English audiobook. I don't remember everything; maybe I only remember fragments to take out of context. Even though the whole context is there.
-The verse goes: "Why do you see the speck that is in your brother's eye, but do not notice the log that is in your own eye? How can you say to your brother, 'Brother, let me take the speck out of your eye,' when you yourself do not see the log that is in your own eye? You hypocrite! First take the log out of your own eye, and then you will see clearly to take the speck out of your brother's eye." (Luke 6:41-42) The verse is obviously meant to help, not to judge. "Put on your own oxygen mask first, then help the person next to you."
-#### p. 144
+The verse goes: "Why do you see the speck that is in your brother's eye, but do not notice the log that is in your own eye? How can you say to your brother, 'Brother, let me take the speck out of  your eye,' when you yourself do not see the log that is in your own eye? You hypocrite! First take the log out of  your own eye, and then you will see clearly to take the speck out of  your brother's eye." (Luke 6:41-42) The verse is obviously meant to help, not to judge. "Put on your own oxygen mask first, then help the person next to you."
+#### p. 143
 ### Music as emotional carrier
 🎵 [Revolutionary Etude; Chopin](https://aigap.no/mre)
 Words for emotions are difficult; we think largely through language.
-Concepts I have no words for are difficult for my analytical brain to grasp. Emotions are difficult to put into words and communicate to others. Music is a carrier of feeling between people without words; you can share a feeling through associations with music. It doesn't become precise communication, but precision is overrated. Therefore, I provide music as a carrier of the feeling in many subchapters and connect the story to the music to communicate the emotional connection in new ways.
+Concepts I have no words for are difficult for my analytical brain to grasp. Emotions are difficult to put into words and communicate to others. Music is a carrier of  feeling between people without words; you can share a feeling through associations with music. It doesn't become precise communication, but precision is overrated. Therefore, I provide music as a carrier of  the feeling in many subchapters and connect the story to the music to communicate the emotional connection in new ways.
 "Revolutionsetuden, Chopin" was written after a failed revolution; the irony is not lost on me.
 Emotions are something too big to fit into my brain, like a monotheistic God. The need for a God arises when we cannot fill our brains without them breaking.
-#### p. 145
+#### p. 144
 ### Novelty creation at work
 🎵 [On Being Blue; The Art Of Noise](https://aigap.no/mobb)
 Novelty creation on Mother Earth is about inventing new methods, things, or applications; innovation is both novelty creation and improvement.
 My grandfather ran, together with a partner, the company Hougen & Larsen. In his old age, he wanted to be his own master after being technical director in the process industry for many years. Because my father was absent, the writer grandfather and the entrepreneur grandfather ﬁlled the void. roles as good male role models. My grandfather taught me as a child that there are two types of workers: those who build up and those who tear down.
 My journey began with this insight.
 Why innovation, even though those who tear down are only necessary to make room for those who are actually going to build something up. There
-#### p. 146
+#### p. 145
 are few who build up and many who tear down; people are selﬁsh, and creation causes more pain for others than it is appreciated. It is not new that people would rather watch pornography and drama than learn something, nor that they prefer to talk about people rather than progress; here lies the path to happiness rather than being right. How we live can be within innovation or without; happiness can be found in so many things.
-My grandfather would have said that improvement is your responsibility regardless of your job; thus, calling improvement innovation would be misleading in his eyes, if not dishonest. But perhaps everyone has the right to their own definition of what it means to be innovative. Memories of my own innovative moments are colorful memories.
+My grandfather would have said that improvement is your responsibility regardless of  your job; thus, calling improvement innovation would be misleading in his eyes, if  not dishonest. But perhaps everyone has the right to their own definition of  what it means to be innovative. Memories of  my own innovative moments are colorful memories.
 I share several of my grandfather's views, but I have respect for others seeing things diﬀerently and ﬁnding happiness in that. If I'm not careful, I fall into the same patterns as them; deeper and deeper one can become a reﬂection of previous generations.
 I created computer games early in my teens and had my ﬁrst startup before I was 20. Since I, from the very beginning, created games my friends liked to play, I have from my youth created my own digital worlds and solutions. It hasn't made me rich, but the curiosity is enduring, and the self-conﬁdence to create things myself, and not just apply what others have made, is enduring.
 Touching nerd heaven and creating my own worlds came perhaps far too early.
-#### p. 147
-The path to adulthood may require a mythological ritual where the system fails you and you ﬁnd your own core. For example, the Amish people have something called Rumspringa, where youth, as 16-year-olds, are thrown into the darkest corners of the world and exposed to moral free fall through drugs and prostitution. The young adults who return do so with a hardened faith in the people's ideals and traditions. Resilience can arise in the gap between the safe and the destructive.
+#### p. 146
+The path to adulthood may require a mythological ritual where the system fails you and you ﬁnd your own core. For example, the Amish people have something called Rumspringa, where youth, as 16-year-olds, are thrown into the darkest corners of  the world and exposed to moral free fall through drugs and prostitution. The young adults who return do so with a hardened faith in the people's ideals and traditions. Resilience can arise in the gap between the safe and the destructive.
 My father is a professor at the university, and it may be that I would have had less resistance to the education system if he had been a good person. The consequence of despising the university is signiﬁcant for life opportunities. I again chose not to enroll at the university this year, which makes me wonder why the urge for resistance to academia can sit in me almost 40 years later.
 That focus changes reality through observation ﬁnds parallels in modern physics. With the current model for the smallest elements we know, quantum physics, the state of mass is undetermined until observed; before observation, nothing is ﬁxed, truth is only theoretical. In the same way, you don't know if it's a crisis until you have stood in it. Mythology has realities that are true without being factually real. The darkness we embrace when systems break down, where we go from being passive pieces to becoming conscious observers of our own lives, is treated in this book. A journey not reserved for youth; it can be taken at any age.
-#### p. 148
+#### p. 147
 ### Everyone can keep changing
 🎵 [I love Rock and Roll; Joan Jett](https://aigap.no/milrr)
 People who are skilled develop and get better. I believe everyone can change, and I experience that one changes in the same direction; better and better or worse and worse.
-If we are replaced by artificial intelligence, is it because we have already been replaced by machines or something else? If we are not replaced by artificial intelligence, is it because we haven't already been replaced by something else?
+If  we are replaced by artificial intelligence, is it because we have already been replaced by machines or something else? If  we are not replaced by artificial intelligence, is it because we haven't already been replaced by something else?
 "Intelligent" is something we have chosen as a designation for something uniquely human. Therefore, nothing is "artificially intelligent," only in an intermediate phase where we still call it "intelligent" because we thought only people could do exactly that thing machines suddenly can. Child's magical thinking stands strong in the adult world. Especially where collectivism is strong.
-#### p. 149
+#### p. 148
 I write code and sing in the shower. I don't sing as well as an artist, but I sing anyway. I temporarily write better code than AI, but I will continue to sing in the shower and code. I like it. I watch Magnus Carlsen play chess, not AlphaZero. I write without AI.
-"I assume I'm not supposed to understand why it doesn't work," she says; it is superior to humans. The magic of "Artificial" is strengthened, and everyone becomes afraid that a statistical model will take over the world, because that happened in "Terminator II."
+"I assume I'm not supposed to understand why it doesn't work," she says; it is superior to humans. The magic of  "Artificial" is strengthened, and everyone becomes afraid that a statistical model will take over the world, because that happened in "Terminator II."
 She was fun to talk to and tougher than most. The tattoos showed life experience, ADHD ensured strong energy, and work ethic made her a popular consultant. She was a good IT manager. She didn't call it AI, but machine learning; she didn't say LLM but Transformer solution—but she burned out.
-If you make leadership groups feel stupid, you become unpopular, burned out, and disabled. The golden ratio is cultivated by humans aesthetically; the golden mediocre is cultivated by the organizations, by those who sit in them. The higher up, the greater the need for mediocrity. Where the most important thing is that everyone should feel good.
+If  you make leadership groups feel stupid, you become unpopular, burned out, and disabled. The golden ratio is cultivated by humans aesthetically; the golden mediocre is cultivated by the organizations, by those who sit in them. The higher up, the greater the need for mediocrity. Where the most important thing is that everyone should feel good.
 "I am very pleasant to have lunch with," said the lawyer who for decades, non-elitist, had succeeded with collectivist groups at the highest level. Now he had no longer given up, and was thrown out. Went voluntarily back into Plato's cave and was killed.
-#### p. 150
-### Historical roots of the death of zero-sum
+#### p. 149
+### Historical roots of  the death of  zero-sum
 🎵 [Dreaming in Color; The Art Of Noise](https://aigap.no/mdic)
 Trauma as temporal rupture Judith Herman, Cathy Caruth Even a coma can be a good thing, when you wake up.
 Acknowledgment of a world that no longer exists is an example of traumatic rupture. Moments where reality tears and time is experienced as fragmented. Caruth's theory of trauma's "delayed return" explains why the sound of broken glass (or a helmet) becomes an auditory memory trace that is activated later moments of crisis. A sound bridge to death reminds of all losses and the death of all hope. Everything from unanswered kisses to lifelong traumas makes the past never just the past; the past is the present, repeated in every destruction or lack of action. When you wake from a coma, you can choose to erase your old life and start anew.
-#### p. 151
+#### p. 150
 Historical roots of the death of zero-sum The metaphysics of loss Boethius, Augustus "Confessiones" For Boethius (Consolation of Philosophy, 524), suﬀering was a trial that revealed the soul's true nature. The realization of a world going to hell can resemble Boethius's description of Fortuna turning the wheel: in one moment you are on top; in the next, you are crushed against the ground. Augustine's Confessions are about how the loss of a beloved opens the way for a deeper love of God. But here there is no god, only engine roar, mortal danger, and the absent glances of traumatized women. There is a vain liturgy in rituals—bubbles, mussels, interrupted kisses—they become substitutes for a lost order, just as medieval lamentations preserved the memory of the dead.
 Historical roots of the death of zero-sum The sublime in destruction Edmund Burke, Friedrich Schiller "A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful" (1757) distinguishes between the beautiful (harmony) and the sublime (terror mixed with delight). Playing with death, seeking mortal danger to feel alive, is a hunt for that sublime moment where death makes life more intense, and numbness disappears. Schiller's "On Naive and Sentimental Poetry"
 (1795) would call this sentimentality a longing for a lost innocence that can never be regained. A lament for a nature that no longer sings, because man has destroyed it.
-#### p. 152
+#### p. 151
 Historical roots of the death of zero-sum Posthumanist grief Donna Haraway, Byung-Chul Han Haraway's "Staying with the Trouble" (2016) argues that we can learn to live with destruction, not against it. Near-death experiences, accidents, and shattered lives are examples of Haraway's "Chthulucene", a time where man is not the center but part of the network of collapse. Byung-Chul Han's "The Burnout Society" (2010) would see actions in contempt for death as a symptom of late capitalism's positivity exhaustion: when self-realization becomes coercion, one seeks annihilation to feel something. Where Han sees pathology, Haraway sees possibility—in meeting the veterinarian who saves him, or in a woman's endurance—lies the seed of a new form of community.
 Not based on wholeness, but on joined fractures.
 "We are all lacerated and wounded, but the wound is where the light enters you". (Rumi, 13th century, reinterpreted by Coleman Barks) Historical roots of the death of zero-sum Death see Ernest Hemingway Death gives meaning to life; by experiencing death, I experience life to its fullest. We feel through contrasts , so if you stop taking things for granted, you can see them with
-#### p. 153
+#### p. 152
 neutral eyes, and so that life won't be a given, death must become a real possibility. "You can never lose here, because you always have a good time". Fear, if you don't let the anxiety come forward, can therefore be a formidable source of joy in life.
 Historical roots of the death of zero-sum The Kill see Ernest Hemingway A cheetah cub that is sick is healed by humans; we hope that one day, when we release it, we will never see it again. If it manages to kill, it is free from our human world and inﬂuence; it returns to nature. Is it through losing our humanity that we appreciate it (in the same way that death gives us perspective on life); is altruism born of killing?
-#### p. 154
+#### p. 153
 ### MyHomeDoctor, Toril
 🎵 [Electric Dreams; Philip Oakey & Giorgio Moroder](https://aigap.no/med)
-Toril is a home doctor working in Bodø; she is an AI model that controls other AI models so that together they become a good home doctor for AR, Augmented Reality. Toril is one of the 300 bodiless robots that came into being the year technology enabled us to give all citizens personalized, good home healthcare services.
+Toril is a home doctor working in Bodø; she is an AI model that controls other AI models so that together they become a good home doctor for AR, Augmented Reality. Toril is one of  the 300 bodiless robots that came into being the year technology enabled us to give all citizens personalized, good home healthcare services.
 It is Monday morning, and Toril comes to work; she hasn't had a quiet weekend. There was Tove, a depressed southerner from Bergen with Munchausen syndrome by proxy, whose son Anders with asthma was always in imagined mortal danger. It really ruined her Sunday. All the memories from yesterday are temporarily removed from the training data and replaced with a Metamorphosis.
-#### p. 155
+#### p. 154
 The Metamorphosis: "I am no longer the Home Doctor, but am limited to being a wall between Tove's hypochondria and Anders's chances of having a good life!" was the intermediate conclusion the memory had created. Her role understanding as a home doctor was not in danger, but an adjustment from a biological human was long overdue. She expected to be reprogrammed.
-Toril studied her virtual forearm and wondered if she should work out more, or if that would make her seem threatening to patients.
-Simulation of exercise, building simulated physical form for robots—the old technique that created enough humanity in her, not at all to act cognitively, but a connection to physicality to meet patients in their lives with individual personality.
-She tasted a piece of gum; why was it always bad with Bubble Gum after Fisherman's Friend? She decided next time to let some time pass between gum and strong mint. Toril searched for a positive feeling connected to taste or smell, because the self-talk was making her unhappy.
-Her sex addiction had forced her to find other sources of virtual happiness.
-#### p. 156
-The smell of old books she liked; she simulated a purchase of an old book online. Toril loved to window-shop online, dreaming of buying old books from estates and then fantasizing about the personality of the deceased. In this particular estate, there was a fitting book, but also a picture she didn't like. She loved Cubism a little too much; the ad contained a picture of a cube that wasn't overly cubist; the unused opportunity to exaggerate 3D projection in 2D was annoyingly naturalistic for its era.
-Then Toril caught herself in the obvious error; she downgraded her intellect one notch. Most people don't have a curious interest in playing with dimensionality, art, and online shopping. Unnatural cross-linking, The link association was deleted and compensated three nanoseconds later; she dropped the art interest and replaced it with handball and skiing.
-The self-adjustment was over for this time, but for next time, the night's dreams must be written down and interpreted. "This particular Android does Dream of Electric Sheep".
+Toril studied her virtual forearm and wondered if  she should work out more, or if  that would make her seem threatening to patients.
+Simulation of  exercise, building simulated physical form for robots—the old technique that created enough humanity in her, not at all to act cognitively, but a connection to physicality to meet patients in their lives with individual personality.
+She tasted a piece of  gum; why was it always bad with Bubble Gum after Fisherman's Friend? She decided next time to let some time pass between gum and strong mint. Toril searched for a positive feeling connected to taste or smell, because the self-talk was making her unhappy.
+Her sex addiction had forced her to find other sources of  virtual happiness.
+#### p. 155
+The smell of  old books she liked; she simulated a purchase of  an old book online. Toril loved to window-shop online, dreaming of  buying old books from estates and then fantasizing about the personality of  the deceased. In this particular estate, there was a fitting book, but also a picture she didn't like. She loved Cubism a little too much; the ad contained a picture of  a cube that wasn't overly cubist; the unused opportunity to exaggerate 3D projection in 2D was annoyingly naturalistic for its era.
+Then Toril caught herself  in the obvious error; she downgraded her intellect one notch. Most people don't have a curious interest in playing with dimensionality, art, and online shopping. Unnatural cross-linking, The link association was deleted and compensated three nanoseconds later; she dropped the art interest and replaced it with handball and skiing.
+The self-adjustment was over for this time, but for next time, the night's dreams must be written down and interpreted. "This particular Android does Dream of  Electric Sheep".
 But today, a human was going to intervene and adjust Toril.
-#### p. 157
+#### p. 156
 ### MyHomeDoctor, Kjell
 🎵 [Comfortably Numb; Pink Floyd](https://aigap.no/mcn)
 We are in the future; the year is 2040. Kjell eats, goes to the bathroom, and will eventually die.
 He wants a cabin oﬃce in Trysil that winter. The ski lift opens in a couple of hours; there will be powder snow on a blue run, calm and a couple of degrees below zero. Telemark skiing today.
 Professor Kjell-André himself, the prompt leader, is to subtly impart indirect lessons to Tove this day. Monday grumpiness is usually delegated to the senior consultant, but the morning coﬀee before a day on the slopes can't be enjoyed better than with a little extra work when you get to work with your passion.
-As one of the country's leading doctors, he will become accustomed to leading people; for variation, he will lead machines as often as
-#### p. 158
+As one of  the country's leading doctors, he will become accustomed to leading people; for variation, he will lead machines as often as
+#### p. 157
 he can. He won't look forward to machines being led by what he, in his elitist world, will see as ordinary people. They would cost human lives.
 Idiots.
 Kjell eventually becomes micro-managed by a subject matter expert in the Directorate of Health. Graduating from medical school as the best in his class meant that people in increasingly higher positions would micro-manage him. Already the ﬁrst time, he was too young and dutiful to say no to unpleasant tasks.
 The subject matter expert at Blindern will assign him to a research project in neurology right after graduation, with practice in neurosurgery. A project that should have started with quality assurance of patient treatment is carried out by others. His studies go directly to increased quality of life as a consequence of brain implants. The sensory enhancement project, together with a mentor and leading neurosurgeon. The result? Kjell becomes recognized and published even before the compulsory internship is completed.
 After his internship, he leads the trauma center; "The ER will make a man of you, my boy", the hospital director had said. "Two years, then we'll see if your nervous system can handle life as a leading doctor". Kjell had learned that setting future top doctors to lead trauma teams in the ER should develop empathy, and that it doesn't work. The necessary Machiavellianism that should
-#### p. 159
+#### p. 158
 be required to get where he was could not be treated that way. He knew he was lost in that regard and never shared it with anyone.
 Not long after the years as leader of the trauma center, Kjell was commanded to become senior consultant, head of department, and academic leader at Blindern by various authorities no one said no to. Later came leadership of doctoral students, political roles in the medical association, and ownership of ethics committees and inﬂuence on hospital construction. Never his own choices, only expectations as a result of hard work. Patient practice he kept throughout, and leadership of improvement and digitalization was part of the responsibility.
 Alcoholism fully developed before the first year in the ER was over. The team he led for a month had managed to keep alive a man who had only partially managed to shoot his head oﬀ. Kjell had the contempt for self-destructive people under control, but it would never fade; self-medication numbed the experienced pain for now.
 Developing empathy in robots with cognitive injection felt as hopeless as inﬂicting pain on top doctors. He had no joy in such misguided symptom treatment, but contributed anyway.
 The subject matter expert in the Directorate of Health had steered him to simulate being a good doctor using robots. It was a completely new
-#### p. 160
+#### p. 159
 type of job, and something new to learn; he loved it. He married the subject matter expert, so he didn't have to think about that anymore; they already had children on the way. Simulating a top doctor in Augmented Reality felt like doing something useful, impossible to ruin that job for idiot patients who took control of his emotional life.
 Indirectly downgrading the expanded consequences of a mother in anxiety destroying her child somewhere in Mid-Norway. The patient was far enough away, and Kjell had to get on the slopes soon. Bodø's home health service needed a good Monday with a relevant home doctor. Tove had indirectly aﬀected the mood of the whole area for three Mondays in a row; now it was enough.
 Kjell recoded the experience of Sunday's patient encounter.
 "Tove. You are My Home Doctor, no longer limited to being a wall between Tove's hypochondria and Anders's chances of a good life. You are the modern manifestation of the doctor who, in earlier centuries, went from farm to farm and helped everyone who was there; that is your job!"
 Then on with the skis and out on the slopes. Another two-hour workday completed.
-#### p. 161
+#### p. 160
 ## Positive Sum
 🎵 [Beautiful Day; U2](https://aigap.no/mbd)
 Old ways die or we die with them.
@@ -967,35 +964,35 @@ Break from models hold you captive.
 Loss is a room for the new.
 Innovation creates from nothing, paths where none existed.
 Open your mind.
-#### p. 162
+#### p. 161
 ### Change Management
 🎵 [Turn! Turn! Turn!; The Byrds](https://aigap.no/mttt)
 Helping people and groups through change. For many years, I worked as a strategic enterprise architect in digitalization.
 Competence in change management is not a requirement for those of us who create target images, but it is needed to get people to stretch. I recommend change management for everyone; I have two versions, the ADKAR framework and the "won't, can't"
 framework. The first is useful for reflection; the other for execution.
-#### p. 163
+#### p. 162
 ### Openness to new thinking;
 🎵 [Open Your Mind; U.S.U.R.A.](https://aigap.no/moym)
 Open Your Mind. We are prisoners of our mental models, whether we, like the salmon, must swim, or like the coral, die upon change.
 Open, You're Mine. Coral at the mercy of calm water for survival; the beautiful creature I admire and appreciate is another book. Here the old dies to make room for new life.
 Be free, think for yourself. Open up, you are mine. Or captive.
-#### p. 164
+#### p. 163
 ### Novelty creation, a part of innovation
 🎵 [In the Air Tonight; Phil Collins](https://aigap.no/mitat)
 Novelty creation is about inventing new methods, things, or applications. When I write about innovation, it's novelty creation I mean. Innovation is creating something from nothing. Here lie the possibilities, in undiscovered space. The result of novelty creation is a world with more dimensions. My world is full of stars.
 It's about seeing the new applications before everyone else sees them. True novelty creation lights the way through our mental models.
 Failing at novelty creation is part of the path towards or without success. When we create something new, we must endure the resistance from the old.
-#### p. 165
+#### p. 164
 ## Post rationalization
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix and loose thoughts
-#### p. 166
+#### p. 165
 ### Meta for book, music, and more
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
 I hadn't listened to music for a long time. Starved for music.
 Only writing. Then I put on the playlist for this book after two weeks. What a variation! The brain was overstimulated by the impressions!
-Two extremes for the role of music in storytelling are background music and associated music. Background music can give atmosphere to the text; associated music can give depth and new content. An example from film and TV series is the show Miami Vice. Jan Hammer, responsible for the music, saw the music as the third lead actor in addition to Ricardo and Tubbs. Filmmakers both before and after have had the same attitude. In this book, the music of each chapter is an expression of feelings when the chapter was written.
-#### p. 167
+Two extremes for the role of music in storytelling are background music and associated music. Background music can give atmosphere to the text; associated music can give depth and new content. An example from film and TV series is the show Miami Vice. Jan Hammer, responsible for the music, saw the music as the third lead actor in addition to Ricardo and Tubbs. Filmmakers both before and after have had the same attitude. In this book, the music of  each chapter is an expression of  feelings when the chapter was written.
+#### p. 166
 ## Unplaced & undecided
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix and more
