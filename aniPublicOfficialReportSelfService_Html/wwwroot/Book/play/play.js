@@ -481,7 +481,7 @@ const books={
                 const vs=(lg,ed)=>(books.play.versionsOf(b).find(x=>x.lg===lg&&x.ed===ed)||{}).title;
                 const have=(lg,ed)=>books.play.versionsOf(b).some(x=>x.lg===lg&&x.ed===ed);
                 const srcTxt=books.play.src==='localStorage'?'endringer ligger i nettleseren – b/shelf.json er ikke endret'
-                    :(books.play.src?'leser b/shelf.json':'');
+                    :(books.play.src?'reading b/shelf.json':'');
                 if(!books.play.editOn){ // VIEW: this book's available versions, as links (that is LV.pl0.page)
                     const links=['NO','EN'].flatMap(lg=>['PREM','FREE'].map(ed=>have(lg,ed)
                         ?'<a class="seOpen" data-se="open" data-lg="'+lg+'" data-ed="'+ed+'" title="åpne '+lg+' '+ed+'">'
