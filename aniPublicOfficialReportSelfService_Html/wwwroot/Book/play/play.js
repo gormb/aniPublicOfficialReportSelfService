@@ -4,7 +4,7 @@ const books={
             fn:'',txt:'',title:'',pages:[],pgs:[],sts:[],tr:[],chs:[],subs:[],subCh:[],lns:[]
             ,books:['LifeDemandedDeath','CV','ABook']
             ,set:_fn=>{if(_fn!==books.play.md.fn){books.play.md.fn=_fn;books.play.md.load();}}
-            ,load:()=>{books.play.md.busy=1;fetch(books.play.md.fn,{cache:'no-store'}).then(r=>r.text()).then(t=>{books.play.md.txt=t;books.play.md.parse();}).catch(()=>{books.play.render.el.page.innerHTML='Fant ikke '+books.play.md.fn;});}
+            ,load:()=>{books.play.md.busy=1;fetch(books.play.md.fn,{cache:'no-store'}).then(r=>r.text()).then(t=>{books.play.md.txt=t;books.play.md.parse();}).catch(()=>{books.play.render.el.page.innerHTML='Not found: '+books.play.md.fn;});}
             ,parse:()=>{
                 books.play.md.busy=0;
                 const md=books.play.md.txt.split(/\n/);
@@ -168,8 +168,8 @@ const books={
         ,seOpen:(lg,ed)=>{books.play.seSet(books.play.seRead(),false);books.play.open(lg,ed,1);} // a version → jump down a level
         ,seCopy:()=>{const txt=JSON.stringify(books.play.manifest,null,1);
             const say=m=>{const s=document.getElementById('seMsg');if(s)s.textContent=m;};
-            if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(()=>say('JSON kopiert – lim inn i b/shelf.json')).catch(()=>say('Kunne ikke kopiere'));
-            else say('Klipp ut JSON-en under');}
+            if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(()=>say('JSON copied – paste it into b/shelf.json')).catch(()=>say('Could not copy'));
+            else say('Cut the JSON below by hand');}
         ,seReset:()=>{try{localStorage.removeItem(books.play.ovKey);}catch(e){}books.play.manifest=null;books.play.probe().then(()=>{books.play.render.toc();books.play.render.draw();});}
         ,probe:async()=>{
             // Shelf = what is available, from ONE manifest read. Guessing (books × lg × ed) costs a 404 per
@@ -249,16 +249,16 @@ const books={
             c.style.display='block';
         }
         ,LV:[
-            {pl:'pl0',t:'Book Shelf',q:'Which books are relevant for the content?',nav:'Every book concept on the shelf, each with its own versions beneath it – clicking a concept selects that book, each version (🇳🇴/🇬🇧 × 👑/🔓, or a PDF) opens that book copy',page:'The chosen book: its versions as links, and the edit window (✎ in the nav) where books and versions are added, renamed or removed',thoughts:'At shelf scale the units are books, which are filtered by concept, genre and language. A work may be published in several binds – a bind is the physical book, one of a series – and a bind comes on the shelf as its own book (own folder, own file), so the binds of a work stand side by side here. Each book can be in different versions and languages (especially now premium/freemium and NO/EN but later also eg DK) The nav lists all concepts at once, because this is the level where the book itself is chosen.',child:[{t:'Hvilken bok og versjon?',w:'The shelf is the entry point: pick a book (LifeDemandedDeath, CV, ABook) plus version – language (NO/EN) × edition (FREE/PREM). The version pins the source file b/{book}/b_{NO|EN}_{FREE|PREM}.md. A work in several binds is several books here, one per bind.'},{t:'Konsept eller sjanger',w:'Filter the shelf by concept or genre (memoir, fiction, essay) so a theme-led reader reaches the right book without knowing the title in advance.'},{t:'Stil eller språk',w:'Style (poetic/plain) and language narrow the shelf further, and are reused as filters at the deeper levels described in pl_dev_0.'}]}
-            ,{pl:'pl1',t:'Book Copy',q:'What is the overall structure of the content?',nav:'The copy you are reading – the physical book, in its language and edition (a work in several binds is several books on the shelf, one per bind) – with its main chapters beneath it, each chapter opens that chapter',page:'The whole copy in reading order: every main chapter and sub chapter as one text',thoughts:'At book copy scale the unit is the physical book you hold, in its language and edition – those two pin the source file b/{book}/b_{lang}_{edition}.md. When a work runs over several binds, each bind is its own book on the shelf, with its own folder and its own file, so it arrives here as its own copy too; a bind has its own spine: its own chapter sequence, its own start and end, its own numbering. The abstract work is the shelf level above, which is why the copy is what can be lent, annotated and read from cover to cover. The units here are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.',child:[{t:'Hvilket bind?',w:'Which bind of the series this copy is, and what it holds: where it begins and ends, and its own chapter numbering. A bind is not a variant of one file – it is its own book on the shelf, with its own folder and its own file, so the binds of a work stand side by side as separate entries.'},{t:'Hvilket kapittel?',w:'At book copy scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.'},{t:'«Hero\u2019s Journey» – hvilken fase?',w:'Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.'},{t:'Hva bør jobbes med',w:'Collect copy-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.'}]}
-            ,{pl:'pl2',t:'Main Chapter',q:'What is in this Main Chapter, and what are the Sub Chapters?',nav:'The main chapter you are on, with its sub chapters beneath it – each sub chapter opens that sub chapter',page:'That one main chapter: every sub chapter under it, in reading order',thoughts:'At Main Chapter scale the units are groups of chapters that share a theme; the section acts as the coarser parent of its chapters.',child:[{t:'Hvilke kapitler?',w:'List the chapters inside this section and their order.'},{t:'Hvilket tema?',w:'The theme or arc that binds the section\u2019s chapters together.'},{t:'Hva bør jobbes med',w:'Section-level improvements: pacing, ordering and balance across chapters.'}]}
-            ,{pl:'pl3',t:'Sub Chapter',q:'What is in this Sub Chapter?',nav:'The sub chapter you are on, and beneath it its pages on the left beside its paragraphs on the right – a click opens that page or that paragraph',page:'That sub chapter: its 🎵 song, then its whole text, page by page',thoughts:'At Sub Chapters scale the units are single chapters; the nav jumps into the chapter and its pages.',child:[{t:'Hvilke sider?',w:'Which pages belong to the chapter, and in which order.'},{t:'Hva skjer?',w:'What the chapter advances in the story or argument.'},{t:'Hva bør jobbes med',w:'Chapter-level improvements: too thin, too dense or out of order.'}]}
-            ,{pl:'pl4b',t:'Page',q:'What is on this page?',nav:'The page you are on, with its lines beneath it – each line opens the Line level',page:'That page: the fragment a paragraph continues with, then the paragraphs that start on it, set as lines; 🫲/🫱 walk the pages',thoughts:'At page scale the units are pages (with p.N anchors); the nav jumps between pages, and the lines are the page\u2019s own typographic decomposition \u2013 the anchor eye tracking later maps a gaze to.',child:[{t:'Hvilke linjer?',w:'The lines the page is set in: word wrapped at the golden-ratio measure (\u224866 characters), at 1.15 line spacing.'},{t:'Hva formidles?',w:'What the page communicates: content, mood or key point.'},{t:'Hva bør jobbes med',w:'Page-level polish: flow, rhythm and visual balance.'}]}
-            ,{pl:'pl4a',t:'Paragraph',q:'What is in this paragraph?',nav:'The paragraph you are on, with its sentences beneath it – each sentence opens the Sentence level',page:'That paragraph read as text: the block its sentences build',thoughts:'At paragraph scale the units are paragraphs – blocks of related sentences.',child:[{t:'Hvilke setninger?',w:'The sentences that build this paragraph.'},{t:'Hva sies?',w:'The paragraph\u2019s main point or idea.'},{t:'Hva bør jobbes med',w:'Paragraph-level edits: clarity, rhythm and transitions.'}]}
-            ,{pl:'pl5a',t:'Sentence',q:'What is in this sentence?',nav:'The sentence you are on, with its words beneath it – each word opens the Word level',page:'That sentence read as text: grammar, word order and tone are decided here',thoughts:'At sentence scale the units are sentences; grammar and style tools live here.',child:[{t:'Hvilke ord?',w:'The words that form the sentence and their roles.'},{t:'Hva betyr den?',w:'The meaning and function of the sentence in context.'},{t:'Hva bør jobbes med',w:'Sentence-level improvements: grammar, word order and tone.'}]}
-            ,{pl:'pl6a',t:'Word',q:'What is in this word?',nav:'The word you are on, standing alone as the node – the finest unit of the text spine',page:'That word set large, with its path and the question it answers: meaning, inflection and usage',thoughts:'At word scale the units are words: meaning, inflection and what to improve. Word-level features (lookup, glossary) apply here and deeper.',child:[{t:'Hva betyr ordet',w:'Look up meaning, inflections and usage – the finest content level where dictionary lookup applies.'},{t:'Hva bør jobbes med',w:'Which word needs editorial attention: clarity, style or accuracy.'}]}
-            ,{pl:'pl5b',t:'Line',q:'What is on this line?',nav:'The line you are on, with its four media forms beneath it – Forgrunn, Bakgrunn, Lyd and Bevegelse, each opening the Media Form level',page:'That line read as text: its length against the measure, where it breaks, and how it is set',thoughts:'At line scale the unit is one measured line of the page: its length against the golden-ratio measure, where it breaks, and its leading. A gaze lands on a line, so eye tracking belongs here.',child:[{t:'Linjelengde',w:'How much the line carries, measured against the golden-ratio optimum of about 66 characters.'},{t:'Linjebrudd',w:'Where the line breaks and why: word wrap, hyphenation or a deliberate break.'},{t:'Skrift, størrelse og leading',w:'Which face and size set the line, and the 1.15 line spacing that fixes the page grid.'},{t:'Ligaturer og kerning',w:'Pairs that join or tighten inside the line (fi, fl, AV).'}]}
-            ,{pl:'pl6b',t:'Media Form',q:'Which modalities shape the presented unit?',nav:'The line you are on, standing alone as the node – the line whose media is drawn',page:'Its four media rows: colour, background, sound (Spotify Play) and motion',thoughts:'At media-form scale the unit is the presented materialisation of the finer node: the same content carried by a modality – visual (colour, background, image), auditory (music/Spotify), motion (video). Modalities are dimensions, so each is one row here; Spotify playback is the auditory dimension, anchored to the page (🎵 … — p. N) and drawn for the line.',child:[{t:'🎨 Forgrunn (farge)',w:'Which colour renders the presented unit; changing colour restyles it as a whole.'},{t:'🖼️ Bakgrunn',w:'What renders behind the unit: solid colour, gradient or image.'},{t:'🎵 Lyd – Spotify Play',w:'The song is a media form anchored to its Underkapittel (### — p. N) heading; pages inside that subchapter inherit it. Decode the aigap.no/m-code (SpotKey), resolve it to a Spotify URL and embed the player here.'},{t:'🎬 Bevegelse / video',w:'Motion or video as a media form for the presented unit.'}]}
+            {pl:'pl0',t:'Book Shelf',q:'Which books are relevant for the content?',nav:'Every book concept on the shelf, each with its own versions beneath it – clicking a concept selects that book, each version (🇳🇴/🇬🇧 × 👑/🔓, or a PDF) opens that book copy',page:'The chosen book: its versions as links, and the edit window (✎ in the nav) where books and versions are added, renamed or removed',thoughts:'At shelf scale the units are books, which are filtered by concept, genre and language. A work may be published in several binds – a bind is the physical book, one of a series – and a bind comes on the shelf as its own book (own folder, own file), so the binds of a work stand side by side here. Each book can be in different versions and languages (especially now premium/freemium and NO/EN but later also eg DK) The nav lists all concepts at once, because this is the level where the book itself is chosen.',child:[{t:'Which book and version?',w:'The shelf is the entry point: pick a book (LifeDemandedDeath, CV, ABook) plus version – language (NO/EN) × edition (FREE/PREM). The version pins the source file b/{book}/b_{NO|EN}_{FREE|PREM}.md. A work in several binds is several books here, one per bind.'},{t:'Concept or genre',w:'Filter the shelf by concept or genre (memoir, fiction, essay) so a theme-led reader reaches the right book without knowing the title in advance.'},{t:'Style or language',w:'Style (poetic/plain) and language narrow the shelf further, and are reused as filters at the deeper levels described in pl_dev_0.'}]}
+            ,{pl:'pl1',t:'Book Copy',q:'What is the overall structure of the content?',nav:'The copy you are reading – the physical book, in its language and edition (a work in several binds is several books on the shelf, one per bind) – with its main chapters beneath it, each chapter opens that chapter',page:'The whole copy in reading order: every main chapter and sub chapter as one text',thoughts:'At book copy scale the unit is the physical book you hold, in its language and edition – those two pin the source file b/{book}/b_{lang}_{edition}.md. When a work runs over several binds, each bind is its own book on the shelf, with its own folder and its own file, so it arrives here as its own copy too; a bind has its own spine: its own chapter sequence, its own start and end, its own numbering. The abstract work is the shelf level above, which is why the copy is what can be lent, annotated and read from cover to cover. The units here are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.',child:[{t:'Which bind?',w:'Which bind of the series this copy is, and what it holds: where it begins and ends, and its own chapter numbering. A bind is not a variant of one file – it is its own book on the shelf, with its own folder and its own file, so the binds of a work stand side by side as separate entries.'},{t:'Which chapter?',w:'At book copy scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.'},{t:'\u201CHero\u2019s Journey\u201D – which stage?',w:'Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.'},{t:'What needs work',w:'Collect copy-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.'}]}
+            ,{pl:'pl2',t:'Main Chapter',q:'What is in this Main Chapter, and what are the Sub Chapters?',nav:'The main chapter you are on, with its sub chapters beneath it – each sub chapter opens that sub chapter',page:'That one main chapter: every sub chapter under it, in reading order',thoughts:'At Main Chapter scale the units are groups of chapters that share a theme; the section acts as the coarser parent of its chapters.',child:[{t:'Which chapters?',w:'List the chapters inside this section and their order.'},{t:'Which theme?',w:'The theme or arc that binds the section\u2019s chapters together.'},{t:'What needs work',w:'Section-level improvements: pacing, ordering and balance across chapters.'}]}
+            ,{pl:'pl3',t:'Sub Chapter',q:'What is in this Sub Chapter?',nav:'The sub chapter you are on, and beneath it its pages on the left beside its paragraphs on the right – a click opens that page or that paragraph',page:'That sub chapter: its 🎵 song, then its whole text, page by page',thoughts:'At Sub Chapters scale the units are single chapters; the nav jumps into the chapter and its pages.',child:[{t:'Which pages?',w:'Which pages belong to the chapter, and in which order.'},{t:'What happens?',w:'What the chapter advances in the story or argument.'},{t:'What needs work',w:'Chapter-level improvements: too thin, too dense or out of order.'}]}
+            ,{pl:'pl4b',t:'Page',q:'What is on this page?',nav:'The page you are on, with its lines beneath it – each line opens the Line level',page:'That page: the fragment a paragraph continues with, then the paragraphs that start on it, set as lines; 🫲/🫱 walk the pages',thoughts:'At page scale the units are pages (with p.N anchors); the nav jumps between pages, and the lines are the page\u2019s own typographic decomposition \u2013 the anchor eye tracking later maps a gaze to.',child:[{t:'Which lines?',w:'The lines the page is set in: word wrapped at the golden-ratio measure (\u224866 characters), at 1.15 line spacing.'},{t:'What is conveyed?',w:'What the page communicates: content, mood or key point.'},{t:'What needs work',w:'Page-level polish: flow, rhythm and visual balance.'}]}
+            ,{pl:'pl4a',t:'Paragraph',q:'What is in this paragraph?',nav:'The paragraph you are on, with its sentences beneath it – each sentence opens the Sentence level',page:'That paragraph read as text: the block its sentences build',thoughts:'At paragraph scale the units are paragraphs – blocks of related sentences.',child:[{t:'Which sentences?',w:'The sentences that build this paragraph.'},{t:'What is said?',w:'The paragraph\u2019s main point or idea.'},{t:'What needs work',w:'Paragraph-level edits: clarity, rhythm and transitions.'}]}
+            ,{pl:'pl5a',t:'Sentence',q:'What is in this sentence?',nav:'The sentence you are on, with its words beneath it – each word opens the Word level',page:'That sentence read as text: grammar, word order and tone are decided here',thoughts:'At sentence scale the units are sentences; grammar and style tools live here.',child:[{t:'Which words?',w:'The words that form the sentence and their roles.'},{t:'What does it mean?',w:'The meaning and function of the sentence in context.'},{t:'What needs work',w:'Sentence-level improvements: grammar, word order and tone.'}]}
+            ,{pl:'pl6a',t:'Word',q:'What is in this word?',nav:'The word you are on, standing alone as the node – the finest unit of the text spine',page:'That word set large, with its path and the question it answers: meaning, inflection and usage',thoughts:'At word scale the units are words: meaning, inflection and what to improve. Word-level features (lookup, glossary) apply here and deeper.',child:[{t:'What does the word mean',w:'Look up meaning, inflections and usage – the finest content level where dictionary lookup applies.'},{t:'What needs work',w:'Which word needs editorial attention: clarity, style or accuracy.'}]}
+            ,{pl:'pl5b',t:'Line',q:'What is on this line?',nav:'The line you are on, with its four media forms beneath it – Foreground, Background, Sound and Motion, each opening the Media Form level',page:'That line read as text: its length against the measure, where it breaks, and how it is set',thoughts:'At line scale the unit is one measured line of the page: its length against the golden-ratio measure, where it breaks, and its leading. A gaze lands on a line, so eye tracking belongs here.',child:[{t:'Line length',w:'How much the line carries, measured against the golden-ratio optimum of about 66 characters.'},{t:'Line breaks',w:'Where the line breaks and why: word wrap, hyphenation or a deliberate break.'},{t:'Typeface, size and leading',w:'Which face and size set the line, and the 1.15 line spacing that fixes the page grid.'},{t:'Ligatures and kerning',w:'Pairs that join or tighten inside the line (fi, fl, AV).'}]}
+            ,{pl:'pl6b',t:'Media Form',q:'Which modalities shape the presented unit?',nav:'The line you are on, standing alone as the node – the line whose media is drawn',page:'Its four media rows: colour, background, sound (Spotify Play) and motion',thoughts:'At media-form scale the unit is the presented materialisation of the finer node: the same content carried by a modality – visual (colour, background, image), auditory (music/Spotify), motion (video). Modalities are dimensions, so each is one row here; Spotify playback is the auditory dimension, anchored to the page (🎵 … — p. N) and drawn for the line.',child:[{t:'🎨 Foreground (colour)',w:'Which colour renders the presented unit; changing colour restyles it as a whole.'},{t:'🖼️ Background',w:'What renders behind the unit: solid colour, gradient or image.'},{t:'🎵 Sound – Spotify Play',w:'The song is a media form anchored to its Sub Chapter (### — p. N) heading; pages inside that subchapter inherit it. Decode the aigap.no/m-code (SpotKey), resolve it to a Spotify URL and embed the player here.'},{t:'🎬 Motion / video',w:'Motion or video as a media form for the presented unit.'}]}
         ]
         ,up:{pl0:null,pl1:'pl0',pl2:'pl1',pl3:'pl2',pl4a:'pl3',pl4b:'pl3',pl5a:'pl4a',pl5b:'pl4b',pl6a:'pl5a',pl6b:'pl5b'}
         ,child:pl=>books.play.LV.filter(x=>books.play.up[x.pl]===pl).map(x=>x.pl)
@@ -392,7 +392,7 @@ const books={
                     ,()=>{const c=md.chs[R.ch];if(!c)return [];
                         return [a2(c[0].h[1],'data-ch="'+R.ch+'" class="lvnode on"',0,'📖')]
                             .concat(R.chSubs(R.ch).map(k=>{const h=md.subs[k][0].h;return a2(h[1],'data-su="'+k+'"',1,ic[h[0]]||'📑');}));}
-                    // pl3 – the split hierarchy: pages (Bokside) on the left, paragraphs (Paragraf) on the right, both drill
+                    // pl3 – the split hierarchy: pages on the left, paragraphs on the right, both drill
                     ,()=>{const su=md.subs[R.su];if(!su)return [];
                         const h=su[0].h,pgs=[...new Set(su.map(p=>p.pn))],pns=new Set(pgs)
                             ,pars=md.pgs.map((p,i)=>({p,i})).filter(x=>pns.has(x.p.pn));
@@ -413,12 +413,12 @@ const books={
                     ,()=>{const s=md.sts[R.idx];if(!s)return [];
                         return [a2(s.txt.slice(0,34),'class="lvnode on"',0,'✍️')]
                             .concat((s.txt.match(/\S+/g)||[]).slice(0,40).map((w,j)=>a2(w,'data-i="'+j+'" data-m="7" data-si="'+R.idx+'" data-w="'+j+'"',1,'🔤')));}
-                    // pl6a Ord – the word you are on ends the text spine (semantic) – the page's lines hang under the page, never here
+                    // pl6a Word – the word you are on ends the text spine (semantic) – the page's lines hang under the page, never here
                     ,()=>{const w=wOf(R.si,R.wi);return [a2(w,'class="lvnode on"',0,'🔤')];}
-                    // pl5b Linje – the line you are on (node) with its media forms beneath it (leaves)
-                    ,()=>{const l=R.curLine(),mm=[['\u{1F3A8}','Forgrunn'],['\u{1F5BC}\uFE0F','Bakgrunn'],['\u{1F3B5}','Lyd'],['\u{1F3AC}','Bevegelse']];
+                    // pl5b Line – the line you are on (node) with its media forms beneath it (leaves)
+                    ,()=>{const l=R.curLine(),mm=[['\u{1F3A8}','Foreground'],['\u{1F5BC}\uFE0F','Background'],['\u{1F3B5}','Sound'],['\u{1F3AC}','Motion']];
                         return [a2(l?l.t:'','class="lvnode on"',0,R.lv[8].ic)].concat(mm.map(m=>a2(m[1],'data-m="9"',1,m[0])));}
-                    // pl6b Medieform – the line alone: the modalities are drawn in the page, not in the nav
+                    // pl6b Media Form – the line alone: the modalities are drawn in the page, not in the nav
                     ,()=>{const l=R.curLine(),pg=md.pages[R.pi]||{},nn=l?l.t:(pg.h?pg.h[1]:(pg.pn?'p. '+pg.pn:md.title));
                         return [a2(nn||'','class="lvnode on"',0,'🎨')];}
                 ];
@@ -433,36 +433,36 @@ const books={
                 // nearest parent last (so the list reads as the path down to here and the row under it is the node itself).
                 // Any parent can be left in one click instead of walking up one level at a time.
                 const ups=books.play.ancestors(books.play.id(books.play.render.mode)).map(jump).join('');
-                const up=ups||'<a data-edit="1" class="lvup'+(books.play.editOn?' on':'')+'" title="'+books.play.render.esc(books.play.editOn?'ferdig – vis versjonene som lenker':'rediger hvilke bøker og versjoner som finnes')+'">✎ '+(books.play.editOn?'(ferdig)':'(edit)')+'</a>'; // nothing above the shelf, so the slot edits the shelf itself
+                const up=ups||'<a data-edit="1" class="lvup'+(books.play.editOn?' on':'')+'" title="'+books.play.render.esc(books.play.editOn?'done – show the versions as links':'edit which books and versions exist')+'">✎ '+(books.play.editOn?'(done)':'(edit)')+'</a>'; // nothing above the shelf, so the slot edits the shelf itself
                 R.el.nav.innerHTML=up+o[R.mode]().join('');
                 R.hands();
             }
             ,esc:x=>x.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
             ,slug:s=>(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'')
-            ,spotKey:u=>books.play.SpotKey(u) // song code: gormb query (?msoe) or aigap path (/msoe) – gormb.github.io/?id har flyttet til aigap.no/id
+            ,spotKey:u=>books.play.SpotKey(u) // song code: gormb query (?msoe) or aigap path (/msoe) – gormb.github.io/?id has moved to aigap.no/id
             ,qr:u=>{const k=books.play.render.spotKey(u);return k?'<img src="https://aigap.no/i/'+k+'.qr1.png" style="height:66px;image-rendering:pixelated;">':'';}
             ,mus:l=>{const u=(l.match(/https?:\/\/[^\s)]+/)||[''])[0];return '<a href="'+u+'">\u{1F3B5}</a>'+books.play.render.qr(u);}
-            ,songOf:p=>{const a=books.play.md.pages||[],i=a.indexOf(p);for(let k=i;k>=0;k--)if(a[k].mu)return a[k].mu;return '';} // nearest 🎵 at or before page p (songs live on the Underkapittel heading)
+            ,songOf:p=>{const a=books.play.md.pages||[],i=a.indexOf(p);for(let k=i;k>=0;k--)if(a[k].mu)return a[k].mu;return '';} // nearest 🎵 at or before page p (songs live on the Sub Chapter heading)
             ,media:p=>{ // pl6b: the presented unit + one row per modality
                 const mu=books.play.render.songOf(p),key=books.play.render.spotKey(mu)
                     ,l=books.play.render.curLine(),node=l?l.t:(p&&p.h?p.h[1]:(p&&p.pn?'p. '+p.pn:books.play.md.title))
                     ,row=(ic,t,w,x)=>'<div class="mf"><b>'+ic+' '+books.play.render.esc(t)+'</b><div class="mfw">'+books.play.render.esc(w)+'</div>'+(x||'')+'</div>';
                 return '<h1>'+books.play.render.esc(books.play.render.lv[9].nm)+'</h1>'
                     +'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl6b'))+(node?' – '+books.play.render.esc(node):'')+'</p>'
-                    +row('\u{1F3A8}','Forgrunn (farge)','Fargen som former det presenterte.')
-                    +row('\u{1F5BC}\uFE0F','Bakgrunn','Det som står bak det presenterte.')
-                    +row('\u{1F3B5}','Lyd – Spotify Play',mu?'Kode '+key+' – sang knyttet til dette nivået.':'Ingen sang knyttet til dette nivået.',mu?'<button class="spPlay" data-u="'+mu+'">\u25B6 \u266A</button> '+books.play.render.qr(mu):'')
-                    +row('\u{1F3AC}','Bevegelse / video','Bevegelse eller video som medieform.')
+                    +row('\u{1F3A8}','Foreground (colour)','The colour that shapes what is presented.')
+                    +row('\u{1F5BC}\uFE0F','Background','What stands behind what is presented.')
+                    +row('\u{1F3B5}','Sound – Spotify Play',mu?'Code '+key+' – the song tied to this level.':'No song tied to this level.',mu?'<button class="spPlay" data-u="'+mu+'">\u25B6 \u266A</button> '+books.play.render.qr(mu):'')
+                    +row('\u{1F3AC}','Motion / video','Motion or video as a media form.')
                     +'<div id="spHolder"></div>';
             }
             ,subView:()=>{ // pl3: the chosen sub chapter – its 🎵 song, then its text. One item per page so 🫲/🫱 and the nav step through pages.
                 const su=books.play.render.cSub();
-                if(!su||!su.length)return [books.play.render.lv[3].nm+' – velg et underkapittel i listen'];
+                if(!su||!su.length)return [books.play.render.lv[3].nm+' – choose a sub chapter in the list'];
                 const mu=books.play.render.songOf(su[0]),key=books.play.render.spotKey(mu);
                 const song='<div class="subsong">'+(mu
                     ?'\u{1F3B5} <b>'+books.play.render.esc(key)+'</b> <a href="'+books.play.render.esc(mu)+'">'+books.play.render.esc(mu)+'</a> '
                         +'<button class="spPlay" data-u="'+books.play.render.esc(mu)+'">\u25B6 \u266A</button>'+books.play.render.qr(mu)
-                    :'Ingen sang knyttet til dette underkapittelet.')+'</div>';
+                    :'No song tied to this sub chapter.')+'</div>';
                 return su.map((p,i)=>(i?'':song)+books.play.render.page(p));
             }
             ,shelfEdit:()=>{ // pl0 details for the CHOSEN book: what is available, and the edit window for it
@@ -470,43 +470,43 @@ const books={
                 const i=Math.max(0,Math.min(bs.length-1,books.play.selIdx())),b=bs[i];
                 const head=(x)=>'<h1>'+esc(x||books.play.LV[0].t)+'</h1>';
                 const src=books.play.src==='localStorage'
-                    ?'⚠ endringer ligger i nettleseren – b/shelf.json er ikke endret. Bruk Kopier JSON for å gjøre det permanent, eller Nullstill.'
-                    :(books.play.src?'leser b/shelf.json':'fant ingen shelf.json');
-                const bar='<div class="seRow"><button data-se="add">+ bok</button>'
-                    +'<button data-se="copy">Kopier JSON</button>'
-                    +'<button data-se="reset">Nullstill</button><span class="seMsg" id="seMsg"></span></div>'
+                    ?'⚠ changes live in the browser – b/shelf.json is unchanged. Use Copy JSON to make them permanent, or Reset.'
+                    :(books.play.src?'reading b/shelf.json':'no shelf.json found');
+                const bar='<div class="seRow"><button data-se="add">+ book</button>'
+                    +'<button data-se="copy">Copy JSON</button>'
+                    +'<button data-se="reset">Reset</button><span class="seMsg" id="seMsg"></span></div>'
                     +'<details class="seJsonBox"><summary>JSON for b/shelf.json</summary>'
                     +'<pre class="seJson">'+esc(JSON.stringify({books:bs},null,1))+'</pre></details>';
-                if(!b)return '<div class="se" data-b="0">'+head()+'<p class="seHint">Ingen bøker i shelf.json – legg til en.</p>'+bar+'</div>';
+                if(!b)return '<div class="se" data-b="0">'+head()+'<p class="seHint">No books in shelf.json – add one.</p>'+bar+'</div>';
                 const vs=(lg,ed)=>(books.play.versionsOf(b).find(x=>x.lg===lg&&x.ed===ed)||{}).title;
                 const have=(lg,ed)=>books.play.versionsOf(b).some(x=>x.lg===lg&&x.ed===ed);
-                const srcTxt=books.play.src==='localStorage'?'endringer ligger i nettleseren – b/shelf.json er ikke endret'
+                const srcTxt=books.play.src==='localStorage'?'changes live in the browser – b/shelf.json is unchanged'
                     :(books.play.src?'reading b/shelf.json':'');
                 if(!books.play.editOn){ // VIEW: this book's available versions, as links (that is LV.pl0.page)
                     const links=['NO','EN'].flatMap(lg=>['PREM','FREE'].map(ed=>have(lg,ed)
-                        ?'<a class="seOpen" data-se="open" data-lg="'+lg+'" data-ed="'+ed+'" title="åpne '+lg+' '+ed+'">'
+                        ?'<a class="seOpen" data-se="open" data-lg="'+lg+'" data-ed="'+ed+'" title="open '+lg+' '+ed+'">'
                             +books.play.flag(lg)+books.play.edIc(ed)+'&nbsp;'+books.play.render.esc(books.play.titleOf(b.book,lg,ed))+'</a>':''));
                     if(b.pdf)links.push('<a class="seOpen" data-se="pdf" data-pdf="'+books.play.render.esc(b.pdf)+'" title="PDF">📕&nbsp;'+books.play.render.esc(books.play.titleOf(b.book))+'</a>');
                     return '<div class="se" data-b="'+i+'">'+head(b.book)
                         +'<p class="seHint">'+books.play.render.esc(srcTxt)+'</p>'
                         +'<div class="seVers">'+links.join('')+'</div>'
-                        +'<p class="seHint">✎ (edit) i listen til venstre for å endre hvilke bøker og versjoner som finnes.</p></div>';
+                        +'<p class="seHint">✎ (edit) in the list on the left to change which books and versions exist.</p></div>';
                 }
-                const slot=(lg,ed)=>{ // one version: checked = available, the input is its own title (empty inherits), åpne = jump down a level
+                const slot=(lg,ed)=>{ // one version: checked = available, the input is its own title (empty inherits), open = jump down a level
                     const own=((books.play.versionsOf(b).find(x=>x.lg===lg&&x.ed===ed)||{}).title)||'';
                     const on=books.play.versionsOf(b).some(x=>x.lg===lg&&x.ed===ed);
                     const eff=own||books.play.titleOf(b.book,lg,ed);
                     return '<label class="seV"><input type="checkbox" data-se="on" data-lg="'+lg+'" data-ed="'+ed+'"'+(on?' checked':'')+'> '
                         +books.play.flag(lg)+books.play.edIc(ed)
                         +' <input class="seT" data-se="vt" data-lg="'+lg+'" data-ed="'+ed+'" value="'+esc(own)+'" placeholder="'+esc(eff)+'" title="'+lg+' '+ed+'">'
-                        +(on?' <a class="seOpen" data-se="open" data-lg="'+lg+'" data-ed="'+ed+'" title="åpne '+lg+' '+ed+'">åpne ▸</a>':'')
+                        +(on?' <a class="seOpen" data-se="open" data-lg="'+lg+'" data-ed="'+ed+'" title="open '+lg+' '+ed+'">open ▸</a>':'')
                         +'</label>';
                 };
                 return '<div class="se" data-b="'+i+'">'+head(b.book)
                     +'<p class="seHint">'+esc(src)+'</p>'
                     +'<div class="seBook" data-b="'+i+'">'
-                    +'<div class="seRow"><input class="seId" data-se="book" value="'+esc(b.book||'')+'" placeholder="mappe under b/" title="book folder">'
-                    +'<button data-se="del" title="Fjern boken fra hylla">🗑</button></div>'
+                    +'<div class="seRow"><input class="seId" data-se="book" value="'+esc(b.book||'')+'" placeholder="folder under b/" title="book folder">'
+                    +'<button data-se="del" title="Remove the book from the shelf">🗑</button></div>'
                     +['NO','EN'].flatMap(lg=>['PREM','FREE'].map(ed=>slot(lg,ed))).join('')
                     +'<label class="seV"><input type="checkbox" data-se="pdfOn"'+(b.pdf?' checked':'')+'> 📕 '
                     +'<input class="seT" data-se="p" value="'+esc(b.pdf||'')+'" placeholder="b/CV/b.pdf" title="PDF"></label></div>'
@@ -534,13 +534,13 @@ const books={
                 ,()=>[{t:1}].concat(books.play.md.pages).map((p,i)=>books.play.render.page(p,i>0)) // a page also opens with the fragment a paragraph continues with
                 ,()=>books.play.md.pgs.map(p=>'<p>'+books.play.render.esc(p.txt)+'</p>')
                 ,()=>books.play.md.sts.map(s=>books.play.render.esc(s.txt))
-                // pl6a Ord – the word itself
+                // pl6a Word – the word itself
                 ,()=>{const st=books.play.md.sts[books.play.render.si],w=st?((st.txt.match(/\S+/g)||[])[books.play.render.wi]||''):'';
                     return ['<h1>'+books.play.render.esc(books.play.LV[7].t)+'</h1>'
                         ,'<p class="wbig">'+books.play.render.esc(w)+'</p>'
                         ,'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl6a'))+(w?' – '+books.play.render.esc(w):'')+'</p>'
-                        ,'<p>'+books.play.render.esc(books.play.LV[7].q)+'</p>'];} // ordbok-oppslag, bøyning og bruk hører hit
-                // pl5b Linje – the line as it sits in the measure: ONE item, because draw() renders only v[idx]
+                        ,'<p>'+books.play.render.esc(books.play.LV[7].q)+'</p>'];} // dictionary lookup, inflection and usage belong here
+                // pl5b Line – the line as it sits in the measure: ONE item, because draw() renders only v[idx]
                 ,()=>{const l=books.play.render.curLine(),t=l?l.t:'';
                     return ['<h1>'+books.play.render.esc(books.play.LV[8].t)+'</h1>'
                         ,'<p class="lbig">'+books.play.render.esc(t)+'</p>'
@@ -755,8 +755,8 @@ const books={
             // typing in the edit window keeps the box as-is (no redraw) but updates the shelf + nav live
             books.play.render.el.page.addEventListener('input',ev=>{if(ev.target.closest&&ev.target.closest('#page .se')){books.play.seSet(books.play.seRead(),false);}});
             books.play.render.el.page.addEventListener('change',ev=>{if(ev.target.closest&&ev.target.closest('#page .se')){books.play.seSet(books.play.seRead(),true);}}); // checkbox → redraw
-            const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=8';dbjs.onerror=()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen');document.head.appendChild(dbjs); // SUPABASE config → songs resolve to spotify urls
-            const musicjs=document.createElement('script');musicjs.type='module';musicjs.src=books.play.root+'music.js?v=8';musicjs.onerror=()=>console.warn('[music.js] kunne ikke lastes i bakgrunnen');document.head.appendChild(musicjs); // ES module (export) → must be type=module, else the whole file fails to parse. Music player for Spotify links (aigap.no/m-code) – gormb.github.io/?id har flyttet til aigap.no/id
+            const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=8';dbjs.onerror=()=>console.warn('[db.js] could not load in the background');document.head.appendChild(dbjs); // SUPABASE config → songs resolve to spotify urls
+            const musicjs=document.createElement('script');musicjs.type='module';musicjs.src=books.play.root+'music.js?v=8';musicjs.onerror=()=>console.warn('[music.js] could not load in the background');document.head.appendChild(musicjs); // ES module (export) → must be type=module, else the whole file fails to parse. Music player for Spotify links (aigap.no/m-code) – gormb.github.io/?id has moved to aigap.no/id
         }
     }
 };

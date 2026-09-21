@@ -19,18 +19,17 @@
             <ul id="lvGuide"></ul></div>
             <!-- Populated by play.js books.play.LV  -->
             <hr>
-            Lekegrind for KI med verktøy for å lage, utbedre og nyte bøker på forskjellige semantiske zoom- og detaljnivåer:
+            A playground for AI with tools to make, improve and enjoy books at different semantic zoom and detail levels:
             Each level has a guiding line for the reader and a set of features for the AI to apply. The levels are pl0..pl3, then pl4a/pl4b, pl5a/pl5b, pl6a/pl6b (a = text spine, b = page spine), with pl_dev_0 for development notes.
             <hr>
             <div id="pl_dev_0">Dev – what is relevant?
                 <details><summary>Thoughts</summary>Keep extremely short as usual! put under books.play so that it can be integrated other places later</details>
                 <details><summary>Structure</summary>
-                    Bokhylle › Bokeksemplar › Hovedkapittel › Underkapittel — which splits into<br>
-                    • Bokside → Linje → Medieform (the presentation)<br>• Paragraf → Setning → Ord (the text)<br>
+                    Book Shelf › Book Copy › Main Chapter › Sub Chapter — which splits into<br>
+                    • Page → Line → Media Form (the presentation)<br>• Paragraph → Sentence → Word (the text)<br>
                     Bind: a work may be published in several binds — a bind is the physical book, one of a series. A bind is its own book on the shelf: its own concept, folder and file (b/{book}/b_{lang}_{edition}.md), its own chapter sequence, its own start and its own numbering. So no extra dimension is needed anywhere — the copy at pl1 stays language × edition.<br>
-                    • Bokside → Linje → Medieform (the presentation)<br>• Paragraf → Setning → Ord (the text)<br>
                     The spines never cross: the page carries its lines and their media, a word ends the text spine.<br>
-                    One source line = one paragraph; a line that resumes a sentence cut by a page marker or a line break joins the same paragraph, which can span pages (pn–pn2).<br>A page's lines are word wrapped at the golden-ratio measure (≈66 characters) at 1.15 line spacing, so every line of a page can be addressed – the level a gaze maps to when eye tracking comes.<br>Medieform is multi-modal – Forgrunn, Bakgrunn, Lyd (Spotify Play), Bevegelse – one row per modality, drawn in the page.<br>Hierarchy is data: parents in books.play.up, names/text/features in books.play.LV. The nav shows the selected node and its leaves, ⬆ goes to the parent node, 🫲/🫱 walk the siblings.<br>Levels: pl0 shelf, pl1 copy (the physical book: bind × language × edition, where a bind is its own book), pl2 main chapter, pl3 sub chapter (the fork: pages │ paragraphs), pl4b page, pl5b line, pl6b media form, pl4a paragraph, pl5a sentence, pl6a word.
+                    One source line = one paragraph; a line that resumes a sentence cut by a page marker or a line break joins the same paragraph, which can span pages (pn–pn2).<br>A page's lines are word wrapped at the golden-ratio measure (≈66 characters) at 1.15 line spacing, so every line of a page can be addressed – the level a gaze maps to when eye tracking comes.<br>Media Form is multi-modal – Foreground, Background, Sound (Spotify Play), Motion – one row per modality, drawn in the page.<br>Hierarchy is data: parents in books.play.up, names/text/features in books.play.LV. The nav shows the selected node and its leaves, ⬆ goes to the parent node, 🫲/🫱 walk the siblings.<br>Levels: pl0 shelf, pl1 copy (the physical book: bind × language × edition, where a bind is its own book), pl2 main chapter, pl3 sub chapter (the fork: pages │ paragraphs), pl4b page, pl5b line, pl6b media form, pl4a paragraph, pl5a sentence, pl6a word.
                 <ol><li>DOING: Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>
                         to the right add a lookingglass and after it buttons for the levels (with iocons).
                         Clicking changes cursor and then clicking on area in text jumps into the correct 
