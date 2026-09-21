@@ -642,7 +642,9 @@ const books={
                     ,k=d>0?(ks.length>1?'pl4'+z.sp:ks[0]):books.play.up[pl]; // + = finer (the fork goes where the user last was), − = coarser
                     if(k)R.go(books.play.ix(k));}
                 ,init:()=>{
-                    const z=books.play.sem.Z,db=()=>document.getElementById('dpBook');
+                    const z=books.play.sem.Z,db=()=>document.getElementById('dpBook')
+                        ,dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
+                    let base=0,sx=0,sy=0,sw=0,acc=0,at=0; // base = the pinch width the last step was taken at, sx/sy = where a one-finger swipe began, sw = it may still be a swipe, acc/at = how far – and how long ago – a trackpad pinch turned
                     document.onkeydown=e=>{
                         if(e.key==='Control'||e.key==='Shift'){if(e.ctrlKey&&e.shiftKey)z.enter();return;} // ⌃⇧ anywhere is Z-mode – not only while hovering the book; ⌃ alone does nothing (and bare ⌃arrows belong to Mission Control)
                         if(!e.ctrlKey||!e.shiftKey)return;
@@ -657,8 +659,34 @@ const books={
                     document.onkeyup=e=>{if(!e.ctrlKey||!e.shiftKey)z.hide();}; // releasing either key ends Z-mode
                     document.onmousedown=e=>{if(e.buttons===3&&db().contains(e.target)){z.m=1;z.enter();}};
                     document.onmouseup=e=>{if(z.m&&e.buttons<3)z.hide();};
-                    document.ontouchstart=e=>{if(e.touches.length>1&&db().contains(e.target)){z.t=1;z.enter();}};
-                    document.ontouchend=e=>{if(z.t&&e.touches.length<2)z.hide();};
+                    // touch, in the reading pane: two fingers = Z-mode like ⌃⇧ held, apart = a finer level, together = a coarser one; one finger sideways = 🫲/🫱
+                    document.addEventListener('touchstart',e=>{
+                        if(!db().contains(e.target))return;
+                        if(e.touches.length>1){z.t=1;sw=0;base=dist(e.touches);z.enter();} // sw=0: a second finger means it is a pinch, not a swipe
+                        else if(e.touches.length===1){sw=1;sx=e.touches[0].clientX;sy=e.touches[0].clientY;} // a swipe is decided when the finger lifts – a tap stays a tap
+                    },{passive:true});
+                    document.addEventListener('touchmove',e=>{
+                        if(!z.t||e.touches.length<2)return;
+                        if(e.cancelable)e.preventDefault(); // the pinch is ours, not the browser's page zoom – what it changes is the semantic level
+                        const d=base?dist(e.touches):0;
+                        if(d&&d/base>=1.35){base=d;z.drill(1);}      // apart → more detail
+                        else if(d&&d/base<=0.74){base=d;z.drill(-1);} // together → less detail
+                    },{passive:false});
+                    document.addEventListener('touchend',e=>{
+                        if(z.t&&e.touches.length<2)z.hide();
+                        if(sw&&!e.touches.length){ // one finger lifted: a long, level, sideways drag was a hand, not a scroll
+                            const t=e.changedTouches[0]||{clientX:sx,clientY:sy},dx=t.clientX-sx,dy=t.clientY-sy;sw=0;
+                            if(Math.abs(dx)>48&&Math.abs(dx)>2*Math.abs(dy))books.play.render.nav(dx<0?1:-1);
+                        }
+                    },{passive:true});
+                    // a trackpad pinch comes as ctrl+wheel; it means the same thing here – and only over the reading pane, so the rest of the page keeps its own zoom
+                    document.addEventListener('wheel',e=>{
+                        if(!e.ctrlKey||!db().contains(e.target))return;
+                        if(e.cancelable)e.preventDefault();
+                        const now=Date.now();if(now-at>400)acc=0;at=now; // a pause starts a new pinch
+                        acc+=e.deltaY;
+                        if(Math.abs(acc)>=25){z.drill(acc<0?1:-1);acc=0;} // apart → finer, together → coarser; ~25 is one step, tune here if a trackpad is too eager
+                    },{passive:false});
                     window.onblur=z.hide;
                     window.onresize=()=>{if(z.ov&&z.ov.style.display==='block')z.show();};
                 }
