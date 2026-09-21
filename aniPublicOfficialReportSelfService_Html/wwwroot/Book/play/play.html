@@ -1,5 +1,5 @@
 <!doctype html>
-<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=10"></head>
+<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=15"></head>
 <body>
 <!-- menu -->
     <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><span id="hiId">L*NO*FR.R.Ka.Vib.T</span><span id="hiQr"></span><a id="hiUrl"></a><span id="dpCur"></span></div>
@@ -47,7 +47,7 @@
                 </details>
     </div>
     <hr>
-    <script src="play.js?v=11"></script>
+    <script src="play.js?v=16"></script>
     <!-- #hiId › its deep link as qr + url. Nothing is added to aigap.no/qr.js: only its generic API is reused (qr.g, qr.sizes), and play's own glue – the ?p= url and the two elements – stays here, taking the id as a parameter -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
     <script src="https://aigap.no/i/u/qrmetrics.js"></script>

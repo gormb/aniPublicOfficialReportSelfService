@@ -565,7 +565,7 @@ const books={
             }
             ,lvitem:x=>{const up=books.play.ancestors(x.pl).map(p=>{const L=books.play.LV.find(l=>l.pl===p);return L?L.t:'';}).filter(Boolean).join(' › ');return '<li id="'+x.pl+'">'+(up?'<div class="lvpath">'+books.play.render.esc(up)+' ›</div>':'')+'<i>'+books.play.render.esc(x.t)+'</i> – '+books.play.render.esc(x.q)+(x.nav&&x.nav!=='todo'?'<details><summary>Nav shows</summary>'+books.play.render.esc(x.nav)+'</details>':'')+(x.page&&x.page!=='todo'?'<details><summary>Page shows</summary>'+books.play.render.esc(x.page)+'</details>':'')+(x.thoughts?'<details open><summary>Thoughts</summary>'+books.play.render.esc(x.thoughts)+'</details>':'')+(x.child&&x.child.length?'<details open><summary>Planned</summary><ol>'+x.child.map(c=>'<li>'+books.play.render.esc(c.t)+(c.w?'<details><summary>Thoughts</summary>'+books.play.render.esc(c.w)+'</details>':'')+'</li>').join('')+'</ol></details>':'')+'</li>';}
             ,guide:()=>{const g=document.getElementById('lvGuide');if(!g)return;g.innerHTML=books.play.LV.map(x=>books.play.render.lvitem(x)).join('');}
-            ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);books.play.render.ctl();books.play.hi();}
+            ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);books.play.render.ctl();books.play.hi();books.play.sem.Z.nav.draw();}
             ,ctl:()=>{const c=document.getElementById('lvCtl');if(!c)return;const pl=books.play.id(books.play.render.mode),kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV[books.play.ix(k)];h+='<button data-go="'+books.play.ix(k)+'" title="finer: '+(K?K.t:k)+'">\u{1F447}</button>';});c.innerHTML=h;c.onclick=ev=>{const x=ev.target.closest('button');if(!x||x.dataset.go===undefined)return;if(x.dataset.go==='up'){const p=books.play.up[pl];if(p)books.play.render.go(books.play.ix(p));}else books.play.render.go(+x.dataset.go);};}
             ,baseOf:i=>books.play.md.pgs.slice(0,i).reduce((n,q)=>n+books.play.render.sentT(q.txt).length,0)
             ,pgOf:si=>{let n=0;for(let k=0;k<books.play.md.pgs.length;k++){n+=books.play.render.sentT(books.play.md.pgs[k].txt).length;if(n>si)return k;}return 0;}
@@ -635,9 +635,33 @@ const books={
             Z:{
                 ov:null,m:0,t:0,sp:'a' // sp = the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in; pl4a until then
                 ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
-                ,show:()=>{books.play.sem.Z.box().style.display='block';document.body.classList.add('zoom');} // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
+                ,show:()=>{books.play.sem.Z.box().style.display='block';document.body.classList.add('zoom');books.play.sem.Z.nav.swap();} // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
                 ,hide:()=>{const z=books.play.sem.Z;if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');}
                 ,enter:()=>books.play.sem.Z.show()
+                ,nav:{ // ⌃⇧ held or two fingers down overwrite the play panel (right, innerHTML and all) with a navigating area – the level we are on, and what it selects. It stays: leaving the mode puts nothing back
+                    el:null,last:''
+                    ,box:()=>books.play.sem.Z.nav.el
+                    ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
+                    ,ver:v=>v.pdf?'\u{1F4D5} '+books.play.titleOf(v.book):books.play.flag(v.lg)+books.play.edIc(v.ed)+' '+books.play.titleOf(v.book,v.lg,v.ed)
+                    ,hue:s=>{let h=0;for(const c of String(s))h=(h*31+c.codePointAt(0))%360;return h;} // a colour per instance until the real one is decided – stable, so the areas do not flicker on redraw
+                    ,shelf:()=>{ // pl0: the concepts top to bottom, each with its own versions left to right, every label set as the spine it is and claiming its share of the band
+                        const s=books.play.shelf||[],e=books.play.render.esc,n=books.play.sem.Z.nav;
+                        return [...new Set(s.map(x=>x.book))].map(b=>'<div class="nvBook"><span class="nvName">'+e(b)+'</span>'
+                            +s.filter(x=>x.book===b).map(v=>{const t=n.ver(v);return '<span class="nvVer" style="background:hsl('+n.hue(t)+',70%,88%)">'+e(t)+'</span>';}).join('')+'</div>').join('');
+                    }
+                    ,areas:()=>{ // every level reads the same way: one area per node in it, top to bottom, the node's name centred in its area
+                        const e=books.play.render.esc,kids=books.play.child(books.play.id(books.play.render.mode))
+                            ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[],L=books.play.LV[books.play.ix(c)]||{}
+                                ,rows=ns.map((n,k)=>n===''?'':'<div class="nvA'+(n===a[1]?' on':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span></div>').join('');
+                                return rows?'<div class="nvGrp">'+(kids.length>1?'<div class="nvG">'+e(L.t||c)+'</div>':'')+rows+'</div>':'';}).join('');
+                        return grp?'<div class="nvAreas">'+grp+'</div>':'';}
+                    ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);} // an area selects that node and opens its level, like the same row in the nav
+                    ,body:()=>{const n=books.play.sem.Z.nav,pl=books.play.id(books.play.render.mode);
+                        if(pl==='pl0')return (books.play.shelf||[]).length?'<div class="nvShelf">'+n.shelf()+'</div>':'<h2>'+books.play.render.esc(n.label())+'</h2>';
+                        return n.areas()||'<h2>'+books.play.render.esc(n.label())+'</h2>';}
+                    ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;}
+                    ,swap:()=>{const n=books.play.sem.Z.nav,p=document.getElementById('dbPlay');if(!n.el){p.innerHTML='<div id="semNav"></div>';n.el=p.firstChild;n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x){const k=x.dataset.k.split('|');n.go(k[0],+k[1]);}};p.classList.add('navon');}n.draw();}
+                }
                 ,drill:(d,alt)=>{const R=books.play.render,z=books.play.sem.Z,pl=books.play.id(R.mode),ks=books.play.child(pl)
                     ,k=d>0?(ks.length>1?'pl4'+(alt?(z.sp==='a'?'b':'a'):z.sp):ks[0]):books.play.up[pl]; // + = finer (the fork goes where the user last was – with alt, the fork not taken last), − = coarser
                     if(k)R.go(books.play.ix(k));}
