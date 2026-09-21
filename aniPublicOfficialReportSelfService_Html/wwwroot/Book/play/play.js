@@ -75,11 +75,11 @@ const books={
                 if(su){books.play.md.subs.push(su);books.play.md.subCh.push(ci);}
             }
         }
-        ,book:'LifeDemandedDeath',lg:'NO',ed:'PREM',bd:'',shelf:null,pdf:null // bd = bindet: den fysiske boka, ett av flere når verket går over flere bind
+        ,book:'LifeDemandedDeath',lg:'NO',ed:'PREM',shelf:null,pdf:null
         ,inP:new URLSearchParams(location.search).get('p') // the deep link, read once at load – nothing may rewrite ?p= before parse gets to use it
         ,root:'../' // play/ lives under Book/ – data root (b/, music.js) sits one level up
-        ,fnOf:()=>books.play.root+'b/'+books.play.book+'/b_'+books.play.lg+'_'+books.play.ed+(books.play.bd?'_'+books.play.bd:'')+'.md' // the bind is part of the file name when there is one
-        ,open:(lg,ed,to,bd)=>{books.play.pdf=null;books.play.lg=lg||books.play.lg;books.play.ed=ed||books.play.ed;if(bd!==undefined)books.play.bd=bd; // a switch keeps the bind unless it names one
+        ,fnOf:()=>books.play.root+'b/'+books.play.book+'/b_'+books.play.lg+'_'+books.play.ed+'.md'
+        ,open:(lg,ed,to)=>{books.play.pdf=null;books.play.lg=lg||books.play.lg;books.play.ed=ed||books.play.ed;
             const l=document.getElementById('lang'),v=document.getElementById('ver');if(l)l.textContent=books.play.flag(books.play.lg);if(v)v.textContent=books.play.edIc(books.play.ed); // the nav head is optional – it is duplicated elsewhere
             const fn=books.play.fnOf(),reload=fn!==books.play.md.fn;
             books.play.render.pending=reload?(to||0):null; // a reload ends in reset(), which applies the target layer
@@ -97,17 +97,16 @@ const books={
         ,ver:()=>{books.play.open(books.play.lg,books.play.ed==='PREM'?'FREE':'PREM');}
         ,flag:lg=>lg==='NO'?'\u{1F1F3}\u{1F1F4}':'\u{1F1EC}\u{1F1E7}' // 🇳🇴 / 🇬🇧 – same icons as the #lang button
         ,edIc:ed=>ed==='PREM'?'\u{1F451}':'\u{1F513}'                   // 👑 / 🔓 – same icons as the #ver button
-        ,titleOf:(bk,lg,ed,bd)=>{ // custom shelf title – most specific wins: that copy, then book›lg›ed, then book›lg, then the book string.
-            lg=lg||books.play.lg; ed=ed||books.play.ed; bd=bd===undefined?books.play.bd:bd; // Never fall back ACROSS languages: NO and EN titles differ, and PREM/FREE – or two bind – may too.
+        ,titleOf:(bk,lg,ed)=>{ // custom shelf title – most specific wins: that version, then book›lg›ed, then book›lg, then the book string.
+            lg=lg||books.play.lg; ed=ed||books.play.ed; // Never fall back ACROSS languages: NO and EN titles differ, and PREM/FREE may too.
             const man=((books.play.manifest||{}).books||[]).find(x=>x.book===bk)||{};
-            const ver=(books.play.versionsOf(man).find(x=>x.lg===lg&&x.ed===ed&&(x.bd||'')===(bd||''))||{}).title; // per-copy title from the edit window
+            const ver=(books.play.versionsOf(man).find(x=>x.lg===lg&&x.ed===ed)||{}).title; // per-version title from the edit window
             if(ver)return ver;
             const t=((books.play.shelf||[]).find(x=>x.book===bk)||{}).title;
             if(typeof t==='string'&&t)return t;
-            if(t){const v=t[lg],r=(typeof v==='string'?v:'')||((v&&typeof v==='object')&&v[ed])||t[lg+'_'+ed]||(bd?t[lg+'_'+ed+'_'+bd]:'');if(r)return r;}
+            if(t){const v=t[lg],r=(typeof v==='string'?v:'')||((v&&typeof v==='object')&&v[ed])||t[lg+'_'+ed];if(r)return r;}
             return (bk===books.play.book&&books.play.md.title)?books.play.md.title:bk; // else the open file's own H1, else the folder name
         }
-        ,copyName:v=>{const t=books.play.titleOf(v.book,v.lg,v.ed,v.bd);return v.bd?t+' · '+v.bd:t;} // a copy's name: its title for that language/edition, plus the bind when the work has several
         ,nodename:pl=>{ // the ACTUAL node sitting at that level right now – the level's own name is only metadata
             const md=books.play.md,R=books.play.render,sg=books.play.render.slug;
             const bk=books.play.book,bt=books.play.titleOf(bk),w=(((md.sts[R.curSent()]||{}).txt||'').match(/\S+/g)||[])[R.wi]||'';
@@ -115,7 +114,7 @@ const books={
             const one=s=>String(s||'').slice(0,40);
             return ({
                 pl0:bk?(bk+(sg(bt)===sg(bk)?'':' · '+bt)):'',                                    // the book on the shelf
-                pl1:md.title?(books.play.flag(books.play.lg)+books.play.edIc(books.play.ed)+' '+books.play.copyName({book:bk,lg:books.play.lg,ed:books.play.ed,bd:books.play.bd})):'', // the copy you are reading: bind × language × edition
+                pl1:md.title?(books.play.flag(books.play.lg)+books.play.edIc(books.play.ed)+' '+books.play.titleOf(bk,books.play.lg,books.play.ed)):'', // the book copy you are reading
                 pl2:ch&&ch.h?ch.h[1]:'',                                                               // the main chapter
                 pl3:su&&su.h?su.h[1]:'',                                                               // the sub chapter
                 pl4b:pg.pn?String(pg.pn):'',                                                      // the page – named by its page number, never by the heading it happens to start with
@@ -124,9 +123,9 @@ const books={
                 pl6a:w,pl5b:(R.curLine()||{}).t||'',pl6b:(R.curLine()||{}).t||''                                                           // not tracked yet → caller falls back to the level name
             })[pl]||'';
         }
-        ,pick:(b,lg,ed,bd)=>{books.play.book=b;const vs=(books.play.shelf||[]).filter(x=>x.book===b),l=lg||books.play.lg,e=ed||books.play.ed,d=bd===undefined?books.play.bd:bd; // keep the wanted copy – bind and all – if this book has it, else take one it does
-            const v=vs.find(x=>x.lg===l&&x.ed===e&&(x.bd||'')===(d||''))||vs.find(x=>x.lg===l&&x.ed===e)||vs.find(x=>x.lg===l)||vs.find(x=>x.lg===books.play.lg)||vs[0];
-            if(v&&v.pdf)books.play.openPdf(v.pdf);else if(v)books.play.open(v.lg,v.ed,0,v.bd||'');else books.play.open();}
+        ,pick:(b,lg,ed)=>{books.play.book=b;const vs=(books.play.shelf||[]).filter(x=>x.book===b),l=lg||books.play.lg,e=ed||books.play.ed; // keep the wanted variant if this book has it, else take one it does
+            const v=vs.find(x=>x.lg===l&&x.ed===e)||vs.find(x=>x.lg===l)||vs.find(x=>x.lg===books.play.lg)||vs[0];
+            if(v&&v.pdf)books.play.openPdf(v.pdf);else if(v)books.play.open(v.lg,v.ed);else books.play.open();}
         ,ovKey:'play.shelf.override'
         ,editOn:false // shelf: view the versions as links, or edit books/versions
         ,manifest:null,src:'' // the editable shelf manifest + where it came from
@@ -134,7 +133,7 @@ const books={
         ,rebuild:()=>{ // manifest object → the flat list the nav browses
             const man=books.play.manifest||{books:[]},o=[];
             (man.books||[]).forEach(x=>{
-                books.play.versionsOf(x).forEach(v=>o.push({book:x.book,title:x.title,lg:v.lg,ed:v.ed,bd:v.bd||'',fn:books.play.root+'b/'+x.book+'/b_'+v.lg+'_'+v.ed+(v.bd?'_'+v.bd:'')+'.md'})); // one row per copy – two bind of a work are two rows
+                books.play.versionsOf(x).forEach(v=>o.push({book:x.book,title:x.title,lg:v.lg,ed:v.ed,fn:books.play.root+'b/'+x.book+'/b_'+v.lg+'_'+v.ed+'.md'}));
                 if(x.pdf)o.push({book:x.book,title:x.title,pdf:x.pdf,fn:''});
             });
             books.play.shelf=o;
@@ -153,10 +152,8 @@ const books={
             const vs=[];
             el.querySelectorAll('input[data-se="on"]').forEach(cb=>{
                 if(!cb.checked)return;
-                const row=cb.closest('.seV');
-                const t=(row.querySelector('[data-se="vt"]')||{}).value||'',bd=(row.querySelector('[data-se="vb"]')||{}).value||'';
+                const t=(cb.closest('.seV').querySelector('[data-se="vt"]')||{}).value||'';
                 const v={lg:cb.dataset.lg,ed:cb.dataset.ed};
-                if(bd.trim())v.bd=bd.trim(); // the bind is the copy's own: two bind, two rows
                 if(t.trim())v.title=t.trim();
                 vs.push(v);
             });
@@ -168,11 +165,7 @@ const books={
         }
         ,seAdd:()=>{const bs=books.play.seRead(),nb='NewBook';bs.push({book:nb});books.play.book=nb;books.play.seSet(bs,true);}
         ,seDel:el=>{const bs=books.play.seRead(),i=+el.closest('.se').dataset.b;bs.splice(i,1);books.play.book=((bs[Math.min(i,bs.length-1)]||{}).book)||'';books.play.seSet(bs,true);}
-        ,seOpen:(lg,ed,bd)=>{books.play.seSet(books.play.seRead(),false);books.play.open(lg,ed,1,bd||'');} // a copy → jump down a level
-        ,seBind:()=>{ // one more bind of the same work: a fresh copy row to name (bind, language and edition each point at their own file)
-            const bs=books.play.seRead(),i=Math.max(0,Math.min(bs.length-1,books.play.selIdx())),b=bs[i]||{},cur=b.versions||[]
-                ,next=['I','II','III','IV','V','VI','VII','VIII','IX','X'].find(x=>!cur.some(v=>(v.bd||'')===x))||'I';
-            b.versions=cur.concat([{lg:books.play.lg,ed:books.play.ed,bd:next}]);bs[i]=b;books.play.seSet(bs,true);}
+        ,seOpen:(lg,ed)=>{books.play.seSet(books.play.seRead(),false);books.play.open(lg,ed,1);} // a version → jump down a level
         ,seCopy:()=>{const txt=JSON.stringify(books.play.manifest,null,1);
             const say=m=>{const s=document.getElementById('seMsg');if(s)s.textContent=m;};
             if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(()=>say('JSON kopiert – lim inn i b/shelf.json')).catch(()=>say('Kunne ikke kopiere'));
@@ -256,8 +249,8 @@ const books={
             c.style.display='block';
         }
         ,LV:[
-            {pl:'pl0',no:'Bokhylle',en:'Book Shelf',q:'Hvilke bøker er relevante for gitt innhold?',nav:'Every book concept on the shelf, each with its own copies beneath it – clicking a concept selects that book, each copy (bind × 🇳🇴/🇬🇧 × 👑/🔓, or a PDF) opens that book copy',page:'The chosen book: its copies as links, and the edit window (✎ in the nav) where books and copies are added, renamed or removed',thoughts:'At shelf scale the units are books, which are filtered by concept, genre and language. A work may be published in several binds – a bind is the physical book, one of a series, so each bind sits as its own copy under the concept. Each book can be in different versions and languages (especially now premium/freemium and NO/EN but later also eg DK) The nav lists all concepts at once, because this is the level where the book itself is chosen.',child:[{t:'Hvilken bok og versjon?',w:'The shelf is the entry point: pick a book (LifeDemandedDeath, CV, ABook) plus copy – bind (when the work has several), language (NO/EN) and edition (FREE/PREM). The copy pins the source file b/{book}/b_{NO|EN}_{FREE|PREM}[_{bind}].md.'},{t:'Konsept eller sjanger',w:'Filter the shelf by concept or genre (memoir, fiction, essay) so a theme-led reader reaches the right book without knowing the title in advance.'},{t:'Stil eller språk',w:'Style (poetic/plain) and language narrow the shelf further, and are reused as filters at the deeper levels described in pl_dev_0.'}]}
-            ,{pl:'pl1',no:'Bokeksemplar',en:'Book Copy',q:'Hva er den overordnede strukturen for innholdet?',nav:'The copy you are reading – the physical book: its bind (one of a possible series) in its language and edition – with its main chapters beneath it, each chapter opens that chapter',page:'The whole copy in reading order: every main chapter and sub chapter as one text',thoughts:'At book copy scale the unit is the physical book you hold: one bind of a work that may run over several, in its language and edition – those three pin the source file b/{book}/b_{lang}_{edition}[_{bind}].md. The bind has its own spine: its own chapter sequence, its own start and end, its own numbering. The abstract work is the shelf level above, which is why the copy is what can be lent, annotated and read from cover to cover. The units here are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.',child:[{t:'Hvilket bind?',w:'Which bind of the series this copy is, and what it holds: where it begins and ends, and its own chapter numbering. The bind belongs to the copy, not to the concept – so two binds of the same work are two copies on the shelf, each with its own file and its own spine.'},{t:'Hvilket kapittel?',w:'At book copy scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.'},{t:'«Hero\u2019s Journey» – hvilken fase?',w:'Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.'},{t:'Hva bør jobbes med',w:'Collect copy-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.'}]}
+            {pl:'pl0',no:'Bokhylle',en:'Book Shelf',q:'Hvilke bøker er relevante for gitt innhold?',nav:'Every book concept on the shelf, each with its own versions beneath it – clicking a concept selects that book, each version (🇳🇴/🇬🇧 × 👑/🔓, or a PDF) opens that book copy',page:'The chosen book: its versions as links, and the edit window (✎ in the nav) where books and versions are added, renamed or removed',thoughts:'At shelf scale the units are books, which are filtered by concept, genre and language. A work may be published in several binds – a bind is the physical book, one of a series – and a bind comes on the shelf as its own book (own folder, own file), so the binds of a work stand side by side here. Each book can be in different versions and languages (especially now premium/freemium and NO/EN but later also eg DK) The nav lists all concepts at once, because this is the level where the book itself is chosen.',child:[{t:'Hvilken bok og versjon?',w:'The shelf is the entry point: pick a book (LifeDemandedDeath, CV, ABook) plus version – language (NO/EN) × edition (FREE/PREM). The version pins the source file b/{book}/b_{NO|EN}_{FREE|PREM}.md. A work in several binds is several books here, one per bind.'},{t:'Konsept eller sjanger',w:'Filter the shelf by concept or genre (memoir, fiction, essay) so a theme-led reader reaches the right book without knowing the title in advance.'},{t:'Stil eller språk',w:'Style (poetic/plain) and language narrow the shelf further, and are reused as filters at the deeper levels described in pl_dev_0.'}]}
+            ,{pl:'pl1',no:'Bokeksemplar',en:'Book Copy',q:'Hva er den overordnede strukturen for innholdet?',nav:'The copy you are reading – the physical book, in its language and edition (a work in several binds is several books on the shelf, one per bind) – with its main chapters beneath it, each chapter opens that chapter',page:'The whole copy in reading order: every main chapter and sub chapter as one text',thoughts:'At book copy scale the unit is the physical book you hold, in its language and edition – those two pin the source file b/{book}/b_{lang}_{edition}.md. When a work runs over several binds, each bind is its own book on the shelf, with its own folder and its own file, so it arrives here as its own copy too; a bind has its own spine: its own chapter sequence, its own start and end, its own numbering. The abstract work is the shelf level above, which is why the copy is what can be lent, annotated and read from cover to cover. The units here are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.',child:[{t:'Hvilket bind?',w:'Which bind of the series this copy is, and what it holds: where it begins and ends, and its own chapter numbering. A bind is not a variant of one file – it is its own book on the shelf, with its own folder and its own file, so the binds of a work stand side by side as separate entries.'},{t:'Hvilket kapittel?',w:'At book copy scale the units are chapters (##) and their sub-sections (###); the nav jumps straight to a chapter, which then acts as parent for the finer levels below it.'},{t:'«Hero\u2019s Journey» – hvilken fase?',w:'Annotate each chapter against the narrative arc (call, ordeal, return…) so readers see where the structure is conventional and where it deliberately breaks.'},{t:'Hva bør jobbes med',w:'Collect copy-scale improvements – chapters that are too thin, too dense or out of order – as the work queue that the finer zoom levels then act on.'}]}
             ,{pl:'pl2',no:'Hovedkapittel',en:'Main Chapter',q:'Hva er i denne Main Chapter, og hva er Sub Chapters?',nav:'The main chapter you are on, with its sub chapters beneath it – each sub chapter opens that sub chapter',page:'That one main chapter: every sub chapter under it, in reading order',thoughts:'At Main Chapter scale the units are groups of chapters that share a theme; the section acts as the coarser parent of its chapters.',child:[{t:'Hvilke kapitler?',w:'List the chapters inside this section and their order.'},{t:'Hvilket tema?',w:'The theme or arc that binds the section\u2019s chapters together.'},{t:'Hva bør jobbes med',w:'Section-level improvements: pacing, ordering and balance across chapters.'}]}
             ,{pl:'pl3',no:'Underkapittel',en:'Sub Chapter',q:'Hva er i dette Sub Chapter?',nav:'The sub chapter you are on, and beneath it its pages on the left beside its paragraphs on the right – a click opens that page or that paragraph',page:'That sub chapter: its 🎵 song, then its whole text, page by page',thoughts:'At Sub Chapters scale the units are single chapters; the nav jumps into the chapter and its pages.',child:[{t:'Hvilke sider?',w:'Which pages belong to the chapter, and in which order.'},{t:'Hva skjer?',w:'What the chapter advances in the story or argument.'},{t:'Hva bør jobbes med',w:'Chapter-level improvements: too thin, too dense or out of order.'}]}
             ,{pl:'pl4b',no:'Bokside',en:'Page',q:'Hva er på denne siden?',nav:'The page you are on, with its lines beneath it – each line opens the Line level',page:'That page: the fragment a paragraph continues with, then the paragraphs that start on it, set as lines; 🫲/🫱 walk the pages',thoughts:'At page scale the units are pages (with p.N anchors); the nav jumps between pages, and the lines are the page\u2019s own typographic decomposition \u2013 the anchor eye tracking later maps a gaze to.',child:[{t:'Hvilke linjer?',w:'The lines the page is set in: word wrapped at the golden-ratio measure (\u224866 characters), at 1.15 line spacing.'},{t:'Hva formidles?',w:'What the page communicates: content, mood or key point.'},{t:'Hva bør jobbes med',w:'Page-level polish: flow, rhythm and visual balance.'}]}
@@ -304,7 +297,6 @@ const books={
                 pl0:[bk,books.play.book,t=>books.play.pick(f(bk,t)||t)]
                 ,pl1:[[...new Set(vs.filter(x=>x.lg).map(x=>x.lg))],books.play.lg,t=>books.play.open(t,books.play.ed,1)]
                 ,pl1e:[[...new Set(vs.filter(x=>x.lg===books.play.lg).map(x=>x.ed))],books.play.ed,t=>books.play.open(books.play.lg,t,1)]
-                ,pl1b:[[...new Set(vs.filter(x=>x.lg===books.play.lg&&x.ed===books.play.ed&&x.bd).map(x=>x.bd))],books.play.bd,t=>books.play.open(books.play.lg,books.play.ed,1,t)] // the bind – empty for a work in one bind
                 ,pl2:[ch,pn((md.chs[R.ch]||[])[0]),t=>{const h=f(ch,t);if(h!==undefined)R.setCh(ch.indexOf(h));}]
                 ,pl3:[subs,pn(su[0]),t=>{const h=f(subs,t);if(h!==undefined)R.setSu(ks[subs.indexOf(h)]);}]
                 ,pl4b:[pgs,pgn(md.pages[R.pi]),t=>{const h=f(pgs,t);if(h!==undefined){R.pi=(su[pgs.indexOf(h)]||{}).pgi||0;R.idx=R.pi+1;}}]
@@ -315,11 +307,11 @@ const books={
                 ,pl6b:[[''],'',()=>{}]
             })[pl]||[[''],'',()=>{}];
         }
-        ,hi:()=>{ // #hiId ← what is selected: the top layer (book*language*edition*bind) before the first '.', then one token per level below
+        ,hi:()=>{ // #hiId ← what is selected: the top layer (book*language*edition) before the first '.', then one token per level below
             const m=books.play.render.mode
-                ,ns=['pl0','pl1','pl1e','pl1b','pl2','pl3'].slice(0,m<4?[0,4,5,6][m]:6) // nothing at the shelf – it lists every book concept itself; from the book copy up the same segment names book*language*edition*bind (the bind token is empty for a work in one bind)
+                ,ns=['pl0','pl1','pl1e','pl2','pl3'].slice(0,m<4?[0,3,4,5][m]:5) // nothing at the shelf – it lists every book concept itself; from the book copy up the same segment names book*language*edition
                     .concat(m<4?[]:m===4?['pl4b']:m>7?['pl4b','pl5b']:['pl4a','pl5a','pl6a'].slice(0,m-4))
-                ,tk=pl=>{const a=books.play.names(pl);return pl==='pl1b'?String(a[1]==null?'':a[1]).trim():books.play.hiCut(a[0],a[1]);} // the bind is a label, not prose: it stands as written (II stays II, never i)
+                ,tk=pl=>{const a=books.play.names(pl);return books.play.hiCut(a[0],a[1]);}
                 ,k=m?4:1
                 ,top=ns.slice(0,k).map(tk).filter(Boolean).join('*')
                 ,deep=ns.slice(k).map(tk).filter(Boolean).join('.')
@@ -328,17 +320,16 @@ const books={
             const u=new URL(location.href);if(u.searchParams.get('p')!==id){u.searchParams.set('p',id);history.replaceState(history.state,'',u);} // only when it really changes, and without dropping history.state – other scripts keep their own data there
             return id;
         }
-        ,hiGo:id=>{ // ?p=<book*language*edition*bind>.<main chapter>.<sub chapter>… – a reload continues in hiMore. Any token may be '*' = any, ie the first
-            const s=String(id||'').split('.'),t=s[0].split('*').map(x=>x.trim()); // the top layer: book concept, language, edition, bind
+        ,hiGo:id=>{ // ?p=<book*language*edition>.<main chapter>.<sub chapter>… – a reload continues in hiMore. Any token may be '*' = any, ie the first
+            const s=String(id||'').split('.'),t=s[0].split('*').map(x=>x.trim()); // the top layer: book concept, language, edition
             if(!t[0])t[0]='*'; // an empty book slot asks for any book
             books.play.pendId=s.slice(1).map(x=>x.trim());
             books.play.pendVer=!!t[1]||!!t[2]; // a named version lands on the book copy, a bare book concept on the shelf
             const a=books.play.names('pl0'),b=books.play.hiFit(a[0],t[0]);
             const lg=t[1]?books.play.hiFit(books.play.names('pl1')[0],t[1])||books.play.lg:books.play.lg // an unnamed axis keeps what is on
-                ,ed=t[2]?books.play.hiFit(books.play.names('pl1e')[0],t[2])||books.play.ed:books.play.ed
-                ,bd=t[3]!==undefined?t[3]:undefined; // the bind is a label, taken as written – a link without one keeps the bind the chosen copy has
-            if(b!==undefined&&b!==books.play.book)books.play.pick(b,lg,ed,bd); // one load, straight to the named copy – two loads would lose the layer we are walking to
-            else if(!books.play.pdf&&(lg!==books.play.lg||ed!==books.play.ed||(bd!==undefined&&bd!==books.play.bd)))books.play.open(lg,ed,1,bd===undefined?books.play.bd:bd); // a PDF-only book has no copies to switch
+                ,ed=t[2]?books.play.hiFit(books.play.names('pl1e')[0],t[2])||books.play.ed:books.play.ed;
+            if(b!==undefined&&b!==books.play.book)books.play.pick(b,lg,ed); // one load, straight to the named version – two loads would lose the layer we are walking to
+            else if(!books.play.pdf&&(lg!==books.play.lg||ed!==books.play.ed))books.play.open(lg,ed,1); // a PDF-only book has no versions to switch
             if(!books.play.md.busy)books.play.hiMore(); // nothing in flight → walk on now
         }
         ,hiMore:()=>{ // main chapter, sub chapter, then page → line or paragraph → sentence → word
@@ -388,13 +379,13 @@ const books={
                     ()=>/*o0()*/{const s=books.play.shelf||[],bk=books.play.book;
                         return [...new Set(s.map(x=>x.book))].flatMap(b=>{const t=books.play.titleOf(b),sub=R.slug(t)===R.slug(b)?'':' <i class="bid">('+esc(t)+')</i>';
                             return ['<a data-book="'+esc(b)+'" class="lvnode'+(b===bk?' on':'')+'" title="'+esc(b+(sub?' – '+t:''))+'">📚&nbsp;'+esc(b)+sub+'</a>']
-                                .concat(s.filter(x=>x.book===b).map(v=>{const vt=books.play.copyName(v);
+                                .concat(s.filter(x=>x.book===b).map(v=>{const vt=books.play.titleOf(v.book,v.lg,v.ed);
                                     return v.pdf
                                         ?a2(vt,'data-book="'+esc(v.book)+'" data-pdf="'+esc(v.pdf)+'" title="'+esc(vt+' – PDF')+'" aria-label="'+esc(vt+' PDF')+'"',1,'📕')
-                                        :a2(vt,'data-book="'+esc(v.book)+'" data-lg="'+v.lg+'" data-ed="'+v.ed+'" data-bd="'+esc(v.bd||'')+'" title="'+esc(vt+' – '+v.lg+' '+v.ed+(v.bd?' bind '+v.bd:''))+'" aria-label="'+esc(vt+' '+v.lg+' '+v.ed+(v.bd?' '+v.bd:''))+'"',1,books.play.flag(v.lg)+books.play.edIc(v.ed));}));});}
+                                        :a2(vt,'data-book="'+esc(v.book)+'" data-lg="'+v.lg+'" data-ed="'+v.ed+'" title="'+esc(vt+' – '+v.lg+' '+v.ed)+'" aria-label="'+esc(vt+' '+v.lg+' '+v.ed)+'"',1,books.play.flag(v.lg)+books.play.edIc(v.ed));}));});}
                     // pl1 – the version you are reading (node) with its main chapters beneath it (leaves)
                     ,()=>{const v=(books.play.shelf||[]).find(x=>x.book===books.play.book&&((x.fn&&x.fn===md.fn)||(x.pdf&&x.pdf===books.play.pdf)))
-                            ,nd=v?a2(books.play.copyName(v),'data-book="'+esc(v.book)+'"'+(v.pdf?' data-pdf="'+esc(v.pdf)+'"':' data-lg="'+v.lg+'" data-ed="'+v.ed+'" data-bd="'+esc(v.bd||'')+'"')+' class="lvnode on"',0,books.play.flag(v.lg)+books.play.edIc(v.ed))
+                            ,nd=v?a2(books.play.titleOf(v.book,v.lg,v.ed),'data-book="'+esc(v.book)+'"'+(v.pdf?' data-pdf="'+esc(v.pdf)+'"':' data-lg="'+v.lg+'" data-ed="'+v.ed+'"')+' class="lvnode on"',0,books.play.flag(v.lg)+books.play.edIc(v.ed))
                                 :a2(md.title,'class="lvnode on"',0,'📖');
                         return [nd].concat(md.chs.map((c,i)=>a2(c[0].h[1],'data-ch="'+i+'"',1,'📖')));}
                     // pl2 – the chapter you are on (node) with its sub chapters beneath it (leaves)
@@ -487,39 +478,36 @@ const books={
                     +'<details class="seJsonBox"><summary>JSON for b/shelf.json</summary>'
                     +'<pre class="seJson">'+esc(JSON.stringify({books:bs},null,1))+'</pre></details>';
                 if(!b)return '<div class="se" data-b="0">'+head()+'<p class="seHint">Ingen bøker i shelf.json – legg til en.</p>'+bar+'</div>';
+                const vs=(lg,ed)=>(books.play.versionsOf(b).find(x=>x.lg===lg&&x.ed===ed)||{}).title;
+                const have=(lg,ed)=>books.play.versionsOf(b).some(x=>x.lg===lg&&x.ed===ed);
                 const srcTxt=books.play.src==='localStorage'?'endringer ligger i nettleseren – b/shelf.json er ikke endret'
                     :(books.play.src?'leser b/shelf.json':'');
-                const bindsOf=(lg,ed)=>[...new Set(books.play.versionsOf(b).filter(x=>x.lg===lg&&x.ed===ed).map(x=>x.bd||''))]; // the binds this combo has – an empty list means one bind-less row to tick
-                if(!books.play.editOn){ // VIEW: this book's available copies, as links (that is LV.pl0.page)
-                    const links=books.play.versionsOf(b).filter(v=>v.lg).map(v=>{const bd=v.bd||'';
-                        return '<a class="seOpen" data-se="open" data-lg="'+books.play.render.esc(v.lg)+'" data-ed="'+books.play.render.esc(v.ed)+'" data-bd="'+books.play.render.esc(bd)+'" title="åpne '+books.play.render.esc(v.lg+' '+v.ed+(bd?' bind '+bd:''))+'\">'
-                            +books.play.flag(v.lg)+books.play.edIc(v.ed)+'&nbsp;'+books.play.render.esc(books.play.copyName({book:b.book,lg:v.lg,ed:v.ed,bd:bd}))+'</a>';});
+                if(!books.play.editOn){ // VIEW: this book's available versions, as links (that is LV.pl0.page)
+                    const links=['NO','EN'].flatMap(lg=>['PREM','FREE'].map(ed=>have(lg,ed)
+                        ?'<a class="seOpen" data-se="open" data-lg="'+lg+'" data-ed="'+ed+'" title="åpne '+lg+' '+ed+'">'
+                            +books.play.flag(lg)+books.play.edIc(ed)+'&nbsp;'+books.play.render.esc(books.play.titleOf(b.book,lg,ed))+'</a>':''));
                     if(b.pdf)links.push('<a class="seOpen" data-se="pdf" data-pdf="'+books.play.render.esc(b.pdf)+'" title="PDF">📕&nbsp;'+books.play.render.esc(books.play.titleOf(b.book))+'</a>');
                     return '<div class="se" data-b="'+i+'">'+head(b.book)
                         +'<p class="seHint">'+books.play.render.esc(srcTxt)+'</p>'
                         +'<div class="seVers">'+links.join('')+'</div>'
-                        +'<p class="seHint">✎ (edit) i listen til venstre for å endre hvilke bøker og kopier som finnes.</p></div>';
+                        +'<p class="seHint">✎ (edit) i listen til venstre for å endre hvilke bøker og versjoner som finnes.</p></div>';
                 }
-                const slot=(lg,ed,bd)=>{ // one copy: checked = available, the inputs are its own bind and title (empty inherits), åpne = jump down a level
-                    const same=v=>v.lg===lg&&v.ed===ed&&(v.bd||'')===(bd||'');
-                    const own=((books.play.versionsOf(b).find(same)||{}).title)||'';
-                    const on=books.play.versionsOf(b).some(same);
-                    const eff=own||books.play.titleOf(b.book,lg,ed,bd||'');
-                    const lbl=lg+' '+ed+(bd?' bind '+bd:'');
-                    return '<label class="seV"><input type="checkbox" data-se="on" data-lg="'+lg+'" data-ed="'+ed+'" data-bd="'+esc(bd||'')+'"'+(on?' checked':'')+'> '
+                const slot=(lg,ed)=>{ // one version: checked = available, the input is its own title (empty inherits), åpne = jump down a level
+                    const own=((books.play.versionsOf(b).find(x=>x.lg===lg&&x.ed===ed)||{}).title)||'';
+                    const on=books.play.versionsOf(b).some(x=>x.lg===lg&&x.ed===ed);
+                    const eff=own||books.play.titleOf(b.book,lg,ed);
+                    return '<label class="seV"><input type="checkbox" data-se="on" data-lg="'+lg+'" data-ed="'+ed+'"'+(on?' checked':'')+'> '
                         +books.play.flag(lg)+books.play.edIc(ed)
-                        +' <input class="seB" data-se="vb" value="'+esc(bd||'')+'" placeholder="bind" title="bind – den fysiske boka når verket går over flere bind">'
-                        +' <input class="seT" data-se="vt" value="'+esc(own)+'" placeholder="'+esc(eff)+'" title="'+esc(lbl)+'">'
-                        +(on?' <a class="seOpen" data-se="open" data-lg="'+lg+'" data-ed="'+ed+'" data-bd="'+esc(bd||'')+'" title="åpne '+esc(lbl)+'">åpne ▸</a>':'')
+                        +' <input class="seT" data-se="vt" data-lg="'+lg+'" data-ed="'+ed+'" value="'+esc(own)+'" placeholder="'+esc(eff)+'" title="'+lg+' '+ed+'">'
+                        +(on?' <a class="seOpen" data-se="open" data-lg="'+lg+'" data-ed="'+ed+'" title="åpne '+lg+' '+ed+'">åpne ▸</a>':'')
                         +'</label>';
                 };
                 return '<div class="se" data-b="'+i+'">'+head(b.book)
                     +'<p class="seHint">'+esc(src)+'</p>'
                     +'<div class="seBook" data-b="'+i+'">'
                     +'<div class="seRow"><input class="seId" data-se="book" value="'+esc(b.book||'')+'" placeholder="mappe under b/" title="book folder">'
-                    +'<button data-se="del" title="Fjern boken fra hylla">🗑</button>'
-                    +'<button data-se="bind" title="én kopi mer av samme verk – et nytt bind">+ bind</button></div>'
-                    +['NO','EN'].flatMap(lg=>['PREM','FREE'].flatMap(ed=>{const bs=bindsOf(lg,ed);return (bs.length?bs:['']).map(bd=>slot(lg,ed,bd));})).join('')
+                    +'<button data-se="del" title="Fjern boken fra hylla">🗑</button></div>'
+                    +['NO','EN'].flatMap(lg=>['PREM','FREE'].map(ed=>slot(lg,ed))).join('')
                     +'<label class="seV"><input type="checkbox" data-se="pdfOn"'+(b.pdf?' checked':'')+'> 📕 '
                     +'<input class="seT" data-se="p" value="'+esc(b.pdf||'')+'" placeholder="b/CV/b.pdf" title="PDF"></label></div>'
                     +bar+'</div>';
@@ -619,7 +607,7 @@ const books={
                     ()=>{const bs=s&&s.length?[...new Set(s.map(x=>x.book))]:md.books;
                         return {l:bs,i:Math.max(0,bs.indexOf(books.play.book)),go:b=>books.play.pick(b)};} // pl0 – the hands stop at the shelf ends: a book is a whole world
                     ,()=>{const vs=(s||[]).filter(x=>x.book===books.play.book);
-                        return {l:vs,i:Math.max(0,vs.findIndex(v=>(v.fn&&v.fn===md.fn)||(v.pdf&&v.pdf===books.play.pdf))),go:v=>v.pdf?books.play.openPdf(v.pdf):books.play.open(v.lg,v.ed,1,v.bd||'')};} // pl1 – still swaps copies of THIS book (bind × language × edition), never books
+                        return {l:vs,i:Math.max(0,vs.findIndex(v=>(v.fn&&v.fn===md.fn)||(v.pdf&&v.pdf===books.play.pdf))),go:v=>v.pdf?books.play.openPdf(v.pdf):books.play.open(v.lg,v.ed,1)};} // pl1 – still swaps variants of THIS book, never books
                     ,()=>({l:md.chs.map((_,i)=>i),i:R.ch,go:c=>R.setCh(c)}) // pl2 and finer: the book in reading order – a chapter border is just the next node, and only the book's own ends stop the walk
                     ,()=>({l:md.subs.map((_,i)=>i),i:Math.max(0,Math.min(md.subs.length-1,R.su)),go:k=>R.setSu(k)}) // pl3 – every sub chapter, so the walk runs straight on into the next main chapter
                     ,()=>{const l=md.pages.map((_,i)=>i);return {l,i:Math.max(0,l.indexOf(R.pi)),go:pgGo};}
@@ -733,8 +721,7 @@ const books={
                 const b=ev.target.closest('.spPlay');if(b){ev.preventDefault();books.play.spTgl(b);return;}
                 const s=ev.target.closest('button[data-se],a[data-se]');if(!s)return; // pl0 details / edit window
                 const act=s.dataset.se;
-                if(act==='open'){ev.preventDefault();books.play.seOpen(s.dataset.lg,s.dataset.ed,s.dataset.bd);}
-                else if(act==='bind')books.play.seBind();
+                if(act==='open'){ev.preventDefault();books.play.seOpen(s.dataset.lg,s.dataset.ed);}
                 else if(act==='pdf')books.play.openPdf(s.dataset.pdf);
                 else if(act==='add')books.play.seAdd();
                 else if(act==='del')books.play.seDel(s);

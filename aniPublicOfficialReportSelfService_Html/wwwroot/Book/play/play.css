@@ -71,7 +71,6 @@ body.zoom #hiUrl:empty{display:none;}
 .seV{display:flex;gap:.35em;align-items:center;margin:.12em 0 .12em 1.2em;font-size:.95em;}
 .seV .seT{flex:1;min-width:0;}
 .seId,.seT{font:inherit;padding:.05em .3em;border:1px solid #ccc;border-radius:3px;background:#fff;}
-.seB{width:4.5em;font:inherit;padding:.05em .3em;border:1px solid #ccc;border-radius:3px;background:#fff;} /* bind – den fysiske boka, ett av flere når verket går over flere bind */
 .seHint{font-size:.85em;color:#666;}
 .seMsg{margin-left:.5em;font-size:.9em;color:#070;}
 .seOpen{margin-left:.2em;color:#0645ad;text-decoration:none;white-space:nowrap;font-size:.9em;}
