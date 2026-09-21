@@ -31,17 +31,23 @@ _ARIAL_RE    = re.compile(r'arial')
 _PREM_RE     = re.compile(r'ebgaramond|cegaramond')
 _FREE_RE     = re.compile(r'calibri')
 _GARAMOND_RE = re.compile(r'garamond')
+# Tier-fontene leses fra template-sidene: labelen «premium»/«betalt» og «gratis»/«freemium» står
+# i den fonten tier-en bruker. De faste navnene under er fallback når malene ikke finnes.
+TIER_FONTS   = {'premium': {'ebgaramond', 'cegaramond'}, 'free': {'calibri'}, 'comment': {'arial'}}
+_TIER_LABELS = {'premium': {'premium', 'premiumversjon', 'premium version', 'betalt'},
+                'free': {'freemium', 'gratisversjon', 'gratis', 'free version'}}
 _SPOT_RE     = re.compile(r'https://(?:gormb\.github\.io/_/?\?m|aigap\.no/m)[a-z0-9]+(?<!qr)\b', re.I)
 _MODE_LABEL_RE = re.compile(r'^(?:gratisversjon|premiumversjon|free version|premium version)$', re.I)  # cover-/vannmerke-label – ikke bokinnhold (droppes fra .md)
 _COVER_TEMPLATE_RE = re.compile(r'Navnet På Boken|The Name of the Book')  # cover-malens plassholder – anker for template-blokka på slutten
 
+def _font_stem(font):
+    return re.sub(r'[^a-z0-9]', '', re.sub(r'^[^+]*\+', '', (font or '').lower()).split('-')[0])
+
 def _font_tier(font):
-    n = re.sub(r'^[^+]*\+', '', (font or '').lower())
-    n = re.sub(r'[^a-z0-9]', '', n)
-    if _ARIAL_RE.search(n):    return 'comment'
-    if _PREM_RE.search(n):     return 'premium'
-    if _FREE_RE.search(n):     return 'free'
-    if _GARAMOND_RE.search(n): return 'common'
+    n = _font_stem(font)
+    for tier in ('comment', 'premium', 'free'):
+        if any(f in n for f in TIER_FONTS[tier]):
+            return tier
     return 'common'
 
 def _is_white(color):
@@ -83,25 +89,34 @@ def _template_start(doc):
 def _pdf_style(doc):
     """Kalibrér størrelser/posisjoner fra template-slidene på slutten:
     cover, kapittel, underkapittel, tekst. body = dominerende størrelse.
-    Samsvar på SPAN-nivå – placeholder-linja har også tier-etiketter (premium/freemium)."""
+    Samsvar på SPAN-nivå – placeholder-linja har også tier-etiketter (premium/freemium).
+    Tier-fontene (hva som skjules i hvilken versjon) leses fra de SAMME labelne."""
     n = doc.page_count
     s = {}
+    tiers = {'premium': set(), 'free': set()}
     for p in range(_template_start(doc), n + 1):
         for block in doc[p - 1].get_text('dict')['blocks']:
             if block.get('type') != 0:
                 continue
             for line in block['lines']:
+                lbl = {}
                 for sp in line['spans']:
                     t = sp['text'].strip()
                     if not t:
                         continue
                     size, y = sp['size'], sp['origin'][1]
+                    for tier, words in _TIER_LABELS.items():
+                        if t.lower().strip(' .:') in words:
+                            lbl.setdefault(tier, set()).add(_font_stem(sp['font']))
                     if re.fullmatch(r'Underkapitteltittel(?:en)?|The Sub Chapter Title', t):
                         s['subH'], s['subY'] = size, y
                     elif re.fullmatch(r'Kapitteltittelen|The Chapter Title', t):
                         s['chapH'], s['chapY'] = size, y
                     elif re.fullmatch(r'Navnet På Boken|The Name of the Book', t):
                         s['coverH'] = size
+                if len(lbl) > 1:  # ekte label-rad: premium og gratis side om side (ikke ordet «freemium» i en tekstlinje)
+                    for tier, fams in lbl.items():
+                        tiers[tier] |= fams
     hist = {}
     for line in _page_lines(doc, n - 1):
         for pt in line['parts']:
@@ -109,6 +124,9 @@ def _pdf_style(doc):
                 h = round(pt['size'], 1)
                 hist[h] = hist.get(h, 0) + 1
     s['body'] = max(hist, key=hist.get) if hist else 10
+    for tier, fams in tiers.items():
+        if fams:
+            TIER_FONTS[tier] = fams
     return s
 
 def _data(doc, style):
@@ -299,19 +317,21 @@ def _md_files(base, doc, style, data, book):
                 f.write('\n'.join(lines) + '\n')
 
 GOLD_TOP, GOLD_BOT = (0.933, 0.855, 0.624), (0.839, 0.741, 0.482)  # gullstiftens gradient, rgba(.62) oppå hvitt
+GOLD_MID = tuple((a + b) / 2 for a, b in zip(GOLD_TOP, GOLD_BOT))
+PDF_DPI = 300  # bildene i de fire PDF-ene; kilden ligger på 900–2000 dpi
 
 def _gold_brush(page, _fitz, r):
-    """Rundet penselstrøk med gullgradient over skjult premium-tekst (som cBook.Hide())."""
-    rr = min(5.0, r.height / 2)
+    """Rundet gullstrøk med gradient over skjult premium-tekst – samme strøk som cBook.Hide()."""
+    if r.width <= 0 or r.height <= 0:
+        return
+    k = min(5.0, r.height / 2, r.width / 2)
+    page.draw_rect(r, color=None, fill=GOLD_MID, radius=min(.5, k / min(r.width, r.height)))
     n = 12
     for i in range(n):
         y0, y1 = r.y0 + r.height * i / n, r.y0 + r.height * (i + 1) / n
         t = i / (n - 1)
         c = tuple(a + (b - a) * t for a, b in zip(GOLD_TOP, GOLD_BOT))
-        k = max(rr - (rr * rr - (rr - min(rr, y0 - r.y0)) ** 2) ** .5,
-                rr - (rr * rr - (rr - min(rr, r.y1 - y1)) ** 2) ** .5)
-        if r.x1 - k > r.x0 + k:
-            page.draw_rect(_fitz.Rect(r.x0 + k, y0, r.x1 - k, y1), fill=c)
+        page.draw_rect(_fitz.Rect(r.x0 + k, y0, r.x1 - k, y1), color=None, fill=c)
 
 def _locked(page, _fitz, left, hide):
     """Tekst som ikke hører til denne versjonen: skjult tier per halvdel, slått sammen til linjestrøk."""
@@ -338,22 +358,54 @@ def _locked(page, _fitz, left, hide):
                     run = rects[-1]
     return rects
 
+def _shrink(doc, _fitz):
+    """Skaler JPEG-bilder ned til PDF_DPI – kilden er 3–7× over det en bokleser trenger.
+    Linje- og QR-bilder (FlateDecode) røres ikke."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return
+    import io
+    for page in doc:
+        for info in page.get_image_info(xrefs=True):
+            xref = info['xref']
+            try:
+                if doc.xref_get_key(xref, 'Filter')[1] != '/DCTDecode':
+                    continue
+                pix = _fitz.Pixmap(doc, xref)
+            except Exception:
+                continue
+            mode = {1: 'L', 3: 'RGB', 4: 'CMYK'}.get(pix.n)
+            bw, bh = info['bbox'][2] - info['bbox'][0], info['bbox'][3] - info['bbox'][1]
+            if not mode or bw <= 0 or bh <= 0:
+                continue
+            tw, th = round(bw / 72 * PDF_DPI), round(bh / 72 * PDF_DPI)
+            if pix.width <= tw and pix.height <= th:
+                continue
+            k = min(tw / pix.width, th / pix.height)
+            im = Image.frombytes(mode, (pix.width, pix.height), pix.samples)
+            im = im.resize((max(1, int(pix.width * k)), max(1, int(pix.height * k))), Image.LANCZOS)
+            buf = io.BytesIO()
+            im.save(buf, 'JPEG', quality=85, optimize=True)
+            page.replace_image(xref, stream=buf.getvalue())
+
 def render_pdfs(pdf_path):
-    """Skriv de fire PDF-bøkene ved siden av bok-PDF-en: én halvside per språk, låst tier fjernet
-    (gullstift over skjult premium i FREE, hvitt over skjult freemium i PREM). Bilder og lenker følger med."""
+    """Skriv de fire PDF-bøkene ved siden av bok-PDF-en: én halvside per språk (norsk venstre,
+    engelsk høyre), låst tier fjernet – gullstift over skjult premium i FREE, hvitt over skjult
+    gratis-tekst i PREM. Bilder og lenker følger med."""
     try:
         import pymupdf as _fitz
     except ImportError:
         import fitz as _fitz
     base = os.path.splitext(pdf_path)[0]
     src = _fitz.open(pdf_path)
-    style = _pdf_style(src)
+    style = _pdf_style(src)  # leser tier-fontene og struktur-målene fra template-sidene
     last = _template_start(src) - 1  # cover + brødtekst; mal-sidene til slutt er ikke bokinnhold
     meta = src.metadata or {}
     for left, lu in ((True, 'NO'), (False, 'EN')):
         for mode in ('FREE', 'PREM'):
             doc = _fitz.open(pdf_path)
-            gold, hide = mode == 'FREE', 'premium' if mode == 'FREE' else 'freemium'
+            gold, hide = mode == 'FREE', 'premium' if mode == 'FREE' else 'free'
             for pno in range(1, last + 1):
                 page = doc[pno - 1]
                 w = page.rect.width
@@ -372,6 +424,8 @@ def render_pdfs(pdf_path):
                     if ((lk['from'].x0 + lk['from'].x1) / 2 < w / 2) != left:
                         page.delete_link(lk)
                 page.set_cropbox(_fitz.Rect(0 if left else w / 2, 0, w / 2 if left else w, page.rect.height))
+            del doc[last:]  # mal-sidene til slutt hører ikke til boken
+            _shrink(doc, _fitz)
             doc.set_metadata({'title': _title(src, style, 'no' if left else 'en') or meta.get('title') or '',
                               'author': meta.get('author') or ''})
             doc.save(f'{base}_{lu}_{mode}.pdf', garbage=4, deflate=True, clean=True)
