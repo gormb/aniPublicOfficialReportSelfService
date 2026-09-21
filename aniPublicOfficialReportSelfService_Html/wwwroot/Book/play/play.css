@@ -44,8 +44,9 @@ body.zoom #hiUrl:empty{display:none;}
 #dbNavList a{display:block;padding:.05em .4em;color:inherit;text-decoration:none;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 #dbNavList a:hover{background:#eee;}
 #dbNavList a.on{font-weight:700;background:#ececec;}
-/* "go to level above" – always the first entry in a level's nav list */
-#dbNavList a.lvup{font-style:italic;color:#666;border-bottom:1px solid #ddd;margin-bottom:.2em;}
+/* "go to level above" – one entry per parent, so all of them lead a level's nav list: highest level at the top, nearest parent last.
+   They are menu entries like any other – the level icon tells them apart, not a colour or an italic. */
+#dbNavList a.lvup{color:inherit;}
 #dbNavList .off{display:block;padding:.05em .4em;font-style:italic;color:#bbb;white-space:nowrap;}
 /* nav rows: the node you are on (lvnode) vs the leaves inside it */
 #dbNavList a.lvnode{box-shadow:inset 3px 0 0 #bbb;}
@@ -76,7 +77,6 @@ body.zoom #hiUrl:empty{display:none;}
 .seOpen:hover{text-decoration:underline;}
 .seVers{display:flex;flex-direction:column;gap:.15em;margin:.3em 0;}
 .seVers .seOpen{display:block;margin:0;font-size:1.05em;}
-#dbNavList a.lvup.on{color:#0645ad;font-style:normal;font-weight:700;}
 .seJson{font-size:.8em;background:#f4f4f4;border:1px solid #e0e0e0;border-radius:4px;padding:.5em;overflow:auto;max-height:40vh;}
 /* shelf: folder name shown after the title when the two differ */
 #dbNavList .bid{opacity:.45;font-size:.8em;font-style:normal;}
@@ -113,5 +113,5 @@ h2 a,h3 a{color:inherit;text-decoration:none;}
 #hiUrl::before{content:'Press ctrl-shift';font-size:.75rem;}
 body.zoom #hiUrl{font-size:.75rem!important;color:#777;font-style:normal;text-decoration:underline;pointer-events:auto;cursor:pointer;max-width:24ch;overflow:hidden;text-overflow:ellipsis;}
 body.zoom #hiUrl::before{content:none;}
-#semOv{position:fixed;display:none;inset:-50vmax;background:rgba(0,70,190,.9);pointer-events:none;z-index:50;} /* the blue area covers the whole screen itself – -50vmax reaches well outside the page, so no other zoom can leave screen uncovered */
+#semOv{position:fixed;display:none;inset:-50vmax;background:rgba(0,70,190,.5);pointer-events:none;z-index:50;} /* the blue area covers the whole screen itself – -50vmax reaches well outside the page, so no other zoom can leave screen uncovered */
 

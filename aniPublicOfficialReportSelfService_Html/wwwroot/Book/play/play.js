@@ -420,14 +420,17 @@ const books={
                         return [a2(nn||'','class="lvnode on"',0,'🎨')];}
                 ];
                 // The nav frame is just the TOP row: drill up (or (edit) on the shelf). Drilling down is what the leaf rows do.
-                const par=books.play.up[books.play.id(books.play.render.mode)];
-                const jump=p=>{ // up = the actual node above you, not the level's name
-                    const L=books.play.LV.find(x=>x.pl===p)||{no:p,en:''},node=books.play.nodename(p);
-                    return a2(node||L.no,'data-go="'+books.play.ix(p)+'" class="lvup"'
-                        +' title="'+books.play.render.esc('opp til '+(node?node+' – ':'')+L.no+' ('+L.pl+' '+L.en+')')+'"',0,'\u2B06');
+                const jump=p=>{ // up = the actual node above you, not the level's name – and the level's own icon, not an arrow
+                    const i=books.play.ix(p),L=books.play.LV[i]||{no:p,en:''},node=books.play.nodename(p)
+                        ,ic=((books.play.render.lv||[])[i]||{}).ic||books.play.render.ic[i]||'';
+                    return a2(node||L.no,'data-go="'+i+'" class="lvup"'
+                        +' title="'+books.play.render.esc('opp til '+(node?node+' – ':'')+L.no+' ('+(L.pl||p)+' '+(L.en||'')+')')+'"',0,ic);
                 };
-                const up=par?jump(par)
-                    :'<a data-edit="1" class="lvup'+(books.play.editOn?' on':'')+'" title="'+books.play.render.esc(books.play.editOn?'ferdig – vis versjonene som lenker':'rediger hvilke bøker og versjoner som finnes')+'">✎ '+(books.play.editOn?'(ferdig)':'(edit)')+'</a>'; // nothing above the shelf, so the slot edits the shelf itself
+                // ALL the parents, not just the one directly above: the whole chain, the highest level at the top and the
+                // nearest parent last (so the list reads as the path down to here and the row under it is the node itself).
+                // Any parent can be left in one click instead of walking up one level at a time.
+                const ups=books.play.ancestors(books.play.id(books.play.render.mode)).map(jump).join('');
+                const up=ups||'<a data-edit="1" class="lvup'+(books.play.editOn?' on':'')+'" title="'+books.play.render.esc(books.play.editOn?'ferdig – vis versjonene som lenker':'rediger hvilke bøker og versjoner som finnes')+'">✎ '+(books.play.editOn?'(ferdig)':'(edit)')+'</a>'; // nothing above the shelf, so the slot edits the shelf itself
                 R.el.nav.innerHTML=up+o[R.mode]().join('');
                 R.hands();
             }
@@ -662,7 +665,7 @@ const books={
                 if(a.dataset.lg!==undefined){books.play.book=a.dataset.book;books.play.open(a.dataset.lg,a.dataset.ed,1);return;} // version leaf → its layer (pl1 Book Copy)
                 if(a.dataset.book){books.play.pick(a.dataset.book);return;}
                 if(a.dataset.edit!==undefined){books.play.editOn=!books.play.editOn;books.play.render.toc();books.play.render.draw();return;} // shelf: (edit) toggle
-                if(a.dataset.go!==undefined){books.play.render.go(+a.dataset.go);return;}                     // "⬆ level above"
+                if(a.dataset.go!==undefined){books.play.render.go(+a.dataset.go);return;}                     // "⬆ level above" – any of the parents
                 if(a.dataset.ch!==undefined){books.play.render.setCh(+a.dataset.ch);books.play.render.go(2);return;} // node = select (next/prev); drilling happens on the leaf rows
                 if(a.dataset.su!==undefined){books.play.render.setSu(+a.dataset.su);if(a.dataset.i===undefined){books.play.render.go(3);return;}} // sub chapter node → select it (stay); a leaf also names its sub chapter, so fall through and drill   // sub chapter → pl3
                 if(a.dataset.i!==undefined)books.play.render.idx=+a.dataset.i; // remember which sentence/word we drilled from, so pl6a/pl5b can name the node

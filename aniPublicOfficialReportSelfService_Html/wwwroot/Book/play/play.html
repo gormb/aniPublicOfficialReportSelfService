@@ -24,15 +24,24 @@
             <hr>
             <div id="pl_dev_0">Dev – what is relevant?
                 <details><summary>Thoughts</summary>Keep extremely short as usual! put under books.play so that it can be integrated other places later</details>
-                <details><summary>Structure</summary>Bokhylle › Bokeksemplar › Hovedkapittel › Underkapittel — which splits into<br>• Bokside → Linje → Medieform (the presentation)<br>• Paragraf → Setning → Ord (the text)<br>The spines never cross: the page carries its lines and their media, a word ends the text spine.<br>One source line = one paragraph; a line that resumes a sentence cut by a page marker or a line break joins the same paragraph, which can span pages (pn–pn2).<br>A page's lines are word wrapped at the golden-ratio measure (≈66 characters) at 1.15 line spacing, so every line of a page can be addressed – the level a gaze maps to when eye tracking comes.<br>Medieform is multi-modal – Forgrunn, Bakgrunn, Lyd (Spotify Play), Bevegelse – one row per modality, drawn in the page.<br>Hierarchy is data: parents in books.play.up, names/text/features in books.play.LV. The nav shows the selected node and its leaves, ⬆ goes to the parent node, 🫲/🫱 walk the siblings.<br>Levels: pl0 shelf, pl1 version, pl2 main chapter, pl3 sub chapter (the fork: pages │ paragraphs), pl4b page, pl5b line, pl6b media form, pl4a paragraph, pl5a sentence, pl6a word.
-                        <ol>    <li>DONE: Make existing navigation match the level list pl0..pl6b<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
-                                <li>DOING: Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>to the right add a lookingglass and after it buttons for the levels (with iocons). Clicking changes cursor and then clicking on area in text jumps into the correct mode with the clicked text inside</details></li>
-                                <li>DONE: Hold this text (to guide user)<details><summary>Thoughts</summary>Each level carries one short guiding line – what the reader can do when zoomed here – so the AI and the reader share the same intention before any feature runs.</details></li>
-                                <li>DOING: Hold features (to make available to user)<details><summary>Thoughts</summary>plN sets levels, so binary filters make sense for mapping features to levels: each feature gets a bitmask of the levels where it applies. Example: "look up word" only on pl6a/pl5b, "pick book" only on pl0.</details></li>
-                                <li>DOING: Map features to levels and other structures<details><summary>Thoughts</summary>Keep the mapping as data, not code: feature ↔ level mask, plus optional anchors into the other structures (book, chapter, page, paragraph, word), so one feature list drives navigation, help text and AI tools alike.</details></li>
-                                <li>DONE: One axis, two directions<details><summary>Thoughts</summary>Zoom out (Ord → Bokhylle) trades detail for overview; zoom in trades overview for detail. Each level knows its coarser parent and finer child, so one-step navigation is always defined.</details></li>
-                                <li>DONE: Levels as data, not headings<details><summary>Thoughts</summary>Treat pl0…pl6b as an ordered array with a stable id (plN), so features can reference levels by id and bitmask instead of by duplicated markup.</details></li>
-                        </ol></div>
+                <details><summary>Structure</summary>
+                    Bokhylle › Bokeksemplar › Hovedkapittel › Underkapittel — which splits into<br>
+                    • Bokside → Linje → Medieform (the presentation)<br>• Paragraf → Setning → Ord (the text)<br>
+                    The spines never cross: the page carries its lines and their media, a word ends the text spine.<br>
+                    One source line = one paragraph; a line that resumes a sentence cut by a page marker or a line break joins the same paragraph, which can span pages (pn–pn2).<br>A page's lines are word wrapped at the golden-ratio measure (≈66 characters) at 1.15 line spacing, so every line of a page can be addressed – the level a gaze maps to when eye tracking comes.<br>Medieform is multi-modal – Forgrunn, Bakgrunn, Lyd (Spotify Play), Bevegelse – one row per modality, drawn in the page.<br>Hierarchy is data: parents in books.play.up, names/text/features in books.play.LV. The nav shows the selected node and its leaves, ⬆ goes to the parent node, 🫲/🫱 walk the siblings.<br>Levels: pl0 shelf, pl1 version, pl2 main chapter, pl3 sub chapter (the fork: pages │ paragraphs), pl4b page, pl5b line, pl6b media form, pl4a paragraph, pl5a sentence, pl6a word.
+                <ol><li>DOING: Create a "navigation" mode and make it possible<details><summary>Thoughts</summary>
+                        to the right add a lookingglass and after it buttons for the levels (with iocons).
+                        Clicking changes cursor and then clicking on area in text jumps into the correct 
+                        mode with the clicked text inside</details></li>
+                    <li>DOING: Hold features (to make available to user)<details><summary>Thoughts</summary>
+                        plN sets levels, so binary filters make sense for mapping features to levels: 
+                        each feature gets a bitmask of the levels where it applies. Example: "look 
+                        up word" only on pl6a/pl5b, "pick book" only on pl0.</details></li>
+                    <li>DOING: Map features to levels and other structures<details><summary>Thoughts</summary>
+                        Keep the mapping as data, not code: feature ↔ level mask, plus optional anchors 
+                        into the other structures (book, chapter, page, paragraph, word), so one feature 
+                        list drives navigation, help text and AI tools alike.</details></li>
+                </ol></div>
                 </details>
     </div>
     <hr>
