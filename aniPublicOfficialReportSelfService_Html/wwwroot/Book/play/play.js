@@ -52,6 +52,8 @@ const books={
                     const a=p.frT?books.play.render.wrap(p.frT).map(t=>({t,lp:-1})):[];
                     books.play.md.pgs.forEach((q,i)=>{if(q.pn!==p.pn)return;books.play.render.wrap(q.txt.slice(0,q.cut===undefined?q.txt.length:q.cut)).forEach(t=>a.push({t,lp:i}));});
                     return a;});
+                books.play.md.lnl=books.play.md.lns.flatMap((a,i)=>a.map((_,k)=>[i,k])); // every line of the whole book in reading order – pl5b/pl6b walk this, so a page border never stops the hands
+                books.play.md.wc=books.play.md.sts.map(s=>((s.txt||'').match(/\S+/g)||[]).length); // words per sentence – pl6a walks the whole text spine the same way
                 books.play.md.tr=[];
                 body.forEach(l=>{const h=l.match(/^(#{2,4})\s+(.*)$/),s=l.trim(),_m=/^\u{1F3B5}/u.test(s);if(h)books.play.md.tr.push({h:1,d:h[1].length-2,t:h[2].trim()});else if(s&&!_m)books.play.md.tr.push({h:0,t:s});});
                 books.play.md.index();
@@ -86,7 +88,7 @@ const books={
         }
         ,openPdf:p=>{ // a book with no markdown yet (CV): show the PDF itself, and empty the md model so no stale chapters linger
             books.play.pdf=p;books.play.md.fn='';
-            ['title','pages','chs','subs','subCh','pgs','sts','tr'].forEach(k=>books.play.md[k]=[]);
+            ['title','pages','chs','subs','subCh','pgs','sts','tr','lns','lnl','wc'].forEach(k=>books.play.md[k]=[]);
             books.play.md.title='';books.play.render.ch=0;books.play.render.su=0;books.play.render.idx=0;
             const t=document.getElementById('dbTitle');if(t)t.textContent=books.play.titleOf(books.play.book,books.play.lg);
             books.play.render.go(0);
@@ -115,7 +117,7 @@ const books={
                 pl1:md.title?(books.play.flag(books.play.lg)+books.play.edIc(books.play.ed)+' '+books.play.titleOf(bk,books.play.lg,books.play.ed)):'', // the book copy you are reading
                 pl2:ch&&ch.h?ch.h[1]:'',                                                               // the main chapter
                 pl3:su&&su.h?su.h[1]:'',                                                               // the sub chapter
-                pl4b:pg.h?pg.h[1]:(pg.pn?'#'+pg.pn:''),                                          // the page
+                pl4b:pg.pn?'#'+pg.pn:'',                                                          // the page – named by its page number, never by the heading it happens to start with
                 pl4a:one((md.pgs[R.curPar()]||{}).txt),                                                // the paragraph
                 pl5a:one((md.sts[R.curSent()]||{}).txt),                                                // the sentence
                 pl6a:w,pl5b:(R.curLine()||{}).t||'',pl6b:(R.curLine()||{}).t||''                                                           // not tracked yet → caller falls back to the level name
@@ -281,10 +283,11 @@ const books={
         ,hiFit:(ns,t)=>{const q=String(t==null?'':t).trim().toLowerCase();return q==='*'?ns[0]:ns.find(x=>String(x==null?'':x).trim().toLowerCase().startsWith(q));} // '*' = any – and the first match among siblings is the first
         ,names:pl=>{ // per level: the names to be unique among, the name that is on, and how to pick one (a cut token resolves by prefix)
             const R=books.play.render,md=books.play.md,s=books.play.shelf||[],su=R.cSub()||[]
-                ,pn=p=>p&&p.h?p.h[1]:(p&&p.pn?'#'+p.pn:'')
+                ,pn=p=>p&&p.h?p.h[1]:(p&&p.pn?'#'+p.pn:'') // a chapter/sub chapter is named by its heading
+                ,pgn=p=>p&&p.pn?'#'+p.pn:'' // a PAGE is named by its number: a heading on the page names the chapter, not the page
                 ,bk=[...new Set([...s.map(x=>x.book),...md.books])]
                 ,vs=s.filter(x=>x.book===books.play.book)
-                ,ch=md.chs.map(c=>pn(c[0])),ks=R.chSubs(R.ch),subs=ks.map(k=>pn((md.subs[k]||[])[0])),pgs=su.map(pn)
+                ,ch=md.chs.map(c=>pn(c[0])),ks=R.chSubs(R.ch),subs=ks.map(k=>pn((md.subs[k]||[])[0])),pgs=su.map(pgn)
                 ,pars=md.pgs.filter(p=>su.some(q=>q.pn===p.pn))
                 ,ss=R.sentT((md.pgs[R.curPar()]||{}).txt||'')
                 ,ws=(((md.sts[R.si]||{}).txt||'').match(/\S+/g)||[])
@@ -296,7 +299,7 @@ const books={
                 ,pl1e:[[...new Set(vs.filter(x=>x.lg===books.play.lg).map(x=>x.ed))],books.play.ed,t=>books.play.open(books.play.lg,t,1)]
                 ,pl2:[ch,pn((md.chs[R.ch]||[])[0]),t=>{const h=f(ch,t);if(h!==undefined)R.setCh(ch.indexOf(h));}]
                 ,pl3:[subs,pn(su[0]),t=>{const h=f(subs,t);if(h!==undefined)R.setSu(ks[subs.indexOf(h)]);}]
-                ,pl4b:[pgs,pn(md.pages[R.pi]),t=>{const h=f(pgs,t);if(h!==undefined){R.pi=(su[pgs.indexOf(h)]||{}).pgi||0;R.idx=R.pi+1;}}]
+                ,pl4b:[pgs,pgn(md.pages[R.pi]),t=>{const h=f(pgs,t);if(h!==undefined){R.pi=(su[pgs.indexOf(h)]||{}).pgi||0;R.idx=R.pi+1;}}]
                 ,pl4a:[pars.map(p=>p.txt),String((md.pgs[R.curPar()]||{}).txt||''),t=>{const h=f(pars.map(p=>p.txt),t),p=h!==undefined?pars.find(p=>p.txt===h):null;if(p)R.idx=md.pgs.indexOf(p);}]
                 ,pl5a:[ss,String((md.sts[R.curSent()]||{}).txt||''),t=>{const h=f(ss,t);if(h!==undefined)R.idx=R.si=R.baseOf(R.curPar())+ss.indexOf(h);}]
                 ,pl5b:[lns,((R.curLine()||{}).t)||'',t=>{const h=f(lns,t);if(h!==undefined)R.li=lns.indexOf(h);}]
@@ -400,7 +403,7 @@ const books={
                             +'</tr></table></div>'];}
                     // pl4b – the page you are on (node) with its lines beneath it (leaves)
                     ,()=>{const pg=md.pages[R.pi];if(!pg)return [];
-                        return [a2(pg.h?pg.h[1]:'#'+pg.pn,'class="lvnode on"',0,'📄')]
+                        return [a2(pg.pn?'#'+pg.pn:'','class="lvnode on"',0,'📄')]
                             .concat(R.lnsOf().map((l,k)=>a2(l.t,'data-ln="'+k+'" data-m="8"',1,'')));}
                     // pl4a – the paragraph you are on (node) with its sentences beneath it (leaves)
                     ,()=>{const p=md.pgs[R.idx];if(!p)return [];
@@ -590,25 +593,29 @@ const books={
                 else if(n===8){R.pi=R.curPage();R.li=R.liOf(R.curPar());} // the line that holds what we came from
                 else if(n===9)R.pi=R.curPage();}
             ,sibs:()=>{ // the nodes of this level and which one is on – the hands walk these and stop at the ends
-                const R=books.play.render,md=books.play.md,s=books.play.shelf,su=R.cSub()||[]
-                    ,pns=new Set(su.map(p=>p.pn)),pars=md.pgs.map((p,i)=>i).filter(i=>pns.has(md.pgs[i].pn))
+                const R=books.play.render,md=books.play.md,s=books.play.shelf
                     ,ws=k=>(((md.sts[k]||{}).txt||'').match(/\S+/g)||[])
-                    ,pg=p=>{R.pi=p.pgi;R.idx=p.pgi+1;}
-                    ,pgI=()=>Math.max(0,su.findIndex(p=>p.pgi===R.pi));
+                    ,wc=md.wc&&md.wc.length?md.wc:md.sts.map((_,k)=>ws(k).length)
+                    ,wtot=wc.reduce((a,b)=>a+b,0)
+                    ,follow=pn=>{const k=md.subs.findIndex(x=>x.some(p=>p.pn===pn));if(k>=0){R.su=k;R.ch=md.subCh[k];}} // walking over a border takes the sub chapter (and main chapter) with it, so the nav and the ?p= id stay truthful
+                    ,wNum=()=>{let n=R.wi;for(let j=0;j<R.si&&j<wc.length;j++)n+=wc[j];return n;} // the word we are on, counted from the first word of the book
+                    ,wAt=k=>{let n=k;for(let j=0;j<wc.length;j++){if(n<wc[j])return [j,n];n-=wc[j];}return [0,0];}
+                    ,pgGo=i=>{R.pi=i;R.idx=i+1;follow((md.pages[i]||{}).pn);} // idx runs one ahead of the page (0 is the title) – draw() keeps the two in step
+                    ,lnGo=x=>{R.pi=x[0];R.li=x[1];follow((md.pages[x[0]]||{}).pn);} // a line is a (page, index in the page) pair – the pair is what a hand steps to
+                    ,lnIx=()=>{const l=md.lnl||[],i=l.findIndex(x=>x[0]===R.pi&&x[1]===R.li);return i<0?0:i;};
                 return [
                     ()=>{const bs=s&&s.length?[...new Set(s.map(x=>x.book))]:md.books;
-                        return {l:bs,i:Math.max(0,bs.indexOf(books.play.book)),go:b=>books.play.pick(b)};}
+                        return {l:bs,i:Math.max(0,bs.indexOf(books.play.book)),go:b=>books.play.pick(b)};} // pl0 – the hands stop at the shelf ends: a book is a whole world
                     ,()=>{const vs=(s||[]).filter(x=>x.book===books.play.book);
-                        return {l:vs,i:Math.max(0,vs.findIndex(v=>(v.fn&&v.fn===md.fn)||(v.pdf&&v.pdf===books.play.pdf))),go:v=>v.pdf?books.play.openPdf(v.pdf):books.play.open(v.lg,v.ed,1)};}
-                    ,()=>({l:md.chs.map((_,i)=>i),i:R.ch,go:c=>R.setCh(c)})
-                    ,()=>{const ks=R.chSubs(R.ch);return {l:ks,i:Math.max(0,ks.indexOf(R.su)),go:k=>R.setSu(k)};}
-                    ,()=>({l:su,i:pgI(),go:pg})
-                    ,()=>({l:pars,i:Math.max(0,pars.indexOf(R.idx)),go:i=>{R.idx=i;}})
-                    ,()=>{const p=R.pgOf(R.idx),b=R.baseOf(p),c=R.sentT((md.pgs[p]||{}).txt||'').length;
-                        return {l:Array.from({length:c},(_,k)=>b+k),i:R.idx-b,go:i=>{R.idx=i;R.si=i;}};}
-                    ,()=>({l:Array.from({length:ws(R.si).length},(_,k)=>k),i:R.wi,go:i=>{R.wi=i;R.idx=i;}})
-                    ,()=>({l:R.lnsOf().map((_,k)=>k),i:R.li,go:i=>{R.li=i;}})
-                    ,()=>({l:R.lnsOf().map((_,k)=>k),i:R.li,go:i=>{R.li=i;}}) // the media forms hang under the line, so the hands walk lines here too
+                        return {l:vs,i:Math.max(0,vs.findIndex(v=>(v.fn&&v.fn===md.fn)||(v.pdf&&v.pdf===books.play.pdf))),go:v=>v.pdf?books.play.openPdf(v.pdf):books.play.open(v.lg,v.ed,1)};} // pl1 – still swaps variants of THIS book, never books
+                    ,()=>({l:md.chs.map((_,i)=>i),i:R.ch,go:c=>R.setCh(c)}) // pl2 and finer: the book in reading order – a chapter border is just the next node, and only the book's own ends stop the walk
+                    ,()=>({l:md.subs.map((_,i)=>i),i:Math.max(0,Math.min(md.subs.length-1,R.su)),go:k=>R.setSu(k)}) // pl3 – every sub chapter, so the walk runs straight on into the next main chapter
+                    ,()=>{const l=md.pages.map((_,i)=>i);return {l,i:Math.max(0,l.indexOf(R.pi)),go:pgGo};}
+                    ,()=>({l:md.pgs.map((_,i)=>i),i:R.idx,go:i=>{R.idx=i;follow((md.pgs[i]||{}).pn);}})
+                    ,()=>({l:md.sts.map((_,i)=>i),i:R.idx,go:i=>{R.idx=i;R.si=i;follow((md.sts[i]||{}).pn);}})
+                    ,()=>({l:Array.from({length:wtot},(_,k)=>k),i:Math.max(0,wNum()),go:k=>{const x=wAt(k);R.si=x[0];R.wi=x[1];follow((md.sts[x[0]]||{}).pn);}})
+                    ,()=>({l:md.lnl||[],i:lnIx(),go:lnGo})
+                    ,()=>({l:md.lnl||[],i:lnIx(),go:lnGo}) // the media forms hang under the line, so the hands walk lines here too
                 ][R.mode]();
             }
             ,hands:()=>{const S=books.play.render.sibs(),e=books.play.render.el;if(e.prev)e.prev.disabled=S.i<=0;if(e.next)e.next.disabled=S.i>=S.l.length-1;}
