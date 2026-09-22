@@ -123,8 +123,9 @@ body.zoom #dbPlay.navon{grid-column:2/-1;background:#fff;}
 #semQ{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.2em .3em;min-height:0;}
 #nvQ{width:8em;min-width:0;font:inherit;font-size:.8em;padding:.1em .3em;border:1px solid #ccc;border-radius:.2em;background:#fff;}
 #nvQ:focus{outline:2px solid #8ad;outline-offset:1px;}
-#nvMic{cursor:pointer;font-size:1.6em;line-height:1;padding:.15em .3em;border-radius:.25em;} /* a thumb needs a target, on a phone most of all */
-#nvMic.on{background:#e33;color:#fff;} /* the mic is open – it is hearing the filter */
+#nvMic{cursor:pointer;font-size:1.6em;line-height:1;padding:.15em .3em;border-radius:.25em;} /* a thumb needs a target, on a phone most of all – and while ⌃⇧ is held it is the pointer resting on it that opens the mic */
+#nvMic:hover{background:#eee;} /* the point of contact is the point of press, so it has to show itself */
+#nvMic.on{background:#e33;color:#fff;animation:blink .9s ease-in-out infinite;} /* while the mic is open it blinks – the same blink as the hands, only slower and never ending, so it is never in doubt that it is hearing */
 body:not(.zoom) #semQ{flex-direction:column;font-size:.7em;} /* the band is narrow: the field and the mic stand under each other */
 body:not(.zoom) #nvQ{width:100%;}
 body:not(.zoom) #nvMic{width:100%;}

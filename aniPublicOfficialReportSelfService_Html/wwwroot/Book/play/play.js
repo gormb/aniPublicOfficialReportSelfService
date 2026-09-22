@@ -679,9 +679,10 @@ const books={
                     [E.prev,E.next,E.lvBars.querySelector('button[data-zm]'),document.getElementById('lvCtl')].forEach(el=>R.blink(el,3)); // the two hands and both ways out of the level blink three times, to say where they are
                     z.nav.swap();z.nav.redraw();} // the areas are wide now, so the clouds are laid out again and the pointer's mark is taken again
                 ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0;
-                    const a=z.nav.hit(z.x,z.y); // what the pointer stands on now – letting ⌃⇧ go walks into it, exactly as a click would, but only once the pointer has moved on to another cloud
+                    const a=z.nav.hit(z.x,z.y) // what the pointer stands on now – letting ⌃⇧ go walks into it, exactly as a click would, but only once the pointer has moved on to another cloud
+                        ,m=(a&&z.armed)?a:z.nav.firstOf(z.q); // and when a word was keyed or spoken, the level is left on the first area the map still carries it in
                     if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
-                    if(a&&z.armed)z.nav.pick(a);z.nav.redraw();} // the band is narrow and set in smaller type, so the areas are drawn and measured again
+                    if(m)z.nav.pick(m);z.nav.redraw();} // the band is narrow and set in smaller type, so the areas are drawn and measured again
                 ,enter:()=>books.play.sem.Z.show()
                 ,nav:{ // ⌃⇧ held or two fingers down overwrite the play panel (right, innerHTML and all) with a navigating area – the level we are on, and what it selects. It stays: leaving the mode puts nothing back
                     el:null,last:''
@@ -715,6 +716,9 @@ const books={
                         try{r.start();}catch(e){z.rec=null;return;} // start() throws where the page is not allowed to listen
                         btn.classList.add('on');
                     }
+                    ,mic:on=>{ // ⏸ while ⌃⇧ is held a click can never be a plain click – ctrl-click opens the pointer's own menu and alt-click is the other fork – so the mic is worked by the pointer moving over it, and it blinks the whole time it is open
+                        const z=books.play.sem.Z,n=z.nav;if(!n.micEl)return;
+                        if(on!==!!z.rec)n.speak(n.micEl);} // set, not toggled: the same call that opens the mic closes it, so moving over it again is off again
                     ,keyQ:e=>{ // typing while the areas are up reads through the whole word map: what was keyed is set after the level's title, and every cloud keeps only the words that carry it
                         const z=books.play.sem.Z,n=z.nav,qEl=n.qEl,k=e.key,own=qEl&&document.activeElement===qEl;
                         if(k==='Escape')z.q=''; // out of the filter in one go – Backspace takes one letter back
@@ -726,6 +730,9 @@ const books={
                     ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);} // an area selects that node and opens its level, like the same row in the nav
                     ,hit:(x,y)=>{const e=document.elementFromPoint(x,y);return e&&e.closest?e.closest('.nvA'):null;} // the area under a point, read off the layout – never off :hover, which the browser only settles a frame later
                     ,cell:()=>{const z=books.play.sem.Z,a=z.nav.hit(z.x,z.y);return a?a.dataset.k:'';} // the area the pointer rests in, named the way a click names it
+                    ,firstOf:q=>{ // the first area whose cloud still carries what was keyed or spoken: the instance the level is left on, and nothing when the filter found none
+                        const n=books.play.sem.Z.nav,s=String(q||'').toLowerCase();if(!s||!n.el)return null;
+                        return [...n.el.querySelectorAll('.nvA')].find(a=>{const w=a.querySelector('.nvW');return !!w&&w.textContent.toLowerCase().includes(s);})||null;}
                     ,pick:el=>{const k=el.dataset.k.split('|');books.play.sem.Z.nav.go(k[0],+k[1]);} // an area picked – by a click, or by letting ⌃⇧ go while the pointer stands on it
                     ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q)+'</h2>'
                     ,base:()=>document.body.classList.contains('zoom')?1:.6 // the type scale the clouds are set at: full while zooming, small in the narrow band
@@ -753,12 +760,15 @@ const books={
                     ,swap:()=>{ // the panel is overwritten once: a query strip – what is keyed or spoken, the filter the whole map is read through – and under it the areas themselves
                         const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
                         if(!n.el){
-                            p.innerHTML='<div id="semQ"><input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the word map"><button id="nvMic" type="button" title="Speak a word – the whole map keeps what it hears">\u{1F3A4}</button></div><div id="semNav"></div>';
+                            p.innerHTML='<div id="semQ"><input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the word map"><button id="nvMic" type="button" title="Speak a word – the whole map keeps what it hears. While ⌃⇧ is held, move over it to open the mic; over it again to close">\u{1F3A4}</button></div><div id="semNav"></div>';
                             n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
-                            const mic=p.querySelector('#nvMic');
+                            const mic=n.micEl=p.querySelector('#nvMic');
                             n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x)n.pick(x);};
                             n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();}; // a phone's keyboard and its own dictation arrive as text, never as key events – both land here
-                            if(n.mk())mic.onclick=()=>n.speak(mic);else mic.hidden=1; // no API: the field carries the voice instead
+                            if(n.mk()){ // ⌃⇧ clamps every click (ctrl-click is the pointer's own menu, alt-click the other fork), so in that mode 🎤 is worked by moving over it: over again is off again
+                                mic.onclick=e=>{if(!e.ctrlKey&&!e.metaKey&&!e.altKey)n.mic(!z.rec);}; // outside ⌃⇧ an ordinary click still toggles it
+                                mic.onmouseenter=()=>{if(z.on)n.mic(!z.rec);};
+                            }else mic.hidden=1; // no API: the field carries the voice instead
                             p.classList.add('navon');document.body.classList.add('navon');
                         }n.draw();} // the body carries it too: the columns answer to whether the areas are on
                 }
