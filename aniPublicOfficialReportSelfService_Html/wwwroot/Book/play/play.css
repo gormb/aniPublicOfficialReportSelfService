@@ -128,8 +128,9 @@ body.zoom #dbPlay.navon{grid-column:2/-1;background:#fff;}
 #semNav .nvR{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;min-height:0;}
 #semNav .nvR.r3{grid-template-columns:1fr 1fr 1fr;}
 /* the cloud stands in its area by default and may run over into its neighbours – what keeps it in hand is the fit, not a frame;
-   the node's own name is what comes up on hover, on a white backing so it carries over the words */
-#semNav .nvT{position:relative;z-index:2;text-align:center;background:rgba(255,255,255,.92);transition:opacity .12s;}
+   the node's own name is what comes up on hover, on a white backing so it carries over the words – and it is held inside its own
+   area: a paragraph preview is a long line, and a name that ran over the cells above and below would hide which area is marked */
+#semNav .nvT{position:relative;z-index:2;text-align:center;background:rgba(255,255,255,.92);transition:opacity .12s;max-width:100%;max-height:100%;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;}
 #semNav .nvA.nvC .nvT{opacity:0;}
 #semNav .nvA:hover .nvT{opacity:1;}
 #semNav .nvW{position:absolute;inset:0;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:.05em .5em;padding:.2em .4em;pointer-events:none;font-weight:400;}
