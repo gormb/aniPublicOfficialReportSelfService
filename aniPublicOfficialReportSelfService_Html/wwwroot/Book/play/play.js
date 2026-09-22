@@ -390,7 +390,7 @@ const books={
             el:{page,nav:dbNavList,title:document.getElementById('dbTitle'),prev,next,lvBars}
             ,ic:['📚','📖','📑','📄','📃','¶','✍️','🔤','⎶','🎨']
             ,lv:[]
-            ,mode:0,idx:0,pi:0,ch:0,su:0,pending:null,si:0,wi:0,li:0 // ch/su = active chapter/sub, pending = layer after an async load, si/wi = sentence+word we drilled from, li = line of the page (pl5b)
+            ,mode:0,idx:0,pi:0,ch:0,su:0,pending:null,si:0,wi:0,li:0,wide:0 // ch/su = active chapter/sub, pending = layer after an async load, si/wi = sentence+word we drilled from, li = line of the page (pl5b), wide = this level was reached by a gesture zoom-out, so the pane shows the level whole and opens nothing
             ,setMode:()=>{const R=books.play.render,u=R.el.lvBars.querySelector('button[data-zm]');R.el.lvBars.querySelectorAll('button').forEach(x=>x.classList.toggle('on',+x.dataset.lv===R.mode));if(u)u.disabled=!books.play.up[books.play.id(R.mode)];}
             ,bar:()=>{const lv=books.play.render.lv,cld=books.play.child,ix=books.play.ix,btn=p=>{const o=lv[ix(p)]||{pl:p,nm:p,ic:'•'};return '<button data-lv="'+ix(p)+'" title="'+o.pl+' '+o.nm+'">'+o.ic+'</button>';},td1=p=>'<td rowspan="2">'+btn(p)+'</td>',tdx=p=>'<td>'+btn(p)+'</td>',chain=p=>{const a=[p];let c=cld(p);while(c.length===1){a.push(c[0]);c=cld(c[0]);}return a;};let node='pl0',cc=cld(node);while(cc.length===1){node=cc[0];cc=cld(node);}const spine=books.play.path(node),cols=cld(node).slice().reverse().map(chain);books.play.render.el.lvBars.innerHTML='<table><tr>'+spine.map(td1).join('')+(cols[0]||[]).map(p=>'<td class="txt">'+btn(p)+'</td>').join('')+'<td rowspan="2" class="zm"><button data-zm="up" title="coarser">\u{1F446}</button></td></tr><tr>'+(cols[1]||[]).map(p=>'<td class="pag">'+btn(p)+'</td>').join('')+'</tr></table>';books.play.render.el.lvBars.onclick=ev=>{const x=ev.target.closest('button');if(!x)return;if(x.dataset.zm==='up'){const p=books.play.up[books.play.id(books.play.render.mode)];if(p)books.play.render.go(books.play.ix(p));}else if(x.dataset.lv!==undefined){books.play.render.go(+x.dataset.lv);}};books.play.render.setMode();}
             ,chSubs:i=>books.play.md.subCh.map((c,k)=>c===i?k:-1).filter(k=>k>=0) // sub chapters of main chapter i
@@ -403,7 +403,8 @@ const books={
                 books.play.render.idx=0;
             }
             ,setSu:i=>{const s=books.play.md.subs[i];if(!s)return;books.play.render.su=i;books.play.render.ch=books.play.md.subCh[i];books.play.render.idx=0;}
-            ,go:(n,keep)=>{if(!keep)books.play.render.align(n);books.play.render.mode=n;const sp=/^(pl\d+)([ab])$/.exec(books.play.id(n));if(sp)books.play.sem.Z.sp=sp[2];books.play.render.setMode();books.play.render.toc();books.play.render.draw();books.play.render.sync();}
+            ,go:(n,keep,wide)=>{if(!keep)books.play.render.align(n);books.play.render.wide=wide?1:0; // wide only ever arrives from a gesture zoom-out (drill): the level is drawn whole and the node at idx is NOT opened. Every other way in – a cell, a nav row, a level button or a zoom-in – opens it.
+                books.play.render.mode=n;const sp=/^(pl\d+)([ab])$/.exec(books.play.id(n));if(sp)books.play.sem.Z.sp=sp[2];books.play.render.setMode();books.play.render.toc();books.play.render.draw();books.play.render.sync();}
             ,toc:()=>{
                 const R=books.play.render,md=books.play.md,esc=R.esc,ic={2:'📖',3:'📑'}
                 ,a2=(t,at,l,ico)=>'<a '+at+'>'+'&nbsp;'.repeat(2*l)+(ico?ico+'&nbsp;':'')+esc(t)+'</a>'
@@ -583,11 +584,11 @@ const books={
                         ,'<p class="mfpath">'+books.play.render.esc(books.play.chain('pl5b'))+'</p>'];} // the line itself – never the hardcoded guiding question
                 ,()=>[books.play.render.media(books.play.md.pages[books.play.render.pi]||{})]
             ][books.play.render.mode]()
-            ,reset:()=>{books.play.render.mode=books.play.render.pending||0;books.play.render.pending=null;books.play.render.idx=0;books.play.render.setMode();const t=books.play.render.el.title;if(t)t.textContent=books.play.md.title;books.play.render.toc();books.play.render.sync();}
+            ,reset:()=>{books.play.render.mode=books.play.render.pending||0;books.play.render.pending=null;books.play.render.idx=0;books.play.render.wide=0;books.play.render.setMode();const t=books.play.render.el.title;if(t)t.textContent=books.play.md.title;books.play.render.toc();books.play.render.sync();}
             ,draw:()=>{
                 const R=books.play.render,v=R.views();
                 if(R.mode===4)R.pi=Math.max(0,R.idx-1); // the page layer: idx 0 is the title, so the page is one back
-                R.el.page.innerHTML=v[Math.max(0,Math.min(v.length-1,R.idx))]||''; // an empty level (eg a book with no chapters yet) must not print "undefined"
+                R.el.page.innerHTML=(R.wide?v.join(''):v[Math.max(0,Math.min(v.length-1,R.idx))])||''; // wide (a gesture zoom-out) draws the level itself – every node in it, none of them opened; otherwise the one node at idx. An empty level (eg a book with no chapters yet) must not print "undefined"
                 R.hl();
                 R.focus();
                 R.hands();
@@ -656,7 +657,7 @@ const books={
                 ][R.mode]();
             }
             ,hands:()=>{const S=books.play.render.sibs(),e=books.play.render.el;if(e.prev)e.prev.disabled=S.i<=0;if(e.next)e.next.disabled=S.i>=S.l.length-1;}
-            ,nav:d=>{const R=books.play.render,S=R.sibs(),k=S.i+d;if(k<0||k>=S.l.length)return;S.go(S.l[k]);R.toc();R.draw();R.sync();}
+            ,nav:d=>{const R=books.play.render,S=R.sibs(),k=S.i+d;if(k<0||k>=S.l.length)return;R.wide=0;S.go(S.l[k]);R.toc();R.draw();R.sync();} // moving picks that node, so a level a gesture only widened is entered again
             ,hash:()=>{
                 const h=location.hash.toLowerCase().slice(1);
                 if(!h)return;
@@ -725,14 +726,14 @@ const books={
                     ,redraw:()=>{const n=books.play.sem.Z.nav;n.last='';n.draw();} // the room changed – every cloud is built and fitted again
                     ,swap:()=>{const n=books.play.sem.Z.nav,p=document.getElementById('dbPlay');if(!n.el){p.innerHTML='<div id="semNav"></div>';n.el=p.firstChild;n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x)n.pick(x);};p.classList.add('navon');document.body.classList.add('navon');}n.draw();} // the body carries it too: the columns answer to whether the areas are on
                 }
-                ,drill:(d,alt)=>{const z=books.play.sem.Z,R=books.play.render;
+                ,drill:(d,alt,wide)=>{const z=books.play.sem.Z,R=books.play.render;
                     if(d>0){const h=document.querySelector('#semNav .nvA:hover');if(h)return z.nav.pick(h);} // ↓ first walks into the cell the pointer stands on, exactly as a click on it would
                     const pl=books.play.id(R.mode),ks=books.play.child(pl)
                         ,k=d>0?(ks.length>1?'pl4'+(alt?(z.sp==='a'?'b':'a'):z.sp):ks[0]):books.play.up[pl]; // + = finer (the fork goes where the user last was – with alt, the fork not taken last), − = coarser
                     if(!k)return;
                     const t=books.play.names(k),i=d>0?t[3]:-1; // the child you stand in – the cell a click would have taken
                     if(i>=0&&(t[0]||[])[i])return z.nav.go(k,i);
-                    R.go(books.play.ix(k));}
+                    R.go(books.play.ix(k),0,wide&&d<0);} // wide (a pinch together / ctrl-wheel down) only widens the level – the node it contains is NOT opened: a cell pick or a zoom-in is what opens it
                 ,init:()=>{
                     const z=books.play.sem.Z,db=()=>document.getElementById('dpBook')
                         ,dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
@@ -763,8 +764,8 @@ const books={
                         if(!z.t||e.touches.length<2)return;
                         if(e.cancelable)e.preventDefault(); // the pinch is ours, not the browser's page zoom – what it changes is the semantic level
                         const d=base?dist(e.touches):0;
-                        if(d&&d/base>=1.35){base=d;z.drill(1);}      // apart → more detail
-                        else if(d&&d/base<=0.74){base=d;z.drill(-1);} // together → less detail
+                        if(d&&d/base>=1.35){base=d;z.drill(1);}                // apart → more detail: the node is opened
+                        else if(d&&d/base<=0.74){base=d;z.drill(-1,null,1);}    // together → less detail: only the level widens, nothing is opened
                     },{passive:false});
                     document.addEventListener('touchend',e=>{
                         if(z.t&&e.touches.length<2)z.hide();
@@ -779,7 +780,7 @@ const books={
                         if(e.cancelable)e.preventDefault();
                         const now=Date.now();if(now-at>400)acc=0;at=now; // a pause starts a new pinch
                         acc+=e.deltaY;
-                        if(Math.abs(acc)>=25){z.drill(acc<0?1:-1);acc=0;} // apart → finer, together → coarser; ~25 is one step, tune here if a trackpad is too eager
+                        if(Math.abs(acc)>=25){const out=acc>0;z.drill(out?-1:1,null,out?1:0);acc=0;} // apart → finer (opens the node), together → coarser (only widens the level); ~25 is one step, tune here if a trackpad is too eager
                     },{passive:false});
                     window.onblur=z.hide;
                     window.onresize=()=>{if(z.ov&&z.ov.style.display==='block')z.show();};
