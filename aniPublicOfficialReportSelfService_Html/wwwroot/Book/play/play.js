@@ -700,13 +700,28 @@ const books={
                                 return '<div class="nvGrp">'+((tag||q)?'<div class="nvG">'+e(L.t||c)+books.play.sem.Z.nav.tq(q)+'</div>':'')+grid+'</div>';}).join('');
                         return grp?'<div class="nvAreas">'+grp+'</div>':'';}
                     ,tq:q=>q?' – "'+books.play.render.esc(q)+'"':'' // the title of the map carries what was keyed: “Paragraph – "FRE"”
-                    ,setQ:e=>{ // typing while the areas are up reads through the whole word map: what was keyed is set after the level's title, and every cloud keeps only the words that carry it
-                        const z=books.play.sem.Z,n=z.nav,k=e.key;
+                    ,applyQ:()=>{const z=books.play.sem.Z,n=z.nav;if(n.qEl&&n.qEl.value!==z.q)n.qEl.value=z.q;n.redraw();} // one place tells the field and the map, whatever put the filter there
+                    ,mk:()=>window.SpeechRecognition||window.webkitSpeechRecognition // a phone may have no such thing – then the field is the way in: tap it and use the keyboard's own mic
+                    ,lastWord:s=>{const a=String(s||'').replace(/[^\p{L}\p{N}'-]+/gu,' ').trim().split(/\s+/).filter(Boolean);return a.length?a[a.length-1]:'';} // dictation arrives with stops and capitals – the map wants the bare word, and the last one heard wins
+                    ,speak:btn=>{ // 🎤: hear a word and read the whole map through it, until the mic is tapped again
+                        const z=books.play.sem.Z,n=z.nav,R=n.mk();if(!R)return;
+                        if(z.rec){try{z.rec.stop();}catch(e){}z.rec=null;btn.classList.remove('on');return;}
+                        const r=z.rec=new R();
+                        r.lang=books.play.lg==='NO'?'nb-NO':'en-GB';r.continuous=!0;r.interimResults=!1; // the copy's own language: the words in the map are its words
+                        r.onresult=e=>{let s='';for(let i=e.resultIndex;i<e.results.length;i++)if(e.results[i].isFinal)s+=e.results[i][0].transcript;
+                            const w=n.lastWord(s);if(w){z.q=w;n.applyQ();}}
+                        r.onerror=()=>{z.rec=null;btn.classList.remove('on');};
+                        r.onend=()=>{z.rec=null;btn.classList.remove('on');};
+                        try{r.start();}catch(e){z.rec=null;return;} // start() throws where the page is not allowed to listen
+                        btn.classList.add('on');
+                    }
+                    ,keyQ:e=>{ // typing while the areas are up reads through the whole word map: what was keyed is set after the level's title, and every cloud keeps only the words that carry it
+                        const z=books.play.sem.Z,n=z.nav,qEl=n.qEl,k=e.key,own=qEl&&document.activeElement===qEl;
                         if(k==='Escape')z.q=''; // out of the filter in one go – Backspace takes one letter back
-                        else if(k==='Backspace')z.q=z.q.slice(0,-1);
-                        else if(k.length===1&&k!==' '&&!e.metaKey&&!e.altKey)z.q+=k; // a letter or a digit – ⌘ and alt are the browser's, and a space is no part of a word
+                        else if(k==='Backspace'){if(own)return 0;z.q=z.q.slice(0,-1);} // the field deletes its own when it has the focus
+                        else if(k.length===1&&k!==' '&&!e.metaKey&&!e.altKey&&!(own&&!e.ctrlKey))z.q+=k; // a letter or a digit; with the field focused a plain key is the field's – that is how a phone keyboard and its dictation come in – while ⌃⇧ letters are ours
                         else return 0; // not ours – the key goes on to whoever else listens
-                        n.redraw();
+                        n.applyQ();
                         return 1;}
                     ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);} // an area selects that node and opens its level, like the same row in the nav
                     ,hit:(x,y)=>{const e=document.elementFromPoint(x,y);return e&&e.closest?e.closest('.nvA'):null;} // the area under a point, read off the layout – never off :hover, which the browser only settles a frame later
@@ -735,7 +750,17 @@ const books={
                     }
                     ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();books.play.sem.Z.cell=n.cell();} // the mark is taken again: the areas may have moved under a pointer that never moved
                     ,redraw:()=>{const n=books.play.sem.Z.nav;n.last='';n.draw();} // the room changed – every cloud is built and fitted again
-                    ,swap:()=>{const n=books.play.sem.Z.nav,p=document.getElementById('dbPlay');if(!n.el){p.innerHTML='<div id="semNav"></div>';n.el=p.firstChild;n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x)n.pick(x);};p.classList.add('navon');document.body.classList.add('navon');}n.draw();} // the body carries it too: the columns answer to whether the areas are on
+                    ,swap:()=>{ // the panel is overwritten once: a query strip – what is keyed or spoken, the filter the whole map is read through – and under it the areas themselves
+                        const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
+                        if(!n.el){
+                            p.innerHTML='<div id="semQ"><input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the word map"><button id="nvMic" type="button" title="Speak a word – the whole map keeps what it hears">\u{1F3A4}</button></div><div id="semNav"></div>';
+                            n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
+                            const mic=p.querySelector('#nvMic');
+                            n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x)n.pick(x);};
+                            n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();}; // a phone's keyboard and its own dictation arrive as text, never as key events – both land here
+                            if(n.mk())mic.onclick=()=>n.speak(mic);else mic.hidden=1; // no API: the field carries the voice instead
+                            p.classList.add('navon');document.body.classList.add('navon');
+                        }n.draw();} // the body carries it too: the columns answer to whether the areas are on
                 }
                 ,drill:(d,alt,wide)=>{const z=books.play.sem.Z,R=books.play.render;
                     if(d>0){const h=document.querySelector('#semNav .nvA:hover');if(h)return z.nav.pick(h);} // ↓ first walks into the cell the pointer stands on, exactly as a click on it would
@@ -760,7 +785,7 @@ const books={
                         else if(k==='ArrowDown'){e.preventDefault();z.drill(1,e.altKey);}   // ↓ = into the children (finer); +alt = the fork not taken last
                         else if(k==='='||k==='+'){e.preventDefault();z.drill(1,e.altKey);}  // + = finer (hand down); +alt = the other fork
                         else if(k==='-'||k==='_'){e.preventDefault();z.drill(-1);} // − = coarser (hand up)
-                        else if(z.on&&z.nav.setQ(e))e.preventDefault(); // anything else keyed while the areas are up is written into the filter after the title, and the whole word map is read through it again
+                        else if(z.on&&z.nav.keyQ(e))e.preventDefault(); // anything else keyed while the areas are up is written into the filter after the title, and the whole word map is read through it again
                     };
                     document.onkeyup=e=>{if(!e.ctrlKey||!e.shiftKey)z.hide();}; // releasing either key ends Z-mode
                     document.onmousemove=e=>{const z=books.play.sem.Z;z.x=e.clientX;z.y=e.clientY;const c=z.nav.cell();if(c!==z.cell){z.cell=c;z.armed=1;}}; // the pointer moved on to another area (or into the gap between them)
