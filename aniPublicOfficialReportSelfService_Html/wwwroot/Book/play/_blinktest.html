@@ -1,0 +1,20 @@
+<!doctype html><meta charset="utf-8">
+<style>
+#prev,#next{font-size:1.3em;line-height:1;padding:.1em .25em;opacity:.45;}
+#lvCtl{display:inline-flex;flex-direction:column;align-items:stretch;gap:1px;}
+#lvCtl button{font-size:1.3em;line-height:1;padding:.1em .25em;opacity:.45;}
+@keyframes blink{50%{opacity:.1;}}
+.blink{animation:blink .4s ease-in-out 1;}
+</style>
+<button id="prev">A</button><button id="next">B</button>
+<span id="lvBars"><table><tr><td><button data-zm="up">U</button></td></tr></table></span>
+<span id="lvCtl"><button>D</button></span>
+<pre id="out"></pre>
+<script>
+const blink=(el,n)=>{if(!el)return;el.classList.remove('blink');void el.offsetWidth;el.style.animationIterationCount=String(n||1);el.classList.add('blink');};
+const els=()=>[prev,next,lvBars.querySelector('button[data-zm]'),document.getElementById('lvCtl')];
+const run=()=>{els().forEach(el=>blink(el,3));
+  out.textContent=document.getAnimations().map(a=>a.animationName+' x'+a.effect.getTiming().iterations+' '+a.playState+' ['+a.effect.target.id+']').join('\n');};
+run();
+setTimeout(run,1500);
+</script>

@@ -23,6 +23,9 @@ body.zoom #hiUrl:empty{display:none;}
 #lvBars td{padding:0;text-align:center;vertical-align:middle;}
 #lvBars td.txt{border-bottom:1px dashed #b8b8b8;}
 #lvBars td.zm{padding-left:4px;border-left:1px solid #ccc;text-align:center;}
+/* one blink of the eye: the hands when Z-mode is entered, the "Press ctrl-shift" hint three times when the page is first up */
+@keyframes blink{50%{opacity:.1;}}
+.blink{animation:blink .4s ease-in-out 1;}
 #dbNav{display:flex;flex-direction:column;min-height:0;border-right:1px solid #999;}
 #dbNavHead{display:flex;align-items:center;gap:.3em;padding:0 .4em;border-bottom:1px solid #999;}
 #dbNavHead button{padding:.1em .3em;font-size:1.6em;}
@@ -104,18 +107,26 @@ body.zoom #hiUrl::before{content:none;}
 #semOv{position:fixed;display:none;inset:-50vmax;background:rgba(0,70,190,.5);pointer-events:none;z-index:50;} /* the blue area covers the whole screen itself – -50vmax reaches well outside the page, so no other zoom can leave screen uncovered */
 /* the navigating area the right play panel is overwritten with while ⌃⇧ or two fingers are down – the level you are on, later a word cloud of it. It stays after the keys are let go */
 #dbPlay.navon{position:relative;z-index:55;} /* above the blue wash, so the area being navigated in stays readable */
+/* ⌃⇧ let go: the areas stay where they are, but turn on their side in a very narrow band, and the reading area takes what the panel gives back */
+body.navon:not(.zoom){grid-template-columns:20vw 1fr 8vw;}
+body:not(.zoom) #semNav .nvW{transform:rotate(80deg);}
+body:not(.zoom) #semNav .nvA{overflow:hidden;} /* the turned cloud is held in its own area – nothing of it reaches the reading area */
+body:not(.zoom) #semNav .nvR{grid-template-columns:1fr;} /* one area per row: the band is too narrow to fold */
+body:not(.zoom) #semNav .nvT,body:not(.zoom) #semNav .nvG{font-size:.7em;}
 /* while zooming the areas take the reading area as well – the level reads as one field instead of a 30% slot.
    Both items sit in row 2 already, so widening the columns cannot shuffle anything: same top, same full height. */
 body.zoom #dbPlay.navon{grid-column:2/-1;background:#fff;}
-#semNav{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+#semNav{flex:1;min-height:0;overflow:visible;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;} /* visible: the areas are sized to fit, and a turned cloud must spill, not be cut */
 #semNav h2{margin:0;font-size:1.9em;font-weight:400;letter-spacing:.04em;}
 /* pl1–pl5a/pl4b – the same areas as pl0, parametrized: one area per node in the level, top to bottom, the node's name centred in its area */
 #semNav .nvAreas{flex:1;display:flex;flex-direction:column;width:100%;min-height:0;}
 #semNav .nvGrp{flex:1;display:flex;flex-direction:column;min-height:0;}
 #semNav .nvG{font-size:.75em;letter-spacing:.08em;opacity:.55;text-align:center;padding:.1em 0;}
 #semNav .nvA{flex:1;display:flex;align-items:center;justify-content:center;padding:.2em .5em;min-height:0;cursor:pointer;position:relative;}
-/* more than six areas in a group → two columns, filled across (1-2 / 3-4 / 5-6 / 7), so the run on reads as one text */
+#semNav .nvA.on{background:#ececec;} /* the page or the paragraph you are on – the only cell ever marked */
+/* more than six areas in a group → two columns, filled across (1-2 / 3-4 / 5-6 / 7), so the run on reads as one text; past fourteen it takes a third */
 #semNav .nvR{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;min-height:0;}
+#semNav .nvR.r3{grid-template-columns:1fr 1fr 1fr;}
 /* the cloud stands in its area by default and may run over into its neighbours – what keeps it in hand is the fit, not a frame;
    the node's own name is what comes up on hover, on a white backing so it carries over the words */
 #semNav .nvT{position:relative;z-index:2;text-align:center;background:rgba(255,255,255,.92);transition:opacity .12s;}

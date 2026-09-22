@@ -592,6 +592,7 @@ const books={
                 R.focus();
                 R.hands();
             }
+            ,blink:(el,n)=>{if(!el)return;el.classList.remove('blink');void el.offsetWidth;el.style.animationIterationCount=String(n||1);el.classList.add('blink');} // re-adding the class restarts it, and a reflow is what makes that true when it is already there
             ,hl:()=>{const m=books.play.render.mode;books.play.render.el.nav.querySelectorAll('a[data-i]').forEach(a=>a.classList.toggle('on',+a.dataset.m===m&&+a.dataset.i===books.play.render.idx));}
             ,focus:()=>{ // keep the active node in view – the lists get long (pl3 is ~260 rows)
                 const n=books.play.render.el.nav;if(!n)return;
@@ -601,7 +602,7 @@ const books={
             }
             ,lvitem:x=>{const up=books.play.ancestors(x.pl).map(p=>{const L=books.play.LV.find(l=>l.pl===p);return L?L.t:'';}).filter(Boolean).join(' › ');return '<li id="'+x.pl+'">'+(up?'<div class="lvpath">'+books.play.render.esc(up)+' ›</div>':'')+'<i>'+books.play.render.esc(x.t)+'</i> – '+books.play.render.esc(x.q)+(x.nav&&x.nav!=='todo'?'<details><summary>Nav shows</summary>'+books.play.render.esc(x.nav)+'</details>':'')+(x.page&&x.page!=='todo'?'<details><summary>Page shows</summary>'+books.play.render.esc(x.page)+'</details>':'')+(x.thoughts?'<details open><summary>Thoughts</summary>'+books.play.render.esc(x.thoughts)+'</details>':'')+(x.child&&x.child.length?'<details open><summary>Planned</summary><ol>'+x.child.map(c=>'<li>'+books.play.render.esc(c.t)+(c.w?'<details><summary>Thoughts</summary>'+books.play.render.esc(c.w)+'</details>':'')+'</li>').join('')+'</ol></details>':'')+'</li>';}
             ,guide:()=>{const g=document.getElementById('lvGuide');if(!g)return;g.innerHTML=books.play.LV.map(x=>books.play.render.lvitem(x)).join('');}
-            ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);books.play.render.ctl();books.play.hi();books.play.sem.Z.nav.draw();}
+            ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);books.play.render.ctl();books.play.hi();books.play.sem.Z.nav.draw();books.play.sem.Z.cell=books.play.sem.Z.nav.cell();} // and the mark again, in case the level changed with the areas left as they were
             ,ctl:()=>{const c=document.getElementById('lvCtl');if(!c)return;const pl=books.play.id(books.play.render.mode),kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV[books.play.ix(k)];h+='<button data-go="'+books.play.ix(k)+'" title="finer: '+(K?K.t:k)+'">\u{1F447}</button>';});c.innerHTML=h;c.onclick=ev=>{const x=ev.target.closest('button');if(!x||x.dataset.go===undefined)return;if(x.dataset.go==='up'){const p=books.play.up[pl];if(p)books.play.render.go(books.play.ix(p));}else books.play.render.go(+x.dataset.go);};}
             ,baseOf:i=>books.play.md.pgs.slice(0,i).reduce((n,q)=>n+books.play.render.sentT(q.txt).length,0)
             ,pgOf:si=>{let n=0;for(let k=0;k<books.play.md.pgs.length;k++){n+=books.play.render.sentT(books.play.md.pgs[k].txt).length;if(n>si)return k;}return 0;}
@@ -669,50 +670,60 @@ const books={
         }
         ,sem:{
             Z:{
-                ov:null,m:0,t:0,sp:'a' // sp = the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in; pl4a until then
+                ov:null,m:0,t:0,sp:'b',x:-1,y:-1,cell:'',armed:0 // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. x/y/cell/armed: where the pointer is, the area it rests in, and whether it has moved on to another one since ⌃⇧ or a key last set the level
                 ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
                 ,on:0
-                ,show:()=>{const z=books.play.sem.Z;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom');z.nav.swap();z.nav.redraw();} // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed. The areas are wide now, so the clouds are laid out again
+                ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom');z.armed=0; // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
+                    [E.prev,E.next,E.lvBars.querySelector('button[data-zm]'),document.getElementById('lvCtl')].forEach(el=>R.blink(el,3)); // the two hands and both ways out of the level blink three times, to say where they are
+                    z.nav.swap();z.nav.redraw();} // the areas are wide now, so the clouds are laid out again and the pointer's mark is taken again
                 ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0;
-                    const a=document.querySelector('#semNav .nvA:hover'); // what the pointer stands on now – letting ⌃⇧ go walks into it, exactly as a click would
+                    const a=z.nav.hit(z.x,z.y); // what the pointer stands on now – letting ⌃⇧ go walks into it, exactly as a click would, but only once the pointer has moved on to another cloud
                     if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
-                    if(a)z.nav.pick(a);else z.nav.redraw();} // and back to the panel's own width
+                    if(a&&z.armed)z.nav.pick(a);z.nav.redraw();} // the band is narrow and set in smaller type, so the areas are drawn and measured again
                 ,enter:()=>books.play.sem.Z.show()
                 ,nav:{ // ⌃⇧ held or two fingers down overwrite the play panel (right, innerHTML and all) with a navigating area – the level we are on, and what it selects. It stays: leaving the mode puts nothing back
                     el:null,last:''
                     ,box:()=>books.play.sem.Z.nav.el
                     ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
-                    ,areas:()=>{ // every level reads the same way: one area per node in the level below, its cloud standing there and its name coming up on hover. At the fork only the spine you stand on is drawn – the one ↓ walks into
-                        const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),all=books.play.child(pl)
-                            ,kids=pl==='pl3'?all.filter(c=>c==='pl4'+books.play.sem.Z.sp):all,tag=kids.length>1||pl==='pl3' // the fork keeps a label, so which of the two it is can be read off the areas
+                    ,areas:()=>{ // every level reads the same way: one area per node, its cloud standing there and its name coming up on hover. The fork and the two nodes it opens show one and the same list – the nodes of the active spine – and at the page and the paragraph the node you stand on is marked
+                        const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),sp=books.play.sem.Z.sp
+                            ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:books.play.child(pl),tag=fork||kids.length>1
                             ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[]
-                                ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24);
-                                    return '<div class="nvA'+(h?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(h?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
-                                if(!rows)return '';const L=books.play.LV[books.play.ix(c)]||{},many=ns.filter(n=>n!=='').length>6; // more than six areas → folded into two columns
-                                return '<div class="nvGrp">'+(tag?'<div class="nvG">'+e(L.t||c)+'</div>':'')+(many?'<div class="nvR">'+rows+'</div>':rows)+'</div>';}).join('');
+                                ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24)
+                                    ,on=(pl==='pl4a'||pl==='pl4b')&&k===a[3]; // grey only where you really stand – on the page or the paragraph you are in, never at the fork above them
+                                    return '<div class="nvA'+(on?' on':'')+(h?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(h?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
+                                if(!rows)return '';const L=books.play.LV[books.play.ix(c)]||{},cnt=ns.filter(n=>n!=='').length // six areas is as far as one column carries; past fourteen it takes three
+                                    ,grid=cnt>6?'<div class="nvR'+(cnt>14?' r3':'')+'">'+rows+'</div>':rows;
+                                return '<div class="nvGrp">'+(tag?'<div class="nvG">'+e(L.t||c)+'</div>':'')+grid+'</div>';}).join('');
                         return grp?'<div class="nvAreas">'+grp+'</div>':'';}
                     ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);} // an area selects that node and opens its level, like the same row in the nav
+                    ,hit:(x,y)=>{const e=document.elementFromPoint(x,y);return e&&e.closest?e.closest('.nvA'):null;} // the area under a point, read off the layout – never off :hover, which the browser only settles a frame later
+                    ,cell:()=>{const z=books.play.sem.Z,a=z.nav.hit(z.x,z.y);return a?a.dataset.k:'';} // the area the pointer rests in, named the way a click names it
                     ,pick:el=>{const k=el.dataset.k.split('|');books.play.sem.Z.nav.go(k[0],+k[1]);} // an area picked – by a click, or by letting ⌃⇧ go while the pointer stands on it
                     ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+'</h2>'
+                    ,base:()=>document.body.classList.contains('zoom')?1:.6 // the type scale the clouds are set at: full while zooming, small in the narrow band
+                    ,collapsed:()=>!document.body.classList.contains('zoom') // the band: the cloud is turned, so its height reads as its width and vice versa
                     ,hm:a=>{ // the words' own height for every cloud, read in one layout round – not the stretched box they sit in
-                        a.forEach(w=>{w.style.fontSize='1em';w.style.bottom='auto';w.style.height='auto';});
+                        const b=books.play.sem.Z.nav.base();
+                        a.forEach(w=>{w.style.fontSize=b+'em';w.style.bottom='auto';w.style.height='auto';});
                         const h=a.map(w=>Math.max(1,w.scrollHeight));
                         a.forEach(w=>{w.style.bottom='';w.style.height='';});
                         return h;}
                     ,fit:()=>{ // a cloud is given the room its area has: many words where the area is roomy, few – and smaller type – where it is crowded. It may run over into its neighbours, so the only thing kept in check is the amount
                         const n=books.play.sem.Z.nav,a=[...n.el.querySelectorAll('.nvW')];if(!a.length)return;
-                        const room=w=>Math.max(16,w.parentElement.clientHeight-4); // the area's own room, a hair inside its frame
+                        const room=w=>{const c=w.parentElement; // the area's own room, a hair inside its frame. Turned, the cloud must fit both ways, or a tall area would fill up with lines
+                            return Math.max(16,(n.collapsed()?Math.min(c.clientWidth,c.clientHeight):c.clientHeight)-4);};
                         const h=n.hm(a);
                         a.forEach((w,i)=>{const k=room(w)/h[i];if(k>=1)return;
                             const keep=Math.max(2,Math.round(w.childElementCount*k)); // the list is ranked, so the words that carry least go first
                             while(w.childElementCount>keep)w.removeChild(w.lastChild);});
                         const h2=n.hm(a);
-                        a.forEach((w,i)=>{const s=room(w)/h2[i]; // still too tall → smaller type, and never below .4em
-                            if(s<1)w.style.fontSize=Math.max(.4,s).toFixed(2)+'em';});
+                        a.forEach((w,i)=>{const s=room(w)/h2[i]; // still too tall → smaller type, and never below .4 of the scale it is set in
+                            if(s<1)w.style.fontSize=(n.base()*Math.max(.4,s)).toFixed(2)+'em';});
                     }
-                    ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();}
+                    ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();books.play.sem.Z.cell=n.cell();} // the mark is taken again: the areas may have moved under a pointer that never moved
                     ,redraw:()=>{const n=books.play.sem.Z.nav;n.last='';n.draw();} // the room changed – every cloud is built and fitted again
-                    ,swap:()=>{const n=books.play.sem.Z.nav,p=document.getElementById('dbPlay');if(!n.el){p.innerHTML='<div id="semNav"></div>';n.el=p.firstChild;n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x)n.pick(x);};p.classList.add('navon');}n.draw();}
+                    ,swap:()=>{const n=books.play.sem.Z.nav,p=document.getElementById('dbPlay');if(!n.el){p.innerHTML='<div id="semNav"></div>';n.el=p.firstChild;n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x)n.pick(x);};p.classList.add('navon');document.body.classList.add('navon');}n.draw();} // the body carries it too: the columns answer to whether the areas are on
                 }
                 ,drill:(d,alt)=>{const z=books.play.sem.Z,R=books.play.render;
                     if(d>0){const h=document.querySelector('#semNav .nvA:hover');if(h)return z.nav.pick(h);} // ↓ first walks into the cell the pointer stands on, exactly as a click on it would
@@ -729,6 +740,7 @@ const books={
                     document.onkeydown=e=>{
                         if(e.key==='Control'||e.key==='Shift'){if(e.ctrlKey&&e.shiftKey)z.enter();return;} // ⌃⇧ anywhere is Z-mode – not only while hovering the book; ⌃ alone does nothing (and bare ⌃arrows belong to Mission Control)
                         if(!e.ctrlKey||!e.shiftKey)return;
+                        z.armed=0; // the key sets the level, the pointer has chosen nothing: letting go on its own may not click
                         const k=e.key;
                         if(k==='ArrowLeft' ||k===','||k==='<'){e.preventDefault();books.play.render.nav(-1);}  // 🫲
                         else if(k==='ArrowRight'||k==='.'||k==='>'){e.preventDefault();books.play.render.nav(1);}  // 🫱
@@ -738,6 +750,7 @@ const books={
                         else if(k==='-'||k==='_'){e.preventDefault();z.drill(-1);} // − = coarser (hand up)
                     };
                     document.onkeyup=e=>{if(!e.ctrlKey||!e.shiftKey)z.hide();}; // releasing either key ends Z-mode
+                    document.onmousemove=e=>{const z=books.play.sem.Z;z.x=e.clientX;z.y=e.clientY;const c=z.nav.cell();if(c!==z.cell){z.cell=c;z.armed=1;}}; // the pointer moved on to another area (or into the gap between them)
                     document.onmousedown=e=>{if(e.buttons===3&&db().contains(e.target)){z.m=1;z.enter();}};
                     document.onmouseup=e=>{if(z.m&&e.buttons<3)z.hide();};
                     // touch, in the reading pane: two fingers = Z-mode like ⌃⇧ held, apart = a finer level, together = a coarser one; one finger sideways = 🫲/🫱
@@ -814,6 +827,7 @@ const books={
             books.play.render.el.page.addEventListener('change',ev=>{if(ev.target.closest&&ev.target.closest('#page .se')){books.play.seSet(books.play.seRead(),true);}}); // checkbox → redraw
             const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=8';dbjs.onerror=()=>console.warn('[db.js] could not load in the background');document.head.appendChild(dbjs); // SUPABASE config → songs resolve to spotify urls
             const musicjs=document.createElement('script');musicjs.type='module';musicjs.src=books.play.root+'music.js?v=8';musicjs.onerror=()=>console.warn('[music.js] could not load in the background');document.head.appendChild(musicjs); // ES module (export) → must be type=module, else the whole file fails to parse. Music player for Spotify links (aigap.no/m-code) – gormb.github.io/?id has moved to aigap.no/id
+            setTimeout(()=>books.play.render.blink(document.getElementById('hiUrl'),3),400); // the hint that says which keys to press blinks three times on the first load
         }
     }
 };
