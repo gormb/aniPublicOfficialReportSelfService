@@ -69,8 +69,8 @@ body.zoom #hiUrl:empty{display:none;}
 /* shelf: folder name shown after the title when the two differ */
 #dbNavList .bid{opacity:.45;font-size:.8em;font-style:normal;}
 #dbNavList .th{font-weight:700;color:#555;margin-top:.25em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-#dpBook{grid-column:2;min-height:0;overflow:auto;padding:20mm;}
-#dbPlay{grid-column:3;display:flex;flex-direction:column;min-height:0;border-left:1px solid #999;}
+#dpBook{grid-column:2;grid-row:2;min-height:0;overflow:auto;padding:20mm;}
+#dbPlay{grid-column:3;grid-row:2;display:flex;flex-direction:column;min-height:0;border-left:1px solid #999;}
 #dbPlayHead{display:flex;align-items:center;gap:.3em;padding:0 .4em;border-bottom:1px solid #999;}
 #dbPlayHead button{padding:.1em .3em;font-size:1.6em;}
 #dbPlayTitle{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -104,22 +104,23 @@ body.zoom #hiUrl::before{content:none;}
 #semOv{position:fixed;display:none;inset:-50vmax;background:rgba(0,70,190,.5);pointer-events:none;z-index:50;} /* the blue area covers the whole screen itself – -50vmax reaches well outside the page, so no other zoom can leave screen uncovered */
 /* the navigating area the right play panel is overwritten with while ⌃⇧ or two fingers are down – the level you are on, later a word cloud of it. It stays after the keys are let go */
 #dbPlay.navon{position:relative;z-index:55;} /* above the blue wash, so the area being navigated in stays readable */
+/* while zooming the areas take the reading area as well – the level reads as one field instead of a 30% slot.
+   Both items sit in row 2 already, so widening the columns cannot shuffle anything: same top, same full height. */
+body.zoom #dbPlay.navon{grid-column:2/-1;background:#fff;}
 #semNav{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
 #semNav h2{margin:0;font-size:1.9em;font-weight:400;letter-spacing:.04em;}
 /* pl1–pl5a/pl4b – the same areas as pl0, parametrized: one area per node in the level, top to bottom, the node's name centred in its area */
 #semNav .nvAreas{flex:1;display:flex;flex-direction:column;width:100%;min-height:0;}
-/* pl3 – the fork keeps the nav's split: pages in the left column, paragraphs in the right */
-#semNav .nvAreas.cols{flex-direction:row;}
 #semNav .nvGrp{flex:1;display:flex;flex-direction:column;min-height:0;}
 #semNav .nvG{font-size:.75em;letter-spacing:.08em;opacity:.55;text-align:center;padding:.1em 0;}
 #semNav .nvA{flex:1;display:flex;align-items:center;justify-content:center;padding:.2em .5em;min-height:0;cursor:pointer;position:relative;}
 /* more than six areas in a group → two columns, filled across (1-2 / 3-4 / 5-6 / 7), so the run on reads as one text */
 #semNav .nvR{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;min-height:0;}
-/* the cloud stands in its area by default and is held inside it, so two areas' words can never touch however the areas meet;
+/* the cloud stands in its area by default and may run over into its neighbours – what keeps it in hand is the fit, not a frame;
    the node's own name is what comes up on hover, on a white backing so it carries over the words */
 #semNav .nvT{position:relative;z-index:2;text-align:center;background:rgba(255,255,255,.92);transition:opacity .12s;}
 #semNav .nvA.nvC .nvT{opacity:0;}
 #semNav .nvA:hover .nvT{opacity:1;}
-#semNav .nvW{position:absolute;inset:0;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:.05em .5em;padding:.2em .4em;overflow:hidden;pointer-events:none;font-weight:400;}
+#semNav .nvW{position:absolute;inset:0;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:.05em .5em;padding:.2em .4em;pointer-events:none;font-weight:400;}
 #semNav .nvW span{line-height:1;}
 
