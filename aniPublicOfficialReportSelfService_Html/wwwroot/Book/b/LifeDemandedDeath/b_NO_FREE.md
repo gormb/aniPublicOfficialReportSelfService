@@ -4,7 +4,7 @@
 ## Nullsum
 🎵 [Spotify Playlist](https://aigap.no/mlist)
 “Med MC fra Kiel til Alicante og snitt på 170 km/t kunne jeg vært arrestert i hele Europa”, sa jeg.
-Advokaten jeg nettopp hadde møtt over en Whisky smålo.
+Advokaten jeg nettopp hadde møtt over en whisky smålo.
 “Nei, du skulle vært død”
 Kanskje det, men jeg føler ingenting likevel, unntatt skam overfor mine nærmeste. Kanskje gjennom musikk, kan jeg oppleve tapet av forstanden som lyd, tiden som stanser; sammenbrudd og erkjennelse.
 Døden gir plass
@@ -12,7 +12,7 @@ Døden gir plass
 ### Nulloppsummering
 🎵 [Nothing Compares 2 U; Sinéad O'Connor](https://aigap.no/mncty)
 Krever nytt liv at noe gammelt dør for å gi plass? Er det begrenset med ressurser og derfor med muligheter?
-Nulloppsummering handler om ressursfordeling uten evne til å skape egne ressurser av ingenting, man må velge mellom å holde gamle ting i live og å skape noe nytt. Det er ikke plass til å gjøre begge deler samtidig.
+Nulloppsummering handler om ressursfordeling uten evne til å skape egne ressurser av ingenting, man må velge mellom å holde gamle ting i live og å skape noe nytt. Det er ikke plass til begge deler samtidig.
 Resultat av innovasjon er at man slutter med gamle ting for å gi plass til de nye, økonomer måler hvor mye man ikke har sluttet som “legacy cost”. Noen kaller modellen “Zero-Sum Game”. Alternativet er å anta at verdi kan skapes gjennom fremskritt, ikke bare fordele verdier etter gårsdagens premisser. Positivsumspill beskrives i et senere kapittel. Det innebærer at nullsummodell må dø, men den skal føles først.
 #### p. 4
 Effekten av innovasjon er fremskritt, jeg tror ikke vi kaller det innovasjon hvis det ikke medfører ny opplevd forbedring.
@@ -39,15 +39,17 @@ Samma det. Vi nøt hverandre med alle sanser.
 #### p. 7
 Hypersensitiv og speilende eller kalkulerende oppskriftsmessig, mystisisme får hun beholde.
 Senere lærer jeg hun har tro jeg mangler, og at plassen vi gir hverandre gjør uenighet berikende uten friksjon. Så vi kommer til å bli lei hverandre i fremtiden.
-Samma det. Jeg har ikke fremtid Ødelagte ting er vakre for de fromme. Hun er prest. Den typen som ser det vakre i det ødelagte.
+Samma det. Jeg har ikke fremtid.
+Ødelagte ting er vakre for de fromme. Hun er prest. Den typen som ser det vakre i det ødelagte.
 Skam, godhet og ondskap. Teoretisk behandlet. Hun har gjort alle typer refleksjon. Nå skal det sanses. Trygg i tilstedeværelse, vant med liv som død.
 Jeg skrapet i overflaten, nok refleksjon. Hun fortjener ekte.
-Ikke langsomt. Nyt uten refleksjon. Instinktene kan bestemme uten ettertanke. Også prester har som menneskerett å begjære og bli begjært. Unntaket var Lottes dualisme, den reflekterte jeg over; skillet mellom ånd og fysisk virkelighet holdt i sin tid troenes mystisisme i live. Med meg gir dualismen til Lotte for lite, jeg later som jeg er for enkel til at vi har intellektuelt overlapp.
+Ikke langsomt. Nyt uten refleksjon. Instinktene kan bestemme uten ettertanke. Også prester har som menneskerett å begjære og bli begjært. Unntaket var Lottes dualisme, den reflekterte jeg over; skillet mellom ånd og fysisk virkelighet holdt i sin tid troenes mystisisme i live. Med meg gir ikke koblingen til det åndelige liv Lotte har nok. Jeg later som å være for enkel til at vi har intellektuelt overlapp.
 Det er min dualisme, konstruert for felles lykke i ulykke.
 #### p. 8
 Vanskelig å få tak i. Tar ikke kontakt, hun fortjener en “mission” for å misjonere, eller si “Mission accepted”. Etter tre dager kom melding fra henne, hun fikk tak i navnet mitt.
 Jeg svarer etter fem. For bra til å bevare. Skal ikke vare.
-Vi møttes andre gang etter en uke, Lotte var dyrisk i senga en uke. Jeg ville ikke ende i senga med henne, bare å ha henne i armkroken var nok. “Du tror dette handler om sex?”, sa Lotte så jeg kysset henne på munnen. “Det handler om å la livet skje”, sa hun, vi dro hjem til henne og gikk ikke ut igjen på dagevis Etter det har jeg ikke sett henne.
+Vi møttes andre gang etter en uke, Lotte var dyrisk i senga en uke. Jeg ville ikke ende i senga med henne, bare å ha henne i armkroken var nok. “Du tror dette handler om sex?”, sa Lotte så jeg kysset henne på munnen. “Det handler om å la livet skje”, sa hun, vi dro hjem til henne og gikk ikke ut igjen på dagevis.
+Etter det har jeg ikke sett henne.
 Jeg møtte henne ikke.
 #### p. 9
 ### Det gamle finnes ikke mer
@@ -75,7 +77,7 @@ To uker senere passerte jeg området hun befant seg i 200 km/t. Mot Sydspania. I
 "Ohne dich zähl ich die Stunden". Jeg gav opp verden. Det var COVID-epidemi da jeg begynte regelmessig livstruende mørkekjøring med tung motorsykkel. Stort sett med alkohol i blodet. Etter at jeg var meddommer i pedofilisak, ble smerten inne i meg så kraftig at normal frykt og smertegrenser ble ignorert.
 Nattens vakkerhet, overlevelse av livsfare, råskapen og møtet med nattens ville dyr overdøvet den fornuftige redselen. På ingen måte ønsket jeg å utrydde meg selv, derimot satte jeg
 #### p. 13
-mer pris på livet for hver overraskende overlevelse. Husnøklene var mistet på en strand på sørlandet, jeg ville ikke hjem, jeg visste ikke at nedtellingen i timer hadde begynt.
+mer pris på livet for hver overraskende overlevelse. Husnøklene var mistet på en strand på Sørlandet, jeg ville ikke hjem, jeg visste ikke at nedtellingen i timer hadde begynt.
 "Mit dir stehen die Sekunden". I øyeblikk av livsfare, når sekundene står stille, kan man være alene, men ikke ensom.
 Fjerde gang jeg knuste en hjelm mot asfalten kjente jeg hverken smerte eller støy. Først var jeg hyperfokusert på hvordan jeg skulle stoppe, fordi jeg skled i tilstrekkelig høy hastighet med hodet først i veibanen. Deretter, etter å ha stoppet, ringte jeg døtre og deres mor for å fortelle at jeg hadde veltet sykkelen. Til slutt tok jeg meg en hvil mens en veterinær reddet livet mitt.
 Hun brukte blusen til å bremse blødningen nok til at ambulansen fikk kjørt meg til akuttmottaket i tide. Jeg vet det fordi hun fikk igjen penger for blusen sin på forsikringen min.
