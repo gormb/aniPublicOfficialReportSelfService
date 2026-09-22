@@ -330,11 +330,12 @@ const books={
         }
         ,cloud:{ // the words a text is carried by, heaviest first
             stop:/^(og|i|til|med|av|for|en|et|den|det|de|som|er|var|at|om|men|å|på|ikke|så|når|da|her|der|fra|ved|ut|inn|opp|ned|seg|kan|skal|vil|må|hadde|har|ble|blir|han|hun|jeg|du|vi|the|and|of|to|a|in|is|it|that|with|for|on|as|at|by|from|but|or|an|be|was|were|his|her|he|she|they|you|not)$/i
-            ,words:(s,n)=>{const m={};(String(s||'').toLowerCase().match(/[\p{L}][\p{L}'-]*/gu)||[]).forEach(w=>{if(w.length<4||books.play.cloud.stop.test(w))return;m[w]=(m[w]||0)+1;});
+            ,words:(s,n,q)=>{const m={},f=String(q||'').toLowerCase(); // a filter, once something is keyed, keeps only the words that carry it – every cloud of the whole map is read through it
+                (String(s||'').toLowerCase().match(/[\p{L}][\p{L}'-]*/gu)||[]).forEach(w=>{if(w.length<4||books.play.cloud.stop.test(w)||(f&&w.indexOf(f)<0))return;m[w]=(m[w]||0)+1;});
                 return Object.keys(m).map(w=>[w,m[w]]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);}
-            ,html:(s,n)=>{ // weighed against the whole book: a word only this node carries stands green and heavy, one that stands everywhere goes blue and small, and what lies between is a mix
+            ,html:(s,n,q)=>{ // weighed against the whole book: a word only this node carries stands green and heavy, one that stands everywhere goes blue and small, and what lies between is a mix
                 const c=books.play.cloud,df=c.book()
-                    ,a=c.words(s,Infinity).map(x=>[x[0],x[1]/(df[x[0]]||x[1])]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);
+                    ,a=c.words(s,Infinity,q).map(x=>[x[0],x[1]/(df[x[0]]||x[1])]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);
                 if(!a.length)return '';const mx=a[0][1];
                 return a.map(x=>'<span style="font-size:'+(0.75+0.85*x[1]/mx).toFixed(2)+'em;color:hsl('+Math.round(120+100*(1-x[1]))+',70%,25%)">'+books.play.render.esc(x[0])+'</span>').join('');}
             ,df:{},dfFn:'' // how often each word stands on the shelf – the divisor a node's own count is read against
@@ -671,7 +672,7 @@ const books={
         }
         ,sem:{
             Z:{
-                ov:null,m:0,t:0,sp:'b',x:-1,y:-1,cell:'',armed:0 // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. x/y/cell/armed: where the pointer is, the area it rests in, and whether it has moved on to another one since ⌃⇧ or a key last set the level
+                ov:null,m:0,t:0,sp:'b',x:-1,y:-1,cell:'',armed:0,q:'' // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. x/y/cell/armed: where the pointer is, the area it rests in, and whether it has moved on to another one since ⌃⇧ or a key last set the level. q: what is keyed while the areas are up – the filter every word map is read through
                 ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
                 ,on:0
                 ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom');z.armed=0; // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
@@ -687,21 +688,31 @@ const books={
                     ,box:()=>books.play.sem.Z.nav.el
                     ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
                     ,areas:()=>{ // every level reads the same way: one area per node, its cloud standing there and its name coming up on hover. The fork and the two nodes it opens show one and the same list – the nodes of the active spine – and at the page and the paragraph the node you stand on is marked
-                        const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),sp=books.play.sem.Z.sp
+                        const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),sp=books.play.sem.Z.sp,q=books.play.sem.Z.q
                             ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:books.play.child(pl),tag=fork||kids.length>1
                             ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[]
-                                ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24)
-                                    ,on=(pl==='pl4a'||pl==='pl4b')&&k===a[3]; // grey only where you really stand – on the page or the paragraph you are in, never at the fork above them
-                                    return '<div class="nvA'+(on?' on':'')+(h?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(h?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
+                                ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24,q)
+                                    ,on=(pl==='pl4a'||pl==='pl4b')&&k===a[3] // grey only where you really stand – on the page or the paragraph you are in, never at the fork above them
+                                    ,cl=h||q; // while a filter is on the cloud is drawn even when it holds nothing: an area with no matching word stays empty and keeps its name for the hover
+                                    return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
                                 if(!rows)return '';const L=books.play.LV[books.play.ix(c)]||{},cnt=ns.filter(n=>n!=='').length // six areas is as far as one column carries; past fourteen it takes three
                                     ,grid=cnt>6?'<div class="nvR'+(cnt>14?' r3':'')+'">'+rows+'</div>':rows;
-                                return '<div class="nvGrp">'+(tag?'<div class="nvG">'+e(L.t||c)+'</div>':'')+grid+'</div>';}).join('');
+                                return '<div class="nvGrp">'+((tag||q)?'<div class="nvG">'+e(L.t||c)+books.play.sem.Z.nav.tq(q)+'</div>':'')+grid+'</div>';}).join('');
                         return grp?'<div class="nvAreas">'+grp+'</div>':'';}
+                    ,tq:q=>q?' – "'+books.play.render.esc(q)+'"':'' // the title of the map carries what was keyed: “Paragraph – "FRE"”
+                    ,setQ:e=>{ // typing while the areas are up reads through the whole word map: what was keyed is set after the level's title, and every cloud keeps only the words that carry it
+                        const z=books.play.sem.Z,n=z.nav,k=e.key;
+                        if(k==='Escape')z.q=''; // out of the filter in one go – Backspace takes one letter back
+                        else if(k==='Backspace')z.q=z.q.slice(0,-1);
+                        else if(k.length===1&&k!==' '&&!e.metaKey&&!e.altKey)z.q+=k; // a letter or a digit – ⌘ and alt are the browser's, and a space is no part of a word
+                        else return 0; // not ours – the key goes on to whoever else listens
+                        n.redraw();
+                        return 1;}
                     ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);} // an area selects that node and opens its level, like the same row in the nav
                     ,hit:(x,y)=>{const e=document.elementFromPoint(x,y);return e&&e.closest?e.closest('.nvA'):null;} // the area under a point, read off the layout – never off :hover, which the browser only settles a frame later
                     ,cell:()=>{const z=books.play.sem.Z,a=z.nav.hit(z.x,z.y);return a?a.dataset.k:'';} // the area the pointer rests in, named the way a click names it
                     ,pick:el=>{const k=el.dataset.k.split('|');books.play.sem.Z.nav.go(k[0],+k[1]);} // an area picked – by a click, or by letting ⌃⇧ go while the pointer stands on it
-                    ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+'</h2>'
+                    ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q)+'</h2>'
                     ,base:()=>document.body.classList.contains('zoom')?1:.6 // the type scale the clouds are set at: full while zooming, small in the narrow band
                     ,collapsed:()=>!document.body.classList.contains('zoom') // the band: the cloud is turned, so its height reads as its width and vice versa
                     ,hm:a=>{ // the words' own height for every cloud, read in one layout round – not the stretched box they sit in
@@ -749,6 +760,7 @@ const books={
                         else if(k==='ArrowDown'){e.preventDefault();z.drill(1,e.altKey);}   // ↓ = into the children (finer); +alt = the fork not taken last
                         else if(k==='='||k==='+'){e.preventDefault();z.drill(1,e.altKey);}  // + = finer (hand down); +alt = the other fork
                         else if(k==='-'||k==='_'){e.preventDefault();z.drill(-1);} // − = coarser (hand up)
+                        else if(z.on&&z.nav.setQ(e))e.preventDefault(); // anything else keyed while the areas are up is written into the filter after the title, and the whole word map is read through it again
                     };
                     document.onkeyup=e=>{if(!e.ctrlKey||!e.shiftKey)z.hide();}; // releasing either key ends Z-mode
                     document.onmousemove=e=>{const z=books.play.sem.Z;z.x=e.clientX;z.y=e.clientY;const c=z.nav.cell();if(c!==z.cell){z.cell=c;z.armed=1;}}; // the pointer moved on to another area (or into the gap between them)
