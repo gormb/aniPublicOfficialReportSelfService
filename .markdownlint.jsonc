@@ -1,0 +1,29 @@
+{
+  // Repository-wide markdownlint configuration.
+  //
+  // The generated book sidecars (`aniPublicOfficialReportSelfService_Html/wwwroot/Book/**`)
+  // use `#### p. N` as page markers carried over from the source document. They are
+  // navigation anchors, not document titles, and the prose is one paragraph per source
+  // line (not hard-wrapped). The rules below would otherwise flag that format.
+  //
+  // NOTE: this config applies to ALL Markdown in the repo. The only other .md files are
+  // small readme files and a third-party LICENSE, so the relaxed rules are harmless there.
+
+  // First line is `#### p. N`, not a top-level heading.
+  "MD041": false,
+
+  // Page markers / headings sit flush against the surrounding prose (no blank lines).
+  "MD022": {
+    "lines_above": 0,
+    "lines_below": 0
+  },
+
+  // Prose is one paragraph per source line, not wrapped at 80 columns.
+  "MD013": false,
+
+  // Page markers make heading levels jump (`#` -> `####` -> `###`) by design.
+  "MD001": false,
+
+  // Chapter titles intentionally end in punctuation, e.g. "Krise!" / "Åpenhet for nytenking;".
+  "MD026": false
+}

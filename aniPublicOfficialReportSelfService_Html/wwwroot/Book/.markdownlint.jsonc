@@ -1,0 +1,25 @@
+{
+  // Book chapters use `#### p. N` as page markers carried over from the source
+  // document. They are navigation anchors, not the document's title, so the
+  // "first line must be a top-level heading" rule does not apply here.
+  "MD041": false,
+
+  // Page markers and headings sit flush against the surrounding prose with no
+  // blank lines. Expect 0 blank lines instead of the default 1 so these
+  // converted-document headings are not flagged.
+  "MD022": {
+    "lines_above": 0,
+    "lines_below": 0
+  },
+
+  // Prose is one paragraph per source line, not hard-wrapped at 80 columns.
+  "MD013": false,
+
+  // Page markers (`#### p. N`) sit between chapter headings, so heading levels
+  // jump (`#` -> `####` -> `###`). That is expected for the source document.
+  "MD001": false,
+
+  // Chapter titles intentionally end in punctuation, e.g. "Krise!" and
+  // "Åpenhet for nytenking;".
+  "MD026": false
+}
