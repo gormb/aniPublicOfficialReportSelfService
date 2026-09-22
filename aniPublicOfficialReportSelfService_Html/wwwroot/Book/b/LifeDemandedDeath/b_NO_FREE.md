@@ -395,7 +395,7 @@ Mannen spurte hva slags MC jeg kjører, og nikket bekreftende når jeg sier det 
 avisa der borte”, uten å lure på hvordan jeg reagerte på historien fortsatte han. “Vi klarte ikke stoppe i svingen noen av oss, og kompisen min endte opp i andreetasje hos en hyggelig dame. Inn i et hus, og opp i andre etasje. Jeg klarte å stoppe utafor”. Minnene hadde blandet seg, ellers var det andres historier?
 Jeg nøt historiene tok ham i hånden og takket, gleder meg til å komme tilbake for å høre flere, men de er ikke hver for seg sanne, om enn kanskje sanne i at flere historier har blitt til en, men de er sanne for ham, og det er godt nok for meg.
 Nei. I mangel av religiøs tro og i mangel av definert etisk system, er det uakseptabelt for meg å lyve slik. Sannheten er for viktig til at løgner lett skal få ta sannhetens plass. En stand-up komiker sa en gang at han alltid fortalte sannheten med mindre en løgn var mer morsom, det holder ikke for meg. Jeg tar kveletak på uærligheten min, den bare ødelegger.
-To uker senere møter jeg ham uten skinnjakke ogMC og han ikjenner meg ikke iogjen.
+To uker senere møter jeg ham uten skinnjakke og MC og han kjenner meg ikke igjen.
 #### p. 97
 ### Kapellanen
 🎵 [Personal Jesus; Depeche Mode](https://aigap.no/mpj)
