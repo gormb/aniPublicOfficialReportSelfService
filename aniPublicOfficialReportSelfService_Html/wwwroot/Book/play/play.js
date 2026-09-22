@@ -107,6 +107,9 @@ const books={
             if(t){const v=t[lg],r=(typeof v==='string'?v:'')||((v&&typeof v==='object')&&v[ed])||t[lg+'_'+ed];if(r)return r;}
             return (bk===books.play.book&&books.play.md.title)?books.play.md.title:bk; // else the open file's own H1, else the folder name
         }
+        ,copies:()=>(books.play.shelf||[]).filter(x=>x.book===books.play.book) // the Book Copy level: this book's own versions, language × edition (or its PDF)
+        ,verLab:v=>v.pdf?'\u{1F4D5} '+books.play.titleOf(v.book):books.play.flag(v.lg)+books.play.edIc(v.ed)+' '+books.play.titleOf(v.book,v.lg,v.ed)
+        ,verOn:()=>{const v=books.play.copies().find(x=>(x.fn&&x.fn===books.play.md.fn)||(x.pdf&&x.pdf===books.play.pdf));return v?books.play.verLab(v):'';} // the copy you are reading, named the same way its area is
         ,nodename:pl=>{ // the ACTUAL node sitting at that level right now – the level's own name is only metadata
             const md=books.play.md,R=books.play.render,sg=books.play.render.slug;
             const bk=books.play.book,bt=books.play.titleOf(bk),w=(((md.sts[R.curSent()]||{}).txt||'').match(/\S+/g)||[])[R.wi]||'';
@@ -260,9 +263,9 @@ const books={
             ,{pl:'pl5b',t:'Line',q:'What is on this line?',nav:'The line you are on, with its four media forms beneath it – Foreground, Background, Sound and Motion, each opening the Media Form level',page:'That line read as text: its length against the measure, where it breaks, and how it is set',thoughts:'At line scale the unit is one measured line of the page: its length against the golden-ratio measure, where it breaks, and its leading. A gaze lands on a line, so eye tracking belongs here.',child:[{t:'Line length',w:'How much the line carries, measured against the golden-ratio optimum of about 66 characters.'},{t:'Line breaks',w:'Where the line breaks and why: word wrap, hyphenation or a deliberate break.'},{t:'Typeface, size and leading',w:'Which face and size set the line, and the 1.15 line spacing that fixes the page grid.'},{t:'Ligatures and kerning',w:'Pairs that join or tighten inside the line (fi, fl, AV).'}]}
             ,{pl:'pl6b',t:'Media Form',q:'Which modalities shape the presented unit?',nav:'The line you are on, standing alone as the node – the line whose media is drawn',page:'Its four media rows: colour, background, sound (Spotify Play) and motion',thoughts:'At media-form scale the unit is the presented materialisation of the finer node: the same content carried by a modality – visual (colour, background, image), auditory (music/Spotify), motion (video). Modalities are dimensions, so each is one row here; Spotify playback is the auditory dimension, anchored to the page (🎵 … — p. N) and drawn for the line.',child:[{t:'🎨 Foreground (colour)',w:'Which colour renders the presented unit; changing colour restyles it as a whole.'},{t:'🖼️ Background',w:'What renders behind the unit: solid colour, gradient or image.'},{t:'🎵 Sound – Spotify Play',w:'The song is a media form anchored to its Sub Chapter (### — p. N) heading; pages inside that subchapter inherit it. Decode the aigap.no/m-code (SpotKey), resolve it to a Spotify URL and embed the player here.'},{t:'🎬 Motion / video',w:'Motion or video as a media form for the presented unit.'}]}
         ]
-        ,up:{pl0:null,pl1:'pl0',pl2:'pl1',pl3:'pl2',pl4a:'pl3',pl4b:'pl3',pl5a:'pl4a',pl5b:'pl4b',pl6a:'pl5a',pl6b:'pl5b'}
-        ,child:pl=>books.play.LV.filter(x=>books.play.up[x.pl]===pl).map(x=>x.pl)
-        ,ix:pl=>{const i=books.play.LV.findIndex(x=>x.pl===pl);return i<0?0:i;}
+        ,up:{pl0:null,pl1:'pl0',pl1c:'pl0',pl2:'pl1',pl3:'pl2',pl4a:'pl3',pl4b:'pl3',pl5a:'pl4a',pl5b:'pl4b',pl6a:'pl5a',pl6b:'pl5b'}
+        ,child:pl=>pl==='pl0'?['pl1c']:books.play.LV.filter(x=>books.play.up[x.pl]===pl).map(x=>x.pl) // the shelf's children are the copies – the Book Copy level, one node per version of this book
+        ,ix:pl=>{if(pl==='pl1c')pl='pl1';const i=books.play.LV.findIndex(x=>x.pl===pl);return i<0?0:i;}
         ,id:i=>(books.play.LV[i]||{}).pl||('pl'+i)
         ,ancestors:pl=>{const a=[];let p=books.play.up[pl];while(p){a.unshift(p);p=books.play.up[p];}return a;}
         ,path:pl=>books.play.ancestors(pl).concat(pl)
@@ -287,6 +290,8 @@ const books={
                 ,pgn=p=>p&&p.pn?String(p.pn):'' // a PAGE is named by its bare number – the name of the page, not an anchor, so no #
                 ,bk=[...new Set([...s.map(x=>x.book),...md.books])]
                 ,vs=s.filter(x=>x.book===books.play.book)
+                ,lgs=[...new Set(vs.filter(x=>x.lg).map(x=>x.lg))],eds=[...new Set(vs.filter(x=>x.lg===books.play.lg).map(x=>x.ed))]
+                ,cps=books.play.copies().map(v=>books.play.verLab(v))
                 ,ch=md.chs.map(c=>pn(c[0])),ks=R.chSubs(R.ch),subs=ks.map(k=>pn((md.subs[k]||[])[0])),pgs=su.map(pgn)
                 ,pars=md.pgs.filter(p=>su.some(q=>q.pn===p.pn))
                 ,ss=R.sentT((md.pgs[R.curPar()]||{}).txt||'')
@@ -295,8 +300,9 @@ const books={
             const f=(ns,t)=>books.play.hiFit(ns,t);
             return ({
                 pl0:[bk,books.play.book,t=>books.play.pick(f(bk,t)||t)]
-                ,pl1:[[...new Set(vs.filter(x=>x.lg).map(x=>x.lg))],books.play.lg,t=>books.play.open(t,books.play.ed,1)]
-                ,pl1e:[[...new Set(vs.filter(x=>x.lg===books.play.lg).map(x=>x.ed))],books.play.ed,t=>books.play.open(books.play.lg,t,1)]
+                ,pl1:[lgs,books.play.lg,t=>books.play.open(t,books.play.ed,1)]
+                ,pl1e:[eds,books.play.ed,t=>books.play.open(books.play.lg,t,1)]
+                ,pl1c:[cps,books.play.verOn(),t=>{const v=books.play.copies()[cps.indexOf(t)];if(!v)return;if(v.pdf)books.play.openPdf(v.pdf);else books.play.open(v.lg,v.ed,1);}]
                 ,pl2:[ch,pn((md.chs[R.ch]||[])[0]),t=>{const h=f(ch,t);if(h!==undefined)R.setCh(ch.indexOf(h));}]
                 ,pl3:[subs,pn(su[0]),t=>{const h=f(subs,t);if(h!==undefined)R.setSu(ks[subs.indexOf(h)]);}]
                 ,pl4b:[pgs,pgn(md.pages[R.pi]),t=>{const h=f(pgs,t);if(h!==undefined){R.pi=(su[pgs.indexOf(h)]||{}).pgi||0;R.idx=R.pi+1;}}]
@@ -307,12 +313,31 @@ const books={
                 ,pl6b:[[''],'',()=>{}]
             })[pl]||[[''],'',()=>{}];
         }
+        ,txtOf:(pl,k,fb)=>{ // what a node holds – a chapter, page or line carries more than its own name
+            const md=books.play.md,R=books.play.render
+                ,pgs=a=>(a||[]).map(p=>md.pgs.filter(q=>q.pn===p.pn).map(q=>q.txt).join(' ')).join(' ');
+            const t={pl0:(fb===books.play.book?md.txt:''),pl1c:(fb===books.play.verOn()?md.txt:''),pl1:md.txt,pl2:pgs(md.chs[k]),pl3:pgs(md.subs[k]),pl4b:pgs([md.pages[k]]),pl5b:(R.lnsOf()[k]||{}).t}[pl];
+            return t!==undefined?t:(fb!==undefined?fb:books.play.names(pl)[0][k]||'');
+        }
+        ,cloud:{ // the words a text is carried by, heaviest first
+            stop:/^(og|i|til|med|av|for|en|et|den|det|de|som|er|var|at|om|men|å|på|ikke|så|når|da|her|der|fra|ved|ut|inn|opp|ned|seg|kan|skal|vil|må|hadde|har|ble|blir|han|hun|jeg|du|vi|the|and|of|to|a|in|is|it|that|with|for|on|as|at|by|from|but|or|an|be|was|were|his|her|he|she|they|you|not)$/i
+            ,words:(s,n)=>{const m={};(String(s||'').toLowerCase().match(/[\p{L}][\p{L}'-]*/gu)||[]).forEach(w=>{if(w.length<4||books.play.cloud.stop.test(w))return;m[w]=(m[w]||0)+1;});
+                return Object.keys(m).map(w=>[w,m[w]]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);}
+            ,html:(s,n)=>{ // weighed against the whole book: a word only this node carries stands green and heavy, one that stands everywhere goes blue and small, and what lies between is a mix
+                const c=books.play.cloud,df=c.book()
+                    ,a=c.words(s,Infinity).map(x=>[x[0],x[1]/(df[x[0]]||x[1])]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);
+                if(!a.length)return '';const mx=a[0][1];
+                return a.map(x=>'<span style="font-size:'+(0.75+0.85*x[1]/mx).toFixed(2)+'em;color:hsl('+Math.round(120+100*(1-x[1]))+',70%,25%)">'+books.play.render.esc(x[0])+'</span>').join('');}
+            ,df:{},dfFn:'' // how often each word stands in the whole book – the divisor the node's own count is read against
+            ,book:()=>{const c=books.play.cloud;if(c.dfFn===books.play.md.fn)return c.df;
+                const m={};c.words(books.play.md.txt,Infinity).forEach(x=>m[x[0]]=x[1]);c.dfFn=books.play.md.fn;return c.df=m;}
+        }
         ,hi:()=>{ // #hiId ← what is selected: the top layer (book*language*edition) before the first '.', then one token per level below
             const m=books.play.render.mode
                 ,ns=['pl0','pl1','pl1e','pl2','pl3'].slice(0,m<4?[0,3,4,5][m]:5) // nothing at the shelf – it lists every book concept itself; from the book copy up the same segment names book*language*edition
                     .concat(m<4?[]:m===4?['pl4b']:m>7?['pl4b','pl5b']:['pl4a','pl5a','pl6a'].slice(0,m-4))
                 ,tk=pl=>{const a=books.play.names(pl);return books.play.hiCut(a[0],a[1]);}
-                ,k=m?4:1
+                ,k=m?3:1
                 ,top=ns.slice(0,k).map(tk).filter(Boolean).join('*')
                 ,deep=ns.slice(k).map(tk).filter(Boolean).join('.')
                 ,id=deep?top+'.'+deep:top;
@@ -642,24 +667,33 @@ const books={
                     el:null,last:''
                     ,box:()=>books.play.sem.Z.nav.el
                     ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
-                    ,ver:v=>v.pdf?'\u{1F4D5} '+books.play.titleOf(v.book):books.play.flag(v.lg)+books.play.edIc(v.ed)+' '+books.play.titleOf(v.book,v.lg,v.ed)
-                    ,hue:s=>{let h=0;for(const c of String(s))h=(h*31+c.codePointAt(0))%360;return h;} // a colour per instance until the real one is decided – stable, so the areas do not flicker on redraw
-                    ,shelf:()=>{ // pl0: the concepts top to bottom, each with its own versions left to right, every label set as the spine it is and claiming its share of the band
-                        const s=books.play.shelf||[],e=books.play.render.esc,n=books.play.sem.Z.nav;
-                        return [...new Set(s.map(x=>x.book))].map(b=>'<div class="nvBook"><span class="nvName">'+e(b)+'</span>'
-                            +s.filter(x=>x.book===b).map(v=>{const t=n.ver(v);return '<span class="nvVer" style="background:hsl('+n.hue(t)+',70%,88%)">'+e(t)+'</span>';}).join('')+'</div>').join('');
-                    }
-                    ,areas:()=>{ // every level reads the same way: one area per node in it, top to bottom, the node's name centred in its area
-                        const e=books.play.render.esc,kids=books.play.child(books.play.id(books.play.render.mode))
-                            ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[],L=books.play.LV[books.play.ix(c)]||{}
-                                ,rows=ns.map((n,k)=>n===''?'':'<div class="nvA'+(n===a[1]?' on':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span></div>').join('');
-                                return rows?'<div class="nvGrp">'+(kids.length>1?'<div class="nvG">'+e(L.t||c)+'</div>':'')+rows+'</div>':'';}).join('');
-                        return grp?'<div class="nvAreas">'+grp+'</div>':'';}
+                    ,areas:()=>{ // every level reads the same way: one area per node in the level below, its cloud standing there and its name coming up on hover. pl3 is the fork, so it keeps the nav's split: pages left, paragraphs right.
+                        const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),kids=books.play.child(pl)
+                            ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[]
+                                ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24);
+                                    return '<div class="nvA'+(h?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(h?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
+                                if(!rows)return '';const L=books.play.LV[books.play.ix(c)]||{},many=ns.filter(n=>n!=='').length>6; // more than six areas → folded into two columns
+                                return '<div class="nvGrp">'+(kids.length>1?'<div class="nvG">'+e(L.t||c)+'</div>':'')+(many?'<div class="nvR">'+rows+'</div>':rows)+'</div>';}).join('');
+                        return grp?'<div class="nvAreas'+(pl==='pl3'?' cols':'')+'">'+grp+'</div>':'';}
                     ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);} // an area selects that node and opens its level, like the same row in the nav
-                    ,body:()=>{const n=books.play.sem.Z.nav,pl=books.play.id(books.play.render.mode);
-                        if(pl==='pl0')return (books.play.shelf||[]).length?'<div class="nvShelf">'+n.shelf()+'</div>':'<h2>'+books.play.render.esc(n.label())+'</h2>';
-                        return n.areas()||'<h2>'+books.play.render.esc(n.label())+'</h2>';}
-                    ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;}
+                    ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+'</h2>'
+                    ,hm:a=>{ // the words' own height for every cloud, read in one layout round – not the stretched box they sit in
+                        a.forEach(w=>{w.style.fontSize='1em';w.style.bottom='auto';w.style.height='auto';});
+                        const h=a.map(w=>Math.max(1,w.scrollHeight));
+                        a.forEach(w=>{w.style.bottom='';w.style.height='';});
+                        return h;}
+                    ,fit:()=>{ // a cloud keeps to its own area: many words where the area is roomy, few – and smaller type – where it is crowded. Nothing runs over the frame, so two areas' words can never touch
+                        const n=books.play.sem.Z.nav,a=[...n.el.querySelectorAll('.nvW')];if(!a.length)return;
+                        const room=w=>Math.max(16,w.parentElement.clientHeight-4); // the area's own room, a hair inside its frame
+                        const h=n.hm(a);
+                        a.forEach((w,i)=>{const k=room(w)/h[i];if(k>=1)return;
+                            const keep=Math.max(2,Math.round(w.childElementCount*k)); // the list is ranked, so the words that carry least go first
+                            while(w.childElementCount>keep)w.removeChild(w.lastChild);});
+                        const h2=n.hm(a);
+                        a.forEach((w,i)=>{const s=room(w)/h2[i]; // still too tall → smaller type, and never below .4em
+                            if(s<1)w.style.fontSize=Math.max(.4,s).toFixed(2)+'em';});
+                    }
+                    ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();}
                     ,swap:()=>{const n=books.play.sem.Z.nav,p=document.getElementById('dbPlay');if(!n.el){p.innerHTML='<div id="semNav"></div>';n.el=p.firstChild;n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x){const k=x.dataset.k.split('|');n.go(k[0],+k[1]);}};p.classList.add('navon');}n.draw();}
                 }
                 ,drill:(d,alt)=>{const R=books.play.render,z=books.play.sem.Z,pl=books.play.id(R.mode),ks=books.play.child(pl)
