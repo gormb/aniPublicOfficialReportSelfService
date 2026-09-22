@@ -594,6 +594,7 @@ const books={
                 R.focus();
                 R.hands();
             }
+            ,em:()=>parseFloat(getComputedStyle(document.documentElement).fontSize)||1 // the client's own em: every figure the fit works with is a fraction of it, so nothing is pinned to a pixel
             ,blink:(el,n)=>{if(!el)return;el.classList.remove('blink');void el.offsetWidth;el.style.animationIterationCount=String(n||1);el.classList.add('blink');} // re-adding the class restarts it, and a reflow is what makes that true when it is already there
             ,hl:()=>{const m=books.play.render.mode;books.play.render.el.nav.querySelectorAll('a[data-i]').forEach(a=>a.classList.toggle('on',+a.dataset.m===m&&+a.dataset.i===books.play.render.idx));}
             ,focus:()=>{ // keep the active node in view – the lists get long (pl3 is ~260 rows)
@@ -710,7 +711,7 @@ const books={
                         const r=z.rec=new R();
                         r.lang=books.play.lg==='NO'?'nb-NO':'en-GB';r.continuous=!0;r.interimResults=!1; // the copy's own language: the words in the map are its words
                         r.onresult=e=>{let s='';for(let i=e.resultIndex;i<e.results.length;i++)if(e.results[i].isFinal)s+=e.results[i][0].transcript;
-                            const w=n.lastWord(s);if(w){z.q=w;n.applyQ();}}
+                            const w=n.lastWord(s);if(w){if(n.qEl)n.qEl.value='';z.q=w;n.applyQ();}} // the field is emptied first: what was keyed is not kept – what came by voice is what stands there
                         r.onerror=()=>{z.rec=null;btn.classList.remove('on');};
                         r.onend=()=>{z.rec=null;btn.classList.remove('on');};
                         try{r.start();}catch(e){z.rec=null;return;} // start() throws where the page is not allowed to listen
@@ -738,21 +739,21 @@ const books={
                     ,base:()=>document.body.classList.contains('zoom')?1:.6 // the type scale the clouds are set at: full while zooming, small in the narrow band
                     ,collapsed:()=>!document.body.classList.contains('zoom') // the band: the cloud is turned, so its height reads as its width and vice versa
                     ,hm:a=>{ // the words' own height for every cloud, read in one layout round – not the stretched box they sit in
-                        const b=books.play.sem.Z.nav.base();
+                        const b=books.play.sem.Z.nav.base(),e=books.play.render.em();
                         a.forEach(w=>{w.style.fontSize=b+'em';w.style.bottom='auto';w.style.height='auto';});
-                        const h=a.map(w=>Math.max(1,w.scrollHeight));
+                        const h=a.map(w=>Math.max(e,w.scrollHeight));
                         a.forEach(w=>{w.style.bottom='';w.style.height='';});
                         return h;}
+                    ,room:w=>{const c=w.parentElement,e=books.play.render.em(); // what an area gives, a quarter em inside its frame. Turned, the cloud must fit both ways, or a tall area would fill up with lines
+                        return Math.max(e,(books.play.sem.Z.nav.collapsed()?Math.min(c.clientWidth,c.clientHeight):c.clientHeight)-e/4);}
                     ,fit:()=>{ // a cloud is given the room its area has: many words where the area is roomy, few – and smaller type – where it is crowded. It may run over into its neighbours, so the only thing kept in check is the amount
                         const n=books.play.sem.Z.nav,a=[...n.el.querySelectorAll('.nvW')];if(!a.length)return;
-                        const room=w=>{const c=w.parentElement; // the area's own room, a hair inside its frame. Turned, the cloud must fit both ways, or a tall area would fill up with lines
-                            return Math.max(16,(n.collapsed()?Math.min(c.clientWidth,c.clientHeight):c.clientHeight)-4);};
                         const h=n.hm(a);
-                        a.forEach((w,i)=>{const k=room(w)/h[i];if(k>=1)return;
+                        a.forEach((w,i)=>{const k=n.room(w)/h[i];if(k>=1)return;
                             const keep=Math.max(2,Math.round(w.childElementCount*k)); // the list is ranked, so the words that carry least go first
                             while(w.childElementCount>keep)w.removeChild(w.lastChild);});
                         const h2=n.hm(a);
-                        a.forEach((w,i)=>{const s=room(w)/h2[i]; // still too tall → smaller type, and never below .4 of the scale it is set in
+                        a.forEach((w,i)=>{const s=n.room(w)/h2[i]; // still too tall → smaller type, never below .4 of the scale it is set in
                             if(s<1)w.style.fontSize=(n.base()*Math.max(.4,s)).toFixed(2)+'em';});
                     }
                     ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();books.play.sem.Z.cell=n.cell();} // the mark is taken again: the areas may have moved under a pointer that never moved
@@ -760,7 +761,7 @@ const books={
                     ,swap:()=>{ // the panel is overwritten once: a query strip – what is keyed or spoken, the filter the whole map is read through – and under it the areas themselves
                         const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
                         if(!n.el){
-                            p.innerHTML='<div id="semQ"><input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the word map"><button id="nvMic" type="button" title="Speak a word – the whole map keeps what it hears. While ⌃⇧ is held, move over it to open the mic; over it again to close">\u{1F3A4}</button></div><div id="semNav"></div>';
+                            p.innerHTML='<div id="semQ"><button id="nvMic" type="button" title="Speak a word – the whole map keeps what it hears. While ⌃⇧ is held, move over it to open the mic; over it again to close">\u{1F3A4}</button><input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the word map"></div><div id="semNav"></div>';
                             n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
                             const mic=n.micEl=p.querySelector('#nvMic');
                             n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x)n.pick(x);};
