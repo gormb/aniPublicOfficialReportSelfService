@@ -1046,6 +1046,10 @@ To ytterpunkter for musikkens rolle i historiefortelling er bakgrunnsmusikk og a
 Et eksempel fra film og serier og TV er serien Miami Vice. Jan Hammer, ansvarlig for musikken, så musikken som den tredje hovedrolleinnehaveren i tillegg til Ricardo og Tubbs.
 Filmskapere har både før og etter hatt samme innstilling. I denne boka er musikken til det enkelte kapittel uttrykk for følelser da kapittelet ble skrevet.
 #### p. 167
+### Impuls!
+🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
+Jeg har aldri angret på noe jeg har kjøpt på impuls.- Jeg er god på research og har aldri angret manglende research Skriv denne ferdig sammen med Yngvar Sa doktorgradsstudenten.
+#### p. 168
 ## Uplassert og ubestemt
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix og mer
