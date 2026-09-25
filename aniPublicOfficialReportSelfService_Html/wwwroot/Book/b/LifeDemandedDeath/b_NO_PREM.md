@@ -885,13 +885,12 @@ Elitesoldat Militærnekteren som til damer sa han var del av en nasjonal spesial
 Etterretningsmann Helikopertpiloten som hadde galmannskjørt mye MC i Athen på 90-tallet. Historier fra avsløringer fra CIA blandet med mindre løgner om at han fløy helikopter i forsvaret, de store løgnene ble indirekte hintet og de små fortalt ut i lange historier som utviklet seg etterhvert. Giftet seg med en asiater som sikkert får høre historiene hver dag og smiler høflig.
 Piloter De to var helikopterpiloter, det var hele historien. De mente at løgnen var mindre enn om de hadde sagt de fløy jagerfly. Slik kom de i kontakt med damer, men tror ikke de kysset noen av dem noen gang, om det var fordi de virket uoppnåelige eller ikke ble trodd vet jeg ikke, kanskje litt av hvert?
 #### p. 140
-Heltene De administrativt ansatte ved den Engelske ambasaden sa de var i MI-6. Historiene var mange, og de fortsatte etter at de var avslørt.
+Heltene De administrativt ansatte ved den Engelske ambassaden sa de var i MI-6. Historiene var mange, og de fortsatte etter at de var avslørt.
 Jeg undret på om jeg selv har pyntet på historier fra forsvaret, eller om jeg er annerledes, og sterkere enn disse historiefortellerne, Var jeg så svak at jeg omskrev min egen historie så mye at jeg løy for andre? løy for meg selv?
 For å ha nytte av minnene våre er omskriving for nye situasjoner nyttig. Så kanskje det er jeg som underkommuniserer og ikke de andre som lyver. Kanskje er det viktigere å utnytte minnet for å lage en god og nyttig historie enn å gjengi sannheten med optimal presisjon?
 Jeg kjørte ikke over 200 km/t om natten, mest om dagen. Da jeg kjørte om natten lå jeg ofte rundt fartsgrensen på små veier.
 Men historien om kjøring i 200 km/t om natten, som jeg bare har gjort et par ganger, fanger essensen av mange historier i en mer kompakt fortelling. Sann, ikke virkelig.
-Jeg hadde aldri ulykker over 100 km/t, ellers hadde jeg ikke kunnet skrive dette. Om det var fordi jeg var uforsiktig i fartsblindhet eller hadde nok overlevelsesinstinkt vet jeg ikke.
-Minner om ulykker, nattkjøring, og høy fart blander seg.
+Jeg hadde aldri ulykker over 100 km/t, hadde kunnet skrive dette da? Om det var fordi jeg var uforsiktig i fartsblindhet eller hadde nok overlevelsesinstinkt vet jeg ikke. Minner om ulykker, nattkjøring, og høy fart blander seg.
 #### p. 141
 ### Vestens forfall
 🎵 [Working Class Hero; Ozzy Osbourne](https://aigap.no/mwch)
