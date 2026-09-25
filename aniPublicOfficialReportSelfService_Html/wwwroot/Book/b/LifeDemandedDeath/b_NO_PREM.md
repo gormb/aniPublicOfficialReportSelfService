@@ -883,7 +883,7 @@ Lag på lag med løgn, er det måten vi holder på selvfølelsen der alle lider 
 Da jeg sto utenfor tenkte jeg på alle gangene nære venner av meg hadde fortalt damer om deres tid i militæret, og deres dype elobarative historier bygget opp gjennom et halvt liv med gjenfortelling av halve sannheter og ting de har fra media.
 Elitesoldat Militærnekteren som til damer sa han var del av en nasjonal spesialstyrke hvor han gjorde MMA, ny personlighet for en hver anledning, men lite nok kommunikasjon til at man sjelden blir avslørt.
 Etterretningsmann Helikopertpiloten som hadde galmannskjørt mye MC i Athen på 90-tallet. Historier fra avsløringer fra CIA blandet med mindre løgner om at han fløy helikopter i forsvaret, de store løgnene ble indirekte hintet og de små fortalt ut i lange historier som utviklet seg etterhvert. Giftet seg med en asiater som sikkert får høre historiene hver dag og smiler høflig.
-Piloter De to var helikopterpiloter, det var hele historien. De mente at løgnen var midre enn om de hadde sagt de fløy jagerfly. Slik kom de i kontakt med damer, men tror ikke de kysset noen av dem noen gang, om det var fordi de virket uoppnåelige eller ikke ble trodd vet jeg ikke, kanskje litt av hvert?
+Piloter De to var helikopterpiloter, det var hele historien. De mente at løgnen var mindre enn om de hadde sagt de fløy jagerfly. Slik kom de i kontakt med damer, men tror ikke de kysset noen av dem noen gang, om det var fordi de virket uoppnåelige eller ikke ble trodd vet jeg ikke, kanskje litt av hvert?
 #### p. 140
 Heltene De administrativt ansatte ved den Engelske ambasaden sa de var i MI-6. Historiene var mange, og de fortsatte etter at de var avslørt.
 Jeg undret på om jeg selv har pyntet på historier fra forsvaret, eller om jeg er annerledes, og sterkere enn disse historiefortellerne, Var jeg så svak at jeg omskrev min egen historie så mye at jeg løy for andre? løy for meg selv?
@@ -1048,7 +1048,8 @@ Filmskapere har både før og etter hatt samme innstilling. I denne boka er musi
 #### p. 167
 ### Impuls!
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
-Jeg har aldri angret på noe jeg har kjøpt på impuls.- Jeg er god på research og har aldri angret manglende research Skriv denne ferdig sammen med Yngvar Sa doktorgradsstudenten.
+Jeg har aldri angret på noe jeg har kjøpt på impuls.- Jeg er god på research og har aldri angret manglende research Han sa: “ikke les resten av dette kapittelet”
+Skriv denne ferdig sammen med Yngvar Sa doktorgradsstudenten. Han hadde fanget sannheten med sidesynet så lenge at han var lei, det varpå tilde å bruke denanalytiske hjernen til å fgå historien til bunns. Bare fordi den kjedet seg.
 #### p. 168
 ## Uplassert og ubestemt
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
