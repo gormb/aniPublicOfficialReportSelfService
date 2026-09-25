@@ -675,17 +675,32 @@ const books={
             Z:{
                 ov:null,m:0,t:0,sp:'b',x:-1,y:-1,cell:'',armed:0,q:'' // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. x/y/cell/armed: where the pointer is, the area it rests in, and whether it has moved on to another one since ⌃⇧ or a key last set the level. q: what is keyed while the areas are up – the filter every word map is read through
                 ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
-                ,on:0
+                ,on:0,pin:0,was:0,key:0,mod:0 // pin: the two fingers opened or closed a level; was: whether the areas already stood up when they landed; key: the two keys are down now; mod: they have already been read since they last went down
+                ,wMap:{
+                    // suppabase has these, when read store in memcache, and when written store in both memcache and supabase. The functions are in SQL, but the data is JSONB. The key is a 128-bit UUID made from the SHA-1 of the what and where strings, each truncated to 64 bits. The words are a JSONB array of objects with s:string and n:number.
+                    // create table if not exists public.map(whatwhere uuid primary key,words jsonb not null,dtC timestamptz default now() not null);
+                    // create or replace function public.map_ww(what varchar, wher varchar) returns uuid language sql immutable as $$ select (encode(substr(digest(what, 'sha1'), 1, 8), 'hex') || encode(substr(digest(wher, 'sha1'), 1, 8), 'hex'))::uuid; $$;
+                    // create or replace function public.map_get(what varchar, wher varchar) returns jsonb language sql immutable as $$ select words from public.map where whatwhere = public.map_ww(what, wher); $$;
+            
+            
+                    // create or replace function public.map_set(what varchar, wher varchar, words jsonb) returns uuid language sql volatile as $$ insert into public.map(whatwhere, words) values (public.map_ww(what, wher), words) on conflict (whatwhere) do update set words = excluded.words returning whatwhere; $$;
+                    // -- usage: (what is always uppercase, where is always lowercase, words is a jsonb array of objects with s:string and n:number)
+                    // is json correct? fix it! select public.map_set('HELLO', 'l*n*p.n.nulls', '[{"s":"hello","n":4},{"s":"world","n":7}]'::jsonb);
+                    // select public.map_get('HELLO', 'l*n*p.n.nulls');
+                    g:(hId,q)=>{const k=hId+'|'+q;return books.play.memcache[k];}
+                    ,s:(hId,q,words)=>{const k=hId+'|'+q;books.play.memcache[k]=words;
+                }
+                ,zb:()=>{const b=document.getElementById('zmT');if(!b)return;const on=books.play.sem.Z.on;b.textContent=on?'\u2299':'\u25CE';b.title=on?'Collapse the word map back into its band':'Expand the word map over the reading area';} // ◎ when the map is down and ⊙ when it is up: the switch in the menu bar, where it stands the same however the map is shaped
                 ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom');z.armed=0; // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
                     [E.prev,E.next,E.lvBars.querySelector('button[data-zm]'),document.getElementById('lvCtl')].forEach(el=>R.blink(el,3)); // the two hands and both ways out of the level blink three times, to say where they are
-                    z.nav.swap();z.nav.redraw();} // the areas are wide now, so the clouds are laid out again and the pointer's mark is taken again
+                    z.nav.swap();z.nav.redraw();z.zb();} // the areas are wide now, so the clouds are laid out again and the pointer's mark is taken again
                 ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0;
-                    const a=z.nav.hit(z.x,z.y) // what the pointer stands on now – letting ⌃⇧ go walks into it, exactly as a click would, but only once the pointer has moved on to another cloud
+                    const a=z.nav.hit(z.x,z.y) // what the pointer stands on now – pressing ⌃⇧ again walks into it, exactly as a click would, but only once the pointer has moved on to another cloud
                         ,m=(a&&z.armed)?a:z.nav.firstOf(z.q); // and when a word was keyed or spoken, the level is left on the first area the map still carries it in
                     if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
-                    if(m)z.nav.pick(m);z.nav.redraw();} // the band is narrow and set in smaller type, so the areas are drawn and measured again
+                    if(m)z.nav.pick(m);z.nav.redraw();z.zb();} // the band is narrow and set in smaller type, so the areas are drawn and measured again
                 ,enter:()=>books.play.sem.Z.show()
-                ,nav:{ // ⌃⇧ held or two fingers down overwrite the play panel (right, innerHTML and all) with a navigating area – the level we are on, and what it selects. It stays: leaving the mode puts nothing back
+                ,nav:{ // ⌃⇧, a middle click or two fingers overwrite the play panel (right, innerHTML and all) with a navigating area – the level we are on, and what it selects. It stays: leaving the mode puts nothing back
                     el:null,last:''
                     ,box:()=>books.play.sem.Z.nav.el
                     ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
@@ -758,17 +773,19 @@ const books={
                     }
                     ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();books.play.sem.Z.cell=n.cell();} // the mark is taken again: the areas may have moved under a pointer that never moved
                     ,redraw:()=>{const n=books.play.sem.Z.nav;n.last='';n.draw();} // the room changed – every cloud is built and fitted again
-                    ,swap:()=>{ // the panel is overwritten once: a query strip – what is keyed or spoken, the filter the whole map is read through – and under it the areas themselves
+                    ,swap:()=>{ // the panel is overwritten once: the areas, and under them the strip – a filter field only makes sense where the word map it filters stands
                         const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
                         if(!n.el){
-                            p.innerHTML='<div id="semQ"><button id="nvMic" type="button" title="Speak a word – the whole map keeps what it hears. While ⌃⇧ is held, move over it to open the mic; over it again to close">\u{1F3A4}</button><input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the word map"></div><div id="semNav"></div>';
+                            p.innerHTML='<div id="semNav"></div>'
+                                +'<div id="semQ"><button id="nvMic" type="button" title="Speak a word – the whole map keeps what it hears. While ⌃⇧ is held, move over it to open the mic; over it again to close">\u{1F3A4}</button>'
+                                +'<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the word map"></div>';
                             n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
                             const mic=n.micEl=p.querySelector('#nvMic');
                             n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x)n.pick(x);};
                             n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();}; // a phone's keyboard and its own dictation arrive as text, never as key events – both land here
-                            if(n.mk()){ // ⌃⇧ clamps every click (ctrl-click is the pointer's own menu, alt-click the other fork), so in that mode 🎤 is worked by moving over it: over again is off again
-                                mic.onclick=e=>{if(!e.ctrlKey&&!e.metaKey&&!e.altKey)n.mic(!z.rec);}; // outside ⌃⇧ an ordinary click still toggles it
-                                mic.onmouseenter=()=>{if(z.on)n.mic(!z.rec);};
+                            if(n.mk()){ // while ⌃⇧ are held a click can never be a plain click (ctrl-click is the pointer's own menu, alt-click the other fork), so then 🎤 is worked by moving over it: over again is off again
+                                mic.onclick=e=>{if(!e.ctrlKey&&!e.metaKey&&!e.altKey)n.mic(!z.rec);}; // with the keys let go an ordinary click toggles it
+                                mic.onmouseenter=()=>{if(z.on&&z.key)n.mic(!z.rec);};
                             }else mic.hidden=1; // no API: the field carries the voice instead
                             p.classList.add('navon');document.body.classList.add('navon');
                         }n.draw();} // the body carries it too: the columns answer to whether the areas are on
@@ -783,11 +800,17 @@ const books={
                     R.go(books.play.ix(k),0,wide&&d<0);} // wide (a pinch together / ctrl-wheel down) only widens the level – the node it contains is NOT opened: a cell pick or a zoom-in is what opens it
                 ,init:()=>{
                     const z=books.play.sem.Z,db=()=>document.getElementById('dpBook')
-                        ,dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
+                        ,dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)
+                        ,zone=t=>db().contains(t)||!!(z.nav.el&&z.nav.el.contains(t)) // the reading pane, and the areas themselves the moment they cover it
+                        ,zb=document.getElementById('zmT');
+                    if(zb)zb.onclick=()=>{z.on?z.hide():z.show();};z.zb(); // the switch in the menu bar works the same two ways the keys do
                     let base=0,sx=0,sy=0,sw=0,acc=0,at=0; // base = the pinch width the last step was taken at, sx/sy = where a one-finger swipe began, sw = it may still be a swipe, acc/at = how far – and how long ago – a trackpad pinch turned
                     document.onkeydown=e=>{
-                        if(e.key==='Control'||e.key==='Shift'){if(e.ctrlKey&&e.shiftKey)z.enter();return;} // ⌃⇧ anywhere is Z-mode – not only while hovering the book; ⌃ alone does nothing (and bare ⌃arrows belong to Mission Control)
-                        if(!e.ctrlKey||!e.shiftKey)return;
+                        if(e.key==='Control'||e.key==='Shift'){ // ⌃⇧ is the switch itself, not something to hold: pressed together they put the areas up, pressed together again they take them down – ⌃ alone does nothing (and bare ⌃arrows belong to Mission Control)
+                            z.key=e.ctrlKey&&e.shiftKey?1:0;
+                            if(z.key&&!z.mod){z.mod=1;if(z.on)z.hide();else z.enter();}
+                            return;}
+                        if(!z.on||(e.ctrlKey&&!e.shiftKey))return; // the arrows and the hand belong to the map the whole time it is up, not only while the two keys are held – and bare ⌃arrows are still Mission Control's
                         z.armed=0; // the key sets the level, the pointer has chosen nothing: letting go on its own may not click
                         const k=e.key;
                         if(k==='ArrowLeft' ||k===','||k==='<'){e.preventDefault();books.play.render.nav(-1);}  // 🫲
@@ -796,27 +819,27 @@ const books={
                         else if(k==='ArrowDown'){e.preventDefault();z.drill(1,e.altKey);}   // ↓ = into the children (finer); +alt = the fork not taken last
                         else if(k==='='||k==='+'){e.preventDefault();z.drill(1,e.altKey);}  // + = finer (hand down); +alt = the other fork
                         else if(k==='-'||k==='_'){e.preventDefault();z.drill(-1);} // − = coarser (hand up)
-                        else if(z.on&&z.nav.keyQ(e))e.preventDefault(); // anything else keyed while the areas are up is written into the filter after the title, and the whole word map is read through it again
+                        else if(z.nav.keyQ(e))e.preventDefault(); // anything else keyed while the areas are up is written into the filter after the title, and the whole word map is read through it again
                     };
-                    document.onkeyup=e=>{if(!e.ctrlKey||!e.shiftKey)z.hide();}; // releasing either key ends Z-mode
+                    document.onkeyup=e=>{if(e.key==='Control'||e.key==='Shift'){z.key=e.ctrlKey&&e.shiftKey?1:0;z.mod=0;}}; // letting the keys go ends nothing: what they put up stays up until they are pressed together again
                     document.onmousemove=e=>{const z=books.play.sem.Z;z.x=e.clientX;z.y=e.clientY;const c=z.nav.cell();if(c!==z.cell){z.cell=c;z.armed=1;}}; // the pointer moved on to another area (or into the gap between them)
                     document.onmousedown=e=>{if(e.buttons===3&&db().contains(e.target)){z.m=1;z.enter();}};
                     document.onmouseup=e=>{if(z.m&&e.buttons<3)z.hide();};
-                    // touch, in the reading pane: two fingers = Z-mode like ⌃⇧ held, apart = a finer level, together = a coarser one; one finger sideways = 🫲/🫱
+                    // touch, in the reading pane: two fingers put the areas up and keep them up after they let go – a pinch opens or closes a level and leaves them standing, a two-finger touch with nothing pinched is the way out; one finger sideways = 🫲/🫱
                     document.addEventListener('touchstart',e=>{
-                        if(!db().contains(e.target))return;
-                        if(e.touches.length>1){z.t=1;sw=0;base=dist(e.touches);z.enter();} // sw=0: a second finger means it is a pinch, not a swipe
+                        if(!zone(e.target))return;
+                        if(e.touches.length>1){z.t=1;sw=0;z.pin=0;z.was=z.on;base=dist(e.touches);z.enter();} // sw=0: a second finger means it is a pinch, not a swipe
                         else if(e.touches.length===1){sw=1;sx=e.touches[0].clientX;sy=e.touches[0].clientY;} // a swipe is decided when the finger lifts – a tap stays a tap
                     },{passive:true});
                     document.addEventListener('touchmove',e=>{
                         if(!z.t||e.touches.length<2)return;
                         if(e.cancelable)e.preventDefault(); // the pinch is ours, not the browser's page zoom – what it changes is the semantic level
                         const d=base?dist(e.touches):0;
-                        if(d&&d/base>=1.35){base=d;z.drill(1);}                // apart → more detail: the node is opened
-                        else if(d&&d/base<=0.74){base=d;z.drill(-1,null,1);}    // together → less detail: only the level widens, nothing is opened
+                        if(d&&d/base>=1.35){base=d;z.pin=1;z.drill(1);}               // apart → more detail: the node is opened
+                        else if(d&&d/base<=0.74){base=d;z.pin=1;z.drill(-1,null,1);}   // together → less detail: only the level widens, nothing is opened
                     },{passive:false});
                     document.addEventListener('touchend',e=>{
-                        if(z.t&&e.touches.length<2)z.hide();
+                        if(z.t&&e.touches.length<2){z.t=0;if(!z.pin&&z.was)z.hide();} // the two fingers let go: the areas stay up – only a touch that pinched nothing closes what stood before it
                         if(sw&&!e.touches.length){ // one finger lifted: a long, level, sideways drag was a hand, not a scroll
                             const t=e.changedTouches[0]||{clientX:sx,clientY:sy},dx=t.clientX-sx,dy=t.clientY-sy;sw=0;
                             if(Math.abs(dx)>48&&Math.abs(dx)>2*Math.abs(dy))books.play.render.nav(dx<0?1:-1);
@@ -830,7 +853,7 @@ const books={
                         acc+=e.deltaY;
                         if(Math.abs(acc)>=25){const out=acc>0;z.drill(out?-1:1,null,out?1:0);acc=0;} // apart → finer (opens the node), together → coarser (only widens the level); ~25 is one step, tune here if a trackpad is too eager
                     },{passive:false});
-                    window.onblur=z.hide;
+                    window.onblur=()=>{z.key=z.mod=0;z.hide();};
                     window.onresize=()=>{if(z.ov&&z.ov.style.display==='block')z.show();};
                 }
             }

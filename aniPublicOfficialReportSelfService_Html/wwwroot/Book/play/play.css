@@ -3,14 +3,16 @@ body{
     display:grid;grid-template-columns:20vw 1fr 30%;grid-template-rows:auto 1fr;
 }
 #dpMenu{grid-column:1/-1;display:flex;gap:.5em;align-items:center;border-bottom:1px solid #999;position:relative;z-index:60;} /* above the blue area, so the menu (and the qr) stays readable while zooming */
-#dpCur{margin-left:auto;font-style:italic;color:#555;padding:0 .4em;font-size:.95em;white-space:nowrap;}
-#hiQr,#hiUrl{display:none;} /* only while zooming (sem.Z sets body.zoom) */
-body.zoom #hiQr{display:inline-flex;}
+#dpCur{font-style:italic;color:#555;padding:0 .4em;font-size:.95em;white-space:nowrap;}
+#zmT{margin-left:auto;font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.7;} /* the switch that expands and collapses the word map – in the menu bar, just left of the level's name, so its place on screen never moves */
+#zmT:hover{opacity:1;background:#f2f2f2;}
+#hiUrl{display:none;}
 body.zoom #hiUrl{display:inline;}
 body.zoom #hiUrl:empty{display:none;}
-#hiQr{position:relative;z-index:9;height:2em;width:2em;top:-1em;} /* keeps the hover area when the canvas leaves the flow */
-#hiQr canvas{height:5em;width:5em;display:block;cursor:zoom-in;}
-#hiQr:hover canvas{position:absolute;top:0;left:0;height:9em;width:9em;padding:3px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);cursor:default;} /* ~144px ≈ 4px per module – small in the bar, readable by a phone on hover */
+#hiQr{display:inline-flex;position:fixed;right:.5em;bottom:calc(.4em + env(safe-area-inset-bottom,0px));z-index:70;height:2em;width:2em;} /* the link to where you are: in the corner of the screen and never hidden – the door out of the page is always in the same place */
+body.navon #hiQr{bottom:calc(4.6em + env(safe-area-inset-bottom,0px));} /* the strip stands in the foot of the panel: the qr keeps its corner above it, clear of the field */
+#hiQr canvas{position:absolute;right:0;bottom:0;height:5em;width:5em;display:block;cursor:zoom-in;} /* anchored by its own corner: the code grows up and away from the edge, never off it */
+#hiQr:hover canvas{height:9em;width:9em;padding:3px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);cursor:default;} /* ~144px ≈ 4px per module – small at rest, readable by a phone on hover */
 #hiUrl{font-size:.75em;color:#777;max-width:24ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 #hiUrl:empty{display:none;}
 #lvCtl{display:inline-flex;flex-direction:column;align-items:stretch;gap:1px;}
@@ -118,15 +120,15 @@ body:not(.zoom) #semNav .nvT,body:not(.zoom) #semNav .nvG{font-size:.7em;}
 body.zoom #dbPlay.navon{grid-column:2/-1;background:#fff;}
 #semNav{flex:1;min-height:0;overflow:visible;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;} /* visible: the areas are sized to fit, and a turned cloud must spill, not be cut */
 #semNav h2{margin:0;font-size:1.9em;font-weight:400;letter-spacing:.04em;}
-/* the query strip over the areas: what is keyed – or, on a phone, spoken into the field with the keyboard's own mic, or heard by the 🎤 –
-   and the filter the whole word map is read through */
-#semQ{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.2em .3em;min-height:0;}
+/* the strip in the foot of the panel the word map stands in: what is keyed – or, on a phone, spoken into the field with the keyboard's own mic, or heard by the 🎤 –
+   and the filter the whole word map is read through. It comes with the areas and it collapses with them */
+#semQ{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.2em .3em;border-top:1px solid #999;}
 #nvQ{width:8em;min-width:0;font:inherit;font-size:.8em;padding:.1em .3em;border:1px solid #ccc;border-radius:.2em;background:#fff;}
 #nvQ:focus{outline:2px solid #8ad;outline-offset:1px;}
 #nvMic{cursor:pointer;font-size:1.6em;line-height:1;padding:.15em .3em;border-radius:.25em;} /* a thumb needs a target, on a phone most of all – and while ⌃⇧ is held it is the pointer resting on it that opens the mic */
 #nvMic:hover{background:#eee;} /* the point of contact is the point of press, so it has to show itself */
 #nvMic.on{background:#e33;color:#fff;animation:blink .9s ease-in-out infinite;} /* while the mic is open it blinks – the same blink as the hands, only slower and never ending, so it is never in doubt that it is hearing */
-body:not(.zoom) #semQ{flex-direction:column;font-size:.7em;} /* the band is narrow: the field and the mic stand under each other */
+body:not(.zoom) #semQ{flex-direction:column;font-size:.7em;} /* the band is narrow: the strip is down with the map, the field and the mic under each other */
 body:not(.zoom) #nvQ{width:100%;}
 body:not(.zoom) #nvMic{width:100%;}
 /* pl1–pl5a/pl4b – the same areas as pl0, parametrized: one area per node in the level, top to bottom, the node's name centred in its area */
