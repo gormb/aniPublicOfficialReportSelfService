@@ -144,6 +144,7 @@ const books={
             return o;
         }
         ,texts:{} // every copy's markdown, read once – the clouds are weighed against all of them, so what differs between two copies stands out
+        ,memcache:{} // word maps already fetched, keyed by the id of what and where: books.play.sem.Z.wMap.g/s read and write it
         ,loadAll:()=>{ // read the books on the shelf in the background; the analysis compares them, so all of them have to be in
             const p=books.play;if(p.md.fn&&p.md.txt)p.texts[p.md.fn]=p.md.txt; // the copy being read is already here
             const fs=[...new Set((p.shelf||[]).filter(v=>v.fn).map(v=>v.fn))].filter(fn=>p.texts[fn]===undefined);
@@ -688,7 +689,7 @@ const books={
                     // is json correct? fix it! select public.map_set('HELLO', 'l*n*p.n.nulls', '[{"s":"hello","n":4},{"s":"world","n":7}]'::jsonb);
                     // select public.map_get('HELLO', 'l*n*p.n.nulls');
                     g:(hId,q)=>{const k=hId+'|'+q;return books.play.memcache[k];}
-                    ,s:(hId,q,words)=>{const k=hId+'|'+q;books.play.memcache[k]=words;
+                    ,s:(hId,q,words)=>{const k=hId+'|'+q;books.play.memcache[k]=words;}
                 }
                 ,zb:()=>{const b=document.getElementById('zmT');if(!b)return;const on=books.play.sem.Z.on;b.textContent=on?'\u2299':'\u25CE';b.title=on?'Collapse the word map back into its band':'Expand the word map over the reading area';} // ◎ when the map is down and ⊙ when it is up: the switch in the menu bar, where it stands the same however the map is shaped
                 ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom');z.armed=0; // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
