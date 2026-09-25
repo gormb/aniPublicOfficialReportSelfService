@@ -11,7 +11,7 @@ Døden gir plass
 #### p. 3
 ### Nulloppsummering
 🎵 [Nothing Compares 2 U; Sinéad O'Connor](https://aigap.no/mncty)
-Krever nytt liv at noe gammelt dør for å gi plass? Er det begrenset med ressurser og derfor med muligheter?
+x Krever nytt liv at noe gammelt dør for å gi plass? Er det begrenset med ressurser og derfor med muligheter?
 Nulloppsummering handler om ressursfordeling uten evne til å skape egne ressurser av ingenting, man må velge mellom å holde gamle ting i live og å skape noe nytt. Det er ikke plass til begge deler samtidig.
 Resultat av innovasjon er at man slutter med gamle ting for å gi plass til de nye. Økonomer måler hvor mye man ikke har sluttet som “legacy cost”. Noen kaller modellen “Zero-Sum Game”. Alternativet er å anta at verdi kan skapes gjennom fremskritt, ikke bare fordele verdier etter gårsdagens premisser. Positivsumspill beskrives i et senere kapittel. Det innebærer at nullsummodell må dø, men den skal føles først.
 #### p. 4
@@ -54,7 +54,7 @@ Jeg møtte henne ikke.
 #### p. 9
 ### Det gamle finnes ikke mer
 🎵 [Ohne Dich; Rammstein](https://aigap.no/mod)
-Lyden av glassplate som knuses. Pulveriseres. Det er lyden av mc-hjelm som ødelegges mot bakken. Hvis du har hjelmen på hodet når den går i stykker. Hjelmer som har gått i bakken må kastes, men folk kan gå videre.
+x Lyden av glassplate som knuses. Pulveriseres. Det er lyden av mc-hjelm som ødelegges mot bakken. Hvis du har hjelmen på hodet når den går i stykker. Hjelmer som har gått i bakken må kastes, men folk kan gå videre.
 Verden jeg kjente hadde gått til helvete. Jeg husker øyeblikket jeg forsto det, rett før jeg gikk i koma. Verden gikk ikke til helvete på et øyeblikk, men erkjennelsen kom som et smell som å ødelegge motorsykkelhjelm med hodet først i asfalten.
 Tre av de fire gangene jeg har ødelagt hjelmer husker jeg godt, og alle gangene har satt varige spor. Men erkjennelsen av at verden ikke var den samme smalt hardere enn noen ulykke.
 “Ohne Dich”. En time inne i en samtale med Anna, en altfor
