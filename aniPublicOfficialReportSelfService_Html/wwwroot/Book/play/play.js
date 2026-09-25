@@ -331,12 +331,17 @@ const books={
         }
         ,cloud:{ // the words a text is carried by, heaviest first
             stop:/^(og|i|til|med|av|for|en|et|den|det|de|som|er|var|at|om|men|å|på|ikke|så|når|da|her|der|fra|ved|ut|inn|opp|ned|seg|kan|skal|vil|må|hadde|har|ble|blir|han|hun|jeg|du|vi|the|and|of|to|a|in|is|it|that|with|for|on|as|at|by|from|but|or|an|be|was|were|his|her|he|she|they|you|not)$/i
-            ,words:(s,n,q)=>{const m={},f=String(q||'').toLowerCase(); // a filter, once something is keyed, keeps only the words that carry it – every cloud of the whole map is read through it
+            ,words:(s,n,q)=>{const m={},f=String(q||'').toLowerCase(); // the words a text is carried by – read through the filter as well, and after the cut: the cut decides what is counted and what the count is weighed against, the filter then decides what of it is worth showing. Both, in that order
                 (String(s||'').toLowerCase().match(/[\p{L}][\p{L}'-]*/gu)||[]).forEach(w=>{if(w.length<4||books.play.cloud.stop.test(w)||(f&&w.indexOf(f)<0))return;m[w]=(m[w]||0)+1;});
                 return Object.keys(m).map(w=>[w,m[w]]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);}
-            ,html:(s,n,q,b)=>{ // weighed against the level above: a word only this node carries stands green and heavy, one the level above carries just as much goes blue and small, and what lies between is a mix. On a book copy that level is the shelf (all books), on a page it is the sub chapter – the main chapter when that sub chapter holds one page only – and so on up for as long as the level below the base has but one node in it
-                const c=books.play.cloud,df=c.dfOf(b||c.above())
-                    ,a=c.words(s,Infinity,q).map(x=>[x[0],x[1]/(df[x[0]]||x[1])]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);
+            ,tx:new Map() // each text as it stands under the filter that was last put to it – one entry per text, so that keying another letter cuts it again without the text being split up first
+            ,cut:(s,q)=>{const c=books.play.cloud,t=String(s||''),k=String(q||'').toLowerCase(),e=c.tx.get(t); // what was keyed is read off the TEXT first: only the sentences that carry it are left, and the map is built on those – the words that stand outside them are neither counted nor weighed in. The filter is folded to lower case: dictation arrives with capitals, the words of the copy do not
+                if(e&&e.q===k)return e.t;
+                const v=k?books.play.render.sentT(t).filter(x=>x.toLowerCase().indexOf(k)>=0).join(' '):t;
+                c.tx.set(t,{q:k,t:v});return v;}
+            ,html:(s,n,q,b)=>{ // weighed against the level above: a word only this node carries stands green and heavy, one the level above carries just as much goes blue and small, and what lies between is a mix. On a book copy that level is the shelf (all books), on a page it is the sub chapter – the main chapter when that sub chapter holds one page only – and so on up for as long as the level below the base has but one node in it. The filter cuts both sides alike: the text this node is mapped from, and the text it is read against
+                const c=books.play.cloud,t=c.cut(s,q),df=c.dfOf(b||c.above(),q)
+                    ,a=c.words(t,Infinity,q).map(x=>[x[0],x[1]/(df[x[0]]||x[1])]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);
                 if(!a.length)return '';const mx=a[0][1];
                 return a.map(x=>'<span style="font-size:'+(0.75+0.85*x[1]/mx).toFixed(2)+'em;color:hsl('+Math.round(120+100*(1-x[1]))+',70%,25%)">'+books.play.render.esc(x[0])+'</span>').join('');}
             ,df:{},dfFn:'' // how often each word stands in that level above – the divisor a node's own count is read against, counted once per base
@@ -347,7 +352,8 @@ const books={
                 const a=pl?books.play.names(pl):null,i=a?(a[3]||0):0;
                 return {key:(pl||'pl0')+'|'+(a?String(a[1]||'').slice(0,24):'')+'|'+i+'|'+(books.play.md.fn||''),
                         txt:(pl?books.play.txtOf(pl,i,''):'')||books.play.cloud.shelf()};} // nothing above at all (the shelf itself) → every book is the base
-            ,dfOf:b=>{const c=books.play.cloud;if(c.dfFn===b.key)return c.df;const m={};c.words(b.txt,Infinity).forEach(x=>m[x[0]]=x[1]);c.dfFn=b.key;return c.df=m;}
+            ,dfOf:(b,q)=>{const c=books.play.cloud,k=b.key+'|'+(q||'');if(c.dfFn===k)return c.df; // counted once per base and filter: the text above is cut, and read through the filter, exactly as the clouds below it are
+                const m={};c.words(c.cut(b.txt,q),Infinity,q).forEach(x=>m[x[0]]=x[1]);c.dfFn=k;return c.df=m;}
         }
         ,hi:()=>{ // #hiId ← what is selected: the top layer (book*language*edition) before the first '.', then one token per level below
             const m=books.play.render.mode
@@ -678,7 +684,7 @@ const books={
         }
         ,sem:{
             Z:{
-                ov:null,m:0,t:0,sp:'b',q:'' // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. q: what is keyed while the areas are up – the filter every word map is read through
+                ov:null,m:0,t:0,sp:'b',q:'' // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. q: what is keyed while the areas are up – the text every cloud is built from is cut by it first, and then the map that comes of it is read through it
                 ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
                 ,on:0,pin:0,was:0,key:0,mod:0 // pin: the two fingers opened or closed a level; was: whether the areas already stood up when they landed; key: the two keys are down now; mod: they have already been read since they last went down
                 ,wMap:{
@@ -715,7 +721,7 @@ const books={
                             ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[]
                                 ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24,q,b)
                                     ,on=(pl==='pl4a'||pl==='pl4b')&&k===a[3] // grey only where you really stand – on the page or the paragraph you are in, never at the fork above them
-                                    ,cl=h||q; // while a filter is on the cloud is drawn even when it holds nothing: an area with no matching word stays empty and keeps its name for the hover
+                                    ,cl=h||q; // with the text cut, a cloud can come out with nothing in it: the area still stands there, empty, and keeps its name for the hover
                                     return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
                                 if(!rows)return '';const L=books.play.LV[books.play.ix(c)]||{},cnt=ns.filter(n=>n!=='').length // six areas is as far as one column carries; past fourteen it takes three
                                     ,grid=cnt>6?'<div class="nvR'+(cnt>14?' r3':'')+'">'+rows+'</div>':rows;
@@ -725,7 +731,7 @@ const books={
                     ,applyQ:()=>{const z=books.play.sem.Z,n=z.nav;if(n.qEl&&n.qEl.value!==z.q)n.qEl.value=z.q;n.redraw();} // one place tells the field and the map, whatever put the filter there
                     ,mk:()=>window.SpeechRecognition||window.webkitSpeechRecognition // a phone may have no such thing – then the field is the way in: tap it and use the keyboard's own mic
                     ,lastWord:s=>{const a=String(s||'').replace(/[^\p{L}\p{N}'-]+/gu,' ').trim().split(/\s+/).filter(Boolean);return a.length?a[a.length-1]:'';} // dictation arrives with stops and capitals – the map wants the bare word, and the last one heard wins
-                    ,speak:btn=>{ // 🎤: hear a word and read the whole map through it, until the mic is tapped again
+                    ,speak:btn=>{ // 🎤: hear a word, cut the whole text by it and read the map through it, until the mic is tapped again
                         const z=books.play.sem.Z,n=z.nav,R=n.mk();if(!R)return;
                         if(z.rec){try{z.rec.stop();}catch(e){}z.rec=null;btn.classList.remove('on');return;}
                         const r=z.rec=new R();
@@ -740,7 +746,7 @@ const books={
                     ,mic:on=>{ // ⏸ while ⌃⇧ is held a click can never be a plain click – ctrl-click opens the pointer's own menu and alt-click is the other fork – so the mic is worked by the pointer moving over it, and it blinks the whole time it is open
                         const z=books.play.sem.Z,n=z.nav;if(!n.micEl)return;
                         if(on!==!!z.rec)n.speak(n.micEl);} // set, not toggled: the same call that opens the mic closes it, so moving over it again is off again
-                    ,keyQ:e=>{ // typing while the areas are up reads through the whole word map: what was keyed is set after the level's title, and every cloud keeps only the words that carry it
+                    ,keyQ:e=>{ // typing while the areas are up cuts the text and reads the map through it: what was keyed is set after the level's title, and every cloud is built again on the part of its text that carries it – and then keeps only the words that carry it too
                         const z=books.play.sem.Z,n=z.nav,qEl=n.qEl,k=e.key,own=qEl&&document.activeElement===qEl;
                         if(k==='Escape')z.q=''; // out of the filter in one go – Backspace takes one letter back
                         else if(k==='Backspace'){if(own)return 0;z.q=z.q.slice(0,-1);} // the field deletes its own when it has the focus
@@ -778,8 +784,8 @@ const books={
                         const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
                         if(!n.el){
                             p.innerHTML='<div id="semNav"></div>'
-                                +'<div id="semQ"><button id="nvMic" type="button" title="Speak a word – the whole map keeps what it hears. While ⌃⇧ is held, move over it to open the mic; over it again to close">\u{1F3A4}</button>'
-                                +'<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the word map"></div>';
+                                +'<div id="semQ"><button id="nvMic" type="button" title="Speak a word – the text is cut by it and the map made of what is left, and the map keeps what carries it. While ⌃⇧ is held, move over it to open the mic; over it again to close">\u{1F3A4}</button>'
+                                +'<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the text to map"></div>';
                             n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
                             const mic=n.micEl=p.querySelector('#nvMic');
                             n.el.onclick=ev=>{const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:''; // one click walks into the area and stays in the map – but it is held back a beat, so that the second click of a pair still finds the map as it was and not the level the first one has just opened. A pair quicker than the beat is caught here; a slower one is caught by dblclick, which the browser times itself
@@ -823,7 +829,7 @@ const books={
                         else if(k==='ArrowDown'){e.preventDefault();z.drill(1,e.altKey);}   // ↓ = into the children (finer); +alt = the fork not taken last
                         else if(k==='='||k==='+'){e.preventDefault();z.drill(1,e.altKey);}  // + = finer (hand down); +alt = the other fork
                         else if(k==='-'||k==='_'){e.preventDefault();z.drill(-1);} // − = coarser (hand up)
-                        else if(z.nav.keyQ(e))e.preventDefault(); // anything else keyed while the areas are up is written into the filter after the title, and the whole word map is read through it again
+                        else if(z.nav.keyQ(e))e.preventDefault(); // anything else keyed while the areas are up cuts the text after the title and reads the map through it: every cloud is built again on what is left of its own text, and keeps what carries the key
                     };
                     document.onkeyup=e=>{if(e.key==='Control'||e.key==='Shift'){z.key=e.ctrlKey&&e.shiftKey?1:0;z.mod=0;}}; // letting the keys go ends nothing: what they put up stays up until they are pressed together again
                     document.onmousedown=e=>{if(e.buttons===3&&db().contains(e.target)){z.m=1;z.enter();}};
