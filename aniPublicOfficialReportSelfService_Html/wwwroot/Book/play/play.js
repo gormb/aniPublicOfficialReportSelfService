@@ -143,8 +143,7 @@ const books={
             books.play.loadAll();
             return o;
         }
-        ,texts:{} // every copy's markdown, read once – the clouds are weighed against all of them, so what differs between two copies stands out
-        ,memcache:{} // word maps already fetched, keyed by the id of what and where: books.play.sem.Z.wMap.g/s read and write it
+        ,texts:{} // every copy's markdown, read once – the shelf level shows the copies, and the shelf is itself the level above a book copy, so all of them are needed
         ,loadAll:()=>{ // read the books on the shelf in the background; the analysis compares them, so all of them have to be in
             const p=books.play;if(p.md.fn&&p.md.txt)p.texts[p.md.fn]=p.md.txt; // the copy being read is already here
             const fs=[...new Set((p.shelf||[]).filter(v=>v.fn).map(v=>v.fn))].filter(fn=>p.texts[fn]===undefined);
@@ -325,8 +324,9 @@ const books={
         }
         ,txtOf:(pl,k,fb)=>{ // what the node at position k holds. The position is the one names() lists it at, and every list below is that same list – the name and the text can never point at two different nodes
             const md=books.play.md,R=books.play.render,ks=R.chSubs(R.ch),su=R.cSub()||[]
+                ,pars=md.pgs.filter(p=>su.some(q=>q.pn===p.pn))
                 ,tx=a=>(a||[]).filter(Boolean).map(p=>md.pgs.filter(q=>q.pn===p.pn).map(q=>q.txt).join(' ')).join(' ');
-            const t={pl1c:(books.play.texts[(books.play.copies()[k]||{}).fn]||''),pl2:tx(md.chs[k]),pl3:tx(md.subs[ks[k]]),pl4b:tx([su[k]]),pl5b:(R.lnsOf()[k]||{}).t}[pl];
+            const t={pl1c:(books.play.texts[(books.play.copies()[k]||{}).fn]||''),pl1:md.pgs.map(p=>p.txt).join(' '),pl2:tx(md.chs[k]),pl3:tx(md.subs[ks[k]]),pl4b:tx([su[k]]),pl4a:(pars[k]||{}).txt,pl5b:(R.lnsOf()[k]||{}).t,pl5a:(R.sentT((md.pgs[R.curPar()]||{}).txt||'')[k]||'')}[pl]; // pl1: the copy being read is its paragraphs, not the raw marks – the base of every base has to be words alone
             return t!==undefined?t:(fb||''); // the leaf levels (paragraph, sentence, word) are named by their own text, which the caller hands over
         }
         ,cloud:{ // the words a text is carried by, heaviest first
@@ -334,16 +334,20 @@ const books={
             ,words:(s,n,q)=>{const m={},f=String(q||'').toLowerCase(); // a filter, once something is keyed, keeps only the words that carry it – every cloud of the whole map is read through it
                 (String(s||'').toLowerCase().match(/[\p{L}][\p{L}'-]*/gu)||[]).forEach(w=>{if(w.length<4||books.play.cloud.stop.test(w)||(f&&w.indexOf(f)<0))return;m[w]=(m[w]||0)+1;});
                 return Object.keys(m).map(w=>[w,m[w]]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);}
-            ,html:(s,n,q)=>{ // weighed against the whole book: a word only this node carries stands green and heavy, one that stands everywhere goes blue and small, and what lies between is a mix
-                const c=books.play.cloud,df=c.book()
+            ,html:(s,n,q,b)=>{ // weighed against the level above: a word only this node carries stands green and heavy, one the level above carries just as much goes blue and small, and what lies between is a mix. On a book copy that level is the shelf (all books), on a page it is the sub chapter – the main chapter when that sub chapter holds one page only – and so on up for as long as the level below the base has but one node in it
+                const c=books.play.cloud,df=c.dfOf(b||c.above())
                     ,a=c.words(s,Infinity,q).map(x=>[x[0],x[1]/(df[x[0]]||x[1])]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);
                 if(!a.length)return '';const mx=a[0][1];
                 return a.map(x=>'<span style="font-size:'+(0.75+0.85*x[1]/mx).toFixed(2)+'em;color:hsl('+Math.round(120+100*(1-x[1]))+',70%,25%)">'+books.play.render.esc(x[0])+'</span>').join('');}
-            ,df:{},dfFn:'' // how often each word stands on the shelf – the divisor a node's own count is read against
-            ,book:()=>{ // the divisor is the whole shelf, so a word every copy carries is set blue and small and a word one copy alone carries stays green and heavy
-                const c=books.play.cloud,ts=Object.values(books.play.texts).filter(Boolean),sig=Object.keys(books.play.texts).length+'|'+(books.play.md.fn||'');
-                if(c.dfFn===sig)return c.df;
-                const m={};c.words(ts.length?ts.join(' '):books.play.md.txt,Infinity).forEach(x=>m[x[0]]=x[1]);c.dfFn=sig;return c.df=m;}
+            ,df:{},dfFn:'' // how often each word stands in that level above – the divisor a node's own count is read against, counted once per base
+            ,shelf:()=>{const ts=Object.values(books.play.texts).filter(Boolean);return ts.length?ts.join(' '):books.play.md.txt;} // every copy of every book on the shelf, as one text – the top a base can reach
+            ,above:()=>{ // what the clouds of this level are read against: the level above the one you stand on – and the level above that again for as long as the level below it holds a single node, since a level carrying exactly the same words tells nothing
+                const R=books.play.render,up=books.play.up;let below=books.play.id(R.mode),pl=up[below];
+                while(pl&&(books.play.names(below)[0]||[]).length<2){below=pl;pl=up[pl];} // one node only below → that node again, one level up
+                const a=pl?books.play.names(pl):null,i=a?(a[3]||0):0;
+                return {key:(pl||'pl0')+'|'+(a?String(a[1]||'').slice(0,24):'')+'|'+i+'|'+(books.play.md.fn||''),
+                        txt:(pl?books.play.txtOf(pl,i,''):'')||books.play.cloud.shelf()};} // nothing above at all (the shelf itself) → every book is the base
+            ,dfOf:b=>{const c=books.play.cloud;if(c.dfFn===b.key)return c.df;const m={};c.words(b.txt,Infinity).forEach(x=>m[x[0]]=x[1]);c.dfFn=b.key;return c.df=m;}
         }
         ,hi:()=>{ // #hiId ← what is selected: the top layer (book*language*edition) before the first '.', then one token per level below
             const m=books.play.render.mode
@@ -606,7 +610,7 @@ const books={
             }
             ,lvitem:x=>{const up=books.play.ancestors(x.pl).map(p=>{const L=books.play.LV.find(l=>l.pl===p);return L?L.t:'';}).filter(Boolean).join(' › ');return '<li id="'+x.pl+'">'+(up?'<div class="lvpath">'+books.play.render.esc(up)+' ›</div>':'')+'<i>'+books.play.render.esc(x.t)+'</i> – '+books.play.render.esc(x.q)+(x.nav&&x.nav!=='todo'?'<details><summary>Nav shows</summary>'+books.play.render.esc(x.nav)+'</details>':'')+(x.page&&x.page!=='todo'?'<details><summary>Page shows</summary>'+books.play.render.esc(x.page)+'</details>':'')+(x.thoughts?'<details open><summary>Thoughts</summary>'+books.play.render.esc(x.thoughts)+'</details>':'')+(x.child&&x.child.length?'<details open><summary>Planned</summary><ol>'+x.child.map(c=>'<li>'+books.play.render.esc(c.t)+(c.w?'<details><summary>Thoughts</summary>'+books.play.render.esc(c.w)+'</details>':'')+'</li>').join('')+'</ol></details>':'')+'</li>';}
             ,guide:()=>{const g=document.getElementById('lvGuide');if(!g)return;g.innerHTML=books.play.LV.map(x=>books.play.render.lvitem(x)).join('');}
-            ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);books.play.render.ctl();books.play.hi();books.play.sem.Z.nav.draw();books.play.sem.Z.cell=books.play.sem.Z.nav.cell();} // and the mark again, in case the level changed with the areas left as they were
+            ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);books.play.render.ctl();books.play.hi();books.play.sem.Z.nav.draw();} // and the areas are drawn again, in case the level changed with them left as they were
             ,ctl:()=>{const c=document.getElementById('lvCtl');if(!c)return;const pl=books.play.id(books.play.render.mode),kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV[books.play.ix(k)];h+='<button data-go="'+books.play.ix(k)+'" title="finer: '+(K?K.t:k)+'">\u{1F447}</button>';});c.innerHTML=h;c.onclick=ev=>{const x=ev.target.closest('button');if(!x||x.dataset.go===undefined)return;if(x.dataset.go==='up'){const p=books.play.up[pl];if(p)books.play.render.go(books.play.ix(p));}else books.play.render.go(+x.dataset.go);};}
             ,baseOf:i=>books.play.md.pgs.slice(0,i).reduce((n,q)=>n+books.play.render.sentT(q.txt).length,0)
             ,pgOf:si=>{let n=0;for(let k=0;k<books.play.md.pgs.length;k++){n+=books.play.render.sentT(books.play.md.pgs[k].txt).length;if(n>si)return k;}return 0;}
@@ -674,7 +678,7 @@ const books={
         }
         ,sem:{
             Z:{
-                ov:null,m:0,t:0,sp:'b',x:-1,y:-1,cell:'',armed:0,q:'' // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. x/y/cell/armed: where the pointer is, the area it rests in, and whether it has moved on to another one since ⌃⇧ or a key last set the level. q: what is keyed while the areas are up – the filter every word map is read through
+                ov:null,m:0,t:0,sp:'b',q:'' // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. q: what is keyed while the areas are up – the filter every word map is read through
                 ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
                 ,on:0,pin:0,was:0,key:0,mod:0 // pin: the two fingers opened or closed a level; was: whether the areas already stood up when they landed; key: the two keys are down now; mod: they have already been read since they last went down
                 ,wMap:{
@@ -692,24 +696,24 @@ const books={
                     ,s:(hId,q,words)=>{const k=hId+'|'+q;books.play.memcache[k]=words;}
                 }
                 ,zb:()=>{const b=document.getElementById('zmT');if(!b)return;const on=books.play.sem.Z.on;b.textContent=on?'\u2299':'\u25CE';b.title=on?'Collapse the word map back into its band':'Expand the word map over the reading area';} // ◎ when the map is down and ⊙ when it is up: the switch in the menu bar, where it stands the same however the map is shaped
-                ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom');z.armed=0; // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
+                ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom'); // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
                     [E.prev,E.next,E.lvBars.querySelector('button[data-zm]'),document.getElementById('lvCtl')].forEach(el=>R.blink(el,3)); // the two hands and both ways out of the level blink three times, to say where they are
-                    z.nav.swap();z.nav.redraw();z.zb();} // the areas are wide now, so the clouds are laid out again and the pointer's mark is taken again
-                ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0;
-                    const a=z.nav.hit(z.x,z.y) // what the pointer stands on now – pressing ⌃⇧ again walks into it, exactly as a click would, but only once the pointer has moved on to another cloud
-                        ,m=(a&&z.armed)?a:z.nav.firstOf(z.q); // and when a word was keyed or spoken, the level is left on the first area the map still carries it in
+                    z.nav.swap();z.nav.redraw();z.zb();} // the areas are wide now, so the clouds are laid out and fitted again
+                ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0; // going out of the zoom only puts the map away: what the pointer happens to rest on is not opened – a click, or ↓ on it, is what chooses a node
+                    if(z.nav.tm){clearTimeout(z.nav.tm);z.nav.tm=0;z.nav.tk='';} // a click still waiting its beat dies with the map: what the pair names may not walk in after it is gone
                     if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
-                    if(m)z.nav.pick(m);z.nav.redraw();z.zb();} // the band is narrow and set in smaller type, so the areas are drawn and measured again
+                    z.nav.redraw();z.zb();} // the band is narrow and set in smaller type, so the areas are drawn and measured again
                 ,enter:()=>books.play.sem.Z.show()
                 ,nav:{ // ⌃⇧, a middle click or two fingers overwrite the play panel (right, innerHTML and all) with a navigating area – the level we are on, and what it selects. It stays: leaving the mode puts nothing back
-                    el:null,last:''
+                    el:null,last:'',tm:0,tk:'' // tm: the beat a lone click waits before it walks in, so that a pair of them is never two navigations; tk: the cell that click named
                     ,box:()=>books.play.sem.Z.nav.el
                     ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
                     ,areas:()=>{ // every level reads the same way: one area per node, its cloud standing there and its name coming up on hover. The fork and the two nodes it opens show one and the same list – the nodes of the active spine – and at the page and the paragraph the node you stand on is marked
                         const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),sp=books.play.sem.Z.sp,q=books.play.sem.Z.q
+                            ,b=books.play.cloud.above() // found once for the whole map: every cloud on this level is read against the same level above
                             ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:books.play.child(pl),tag=fork||kids.length>1
                             ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[]
-                                ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24,q)
+                                ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24,q,b)
                                     ,on=(pl==='pl4a'||pl==='pl4b')&&k===a[3] // grey only where you really stand – on the page or the paragraph you are in, never at the fork above them
                                     ,cl=h||q; // while a filter is on the cloud is drawn even when it holds nothing: an area with no matching word stays empty and keeps its name for the hover
                                     return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
@@ -745,12 +749,8 @@ const books={
                         n.applyQ();
                         return 1;}
                     ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);} // an area selects that node and opens its level, like the same row in the nav
-                    ,hit:(x,y)=>{const e=document.elementFromPoint(x,y);return e&&e.closest?e.closest('.nvA'):null;} // the area under a point, read off the layout – never off :hover, which the browser only settles a frame later
-                    ,cell:()=>{const z=books.play.sem.Z,a=z.nav.hit(z.x,z.y);return a?a.dataset.k:'';} // the area the pointer rests in, named the way a click names it
-                    ,firstOf:q=>{ // the first area whose cloud still carries what was keyed or spoken: the instance the level is left on, and nothing when the filter found none
-                        const n=books.play.sem.Z.nav,s=String(q||'').toLowerCase();if(!s||!n.el)return null;
-                        return [...n.el.querySelectorAll('.nvA')].find(a=>{const w=a.querySelector('.nvW');return !!w&&w.textContent.toLowerCase().includes(s);})||null;}
-                    ,pick:el=>{const k=el.dataset.k.split('|');books.play.sem.Z.nav.go(k[0],+k[1]);} // an area picked – by a click, or by letting ⌃⇧ go while the pointer stands on it
+                    ,pickK:k=>{const p=String(k||'').split('|');if(p[0])books.play.sem.Z.nav.go(p[0],+p[1]);} // an area picked by the name of its cell – a click carries that name through the beat it waits, so the element it lands on need not still stand
+                    ,pick:el=>books.play.sem.Z.nav.pickK(el.dataset.k) // an area picked – by a click, or by ↓ while the pointer stands on it
                     ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q)+'</h2>'
                     ,base:()=>document.body.classList.contains('zoom')?1:.6 // the type scale the clouds are set at: full while zooming, small in the narrow band
                     ,collapsed:()=>!document.body.classList.contains('zoom') // the band: the cloud is turned, so its height reads as its width and vice versa
@@ -772,7 +772,7 @@ const books={
                         a.forEach((w,i)=>{const s=n.room(w)/h2[i]; // still too tall → smaller type, never below .4 of the scale it is set in
                             if(s<1)w.style.fontSize=(n.base()*Math.max(.4,s)).toFixed(2)+'em';});
                     }
-                    ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();books.play.sem.Z.cell=n.cell();} // the mark is taken again: the areas may have moved under a pointer that never moved
+                    ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();}
                     ,redraw:()=>{const n=books.play.sem.Z.nav;n.last='';n.draw();} // the room changed – every cloud is built and fitted again
                     ,swap:()=>{ // the panel is overwritten once: the areas, and under them the strip – a filter field only makes sense where the word map it filters stands
                         const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
@@ -782,7 +782,11 @@ const books={
                                 +'<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the word map"></div>';
                             n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
                             const mic=n.micEl=p.querySelector('#nvMic');
-                            n.el.onclick=ev=>{const x=ev.target.closest('[data-k]');if(x)n.pick(x);};
+                            n.el.onclick=ev=>{const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:''; // one click walks into the area and stays in the map – but it is held back a beat, so that the second click of a pair still finds the map as it was and not the level the first one has just opened. A pair quicker than the beat is caught here; a slower one is caught by dblclick, which the browser times itself
+                                if(n.tm){clearTimeout(n.tm);n.tm=0;const p=n.tk;n.tk='';n.pickK(k||p);z.hide();return;} // the second click of the pair: into the node the pair names, and out of the map
+                                if(!k)return;
+                                n.tk=k;n.tm=setTimeout(()=>{n.tm=0;n.tk='';n.pickK(k);},220);} // a lone click, a beat later – what the pointer rested on while it waited does not matter
+                            n.el.ondblclick=()=>z.hide(); // a pair slower than the beat: the click has already walked in, so the map only steps aside – any pick still waiting its beat is dropped with it
                             n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();}; // a phone's keyboard and its own dictation arrive as text, never as key events – both land here
                             if(n.mk()){ // while ⌃⇧ are held a click can never be a plain click (ctrl-click is the pointer's own menu, alt-click the other fork), so then 🎤 is worked by moving over it: over again is off again
                                 mic.onclick=e=>{if(!e.ctrlKey&&!e.metaKey&&!e.altKey)n.mic(!z.rec);}; // with the keys let go an ordinary click toggles it
@@ -812,7 +816,6 @@ const books={
                             if(z.key&&!z.mod){z.mod=1;if(z.on)z.hide();else z.enter();}
                             return;}
                         if(!z.on||(e.ctrlKey&&!e.shiftKey))return; // the arrows and the hand belong to the map the whole time it is up, not only while the two keys are held – and bare ⌃arrows are still Mission Control's
-                        z.armed=0; // the key sets the level, the pointer has chosen nothing: letting go on its own may not click
                         const k=e.key;
                         if(k==='ArrowLeft' ||k===','||k==='<'){e.preventDefault();books.play.render.nav(-1);}  // 🫲
                         else if(k==='ArrowRight'||k==='.'||k==='>'){e.preventDefault();books.play.render.nav(1);}  // 🫱
@@ -823,7 +826,6 @@ const books={
                         else if(z.nav.keyQ(e))e.preventDefault(); // anything else keyed while the areas are up is written into the filter after the title, and the whole word map is read through it again
                     };
                     document.onkeyup=e=>{if(e.key==='Control'||e.key==='Shift'){z.key=e.ctrlKey&&e.shiftKey?1:0;z.mod=0;}}; // letting the keys go ends nothing: what they put up stays up until they are pressed together again
-                    document.onmousemove=e=>{const z=books.play.sem.Z;z.x=e.clientX;z.y=e.clientY;const c=z.nav.cell();if(c!==z.cell){z.cell=c;z.armed=1;}}; // the pointer moved on to another area (or into the gap between them)
                     document.onmousedown=e=>{if(e.buttons===3&&db().contains(e.target)){z.m=1;z.enter();}};
                     document.onmouseup=e=>{if(z.m&&e.buttons<3)z.hide();};
                     // touch, in the reading pane: two fingers put the areas up and keep them up after they let go – a pinch opens or closes a level and leaves them standing, a two-finger touch with nothing pinched is the way out; one finger sideways = 🫲/🫱
