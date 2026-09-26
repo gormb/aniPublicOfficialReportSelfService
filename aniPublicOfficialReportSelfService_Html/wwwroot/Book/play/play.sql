@@ -1,13 +1,16 @@
--- play.sql
--- supabase cache for the word maps behind the word cloud / word map in play.html/js
--- key = checksum (sha1) of `what` (the cloud filter, uppercase – '' = unfiltered) and `wher` (the hierarchy id, lowercase)
--- words = a jsonb array [ {word:count}, … ] – one element per cell in the list, so ONE lookup draws the whole word map
 create extension if not exists pgcrypto;
 create table if not exists public.map(whatwhere uuid primary key,words jsonb not null,dtC timestamptz default now() not null);
-create or replace function public.map_ww(what varchar, wher varchar) returns uuid language sql immutable as $$ select (encode(substr(digest(what, 'sha1'), 1, 8), 'hex') || encode(substr(digest(wher, 'sha1'), 1, 8), 'hex'))::uuid; $$;
-create or replace function public.map_get(what varchar, wher varchar) returns jsonb language sql stable as $$ select words from public.map where whatwhere = public.map_ww(what, wher); $$;
-create or replace function public.map_set(what varchar, wher varchar, words jsonb) returns uuid language sql volatile as $$ insert into public.map(whatwhere, words) values (public.map_ww(what, wher), words) on conflict (whatwhere) do update set words = excluded.words, dtC = now() returning whatwhere; $$;
--- usage: what = the word-cloud filter (uppercase, '' = unfiltered); wher = the hierarchy id (the ?p= id, lowercase); words = [ {word:count}, … ] one per cell
-select public.map_set('E', 'l*n*p.n.nulls', '[{"advokaten":99,"nettopp":8,"føler":8,"overfor":8,"nærmeste":8,"forstanden":7,"stanser":7,"sammenbrudd":7,"erkjennelse":7,"europa":6,"likevel":6,"tapet":1,"kiel":1,"tiden":1,"ingenting":1,"mine":1,"oppleve":1,"døden":1,"kanskje":1,"hele":1,"alicante":1,"gjennom":1,"skulle":1}]'::jsonb);
--- read it back: element 0 is the first cell's {word:count} map
-select public.map_get('E', 'l*n*p.n.nulls')->0 as cell0;
+create table if not exists public.map_txt(id bigint primary key,t varchar not null);
+create or replace function public.map_ww(what varchar,wher varchar) returns uuid language sql immutable strict parallel safe as $$ select (encode(substr(digest(upper(what),'sha1'),1,8),'hex')||encode(substr(digest(lower(wher),'sha1'),1,8),'hex'))::uuid; $$;
+create or replace function public.map_get(what varchar,wher varchar) returns jsonb language sql stable as $$ select words from public.map where whatwhere=public.map_ww(what,wher); $$;
+create or replace function public.map_txt_id(t varchar) returns bigint language plpgsql immutable strict parallel safe as $$ declare d bytea:=digest(t,'sha1'); n numeric:=0; i integer; begin for i in 0..7 loop n:=n*256+get_byte(d,i); end loop; if n>=9223372036854775808 then n:=n-18446744073709551616; end if; return n::bigint; end; $$;
+create or replace function public.map_txt_add(t varchar) returns void language sql volatile as $$ insert into public.map_txt(id,t) values(public.map_txt_id(t),t) on conflict(id) do nothing; $$;
+create or replace function public.map_set(what varchar,wher varchar,words jsonb) returns uuid language plpgsql volatile as $$ declare id uuid; begin perform public.map_txt_add(what); perform public.map_txt_add(wher); insert into public.map(whatwhere,words) values(public.map_ww(what,wher),words) on conflict(whatwhere) do update set words=excluded.words,dtC=now() returning whatwhere into id; return id; end; $$;
+drop view if exists public.map_show;
+create view public.map_show as select m.whatwhere,tw.t as what,tr.t as wher,m.words,m.dtC from public.map m left join public.map_txt tw on encode(substr(uuid_send(m.whatwhere),1,8),'hex')=substr(encode(digest(upper(tw.t),'sha1'),'hex'),1,16) left join public.map_txt tr on encode(substr(uuid_send(m.whatwhere),9,8),'hex')=substr(encode(digest(lower(tr.t),'sha1'),'hex'),1,16);
+-- select public.map_set('E','l*n*p.n.nulls','[{"advokaten":99,"nettopp":8,"føler":8,"overfor":8,"nærmeste":8,"forstanden":7,"stanser":7,"sammenbrudd":7,"erkjennelse":7,"europa":6,"likevel":6,"tapet":1,"kiel":1,"tiden":1,"ingenting":1,"mine":1,"oppleve":1,"døden":1,"kanskje":1,"hele":1,"alicante":1,"gjennom":1,"skulle":1}]'::jsonb);
+-- select public.map_get('E','l*n*p.n.nulls')->0 as cell0;
+-- select public.map_ww('HELLO','l*n*p.n.nulls');
+-- select * from public.map_show order by dtC desc limit 1000;
+-- how big is the cache: select count(*) rows, pg_size_pretty(sum(pg_column_size(words))) size from public.map;
+-- rebuild capped (drops the oversized rows written before the cap): truncate table public.map;
