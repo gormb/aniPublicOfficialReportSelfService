@@ -20,14 +20,20 @@ body.navon #hiQr{bottom:calc(4.6em + env(safe-area-inset-bottom,0px));} /* the s
 #hiUrl:empty{display:none;}
 #lvCtl{display:inline-flex;flex-direction:column;align-items:stretch;gap:1px;}
 #lvBars{display:block;}
-#lvBars button,#lvCtl button{font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.45;}
-#lvBars button:hover,#lvCtl button:hover{opacity:1;}
+#lvBars button,#lvCtl button,#zmUp{font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.45;}
+#lvBars button:hover,#lvCtl button:hover,#zmUp:hover{opacity:1;}
 #lvBars button.on{border-color:#999;opacity:1;background:#f2f2f2;}
-#lvBars button:disabled,#lvCtl button:disabled,#prev:disabled,#next:disabled{opacity:.3;cursor:default;}
+#lvBars button:disabled,#lvCtl button:disabled,#zmUp:disabled,#prev:disabled,#next:disabled{opacity:.3;cursor:default;}
 #lvBars table{border-collapse:separate;border-spacing:2px 1px;margin:0;}
 #lvBars td{padding:0;text-align:center;vertical-align:middle;}
 #lvBars td.txt{border-bottom:1px dashed #b8b8b8;}
-#lvBars td.zm{padding-left:4px;border-left:1px solid #ccc;text-align:center;}
+/* the strip the menu's controls are lent to while the map is up: it stands at the top of the zoom area, centred, in the order
+   🔭 🔬 │ 🫲 🫱 │ the id and its link │ … and the two switches, held right by their own margin. The level bar is not lent – the
+   hierarchy stands where it stands – and the strip is empty and out of the flow the moment the rest go home */
+#zmHead{display:none;}
+body.zoom #zmHead{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.4em;padding:.15em .3em;border-bottom:1px solid #ccc;background:#fff;}
+body.zoom #lvCtl{flex-direction:row-reverse;gap:.15em;} /* the finer steps stand in a row up there – one line, not a column, and read the same way round as the fork's own buttons: page before paragraph, as they are named above */
+body.zoom #semNav .nvG.nvS{text-align:left;} /* the fork's two buttons stand at the left edge of the zoom area, where the eye starts */
 /* one blink of the eye: the hands when Z-mode is entered, the "Press ctrl-shift" hint three times when the page is first up */
 @keyframes blink{50%{opacity:.1;}}
 .blink{animation:blink .4s ease-in-out 1;}
@@ -138,6 +144,12 @@ body:not(.zoom) #nvMic{width:100%;}
 #semNav .nvAreas{flex:1;display:flex;flex-direction:column;width:100%;min-height:0;}
 #semNav .nvGrp{flex:1;display:flex;flex-direction:column;min-height:0;}
 #semNav .nvG{font-size:.75em;letter-spacing:.08em;opacity:.55;text-align:center;padding:.1em 0;}
+/* the fork's header at pl3: its two names are buttons – the node the map is made of stands pressed, the other is the way over to it, and neither opens anything */
+#semNav .nvG.nvS{opacity:1;letter-spacing:0;}
+#semNav .nvG.nvS button{font:inherit;letter-spacing:.02em;margin:0 .15em;padding:.1em .6em;border:1px solid #b5b5b5;border-radius:.25em;background:#fff;color:#333;cursor:pointer;}
+#semNav .nvG.nvS button:hover{background:#efefef;}
+#semNav .nvG.nvS button:disabled{background:#dcdcdc;border-color:#8f8f8f;color:#000;cursor:default;} /* what is being drawn: a name, not a way out of it */
+body:not(.zoom) #semNav .nvG.nvS button{font-size:1em;padding:.05em .35em;margin:0 .1em;} /* the band is a fifth as wide: the two fit on one line only this small */
 #semNav .nvA{flex:1;display:flex;align-items:center;justify-content:center;padding:.2em .5em;min-height:0;cursor:pointer;position:relative;}
 #semNav .nvA.on{background:#ececec;} /* the page or the paragraph you are on – the only cell ever marked */
 /* more than six areas in a group → two columns, filled across (1-2 / 3-4 / 5-6 / 7), so the run on reads as one text; past fourteen it takes a third */
