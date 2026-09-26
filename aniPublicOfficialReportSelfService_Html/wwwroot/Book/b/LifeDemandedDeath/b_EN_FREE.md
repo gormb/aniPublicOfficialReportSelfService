@@ -298,8 +298,8 @@ We sat at Lorry's in Bogstadveien. She had had a bad evening and was tipsy. She 
 M lives in a boat. Right by "Bensern". She used to run a café and now lives year-round on the boat. "The bar was called Håpløs", she says.
 "Not that it went bankrupt". I let it go. Everyone has the right to post-rationalize.
 The woman barked but not unkindly. The little terrier wagged and barked. She had more knowledge about dogs than me, so much so that she put a price on the way I treated it. Let the dog come to me. I indicated leadership without need for display, which made the dog secure.
-All the other things I can do without "threat" or dried meat. I insisted that I feel I am good with dogs, but anyone with dried beef beats me anytime.
-She reveals that the price of living in a boat there has doubled in ten years, and that electricity is no longer included. "Cash cow", I mutter, and she looks at me questioningly.
+All the other things I can do without "threat" or dried meat. I insisted that I feel I am good with dogs, but anyone with dried beef wins.
+M reveals that the price of living in a boat there has doubled in ten years, and that electricity is no longer included. "Cash cow", I mutter, and she looks at me questioningly.
 #### p. 77
 ### R sits outside M outside "Bensern"
 🎵 [The Passenger; Iggy Pop](https://aigap.no/mtp)

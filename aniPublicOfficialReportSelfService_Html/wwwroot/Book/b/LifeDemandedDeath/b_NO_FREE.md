@@ -315,9 +315,9 @@ Registrerte regninger på automatisk trekk. Visste ikke om det sto over 100000 e
 #### p. 76
 ### Hun bor i båt inntil “Bensern”
 🎵 [Orinoco Flow; Enya](https://aigap.no/mof)
-M bor i båt. Rett ved “Bensern”. Hun drev kafé tidligere og bor nå året rundt på båt. “Baren het Mifornøyelsesbar” sier hun. “Ikke det at den gikk konkurs. Kristoffer Nielsen kjøpte meg ut”. Jeg lar det gå. Alle har rett til etterrasjonalisering.
-Hunden bjeffet men ikke uvennlig. Logret og bjeffet den lille terrieren. Hun hadde mergreie på hundert enn meg,så mye at hun satte pris på måten jeg behandlet den på. Lot hunden komme til meg. Jeg indikerte lederskap uten markeringsbehov som gjorde hunden trygg. Alle de andre tingene jeg kan uten “threat” eller tørket kjøtt. Jeg bedyret at jeg føler jeg er flink med hunder, men enhver med tørket biff vinner over meg når som helst.
-Hun avslører at prisen for å bo i båt der er doblet på ti år, og at strøm ikke lenger er inkludert. “Cash cow”, momler jeg, og hun ser spørrende på meg.
+M bor i båt. Rett ved “Bensern”. Hun drev kafé tidligere og bor nå året rundt på båt. “Baren het Misfornøyelsesbar” sier hun. “Ikke det at den gikk konkurs. Kristoffer Nielsen kjøpte meg ut”. Jeg lar det gå. Alle har rett til etterrasjonalisering.
+Hunden bjeffet men ikke uvennlig. Logret og bjeffet den lille terrieren. Hun hadde mer greie på hunder enn jeg, så mye at hun satte pris på måten jeg behandlet den på. Lot hunden komme til meg. Jeg indikerte lederskap uten markeringsbehov som gjorde hunden trygg. Alle de andre tingene jeg kan uten “threat” eller tørket kjøtt. Jeg bedyret at jeg føler jeg er flink med hunder, enhver med tørket biff vinner når som helst.
+M avslører at pris for å bo i båt er doblet, og strøm ikke lenger er inkludert. “Cash cow”, momlet jeg, hun myset spørrende.
 #### p. 77
 ### R sitter utenfor M utenfor “Bensern”
 🎵 [The Passenger; Iggy Pop](https://aigap.no/mtp)
