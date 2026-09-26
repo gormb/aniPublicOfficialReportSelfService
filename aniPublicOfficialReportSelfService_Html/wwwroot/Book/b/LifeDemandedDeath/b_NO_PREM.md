@@ -214,7 +214,7 @@ Pedofili- og voldtekstdømte blir banket opp i fengsel, både her til lands og, 
 Mange i fengsel kommer fra elendighet, mye elendighet er skapt av barnemisbruk. Enkel logikk. Ingen liker barne- og kvinnemisbrukere, ikke en gang hjelpeapparatet kan like dem, ikke en gang de selv. De vet de fortjener bank.
 Den tiltalte ble frikjent. M hadde aldri innrømmet at drap hadde vært bedre, hun jobbet med lov og rett og var uforandret i ansiktet. Vi dro på stedet med plastpalmer. M, dama hennes og jeg. Jeg drakk whisky, kjørte som en tulling og våknet på akutten etter å fløyet over sykkelen. Nedtellingen var endelig ferdig. Selvutslettelsen var ikke uønsket, men ikke uvelkommen
 #### p. 35
-### Barnemisbruk og sår (Alternativ)
+### Misbruk og sår (Alternativ)
 🎵 [Knockin' on Heaven's Door; Bob Dylan](https://aigap.no/mkohd)
 Kveld. Jeg kjørte med djevelen i helene. Reflekterte ikke over støvet på veien til Oslo kommune. Rett før jeg spant ut av kontroll og fløy over styret reflekterte jeg over dagen.
 Morgenen hadde begynt akkurat her, full gass ut av Oslo og sørover. Så ringte telefonen.
