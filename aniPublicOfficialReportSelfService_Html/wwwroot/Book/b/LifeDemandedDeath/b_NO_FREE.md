@@ -305,12 +305,12 @@ Jeg er ikke bare “hard to get”, er også “hard to want” og leverer med p
 🎵 [Would I lie To You; Duophonic](https://aigap.no/mwilty)
 Min frihet. “V”. Steintøff i sin egne store livsendring. Jeg ville ikke fråtse i sannheten med ting fra mitt liv som ikke kom til å påvirke henne direkte. Ikke fråtse i sannheten. Valget påvirket henne direkte.
 Om man unnlater å fortelle sannheten: Er det det samme som løgn? Jeg synes ikke det, det kommer an på intensjonen. Min intensjon var å ikke bekymre dama jeg datet, eller var det kanskje skam?
-Vi satt på Lorry’s i Bogstadveien. Hun hadde hatt en dårlig kveld og var småfull. Hadde møtt eksen på utested, en ikke bra mann. Hadde bevisst beveger seg til min del av byen i håp om å sove trygt hos meg.
+Vi satt på Lorry’s i Bogstadveien. Hun hadde hatt en dårlig kveld og var småfull. Hadde møtt eksen på utested, en ikke bra mann. Hadde bevisst beveget seg til min del av byen i håp om å sove trygt hos meg.
 #### p. 75
 “Kan jeg sove hos …” samme spørsmål tredje gang denne uka. “Nei, det går ikke”, avbrøt jeg. “Du liker ikke hvordan jeg har det”, det var midlertidig. Jeg bygget ny plattform fra grunnen, det tok lengre tid enn planlagt. Livet skjedde. V trodde det var fordi jeg hadde det rotete hjemme. Jeg hadde tidligere delt at jeg kan rydde om det står om livet.
 De siste syv månedene hadde ikke livet handlet om overlevelse, men Forholdet. V kunne bare konkludere med at hun ikke var viktig nok. Jeg sa “Vil ikke”, mente “kan Ikke”.
 Fjerde etasje i leid leilighet. Opp trappa og kaste første blikk på inngangsdøra: “Er det politisperring på døra fra namsmannen?” Husleie med automatisk trekk var kanskje betalt de siste åtte månedene og kanskje ikke.
-Strøm hadde ikke automatisk trekk og plutselig virka ikke lyset en gang for en eller to måneder siden, og det gjør det ikke enda. Ingen frykt og ingen skam. Varmtvann og varme var sentralt og lommelyktene hadde batteri.
+Strøm hadde ikke automatisk trekk og plutselig virka ikke lyset en gang for en eller to måneder siden, det gjør det fortsatt ikke. Ingen frykt og ingen skam. Varmtvann og varme var sentralstyrt og lommelyktene hadde batteri. Uproblematisk.
 Registrerte regninger på automatisk trekk. Visste ikke om det sto over 100000 eller under 10000 på kontoen, men fikk fylt bensin. “Bensin på tråløst kort krever over 2000 kr”, sto det et sted og ble adoptert som generell indikator på nok penger. Ni måneder unnvikelse, deretter åpnet jeg nettbanken. Låst hode.
 #### p. 76
 ### Hun bor i båt inntil “Bensern”
