@@ -669,7 +669,7 @@ const books={
             Z:{
                 ov:null,m:0,t:0,sp:'b',q:'',inv:0,invKey:'play.zoom.invert'
                 ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
-                ,on:0,pin:0,was:0,key:0,mod:0
+                ,on:0,pin:0,key:0,mod:0
                 ,wMap:{
                     /* TODO: cahche in memory and in supabase the word maps for whatwhere, so that the map is not rebuilt every time it is opened. The map is built from the text of the level, and the query string that filters it. The whatwhere key is a SHA-1 hash of the what and where strings, each truncated to 64 bits, and stored as a 128-bit UUID. The words are a JSONB array of objects with s:string and n:number.
                     // suppabase has these, when read store in memcache, and when written store in both memcache and supabase. The functions are in SQL, but the data is JSONB. The key is a 128-bit UUID made from the SHA-1 of the what and where strings, each truncated to 64 bits. The words are a JSONB array of objects with s:string and n:number.
@@ -840,7 +840,7 @@ const books={
                     document.onmouseup=e=>{if(z.m&&e.buttons<3)z.hide();};
                     document.addEventListener('touchstart',e=>{
                         if(!zone(e.target))return;
-                        if(e.touches.length>1){z.t=1;sw=0;z.pin=0;z.was=z.on;base=dist(e.touches);z.enter();}
+                        if(e.touches.length>1){z.t=1;sw=0;z.pin=0;base=dist(e.touches);z.enter();}
                         else if(e.touches.length===1){sw=1;sx=e.touches[0].clientX;sy=e.touches[0].clientY;}
                     },{passive:true});
                     document.addEventListener('touchmove',e=>{
@@ -851,7 +851,7 @@ const books={
                         else if(d&&d/base<=0.74){base=d;z.pin=1;z.zoom(-1);}         
                     },{passive:false});
                     document.addEventListener('touchend',e=>{
-                        if(z.t&&e.touches.length<2){z.t=0;if(!z.pin&&z.was)z.hide();}
+                        if(z.t&&e.touches.length<2)z.t=0;
                         if(sw&&!e.touches.length){
                             const t=e.changedTouches[0]||{clientX:sx,clientY:sy},dx=t.clientX-sx,dy=t.clientY-sy;sw=0;
                             if(Math.abs(dx)>48&&Math.abs(dx)>2*Math.abs(dy))books.play.render.nav(dx<0?1:-1);
