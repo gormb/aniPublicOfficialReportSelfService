@@ -292,6 +292,12 @@ const books={
         }
         ,ref:(p,c)=>((a,c0)=>a.length<2?c0:books.play.ref(a.slice(2),books.play.step(+a[0],a[1],c0)))(typeof p==='string'?p.split('_'):p,c||books.play.loc())
         ,hiCut:(ns,c)=>{const lo=x=>String(x==null?'':x).trim().toLowerCase(),n=lo(c);if(/^\d+$/.test(n))return n;let k=1;for(;k<n.length&&ns.filter(x=>lo(x).slice(0,k)===n.slice(0,k)).length>1;k++);return n.slice(0,k);}
+        ,hid:(pl,i)=>{   /* hierarchy id, same shape as hi(): first 3 levels joined by '*', the rest by '.' – e.g. l*n*p.n.nulls */
+            const UP={pl1:'pl0',pl1e:'pl1',pl2:'pl1e',pl3:'pl2',pl4a:'pl3',pl4b:'pl3',pl5a:'pl4a',pl5b:'pl4b',pl6a:'pl5a',pl6b:'pl5b'};
+            const ns=[];for(let p=pl;p;p=UP[p])ns.unshift(p);
+            const tk=q=>{const a=books.play.names(q)||[[]],j=(q===pl&&i!=null)?i:(a[3]||0);return books.play.hiCut(a[0]||[],(a[0]||[])[j]);};
+            const top=ns.slice(0,3).map(tk).filter(Boolean).join('*'),deep=ns.slice(3).map(tk).filter(Boolean).join('.');
+            return deep?top+'.'+deep:top;}
         ,hiFit:(ns,t)=>{const lo=x=>String(x==null?'':x).trim().toLowerCase(),q=lo(t);if(q==='*')return ns[0];return ns.find(x=>lo(x)===q)||ns.find(x=>lo(x).startsWith(q));}
         ,names:pl=>{
             const R=books.play.render,md=books.play.md,s=books.play.shelf||[],su=R.cSub()||[]
@@ -329,6 +335,50 @@ const books={
             const t={pl1c:(books.play.texts[(books.play.copies()[k]||{}).fn]||''),pl1:md.pgs.map(p=>p.txt).join(' '),pl2:tx(md.chs[k]),pl3:tx(md.subs[ks[k]]),pl4b:tx([su[k]]),pl4a:(pars[k]||{}).txt,pl5b:(R.lnsOf()[k]||{}).t,pl5a:(R.sentT((md.pgs[R.curPar()]||{}).txt||'')[k]||'')}[pl];
             return t!==undefined?t:(fb||'');
         }
+        ,map:{
+            // word-map cache: memory → supabase public.map → generate. what = cloud filter (upper), where = hierarchy id (lower).
+            cache:{},fly:{}
+            ,on:()=>{const s=window.SUPABASE;return !!(s&&s.url&&!/YOUR-/.test(s.url));}
+            ,rpc:(fn,body)=>{                            // prefer the checked-in db.rpc (sets the apikey header); local impl only as fallback
+                if(window.db&&db.rpc)return Promise.resolve(db.rpc(fn,body)).catch(()=>null);
+                const s=window.SUPABASE;if(!s||!s.url||/YOUR-/.test(s.url))return Promise.resolve(null);
+                const h={apikey:s.publishableKey,'Authorization':'Bearer '+s.publishableKey,'Content-Type':'application/json'};
+                return fetch(s.url+'/rest/v1/rpc/'+fn,{method:'POST',headers:h,body:JSON.stringify(body||{})}).then(r=>r.ok?r.json():null).catch(()=>null);}
+            ,ww:async(what,wher)=>{
+                const W=(what||'').toUpperCase(),R=(wher||'').toLowerCase();
+                if(window.db&&db.ww)return db.ww(W,R);
+                const e=new TextEncoder(),h=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-1',e.encode(s)))).slice(0,8).map(b=>b.toString(16).padStart(2,'0')).join('');
+                return (await h(W))+(await h(R));}
+            ,read:d=>{                                   // → [ {word:count}, … ] – one element per cell; tolerates old shapes
+                if(!d)return null;
+                if(Array.isArray(d)){if(!d.length)return null;
+                    if(d[0]&&typeof d[0]==='object'&&'s' in d[0]){const o={};d.forEach(x=>{if(x&&x.s)o[x.s]=x.n;});return [o];}
+                    return d;}
+                return typeof d==='object'?[d]:null;}
+            ,load:async(what,wher)=>{
+                const m=books.play.map,W=(what||'').toUpperCase(),R=(wher||'').toLowerCase();
+                let k;try{k=await m.ww(W,R);}catch(e){return null;}
+                if(m.cache[k])return m.cache[k];
+                if(m.fly[k])return m.fly[k];
+                if(!m.on())return null;
+                const p=Promise.resolve(m.rpc('map_get',{what:W,wher:R})).then(d=>{
+                    const v=m.read(d);if(v)m.cache[k]=v;delete m.fly[k];return v;},()=>{delete m.fly[k];return null;});
+                m.fly[k]=p;return p;}
+            ,get:async(what,wher,gen)=>{
+                const m=books.play.map,W=(what||'').toUpperCase(),R=(wher||'').toLowerCase(),v=await m.load(W,R);
+                if(v)return v;
+                if(typeof gen!=='function')return null;
+                const g=await gen(W,R);
+                if(g&&typeof g==='object'){
+                    try{m.cache[await m.ww(W,R)]=g;}catch(e){}
+                    if(m.on())m.rpc('map_set',{what:W,wher:R,words:g});}
+                return g||null;}
+            ,set:async(what,wher,words)=>{
+                const m=books.play.map,W=(what||'').toUpperCase(),R=(wher||'').toLowerCase(),g=words||{};
+                try{m.cache[await m.ww(W,R)]=g;}catch(e){}
+                if(m.on())m.rpc('map_set',{what:W,wher:R,words:g});
+                return g;}
+        }
         ,cloud:{
             stop:/^(og|i|til|med|av|for|en|et|den|det|de|som|er|var|at|om|men|å|på|ikke|så|når|da|her|der|fra|ved|ut|inn|opp|ned|seg|kan|skal|vil|må|hadde|har|ble|blir|han|hun|jeg|du|vi|the|and|of|to|a|in|is|it|that|with|for|on|as|at|by|from|but|or|an|be|was|were|his|her|he|she|they|you|not)$/i
             ,words:(s,n,q)=>{const m={},f=String(q||'').toLowerCase();
@@ -339,21 +389,27 @@ const books={
                 if(e&&e.q===k)return e.t;
                 const v=k?books.play.render.sentT(t).filter(x=>x.toLowerCase().indexOf(k)>=0).join(' '):t;
                 c.tx.set(t,{q:k,t:v});return v;}
-            ,html:(s,n,q,b)=>{
-                const c=books.play.cloud,t=c.cut(s,q),df=c.dfOf(b||c.above(),q)
-                    ,a=c.words(t,Infinity,q).map(x=>[x[0],x[1]/(df[x[0]]||x[1])]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);
+            ,html:(own,n)=>{                                  // render one cell's {word:count} as sized/coloured spans
+                const a=Object.keys(own||{}).map(w=>[w,own[w]]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);
                 if(!a.length)return '';const mx=a[0][1];
-                return a.map(x=>'<span style="font-size:'+(0.75+0.85*x[1]/mx).toFixed(2)+'em;color:hsl('+Math.round(120+100*(1-x[1]))+',70%,25%)">'+books.play.render.esc(x[0])+'</span>').join('');}
-            ,df:{},dfFn:''
+                return a.map(x=>'<span style="font-size:'+(0.75+0.85*x[1]/mx).toFixed(2)+'em;color:hsl('+Math.round(120+100*(1-x[1]/mx))+',70%,25%)">'+books.play.render.esc(x[0])+'</span>').join('');}
+            ,bagc:{}
+            ,maps:async(pl,q,texts)=>{                        // ONE lookup for the whole list: [ {word:count}, … ] – one element per cell
+                const c=books.play.cloud,id=books.play.hid(pl),k=id+'|'+(q||'');
+                if(c.bagc[k])return c.bagc[k];
+                let a=await books.play.map.load(q,id);
+                if(!Array.isArray(a)||a.length!==texts.length){          // missing or stale (different cell count) → build and store
+                    a=texts.map(t=>{const m={};c.words(c.cut(t,q),Infinity,q).forEach(x=>m[x[0]]=x[1]);return m;});
+                    books.play.map.set(q,id,a);}
+                c.bagc[k]=a;return a;}
             ,shelf:()=>{const ts=Object.values(books.play.texts).filter(Boolean);return ts.length?ts.join(' '):books.play.md.txt;}
             ,above:()=>{
                 const R=books.play.render,up=books.play.up;let below=books.play.id(R.mode),pl=up[below];
                 while(pl&&(books.play.names(below)[0]||[]).length<2){below=pl;pl=up[pl];}
                 const a=pl?books.play.names(pl):null,i=a?(a[3]||0):0;
                 return {key:(pl||'pl0')+'|'+(a?String(a[1]||'').slice(0,24):'')+'|'+i+'|'+(books.play.md.fn||''),
+                        id:pl?books.play.hid(pl):'',
                         txt:(pl?books.play.txtOf(pl,i,''):'')||books.play.cloud.shelf()};}
-            ,dfOf:(b,q)=>{const c=books.play.cloud,k=b.key+'|'+(q||'');if(c.dfFn===k)return c.df;
-                const m={};c.words(c.cut(b.txt,q),Infinity,q).forEach(x=>m[x[0]]=x[1]);c.dfFn=k;return c.df=m;}
         }
         ,hi:()=>{
             const m=books.play.render.mode
@@ -679,11 +735,11 @@ const books={
             
             
                     // create or replace function public.map_set(what varchar, wher varchar, words jsonb) returns uuid language sql volatile as $$ insert into public.map(whatwhere, words) values (public.map_ww(what, wher), words) on conflict (whatwhere) do update set words = excluded.words returning whatwhere; $$;
-                    // -- usage: (what is always uppercase, where is always lowercase, words is a jsonb array of objects with s:string and n:number)
-                    // is json correct? fix it! select public.map_set('HELLO', 'l*n*p.n.nulls', '[{"s":"hello","n":4},{"s":"world","n":7}]'::jsonb);
-                    // select public.map_get('HELLO', 'l*n*p.n.nulls'); */
-                    g:(hId,q)=>{const k=hId+'|'+q;return books.play.memcache[k];}
-                    ,s:(hId,q,words)=>{const k=hId+'|'+q;books.play.memcache[k]=words;}
+                    // -- usage: what = the word-cloud filter (uppercase, '' = unfiltered); wher = the hierarchy id (lowercase); words = {word:count}
+                    // select public.map_set('SEA', 'pl3|#12|0|b_lifedemandeddeath_no_prem.md', '{"hello":4,"world":7}'::jsonb);
+                    // select public.map_get('SEA', 'pl3|#12|0|b_lifedemandeddeath_no_prem.md'); */
+                    g:(hId,q)=>books.play.cloud.bagc[hId+'|'+q]
+                    ,s:(hId,q,words)=>{books.play.cloud.bagc[hId+'|'+q]=words;}
                 }
                 ,zb:()=>{const on=books.play.sem.Z.on;zmT.textContent=on?'\u2299':'\u25CE';zmT.title=on?'Collapse the word map back into its band':'Expand the word map over the reading area';}
                 ,ib:()=>{const i=books.play.sem.Z.inv;
@@ -704,22 +760,24 @@ const books={
                     z.nav.redraw();z.zb();}
                 ,enter:()=>books.play.sem.Z.show()
                 ,nav:{
-                    el:null,last:'',tk:''
+                    el:null,last:'',tk:'',seq:0
                     ,box:()=>books.play.sem.Z.nav.el
                     ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
-                    ,areas:()=>{
+                    ,areas:async()=>{
                         const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),sp=books.play.sem.Z.sp,q=books.play.sem.Z.q
-                            ,b=books.play.cloud.above()
                             ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:books.play.child(pl)
                             ,fd=pl==='pl3'
                                 ?['b','a'].map(t=>'<button type="button" data-sp="'+t+'"'+(sp===t?' disabled':'')+'>'+e((books.play.LV[books.play.ix('pl4'+t)]||{}).t||('pl4'+t))+'</button>').join('')
                                 :''
-                            ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[]
-                                ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24,q,b)
-                                    ,on=(pl==='pl4a'||pl==='pl4b')&&k===a[3]
+                            ,cols=kids.map(c=>{const a=books.play.names(c);return {c,a,ns:a[0]||[]};})
+                            ,cells=[];cols.forEach(x=>x.ns.forEach((n,k)=>{if(n!=='')cells.push({c:x.c,k,n});}))
+                            ,maps=await books.play.cloud.maps(pl,q,cells.map(x=>books.play.txtOf(x.c,x.k,x.n)))
+                            ,it=0
+                            ,grp=cols.map(x=>{const rows=x.ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(maps[it++]||{},24)
+                                    ,on=(pl==='pl4a'||pl==='pl4b')&&k===x.a[3]
                                     ,cl=h||q;
-                                    return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
-                                if(!rows)return '';const cnt=ns.filter(n=>n!=='').length
+                                    return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+x.c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
+                                if(!rows)return '';const cnt=x.ns.filter(n=>n!=='').length
                                     ,grid=cnt>6?'<div class="nvR'+(cnt>14?' r3':'')+'">'+rows+'</div>':rows;
                                 return '<div class="nvGrp">'+((fd||q)?'<div class="nvG'+(pl==='pl3'?' nvS':'')+'">'+fd+books.play.sem.Z.nav.tq(q,!!fd)+'</div>':'')+grid+'</div>';}).join('');
                         return grp?'<div class="nvAreas">'+grp+'</div>':'';}
@@ -753,7 +811,7 @@ const books={
                     ,pickK:k=>{const p=String(k||'').split('|');if(p[0])books.play.sem.Z.nav.go(p[0],+p[1]);}
                     ,pick:el=>books.play.sem.Z.nav.pickK(el.dataset.k)
                     ,pair:()=>{const z=books.play.sem.Z,n=z.nav,p=n.tk;n.tk='';if(p)z.nav.pickK(p);z.hide();}
-                    ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q,1)+'</h2>'
+                    ,body:async()=>(await books.play.sem.Z.nav.areas())||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q,1)+'</h2>'
                     ,base:()=>document.body.classList.contains('zoom')?1:.6
                     ,collapsed:()=>!document.body.classList.contains('zoom')
                     ,hm:a=>{
@@ -774,7 +832,7 @@ const books={
                         a.forEach((w,i)=>{const s=n.room(w)/h2[i];
                             if(s<1)w.style.fontSize=(n.base()*Math.max(.4,s)).toFixed(2)+'em';});
                     }
-                    ,draw:()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const h=n.body();if(h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();}
+                    ,draw:async()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const s=++n.seq,h=await n.body();if(s!==n.seq||h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();}
                     ,redraw:()=>{const n=books.play.sem.Z.nav;n.last='';n.draw();}
                     ,swap:()=>{
                         const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
@@ -908,7 +966,7 @@ const books={
             });
             books.play.render.el.page.addEventListener('input',ev=>{if(ev.target.closest&&ev.target.closest('#page .se')){books.play.seSet(books.play.seRead(),false);}});
             books.play.render.el.page.addEventListener('change',ev=>{if(ev.target.closest&&ev.target.closest('#page .se')){books.play.seSet(books.play.seRead(),true);}});
-            const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=8';dbjs.onerror=()=>console.warn('[db.js] could not load in the background');document.head.appendChild(dbjs);
+            const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=9';dbjs.onerror=()=>console.warn('[db.js] could not load in the background');document.head.appendChild(dbjs);
             const musicjs=document.createElement('script');musicjs.type='module';musicjs.src=books.play.root+'music.js?v=8';musicjs.onerror=()=>console.warn('[music.js] could not load in the background');document.head.appendChild(musicjs);
             setTimeout(()=>books.play.render.blink(document.getElementById('hiUrl'),3),400);
         }
