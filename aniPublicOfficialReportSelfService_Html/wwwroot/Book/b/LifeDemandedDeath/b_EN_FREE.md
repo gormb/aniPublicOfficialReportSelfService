@@ -141,7 +141,7 @@ You don't know where the line goes, but I was in free fall; now I just had to hi
 #### p. 34
 The accused was acquitted.
 #### p. 35
-### Child abuse and wounds (Alternative)
+### Abuse and wounds (Alternative)
 🎵 [Knockin' on Heaven's Door; Bob Dylan](https://aigap.no/mkohd)
 Evening. I drove with the devil at my heels. Didn't reflect on the dust on the road to Oslo municipality. Just before I spun out of control and flew over the handlebars, I reflected on the day.
 #### p. 36

@@ -152,7 +152,7 @@ Man vet ikke hvor grensen går, men jeg var i fritt fall, nå skulle jeg bare tr
 #### p. 34
 Den tiltalte ble frikjent.
 #### p. 35
-### Barnemisbruk og sår (Alternativ)
+### Misbruk og sår (Alternativ)
 🎵 [Knockin' on Heaven's Door; Bob Dylan](https://aigap.no/mkohd)
 Kveld. Jeg kjørte med djevelen i helene. Reflekterte ikke over støvet på veien til Oslo kommune. Rett før jeg spant ut av kontroll og fløy over styret reflekterte jeg over dagen.
 #### p. 36

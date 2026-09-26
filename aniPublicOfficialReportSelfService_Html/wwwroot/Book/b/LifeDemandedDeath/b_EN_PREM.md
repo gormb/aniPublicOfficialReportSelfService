@@ -198,7 +198,7 @@ The thought that women and children are avenged by someone outside the law at le
 Convicted pedophiles and rapists get beaten up in prison, both here and, as I learned as a lay judge, in the Third World. Many in prison come from misery; much misery is created by child abusers. Simple logic. No one likes child and woman abusers, not even the support system can like them, not even themselves. They know they deserve a beating.
 The accused was acquitted. M had never admitted that murder would have been better; she worked with law and justice and was unchanged in her expression. We went to the place with the plastic palms. M, her girlfriend, and I. I drank whisky, drove like a fool, and woke up in the ER after ﬂying over the bike. The countdown was ﬁnally over. Self-annihilation was not unwanted, but not unwelcome.
 #### p. 35
-### Child abuse and wounds (Alternative)
+### Abuse and wounds (Alternative)
 🎵 [Knockin' on Heaven's Door; Bob Dylan](https://aigap.no/mkohd)
 Evening. I drove with the devil at my heels. Didn't reflect on the dust on the road to Oslo municipality. Just before I spun out of control and flew over the handlebars, I reflected on the day.
 The morning had started right here, full throttle out of Oslo and south. Then the phone rang.
