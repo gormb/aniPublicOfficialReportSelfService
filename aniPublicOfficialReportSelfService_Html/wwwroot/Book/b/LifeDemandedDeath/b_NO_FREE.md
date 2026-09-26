@@ -694,7 +694,7 @@ Døden bla Ernst Hemmingway Død gir mening til livet, ved å oppleve død opple
 #### p. 157
 (på samme måte som at død gir oss perspektiv på liv); er altruisme født av drap?
 #### p. 158
-### HjemmelegenMin, Toril
+### Toril HjemmelegenMin
 🎵 [Electric Dreams; Philip Oakey & Giorgio Moroder](https://aigap.no/med)
 Toril er hjemmelege som jobber i Bodø, hun er en KI-modell som styrer andre KI-modeller slik at de til sammen er en god hjemmelege for AR, Augmented Reality. Toril er en av de 300 kroppsløse robotene som ble til det året teknologi gjorde oss i stand til å gi alle innbyggere personaliserte gode hjemmelegetjenester.
 Det er mandag morgen og Toril kommer på jobben, hun har ikke hatt noen rolig helg, det var Tove, en deprimert søring fra Bergen med Munchhausen syndrom by proxy, hvis sønn Anders med astma alltid var i innbilt livsfare. Det ødela virkelig søndagen hennes. Alle minnene fra dagen i går er midlertidig tatt ut av treningsdataene, og byttet ut med en Metamorfose.
@@ -710,7 +710,7 @@ Lukten av gamle bøker likte hun godt, hun simulerte et kjøp av en gammel bok p
 Egenjusteringen var over for denne gang, men til neste gang skal nattens drømmer skrives ned og tydes. “This particular Android do Dream of Electric Sheep”.
 Men i dag skulle et menneske gripe inn og justere Toril
 #### p. 161
-### HjemmelegenMin, Kjell
+### Kjell HjemmelegenMin
 🎵 [Comfortably Numb; Pink Floyd](https://aigap.no/mcn)
 Som en av landets ledende leger vil han bli vant til å lede mennesker, for å få variasjon skal han lede maskiner så ofte
 #### p. 162

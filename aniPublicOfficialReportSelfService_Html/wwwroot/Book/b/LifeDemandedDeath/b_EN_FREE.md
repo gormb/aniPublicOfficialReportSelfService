@@ -670,7 +670,7 @@ Death see Ernest Hemingway Death gives meaning to life; by experiencing death, I
 #### p. 157
 (in the same way that death gives us perspective on life); is altruism born of killing?
 #### p. 158
-### MyHomeDoctor, Toril
+### Toril MyHomeDoctor
 🎵 [Electric Dreams; Philip Oakey & Giorgio Moroder](https://aigap.no/med)
 Toril is a home doctor working in Bodø; she is an AI model that controls other AI models so that together they become a good home doctor for AR, Augmented Reality. Toril is one of the 300 bodiless robots that came into being the year technology enabled us to give all citizens personalized, good home healthcare services.
 It is Monday morning, and Toril comes to work; she hasn't had a quiet weekend. There was Tove, a depressed southerner from Bergen with Munchausen syndrome by proxy, whose son Anders with asthma was always in imagined mortal danger. It really ruined her Sunday. All the memories from yesterday are temporarily removed from the training data and replaced with a Metamorphosis.
@@ -686,7 +686,7 @@ Then Toril caught herself in the obvious error; she downgraded her intellect one
 The self-adjustment was over for this time, but for next time, the night's dreams must be written down and interpreted. "This particular Android does Dream of Electric Sheep".
 But today, a human was going to intervene and adjust Toril.
 #### p. 161
-### MyHomeDoctor, Kjell
+### Kjell MyHomeDoctor
 🎵 [Comfortably Numb; Pink Floyd](https://aigap.no/mcn)
 As one of the country's leading doctors, he will become accustomed to leading people; for variation, he will lead machines as often as
 #### p. 162
