@@ -445,8 +445,7 @@ For the last seven months, life hadn't been about survival, but the Relationship
 Fourth ﬂoor in a rented apartment. Up the stairs and ﬁrst glance at the front door: "Is there a police seal on the door from the bailiﬀ?" Rent with automatic deduction may or may not have been paid for the last eight months.
 Electricity didn't have automatic deduction, and suddenly the lights stopped working a month or two ago, and they still don't.
 No fear and no shame. Hot water and heating were central, and the ﬂashlights had batteries.
-Registered bills on automatic deduction. Didn't know if there was over 100,000 or under 10,000 in the account, but got gas ﬁlled.
-"Gas on wireless card requires over 2000 kr," it said somewhere and was adopted as an indirect indicator of enough money. Nine months of avoidance, then I opened the online bank. Locked head.
+Bills on automatic deduction. Didn't know if there was over 10,000 or under 1,000 in the account, but got gas ﬁlled. "Gas on wireless card requires over 200 euro", it said somewhere and was adopted as generic indicator of enough money. Nine months of avoidance, then I opened the online bank. Locked head.
 #### p. 76
 ### She lives in a boat next to "Bensern"
 🎵 [Orinoco Flow; Enya](https://aigap.no/mof)

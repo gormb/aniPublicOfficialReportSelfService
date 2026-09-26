@@ -309,9 +309,9 @@ Vi satt på Lorry’s i Bogstadveien. Hun hadde hatt en dårlig kveld og var sm�
 #### p. 75
 “Kan jeg sove hos …” samme spørsmål tredje gang denne uka. “Nei, det går ikke”, avbrøt jeg. “Du liker ikke hvordan jeg har det”, det var midlertidig. Jeg bygget ny plattform fra grunnen, det tok lengre tid enn planlagt. Livet skjedde. V trodde det var fordi jeg hadde det rotete hjemme. Jeg hadde tidligere delt at jeg kan rydde om det står om livet.
 De siste syv månedene hadde ikke livet handlet om overlevelse, men Forholdet. V kunne bare konkludere med at hun ikke var viktig nok. Jeg sa “Vil ikke”, mente “kan Ikke”.
-Fjerde etasje i leid leilighet. Opp trappa og kaste første blikk på inngangsdøra: “Er det politisperring på døra fra namsmannen?” Husleie med automatisk trekk var kanskje betalt de siste  åtte månedene og kanskje ikke.
+Fjerde etasje i leid leilighet. Opp trappa og kaste første blikk på inngangsdøra: “Er det politisperring på døra fra namsmannen?” Husleie med automatisk trekk var kanskje betalt de siste åtte månedene og kanskje ikke.
 Strøm hadde ikke automatisk trekk og plutselig virka ikke lyset en gang for en eller to måneder siden, og det gjør det ikke enda. Ingen frykt og ingen skam. Varmtvann og varme var sentralt og lommelyktene hadde batteri.
-Registrerte regninger på automatisk trekk. Visste ikke om det sto over 100000 eller under 10000 på kontoen, men fikk fylt bensin. “Bensin på tråløst kort krever over 2000 kr”, sto det et sted og ble adoptert som indirekte indikatorpå nok penger. Ni måneder unnvikelse, deretter åpnet jeg nettbanken. Låst hode.
+Registrerte regninger på automatisk trekk. Visste ikke om det sto over 100000 eller under 10000 på kontoen, men fikk fylt bensin. “Bensin på tråløst kort krever over 2000 kr”, sto det et sted og ble adoptert som generell indikator på nok penger. Ni måneder unnvikelse, deretter åpnet jeg nettbanken. Låst hode.
 #### p. 76
 ### Hun bor i båt inntil “Bensern”
 🎵 [Orinoco Flow; Enya](https://aigap.no/mof)
