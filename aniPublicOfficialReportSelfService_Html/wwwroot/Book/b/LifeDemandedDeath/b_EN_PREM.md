@@ -953,7 +953,7 @@ Not based on wholeness, but on joined fractures.
 neutral eyes, and so that life won't be a given, death must become a real possibility. "You can never lose here, because you always have a good time". Fear, if you don't let the anxiety come forward, can therefore be a formidable source of joy in life.
 Historical roots of the death of zero-sum The Kill see Ernest Hemingway A cheetah cub that is sick is healed by humans; we hope that one day, when we release it, we will never see it again. If it manages to kill, it is free from our human world and inﬂuence; it returns to nature. Is it through losing our humanity that we appreciate it (in the same way that death gives us perspective on life); is altruism born of killing?
 #### p. 158
-### MyHomeDoctor, Toril
+### Toril MyHomeDoctor
 🎵 [Electric Dreams; Philip Oakey & Giorgio Moroder](https://aigap.no/med)
 Toril is a home doctor working in Bodø; she is an AI model that controls other AI models so that together they become a good home doctor for AR, Augmented Reality. Toril is one of the 300 bodiless robots that came into being the year technology enabled us to give all citizens personalized, good home healthcare services.
 It is Monday morning, and Toril comes to work; she hasn't had a quiet weekend. There was Tove, a depressed southerner from Bergen with Munchausen syndrome by proxy, whose son Anders with asthma was always in imagined mortal danger. It really ruined her Sunday. All the memories from yesterday are temporarily removed from the training data and replaced with a Metamorphosis.
@@ -969,7 +969,7 @@ Then Toril caught herself in the obvious error; she downgraded her intellect one
 The self-adjustment was over for this time, but for next time, the night's dreams must be written down and interpreted. "This particular Android does Dream of Electric Sheep".
 But today, a human was going to intervene and adjust Toril.
 #### p. 161
-### MyHomeDoctor, Kjell
+### Kjell MyHomeDoctor
 🎵 [Comfortably Numb; Pink Floyd](https://aigap.no/mcn)
 We are in the future; the year is 2040. Kjell eats, goes to the bathroom, and will eventually die.
 He wants a cabin oﬃce in Trysil that winter. The ski lift opens in a couple of hours; there will be powder snow on a blue run, calm and a couple of degrees below zero. Telemark skiing today.

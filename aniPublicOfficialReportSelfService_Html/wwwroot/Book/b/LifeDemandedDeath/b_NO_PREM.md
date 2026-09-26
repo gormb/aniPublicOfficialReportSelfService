@@ -993,7 +993,7 @@ livet ikke skal være en selvfølge må døden bli en reell mulighet.
 Frykten, hvis man ikke lar angsten komme frem, kan derfor være en formidabel kilde til livsglede.
 Historiske røtter til nulloppsummerings død Drapet bla Ernst Hemmingway En gepard-valp som er syk blir leget av mennesker, vi håper at en gang vi slipper den ut, at vi aldri skal se den igjen. Hvis den klarer å drepe er den fri fra vår menneskelige verden og påvirkning, den går tilbake til naturen. Er det slik at vi gjennom å miste vår menneskelighet setter pris på den, (på samme måte som at død gir oss perspektiv på liv); er altruisme født av drap?
 #### p. 158
-### HjemmelegenMin, Toril
+### Toril HjemmelegenMin
 🎵 [Electric Dreams; Philip Oakey & Giorgio Moroder](https://aigap.no/med)
 Toril er hjemmelege som jobber i Bodø, hun er en KI-modell som styrer andre KI-modeller slik at de til sammen er en god hjemmelege for AR, Augmented Reality. Toril er en av de 300 kroppsløse robotene som ble til det året teknologi gjorde oss i stand til å gi alle innbyggere personaliserte gode hjemmelegetjenester.
 Det er mandag morgen og Toril kommer på jobben, hun har ikke hatt noen rolig helg, det var Tove, en deprimert søring fra Bergen med Munchhausen syndrom by proxy, hvis sønn Anders med astma alltid var i innbilt livsfare. Det ødela virkelig søndagen hennes. Alle minnene fra dagen i går er midlertidig tatt ut av treningsdataene, og byttet ut med en Metamorfose.
@@ -1009,7 +1009,7 @@ Lukten av gamle bøker likte hun godt, hun simulerte et kjøp av en gammel bok p
 Egenjusteringen var over for denne gang, men til neste gang skal nattens drømmer skrives ned og tydes. “This particular Android do Dream of Electric Sheep”.
 Men i dag skulle et menneske gripe inn og justere Toril
 #### p. 161
-### HjemmelegenMin, Kjell
+### Kjell HjemmelegenMin
 🎵 [Comfortably Numb; Pink Floyd](https://aigap.no/mcn)
 Vi er i framtida, året blir 2040. Kjell spiser, går på do, og skal på et tidspunkt dø.
 Han vil ha hyttekontor på Trysil den vinteren. Skiheisen skal åpne om et par timer, det blir puddersnø i blå løype, vindstille og et par kuldegrader. Telemarkskjøring i dag.
