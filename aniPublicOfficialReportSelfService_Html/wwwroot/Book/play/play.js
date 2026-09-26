@@ -709,12 +709,12 @@ const books={
                     [E.prev,E.next,E.lvBars.querySelector('button[data-zm]'),document.getElementById('lvCtl')].forEach(el=>R.blink(el,3)); // the two hands and both ways out of the level blink three times, to say where they are
                     z.nav.swap();z.nav.redraw();z.zb();} // the areas are wide now, so the clouds are laid out and fitted again
                 ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0; // going out of the zoom only puts the map away: what the pointer happens to rest on is not opened – a click, or ↓ on it, is what chooses a node
-                    if(z.nav.tm){clearTimeout(z.nav.tm);z.nav.tm=0;z.nav.tk='';} // a click still waiting its beat dies with the map: what the pair names may not walk in after it is gone
+                    z.nav.tk=''; // the cell a click named is forgotten with the map: a key left behind may not name anything once the map is put up again
                     if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
                     z.nav.redraw();z.zb();} // the band is narrow and set in smaller type, so the areas are drawn and measured again
                 ,enter:()=>books.play.sem.Z.show()
                 ,nav:{ // ⌃⇧, a middle click or two fingers overwrite the play panel (right, innerHTML and all) with a navigating area – the level we are on, and what it selects. It stays: leaving the mode puts nothing back
-                    el:null,last:'',tm:0,tk:'' // tm: the beat a lone click waits before it walks in, so that a pair of them is never two navigations; tk: the cell that click named
+                    el:null,last:'',tk:'' // tk: the cell the FIRST click of a pair named – the second click lands on the map that click has just redrawn, so the pair has to be named by the one that was meant
                     ,box:()=>books.play.sem.Z.nav.el
                     ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
                     ,areas:()=>{ // every level reads the same way: one area per node, its cloud standing there and its name coming up on hover. The fork and the two nodes it opens show one and the same list – the nodes of the active spine – and at the page and the paragraph the node you stand on is marked
@@ -759,6 +759,7 @@ const books={
                     ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);} // an area selects that node and opens its level, like the same row in the nav
                     ,pickK:k=>{const p=String(k||'').split('|');if(p[0])books.play.sem.Z.nav.go(p[0],+p[1]);} // an area picked by the name of its cell – a click carries that name through the beat it waits, so the element it lands on need not still stand
                     ,pick:el=>books.play.sem.Z.nav.pickK(el.dataset.k) // an area picked – by a click, or by ↓ while the pointer stands on it
+                    ,pair:()=>{const z=books.play.sem.Z,n=z.nav,p=n.tk;n.tk='';if(p)z.nav.pickK(p);z.hide();} // a pair ends where its FIRST click stood: naming that cell again undoes what the second click picked on the map the first had redrawn, and then the map steps aside
                     ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q)+'</h2>'
                     ,base:()=>document.body.classList.contains('zoom')?1:.6 // the type scale the clouds are set at: full while zooming, small in the narrow band
                     ,collapsed:()=>!document.body.classList.contains('zoom') // the band: the cloud is turned, so its height reads as its width and vice versa
@@ -790,11 +791,10 @@ const books={
                                 +'<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the text to map"></div>';
                             n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
                             const mic=n.micEl=p.querySelector('#nvMic');
-                            n.el.onclick=ev=>{const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:''; // one click walks into the area and stays in the map – but it is held back a beat, so that the second click of a pair still finds the map as it was and not the level the first one has just opened. A pair quicker than the beat is caught here; a slower one is caught by dblclick, which the browser times itself
-                                if(n.tm){clearTimeout(n.tm);n.tm=0;const p=n.tk;n.tk='';n.pickK(k||p);z.hide();return;} // the second click of the pair: into the node the pair names, and out of the map
-                                if(!k)return;
-                                n.tk=k;n.tm=setTimeout(()=>{n.tm=0;n.tk='';n.pickK(k);},220);} // a lone click, a beat later – what the pointer rested on while it waited does not matter
-                            n.el.ondblclick=()=>z.hide(); // a pair slower than the beat: the click has already walked in, so the map only steps aside – any pick still waiting its beat is dropped with it
+                            n.el.onclick=ev=>{const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:''; // one click walks into the area at once – nothing is held back, so the map answers the hand as it always did
+                                if(ev.detail>1){z.nav.pair();return;} // the second click of a pair. The count on the click itself is what says so: the first click redraws the map, and once the element it landed on is gone the browser never fires dblclick at all – the count survives the redraw, the event does not
+                                if(!k)return;n.tk=k;z.nav.pickK(k);}; // the cell is remembered even though the pick is made now: it is what the pair is named by, should a second click follow
+                            n.el.ondblclick=()=>z.nav.pair(); // and where the browser does count the pair itself – the first click left the element under it standing, so there was nothing to redraw – it means the same thing
                             n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();}; // a phone's keyboard and its own dictation arrive as text, never as key events – both land here
                             if(n.mk()){ // while ⌃⇧ are held a click can never be a plain click (ctrl-click is the pointer's own menu, alt-click the other fork), so then 🎤 is worked by moving over it: over again is off again
                                 mic.onclick=e=>{if(!e.ctrlKey&&!e.metaKey&&!e.altKey)n.mic(!z.rec);}; // with the keys let go an ordinary click toggles it
