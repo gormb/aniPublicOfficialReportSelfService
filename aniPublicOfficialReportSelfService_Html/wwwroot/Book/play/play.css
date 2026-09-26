@@ -20,8 +20,8 @@ body.navon #hiQr{bottom:calc(4.6em + env(safe-area-inset-bottom,0px));} /* the s
 #hiUrl:empty{display:none;}
 #lvCtl{display:inline-flex;flex-direction:column;align-items:stretch;gap:1px;}
 #lvBars{display:block;}
-#lvBars button,#lvCtl button,#zmUp{font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.45;}
-#lvBars button:hover,#lvCtl button:hover,#zmUp:hover{opacity:1;}
+#lvBars button,#lvCtl button,#zmUp,#zmLv{font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.45;}
+#lvBars button:hover,#lvCtl button:hover,#zmUp:hover,#zmLv:hover{opacity:1;}
 #lvBars button.on{border-color:#999;opacity:1;background:#f2f2f2;}
 #lvBars button:disabled,#lvCtl button:disabled,#zmUp:disabled,#prev:disabled,#next:disabled{opacity:.3;cursor:default;}
 #lvBars table{border-collapse:separate;border-spacing:2px 1px;margin:0;}
@@ -30,6 +30,8 @@ body.navon #hiQr{bottom:calc(4.6em + env(safe-area-inset-bottom,0px));} /* the s
 #zmHead{display:none;}
 body.zoom #zmHead{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.4em;padding:.15em .3em;border-bottom:1px solid #ccc;background:#fff;}
 body.zoom #lvCtl{flex-direction:row-reverse;gap:.15em;}
+#zmLv{display:none;}
+body.zoom #zmLv{display:inline-block;}
 /* one blink of the eye: the hands when Z-mode is entered, the "Press ctrl-shift" hint three times when the page is first up */
 @keyframes blink{50%{opacity:.1;}}
 .blink{animation:blink .4s ease-in-out 1;}
