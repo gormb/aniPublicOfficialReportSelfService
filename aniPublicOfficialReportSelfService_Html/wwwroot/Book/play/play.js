@@ -399,13 +399,12 @@ const books={
             if(go('pl6a',4))R.go(7,1);
         }
         ,render:{
-            el:{page,nav:dbNavList,title:document.getElementById('dbTitle'),prev,next,lvBars,up:zmUp} // up = the coarser step, which stands on its own in the menu so that the whole set can be lent to the zoom area
+            el:{page,nav:dbNavList,title:document.getElementById('dbTitle'),prev,next,lvBars}
             ,ic:['📚','📖','📑','📄','📃','¶','✍️','🔤','⎶','🎨']
             ,lv:[]
             ,mode:0,idx:0,pi:0,ch:0,su:0,pending:null,si:0,wi:0,li:0,wide:0 // ch/su = active chapter/sub, pending = layer after an async load, si/wi = sentence+word we drilled from, li = line of the page (pl5b), wide = this level was reached by a gesture zoom-out, so the pane shows the level whole and opens nothing
-            ,setMode:()=>{const R=books.play.render,u=R.el.up;R.el.lvBars.querySelectorAll('button').forEach(x=>x.classList.toggle('on',+x.dataset.lv===R.mode));if(u)u.disabled=!books.play.up[books.play.id(R.mode)];}
-            ,coarser:()=>{const p=books.play.up[books.play.id(books.play.render.mode)];if(p)books.play.render.go(books.play.ix(p));} // 🔭 – the one step out, wherever its button is standing (menu bar or zoom area)
-            ,bar:()=>{const lv=books.play.render.lv,cld=books.play.child,ix=books.play.ix,btn=p=>{const o=lv[ix(p)]||{pl:p,nm:p,ic:'•'};return '<button data-lv="'+ix(p)+'" title="'+o.pl+' '+o.nm+'">'+o.ic+'</button>';},td1=p=>'<td rowspan="2">'+btn(p)+'</td>',tdx=p=>'<td>'+btn(p)+'</td>',chain=p=>{const a=[p];let c=cld(p);while(c.length===1){a.push(c[0]);c=cld(c[0]);}return a;};let node='pl0',cc=cld(node);while(cc.length===1){node=cc[0];cc=cld(node);}const spine=books.play.path(node),cols=cld(node).slice().reverse().map(chain);books.play.render.el.lvBars.innerHTML='<table><tr>'+spine.map(td1).join('')+(cols[0]||[]).map(p=>'<td class="txt">'+btn(p)+'</td>').join('')+'</tr><tr>'+(cols[1]||[]).map(p=>'<td class="pag">'+btn(p)+'</td>').join('')+'</tr></table>';books.play.render.el.lvBars.onclick=ev=>{const x=ev.target.closest('button');if(x&&x.dataset.lv!==undefined)books.play.render.go(+x.dataset.lv);};if(books.play.render.el.up)books.play.render.el.up.onclick=books.play.render.coarser;books.play.render.setMode();}
+            ,setMode:()=>{const R=books.play.render,u=R.el.lvBars.querySelector('button[data-zm]');R.el.lvBars.querySelectorAll('button').forEach(x=>x.classList.toggle('on',+x.dataset.lv===R.mode));if(u)u.disabled=!books.play.up[books.play.id(R.mode)];}
+            ,bar:()=>{const lv=books.play.render.lv,cld=books.play.child,ix=books.play.ix,btn=p=>{const o=lv[ix(p)]||{pl:p,nm:p,ic:'•'};return '<button data-lv="'+ix(p)+'" title="'+o.pl+' '+o.nm+'">'+o.ic+'</button>';},td1=p=>'<td rowspan="2">'+btn(p)+'</td>',tdx=p=>'<td>'+btn(p)+'</td>',chain=p=>{const a=[p];let c=cld(p);while(c.length===1){a.push(c[0]);c=cld(c[0]);}return a;};let node='pl0',cc=cld(node);while(cc.length===1){node=cc[0];cc=cld(node);}const spine=books.play.path(node),cols=cld(node).slice().reverse().map(chain);books.play.render.el.lvBars.innerHTML='<table><tr>'+spine.map(td1).join('')+(cols[0]||[]).map(p=>'<td class="txt">'+btn(p)+'</td>').join('')+'<td rowspan="2" class="zm"><button data-zm="up" title="coarser">\u{1F446}</button></td></tr><tr>'+(cols[1]||[]).map(p=>'<td class="pag">'+btn(p)+'</td>').join('')+'</tr></table>';books.play.render.el.lvBars.onclick=ev=>{const x=ev.target.closest('button');if(!x)return;if(x.dataset.zm==='up'){const p=books.play.up[books.play.id(books.play.render.mode)];if(p)books.play.render.go(books.play.ix(p));}else if(x.dataset.lv!==undefined){books.play.render.go(+x.dataset.lv);}};books.play.render.setMode();}
             ,chSubs:i=>books.play.md.subCh.map((c,k)=>c===i?k:-1).filter(k=>k>=0) // sub chapters of main chapter i
             ,cSub:()=>books.play.md.subs[books.play.render.su]||null
             ,setCh:i=>{ // selecting a main chapter moves the sub selection with it
@@ -618,7 +617,7 @@ const books={
             ,lvitem:x=>{const up=books.play.ancestors(x.pl).map(p=>{const L=books.play.LV.find(l=>l.pl===p);return L?L.t:'';}).filter(Boolean).join(' › ');return '<li id="'+x.pl+'">'+(up?'<div class="lvpath">'+books.play.render.esc(up)+' ›</div>':'')+'<i>'+books.play.render.esc(x.t)+'</i> – '+books.play.render.esc(x.q)+(x.nav&&x.nav!=='todo'?'<details><summary>Nav shows</summary>'+books.play.render.esc(x.nav)+'</details>':'')+(x.page&&x.page!=='todo'?'<details><summary>Page shows</summary>'+books.play.render.esc(x.page)+'</details>':'')+(x.thoughts?'<details open><summary>Thoughts</summary>'+books.play.render.esc(x.thoughts)+'</details>':'')+(x.child&&x.child.length?'<details open><summary>Planned</summary><ol>'+x.child.map(c=>'<li>'+books.play.render.esc(c.t)+(c.w?'<details><summary>Thoughts</summary>'+books.play.render.esc(c.w)+'</details>':'')+'</li>').join('')+'</ol></details>':'')+'</li>';}
             ,guide:()=>{const g=document.getElementById('lvGuide');if(!g)return;g.innerHTML=books.play.LV.map(x=>books.play.render.lvitem(x)).join('');}
             ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);books.play.render.ctl();books.play.hi();books.play.sem.Z.nav.draw();} // and the areas are drawn again, in case the level changed with them left as they were
-            ,ctl:()=>{const c=document.getElementById('lvCtl');if(!c)return;const pl=books.play.id(books.play.render.mode),kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV[books.play.ix(k)];h+='<button data-go="'+books.play.ix(k)+'" title="finer: '+(K?K.t:k)+'">\u{1F52C}</button>';});c.innerHTML=h;c.onclick=ev=>{const x=ev.target.closest('button');if(x&&x.dataset.go!==undefined)books.play.render.go(+x.dataset.go);};} // 🔬 – one step in, one button per node below the level
+            ,ctl:()=>{const c=document.getElementById('lvCtl');if(!c)return;const pl=books.play.id(books.play.render.mode),kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV[books.play.ix(k)];h+='<button data-go="'+books.play.ix(k)+'" title="finer: '+(K?K.t:k)+'">\u{1F447}</button>';});c.innerHTML=h;c.onclick=ev=>{const x=ev.target.closest('button');if(!x||x.dataset.go===undefined)return;if(x.dataset.go==='up'){const p=books.play.up[pl];if(p)books.play.render.go(books.play.ix(p));}else books.play.render.go(+x.dataset.go);};}
             ,baseOf:i=>books.play.md.pgs.slice(0,i).reduce((n,q)=>n+books.play.render.sentT(q.txt).length,0)
             ,pgOf:si=>{let n=0;for(let k=0;k<books.play.md.pgs.length;k++){n+=books.play.render.sentT(books.play.md.pgs[k].txt).length;if(n>si)return k;}return 0;}
             ,pgiOf:pn=>{const i=books.play.md.pages.findIndex(p=>p.pn===pn);return i<0?books.play.render.pi:i;}
@@ -706,43 +705,32 @@ const books={
                 ,ib:()=>{const b=document.getElementById('zmI');if(!b)return;const i=books.play.sem.Z.inv // the ⇄ switch: the same glyph either way, only pressed or not – the title is what says which way the gestures now read, since that is the whole question
                     ,w=i?['one level up, shown whole','one level down, with the node opened']:['one level down, with the node opened','one level up, shown whole']; // the two readings of one gesture, in the order fingers-apart then fingers-together
                     b.classList.toggle('on',!!i);b.title='Zoom gestures: fingers apart goes '+w[0]+', together goes '+w[1]+'. Click to turn the two round.';}
-                ,head:{ // the menu's own controls, lent to the top of the zoom area while the map is up: the two steps, the hands, the id with its link and the two switches. Every one of them is put back exactly where it stood, so the menu bar is left whole – the map can be raised and dropped without the bar ever showing a hole. The level bar is not lent: the hierarchy stands where it stands, map up or map down
-                    el:null,back:[]
-                    ,ids:['zmUp','lvCtl','prev','next','hiId','hiUrl','zmT','zmI'] // the order they stand in up there: the two steps to the left of everything already there, then the hands and the id as a link – the two switches last, held right by their own margin
-                    ,into:()=>{const h=books.play.sem.Z.head;if(h.back.length)return;h.el=document.getElementById('zmHead');if(!h.el)return;
-                        h.ids.forEach(id=>{const n=document.getElementById(id);if(!n)return;h.back.push([n,n.parentElement,n.nextSibling]);h.el.appendChild(n);});}
-                    ,out:()=>{const h=books.play.sem.Z.head;for(let i=h.back.length-1;i>=0;i--){const b=h.back[i];b[1].insertBefore(b[0],b[2]);}h.back=[];} // back to front: what a node stood before may itself be on its way back
-                }
                 ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom'); // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
-                    [E.prev,E.next,E.up,document.getElementById('lvCtl')].forEach(el=>R.blink(el,3)); // the two hands and both ways out of the level blink three times, to say where they are
-                    z.nav.swap();z.head.into();z.nav.redraw();z.zb();} // the areas are wide now, so the clouds are laid out and fitted again – and the menu's controls go up into the zoom area with them
+                    [E.prev,E.next,E.lvBars.querySelector('button[data-zm]'),document.getElementById('lvCtl')].forEach(el=>R.blink(el,3)); // the two hands and both ways out of the level blink three times, to say where they are
+                    z.nav.swap();z.nav.redraw();z.zb();} // the areas are wide now, so the clouds are laid out and fitted again
                 ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0; // going out of the zoom only puts the map away: what the pointer happens to rest on is not opened – a click, or ↓ on it, is what chooses a node
-                    z.head.out(); // and the menu's controls come home with it: the bar is as it was the moment the map went up
-                    z.nav.tk=''; // the cell a click named is forgotten with the map: a key left behind may not name anything once the map is put up again
+                    if(z.nav.tm){clearTimeout(z.nav.tm);z.nav.tm=0;z.nav.tk='';} // a click still waiting its beat dies with the map: what the pair names may not walk in after it is gone
                     if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
                     z.nav.redraw();z.zb();} // the band is narrow and set in smaller type, so the areas are drawn and measured again
                 ,enter:()=>books.play.sem.Z.show()
                 ,nav:{ // ⌃⇧, a middle click or two fingers overwrite the play panel (right, innerHTML and all) with a navigating area – the level we are on, and what it selects. It stays: leaving the mode puts nothing back
-                    el:null,last:'',tk:'' // tk: the cell the FIRST click of a pair named – the second click lands on the map that click has just redrawn, so the pair has to be named by the one that was meant
+                    el:null,last:'',tm:0,tk:'' // tm: the beat a lone click waits before it walks in, so that a pair of them is never two navigations; tk: the cell that click named
                     ,box:()=>books.play.sem.Z.nav.el
                     ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
                     ,areas:()=>{ // every level reads the same way: one area per node, its cloud standing there and its name coming up on hover. The fork and the two nodes it opens show one and the same list – the nodes of the active spine – and at the page and the paragraph the node you stand on is marked
                         const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),sp=books.play.sem.Z.sp,q=books.play.sem.Z.q
                             ,b=books.play.cloud.above() // found once for the whole map: every cloud on this level is read against the same level above
-                            ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:books.play.child(pl)
-                            ,fd=pl==='pl3' // at the fork the two nodes below it are named on top and each name is a button: the one the map is showing is the one you are already on, so its button stands pressed, and the other is the way over to it – pressing it changes nothing but which text the clouds are made of
-                                ?['b','a'].map(t=>'<button type="button" data-sp="'+t+'"'+(sp===t?' disabled':'')+'>'+e((books.play.LV[books.play.ix('pl4'+t)]||{}).t||('pl4'+t))+'</button>').join('')
-                                :'' // the detailed levels take no caption: down there the clouds identify the level by themselves, and a header stands only to say what is keyed
+                            ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:books.play.child(pl),tag=fork||kids.length>1
                             ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[]
                                 ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24,q,b)
                                     ,on=(pl==='pl4a'||pl==='pl4b')&&k===a[3] // grey only where you really stand – on the page or the paragraph you are in, never at the fork above them
                                     ,cl=h||q; // with the text cut, a cloud can come out with nothing in it: the area still stands there, empty, and keeps its name for the hover
                                     return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
-                                if(!rows)return '';const cnt=ns.filter(n=>n!=='').length // six areas is as far as one column carries; past fourteen it takes three
+                                if(!rows)return '';const L=books.play.LV[books.play.ix(c)]||{},cnt=ns.filter(n=>n!=='').length // six areas is as far as one column carries; past fourteen it takes three
                                     ,grid=cnt>6?'<div class="nvR'+(cnt>14?' r3':'')+'">'+rows+'</div>':rows;
-                                return '<div class="nvGrp">'+((fd||q)?'<div class="nvG'+(pl==='pl3'?' nvS':'')+'">'+fd+books.play.sem.Z.nav.tq(q,!!fd)+'</div>':'')+grid+'</div>';}).join('');
+                                return '<div class="nvGrp">'+((tag||q)?'<div class="nvG">'+e(L.t||c)+books.play.sem.Z.nav.tq(q)+'</div>':'')+grid+'</div>';}).join('');
                         return grp?'<div class="nvAreas">'+grp+'</div>':'';}
-                    ,tq:(q,dash)=>q?(dash?' – ':'')+'"'+books.play.render.esc(q)+'"':'' // what was keyed, carried by the header: after a caption where there is one (“Paragraph – "FRE"”), on its own where there is not
+                    ,tq:q=>q?' – "'+books.play.render.esc(q)+'"':'' // the title of the map carries what was keyed: “Paragraph – "FRE"”
                     ,applyQ:()=>{const z=books.play.sem.Z,n=z.nav;if(n.qEl&&n.qEl.value!==z.q)n.qEl.value=z.q;n.redraw();} // one place tells the field and the map, whatever put the filter there
                     ,mk:()=>window.SpeechRecognition||window.webkitSpeechRecognition // a phone may have no such thing – then the field is the way in: tap it and use the keyboard's own mic
                     ,lastWord:s=>{const a=String(s||'').replace(/[^\p{L}\p{N}'-]+/gu,' ').trim().split(/\s+/).filter(Boolean);return a.length?a[a.length-1]:'';} // dictation arrives with stops and capitals – the map wants the bare word, and the last one heard wins
@@ -771,8 +759,7 @@ const books={
                     ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);} // an area selects that node and opens its level, like the same row in the nav
                     ,pickK:k=>{const p=String(k||'').split('|');if(p[0])books.play.sem.Z.nav.go(p[0],+p[1]);} // an area picked by the name of its cell – a click carries that name through the beat it waits, so the element it lands on need not still stand
                     ,pick:el=>books.play.sem.Z.nav.pickK(el.dataset.k) // an area picked – by a click, or by ↓ while the pointer stands on it
-                    ,pair:()=>{const z=books.play.sem.Z,n=z.nav,p=n.tk;n.tk='';if(p)z.nav.pickK(p);z.hide();} // a pair ends where its FIRST click stood: naming that cell again undoes what the second click picked on the map the first had redrawn, and then the map steps aside
-                    ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q,1)+'</h2>'
+                    ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q)+'</h2>'
                     ,base:()=>document.body.classList.contains('zoom')?1:.6 // the type scale the clouds are set at: full while zooming, small in the narrow band
                     ,collapsed:()=>!document.body.classList.contains('zoom') // the band: the cloud is turned, so its height reads as its width and vice versa
                     ,hm:a=>{ // the words' own height for every cloud, read in one layout round – not the stretched box they sit in
@@ -798,18 +785,16 @@ const books={
                     ,swap:()=>{ // the panel is overwritten once: the areas, and under them the strip – a filter field only makes sense where the word map it filters stands
                         const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
                         if(!n.el){
-                            p.innerHTML='<div id="zmHead"></div>' // the strip the menu's controls stand in while the map is up – empty and collapsed once they go home
-                                +'<div id="semNav"></div>'
+                            p.innerHTML='<div id="semNav"></div>'
                                 +'<div id="semQ"><button id="nvMic" type="button" title="Speak a word – the text is cut by it and the map made of what is left, and the map keeps what carries it. While ⌃⇧ is held, move over it to open the mic; over it again to close">\u{1F3A4}</button>'
                                 +'<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the text to map"></div>';
                             n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
                             const mic=n.micEl=p.querySelector('#nvMic');
-                            n.el.onclick=ev=>{const s=ev.target.closest('[data-sp]'); // the fork's own buttons: pressing one only says which of the two nodes below the level the map is to be made of – the level you stand on does not change, and nothing is opened by it
-                                if(s&&!s.disabled){z.sp=s.dataset.sp;n.redraw();return;}
-                                const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:''; // one click walks into the area at once – nothing is held back, so the map answers the hand as it always did
-                                if(ev.detail>1){z.nav.pair();return;} // the second click of a pair. The count on the click itself is what says so: the first click redraws the map, and once the element it landed on is gone the browser never fires dblclick at all – the count survives the redraw, the event does not
-                                if(!k)return;n.tk=k;z.nav.pickK(k);}; // the cell is remembered even though the pick is made now: it is what the pair is named by, should a second click follow
-                            n.el.ondblclick=()=>z.nav.pair(); // and where the browser does count the pair itself – the first click left the element under it standing, so there was nothing to redraw – it means the same thing
+                            n.el.onclick=ev=>{const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:''; // one click walks into the area and stays in the map – but it is held back a beat, so that the second click of a pair still finds the map as it was and not the level the first one has just opened. A pair quicker than the beat is caught here; a slower one is caught by dblclick, which the browser times itself
+                                if(n.tm){clearTimeout(n.tm);n.tm=0;const p=n.tk;n.tk='';n.pickK(k||p);z.hide();return;} // the second click of the pair: into the node the pair names, and out of the map
+                                if(!k)return;
+                                n.tk=k;n.tm=setTimeout(()=>{n.tm=0;n.tk='';n.pickK(k);},220);} // a lone click, a beat later – what the pointer rested on while it waited does not matter
+                            n.el.ondblclick=()=>z.hide(); // a pair slower than the beat: the click has already walked in, so the map only steps aside – any pick still waiting its beat is dropped with it
                             n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();}; // a phone's keyboard and its own dictation arrive as text, never as key events – both land here
                             if(n.mk()){ // while ⌃⇧ are held a click can never be a plain click (ctrl-click is the pointer's own menu, alt-click the other fork), so then 🎤 is worked by moving over it: over again is off again
                                 mic.onclick=e=>{if(!e.ctrlKey&&!e.metaKey&&!e.altKey)n.mic(!z.rec);}; // with the keys let go an ordinary click toggles it
