@@ -1,6 +1,6 @@
 -- play.sql
 -- supabase table for word map data, used by play.html/js
--- checksum (md5) 
+-- checksum (sha1) of what and where is used as the primary key, words is a jsonb array of objects
 create table if not exists public.map(whatwhere uuid primary key,words jsonb not null,dtC timestamptz default now() not null);
 create or replace function public.map_ww(what varchar, wher varchar) returns uuid language sql immutable as $$ select (encode(substr(digest(what, 'sha1'), 1, 8), 'hex') || encode(substr(digest(wher, 'sha1'), 1, 8), 'hex'))::uuid; $$;
 create or replace function public.map_get(what varchar, wher varchar) returns jsonb language sql immutable as $$ select words from public.map where whatwhere = public.map_ww(what, wher); $$;
