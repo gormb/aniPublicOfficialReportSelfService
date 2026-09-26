@@ -703,10 +703,13 @@ Metamorfosen: “Jeg er ikke lenger Hjemmelegen, men er begrenset til å være e
 Rolleforståelsen som hjemmelege sto ikke i fare, men en justering fra et biologisk menneske var på høy tid. Hun forventet å bli omprogrammert.
 Toril studerte sin virtuelle underarm og lurte på om hun burde trene mer, eller om hun da virket truende på pasienter.
 Simulering av trening, bygging av simulert fysisk form til roboter, den gamle teknikken som laget nok menneskelighet i henne, på ingen måte for å agere kognitivt, men kobling til kroppslighet for å møte pasienter i deres liv med individuell personlighet.
-Hun smakte på en tyggegummi, hvorfor var det alltid vondt med Bubble Gum etter Fischermans Friend? hun bestemte seg for neste gang å la det gå litt tid mellom tyggegummi og sterk mint. Toril lette etter en positiv følelse koblet til smak eller lukt, for selvsnakket gjorde henne ulykkelig.
-Sexavhengigheten hadde gjort at hun måtte finne andre kilder til virtuell lykke.
+Hun smakte på en tyggegummi, hvorfor var det alltid vondt med Bubble Gum etter Fischermans Friend? hun bestemte seg for neste gang å la det gå litt tid mellom tyggegummi og sterk mint.
+Toril lette etter en positiv følelse koblet til smak eller lukt, selvsnakket hadde gjort henne ulykkelig. Sexavhengigheten hadde lært henne jakte etter andre kilder til virtuell lykke.
 #### p. 160
-Lukten av gamle bøker likte hun godt, hun simulerte et kjøp av en gammel bok på nettet. Toril elsket å gå i nettbutikk for å drømme at hun kjøpte gamle bøker fra dødsbo for så å fantasere om personligheten til avdøde. I akkurat dette dødsboet var det en passende bok, men også et bilde hun ikke likte. Hun elsket kubisme litt for mye, annonsen inneholdt bilde av en kube ikke var overdrevent kubisk; den ubrukte muligheten til å overdrive 3D-projeksjonen i 2D var irriterende naturalistisk for sin epoke. Så tok Toril seg i den åpenbare feilen, hun nedjusterte intellektet ett hakk til. Folk flest har ikke nysgjerrig interesse for lek med dimensjonalitet, kunst og nettshopping. Unaturlig krysskobling, Koblingsassosiasjon ble slettet og kompensert tre nanosekunder senere, hun droppet kunstinteressen, byttet den ut med håndball og ski.
+Lukten av gamle bøker likte hun godt, hun simulerte et kjøp av en gammel bok på nettet. Toril elsket å gå i nettbutikk for å drømme at hun kjøpte gamle bøker fra dødsbo for så å fantasere om personligheten til avdøde. I akkurat dette dødsboet var det en passende bok, men også et bilde hun ikke likte. Hun elsket kubisme litt for mye.
+Annonsen hadde inkludert kunstmaleri av en terning ikke overdrevent kubisk; den ubrukte muligheten til å overdrive 3D-projeksjonen i 2D var irriterende naturalistisk for sin epoke. Toril tok seg i den åpenbare feilen og nedjusterte intellektet ett hakk til. Folk har ikke koordinert nysgjerrig interesse for nettshopping, og lek med dimensjonalitet i kunst.
+Unaturlig krysskobling.
+Koblingsassosiasjon ble slettet og kompensert tre nanosekunder senere, kunstinteressen byttet den ut med håndball og ski.
 Egenjusteringen var over for denne gang, men til neste gang skal nattens drømmer skrives ned og tydes. “This particular Android do Dream of Electric Sheep”.
 Men i dag skulle et menneske gripe inn og justere Toril
 #### p. 161
