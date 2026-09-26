@@ -1,8 +1,8 @@
 <!doctype html>
-<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=47"></head>
+<head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=48"></head>
 <body>
 <!-- menu -->
-    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><span id="hiId">L*NO*FR.R.Ka.Vib.T</span><span id="hiQr"></span><a id="hiUrl"></a><button id="zmT" type="button" title="Expand the word map over the reading area">◎</button><span id="dpCur"></span></div>
+    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><span id="hiId">L*NO*FR.R.Ka.Vib.T</span><span id="hiQr"></span><a id="hiUrl"></a><button id="zmT" type="button" title="Expand the word map over the reading area">◎</button><button id="zmI" type="button" title="Zoom gestures: fingers apart goes a level down (finer), together a level up (coarser)">⇄</button><span id="dpCur"></span></div>
 <!-- nav -->
     <!--div id="dbNav"><div id="dbNavHead">
         <button id="lang">🇳🇴</button><button id="ver">👑</button><span id="dbTitle"></span>
@@ -50,7 +50,7 @@
                 </details>
     </div>
     <hr>
-    <script src="play.js?v=55"></script>
+    <script src="play.js?v=56"></script>
     <!-- #hiId › its deep link as qr + url. Nothing is added to aigap.no/qr.js: only its generic API is reused (qr.g, qr.sizes), and play's own glue – the ?p= url and the two elements – stays here, taking the id as a parameter -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
     <script src="https://aigap.no/i/u/qrmetrics.js"></script>

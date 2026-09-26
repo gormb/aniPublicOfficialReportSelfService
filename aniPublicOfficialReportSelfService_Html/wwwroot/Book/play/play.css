@@ -6,6 +6,9 @@ body{
 #dpCur{font-style:italic;color:#555;padding:0 .4em;font-size:.95em;white-space:nowrap;}
 #zmT{margin-left:auto;font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.7;} /* the switch that expands and collapses the word map – in the menu bar, just left of the level's name, so its place on screen never moves */
 #zmT:hover{opacity:1;background:#f2f2f2;}
+#zmI{font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.7;} /* which way round a pinch reads – beside the word-map switch, and standing the same however the map is shaped */
+#zmI:hover{opacity:1;background:#f2f2f2;}
+#zmI.on{opacity:1;background:#f2f2f2;border-color:#999;} /* pressed: the gestures are turned round, away from the way round most readers expect */
 #hiUrl{display:none;}
 body.zoom #hiUrl{display:inline;}
 body.zoom #hiUrl:empty{display:none;}

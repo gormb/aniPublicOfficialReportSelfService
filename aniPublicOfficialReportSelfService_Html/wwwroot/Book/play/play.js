@@ -684,7 +684,7 @@ const books={
         }
         ,sem:{
             Z:{
-                ov:null,m:0,t:0,sp:'b',q:'' // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. q: what is keyed while the areas are up – the text every cloud is built from is cut by it first, and then the map that comes of it is read through it
+                ov:null,m:0,t:0,sp:'b',q:'',inv:0,invKey:'play.zoom.invert' // sp: the spine the user last stood on (a = text, b = page) – it decides which way the pl3 fork drills in, and the page spine is the one to open on. q: what is keyed while the areas are up – the text every cloud is built from is cut by it first, and then the map that comes of it is read through it. inv: the way round a pinch reads – fingers apart may mean finer or coarser, and which one a reader expects is not settled, so it is theirs to set (the ⇄ switch in the menu bar); invKey: where that choice is kept between visits
                 ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
                 ,on:0,pin:0,was:0,key:0,mod:0 // pin: the two fingers opened or closed a level; was: whether the areas already stood up when they landed; key: the two keys are down now; mod: they have already been read since they last went down
                 ,wMap:{
@@ -702,6 +702,9 @@ const books={
                     ,s:(hId,q,words)=>{const k=hId+'|'+q;books.play.memcache[k]=words;}
                 }
                 ,zb:()=>{const b=document.getElementById('zmT');if(!b)return;const on=books.play.sem.Z.on;b.textContent=on?'\u2299':'\u25CE';b.title=on?'Collapse the word map back into its band':'Expand the word map over the reading area';} // ◎ when the map is down and ⊙ when it is up: the switch in the menu bar, where it stands the same however the map is shaped
+                ,ib:()=>{const b=document.getElementById('zmI');if(!b)return;const i=books.play.sem.Z.inv // the ⇄ switch: the same glyph either way, only pressed or not – the title is what says which way the gestures now read, since that is the whole question
+                    ,w=i?['one level up, shown whole','one level down, with the node opened']:['one level down, with the node opened','one level up, shown whole']; // the two readings of one gesture, in the order fingers-apart then fingers-together
+                    b.classList.toggle('on',!!i);b.title='Zoom gestures: fingers apart goes '+w[0]+', together goes '+w[1]+'. Click to turn the two round.';}
                 ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom'); // the overlay covers the screen itself (inset:-50vmax) – no rect maths to be out-zoomed
                     [E.prev,E.next,E.lvBars.querySelector('button[data-zm]'),document.getElementById('lvCtl')].forEach(el=>R.blink(el,3)); // the two hands and both ways out of the level blink three times, to say where they are
                     z.nav.swap();z.nav.redraw();z.zb();} // the areas are wide now, so the clouds are laid out and fitted again
@@ -748,8 +751,7 @@ const books={
                         if(on!==!!z.rec)n.speak(n.micEl);} // set, not toggled: the same call that opens the mic closes it, so moving over it again is off again
                     ,keyQ:e=>{ // typing while the areas are up cuts the text and reads the map through it: what was keyed is set after the level's title, and every cloud is built again on the part of its text that carries it – and then keeps only the words that carry it too
                         const z=books.play.sem.Z,n=z.nav,qEl=n.qEl,k=e.key,own=qEl&&document.activeElement===qEl;
-                        if(k==='Escape')z.q=''; // out of the filter in one go – Backspace takes one letter back
-                        else if(k==='Backspace'){if(own)return 0;z.q=z.q.slice(0,-1);} // the field deletes its own when it has the focus
+                        if(k==='Backspace'){if(own)return 0;z.q=z.q.slice(0,-1);} // the field deletes its own when it has the focus – Esc is not ours here: the key handler takes it, out of the filter or out of the zoom
                         else if(k.length===1&&k!==' '&&!e.metaKey&&!e.altKey&&!(own&&!e.ctrlKey))z.q+=k; // a letter or a digit; with the field focused a plain key is the field's – that is how a phone keyboard and its dictation come in – while ⌃⇧ letters are ours
                         else return 0; // not ours – the key goes on to whoever else listens
                         n.applyQ();
@@ -801,6 +803,7 @@ const books={
                             p.classList.add('navon');document.body.classList.add('navon');
                         }n.draw();} // the body carries it too: the columns answer to whether the areas are on
                 }
+                ,jump:()=>{const z=books.play.sem.Z,h=document.querySelector('#semNav .nvA:hover');if(!h)return;z.nav.pick(h);z.hide();} // ⏎ walks into the cell the pointer stands on, exactly as a double click does: the node is opened, and the map steps aside
                 ,drill:(d,alt,wide)=>{const z=books.play.sem.Z,R=books.play.render;
                     if(d>0){const h=document.querySelector('#semNav .nvA:hover');if(h)return z.nav.pick(h);} // ↓ first walks into the cell the pointer stands on, exactly as a click on it would
                     const pl=books.play.id(R.mode),ks=books.play.child(pl)
@@ -809,12 +812,15 @@ const books={
                     const t=books.play.names(k),i=d>0?t[3]:-1; // the child you stand in – the cell a click would have taken
                     if(i>=0&&(t[0]||[])[i])return z.nav.go(k,i);
                     R.go(books.play.ix(k),0,wide&&d<0);} // wide (a pinch together / ctrl-wheel down) only widens the level – the node it contains is NOT opened: a cell pick or a zoom-in is what opens it
+                ,zoom:d=>{const o=books.play.sem.Z.inv?-d:d;books.play.sem.Z.drill(o>0?1:-1,null,o>0?0:1);} // the ONE place a gesture's own direction is read: d = +1 fingers apart (a wheel up, which is the same pinch on a trackpad), −1 fingers together. Which of the two means finer is not a fact about the gesture but about the reader – ⇄ turns the two round here, and floor(apart/together) never learns: drill keeps its own reading, and the keyboard (↑ up, ↓ down, + finer, − coarser) is left as the keys read
                 ,init:()=>{
                     const z=books.play.sem.Z,db=()=>document.getElementById('dpBook')
                         ,dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)
                         ,zone=t=>db().contains(t)||!!(z.nav.el&&z.nav.el.contains(t)) // the reading pane, and the areas themselves the moment they cover it
-                        ,zb=document.getElementById('zmT');
+                        ,zb=document.getElementById('zmT'),ib=document.getElementById('zmI');
                     if(zb)zb.onclick=()=>{z.on?z.hide():z.show();};z.zb(); // the switch in the menu bar works the same two ways the keys do
+                    try{z.inv=localStorage.getItem(z.invKey)==='1'?1:0;}catch(e){} // the way round the reader chose is theirs across visits too
+                    if(ib)ib.onclick=()=>{z.inv=z.inv?0:1;try{localStorage.setItem(z.invKey,z.inv?'1':'0');}catch(e){}z.ib();};z.ib(); // ⇄ only changes how a gesture is read – never what a key says
                     let base=0,sx=0,sy=0,sw=0,acc=0,at=0; // base = the pinch width the last step was taken at, sx/sy = where a one-finger swipe began, sw = it may still be a swipe, acc/at = how far – and how long ago – a trackpad pinch turned
                     document.onkeydown=e=>{
                         if(e.key==='Control'||e.key==='Shift'){ // ⌃⇧ is the switch itself, not something to hold: pressed together they put the areas up, pressed together again they take them down – ⌃ alone does nothing (and bare ⌃arrows belong to Mission Control)
@@ -823,7 +829,9 @@ const books={
                             return;}
                         if(!z.on||(e.ctrlKey&&!e.shiftKey))return; // the arrows and the hand belong to the map the whole time it is up, not only while the two keys are held – and bare ⌃arrows are still Mission Control's
                         const k=e.key;
-                        if(k==='ArrowLeft' ||k===','||k==='<'){e.preventDefault();books.play.render.nav(-1);}  // 🫲
+                        if(k==='Enter'){e.preventDefault();z.jump();} // ⏎ = the double click: into the cell the pointer stands on, and out of the map
+                        else if(k==='Escape'){if(z.q){z.q='';z.nav.applyQ();}else z.hide();} // Esc: out of the filter while one is set – out of the zoom when none is
+                        else if(k==='ArrowLeft' ||k===','||k==='<'){e.preventDefault();books.play.render.nav(-1);}  // 🫲
                         else if(k==='ArrowRight'||k==='.'||k==='>'){e.preventDefault();books.play.render.nav(1);}  // 🫱
                         else if(k==='ArrowUp'  ){e.preventDefault();z.drill(-1);} // ↑ = up the tree, like the nav's ⬆ (coarser)
                         else if(k==='ArrowDown'){e.preventDefault();z.drill(1,e.altKey);}   // ↓ = into the children (finer); +alt = the fork not taken last
@@ -844,8 +852,8 @@ const books={
                         if(!z.t||e.touches.length<2)return;
                         if(e.cancelable)e.preventDefault(); // the pinch is ours, not the browser's page zoom – what it changes is the semantic level
                         const d=base?dist(e.touches):0;
-                        if(d&&d/base>=1.35){base=d;z.pin=1;z.drill(1);}               // apart → more detail: the node is opened
-                        else if(d&&d/base<=0.74){base=d;z.pin=1;z.drill(-1,null,1);}   // together → less detail: only the level widens, nothing is opened
+                        if(d&&d/base>=1.35){base=d;z.pin=1;z.zoom(1);}               // fingers apart = one step – which way that step goes is the switch's business, not the gesture's (z.zoom)
+                        else if(d&&d/base<=0.74){base=d;z.pin=1;z.zoom(-1);}         // fingers together = the same step, the other way
                     },{passive:false});
                     document.addEventListener('touchend',e=>{
                         if(z.t&&e.touches.length<2){z.t=0;if(!z.pin&&z.was)z.hide();} // the two fingers let go: the areas stay up – only a touch that pinched nothing closes what stood before it
@@ -860,7 +868,7 @@ const books={
                         if(e.cancelable)e.preventDefault();
                         const now=Date.now();if(now-at>400)acc=0;at=now; // a pause starts a new pinch
                         acc+=e.deltaY;
-                        if(Math.abs(acc)>=25){const out=acc>0;z.drill(out?-1:1,null,out?1:0);acc=0;} // apart → finer (opens the node), together → coarser (only widens the level); ~25 is one step, tune here if a trackpad is too eager
+                        if(Math.abs(acc)>=25){z.zoom(acc>0?-1:1);acc=0;} // a trackpad pinch arrives as a wheel: up (negative deltaY) is fingers apart, down is fingers together – one step, read the same way as the fingers; ~25 is one step, tune here if a trackpad is too eager
                     },{passive:false});
                     window.onblur=()=>{z.key=z.mod=0;z.hide();};
                     window.onresize=()=>{if(z.ov&&z.ov.style.display==='block')z.show();};
