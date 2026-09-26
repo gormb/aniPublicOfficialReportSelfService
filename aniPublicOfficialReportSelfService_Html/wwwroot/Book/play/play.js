@@ -598,7 +598,7 @@ const books={
             ,lvitem:x=>{const up=books.play.ancestors(x.pl).map(p=>{const L=books.play.LV.find(l=>l.pl===p);return L?L.t:'';}).filter(Boolean).join(' › ');return '<li id="'+x.pl+'">'+(up?'<div class="lvpath">'+books.play.render.esc(up)+' ›</div>':'')+'<i>'+books.play.render.esc(x.t)+'</i> – '+books.play.render.esc(x.q)+(x.nav&&x.nav!=='todo'?'<details><summary>Nav shows</summary>'+books.play.render.esc(x.nav)+'</details>':'')+(x.page&&x.page!=='todo'?'<details><summary>Page shows</summary>'+books.play.render.esc(x.page)+'</details>':'')+(x.thoughts?'<details open><summary>Thoughts</summary>'+books.play.render.esc(x.thoughts)+'</details>':'')+(x.child&&x.child.length?'<details open><summary>Planned</summary><ol>'+x.child.map(c=>'<li>'+books.play.render.esc(c.t)+(c.w?'<details><summary>Thoughts</summary>'+books.play.render.esc(c.w)+'</details>':'')+'</li>').join('')+'</ol></details>':'')+'</li>';}
             ,guide:()=>{const g=document.getElementById('lvGuide');if(!g)return;g.innerHTML=books.play.LV.map(x=>books.play.render.lvitem(x)).join('');}
             ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);books.play.render.ctl();books.play.hi();books.play.sem.Z.nav.draw();}
-            ,ctl:()=>{const pl=books.play.id(books.play.render.mode),kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV[books.play.ix(k)];h+='<button data-go="'+books.play.ix(k)+'" title="finer: '+(K?K.t:k)+'">\u{1F447}</button>';});lvCtl.innerHTML=h;lvCtl.onclick=ev=>{const x=ev.target.closest('button');if(!x||x.dataset.go===undefined)return;if(x.dataset.go==='up'){const p=books.play.up[pl];if(p)books.play.render.go(books.play.ix(p));}else books.play.render.go(+x.dataset.go);};}
+            ,ctl:()=>{const pl=books.play.id(books.play.render.mode),kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV[books.play.ix(k)];h+='<button data-go="'+books.play.ix(k)+'" title="finer: '+(K?K.t:k)+'">\u{1F52C}</button>';});lvCtl.innerHTML=h;lvCtl.onclick=ev=>{const x=ev.target.closest('button');if(x&&x.dataset.go!==undefined)books.play.render.go(+x.dataset.go);};}
             ,baseOf:i=>books.play.md.pgs.slice(0,i).reduce((n,q)=>n+books.play.render.sentT(q.txt).length,0)
             ,pgOf:si=>{let n=0;for(let k=0;k<books.play.md.pgs.length;k++){n+=books.play.render.sentT(books.play.md.pgs[k].txt).length;if(n>si)return k;}return 0;}
             ,pgiOf:pn=>{const i=books.play.md.pages.findIndex(p=>p.pn===pn);return i<0?books.play.render.pi:i;}
@@ -699,28 +699,31 @@ const books={
                     [E.prev,E.next,E.up,lvCtl].forEach(el=>R.blink(el,3));
                     z.nav.swap();z.head.into();z.nav.redraw();z.zb();}
                 ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0;z.head.out();
-                    if(z.nav.tm){clearTimeout(z.nav.tm);z.nav.tm=0;z.nav.tk='';}
+                    z.nav.tk='';
                     if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
                     z.nav.redraw();z.zb();}
                 ,enter:()=>books.play.sem.Z.show()
                 ,nav:{
-                    el:null,last:'',tm:0,tk:''
+                    el:null,last:'',tk:''
                     ,box:()=>books.play.sem.Z.nav.el
                     ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
                     ,areas:()=>{
                         const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),sp=books.play.sem.Z.sp,q=books.play.sem.Z.q
                             ,b=books.play.cloud.above()
-                            ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:books.play.child(pl),tag=fork||kids.length>1
+                            ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:books.play.child(pl)
+                            ,fd=pl==='pl3'
+                                ?['b','a'].map(t=>'<button type="button" data-sp="'+t+'"'+(sp===t?' disabled':'')+'>'+e((books.play.LV[books.play.ix('pl4'+t)]||{}).t||('pl4'+t))+'</button>').join('')
+                                :''
                             ,grp=kids.map(c=>{const a=books.play.names(c),ns=a[0]||[]
                                 ,rows=ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(books.play.txtOf(c,k,n),24,q,b)
                                     ,on=(pl==='pl4a'||pl==='pl4b')&&k===a[3]
                                     ,cl=h||q;
                                     return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
-                                if(!rows)return '';const L=books.play.LV[books.play.ix(c)]||{},cnt=ns.filter(n=>n!=='').length
+                                if(!rows)return '';const cnt=ns.filter(n=>n!=='').length
                                     ,grid=cnt>6?'<div class="nvR'+(cnt>14?' r3':'')+'">'+rows+'</div>':rows;
-                                return '<div class="nvGrp">'+((tag||q)?'<div class="nvG">'+e(L.t||c)+books.play.sem.Z.nav.tq(q)+'</div>':'')+grid+'</div>';}).join('');
+                                return '<div class="nvGrp">'+((fd||q)?'<div class="nvG'+(pl==='pl3'?' nvS':'')+'">'+fd+books.play.sem.Z.nav.tq(q,!!fd)+'</div>':'')+grid+'</div>';}).join('');
                         return grp?'<div class="nvAreas">'+grp+'</div>':'';}
-                    ,tq:q=>q?' – "'+books.play.render.esc(q)+'"':''
+                    ,tq:(q,dash)=>q?(dash?' – ':'')+'"'+books.play.render.esc(q)+'"':''
                     ,applyQ:()=>{const z=books.play.sem.Z,n=z.nav;if(n.qEl&&n.qEl.value!==z.q)n.qEl.value=z.q;n.redraw();}
                     ,mk:()=>window.SpeechRecognition||window.webkitSpeechRecognition
                     ,lastWord:s=>{const a=String(s||'').replace(/[^\p{L}\p{N}'-]+/gu,' ').trim().split(/\s+/).filter(Boolean);return a.length?a[a.length-1]:'';}
@@ -749,7 +752,8 @@ const books={
                     ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);}
                     ,pickK:k=>{const p=String(k||'').split('|');if(p[0])books.play.sem.Z.nav.go(p[0],+p[1]);}
                     ,pick:el=>books.play.sem.Z.nav.pickK(el.dataset.k)
-                    ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q)+'</h2>'
+                    ,pair:()=>{const z=books.play.sem.Z,n=z.nav,p=n.tk;n.tk='';if(p)z.nav.pickK(p);z.hide();}
+                    ,body:()=>books.play.sem.Z.nav.areas()||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q,1)+'</h2>'
                     ,base:()=>document.body.classList.contains('zoom')?1:.6
                     ,collapsed:()=>!document.body.classList.contains('zoom')
                     ,hm:a=>{
@@ -781,11 +785,12 @@ const books={
                                 +'<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the text to map"></div>';
                             n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
                             const mic=n.micEl=p.querySelector('#nvMic');
-                            n.el.onclick=ev=>{const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:'';
-                                if(n.tm){clearTimeout(n.tm);n.tm=0;const p=n.tk;n.tk='';n.pickK(k||p);z.hide();return;}
-                                if(!k)return;
-                                n.tk=k;n.tm=setTimeout(()=>{n.tm=0;n.tk='';n.pickK(k);},220);}
-                            n.el.ondblclick=()=>z.hide();
+                            n.el.onclick=ev=>{const s=ev.target.closest('[data-sp]');
+                                if(s&&!s.disabled){z.sp=s.dataset.sp;n.redraw();return;}
+                                const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:'';
+                                if(ev.detail>1){z.nav.pair();return;}
+                                if(!k)return;n.tk=k;z.nav.pickK(k);};
+                            n.el.ondblclick=()=>z.nav.pair();
                             n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();};
                             if(n.mk()){
                                 mic.onclick=e=>{if(!e.ctrlKey&&!e.metaKey&&!e.altKey)n.mic(!z.rec);};

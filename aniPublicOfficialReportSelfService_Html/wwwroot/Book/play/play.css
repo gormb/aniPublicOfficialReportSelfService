@@ -140,6 +140,12 @@ body:not(.zoom) #nvMic{width:100%;}
 #semNav .nvAreas{flex:1;display:flex;flex-direction:column;width:100%;min-height:0;}
 #semNav .nvGrp{flex:1;display:flex;flex-direction:column;min-height:0;}
 #semNav .nvG{font-size:.75em;letter-spacing:.08em;opacity:.55;text-align:center;padding:.1em 0;}
+#semNav .nvG.nvS{opacity:1;letter-spacing:0;}
+#semNav .nvG.nvS button{font:inherit;letter-spacing:.02em;margin:0 .15em;padding:.1em .6em;border:1px solid #b5b5b5;border-radius:.25em;background:#fff;color:#333;cursor:pointer;}
+#semNav .nvG.nvS button:hover{background:#efefef;}
+#semNav .nvG.nvS button:disabled{background:#dcdcdc;border-color:#8f8f8f;color:#000;cursor:default;}
+body:not(.zoom) #semNav .nvG.nvS button{font-size:1em;padding:.05em .35em;margin:0 .1em;}
+body.zoom #semNav .nvG.nvS{text-align:left;}
 #semNav .nvA{flex:1;display:flex;align-items:center;justify-content:center;padding:.2em .5em;min-height:0;cursor:pointer;position:relative;}
 #semNav .nvA.on{background:#ececec;} /* the page or the paragraph you are on – the only cell ever marked */
 /* more than six areas in a group → two columns, filled across (1-2 / 3-4 / 5-6 / 7), so the run on reads as one text; past fourteen it takes a third */
