@@ -653,6 +653,7 @@ const books={
             ,hands:()=>{const S=books.play.render.sibs(),e=books.play.render.el;if(e.prev)e.prev.disabled=S.i<=0;if(e.next)e.next.disabled=S.i>=S.l.length-1;}
             ,nav:d=>{const R=books.play.render,S=R.sibs(),k=S.i+d;if(k<0||k>=S.l.length)return;R.wide=0;S.go(S.l[k]);R.toc();R.draw();R.sync();}
             ,coarser:()=>{const p=books.play.up[books.play.id(books.play.render.mode)];if(p)books.play.render.go(books.play.ix(p));}
+            ,arrowBlink:d=>books.play.render.blink(d?lvCtl.querySelector('button'):books.play.render.el.up,1)
             ,hash:()=>{
                 const h=location.hash.toLowerCase().slice(1);
                 if(!h)return;
@@ -685,9 +686,8 @@ const books={
                     ,s:(hId,q,words)=>{const k=hId+'|'+q;books.play.memcache[k]=words;}
                 }
                 ,zb:()=>{const on=books.play.sem.Z.on;zmT.textContent=on?'\u2299':'\u25CE';zmT.title=on?'Collapse the word map back into its band':'Expand the word map over the reading area';}
-                ,ib:()=>{const i=books.play.sem.Z.inv
-                    ,w=i?['one level up, shown whole','one level down, with the node opened']:['one level down, with the node opened','one level up, shown whole'];
-                    zmI.classList.toggle('on',!!i);zmI.title='Zoom gestures: fingers apart goes '+w[0]+', together goes '+w[1]+'. Click to turn the two round.';}
+                ,ib:()=>{const i=books.play.sem.Z.inv;
+                    zmI.classList.toggle('on',!!i);zmI.title='Zoom: '+(i?'up':'down')+' means into the detail – the two-finger pinch and ↑/↓ alike. Click to turn it round.';}
                 ,head:{
                     el:null,back:[]
                     ,ids:['zmUp','lvCtl','prev','next','hiId','hiUrl','zmT','zmI']
@@ -695,7 +695,7 @@ const books={
                         h.ids.forEach(id=>{const n=document.getElementById(id);if(!n)return;h.back.push([n,n.parentElement,n.nextSibling]);h.el.appendChild(n);});}
                     ,out:()=>{const h=books.play.sem.Z.head;for(let i=h.back.length-1;i>=0;i--){const b=h.back[i];b[1].insertBefore(b[0],b[2]);}h.back=[];}
                 }
-                ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.box().style.display='block';document.body.classList.add('zoom');
+                ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.pin=0;z.box().style.display='block';document.body.classList.add('zoom');
                     [E.prev,E.next,E.up,lvCtl].forEach(el=>R.blink(el,3));
                     z.nav.swap();z.head.into();z.nav.redraw();z.zb();}
                 ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0;z.head.out();
@@ -789,7 +789,7 @@ const books={
                                 if(s&&!s.disabled){z.sp=s.dataset.sp;n.redraw();return;}
                                 const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:'';
                                 if(ev.detail>1){z.nav.pair();return;}
-                                if(!k)return;n.tk=k;z.nav.pickK(k);};
+                                if(!k)return;n.tk=k;z.nav.pickK(k);if(z.pin)z.hide();};
                             n.el.ondblclick=()=>z.nav.pair();
                             n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();};
                             if(n.mk()){
@@ -828,8 +828,8 @@ const books={
                         else if(k==='Escape'){if(z.q){z.q='';z.nav.applyQ();}else z.hide();}
                         else if(k==='ArrowLeft' ||k===','||k==='<'){e.preventDefault();books.play.render.nav(-1);}  
                         else if(k==='ArrowRight'||k==='.'||k==='>'){e.preventDefault();books.play.render.nav(1);}  
-                        else if(k==='ArrowUp'  ){e.preventDefault();z.drill(-1);}
-                        else if(k==='ArrowDown'){e.preventDefault();z.drill(1,e.altKey);}   
+                        else if(k==='ArrowUp'  ){e.preventDefault();z.drill(z.inv?1:-1);books.play.render.arrowBlink(0);}
+                        else if(k==='ArrowDown'){e.preventDefault();z.drill(z.inv?-1:1,e.altKey);books.play.render.arrowBlink(1);}
                         else if(k==='='||k==='+'){e.preventDefault();z.drill(1,e.altKey);}  
                         else if(k==='-'||k==='_'){e.preventDefault();z.drill(-1);}
                         else if(z.nav.keyQ(e))e.preventDefault();
