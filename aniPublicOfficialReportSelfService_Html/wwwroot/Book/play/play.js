@@ -607,6 +607,7 @@ const books={
             }
             ,em:()=>parseFloat(getComputedStyle(document.documentElement).fontSize)||1 // the client's own em: every figure the fit works with is a fraction of it, so nothing is pinned to a pixel
             ,blink:(el,n)=>{if(!el)return;el.classList.remove('blink');void el.offsetWidth;el.style.animationIterationCount=String(n||1);el.classList.add('blink');} // re-adding the class restarts it, and a reflow is what makes that true when it is already there
+            ,arrowBlink:d=>books.play.render.blink(d?lvCtl.querySelector('button'):books.play.render.el.lvBars.querySelector('button[data-zm]'),1) // the arrow the key stands for blinks, so ↑/↓ and the buttons never read as two different things
             ,hl:()=>{const m=books.play.render.mode;books.play.render.el.nav.querySelectorAll('a[data-i]').forEach(a=>a.classList.toggle('on',+a.dataset.m===m&&+a.dataset.i===books.play.render.idx));}
             ,focus:()=>{ // keep the active node in view – the lists get long (pl3 is ~260 rows)
                 const n=books.play.render.el.nav;if(!n)return;
@@ -830,8 +831,8 @@ const books={
                         else if(k==='Escape'){if(z.q){z.q='';z.nav.applyQ();}else z.hide();} // Esc: out of the filter while one is set – out of the zoom when none is
                         else if(k==='ArrowLeft' ||k===','||k==='<'){e.preventDefault();books.play.render.nav(-1);}  // 🫲
                         else if(k==='ArrowRight'||k==='.'||k==='>'){e.preventDefault();books.play.render.nav(1);}  // 🫱
-                        else if(k==='ArrowUp'  ){e.preventDefault();z.drill(z.inv?1:-1);} // ↑ = coarser, and finer once ⇄ has turned up and down round
-                        else if(k==='ArrowDown'){e.preventDefault();z.drill(z.inv?-1:1,e.altKey);} // ↓ = into the detail; ⇄ turns the two round. +alt = the fork not taken last
+                        else if(k==='ArrowUp'  ){e.preventDefault();z.drill(z.inv?1:-1);books.play.render.arrowBlink(0);} // ↑ = coarser, and finer once ⇄ has turned up and down round – ⬆ blinks so the key shows itself
+                        else if(k==='ArrowDown'){e.preventDefault();z.drill(z.inv?-1:1,e.altKey);books.play.render.arrowBlink(1);} // ↓ = into the detail; ⇄ turns the two round. +alt = the fork not taken last – 👇 blinks
                         else if(k==='='||k==='+'){e.preventDefault();z.drill(1,e.altKey);}  // + = finer (hand down); +alt = the other fork
                         else if(k==='-'||k==='_'){e.preventDefault();z.drill(-1);} // − = coarser (hand up)
                         else if(z.nav.keyQ(e))e.preventDefault(); // anything else keyed while the areas are up cuts the text after the title and reads the map through it: every cloud is built again on what is left of its own text, and keeps what carries the key
