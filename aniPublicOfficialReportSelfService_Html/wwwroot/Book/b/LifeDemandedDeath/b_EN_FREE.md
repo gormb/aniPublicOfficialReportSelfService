@@ -254,7 +254,7 @@ Two steps back. "That's it. I'm not going to hurt the priest I'm with".
 I wasn't ready. Now it was time to ride the MC.
 #### p. 66
 ### 40 km/h & salt taste on morning
-🎵 [Free Falling; Tom Petty](https://aigap.no/mff)
+🎵 [Free Fallin; Tom Petty](https://aigap.no/mff)
 I have a salty taste in my mouth. Noticed the taste on the way into the day with the engine idling. The rising sunrise woke me. The World Cup quarter-final was over a couple of hours ago, and the night has not yet turned to day. My brother's family, whom I watched the match with, will sleep for many hours. Not me. I sneak out and notice my niece waving at me. She is having a peaceful morning moment at night. We nod briefly to each other while I look forward to my own moment in silence. Sunrise on quiet roads with a big lazy motorcycle without meeting people. Every reason to smile. Niece gets hers, I get mine.
 The motorcycle behaved strangely; stops at the 24-hour gas station and refills air in the rear tire. Over 300kg motorcycle tips over on the ground; I continue filling air. The rear wheel sticks up in the air, so it's easier. A passerby stares from a safe distance.
 #### p. 67
