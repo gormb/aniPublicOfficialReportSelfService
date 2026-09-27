@@ -153,7 +153,8 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
     S.sync=()=>{const a=S.at(opt.page()||1);S.ch=a.ch;S.su=a.su;S.pg=0;};
     S.q=(t,n)=>String(t||'').toLowerCase().replace(/\s+/g,' ').trim().split(' ').slice(0,n||4).join(' ');
     host={
-        chain:()=>opt.toc()?['pl0','pl1','pl2']:['pl2','pl3']        // …and in the text the paragraphs are the cells you click, never a level
+        chain:()=>opt.toc()?['pl0','pl1','pl2']:['pl1','pl2','pl3']  // over the text: the copy, the chapter and the sub chapter you may stand on
+        ,leads:pl=>opt.toc()?M.end():pl!=='pl1'                      // over the text a click on an area leads to the place itself – the level bar is what takes you deeper; in the TOC the chain's end still leads
         ,fork:()=>false                                              // the text spine only – no page/paragraph fork
         ,up:{pl1:'pl0',pl2:'pl1',pl3:'pl2',pl4a:'pl3'}
         ,child:pl=>({pl0:['pl1'],pl1:['pl2'],pl2:['pl3'],pl3:['pl4a'],pl4a:['pl4a']}[pl]||[])
@@ -249,7 +250,7 @@ M.Z={
                 ,maps=await M.cloud.maps(pl,q,cells)
                 ,it=0
                 ,grp=cols.map(x=>{const rows=x.ns.map((n,k)=>{if(n==='')return '';const h=M.cloud.html(maps[it++],24)
-                        ,on=(pl==='pl4a'||pl==='pl4b'||M.end())&&k===x.a[3]   // the cell we are on – at the chain's end that is the one a pick leads to
+                        ,on=(pl==='pl4a'||pl==='pl4b'||M.end()||(M.host.leads&&M.host.leads(x.c)))&&k===x.a[3]   // the cell we are on: the one a pick leads to, at any level that leads
                         ,cl=h||q;
                         return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+x.c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
                     if(!rows)return '';const cnt=x.ns.filter(n=>n!=='').length
@@ -284,7 +285,7 @@ M.Z={
             n.applyQ();
             return 1;}
         ,go:(c,k)=>{const a=M.host.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);
-            if(M.end()&&M.host.pick)return M.host.pick(c,k,n);   // on the chain's end a pick leads there – it does not drill
+            if((M.host.leads?M.host.leads(c):M.end())&&M.host.pick)return M.host.pick(c,k,n);   // a level that leads: a pick goes there, it does not drill
             M.host.go(M.host.ix(c),true);}
         ,pickK:k=>{const p=String(k||'').split('|');if(p[0])M.Z.nav.go(p[0],+p[1]);}
         ,pick:el=>M.Z.nav.pickK(el.dataset.k)
