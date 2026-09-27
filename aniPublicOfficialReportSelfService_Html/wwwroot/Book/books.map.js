@@ -113,7 +113,10 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
                 if(!ch){ch={t:'',page,subs:[]};o.chapters.push(ch);}
                 su={t,page,paras:[]};ch.subs.push(su);continue;
             }
-            if(/^\u{1F3B5}/u.test(s))continue;                                   // 🎵 the song line is a link, not text
+            if(/^\u{1F3B5}/u.test(s)){                                          // 🎵 the song line is a link, not text
+                const u=(s.match(/\((\S+)\)/)||[,''])[1];
+                if(u){if(!ch){ch={t:'',page,subs:[]};o.chapters.push(ch);}(su||ch).mus=u;}
+                continue;}
             if(!ch){ch={t:'',page,subs:[]};o.chapters.push(ch);}
             if(!su){su={t:ch.t,page:ch.page,paras:[]};ch.subs.push(su);}
             su.paras.push({t:s,page,txt:s});
@@ -127,9 +130,11 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
     S.warm=async()=>{await S.load(url());S.redraw();                              // the copy being read now, the others after it
         for(const f of files())if(f.url!==url())await S.load(f.url);
         S.redraw();};
-    S.sync=()=>{const p=P(),pn=opt.page()||1;let ch=0,su=0;                      // the deepest heading at or before this page
-        p.chapters.forEach((c,i)=>{const j=(c.subs||[]).reduce((a,s,k)=>s.page<=pn?k:a,-1);if(c.page<=pn&&j>=0){ch=i;su=j;}});
-        S.ch=ch;S.su=su;S.pg=0;};
+    S.at=pn=>{const p=P();let ch=0,su=0,page=0;                                  // the deepest heading at or before a page
+        p.chapters.forEach((c,i)=>{const j=(c.subs||[]).reduce((a,s,k)=>s.page<=pn?k:a,-1);
+            if(c.page<=pn&&j>=0){ch=i;su=j;page=c.subs[j].page;}});
+        return {ch,su,page};};
+    S.sync=()=>{const a=S.at(opt.page()||1);S.ch=a.ch;S.su=a.su;S.pg=0;};
     S.q=(t,n)=>String(t||'').toLowerCase().replace(/\s+/g,' ').trim().split(' ').slice(0,n||4).join(' ');
     host={
         chain:()=>opt.toc()?['pl0','pl1','pl2']:['pl2','pl3','pl4a']
@@ -175,7 +180,9 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         ,onShow:()=>{S.sync();S.mode=opt.toc()?1:3;
             if(!S.raw[url()])S.load(url()).then(()=>S.redraw());}
     };
-    return {host,warm:S.warm,sync:S.sync,load:S.load,q:S.q,redraw:S.redraw,files,par:S.raw};
+    const out={host,warm:S.warm,sync:S.sync,load:S.load,q:S.q,redraw:S.redraw,files,file:()=>url(),model:()=>P(),parse:S.parse,at:S.at};
+    M.book=out;   // the sidecar model last handed to the map – a page's own lists (toc, search) read it too
+    return out;
 };
 M.Z={
     ov:null,m:0,t:0,sp:'b',q:'',inv:0,invKey:'play.zoom.invert'

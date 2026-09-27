@@ -6,7 +6,7 @@
         <script type="module" src="LdD.js?v=57"></script>
         <link rel="stylesheet" href="LdD.css?v=25">
         <link rel="stylesheet" href="books.map.css?v=3">
-        <script src="books.map.js?v=69"></script>
+        <script src="books.map.js?v=70"></script>
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -389,62 +389,16 @@
                     nav.ShowToc();
                     nav.Page(n, 0);
                 }
-                ,Toc:async ()=>{
-                    const T=cBook.data.type, want=book.hAlign._?'no':'en';
-                    // try the generated tiered .md first (fast, no PDF parsing); fall back to PDF parsing
-                    const md=await cBook.data.fromMd();
-                    const data=md?md.blocks:await cBook.data.get();
-                    const last=cBook.pdf?.numPages-3 ?? 9999;
-                    _dTocTitle.textContent=(md?md.title:await cBook.data.title(want==='no'))||'"Liv Krevde Død"'; nav._tocTitle=_dTocTitle.textContent; // cache title (book picker restores it)
-                    let chaps=data.filter(b=>b.type===T.CHAPTER&&b.lang===want&&b.page<last);
-                    let subs=data.filter(b=>b.type===T.SUB&&b.lang===want&&b.page<last);
-                    if(!md){ // PDF path: hide tier-locked entries (the .md is already mode-filtered)
-                        const locked=book.prem._?'freemium':'premium';
-                        const ok=async rows=>{
-                            const out=[];
-                            for(const b of rows){
-                                let tier=cBook._tierCache?.[`${b.page}|${b.text}`];
-                                if(!tier){
-                                    const page=await cBook.pdf.getPage(b.page), tc=await page.getTextContent();
-                                    const it=tc.items.find(i=>i.str.trim()===b.text)||tc.items.slice().sort((a,b)=>(b.height||0)-(a.height||0))[0];
-                                    let fam=it?(await cBook.FontName(it.fontName,page))||'':'';
-                                    if(it&&fam===it.fontName){ // fonts not loaded yet → load via small offscreen render
-                                        try{
-                                            const vp=page.getViewport({scale:0.1});
-                                            const c=document.createElement('canvas');c.width=Math.max(1,Math.round(vp.width));c.height=Math.max(1,Math.round(vp.height));
-                                            await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
-                                            fam=(await cBook.FontName(it.fontName,page))||it.fontName;
-                                        }catch(e){}
-                                    }
-                                    tier=cBook.FontTier(fam);
-                                    (cBook._tierCache=cBook._tierCache||{})[`${b.page}|${b.text}`]=tier;
-                                }
-                                if(tier!=='comment'&&tier!==locked)out.push(b); // comments always hidden
-                            }
-                            return out;
-                        };
-                        chaps=await ok(chaps);
-                        subs=await ok(subs);
-                    }
+                ,Toc:async ()=>{ // the chapter list, read from the .md sidecar that says what is where in the .pdf – never from the pdf's own text
+                    await books.map.book.load(books.map.book.file());
+                    const P=books.map.book.model(), cur=books.map.book.at(book.pn()), want=book.hAlign._?'no':'en';
+                    _dTocTitle.textContent=P.t||'"Liv Krevde Død"'; nav._tocTitle=_dTocTitle.textContent; // cache title (book picker restores it)
                     const spotMap=await window.music.Load();
-                    const resolveSpot=url=>{
-                        if(!url||!window.music.Re.test(url))return url;
-                        return spotMap[window.music.Key(url)]||url;
-                    };
-                    const music=new Map(data.filter(b=>b.type===T.LINK&&b.spotify).map(b=>[`${b.lang}:${b.page}`,resolveSpot(b.url)]));
-                    const musicUrl=page=>music.get(`${want}:${page}`)||'';
-                    const cur=book.pn();
-                    let curPage=0; // deepest heading at/before current page
-                    for(let i=0;i<chaps.length;i++){
-                        const c=chaps[i], end=chaps[i+1]?.page??1e9;
-                        if(c.page<=cur)curPage=c.page;
-                        for(const s of subs.filter(x=>x.page>=c.page&&x.page<end)) if(s.page<=cur)curPage=s.page;
-                    }
+                    const resolveSpot=url=>!url||!window.music.Re.test(url)?url:(spotMap[window.music.Key(url)]||url);
                     const row=(n,t,u,isCur)=>`<a class="toc-nav${isCur?' cur':''}" href="javascript:nav.Page(${n},0);nav.ShowToc()"><span>${t}</span><i></i></a>`+(u?`<a class="toc-play" id="${new URL(u,location.href).search.slice(1)}_${want==='no'?'l':'r'}" data-u="${u}" onmousedown="window.music.Tgl(this);return false;" href="#">\u266B</a>`:'')+`<a class="toc-num" href="javascript:nav.Page(${n},0);nav.ShowToc()">${n}</a>`;
-                    const html='<ul>'+chaps.map((c,i)=>{
-                        const end=chaps[i+1]?.page??1e9;
-                        const cs=subs.filter(s=>s.page>=c.page&&s.page<end);
-                        return `<li class="chap" data-p="${c.page}">${row(c.page,c.text,musicUrl(c.page),c.page===curPage)}</li>`+(cs.length?'<ul>'+cs.map(s=>`<li data-p="${s.page}">${row(s.page,s.text,musicUrl(s.page),s.page===curPage)}</li>`).join('')+'</ul>':'');
+                    const html='<ul>'+P.chapters.map(c=>{
+                        const subs=(c.subs||[]).filter(s=>!(s.t===c.t&&s.page===c.page)); // the heading's own stand-in is not a sub chapter
+                        return `<li class="chap" data-p="${c.page}">${row(c.page,c.t,resolveSpot(c.mus),c.page===cur.page)}</li>`+(subs.length?'<ul>'+subs.map(s=>`<li data-p="${s.page}">${row(s.page,s.t,resolveSpot(s.mus),s.page===cur.page)}</li>`).join('')+'</ul>':'');
                     }).join('')+'</ul>';
                     nav._tocHtml=html; // cache chapter TOC (book picker shows over it)
                     return html;
@@ -558,7 +512,9 @@
                     if(nav._bkChap&&nav._bkChap.k===k)return nav._bkChap.a;
                     let a=[];
                     try{const r=await fetch(src.replace(/\.pdf$/i,'')+'_'+w+'_'+m+'.md');
-                        if(r.ok)a=[...(await r.text()).matchAll(/^#{2,3}\s+(.+?)\s+(?:—|–)\s*p\.\s*(\d+)/gm)].map(x=>({t:x[1].trim().toLowerCase(),page:+x[2]}));
+                        if(r.ok){const P=books.map.book.parse(await r.text()); // the same .md the map walks
+                            P.chapters.forEach(c=>{a.push({t:c.t.toLowerCase(),page:c.page});
+                                (c.subs||[]).forEach(s=>{if(!(s.t===c.t&&s.page===c.page))a.push({t:s.t.toLowerCase(),page:s.page});});});}
                     }catch(e){}
                     nav._bkChap={k,a}; return a;
                 }
