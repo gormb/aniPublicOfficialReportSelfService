@@ -359,17 +359,15 @@ M.Z={
         band.id='semBand';band.className='semBand';
         e.band=document.createElement('div');e.band.id='semBody';
         head.className='semHead';
-        e.coarser=mk('\u{1F52D}','Coarser – the whole',()=>z.drill(-1));
-        e.levels=document.createElement('span');e.levels.className='semLevels';
+        e.levels=document.createElement('span');e.levels.className='semLevels';   // the level bar is the coarser/finer step: pick the level
         e.stage=document.createElement('span');e.stage.className='semStage';
-        e.finer=mk('\u{1F52C}','Finer – into the detail',()=>z.drill(1));
         e.handPrev=mk('\u{1FAF2}','Previous in this level',()=>z.walk(-1));
         e.handNext=mk('\u{1FAF1}','Next in this level',()=>z.walk(1));
         e.mic=mk('\u{1F3A4}','Speak a word – the text is cut by it',()=>{});
         e.inv=mk('\u21C4','Zoom: down means into the detail; click to turn it round',()=>{});
         e.zoom=mk('\u25CE','Leave the map (Esc)',()=>{});
         e.bandCollapse=mk('\u2912','Collapse the map',()=>{});
-        head.append(e.coarser,e.levels,e.stage,e.finer,e.handPrev,e.handNext,e.mic,e.inv,e.zoom,e.bandCollapse);
+        head.append(e.levels,e.stage,e.handPrev,e.handNext,e.mic,e.inv,e.zoom,e.bandCollapse);
         z.built=1;   // a head the map made itself: the level bar and the node's name are ours to fill
         e.query=document.createElement('div');e.query.className='semFoot';
         band.append(head,e.band,e.query);document.body.appendChild(band);
