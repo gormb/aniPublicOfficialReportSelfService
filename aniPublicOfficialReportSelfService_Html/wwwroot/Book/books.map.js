@@ -93,7 +93,11 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         ,slug=()=>opt.prefix().replace(/\/[^/]*$/,'').split('/').pop().toLowerCase().replace(/[^a-z0-9]+/g,'')
         ,S={raw:{},ch:0,su:0,pg:0,want:0,mode:1}
         ,P=()=>S.raw[url()]||{t:'',chapters:[]}
-        ,cur=()=>{const p=P(),c=p.chapters[S.ch]||{subs:[]};return {p,c,s:c.subs[S.su]||{paras:[]}};}
+        ,cur=()=>{const p=P(),nc=p.chapters.length;                            // the cursor must stay inside the model it belongs to
+            if(nc)S.ch=Math.max(0,Math.min(S.ch,nc-1));
+            const c=p.chapters[S.ch]||{subs:[]},ns=(c.subs||[]).length;
+            if(ns)S.su=Math.max(0,Math.min(S.su,ns-1));
+            return {p,c,s:c.subs[S.su]||{paras:[]}};}
         ,txt=x=>(x.paras||[]).map(y=>y.txt).join(' ')                       // a sub chapter carries paragraphs…
         ,chap=x=>(x.subs||[]).map(txt).join(' ')                            // …and a main chapter carries sub chapters
         ,whole=p=>((p&&p.chapters)||[]).map(chap).join(' ')
@@ -142,6 +146,9 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
     S.frac=node=>{const a=S.onPage(node.page),i=a.indexOf(node);                 // where one of them stands – the estimate, .md alone
         return a.length?(0.08+0.84*(i+0.5)/a.length):0.5;};
     S.reload=async()=>{await S.load(url());S.sync();S.redraw();};              // read the copy being read now and redraw
+    S.ensure=()=>{if(P().chapters.length)return;                                // a copy we cannot read is read again, once
+        if(S.try===url())return;S.try=url();delete S.raw[url()];
+        S.load(url()).then(()=>S.redraw());};
     S.copyTo=async f=>{await opt.copy(f);await S.reload();};                  // a copy of the book: its own cell switches it
     S.sync=()=>{const a=S.at(opt.page()||1);S.ch=a.ch;S.su=a.su;S.pg=0;};
     S.q=(t,n)=>String(t||'').toLowerCase().replace(/\s+/g,' ').trim().split(' ').slice(0,n||4).join(' ');
@@ -192,6 +199,8 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         ,arrowBlink:d=>host.blink(d?M.Z.el.finer:M.Z.el.coarser,1)
         ,nav:d=>M.Z.walk(d)
         ,texts:S.raw,mdText:()=>'',fn:url
+        ,empty:()=>{S.ensure();                                   // a level with nothing in it: say why, and read the copy if it was never read
+            return '<h2>'+String(P().chapters.length?'nothing here to pick':'reading '+url().split('/').pop()+' \u2026').replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</h2>';}
         ,get lang(){return opt.lg();}
         ,onShow:()=>{S.sync();S.mode=opt.toc()?1:3;
             if(!S.raw[url()])S.load(url()).then(()=>S.redraw());}
@@ -280,7 +289,8 @@ M.Z={
         ,pickK:k=>{const p=String(k||'').split('|');if(p[0])M.Z.nav.go(p[0],+p[1]);}
         ,pick:el=>M.Z.nav.pickK(el.dataset.k)
         ,pair:()=>{const z=M.Z,n=z.nav,p=n.tk;n.tk='';if(p)z.nav.pickK(p);z.hide();}
-        ,body:async()=>(await M.Z.nav.areas())||'<h2>'+M.host.esc(M.Z.nav.label())+M.Z.nav.tq(M.Z.q,1)+'</h2>'
+        ,body:async()=>{const h=await M.Z.nav.areas();if(h)return h;   // nothing to draw: let the page say why, if it can
+            return M.host.empty?M.host.empty():'<h2>'+M.host.esc(M.Z.nav.label())+M.Z.nav.tq(M.Z.q,1)+'</h2>';}
         ,base:()=>document.body.classList.contains('zoom')?1:.6
         ,collapsed:()=>!document.body.classList.contains('zoom')
         ,hm:a=>{
