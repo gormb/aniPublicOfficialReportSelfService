@@ -1,0 +1,2 @@
+create table if not exists public.music(id text primary key, book text, lg text, ed text, ch text, su text, page_from int, page_to int, feeling text[], txt_id text, sort numeric, updated_at timestamptz default now());
+create or replace view public.music_vw as select m.*, r.desc as song, btrim(split_part(r.desc,';',1)) as title, btrim(split_part(r.desc,';',2)) as artist, r.url as spotify, r.qr, t.txt from public.music m left join public.redir r on r.id=m.id left join public.redir t on t.id=coalesce(m.txt_id,m.id);

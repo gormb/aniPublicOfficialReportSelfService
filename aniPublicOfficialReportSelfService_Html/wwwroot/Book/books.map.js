@@ -153,7 +153,8 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
     S.sync=()=>{const a=S.at(opt.page()||1);S.ch=a.ch;S.su=a.su;S.pg=0;};
     S.q=(t,n)=>String(t||'').toLowerCase().replace(/\s+/g,' ').trim().split(' ').slice(0,n||4).join(' ');
     host={
-        chain:()=>opt.toc()?['pl0','pl1','pl2']:['pl2','pl3']        // …and in the text the paragraphs are the cells you click, never a level
+        chain:()=>opt.toc()?['pl0','pl1','pl2']:['pl1','pl2','pl3']  // over the text: the copy, the chapter and the sub chapter you may stand on
+        ,leads:pl=>opt.toc()?M.end():pl!=='pl1'                      // over the text a click on an area leads to the place itself – the level bar is what takes you deeper; in the TOC the chain's end still leads
         ,fork:()=>false                                              // the text spine only – no page/paragraph fork
         ,up:{pl1:'pl0',pl2:'pl1',pl3:'pl2',pl4a:'pl3'}
         ,child:pl=>({pl0:['pl1'],pl1:['pl2'],pl2:['pl3'],pl3:['pl4a'],pl4a:['pl4a']}[pl]||[])
@@ -249,7 +250,7 @@ M.Z={
                 ,maps=await M.cloud.maps(pl,q,cells)
                 ,it=0
                 ,grp=cols.map(x=>{const rows=x.ns.map((n,k)=>{if(n==='')return '';const h=M.cloud.html(maps[it++],24)
-                        ,on=(pl==='pl4a'||pl==='pl4b'||M.end())&&k===x.a[3]   // the cell we are on – at the chain's end that is the one a pick leads to
+                        ,on=(pl==='pl4a'||pl==='pl4b'||M.end()||(M.host.leads&&M.host.leads(x.c)))&&k===x.a[3]   // the cell we are on: the one a pick leads to, at any level that leads
                         ,cl=h||q;
                         return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+x.c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
                     if(!rows)return '';const cnt=x.ns.filter(n=>n!=='').length
@@ -284,9 +285,9 @@ M.Z={
             n.applyQ();
             return 1;}
         ,go:(c,k)=>{const a=M.host.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);
-            if(M.end()&&M.host.pick)return M.host.pick(c,k,n);   // on the chain's end a pick leads there – it does not drill
+            if((M.host.leads?M.host.leads(c):M.end())&&M.host.pick)return M.host.pick(c,k,n);   // a level that leads: a pick goes there, it does not drill
             M.host.go(M.host.ix(c),true);}
-        ,pickK:k=>{const p=String(k||'').split('|');if(p[0])M.Z.nav.go(p[0],+p[1]);}
+        ,pickK:k=>{const p=String(k||'').split('|');return p[0]?M.Z.nav.go(p[0],+p[1]):undefined;}
         ,pick:el=>M.Z.nav.pickK(el.dataset.k)
         ,pair:()=>{const z=M.Z,n=z.nav,p=n.tk;n.tk='';if(p)z.nav.pickK(p);z.hide();}
         ,body:async()=>{const h=await M.Z.nav.areas();if(h)return h;   // nothing to draw: let the page say why, if it can
@@ -326,7 +327,8 @@ M.Z={
                     const s=el&&el.closest?el.closest('[data-sp]'):null;
                     if(s&&!s.disabled){z.sp=s.dataset.sp;n.redraw();return;}
                     const x=el&&el.closest?el.closest('[data-k]'):null,k=x?x.dataset.k:'';
-                    if(!k)return;n.tk=k;z.nav.pickK(k);if(z.pin)z.hide();};
+                    if(!k)return;n.tk=k;const r=z.nav.pickK(k);   // the pick is a promise: what it leads to may take a while to come up
+                    if(z.pin)Promise.resolve(r).then(()=>z.hide());}   // a thumb that pinched the map open gets it back once the picked place is up – not before, so no half-drawn page blinks through;
                 n.el.onclick=ev=>{if(Date.now()-n.tap<700)return;   // the thumb has already acted: iOS sends its click after the touch
                     if(ev.detail>1){z.nav.pair();return;}n.act(ev.target);};
                 n.el.ondblclick=()=>z.nav.pair();
