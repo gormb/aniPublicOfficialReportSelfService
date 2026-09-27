@@ -22,16 +22,9 @@ body{
 #lvBars table{border-collapse:separate;border-spacing:2px 1px;margin:0;}
 #lvBars td{padding:0;text-align:center;vertical-align:middle;}
 #lvBars td.txt{border-bottom:1px dashed #b8b8b8;}
-#zmHead{display:none;}
-body.zoom #zmHead{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.4em;padding:.15em .3em;border-bottom:1px solid #ccc;background:#fff;}
-/* word zoom: every control in the area is one size – hands, levels, lens, mic, switches and the page/paragraph toggle */
-body.zoom #zmHead #prev,body.zoom #zmHead #next,body.zoom #zmHead #nvMic,body.zoom #zmHead #zmUp,body.zoom #zmHead #zmLv,body.zoom #zmHead #lvCtl button,body.zoom #zmHead #zmT,body.zoom #zmHead #zmI,body.zoom #semNav .nvG.nvS button{font-size:2.6em;line-height:1;}
-body.zoom #lvCtl{flex-direction:row-reverse;gap:.15em;}
+/* #zmHead, the blue wash, the filter strip and the areas with their clouds are the map's own surfaces – books.map.css */
 #zmLv{display:none;}
 body.zoom #zmLv{display:inline-block;}
-/* one blink of the eye: the hands when Z-mode is entered, the "Press ctrl-shift" hint three times when the page is first up */
-@keyframes blink{50%{opacity:.1;}}
-.blink{animation:blink .4s ease-in-out 1;}
 #dbNav{display:flex;flex-direction:column;min-height:0;border-right:1px solid #999;}
 #dbNavHead{display:flex;align-items:center;gap:.3em;padding:0 .4em;border-bottom:1px solid #999;}
 #dbNavHead button{padding:.1em .3em;font-size:1.6em;}
@@ -110,51 +103,11 @@ h2 a,h3 a{color:inherit;text-decoration:none;}
 #hiId::before{content:'Press ctrl-shift';font-size:.75rem;}
 body.zoom #hiId{font-size:.75rem!important;color:#777;font-style:normal;text-decoration:underline;pointer-events:auto;cursor:pointer;max-width:24ch;overflow:hidden;text-overflow:ellipsis;} /* in zoom the id is the link to where you are – the url is never shown */
 body.zoom #hiId::before{content:none;}
-#semOv{position:fixed;display:none;inset:-50vmax;background:rgba(0,70,190,.5);pointer-events:none;z-index:50;} /* the blue area covers the whole screen itself – -50vmax reaches well outside the page, so no other zoom can leave screen uncovered */
 /* the navigating area the right play panel is overwritten with while ⌃⇧ or two fingers are down – the level you are on, later a word cloud of it. It stays after the keys are let go */
 #dbPlay.navon{position:relative;z-index:55;} /* above the blue wash, so the area being navigated in stays readable */
 /* ⌃⇧ let go: the areas stay where they are, but turn on their side in a very narrow band, and the reading area takes what the panel gives back */
 body.navon:not(.zoom){grid-template-columns:20vw 1fr 8vw;}
-body:not(.zoom) #semNav .nvW{transform:rotate(80deg);}
-body:not(.zoom) #semNav .nvA{overflow:hidden;} /* the turned cloud is held in its own area – nothing of it reaches the reading area */
-body:not(.zoom) #semNav .nvR{grid-template-columns:1fr;} /* one area per row: the band is too narrow to fold */
-body:not(.zoom) #semNav .nvT,body:not(.zoom) #semNav .nvG{font-size:.7em;}
 /* while zooming the areas take the reading area as well – the level reads as one field instead of a 30% slot.
    Both items sit in row 2 already, so widening the columns cannot shuffle anything: same top, same full height. */
 body.zoom #dbPlay.navon{grid-column:2/-1;background:#fff;}
-#semNav{flex:1;min-height:0;overflow:visible;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;} /* visible: the areas are sized to fit, and a turned cloud must spill, not be cut */
-#semNav h2{margin:0;font-size:1.9em;font-weight:400;letter-spacing:.04em;}
-/* the strip in the foot of the panel the word map stands in: what is keyed – or, on a phone, spoken into the field with the keyboard's own mic, or heard by the 🎤 –
-   and the filter the whole word map is read through. It comes with the areas and it collapses with them */
-/* the filter stands under the hierarchy: the left column is two lines – what is listed, then what it is read through */
-#semQ{display:flex;align-items:center;gap:.25em;padding:.2em .3em;border-top:1px solid #999;}
-#semQ:empty{display:none;}
-#nvQ{flex:1;min-width:0;font:inherit;font-size:.8em;padding:.1em .3em;border:1px solid #ccc;border-radius:.2em;background:#fff;}
-#nvQ:focus{outline:2px solid #8ad;outline-offset:1px;}
-#nvMic{cursor:pointer;line-height:1;padding:.1em .2em;border:1px solid transparent;border-radius:.2em;background:none;} /* beside the hands, the size they have: a thumb needs a target, and while ⌃⇧ is held it is the pointer resting on it that opens the mic */
-#nvMic:hover{background:#eee;} /* the point of contact is the point of press, so it has to show itself */
-#nvMic.on{background:#e33;color:#fff;animation:blink .9s ease-in-out infinite;} /* while the mic is open it blinks – the same blink as the hands, only slower and never ending, so it is never in doubt that it is hearing */
-/* pl1–pl5a/pl4b – the same areas as pl0, parametrized: one area per node in the level, top to bottom, the node's name centred in its area */
-#semNav .nvAreas{flex:1;display:flex;flex-direction:column;width:100%;min-height:0;}
-#semNav .nvGrp{flex:1;display:flex;flex-direction:column;min-height:0;}
-#semNav .nvG{font-size:.75em;letter-spacing:.08em;opacity:.55;text-align:center;padding:.1em 0;}
-#semNav .nvG.nvS{opacity:1;letter-spacing:0;}
-#semNav .nvG.nvS button{font:inherit;letter-spacing:.02em;margin:0 .15em;padding:.1em .6em;border:1px solid #b5b5b5;border-radius:.25em;background:#fff;color:#333;cursor:pointer;}
-#semNav .nvG.nvS button:hover{background:#efefef;}
-#semNav .nvG.nvS button:disabled{background:#dcdcdc;border-color:#8f8f8f;color:#000;cursor:default;}
-body:not(.zoom) #semNav .nvG.nvS button{font-size:1em;padding:.05em .35em;margin:0 .1em;}
-body.zoom #semNav .nvG.nvS{text-align:left;}
-#semNav .nvA{flex:1;display:flex;align-items:center;justify-content:center;padding:.2em .5em;min-height:0;cursor:pointer;position:relative;}
-#semNav .nvA.on{background:#ececec;} /* the page or the paragraph you are on – the only cell ever marked */
-/* more than six areas in a group → two columns, filled across (1-2 / 3-4 / 5-6 / 7), so the run on reads as one text; past fourteen it takes a third */
-#semNav .nvR{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;min-height:0;}
-#semNav .nvR.r3{grid-template-columns:1fr 1fr 1fr;}
-/* the cloud stands in its area by default and may run over into its neighbours – what keeps it in hand is the fit, not a frame;
-   the node's own name is what comes up on hover, on a white backing so it carries over the words – and it is held inside its own
-   area: a paragraph preview is a long line, and a name that ran over the cells above and below would hide which area is marked */
-#semNav .nvT{position:relative;z-index:2;text-align:center;background:rgba(255,255,255,.92);transition:opacity .12s;max-width:100%;max-height:100%;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;}
-#semNav .nvA.nvC .nvT{opacity:0;}
-#semNav .nvA:hover .nvT{opacity:1;}
-#semNav .nvW{position:absolute;inset:0;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:.05em .5em;padding:.2em .4em;pointer-events:none;font-weight:400;}
-#semNav .nvW span{line-height:1;}
 

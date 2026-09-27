@@ -149,7 +149,7 @@ const books={
             const fs=[...new Set((p.shelf||[]).filter(v=>v.fn).map(v=>v.fn))].filter(fn=>p.texts[fn]===undefined);
             if(!fs.length)return;
             Promise.all(fs.map(fn=>fetch(fn,{cache:'no-store'}).then(r=>r.ok?r.text():'').then(t=>{p.texts[fn]=t;},()=>{p.texts[fn]='';})))
-                .then(()=>{p.cloud.dfFn=null;p.sem.Z.nav.last='';p.sem.Z.nav.draw();});
+                .then(()=>{books.map.cloud.dfFn=null;books.map.Z.nav.last='';books.map.Z.nav.draw();});
         }
         ,persist:()=>{try{localStorage.setItem(books.play.ovKey,JSON.stringify(books.play.manifest));books.play.src='localStorage';}catch(e){}}
         ,seSet:(bs,redraw)=>{books.play.manifest=Object.assign({},books.play.manifest||{},{books:bs});books.play.persist();books.play.rebuild();books.play.render.toc();if(redraw)books.play.render.draw();}
@@ -337,65 +337,6 @@ const books={
             const t={pl1c:(books.play.texts[(books.play.copies()[k]||{}).fn]||''),pl1:md.pgs.map(p=>p.txt).join(' '),pl2:tx(md.chs[k]),pl3:tx(md.subs[ks[k]]),pl4b:tx([su[k]]),pl4a:(pars[k]||{}).txt,pl5b:(R.lnsOf()[k]||{}).t,pl5a:(R.sentT((md.pgs[R.curPar()]||{}).txt||'')[k]||'')}[pl];
             return t!==undefined?t:(fb||'');
         }
-        ,map:{
-            // word-map cache: memory → public.map → generate. what = filter (upper), wher = hierarchy id (lower).
-            cache:{},fly:{}
-            ,load:async(what,wher)=>{
-                const m=books.play.map;if(!window.db)return null;
-                const W=(what||'').toUpperCase(),R=(wher||'').toLowerCase(),k=await db.ww(W,R);
-                if(m.cache[k])return m.cache[k];
-                if(m.fly[k])return m.fly[k];
-                return m.fly[k]=db.rpc('map_get',{what:W,wher:R}).then(d=>{if(d)m.cache[k]=d;delete m.fly[k];return d;},()=>{delete m.fly[k];return null;});}
-            ,set:async(what,wher,words,par,sib)=>{
-                const m=books.play.map;if(!window.db)return words;
-                const W=(what||'').toUpperCase(),R=(wher||'').toLowerCase();
-                m.cache[await db.ww(W,R)]=words;
-                db.rpc('map_set',{what:W,wher:R,words,par,sib});
-                return words;}
-        }
-        ,cloud:{
-            stop:/^(og|i|til|med|av|for|en|et|den|det|de|som|er|var|at|om|men|å|på|ikke|så|når|da|her|der|fra|ved|ut|inn|opp|ned|seg|kan|skal|vil|må|hadde|har|ble|blir|han|hun|jeg|du|vi|the|and|of|to|a|in|is|it|that|with|for|on|as|at|by|from|but|or|an|be|was|were|his|her|he|she|they|you|not)$/i
-            ,score:w=>w[1]*w[0].length/(books.play.cloud.stop.test(w[0])?books.play.cloud.noise:1)   // frequency × length; noise words divided, so they lose the cut too
-            ,prefer:(a,b)=>books.play.cloud.score(b)-books.play.cloud.score(a)||b[0].length-a[0].length||(a[0]<b[0]?-1:1)   // qsort-style: [word,count], >0 ⇒ a first
-            ,words:(s,n,q)=>{const m={},f=String(q||'').toLowerCase();   // with a filter, only words matching it
-                (String(s||'').toLowerCase().match(/[\p{L}][\p{L}'-]*/gu)||[]).forEach(w=>{if(f&&w.indexOf(f)<0)return;m[w]=(m[w]||0)+1;});
-                return Object.keys(m).map(w=>[w,m[w]]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);}
-            ,tx:new Map()
-            ,cut:(s,q)=>{const c=books.play.cloud,t=String(s||''),k=String(q||'').toLowerCase(),e=c.tx.get(t);
-                if(e&&e.q===k)return e.t;
-                const v=k?books.play.render.sentT(t).filter(x=>x.toLowerCase().indexOf(k)>=0).join(' '):t;
-                c.tx.set(t,{q:k,t:v});return v;}
-            ,html:(own,n)=>{                                  // per word [size,newness]: size = share across the siblings, green = introduced, blue = repeated before
-                const a=Object.entries(own).sort((x,y)=>y[1][0]-x[1][0]).slice(0,n||16);
-                if(!a.length)return '';const mx=a[0][1][0];
-                return a.map(x=>'<span style="font-size:'+(0.75+0.85*x[1][0]/mx).toFixed(2)+'em;color:hsl('+Math.round(120+100*(1-x[1][1]))+',70%,25%)">'+books.play.render.esc(x[0])+'</span>').join('');}
-            ,top:24                                            // words kept per cell (the cloud shows 24)
-            ,noise:10                                          // stop words stay in the map but their share is divided by this – as if mentioned that much more across the siblings
-            ,maps:async(pl,q,texts)=>{                        // ONE lookup per list; texts=[…] → [ {word:[size,newness]}, … ] – one element per cell, in cell order
-                const c=books.play.cloud,id=books.play.hid(pl);
-                let a=await books.play.map.load(q,id);
-                if(Array.isArray(a)&&a.length===texts.length&&a.every(m=>Object.keys(m).length<=c.top&&Object.values(m).every(v=>Array.isArray(v))))return a;
-                // each cell's map is made from that cell's own text, cut by the filter; the siblings of the list are the comparison
-                const own=texts.map(t=>c.words(c.cut(t,q),Infinity,q)),tot={};
-                own.forEach(ws=>ws.forEach(([w,n])=>tot[w]=(tot[w]||0)+n));
-                const before={};a=own.map(ws=>{
-                    const v={};ws.forEach(([w,n])=>{v[w]=n/(n+(before[w]||0));before[w]=(before[w]||0)+n;});
-                    const keep=ws.slice().sort((x,y)=>c.prefer(x,y)).slice(0,c.top);   // the words the cloud prefers; fit() scales them by font size
-                    return Object.fromEntries(keep.map(([w,n])=>[w,[Math.round(n/(tot[w]*((!q&&c.stop.test(w))?c.noise:1))*100)/100,Math.round(v[w]*100)/100]]));});
-                const na=books.play.names(pl),par=books.play.txtOf(pl,na[3]!=null?na[3]:0,'');   // par = this node's own text, sib = all its children's texts summed
-                books.play.map.set(q,id,a,par,texts.join('\n'));
-                return a;}
-            ,df:{},dfFn:''
-            ,dfOf:(b,q)=>{const c=books.play.cloud,k=b.key+'|'+(q||'');if(c.dfFn===k)return c.df;
-                const m={};c.words(c.cut(b.txt,q),Infinity,q).forEach(x=>m[x[0]]=x[1]);c.dfFn=k;return c.df=m;}
-            ,shelf:()=>{const ts=Object.values(books.play.texts).filter(Boolean);return ts.length?ts.join(' '):books.play.md.txt;}
-            ,above:()=>{
-                const R=books.play.render,up=books.play.up;let below=books.play.id(R.mode),pl=up[below];
-                while(pl&&(books.play.names(below)[0]||[]).length<2){below=pl;pl=up[pl];}
-                const a=pl?books.play.names(pl):null,i=a?(a[3]||0):0;
-                return {key:(pl||'pl0')+'|'+(a?String(a[1]||'').slice(0,24):'')+'|'+i+'|'+(books.play.md.fn||''),
-                        txt:(pl?books.play.txtOf(pl,i,''):'')||books.play.cloud.shelf()};}
-        }
         ,hi:()=>{
             const m=books.play.render.mode
                 ,ns=['pl0','pl1','pl1e','pl2','pl3'].slice(0,m<4?[0,3,4,5][m]:5)
@@ -457,7 +398,7 @@ const books={
             }
             ,setSu:i=>{const s=books.play.md.subs[i];if(!s)return;books.play.render.su=i;books.play.render.ch=books.play.md.subCh[i];books.play.render.idx=0;}
             ,go:(n,keep,wide)=>{if(!keep)books.play.render.align(n);books.play.render.wide=wide?1:0;
-                books.play.render.mode=n;const sp=/^(pl\d+)([ab])$/.exec(books.play.id(n));if(sp)books.play.sem.Z.sp=sp[2];books.play.render.setMode();books.play.render.toc();books.play.render.draw();books.play.render.sync();}
+                books.play.render.mode=n;const sp=/^(pl\d+)([ab])$/.exec(books.play.id(n));if(sp)books.map.Z.sp=sp[2];books.play.render.setMode();books.play.render.toc();books.play.render.draw();books.play.render.sync();}
             ,toc:()=>{
                 const R=books.play.render,md=books.play.md,esc=R.esc,ic={2:'📖',3:'📑'}
                 ,a2=(t,at,l,ico)=>'<a '+at+'>'+'&nbsp;'.repeat(2*l)+(ico?ico+'&nbsp;':'')+esc(t)+'</a>'
@@ -638,7 +579,7 @@ const books={
             }
             ,lvitem:x=>{const up=books.play.ancestors(x.pl).map(p=>{const L=books.play.LV.find(l=>l.pl===p);return L?L.t:'';}).filter(Boolean).join(' › ');return '<li id="'+x.pl+'">'+(up?'<div class="lvpath">'+books.play.render.esc(up)+' ›</div>':'')+'<i>'+books.play.render.esc(x.t)+'</i> – '+books.play.render.esc(x.q)+(x.nav&&x.nav!=='todo'?'<details><summary>Nav shows</summary>'+books.play.render.esc(x.nav)+'</details>':'')+(x.page&&x.page!=='todo'?'<details><summary>Page shows</summary>'+books.play.render.esc(x.page)+'</details>':'')+(x.thoughts?'<details open><summary>Thoughts</summary>'+books.play.render.esc(x.thoughts)+'</details>':'')+(x.child&&x.child.length?'<details open><summary>Planned</summary><ol>'+x.child.map(c=>'<li>'+books.play.render.esc(c.t)+(c.w?'<details><summary>Thoughts</summary>'+books.play.render.esc(c.w)+'</details>':'')+'</li>').join('')+'</ol></details>':'')+'</li>';}
             ,guide:()=>{const g=document.getElementById('lvGuide');if(!g)return;g.innerHTML=books.play.LV.map(x=>books.play.render.lvitem(x)).join('');}
-            ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);zmLv.textContent=books.play.render.ic[books.play.render.mode];zmLv.title=L.t+' – leave the map (Esc)';books.play.render.ctl();books.play.hi();books.play.sem.Z.nav.draw();}
+            ,sync:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];const h=document.getElementById('dbPlayTitle');if(h)h.textContent=L.t+' – '+L.q;const c=document.getElementById('dpCur');if(c){c.className='cur '+(L.pl||'');c.textContent=L.t;}const g=document.getElementById('lvGuide');if(g)g.innerHTML=books.play.render.lvitem(L);zmLv.textContent=books.play.render.ic[books.play.render.mode];zmLv.title=L.t+' – leave the map (Esc)';books.play.render.ctl();books.play.hi();books.map.Z.nav.draw();}
             ,ctl:()=>{const pl=books.play.id(books.play.render.mode),kids=books.play.child(pl);let h='';kids.slice().reverse().forEach(k=>{const K=books.play.LV[books.play.ix(k)];h+='<button data-go="'+books.play.ix(k)+'" title="finer: '+(K?K.t:k)+'">\u{1F52C}</button>';});lvCtl.innerHTML=h;lvCtl.onclick=ev=>{const x=ev.target.closest('button');if(x&&x.dataset.go!==undefined)books.play.render.go(+x.dataset.go);};}
             ,baseOf:i=>books.play.md.pgs.slice(0,i).reduce((n,q)=>n+books.play.render.sentT(q.txt).length,0)
             ,pgOf:si=>{let n=0;for(let k=0;k<books.play.md.pgs.length;k++){n+=books.play.render.sentT(books.play.md.pgs[k].txt).length;if(n>si)return k;}return 0;}
@@ -706,198 +647,18 @@ const books={
                 document.getElementById(t?books.play.render.slug(t.h[1]):h).scrollIntoView();
             }
         }
-        ,sem:{
-            Z:{
-                ov:null,m:0,t:0,sp:'b',q:'',inv:0,invKey:'play.zoom.invert'
-                ,box:()=>books.play.sem.Z.ov||(books.play.sem.Z.ov=Object.assign(document.body.appendChild(document.createElement('div')),{id:'semOv'}))
-                ,on:0,pin:0,key:0,mod:0,rt:0
-                ,zb:()=>{const on=books.play.sem.Z.on;zmT.textContent=on?'\u2299':'\u25CE';zmT.title=on?'Collapse the word map back into its band':'Expand the word map over the reading area';}
-                ,ib:()=>{const i=books.play.sem.Z.inv;
-                    zmI.classList.toggle('on',!!i);zmI.title='Zoom: '+(i?'up':'down')+' means into the detail – the two-finger pinch and ↑/↓ alike. Click to turn it round.';}
-                ,head:{
-                    el:null,back:[]
-                    ,ids:['zmUp','zmLv','lvCtl','prev','next','nvMic','hiId','zmT','zmI']
-                    ,into:()=>{const h=books.play.sem.Z.head;if(h.back.length)return;h.el=document.getElementById('zmHead');if(!h.el)return;
-                        h.ids.forEach(id=>{const n=document.getElementById(id);if(!n)return;h.back.push([n,n.parentElement,n.nextSibling]);h.el.appendChild(n);});}
-                    ,out:()=>{const h=books.play.sem.Z.head;for(let i=h.back.length-1;i>=0;i--){const b=h.back[i];b[1].insertBefore(b[0],b[2]);}h.back=[];}
-                }
-                ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;books.play.wzUrl(1);z.pin=0;z.box().style.display='block';document.body.classList.add('zoom');
-                    [E.prev,E.next,E.up,lvCtl].forEach(el=>R.blink(el,3));
-                    z.nav.swap();z.head.into();z.nav.redraw();z.zb();}
-                ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0;books.play.wzUrl(0);z.head.out();
-                    z.nav.tk='';
-                    if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
-                    z.nav.redraw();z.zb();}
-                ,enter:()=>books.play.sem.Z.show()
-                ,nav:{
-                    el:null,last:'',tk:'',seq:0
-                    ,box:()=>books.play.sem.Z.nav.el
-                    ,label:()=>{const L=books.play.LV[books.play.render.mode]||books.play.LV[0];return (L.pl||'')+' '+L.t+' Selection';}
-                    ,areas:async()=>{
-                        const e=books.play.render.esc,pl=books.play.id(books.play.render.mode),sp=books.play.sem.Z.sp,q=books.play.sem.Z.q
-                            ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:books.play.child(pl)
-                            ,fd=pl==='pl3'
-                                ?['b','a'].map(t=>'<button type="button" data-sp="'+t+'"'+(sp===t?' disabled':'')+'>'+e((books.play.LV[books.play.ix('pl4'+t)]||{}).t||('pl4'+t))+'</button>').join('')
-                                :''
-                            ,cols=kids.map(c=>{const a=books.play.names(c);return {c,a,ns:a[0]||[]};})
-                            ,cells=[];cols.forEach(x=>x.ns.forEach((n,k)=>{if(n!=='')cells.push(books.play.txtOf(x.c,k,n));}))
-                            ,maps=await books.play.cloud.maps(pl,q,cells)
-                            ,it=0
-                            ,grp=cols.map(x=>{const rows=x.ns.map((n,k)=>{if(n==='')return '';const h=books.play.cloud.html(maps[it++],24)
-                                    ,on=(pl==='pl4a'||pl==='pl4b')&&k===x.a[3]
-                                    ,cl=h||q;
-                                    return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+x.c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
-                                if(!rows)return '';const cnt=x.ns.filter(n=>n!=='').length
-                                    ,grid=cnt>6?'<div class="nvR'+(cnt>14?' r3':'')+'">'+rows+'</div>':rows;
-                                return '<div class="nvGrp">'+((fd||q)?'<div class="nvG'+(pl==='pl3'?' nvS':'')+'">'+fd+books.play.sem.Z.nav.tq(q,!!fd)+'</div>':'')+grid+'</div>';}).join('');
-                        return grp?'<div class="nvAreas">'+grp+'</div>':'';}
-                    ,tq:(q,dash)=>q?(dash?' – ':'')+'"'+books.play.render.esc(q)+'"':''
-                    ,applyQ:()=>{const z=books.play.sem.Z,n=z.nav;if(n.qEl&&n.qEl.value!==z.q)n.qEl.value=z.q;n.redraw();}
-                    ,mk:()=>window.SpeechRecognition||window.webkitSpeechRecognition
-                    ,lastWord:s=>{const a=String(s||'').replace(/[^\p{L}\p{N}'-]+/gu,' ').trim().split(/\s+/).filter(Boolean);return a.length?a[a.length-1]:'';}
-                    ,speak:btn=>{
-                        const z=books.play.sem.Z,n=z.nav,R=n.mk();if(!R)return;
-                        if(z.rec){try{z.rec.stop();}catch(e){}z.rec=null;btn.classList.remove('on');return;}
-                        const r=z.rec=new R();
-                        r.lang=books.play.lg==='NO'?'nb-NO':'en-GB';r.continuous=!0;r.interimResults=!1;
-                        r.onresult=e=>{let s='';for(let i=e.resultIndex;i<e.results.length;i++)if(e.results[i].isFinal)s+=e.results[i][0].transcript;
-                            const w=n.lastWord(s);if(w){if(n.qEl)n.qEl.value='';z.q=w;n.applyQ();}}
-                        r.onerror=()=>{z.rec=null;btn.classList.remove('on');};
-                        r.onend=()=>{z.rec=null;btn.classList.remove('on');};
-                        try{r.start();}catch(e){z.rec=null;return;}
-                        btn.classList.add('on');
-                    }
-                    ,mic:on=>{
-                        const z=books.play.sem.Z,n=z.nav;if(!n.micEl)return;
-                        if(on!==!!z.rec)n.speak(n.micEl);}
-                    ,keyQ:e=>{
-                        const z=books.play.sem.Z,n=z.nav,qEl=n.qEl,k=e.key,own=qEl&&document.activeElement===qEl;
-                        if(k==='Backspace'){if(own)return 0;z.q=z.q.slice(0,-1);}
-                        else if(k.length===1&&k!==' '&&!e.metaKey&&!e.altKey&&!(own&&!e.ctrlKey))z.q+=k;
-                        else return 0;
-                        n.applyQ();
-                        return 1;}
-                    ,go:(c,k)=>{const a=books.play.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);books.play.render.go(books.play.ix(c),true);}
-                    ,pickK:k=>{const p=String(k||'').split('|');if(p[0])books.play.sem.Z.nav.go(p[0],+p[1]);}
-                    ,pick:el=>books.play.sem.Z.nav.pickK(el.dataset.k)
-                    ,pair:()=>{const z=books.play.sem.Z,n=z.nav,p=n.tk;n.tk='';if(p)z.nav.pickK(p);z.hide();}
-                    ,body:async()=>(await books.play.sem.Z.nav.areas())||'<h2>'+books.play.render.esc(books.play.sem.Z.nav.label())+books.play.sem.Z.nav.tq(books.play.sem.Z.q,1)+'</h2>'
-                    ,base:()=>document.body.classList.contains('zoom')?1:.6
-                    ,collapsed:()=>!document.body.classList.contains('zoom')
-                    ,hm:a=>{
-                        const b=books.play.sem.Z.nav.base(),e=books.play.render.em();
-                        a.forEach(w=>{w.style.fontSize=b+'em';w.style.bottom='auto';w.style.height='auto';});
-                        const h=a.map(w=>Math.max(e,w.scrollHeight));
-                        a.forEach(w=>{w.style.bottom='';w.style.height='';});
-                        return h;}
-                    ,room:w=>{const c=w.parentElement,e=books.play.render.em();
-                        return Math.max(e,(books.play.sem.Z.nav.collapsed()?Math.min(c.clientWidth,c.clientHeight):c.clientHeight)-e/4);}
-                    ,fit:()=>{
-                        const n=books.play.sem.Z.nav,a=[...n.el.querySelectorAll('.nvW')];if(!a.length)return;
-                        const h=n.hm(a);
-                        a.forEach((w,i)=>{const k=n.room(w)/h[i];if(k>=1)return;
-                            const keep=Math.max(2,Math.round(w.childElementCount*k));
-                            while(w.childElementCount>keep)w.removeChild(w.lastChild);});
-                        const h2=n.hm(a);
-                        a.forEach((w,i)=>{const s=n.room(w)/h2[i];
-                            if(s<1)w.style.fontSize=(n.base()*Math.max(.4,s)).toFixed(2)+'em';});
-                    }
-                    ,draw:async()=>{const n=books.play.sem.Z.nav;if(!n.el)return;const s=++n.seq,h=await n.body();if(s!==n.seq||h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();}
-                    ,redraw:()=>{const n=books.play.sem.Z.nav;n.last='';n.draw();}
-                    ,swap:()=>{
-                        const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
-                        if(!n.el){
-                            p.innerHTML='<div id="zmHead"></div><div id="semNav"></div>';
-                            n.el=p.querySelector('#semNav');
-                            const qf=document.getElementById('semQ');
-                            qf.innerHTML='<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the text to map">';
-                            n.qEl=qf.querySelector('#nvQ');
-                            const mic=n.micEl=document.getElementById('nvMic');   // beside the hands: it travels with them into the zoom head
-                            n.el.onclick=ev=>{const s=ev.target.closest('[data-sp]');
-                                if(s&&!s.disabled){z.sp=s.dataset.sp;n.redraw();return;}
-                                const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:'';
-                                if(ev.detail>1){z.nav.pair();return;}
-                                if(!k)return;n.tk=k;z.nav.pickK(k);if(z.pin)z.hide();};
-                            n.el.ondblclick=()=>z.nav.pair();
-                            n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();};
-                            if(n.mk()){
-                                mic.onclick=e=>{if(!e.ctrlKey&&!e.metaKey&&!e.altKey)n.mic(!z.rec);};
-                                mic.onmouseenter=()=>{if(z.on&&z.key)n.mic(!z.rec);};
-                            }else mic.hidden=1;
-                            p.classList.add('navon');document.body.classList.add('navon');
-                        }n.draw();}
-                }
-                ,jump:()=>{const z=books.play.sem.Z,h=document.querySelector('#semNav .nvA:hover');if(!h)return;z.nav.pick(h);z.hide();}
-                ,drill:(d,alt,wide)=>{const z=books.play.sem.Z,R=books.play.render;
-                    if(d>0){const h=document.querySelector('#semNav .nvA:hover');if(h)return z.nav.pick(h);}
-                    const pl=books.play.id(R.mode),ks=books.play.child(pl)
-                        ,k=d>0?(ks.length>1?'pl4'+(alt?(z.sp==='a'?'b':'a'):z.sp):ks[0]):books.play.up[pl];
-                    if(!k)return;
-                    const t=books.play.names(k),i=d>0?t[3]:-1;
-                    if(i>=0&&(t[0]||[])[i])return z.nav.go(k,i);
-                    R.go(books.play.ix(k),0,wide&&d<0);}
-                ,zoom:d=>{const o=books.play.sem.Z.inv?-d:d;books.play.sem.Z.drill(o>0?1:-1,null,o>0?0:1);}
-                ,init:()=>{
-                    const z=books.play.sem.Z,db=()=>document.getElementById('dpBook')
-                        ,dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)
-                        ,zone=t=>db().contains(t)||!!(z.nav.el&&z.nav.el.contains(t));
-                    zmT.onclick=()=>{z.on?z.hide():z.show();};z.zb();
-                    try{z.inv=localStorage.getItem(z.invKey)==='1'?1:0;}catch(e){}
-                    zmI.onclick=()=>{z.inv=z.inv?0:1;try{localStorage.setItem(z.invKey,z.inv?'1':'0');}catch(e){}z.ib();};z.ib();
-                    zmLv.onclick=()=>{if(!z.on)return;if(z.q){z.q='';z.nav.applyQ();}else z.hide();};
-                    let base=0,sx=0,sy=0,sw=0,acc=0,at=0;
-                    document.onkeydown=e=>{
-                        if(e.key==='Control'||e.key==='Shift'){
-                            z.key=e.ctrlKey&&e.shiftKey?1:0;
-                            if(z.key&&!z.mod){z.mod=1;if(z.on)z.hide();else z.enter();}
-                            return;}
-                        if(!z.on||(e.ctrlKey&&!e.shiftKey))return;
-                        const k=e.key;
-                        if(k==='Enter'){e.preventDefault();z.jump();}
-                        else if(k==='Escape'){if(z.q){z.q='';z.nav.applyQ();}else z.hide();}
-                        else if(k==='ArrowLeft' ||k===','||k==='<'){e.preventDefault();books.play.render.nav(-1);}  
-                        else if(k==='ArrowRight'||k==='.'||k==='>'){e.preventDefault();books.play.render.nav(1);}  
-                        else if(k==='ArrowUp'  ){e.preventDefault();z.drill(z.inv?1:-1);books.play.render.arrowBlink(0);}
-                        else if(k==='ArrowDown'){e.preventDefault();z.drill(z.inv?-1:1,e.altKey);books.play.render.arrowBlink(1);}
-                        else if(k==='='||k==='+'){e.preventDefault();z.drill(1,e.altKey);}  
-                        else if(k==='-'||k==='_'){e.preventDefault();z.drill(-1);}
-                        else if(z.nav.keyQ(e))e.preventDefault();
-                    };
-                    document.onkeyup=e=>{if(e.key==='Control'||e.key==='Shift'){z.key=e.ctrlKey&&e.shiftKey?1:0;z.mod=0;}};
-                    document.onmousedown=e=>{if(e.buttons===3&&db().contains(e.target)){z.m=1;z.enter();}};
-                    document.onmouseup=e=>{if(z.m&&e.buttons<3)z.hide();};
-                    document.addEventListener('touchstart',e=>{
-                        if(!zone(e.target))return;
-                        if(e.touches.length>1){z.t=1;sw=0;z.pin=0;base=dist(e.touches);z.enter();}
-                        else if(e.touches.length===1){sw=1;sx=e.touches[0].clientX;sy=e.touches[0].clientY;}
-                    },{passive:true});
-                    document.addEventListener('touchmove',e=>{
-                        if(!z.t||e.touches.length<2)return;
-                        if(e.cancelable)e.preventDefault();
-                        const d=base?dist(e.touches):0;
-                        if(d&&d/base>=1.35){base=d;z.pin=1;z.zoom(1);}               
-                        else if(d&&d/base<=0.74){base=d;z.pin=1;z.zoom(-1);}         
-                    },{passive:false});
-                    document.addEventListener('touchend',e=>{
-                        if(z.t&&e.touches.length<2)z.t=0;
-                        if(sw&&!e.touches.length){
-                            const t=e.changedTouches[0]||{clientX:sx,clientY:sy},dx=t.clientX-sx,dy=t.clientY-sy;sw=0;
-                            if(Math.abs(dx)>48&&Math.abs(dx)>2*Math.abs(dy))books.play.render.nav(dx<0?1:-1);
-                        }
-                    },{passive:true});
-                    document.addEventListener('wheel',e=>{
-                        if(!e.ctrlKey||!db().contains(e.target))return;
-                        if(e.cancelable)e.preventDefault();
-                        const now=Date.now();if(now-at>400)acc=0;at=now;
-                        acc+=e.deltaY;
-                        if(Math.abs(acc)>=25){z.zoom(acc>0?-1:1);acc=0;}
-                    },{passive:false});
-                    window.onblur=()=>{z.key=z.mod=0;z.hide();};
-                    window.onresize=()=>{if(!z.nav.el)return;clearTimeout(z.rt);z.rt=setTimeout(()=>z.nav.redraw(),120);};
-                }
-            }
-        }
         ,wire:()=>{
+            // the seam: what the word map itself needs from play – the map lives in books.map.js
+            books.map.host={
+                up:books.play.up,child:books.play.child,id:books.play.id,ix:books.play.ix
+                ,mode:()=>books.play.render.mode,names:books.play.names,txtOf:books.play.txtOf,hid:books.play.hid
+                ,L:pl=>books.play.LV[books.play.ix(pl)],go:books.play.render.go
+                ,esc:books.play.render.esc,sentT:books.play.render.sentT,em:books.play.render.em
+                ,blink:books.play.render.blink,arrowBlink:books.play.render.arrowBlink,nav:books.play.render.nav
+                ,texts:books.play.texts,mdText:()=>books.play.md.txt,fn:()=>books.play.md.fn
+                ,get lang(){return books.play.lg;},wzUrl:books.play.wzUrl
+            };
+            books.map.Z.el={zoom:zmT,inv:zmI,bandCollapse:zmLv,handPrev:prev,handNext:next,levels:lvCtl,coarser:zmUp,band:dbPlay,query:semQ,mic:nvMic,page:document.getElementById('dpBook')};
             books.play.SpotLoad(); // QR image names live in redir.qr – fetch them up front so the pictures resolve
             dbNavList.onclick=ev=>{
                 const a=ev.target.closest('a[data-book],a[data-i],a[data-m],a[data-ch],a[data-su],a[data-go],a[data-edit]');
@@ -920,10 +681,10 @@ const books={
             books.play.render.lv=books.play.render.ic.map((ic,i)=>({pl:(books.play.LV[i]&&books.play.LV[i].pl)||'pl'+i,ic,nm:(books.play.LV[i]&&books.play.LV[i].t)||''}));
             books.play.render.bar();
             books.play.render.guide();
-            books.play.sem.Z.init();
+            books.map.Z.init();
             books.play.ready=books.play.probe().then(s=>{if(s&&s.length)books.play.render.toc();books.play.hi();});
             books.play.lang();
-            if(books.play.inWz)books.play.sem.Z.show();
+            if(books.play.inWz)books.map.Z.show();
             books.play.render.el.page.addEventListener('click',ev=>{
                 const b=ev.target.closest('.spPlay');if(b){ev.preventDefault();books.play.spTgl(b);return;}
                 const s=ev.target.closest('button[data-se],a[data-se]');if(!s)return;
@@ -943,4 +704,5 @@ const books={
         }
     }
 };
+books.map=window.books.map;
 books.play.wire();
