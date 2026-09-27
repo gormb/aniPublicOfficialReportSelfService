@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http.Features;
 
-public class MLServerAigap : IWebHost {
+public class MLServerAigap {
     public MLServerAigap(): base()    
     public class LocalServer : ServerInfo
     {
