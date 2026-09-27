@@ -325,9 +325,8 @@ const wm=books.map.sidecar({
     ,toc:()=>_dToc.style.display!='none'
     ,copy:async c=>{                                             // a copy of the book: language × edition
         if(c.ed==='PREM'&&!book.prem._){                         // 👑, and free here in this session
-            books.map.Z.hide();
             await book.prem.Load();                              // …but this book may be unlocked already – that code is used first
-            if(!book.prem._)return nav.PremToggle();             // nothing stored for it: then ask for the code
+            if(!book.prem._){nav.PremToggle();return;}            // nothing stored for it: ask for the code (the PIN floats over the map)
         }
         if((book.prem._?'PREM':'FREE')!==c.ed)await book.prem.L(c.ed==='PREM');
         if((book.hAlign._?'NO':'EN')!==c.lg)await book.hAlign.L(c.lg==='NO');
@@ -346,6 +345,9 @@ const wm=books.map.sidecar({
     }
 });
 books.map.host=wm.host;
+const _Lang=book.hAlign.L, _Tier=book.prem.L;                    // whichever way the copy changes – map cell, menu button or the PIN – the map follows
+book.hAlign.L=l=>{const r=_Lang(l);wm.reload();return r;};
+book.prem.L=async l=>{const r=await _Tier(l);await wm.reload();return r;};
 books.map.Z.el={page:_dBook};                                    // no panel of its own: the map builds the overlay, head and filter
 books.map.Z.init();
 const _Loaded=nav.Loaded;                                        // once the book is up, read the sidecar that anchors it

@@ -1,5 +1,5 @@
 <!doctype html>
-<head><meta charset="utf-8"><link rel="stylesheet" href="../books.map.css?v=4"><link rel="stylesheet" href="play.css?v=51"></head>
+<head><meta charset="utf-8"><link rel="stylesheet" href="../books.map.css?v=5"><link rel="stylesheet" href="play.css?v=51"></head>
 <body>
 <!-- menu -->
     <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="zmLv" type="button"></button><button id="zmUp" type="button" title="coarser">🔭</button><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><button id="nvMic" type="button" title="Speak a word – the text is cut by it and the map made of what is left. While ⌃⇧ is held, resting on it opens the mic; resting on it again closes it">🎤</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><a id="hiId" href="#">L*NO*FR.R.Ka.Vib.T</a><span id="hiQr"></span><button id="zmT" type="button" title="Expand the word map over the reading area">◎</button><button id="zmI" type="button" title="Zoom gestures: fingers apart goes a level down (finer), together a level up (coarser)">⇄</button><span id="dpCur"></span></div>
@@ -44,7 +44,7 @@
                 </details>
     </div>
     <hr>
-    <script src="../books.map.js?v=76"></script>
+    <script src="../books.map.js?v=78"></script>
     <script src="play.js?v=67"></script>
     <!-- #hiId › its deep link as qr + url. Nothing is added to aigap.no/qr.js: only its generic API is reused (qr.g, qr.sizes), and play's own glue – the ?p= url and the two elements – stays here, taking the id as a parameter -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>

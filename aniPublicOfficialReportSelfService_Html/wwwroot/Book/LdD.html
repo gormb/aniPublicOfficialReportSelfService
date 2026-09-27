@@ -3,10 +3,10 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=60"></script>
+        <script type="module" src="LdD.js?v=62"></script>
         <link rel="stylesheet" href="LdD.css?v=25">
-        <link rel="stylesheet" href="books.map.css?v=4">
-        <script src="books.map.js?v=76"></script>
+        <link rel="stylesheet" href="books.map.css?v=5">
+        <script src="books.map.js?v=78"></script>
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -769,13 +769,13 @@
             &nbsp;&nbsp;<button id="nTc" onmousedown="nav.ShowToc()">📚</button>
         </div>
         <!-- find box: plain page-number style (premium-PIN presentation) – live within-text search; ⏶⏷ step the matches -->
-        <span id="nFdWrap" style="display:flex;align-items:center;position:fixed;left:50%;top:15%;transform:translate(-50%,-50%);z-index:5;">
+        <span id="nFdWrap" style="display:flex;align-items:center;position:fixed;left:50%;top:15%;transform:translate(-50%,-50%);z-index:120;">
             <input id="nFdTxt" class="pageNo findBox" type="text" maxlength="20" placeholder="" oninput="nav.findRoute()" onkeydown="if(event.key=='Escape'){nFdTxt.value='';nav.findRoute();nav.find()}" style="display:none;width:7em;padding-right:2.2em;"/>
             <button id="nFdPv" class="findStep" onmousedown="event.preventDefault();nav.findStep(-1)" style="display:none;position:absolute;right:1.15em;top:50%;transform:translateY(-50%);z-index:1">⏶</button>
             <button id="nFdNx" class="findStep" onmousedown="event.preventDefault();nav.findStep(1)" style="display:none;position:absolute;right:.2em;top:50%;transform:translateY(-50%);z-index:1">⏷</button>
         </span>
-        <input id="nPin" class="pageNo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="" oninput="nav.Pin()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;width:5.5em;letter-spacing:.4em;border:1px solid #999;border-radius:.5em;background:#fff;box-shadow:0 .2em .8em rgba(0,0,0,.25)"/>
-        <div id="nPinMsg" style="display:none;position:fixed;left:50%;top:49%;transform:translate(-50%,-50%);z-index:5;font:600 .95em system-ui,sans-serif;text-align:center;background:#fff;color:#c00;border:1px solid #c00;border-radius:.5em;padding:.4em .9em;box-shadow:0 .2em .8em rgba(0,0,0,.25)"></div>
+        <input id="nPin" class="pageNo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="" oninput="nav.Pin()" style="display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:120;width:5.5em;letter-spacing:.4em;border:1px solid #999;border-radius:.5em;background:#fff;box-shadow:0 .2em .8em rgba(0,0,0,.25)"/>
+        <div id="nPinMsg" style="display:none;position:fixed;left:50%;top:49%;transform:translate(-50%,-50%);z-index:120;font:600 .95em system-ui,sans-serif;text-align:center;background:#fff;color:#c00;border:1px solid #c00;border-radius:.5em;padding:.4em .9em;box-shadow:0 .2em .8em rgba(0,0,0,.25)"></div>
         <div id="_dBook" class="bookParent">
             <img id="iLoading" src="aigap.webp" style="z-index:4;position:fixed;left:47vw;top:47vh;animation:rotate 2s linear infinite;width:6vw">
             <iframe id="_fBook" frameborder="0" allowfullscreen></iframe>

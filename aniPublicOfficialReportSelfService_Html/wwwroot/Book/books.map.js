@@ -141,7 +141,8 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         return a;};
     S.frac=node=>{const a=S.onPage(node.page),i=a.indexOf(node);                 // where one of them stands – the estimate, .md alone
         return a.length?(0.08+0.84*(i+0.5)/a.length):0.5;};
-    S.copyTo=async f=>{await opt.copy(f);await S.load(url());S.sync();S.redraw();};   // a copy of the book: its own cell switches it
+    S.reload=async()=>{await S.load(url());S.sync();S.redraw();};              // read the copy being read now and redraw
+    S.copyTo=async f=>{await opt.copy(f);await S.reload();};                  // a copy of the book: its own cell switches it
     S.sync=()=>{const a=S.at(opt.page()||1);S.ch=a.ch;S.su=a.su;S.pg=0;};
     S.q=(t,n)=>String(t||'').toLowerCase().replace(/\s+/g,' ').trim().split(' ').slice(0,n||4).join(' ');
     host={
@@ -195,7 +196,7 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         ,onShow:()=>{S.sync();S.mode=opt.toc()?1:3;
             if(!S.raw[url()])S.load(url()).then(()=>S.redraw());}
     };
-    const out={host,warm:S.warm,sync:S.sync,load:S.load,q:S.q,redraw:S.redraw,files,file:()=>url(),model:()=>P(),parse:S.parse,at:S.at,frac:S.frac};
+    const out={host,warm:S.warm,sync:S.sync,load:S.load,q:S.q,redraw:S.redraw,files,file:()=>url(),model:()=>P(),parse:S.parse,at:S.at,frac:S.frac,reload:S.reload};
     M.book=out;   // the sidecar model last handed to the map – a page's own lists (toc, search) read it too
     return out;
 };
@@ -266,7 +267,8 @@ M.Z={
             const z=M.Z,n=z.nav;if(!n.micEl)return;
             if(on!==!!z.rec)n.speak(n.micEl);}
         ,keyQ:e=>{
-            const z=M.Z,n=z.nav,qEl=n.qEl,k=e.key,own=qEl&&document.activeElement===qEl;
+            const z=M.Z,n=z.nav,qEl=n.qEl,k=e.key,a=document.activeElement
+                ,own=(qEl&&a===qEl)||!!(a&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA'||a.isContentEditable));   // a field that has the focus keeps its keys – the map only reads what is keyed at it
             if(k==='Backspace'){if(own)return 0;z.q=z.q.slice(0,-1);}
             else if(k.length===1&&k!==' '&&!e.metaKey&&!e.altKey&&!(own&&!e.ctrlKey))z.q+=k;
             else return 0;

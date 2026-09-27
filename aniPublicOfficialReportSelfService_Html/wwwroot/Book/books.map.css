@@ -49,7 +49,7 @@ body.zoom #semNav .nvG.nvS{text-align:left;}
 #semNav .nvW{position:absolute;inset:0;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:.05em .5em;padding:.2em .4em;pointer-events:none;font-weight:400;}
 #semNav .nvW span{line-height:1;}
 /* the band the map builds itself, for a page that offers no panel of its own (LdD): the overlay, its head strip and the filter foot */
-#semBand{display:none;position:fixed;inset:0;z-index:80;background:#fff;}
+#semBand{display:none;position:fixed;inset:0;z-index:110;background:#fff;} /* above the page's own panels (LdD's table of contents is 99) – the map is the one surface then */
 body.zoom #semBand{display:flex;flex-direction:column;}
 .semHead{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.35em;padding:.15em .3em;border-bottom:1px solid #ccc;background:#fff;}
 .semHead button{font-size:1.9em;line-height:1;padding:.1em .2em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.75;}
