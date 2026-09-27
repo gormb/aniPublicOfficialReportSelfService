@@ -75,6 +75,8 @@ const books={
         }
         ,book:'LifeDemandedDeath',lg:'NO',ed:'PREM',shelf:null,pdf:null
         ,inP:new URLSearchParams(location.search).get('p')
+        ,inWz:new URLSearchParams(location.search).get('wzoom')==='1'
+        ,wzUrl:on=>{const u=new URL(location.href);if(on)u.searchParams.set('wzoom','1');else u.searchParams.delete('wzoom');if(u.search!==location.search)history.replaceState(history.state,'',u);}
         ,root:'../'
         ,fnOf:()=>books.play.root+'b/'+books.play.book+'/b_'+books.play.lg+'_'+books.play.ed+'.md'
         ,open:(lg,ed,to)=>{books.play.pdf=null;books.play.lg=lg||books.play.lg;books.play.ed=ed||books.play.ed;
@@ -295,7 +297,7 @@ const books={
         ,hid:(pl,i)=>{   /* hierarchy id, same shape as hi(): first 3 levels joined by '*', the rest by '.' – e.g. l*n*p.n.nulls */
             const UP={pl1:'pl0',pl1e:'pl1',pl2:'pl1e',pl3:'pl2',pl4a:'pl3',pl4b:'pl3',pl5a:'pl4a',pl5b:'pl4b',pl6a:'pl5a',pl6b:'pl5b'};
             const ns=[];for(let p=pl;p;p=UP[p])ns.unshift(p);
-            const tk=q=>{const a=books.play.names(q)||[[]],j=(q===pl&&i!=null)?i:(a[3]||0);return books.play.hiCut(a[0]||[],(a[0]||[])[j]);};
+            const tk=q=>{const a=books.play.names(q)||[[]];return books.play.hiCut(a[0]||[],(q===pl&&i!=null)?(a[0]||[])[i]:a[1]);};
             const top=ns.slice(0,3).map(tk).filter(Boolean).join('*'),deep=ns.slice(3).map(tk).filter(Boolean).join('.');
             return deep?top+'.'+deep:top;}
         ,hiFit:(ns,t)=>{const lo=x=>String(x==null?'':x).trim().toLowerCase(),q=lo(t);if(q==='*')return ns[0];return ns.find(x=>lo(x)===q)||ns.find(x=>lo(x).startsWith(q));}
@@ -336,7 +338,7 @@ const books={
             return t!==undefined?t:(fb||'');
         }
         ,map:{
-            // word-map cache: memory → public.map → generate. what = filter (upper), where = hierarchy id (lower).
+            // word-map cache: memory → public.map → generate. what = filter (upper), wher = hierarchy id (lower).
             cache:{},fly:{}
             ,load:async(what,wher)=>{
                 const m=books.play.map;if(!window.db)return null;
@@ -344,15 +346,17 @@ const books={
                 if(m.cache[k])return m.cache[k];
                 if(m.fly[k])return m.fly[k];
                 return m.fly[k]=db.rpc('map_get',{what:W,wher:R}).then(d=>{if(d)m.cache[k]=d;delete m.fly[k];return d;},()=>{delete m.fly[k];return null;});}
-            ,set:async(what,wher,words)=>{
+            ,set:async(what,wher,words,par,sib)=>{
                 const m=books.play.map;if(!window.db)return words;
                 const W=(what||'').toUpperCase(),R=(wher||'').toLowerCase();
                 m.cache[await db.ww(W,R)]=words;
-                db.rpc('map_set',{what:W,wher:R,words});
+                db.rpc('map_set',{what:W,wher:R,words,par,sib});
                 return words;}
         }
         ,cloud:{
             stop:/^(og|i|til|med|av|for|en|et|den|det|de|som|er|var|at|om|men|å|på|ikke|så|når|da|her|der|fra|ved|ut|inn|opp|ned|seg|kan|skal|vil|må|hadde|har|ble|blir|han|hun|jeg|du|vi|the|and|of|to|a|in|is|it|that|with|for|on|as|at|by|from|but|or|an|be|was|were|his|her|he|she|they|you|not)$/i
+            ,score:w=>w[1]*w[0].length/(books.play.cloud.stop.test(w[0])?books.play.cloud.noise:1)   // frequency × length; noise words divided, so they lose the cut too
+            ,prefer:(a,b)=>books.play.cloud.score(b)-books.play.cloud.score(a)||b[0].length-a[0].length||(a[0]<b[0]?-1:1)   // qsort-style: [word,count], >0 ⇒ a first
             ,words:(s,n,q)=>{const m={},f=String(q||'').toLowerCase();   // with a filter, only words matching it
                 (String(s||'').toLowerCase().match(/[\p{L}][\p{L}'-]*/gu)||[]).forEach(w=>{if(f&&w.indexOf(f)<0)return;m[w]=(m[w]||0)+1;});
                 return Object.keys(m).map(w=>[w,m[w]]).sort((x,y)=>y[1]-x[1]).slice(0,n||16);}
@@ -375,10 +379,11 @@ const books={
                 const own=texts.map(t=>c.words(c.cut(t,q),Infinity,q)),tot={};
                 own.forEach(ws=>ws.forEach(([w,n])=>tot[w]=(tot[w]||0)+n));
                 const before={};a=own.map(ws=>{
-                    const m=ws.map(([w,n])=>{const v=n/(n+(before[w]||0));before[w]=(before[w]||0)+n;
-                        return [w,[Math.round(n/(tot[w]*((!q&&c.stop.test(w))?c.noise:1))*100)/100,Math.round(v*100)/100]];});
-                    return Object.fromEntries(m.sort((x,y)=>y[1][0]-x[1][0]).slice(0,c.top));});   // cut by the share that is drawn, so noise does not take slots
-                books.play.map.set(q,id,a);
+                    const v={};ws.forEach(([w,n])=>{v[w]=n/(n+(before[w]||0));before[w]=(before[w]||0)+n;});
+                    const keep=ws.slice().sort((x,y)=>c.prefer(x,y)).slice(0,c.top);   // the words the cloud prefers; fit() scales them by font size
+                    return Object.fromEntries(keep.map(([w,n])=>[w,[Math.round(n/(tot[w]*((!q&&c.stop.test(w))?c.noise:1))*100)/100,Math.round(v[w]*100)/100]]));});
+                const na=books.play.names(pl),par=books.play.txtOf(pl,na[3]!=null?na[3]:0,'');   // par = this node's own text, sib = all its children's texts summed
+                books.play.map.set(q,id,a,par,texts.join('\n'));
                 return a;}
             ,df:{},dfFn:''
             ,dfOf:(b,q)=>{const c=books.play.cloud,k=b.key+'|'+(q||'');if(c.dfFn===k)return c.df;
@@ -711,15 +716,15 @@ const books={
                     zmI.classList.toggle('on',!!i);zmI.title='Zoom: '+(i?'up':'down')+' means into the detail – the two-finger pinch and ↑/↓ alike. Click to turn it round.';}
                 ,head:{
                     el:null,back:[]
-                    ,ids:['zmUp','zmLv','lvCtl','prev','next','hiId','hiUrl','zmT','zmI']
+                    ,ids:['zmUp','zmLv','lvCtl','prev','next','nvMic','hiId','zmT','zmI']
                     ,into:()=>{const h=books.play.sem.Z.head;if(h.back.length)return;h.el=document.getElementById('zmHead');if(!h.el)return;
                         h.ids.forEach(id=>{const n=document.getElementById(id);if(!n)return;h.back.push([n,n.parentElement,n.nextSibling]);h.el.appendChild(n);});}
                     ,out:()=>{const h=books.play.sem.Z.head;for(let i=h.back.length-1;i>=0;i--){const b=h.back[i];b[1].insertBefore(b[0],b[2]);}h.back=[];}
                 }
-                ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;z.pin=0;z.box().style.display='block';document.body.classList.add('zoom');
+                ,show:()=>{const z=books.play.sem.Z,R=books.play.render,E=R.el;if(z.on)return;z.on=1;books.play.wzUrl(1);z.pin=0;z.box().style.display='block';document.body.classList.add('zoom');
                     [E.prev,E.next,E.up,lvCtl].forEach(el=>R.blink(el,3));
                     z.nav.swap();z.head.into();z.nav.redraw();z.zb();}
-                ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0;z.head.out();
+                ,hide:()=>{const z=books.play.sem.Z;if(!z.on)return;z.on=0;books.play.wzUrl(0);z.head.out();
                     z.nav.tk='';
                     if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
                     z.nav.redraw();z.zb();}
@@ -802,12 +807,12 @@ const books={
                     ,swap:()=>{
                         const n=books.play.sem.Z.nav,z=books.play.sem.Z,p=document.getElementById('dbPlay');
                         if(!n.el){
-                            p.innerHTML='<div id="zmHead"></div>'
-                                +'<div id="semNav"></div>'
-                                +'<div id="semQ"><button id="nvMic" type="button" title="Speak a word – the text is cut by it and the map made of what is left, and the map keeps what carries it. While ⌃⇧ is held, move over it to open the mic; over it again to close">\u{1F3A4}</button>'
-                                +'<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the text to map"></div>';
-                            n.el=p.querySelector('#semNav');n.qEl=p.querySelector('#nvQ');
-                            const mic=n.micEl=p.querySelector('#nvMic');
+                            p.innerHTML='<div id="zmHead"></div><div id="semNav"></div>';
+                            n.el=p.querySelector('#semNav');
+                            const qf=document.getElementById('semQ');
+                            qf.innerHTML='<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the text to map">';
+                            n.qEl=qf.querySelector('#nvQ');
+                            const mic=n.micEl=document.getElementById('nvMic');   // beside the hands: it travels with them into the zoom head
                             n.el.onclick=ev=>{const s=ev.target.closest('[data-sp]');
                                 if(s&&!s.disabled){z.sp=s.dataset.sp;n.redraw();return;}
                                 const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:'';
@@ -918,6 +923,7 @@ const books={
             books.play.sem.Z.init();
             books.play.ready=books.play.probe().then(s=>{if(s&&s.length)books.play.render.toc();books.play.hi();});
             books.play.lang();
+            if(books.play.inWz)books.play.sem.Z.show();
             books.play.render.el.page.addEventListener('click',ev=>{
                 const b=ev.target.closest('.spPlay');if(b){ev.preventDefault();books.play.spTgl(b);return;}
                 const s=ev.target.closest('button[data-se],a[data-se]');if(!s)return;
@@ -933,7 +939,7 @@ const books={
             books.play.render.el.page.addEventListener('change',ev=>{if(ev.target.closest&&ev.target.closest('#page .se')){books.play.seSet(books.play.seRead(),true);}});
             const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=9';dbjs.onerror=()=>console.warn('[db.js] could not load in the background');document.head.appendChild(dbjs);
             const musicjs=document.createElement('script');musicjs.type='module';musicjs.src=books.play.root+'music.js?v=8';musicjs.onerror=()=>console.warn('[music.js] could not load in the background');document.head.appendChild(musicjs);
-            setTimeout(()=>books.play.render.blink(document.getElementById('hiUrl'),3),400);
+            setTimeout(()=>books.play.render.blink(document.getElementById('hiId'),3),400);
         }
     }
 };

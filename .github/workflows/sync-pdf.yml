@@ -47,6 +47,9 @@ jobs:
             git push origin master
           fi
 
+      - name: Purge stale word-map cache (Supabase public.map)
+        run: python3 .github/scripts/cache.py
+
       - name: Fail if any book sync error (so you get notified)
         run: |
           if [ -f .sync-books-errors ]; then

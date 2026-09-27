@@ -9,15 +9,10 @@ body{
 #zmI{font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.7;} /* which way round a pinch reads – beside the word-map switch, and standing the same however the map is shaped */
 #zmI:hover{opacity:1;background:#f2f2f2;}
 #zmI.on{opacity:1;background:#f2f2f2;border-color:#999;} /* pressed: the gestures are turned round, away from the way round most readers expect */
-#hiUrl{display:none;}
-body.zoom #hiUrl{display:inline;}
-body.zoom #hiUrl:empty{display:none;}
-#hiQr{display:inline-flex;position:fixed;right:.5em;bottom:calc(.4em + env(safe-area-inset-bottom,0px));z-index:70;height:2em;width:2em;} /* the link to where you are: in the corner of the screen and never hidden – the door out of the page is always in the same place */
-body.navon #hiQr{bottom:calc(4.6em + env(safe-area-inset-bottom,0px));} /* the strip stands in the foot of the panel: the qr keeps its corner above it, clear of the field */
-#hiQr canvas{position:absolute;right:0;bottom:0;height:5em;width:5em;display:block;cursor:zoom-in;} /* anchored by its own corner: the code grows up and away from the edge, never off it */
-#hiQr:hover canvas{height:9em;width:9em;padding:3px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);cursor:default;} /* ~144px ≈ 4px per module – small at rest, readable by a phone on hover */
-#hiUrl{font-size:.75em;color:#777;max-width:24ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-#hiUrl:empty{display:none;}
+#hiQr{display:inline-flex;position:fixed;right:.5em;bottom:calc(.4em + env(safe-area-inset-bottom,0px));z-index:70;height:1.4em;width:1.4em;cursor:zoom-in;} /* the link to where you are: button-sized in the corner of the screen – the door out of the page is always in the same place */
+#hiQr canvas{position:absolute;right:0;bottom:0;height:100%;width:100%;display:block;} /* anchored by its own corner: clicked, the code grows up and away from the edge, never off it */
+#hiQr.big{cursor:zoom-out;}
+#hiQr.big canvas{height:9em;width:9em;padding:3px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);} /* ~144px ≈ 4px per module – the size a phone reads from */
 #lvCtl{display:inline-flex;flex-direction:column;align-items:stretch;gap:1px;}
 #lvBars{display:block;}
 #lvBars button,#lvCtl button,#zmUp,#zmLv{font-size:1.3em;line-height:1;padding:.1em .25em;border:1px solid transparent;border-radius:.2em;background:none;cursor:pointer;opacity:.45;}
@@ -29,6 +24,8 @@ body.navon #hiQr{bottom:calc(4.6em + env(safe-area-inset-bottom,0px));} /* the s
 #lvBars td.txt{border-bottom:1px dashed #b8b8b8;}
 #zmHead{display:none;}
 body.zoom #zmHead{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.4em;padding:.15em .3em;border-bottom:1px solid #ccc;background:#fff;}
+/* word zoom: every control in the area is one size – hands, levels, lens, mic, switches and the page/paragraph toggle */
+body.zoom #zmHead #prev,body.zoom #zmHead #next,body.zoom #zmHead #nvMic,body.zoom #zmHead #zmUp,body.zoom #zmHead #zmLv,body.zoom #zmHead #lvCtl button,body.zoom #zmHead #zmT,body.zoom #zmHead #zmI,body.zoom #semNav .nvG.nvS button{font-size:2.6em;line-height:1;}
 body.zoom #lvCtl{flex-direction:row-reverse;gap:.15em;}
 #zmLv{display:none;}
 body.zoom #zmLv{display:inline-block;}
@@ -109,10 +106,10 @@ h2 a,h3 a{color:inherit;text-decoration:none;}
 /* PDF-only book (no markdown yet) – the PDF is the whole content */
 .pdfview{width:100%;height:80vh;border:0;}
 /* help text in the url slot (tester: MISSING HELP TEXT) */
-#hiUrl,#hiUrl:empty{display:inline!important;font-size:0;max-width:none;overflow:visible;color:#888;font-style:italic;white-space:nowrap;text-decoration:none;pointer-events:none;} /* max-width:none because ch is font-relative – at font-size:0 the old 24ch would collapse to 0 */
-#hiUrl::before{content:'Press ctrl-shift';font-size:.75rem;}
-body.zoom #hiUrl{font-size:.75rem!important;color:#777;font-style:normal;text-decoration:underline;pointer-events:auto;cursor:pointer;max-width:24ch;overflow:hidden;text-overflow:ellipsis;}
-body.zoom #hiUrl::before{content:none;}
+#hiId,#hiId:empty{display:inline!important;font-size:0;max-width:none;overflow:visible;color:#888;font-style:italic;white-space:nowrap;text-decoration:none;pointer-events:none;} /* the hierarchy id: at rest it is only the hint; max-width:none because ch is font-relative – at font-size:0 the old 24ch would collapse to 0 */
+#hiId::before{content:'Press ctrl-shift';font-size:.75rem;}
+body.zoom #hiId{font-size:.75rem!important;color:#777;font-style:normal;text-decoration:underline;pointer-events:auto;cursor:pointer;max-width:24ch;overflow:hidden;text-overflow:ellipsis;} /* in zoom the id is the link to where you are – the url is never shown */
+body.zoom #hiId::before{content:none;}
 #semOv{position:fixed;display:none;inset:-50vmax;background:rgba(0,70,190,.5);pointer-events:none;z-index:50;} /* the blue area covers the whole screen itself – -50vmax reaches well outside the page, so no other zoom can leave screen uncovered */
 /* the navigating area the right play panel is overwritten with while ⌃⇧ or two fingers are down – the level you are on, later a word cloud of it. It stays after the keys are let go */
 #dbPlay.navon{position:relative;z-index:55;} /* above the blue wash, so the area being navigated in stays readable */
@@ -129,15 +126,14 @@ body.zoom #dbPlay.navon{grid-column:2/-1;background:#fff;}
 #semNav h2{margin:0;font-size:1.9em;font-weight:400;letter-spacing:.04em;}
 /* the strip in the foot of the panel the word map stands in: what is keyed – or, on a phone, spoken into the field with the keyboard's own mic, or heard by the 🎤 –
    and the filter the whole word map is read through. It comes with the areas and it collapses with them */
-#semQ{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.2em .3em;border-top:1px solid #999;}
-#nvQ{width:8em;min-width:0;font:inherit;font-size:.8em;padding:.1em .3em;border:1px solid #ccc;border-radius:.2em;background:#fff;}
+/* the filter stands under the hierarchy: the left column is two lines – what is listed, then what it is read through */
+#semQ{display:flex;align-items:center;gap:.25em;padding:.2em .3em;border-top:1px solid #999;}
+#semQ:empty{display:none;}
+#nvQ{flex:1;min-width:0;font:inherit;font-size:.8em;padding:.1em .3em;border:1px solid #ccc;border-radius:.2em;background:#fff;}
 #nvQ:focus{outline:2px solid #8ad;outline-offset:1px;}
-#nvMic{cursor:pointer;font-size:1.6em;line-height:1;padding:.15em .3em;border-radius:.25em;} /* a thumb needs a target, on a phone most of all – and while ⌃⇧ is held it is the pointer resting on it that opens the mic */
+#nvMic{cursor:pointer;line-height:1;padding:.1em .2em;border:1px solid transparent;border-radius:.2em;background:none;} /* beside the hands, the size they have: a thumb needs a target, and while ⌃⇧ is held it is the pointer resting on it that opens the mic */
 #nvMic:hover{background:#eee;} /* the point of contact is the point of press, so it has to show itself */
 #nvMic.on{background:#e33;color:#fff;animation:blink .9s ease-in-out infinite;} /* while the mic is open it blinks – the same blink as the hands, only slower and never ending, so it is never in doubt that it is hearing */
-body:not(.zoom) #semQ{flex-direction:column;font-size:.7em;} /* the band is narrow: the strip is down with the map, the field and the mic under each other */
-body:not(.zoom) #nvQ{width:100%;}
-body:not(.zoom) #nvMic{width:100%;}
 /* pl1–pl5a/pl4b – the same areas as pl0, parametrized: one area per node in the level, top to bottom, the node's name centred in its area */
 #semNav .nvAreas{flex:1;display:flex;flex-direction:column;width:100%;min-height:0;}
 #semNav .nvGrp{flex:1;display:flex;flex-direction:column;min-height:0;}

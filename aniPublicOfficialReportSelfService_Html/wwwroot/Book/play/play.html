@@ -2,12 +2,9 @@
 <head><meta charset="utf-8"><link rel="stylesheet" href="play.css?v=50"></head>
 <body>
 <!-- menu -->
-    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="zmLv" type="button"></button><button id="zmUp" type="button" title="coarser">🔭</button><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><span id="hiId">L*NO*FR.R.Ka.Vib.T</span><span id="hiQr"></span><a id="hiUrl"></a><button id="zmT" type="button" title="Expand the word map over the reading area">◎</button><button id="zmI" type="button" title="Zoom gestures: fingers apart goes a level down (finer), together a level up (coarser)">⇄</button><span id="dpCur"></span></div>
-<!-- nav -->
-    <!--div id="dbNav"><div id="dbNavHead">
-        <button id="lang">🇳🇴</button><button id="ver">👑</button><span id="dbTitle"></span>
-    </div-->
-        <div id="dbNavList"></div></div>
+    <div id="dpMenu"><span id="lvBars"></span><span id="lvCtl"></span><button id="zmLv" type="button"></button><button id="zmUp" type="button" title="coarser">🔭</button><button id="prev" onclick="books.play.render.nav(-1)">🫲</button><button id="next" onclick="books.play.render.nav(1)">🫱</button><button id="nvMic" type="button" title="Speak a word – the text is cut by it and the map made of what is left. While ⌃⇧ is held, resting on it opens the mic; resting on it again closes it">🎤</button><!-- ?p=<book*language*edition>.<chapter>.<sub chapter>… – a token of * means any, ie the first --><a id="hiId" href="#">L*NO*FR.R.Ka.Vib.T</a><span id="hiQr"></span><button id="zmT" type="button" title="Expand the word map over the reading area">◎</button><button id="zmI" type="button" title="Zoom gestures: fingers apart goes a level down (finer), together a level up (coarser)">⇄</button><span id="dpCur"></span></div>
+<!-- nav: the hierarchy, and under it the filter the word maps are read through (two lines) -->
+    <div id="dbNav"><div id="dbNavList"></div><div id="semQ"></div></div>
 <!-- book -->
     <div id="dpBook"><div id="page"></div></div>
 <!-- play -->
@@ -47,7 +44,7 @@
                 </details>
     </div>
     <hr>
-    <script src="play.js?v=61"></script>
+    <script src="play.js?v=66"></script>
     <!-- #hiId › its deep link as qr + url. Nothing is added to aigap.no/qr.js: only its generic API is reused (qr.g, qr.sizes), and play's own glue – the ?p= url and the two elements – stays here, taking the id as a parameter -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
     <script src="https://aigap.no/i/u/qrmetrics.js"></script>
@@ -55,13 +52,14 @@
     <script>
         books.play.hiQr=id=>{ // id in → qr + url out. The id is a parameter; the common qr never learns about play
             if(!window.qr||id===books.play.hiQrId)return;books.play.hiQrId=id;
-            const u=id?'https://aigap.no/play?p='+id:'',q=document.getElementById('hiQr'),a=document.getElementById('hiUrl');
+            const u=id?'https://aigap.no/play?p='+id:'',q=document.getElementById('hiQr'),a=document.getElementById('hiId');
             if(u)qr.g(u,null,qr.sizes(u).find(n=>n>21)||29).then(cv=>{if(cv&&q)q.replaceChildren(cv);}); // coarsest code that holds the link: 25x25 before 29x29…
             if(q&&!u)q.textContent='';
-            if(a){a.textContent=u;a.href=u;}
+            if(a)a.href=u||'#';   /* the id is the text and the link – the url itself is never shown */
         };
         books.play.hiQr(document.getElementById('hiId').textContent); // what is there now
         new MutationObserver(()=>books.play.hiQr(document.getElementById('hiId').textContent)).observe(document.getElementById('hiId'),{childList:1,characterData:1,subtree:1}); // hi() is the only writer of #hiId → observe it and hand the id over
+        const hq=document.getElementById('hiQr');hq.onclick=()=>hq.classList.toggle('big'); // button-sized at rest, a click opens it to the size a phone reads from
     </script>
 </body>
 </html>
