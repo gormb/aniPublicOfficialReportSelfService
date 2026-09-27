@@ -54,7 +54,7 @@ M.cloud={
     ,maps:async(pl,q,texts)=>{                        // ONE lookup per list; texts=[…] → [ {word:[size,newness]}, … ] – one element per cell, in cell order
         const c=M.cloud,id=M.host.hid(pl);
         let a=await M.store.load(q,id);
-        if(Array.isArray(a)&&a.length===texts.length&&a.every(m=>Object.keys(m).length<=c.top&&Object.values(m).every(v=>Array.isArray(v))))return a;
+        if(Array.isArray(a)&&a.length===texts.length&&a.every((m,i)=>Object.keys(m).length<=c.top&&Object.values(m).every(v=>Array.isArray(v))&&(Object.keys(m).length||!texts[i].trim())))return a;   // a cell that has text must not come back with an empty map – that row is stale, make it again
         // each cell's map is made from that cell's own text, cut by the filter; the siblings of the list are the comparison
         const own=texts.map(t=>c.words(c.cut(t,q),Infinity,q)),tot={};
         own.forEach(ws=>ws.forEach(([w,n])=>tot[w]=(tot[w]||0)+n));
@@ -77,6 +77,7 @@ M.cloud={
                 txt:(pl?M.host.txtOf(pl,i,''):'')||M.cloud.shelf()};}
 };
 M.chain=()=>M.host.chain?M.host.chain():null;                                  // the levels this page may stand on, or null (play: its own tree)
+M.ic={pl0:'\u{1F4DA}',pl1:'\u{1F4D6}',pl2:'\u{1F4D1}',pl3:'\u{1F4C4}',pl4a:'\u00B6',pl4b:'\u{1F4C3}',pl5a:'\u270D\uFE0F',pl5b:'\u23B6',pl6a:'\u{1F524}',pl6b:'\u{1F3A8}'};
 M.end=()=>{const c=M.chain();return !!c&&c[c.length-1]===M.host.id(M.host.mode());};   // standing on the last one: a pick navigates, it does not drill
 M.side=(pl,d)=>{const c=M.chain();if(c){const i=c.indexOf(pl);return i<0?null:c[i+d]||null;}
     return d>0?(M.host.child(pl)[0]||null):(M.host.up[pl]||null);};
@@ -93,7 +94,8 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         ,S={raw:{},ch:0,su:0,pg:0,want:0,mode:1}
         ,P=()=>S.raw[url()]||{t:'',chapters:[]}
         ,cur=()=>{const p=P(),c=p.chapters[S.ch]||{subs:[]};return {p,c,s:c.subs[S.su]||{paras:[]}};}
-        ,chap=x=>(x.subs||[]).map(s=>(s.paras||[]).map(y=>y.txt).join(' ')).join(' ')
+        ,txt=x=>(x.paras||[]).map(y=>y.txt).join(' ')                       // a sub chapter carries paragraphs…
+        ,chap=x=>(x.subs||[]).map(txt).join(' ')                            // …and a main chapter carries sub chapters
         ,whole=p=>((p&&p.chapters)||[]).map(chap).join(' ')
         ,lab=f=>ICO(f.lg,f.ed)+' '+((S.raw[f.url]||{}).t||(opt.title?opt.title():'')||'')
         ,ci=()=>{const i=files().findIndex(f=>f.lg===opt.lg()&&f.ed===opt.ed());return i<0?0:i;}
@@ -134,10 +136,15 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         p.chapters.forEach((c,i)=>{const j=(c.subs||[]).reduce((a,s,k)=>s.page<=pn?k:a,-1);
             if(c.page<=pn&&j>=0){ch=i;su=j;page=c.subs[j].page;}});
         return {ch,su,page};};
+    S.onPage=page=>{const a=[];                                                 // the paragraphs a page carries, in reading order
+        P().chapters.forEach(c=>(c.subs||[]).forEach(s=>(s.paras||[]).forEach(x=>{if(x.page===page)a.push(x);})));
+        return a;};
+    S.frac=node=>{const a=S.onPage(node.page),i=a.indexOf(node);                 // where one of them stands – the estimate, .md alone
+        return a.length?(0.08+0.84*(i+0.5)/a.length):0.5;};
     S.sync=()=>{const a=S.at(opt.page()||1);S.ch=a.ch;S.su=a.su;S.pg=0;};
     S.q=(t,n)=>String(t||'').toLowerCase().replace(/\s+/g,' ').trim().split(' ').slice(0,n||4).join(' ');
     host={
-        chain:()=>opt.toc()?['pl0','pl1','pl2']:['pl2','pl3','pl4a']
+        chain:()=>opt.toc()?['pl0','pl1','pl2']:['pl2','pl3']        // …and in the text the paragraphs are the cells you click, never a level
         ,fork:()=>false                                              // the text spine only – no page/paragraph fork
         ,up:{pl1:'pl0',pl2:'pl1',pl3:'pl2',pl4a:'pl3'}
         ,child:pl=>({pl0:['pl1'],pl1:['pl2'],pl2:['pl3'],pl3:['pl4a'],pl4a:['pl4a']}[pl]||[])
@@ -157,13 +164,20 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
             const t=pl==='pl0'?whole(p)
                 :pl==='pl1'?whole(S.raw[(files()[k]||{}).url])
                 :pl==='pl2'?chap(p.chapters[k]||{})
-                :pl==='pl3'?chap(c.subs[k]||{})
+                :pl==='pl3'?txt(c.subs[k]||{})
                 :pl==='pl4a'?((s.paras[k]||{}).txt||'')
                 :undefined;
             return t!==undefined?t:(fb||'');
         }
         ,hid:pl=>{const D=[slug(),opt.lg()+opt.ed(),S.ch,S.su];
             return (pl==='pl0'?D.slice(0,1):pl==='pl1'?D.slice(0,2):pl==='pl2'?D.slice(0,3):D).join('.');}
+        ,name:pl=>{const {p,c,s}=cur();                              // the node we stand on, by its own name
+            return pl==='pl0'?(p.t||slug())
+                :pl==='pl1'?lab(files()[ci()])
+                :pl==='pl2'?((p.chapters[S.ch]||{}).t||'')
+                :pl==='pl3'?((c.subs[S.su]||{}).t||'')
+                :pl==='pl4a'?(((s.paras[S.pg]||{}).t||'').slice(0,40))
+                :'';}
         ,pick:async pl=>{
             if(pl==='pl1'){await opt.copy(files()[S.want]);await S.load(url());S.sync();S.mode=1;return S.redraw();}
             const {p,c,s}=cur(),at=pl==='pl2'?p.chapters[S.ch]:pl==='pl3'?c.subs[S.su]:s.paras[S.pg];
@@ -180,7 +194,7 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         ,onShow:()=>{S.sync();S.mode=opt.toc()?1:3;
             if(!S.raw[url()])S.load(url()).then(()=>S.redraw());}
     };
-    const out={host,warm:S.warm,sync:S.sync,load:S.load,q:S.q,redraw:S.redraw,files,file:()=>url(),model:()=>P(),parse:S.parse,at:S.at};
+    const out={host,warm:S.warm,sync:S.sync,load:S.load,q:S.q,redraw:S.redraw,files,file:()=>url(),model:()=>P(),parse:S.parse,at:S.at,frac:S.frac};
     M.book=out;   // the sidecar model last handed to the map – a page's own lists (toc, search) read it too
     return out;
 };
@@ -202,6 +216,7 @@ M.Z={
     ,show:()=>{const z=M.Z,e=z.el;if(z.on)return;z.on=1;M.host.wzUrl&&M.host.wzUrl(1);z.pin=0;z.box().style.display='block';document.body.classList.add('zoom');
         [e.handPrev,e.handNext,e.coarser,e.levels].forEach(el=>{if(el&&M.host.blink)M.host.blink(el,3);});
         M.host.onShow&&M.host.onShow();
+        z.stage();
         z.nav.swap();z.head.into();z.nav.redraw();z.zb();}
     ,hide:()=>{const z=M.Z;if(!z.on)return;z.on=0;M.host.wzUrl&&M.host.wzUrl(0);z.head.out();
         z.nav.tk='';
@@ -223,7 +238,7 @@ M.Z={
                 ,maps=await M.cloud.maps(pl,q,cells)
                 ,it=0
                 ,grp=cols.map(x=>{const rows=x.ns.map((n,k)=>{if(n==='')return '';const h=M.cloud.html(maps[it++],24)
-                        ,on=(pl==='pl4a'||pl==='pl4b')&&k===x.a[3]
+                        ,on=(pl==='pl4a'||pl==='pl4b'||M.end())&&k===x.a[3]   // the cell we are on – at the chain's end that is the one a pick leads to
                         ,cl=h||q;
                         return '<div class="nvA'+(on?' on':'')+(cl?' nvC':'')+'" data-k="'+x.c+'|'+k+'"><span class="nvT">'+e(n)+'</span>'+(cl?'<div class="nvW">'+h+'</div>':'')+'</div>';}).join('');
                     if(!rows)return '';const cnt=x.ns.filter(n=>n!=='').length
@@ -283,7 +298,7 @@ M.Z={
             a.forEach((w,i)=>{const s=n.room(w)/h2[i];
                 if(s<1)w.style.fontSize=(n.base()*Math.max(.4,s)).toFixed(2)+'em';});
         }
-        ,draw:async()=>{const n=M.Z.nav;if(!n.el)return;const s=++n.seq,h=await n.body();if(s!==n.seq||h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();}
+        ,draw:async()=>{const n=M.Z.nav;if(!n.el)return;const s=++n.seq,h=await n.body();if(s!==n.seq||h===n.last)return;n.last=h;n.el.innerHTML=h;n.fit();M.Z.stage();}
         ,redraw:()=>{const n=M.Z.nav;n.last='';n.draw();}
         ,swap:()=>{
             const n=M.Z.nav,z=M.Z,p=z.el.band;
@@ -312,9 +327,7 @@ M.Z={
     ,walk:d=>{const pl=M.host.id(M.host.mode()),a=M.host.names(pl),k=(a[3]||0)+d;
         if(k<0||k>=(a[0]||[]).length)return;
         if(M.host.walk)return M.host.walk(d,k,a);
-        a[2](a[0][k]);
-        if(M.end()&&M.host.pick)return M.host.pick(pl,k,a[0][k]);
-        M.Z.nav.redraw();}
+        a[2](a[0][k]);M.Z.nav.redraw();}   // the hands carry the cursor along the level – they never lead anywhere, a pick does
     ,drill:(d,alt,wide)=>{const z=M.Z;
         if(d>0){const h=document.querySelector('#semNav .nvA:hover');if(h)return z.nav.pick(h);}
         const pl=M.host.id(M.host.mode());
@@ -326,6 +339,10 @@ M.Z={
         if(i>=0&&(t[0]||[])[i])return z.nav.go(k,i);
         M.host.go(M.host.ix(k),0,wide&&d<0);}
     ,zoom:d=>{const o=M.Z.inv?-d:d;M.Z.drill(o>0?1:-1,null,o>0?0:1);}
+    ,stage:()=>{   // what we are standing on – the one control between coarser and finer: its name, the level in the tooltip
+        const e=M.Z.el.stage;if(!e)return;
+        const pl=M.host.id(M.host.mode()),L=M.host.L(pl)||{},n=(M.host.name&&M.host.name(pl))||L.t||pl;
+        e.textContent=(M.ic[pl]||'')+' '+n;e.title=(L.t||pl)+(n===(L.t||pl)?'':' – '+n);}
     ,build:()=>{   // no host band → the map brings its own: overlay band, head strip, filter foot (books.map.css)
         const z=M.Z,e=z.el
             ,mk=(t,tip,fn)=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.title=tip;b.onclick=fn;return b;}
@@ -334,6 +351,7 @@ M.Z={
         e.band=document.createElement('div');e.band.id='semBody';
         head.className='semHead';
         e.coarser=mk('\u{1F52D}','Coarser – the whole',()=>z.drill(-1));
+        e.stage=document.createElement('span');e.stage.className='semStage';
         e.finer=mk('\u{1F52C}','Finer – into the detail',()=>z.drill(1));
         e.handPrev=mk('\u{1FAF2}','Previous in this level',()=>z.walk(-1));
         e.handNext=mk('\u{1FAF1}','Next in this level',()=>z.walk(1));
@@ -341,7 +359,7 @@ M.Z={
         e.inv=mk('\u21C4','Zoom: down means into the detail; click to turn it round',()=>{});
         e.zoom=mk('\u25CE','Leave the map (Esc)',()=>{});
         e.bandCollapse=mk('\u2912','Collapse the map',()=>{});
-        head.append(e.coarser,e.finer,e.handPrev,e.handNext,e.mic,e.inv,e.zoom,e.bandCollapse);
+        head.append(e.coarser,e.stage,e.finer,e.handPrev,e.handNext,e.mic,e.inv,e.zoom,e.bandCollapse);
         e.levels=document.createElement('span');
         e.query=document.createElement('div');e.query.className='semFoot';
         band.append(head,e.band,e.query);document.body.appendChild(band);

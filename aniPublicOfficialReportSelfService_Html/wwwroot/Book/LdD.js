@@ -333,10 +333,12 @@ const wm=books.map.sidecar({
         if(_dToc.style.display!='none'){await nav.TocPage(at.page);return;}
         await nav.Page(at.page,0);
         if(book.whole||!cBook.page)return;                       // the sheet fits the window – the page is enough
-        let y=null; for(const n of [4,2,1]){y=await nav.docY(wm.q(at.txt,n));if(y!=null)break;}
-        if(y==null)return;
-        const top=_cBook.getBoundingClientRect().top+window.scrollY+y-window.innerHeight/2;
-        window.scrollTo(0,Math.max(0,Math.min(top,document.documentElement.scrollHeight-window.innerHeight)));
+        const put=()=>{                                          // .md alone: where it stands among the paragraphs on that page
+            const y=wm.frac(at)*cBook.view.height
+                ,top=_cBook.getBoundingClientRect().top+window.scrollY+y-window.innerHeight/2;
+            window.scrollTo(0,Math.max(0,Math.min(top,document.documentElement.scrollHeight-window.innerHeight)));
+        };
+        put();setTimeout(put,150);                               // the sheet may still be settling – say it once more
     }
 });
 books.map.host=wm.host;

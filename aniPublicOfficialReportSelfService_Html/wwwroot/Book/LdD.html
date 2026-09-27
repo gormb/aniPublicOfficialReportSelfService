@@ -3,10 +3,10 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=57"></script>
+        <script type="module" src="LdD.js?v=59"></script>
         <link rel="stylesheet" href="LdD.css?v=25">
-        <link rel="stylesheet" href="books.map.css?v=3">
-        <script src="books.map.js?v=70"></script>
+        <link rel="stylesheet" href="books.map.css?v=4">
+        <script src="books.map.js?v=75"></script>
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -423,25 +423,17 @@
                 }
                 // ---------- 1) findTxt: within-text search (nFdTxt, outside the TOC) ----------
                 ,doc:null
-                ,docInit:async()=>{ // per-page text of the current lang+mode (md sidecar first; data blocks as fallback)
-                    const want=book.hAlign._?'no':'en', md=await cBook.data.mdRaw(), by=new Map(), add=(pg,t)=>{const s=(by.get(pg)||'').trim();by.set(pg,s?s+' '+t:t);};
+                ,docInit:async()=>{ // per-page text of the current lang+mode – the .md sidecar, and nothing else
+                    const md=await cBook.data.mdRaw(), by=new Map(), add=(pg,t)=>{const s=(by.get(pg)||'').trim();by.set(pg,s?s+' '+t:t);};
                     if(md){
                         let cur=1, m;
                         for(const raw of md.text.split(/\r?\n/)){
                             const l=raw.trim(); if(!l)continue;
                             if(m=/^#### p\. (\d+)/.exec(l)){cur=+m[1];continue;}
                             if(/^#\s+/.test(l))continue; // title line – not page text
-                            if(/^(?:##|###)\s+/.test(l)){ // heading carries its page at the end ('— p. N')
-                                if(m=/(?:—|–)\s*p\.\s*(\d+)/.exec(l))cur=+m[1];
-                                add(cur,l.replace(/^#{2,3}\s+/,'').replace(/\s*(?:—|–)\s*p\.\s*\d+\s*$/,'').trim()); continue;
-                            }
-                            if(/^🎵/.test(l)){if(m=/(?:—|–)\s*p\.\s*(\d+)/.exec(l))cur=+m[1];continue;} // music line – url only
+                            if(/^(?:##|###)\s+/.test(l)){add(cur,l.replace(/^#{2,3}\s+/,'').replace(/\s*(?:—|–)\s*p\.\s*\d+\s*$/,'').trim());continue;} // a heading stands on the page last marked
+                            if(/^🎵/.test(l))continue; // music line – url only
                             add(cur,l);
-                        }
-                    }else{ // no sidecar → rebuild from structured blocks
-                        for(const b of await cBook.data.get()){
-                            if(b.type===cBook.data.type.PAGE||(b.lang&&b.lang!==want))continue;
-                            const s=(by.get(b.page)||'').trim(); by.set(b.page,s?s+' '+(b.text||''):(b.text||''));
                         }
                     }
                     nav.doc={p:[...by].sort((a,b)=>a[0]-b[0]).map(e=>({page:e[0],text:e[1].toLowerCase()})),h:[],lastL:0};
@@ -465,11 +457,13 @@
                     D.h[L]={i:hit,page:pgs[hit].page}; D.lastL=L;
                     nav.findTxtGoto(pgs[hit].page,ql,tok);
                 }
-                ,findTxtGoto:async(pg,ql,tok)=>{ // open the page, then guess the y of the match when the sheet is taller than the window
+                ,findTxtGoto:async(pg,ql,tok)=>{ // open the page, then say where the match stands on it – from the .md, when the sheet is taller than the window
                     if(tok!==nav._ftok)return;
                     if(pg!==book.pn()){await nav.Page(pg,0); if(tok!==nav._ftok)return;}
-                    if(book.whole||!cBook.pdf)return;
-                    const y=await nav.docY(ql); if(y==null||tok!==nav._ftok)return;
+                    if(book.whole||!cBook.view)return;
+                    const p=((nav.doc&&nav.doc.p.find(x=>x.page===pg))||{}).text||'', at=p.indexOf(ql);
+                    if(at<0)return;
+                    const y=(0.08+0.84*((at+ql.length/2)/(p.length||1)))*cBook.view.height;
                     const top=_cBook.getBoundingClientRect().top+window.scrollY+y-window.innerHeight/2;
                     window.scrollTo(0,Math.max(0,Math.min(top,document.documentElement.scrollHeight-window.innerHeight)));
                 }
@@ -478,17 +472,6 @@
                     if(!n||!q)return;
                     for(let k=1;k<=n;k++){const i=(i0+d*k+n*2)%n;
                         if(p[i].text.includes(q)){D.h[D.lastL]={i,page:p[i].page};D.h.length=D.lastL+1;nav.findTxtGoto(p[i].page,q,nav._ftok);return;}}
-                }
-                ,docY:async ql=>{ // guess y (canvas px) of the first ql on the current page (reading-order items)
-                    try{
-                        const {items}=await cBook.page.getTextContent(), ord=items.filter(i=>i.str.trim())
-                            .sort((a,b)=>b.transform[5]-a.transform[5]||a.transform[4]-b.transform[4]);
-                        let full='', map=[];
-                        for(const it of ord){map.push([full.length,full.length+it.str.length,it]);full+=it.str+' ';}
-                        const at=full.toLowerCase().indexOf(ql); if(at<0)return null;
-                        const it=(map.find(e=>at>=e[0]&&at<e[1])||map[map.length-1])[2], vp=cBook.view;
-                        return vp?vp.convertToViewportPoint(it.transform[4],it.transform[5]+(it.height||10)/2)[1]:null;
-                    }catch(e){return null}
                 }
                 // ---------- 2) findToc: live filter of the chapter list (hides rows in place – the player survives) ----------
                 ,findToc:()=>{
