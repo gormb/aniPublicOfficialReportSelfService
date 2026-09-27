@@ -3,8 +3,16 @@
      books.map.host – the hierarchy: up{}, child(pl), id(i), ix(pl), mode(), names(pl), txtOf(pl,k,fb), hid(pl,i), L(pl),
                       go(i,keep,wide), texts{}, mdText(), fn(), and the reading app's own hands: esc, sentT, em, blink,
                       arrowBlink, nav, lang, wzUrl
-     books.map.Z.el – the controls the map drives: zoom, inv, bandCollapse, handPrev, handNext, levels, coarser, band, query, mic, page
-   See play.js wire() for the play-shaped wiring. */
+                      and, when the page's levels differ from play's tree:
+                      chain() – the levels the map may stand on, coarsest first (e.g. ['pl0','pl1','pl2'] inside a table of
+                                contents, ['pl2','pl3','pl4a'] in the text). The last one is the end: there a pick navigates
+                                through pick(pl,k,name) instead of drilling, and drilling finer stops.
+                      fork(pl) – true when this level splits into the two spines a/b (default: pl3/pl4a/pl4b)
+                      pick(pl,k,name) – navigate to what was picked (invoked only at the chain's end)
+                      onShow()/onHide() – the page's own bookkeeping around the map going up or down
+     books.map.Z.el – the controls the map drives: zoom, inv, bandCollapse, handPrev, handNext, levels, coarser, band, query, mic, page.
+                      Give no band and the map builds its own overlay band, head strip and filter foot (books.map.css)
+   See play.js wire() for the play-shaped wiring, LdD.js for the pdf-shaped one. */
 (function(){
 window.books=window.books||{};
 const M=window.books.map={};
@@ -68,6 +76,107 @@ M.cloud={
         return {key:(pl||'pl0')+'|'+(a?String(a[1]||'').slice(0,24):'')+'|'+i+'|'+(M.host.fn()||''),
                 txt:(pl?M.host.txtOf(pl,i,''):'')||M.cloud.shelf()};}
 };
+M.chain=()=>M.host.chain?M.host.chain():null;                                  // the levels this page may stand on, or null (play: its own tree)
+M.end=()=>{const c=M.chain();return !!c&&c[c.length-1]===M.host.id(M.host.mode());};   // standing on the last one: a pick navigates, it does not drill
+M.side=(pl,d)=>{const c=M.chain();if(c){const i=c.indexOf(pl);return i<0?null:c[i+d]||null;}
+    return d>0?(M.host.child(pl)[0]||null):(M.host.up[pl]||null);};
+M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, handed to the map as a hierarchy to walk:
+    // '#### p. N' moves the page, '### ' a sub chapter, '## ' a main chapter, '# ' the title, every other line one paragraph.
+    // The page gives what only it knows – prefix(), lg(), ed(), page(), toc(), copy(f), go(at) – and gets the whole host back.
+    const langs=opt.langs||['NO','EN'],eds=opt.eds||['PREM','FREE']
+        ,url=(lg,ed)=>opt.prefix()+'_'+(lg||opt.lg())+'_'+(ed||opt.ed())+'.md'
+        ,files=()=>langs.flatMap(lg=>eds.map(ed=>({lg,ed,url:url(lg,ed)})))
+        ,ICO=(lg,ed)=>(lg==='NO'?'\u{1F1F3}\u{1F1F4}':'\u{1F1EC}\u{1F1E7}')+(ed==='PREM'?'\u{1F451}':'\u{1F513}')
+        ,LV=['pl0','pl1','pl2','pl3','pl4a']
+        ,T={pl0:'Book Shelf',pl1:'Book Copy',pl2:'Main Chapter',pl3:'Sub Chapter',pl4a:'Paragraph'}
+        ,slug=()=>opt.prefix().replace(/\/[^/]*$/,'').split('/').pop().toLowerCase().replace(/[^a-z0-9]+/g,'')
+        ,S={raw:{},ch:0,su:0,pg:0,want:0,mode:1}
+        ,P=()=>S.raw[url()]||{t:'',chapters:[]}
+        ,cur=()=>{const p=P(),c=p.chapters[S.ch]||{subs:[]};return {p,c,s:c.subs[S.su]||{paras:[]}};}
+        ,chap=x=>(x.subs||[]).map(s=>(s.paras||[]).map(y=>y.txt).join(' ')).join(' ')
+        ,whole=p=>((p&&p.chapters)||[]).map(chap).join(' ')
+        ,lab=f=>ICO(f.lg,f.ed)+' '+((S.raw[f.url]||{}).t||(opt.title?opt.title():'')||'')
+        ,ci=()=>{const i=files().findIndex(f=>f.lg===opt.lg()&&f.ed===opt.ed());return i<0?0:i;}
+        ,go=n=>{S.mode=n;M.Z.nav.redraw();};
+    let host;   // the host object, filled in below once S is complete
+    // every level is given at least one entry, so the step below it always has something to pick: a chapter without subs is
+    // its own sub, a sub without paragraphs its own paragraph – both carry the heading, which is also what a pick leads to
+    S.parse=txt=>{
+        const o={t:'',chapters:[]};let page=1,ch=null,su=null,m;
+        for(const raw of String(txt||'').split(/\r?\n/)){
+            const s=raw.trim();if(!s)continue;
+            if(m=/^#{3,4}\s*p\.\s*(\d+)\s*$/i.exec(s)){page=+m[1];continue;}
+            if(m=/^(#{1,3})\s+(.*)$/.exec(s)){
+                const t=m[2].trim().replace(/\s*(?:—|–)\s*p\.\s*\d+\s*$/i,'');
+                if(m[1].length===1){o.t=o.t||t;continue;}
+                if(m[1].length===2){ch={t,page,subs:[]};o.chapters.push(ch);su=null;continue;}
+                if(!ch){ch={t:'',page,subs:[]};o.chapters.push(ch);}
+                su={t,page,paras:[]};ch.subs.push(su);continue;
+            }
+            if(/^\u{1F3B5}/u.test(s))continue;                                   // 🎵 the song line is a link, not text
+            if(!ch){ch={t:'',page,subs:[]};o.chapters.push(ch);}
+            if(!su){su={t:ch.t,page:ch.page,paras:[]};ch.subs.push(su);}
+            su.paras.push({t:s,page,txt:s});
+        }
+        o.chapters.forEach(c=>{if(!c.subs.length)c.subs.push({t:c.t,page:c.page,paras:[{t:c.t,page:c.page,txt:c.t}]});});
+        o.chapters.forEach(c=>c.subs.forEach(s=>{if(!s.paras.length)s.paras.push({t:s.t,page:s.page,txt:s.t});}));
+        return o;};
+    S.load=async f=>{if(S.raw[f])return S.raw[f];
+        try{const r=await fetch(f,{cache:'no-store'});if(!r.ok)return null;return S.raw[f]=S.parse(await r.text());}catch(e){return null;}};
+    S.redraw=()=>{if(M.Z.on)M.Z.nav.redraw();};
+    S.warm=async()=>{await S.load(url());S.redraw();                              // the copy being read now, the others after it
+        for(const f of files())if(f.url!==url())await S.load(f.url);
+        S.redraw();};
+    S.sync=()=>{const p=P(),pn=opt.page()||1;let ch=0,su=0;                      // the deepest heading at or before this page
+        p.chapters.forEach((c,i)=>{const j=(c.subs||[]).reduce((a,s,k)=>s.page<=pn?k:a,-1);if(c.page<=pn&&j>=0){ch=i;su=j;}});
+        S.ch=ch;S.su=su;S.pg=0;};
+    S.q=(t,n)=>String(t||'').toLowerCase().replace(/\s+/g,' ').trim().split(' ').slice(0,n||4).join(' ');
+    host={
+        chain:()=>opt.toc()?['pl0','pl1','pl2']:['pl2','pl3','pl4a']
+        ,fork:()=>false                                              // the text spine only – no page/paragraph fork
+        ,up:{pl1:'pl0',pl2:'pl1',pl3:'pl2',pl4a:'pl3'}
+        ,child:pl=>({pl0:['pl1'],pl1:['pl2'],pl2:['pl3'],pl3:['pl4a'],pl4a:['pl4a']}[pl]||[])
+        ,id:i=>LV[i]||'pl0',ix:pl=>Math.max(0,LV.indexOf(pl)),mode:()=>S.mode,L:pl=>({pl,t:T[pl]||pl}),go
+        ,names:pl=>{
+            const {p,c,s}=cur(),C=files();
+            return ({
+                pl0:[[opt.lg()+opt.ed()],opt.lg()+opt.ed(),()=>{},0]
+                ,pl1:[C.map(lab),lab(C[ci()]),t=>{const i=C.findIndex(f=>lab(f)===t);if(i>=0)S.want=i;},ci()]
+                ,pl2:[p.chapters.map(x=>x.t),(p.chapters[S.ch]||{}).t||'',t=>{const i=p.chapters.findIndex(x=>x.t===t);if(i>=0)S.ch=i;},S.ch]
+                ,pl3:[c.subs.map(x=>x.t),(c.subs[S.su]||{}).t||'',t=>{const i=c.subs.findIndex(x=>x.t===t);if(i>=0)S.su=i;},S.su]
+                ,pl4a:[s.paras.map(x=>x.t),(s.paras[S.pg]||{}).t||'',t=>{const i=s.paras.findIndex(x=>x.t===t);if(i>=0)S.pg=i;},S.pg]
+            })[pl]||[[''],'',()=>{},0];
+        }
+        ,txtOf:(pl,k,fb)=>{
+            const {p,c,s}=cur();
+            const t=pl==='pl0'?whole(p)
+                :pl==='pl1'?whole(S.raw[(files()[k]||{}).url])
+                :pl==='pl2'?chap(p.chapters[k]||{})
+                :pl==='pl3'?chap(c.subs[k]||{})
+                :pl==='pl4a'?((s.paras[k]||{}).txt||'')
+                :undefined;
+            return t!==undefined?t:(fb||'');
+        }
+        ,hid:pl=>{const D=[slug(),opt.lg()+opt.ed(),S.ch,S.su];
+            return (pl==='pl0'?D.slice(0,1):pl==='pl1'?D.slice(0,2):pl==='pl2'?D.slice(0,3):D).join('.');}
+        ,pick:async pl=>{
+            if(pl==='pl1'){await opt.copy(files()[S.want]);await S.load(url());S.sync();S.mode=1;return S.redraw();}
+            const {p,c,s}=cur(),at=pl==='pl2'?p.chapters[S.ch]:pl==='pl3'?c.subs[S.su]:s.paras[S.pg];
+            if(at&&at.page!=null)await opt.go(at);
+        }
+        ,esc:s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
+        ,sentT:s=>(String(s||'').match(/[^.!?\u2026]+[.!?\u2026]+["'\u201D\u2019\u00BB]?|\S[^.!?\u2026]*$/g)||[]).map(x=>x.trim()).filter(Boolean)
+        ,em:()=>parseFloat(getComputedStyle(document.documentElement).fontSize)||1
+        ,blink:(el,n)=>{if(!el)return;el.classList.remove('blink');void el.offsetWidth;el.style.animationIterationCount=String(n||1);el.classList.add('blink');}
+        ,arrowBlink:d=>host.blink(d?M.Z.el.finer:M.Z.el.coarser,1)
+        ,nav:d=>M.Z.walk(d)
+        ,texts:S.raw,mdText:()=>'',fn:url
+        ,get lang(){return opt.lg();}
+        ,onShow:()=>{S.sync();S.mode=opt.toc()?1:3;
+            if(!S.raw[url()])S.load(url()).then(()=>S.redraw());}
+    };
+    return {host,warm:S.warm,sync:S.sync,load:S.load,q:S.q,redraw:S.redraw,files,par:S.raw};
+};
 M.Z={
     ov:null,m:0,t:0,sp:'b',q:'',inv:0,invKey:'play.zoom.invert'
     ,el:{}
@@ -83,13 +192,14 @@ M.Z={
             h.ids.forEach(id=>{const n=document.getElementById(id);if(!n)return;h.back.push([n,n.parentElement,n.nextSibling]);h.el.appendChild(n);});}
         ,out:()=>{const h=M.Z.head;for(let i=h.back.length-1;i>=0;i--){const b=h.back[i];b[1].insertBefore(b[0],b[2]);}h.back=[];}
     }
-    ,show:()=>{const z=M.Z,e=z.el;if(z.on)return;z.on=1;M.host.wzUrl(1);z.pin=0;z.box().style.display='block';document.body.classList.add('zoom');
-        [e.handPrev,e.handNext,e.coarser,e.levels].forEach(el=>M.host.blink(el,3));
+    ,show:()=>{const z=M.Z,e=z.el;if(z.on)return;z.on=1;M.host.wzUrl&&M.host.wzUrl(1);z.pin=0;z.box().style.display='block';document.body.classList.add('zoom');
+        [e.handPrev,e.handNext,e.coarser,e.levels].forEach(el=>{if(el&&M.host.blink)M.host.blink(el,3);});
+        M.host.onShow&&M.host.onShow();
         z.nav.swap();z.head.into();z.nav.redraw();z.zb();}
-    ,hide:()=>{const z=M.Z;if(!z.on)return;z.on=0;M.host.wzUrl(0);z.head.out();
+    ,hide:()=>{const z=M.Z;if(!z.on)return;z.on=0;M.host.wzUrl&&M.host.wzUrl(0);z.head.out();
         z.nav.tk='';
         if(z.ov)z.ov.style.display='none';z.m=z.t=0;document.body.classList.remove('zoom');
-        z.nav.redraw();z.zb();}
+        z.nav.redraw();z.zb();M.host.onHide&&M.host.onHide();}
     ,enter:()=>M.Z.show()
     ,nav:{
         el:null,last:'',tk:'',seq:0
@@ -97,8 +207,8 @@ M.Z={
         ,label:()=>{const L=M.host.L(M.host.id(M.host.mode()));return (L.pl||'')+' '+L.t+' Selection';}
         ,areas:async()=>{
             const e=M.host.esc,pl=M.host.id(M.host.mode()),sp=M.Z.sp,q=M.Z.q
-                ,fork=pl==='pl3'||pl==='pl4a'||pl==='pl4b',kids=fork?['pl4'+sp]:M.host.child(pl)
-                ,fd=pl==='pl3'
+                ,fork=M.host.fork?M.host.fork(pl):(pl==='pl3'||pl==='pl4a'||pl==='pl4b'),kids=fork?['pl4'+sp]:M.host.child(pl)
+                ,fd=(fork&&pl==='pl3')
                     ?['b','a'].map(t=>'<button type="button" data-sp="'+t+'"'+(sp===t?' disabled':'')+'>'+e((M.host.L('pl4'+t)||{}).t||('pl4'+t))+'</button>').join('')
                     :''
                 ,cols=kids.map(c=>{const a=M.host.names(c);return {c,a,ns:a[0]||[]};})
@@ -139,7 +249,9 @@ M.Z={
             else return 0;
             n.applyQ();
             return 1;}
-        ,go:(c,k)=>{const a=M.host.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);M.host.go(M.host.ix(c),true);}
+        ,go:(c,k)=>{const a=M.host.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);
+            if(M.end()&&M.host.pick)return M.host.pick(c,k,n);   // on the chain's end a pick leads there – it does not drill
+            M.host.go(M.host.ix(c),true);}
         ,pickK:k=>{const p=String(k||'').split('|');if(p[0])M.Z.nav.go(p[0],+p[1]);}
         ,pick:el=>M.Z.nav.pickK(el.dataset.k)
         ,pair:()=>{const z=M.Z,n=z.nav,p=n.tk;n.tk='';if(p)z.nav.pickK(p);z.hide();}
@@ -190,19 +302,49 @@ M.Z={
             }n.draw();}
     }
     ,jump:()=>{const z=M.Z,h=document.querySelector('#semNav .nvA:hover');if(!h)return;z.nav.pick(h);z.hide();}
+    ,walk:d=>{const pl=M.host.id(M.host.mode()),a=M.host.names(pl),k=(a[3]||0)+d;
+        if(k<0||k>=(a[0]||[]).length)return;
+        if(M.host.walk)return M.host.walk(d,k,a);
+        a[2](a[0][k]);
+        if(M.end()&&M.host.pick)return M.host.pick(pl,k,a[0][k]);
+        M.Z.nav.redraw();}
     ,drill:(d,alt,wide)=>{const z=M.Z;
         if(d>0){const h=document.querySelector('#semNav .nvA:hover');if(h)return z.nav.pick(h);}
-        const pl=M.host.id(M.host.mode()),ks=M.host.child(pl)
+        const pl=M.host.id(M.host.mode());
+        if(M.chain()){const k=M.side(pl,d>0?1:-1);if(!k)return;return M.host.go(M.host.ix(k),0,wide&&d<0);}
+        const ks=M.host.child(pl)
             ,k=d>0?(ks.length>1?'pl4'+(alt?(z.sp==='a'?'b':'a'):z.sp):ks[0]):M.host.up[pl];
         if(!k)return;
         const t=M.host.names(k),i=d>0?t[3]:-1;
         if(i>=0&&(t[0]||[])[i])return z.nav.go(k,i);
         M.host.go(M.host.ix(k),0,wide&&d<0);}
     ,zoom:d=>{const o=M.Z.inv?-d:d;M.Z.drill(o>0?1:-1,null,o>0?0:1);}
+    ,build:()=>{   // no host band → the map brings its own: overlay band, head strip, filter foot (books.map.css)
+        const z=M.Z,e=z.el
+            ,mk=(t,tip,fn)=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.title=tip;b.onclick=fn;return b;}
+            ,band=document.createElement('div'),head=document.createElement('div');
+        band.id='semBand';band.className='semBand';
+        e.band=document.createElement('div');e.band.id='semBody';
+        head.className='semHead';
+        e.coarser=mk('\u{1F52D}','Coarser – the whole',()=>z.drill(-1));
+        e.finer=mk('\u{1F52C}','Finer – into the detail',()=>z.drill(1));
+        e.handPrev=mk('\u{1FAF2}','Previous in this level',()=>z.walk(-1));
+        e.handNext=mk('\u{1FAF1}','Next in this level',()=>z.walk(1));
+        e.mic=mk('\u{1F3A4}','Speak a word – the text is cut by it',()=>{});
+        e.inv=mk('\u21C4','Zoom: down means into the detail; click to turn it round',()=>{});
+        e.zoom=mk('\u25CE','Leave the map (Esc)',()=>{});
+        e.bandCollapse=mk('\u2912','Collapse the map',()=>{});
+        head.append(e.coarser,e.finer,e.handPrev,e.handNext,e.mic,e.inv,e.zoom,e.bandCollapse);
+        e.levels=document.createElement('span');
+        e.query=document.createElement('div');e.query.className='semFoot';
+        band.append(head,e.band,e.query);document.body.appendChild(band);
+        z.head.ids=[];   // the built head is already home – nothing to lend in
+    }
     ,init:()=>{
         const z=M.Z,page=()=>z.el.page
             ,dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)
             ,zone=t=>page().contains(t)||!!(z.nav.el&&z.nav.el.contains(t));
+        if(!z.el.band)z.build();
         z.el.zoom.onclick=()=>{z.on?z.hide():z.show();};z.zb();
         try{z.inv=localStorage.getItem(z.invKey)==='1'?1:0;}catch(e){}
         z.el.inv.onclick=()=>{z.inv=z.inv?0:1;try{localStorage.setItem(z.invKey,z.inv?'1':'0');}catch(e){}z.ib();};z.ib();
@@ -248,14 +390,14 @@ M.Z={
             }
         },{passive:true});
         document.addEventListener('wheel',e=>{
-            if(!e.ctrlKey||!page().contains(e.target))return;
+            if(!e.ctrlKey||!zone(e.target))return;
             if(e.cancelable)e.preventDefault();
             const now=Date.now();if(now-at>400)acc=0;at=now;
             acc+=e.deltaY;
             if(Math.abs(acc)>=25){z.zoom(acc>0?-1:1);acc=0;}
         },{passive:false});
-        window.onblur=()=>{z.key=z.mod=0;z.hide();};
-        window.onresize=()=>{if(!z.nav.el)return;clearTimeout(z.rt);z.rt=setTimeout(()=>z.nav.redraw(),120);};
+        window.addEventListener('blur',()=>{z.key=z.mod=0;z.hide();});
+        window.addEventListener('resize',()=>{if(!z.nav.el)return;clearTimeout(z.rt);z.rt=setTimeout(()=>z.nav.redraw(),120);});
     }
 };
 })();

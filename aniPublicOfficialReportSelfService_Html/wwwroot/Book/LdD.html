@@ -3,8 +3,10 @@
         <meta charset="utf-8">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=55"></script>
+        <script type="module" src="LdD.js?v=57"></script>
         <link rel="stylesheet" href="LdD.css?v=25">
+        <link rel="stylesheet" href="books.map.css?v=3">
+        <script src="books.map.js?v=69"></script>
         <script>
             window.SUPABASE = window.SUPABASE || (typeof SUPABASE !== 'undefined' ? SUPABASE : undefined);
             const uisz=()=>book.sz(window.innerWidth,window.innerHeight);
@@ -296,7 +298,7 @@
                     ,_ratio:2 // axis dominance: horizontal needs |dx|>2·|dy|, vertical needs |dy|>2·|dx|; diagonal = native scroll
                     ,ontop:()=>window.scrollY<=window.innerHeight*nav.gest._edge
                     ,onbottom:()=>window.scrollY>=document.documentElement.scrollHeight-window.innerHeight-window.innerHeight*nav.gest._edge
-                    ,suppressed:()=>_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none' // TOC/share/export open → never gesture (native scroll)
+                    ,suppressed:()=>_dToc.style.display!='none'||_dShare.style.display!='none'||_dExport.style.display!='none'||!!window.books?.map?.Z?.on // TOC/share/export open, or the word map up (it owns the wheel then) → never gesture (native scroll)
                     ,newState:GEST.NONE
                     ,lastState:GEST.NONE
                     ,_d:0 // last direction key: 'dn'|'up'|'left'|'right' (0=none)

@@ -309,6 +309,42 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
 
 window.cBook=cBook;
 loadScript('https://aigap.no/db.js?v=8').catch(()=>console.warn('[db.js] kunne ikke lastes i bakgrunnen')); // db.js = SUPABASE config + window.db (PIN) – load in background, never block the book // ?v=8: db.js updated (bookInterval → premiumCheckInterval)
+
+/* ---- The word map (books.map.js): the .md sidecar says what is where in the .pdf, and the module owns that hierarchy ----
+   The sidecar knows the pages ('#### p. N'), the main chapters ('## ') and the sub chapters ('### '). books.map walks it as
+   shelf → copy → chapter in the table of contents – a picked chapter or sub chapter leads straight there – and as chapter →
+   sub chapter → paragraph in the text, where a picked paragraph opens its page and, when the sheet is taller than the window,
+   scrolls to where that paragraph is estimated to stand. LdD only says where the sidecar lives, which copy and page are open,
+   and what a pick must do. */
+const wm=books.map.sidecar({
+    prefix:()=>book.srcBase()
+    ,lg:()=>book.hAlign._?'NO':'EN'
+    ,ed:()=>book.prem._?'PREM':'FREE'
+    ,title:()=>nav._tocTitle
+    ,page:()=>cBook.pn||1
+    ,toc:()=>_dToc.style.display!='none'
+    ,copy:async c=>{                                             // a copy of the book: language × edition
+        if(c.ed==='PREM'&&!book.prem._){books.map.Z.hide();return nav.PremToggle();}   // 👑 only opens with a code – ask for it
+        if((book.prem._?'PREM':'FREE')!==c.ed)await book.prem.L(c.ed==='PREM');
+        if((book.hAlign._?'NO':'EN')!==c.lg)await book.hAlign.L(c.lg==='NO');
+    }
+    ,go:async at=>{                                              // a place in the book: its page, and where the text stands on it
+        books.map.Z.hide();
+        if(_dToc.style.display!='none'){await nav.TocPage(at.page);return;}
+        await nav.Page(at.page,0);
+        if(book.whole||!cBook.page)return;                       // the sheet fits the window – the page is enough
+        let y=null; for(const n of [4,2,1]){y=await nav.docY(wm.q(at.txt,n));if(y!=null)break;}
+        if(y==null)return;
+        const top=_cBook.getBoundingClientRect().top+window.scrollY+y-window.innerHeight/2;
+        window.scrollTo(0,Math.max(0,Math.min(top,document.documentElement.scrollHeight-window.innerHeight)));
+    }
+});
+books.map.host=wm.host;
+books.map.Z.el={page:_dBook};                                    // no panel of its own: the map builds the overlay, head and filter
+books.map.Z.init();
+const _Loaded=nav.Loaded;                                        // once the book is up, read the sidecar that anchors it
+nav.Loaded=async(...a)=>{const r=await _Loaded(...a);wm.warm();return r;};
+
 const _dPlay=document.createElement('div'); _dPlay.id='_dPlay';
 document.getElementById('_dBook').appendChild(_dPlay);
 const _dPage=document.createElement('div'); _dPage.id='_dPage';
