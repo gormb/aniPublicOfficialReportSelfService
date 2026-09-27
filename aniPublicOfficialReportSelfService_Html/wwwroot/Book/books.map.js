@@ -141,6 +141,7 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         return a;};
     S.frac=node=>{const a=S.onPage(node.page),i=a.indexOf(node);                 // where one of them stands – the estimate, .md alone
         return a.length?(0.08+0.84*(i+0.5)/a.length):0.5;};
+    S.copyTo=async f=>{await opt.copy(f);await S.load(url());S.sync();S.redraw();};   // a copy of the book: its own cell switches it
     S.sync=()=>{const a=S.at(opt.page()||1);S.ch=a.ch;S.su=a.su;S.pg=0;};
     S.q=(t,n)=>String(t||'').toLowerCase().replace(/\s+/g,' ').trim().split(' ').slice(0,n||4).join(' ');
     host={
@@ -153,7 +154,7 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
             const {p,c,s}=cur(),C=files();
             return ({
                 pl0:[[opt.lg()+opt.ed()],opt.lg()+opt.ed(),()=>{},0]
-                ,pl1:[C.map(lab),lab(C[ci()]),t=>{const i=C.findIndex(f=>lab(f)===t);if(i>=0)S.want=i;},ci()]
+                ,pl1:[C.map(lab),lab(C[ci()]),t=>{const i=C.findIndex(f=>lab(f)===t);if(i<0)return;S.want=i;S.copyTo(C[i]);},ci()]
                 ,pl2:[p.chapters.map(x=>x.t),(p.chapters[S.ch]||{}).t||'',t=>{const i=p.chapters.findIndex(x=>x.t===t);if(i>=0)S.ch=i;},S.ch]
                 ,pl3:[c.subs.map(x=>x.t),(c.subs[S.su]||{}).t||'',t=>{const i=c.subs.findIndex(x=>x.t===t);if(i>=0)S.su=i;},S.su]
                 ,pl4a:[s.paras.map(x=>x.t),(s.paras[S.pg]||{}).t||'',t=>{const i=s.paras.findIndex(x=>x.t===t);if(i>=0)S.pg=i;},S.pg]
@@ -179,7 +180,7 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
                 :pl==='pl4a'?(((s.paras[S.pg]||{}).t||'').slice(0,40))
                 :'';}
         ,pick:async pl=>{
-            if(pl==='pl1'){await opt.copy(files()[S.want]);await S.load(url());S.sync();S.mode=1;return S.redraw();}
+            if(pl==='pl1')return;                                    // a copy is switched by its own cell – a pick never lands on one
             const {p,c,s}=cur(),at=pl==='pl2'?p.chapters[S.ch]:pl==='pl3'?c.subs[S.su]:s.paras[S.pg];
             if(at&&at.page!=null)await opt.go(at);
         }
