@@ -324,7 +324,11 @@ const wm=books.map.sidecar({
     ,page:()=>cBook.pn||1
     ,toc:()=>_dToc.style.display!='none'
     ,copy:async c=>{                                             // a copy of the book: language × edition
-        if(c.ed==='PREM'&&!book.prem._){books.map.Z.hide();return nav.PremToggle();}   // 👑 only opens with a code – ask for it
+        if(c.ed==='PREM'&&!book.prem._){                         // 👑, and free here in this session
+            books.map.Z.hide();
+            await book.prem.Load();                              // …but this book may be unlocked already – that code is used first
+            if(!book.prem._)return nav.PremToggle();             // nothing stored for it: then ask for the code
+        }
         if((book.prem._?'PREM':'FREE')!==c.ed)await book.prem.L(c.ed==='PREM');
         if((book.hAlign._?'NO':'EN')!==c.lg)await book.hAlign.L(c.lg==='NO');
     }
