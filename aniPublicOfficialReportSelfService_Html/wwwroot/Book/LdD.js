@@ -332,16 +332,17 @@ const wm=books.map.sidecar({
         if((book.hAlign._?'NO':'EN')!==c.lg)await book.hAlign.L(c.lg==='NO');
     }
     ,go:async at=>{                                              // a place in the book: its page, and where the text stands on it
-        books.map.Z.hide();
-        if(_dToc.style.display!='none'){await nav.TocPage(at.page);return;}
+        if(_dToc.style.display!='none'){await nav.TocPage(at.page);books.map.Z.hide();return;}   // the TOC covers the sheet, the map may give way at once
         await nav.Page(at.page,0);
-        if(book.whole||!cBook.page)return;                       // the sheet fits the window – the page is enough
-        const put=()=>{                                          // .md alone: where it stands among the paragraphs on that page
-            const y=wm.frac(at)*cBook.view.height
-                ,top=_cBook.getBoundingClientRect().top+window.scrollY+y-window.innerHeight/2;
-            window.scrollTo(0,Math.max(0,Math.min(top,document.documentElement.scrollHeight-window.innerHeight)));
-        };
-        put();setTimeout(put,150);                               // the sheet may still be settling – say it once more
+        if(!book.whole&&cBook.page){                             // the sheet fits the window – the page is enough
+            const put=()=>{                                      // .md alone: where it stands among the paragraphs on that page
+                const y=wm.frac(at)*cBook.view.height
+                    ,top=_cBook.getBoundingClientRect().top+window.scrollY+y-window.innerHeight/2;
+                window.scrollTo(0,Math.max(0,Math.min(top,document.documentElement.scrollHeight-window.innerHeight)));
+            };
+            put();setTimeout(put,150);                           // the sheet may still be settling – say it once more
+        }
+        books.map.Z.hide();                                      // page up and the place marked: now the map gives way – hiding first let the old page blink through
     }
 });
 books.map.host=wm.host;

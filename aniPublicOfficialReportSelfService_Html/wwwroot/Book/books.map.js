@@ -287,7 +287,7 @@ M.Z={
         ,go:(c,k)=>{const a=M.host.names(c),n=(a[0]||[])[k];if(!n)return;a[2](n);
             if((M.host.leads?M.host.leads(c):M.end())&&M.host.pick)return M.host.pick(c,k,n);   // a level that leads: a pick goes there, it does not drill
             M.host.go(M.host.ix(c),true);}
-        ,pickK:k=>{const p=String(k||'').split('|');if(p[0])M.Z.nav.go(p[0],+p[1]);}
+        ,pickK:k=>{const p=String(k||'').split('|');return p[0]?M.Z.nav.go(p[0],+p[1]):undefined;}
         ,pick:el=>M.Z.nav.pickK(el.dataset.k)
         ,pair:()=>{const z=M.Z,n=z.nav,p=n.tk;n.tk='';if(p)z.nav.pickK(p);z.hide();}
         ,body:async()=>{const h=await M.Z.nav.areas();if(h)return h;   // nothing to draw: let the page say why, if it can
@@ -327,7 +327,8 @@ M.Z={
                     const s=el&&el.closest?el.closest('[data-sp]'):null;
                     if(s&&!s.disabled){z.sp=s.dataset.sp;n.redraw();return;}
                     const x=el&&el.closest?el.closest('[data-k]'):null,k=x?x.dataset.k:'';
-                    if(!k)return;n.tk=k;z.nav.pickK(k);if(z.pin)z.hide();};
+                    if(!k)return;n.tk=k;const r=z.nav.pickK(k);   // the pick is a promise: what it leads to may take a while to come up
+                    if(z.pin)Promise.resolve(r).then(()=>z.hide());}   // a thumb that pinched the map open gets it back once the picked place is up – not before, so no half-drawn page blinks through;
                 n.el.onclick=ev=>{if(Date.now()-n.tap<700)return;   // the thumb has already acted: iOS sends its click after the touch
                     if(ev.detail>1){z.nav.pair();return;}n.act(ev.target);};
                 n.el.ondblclick=()=>z.nav.pair();
