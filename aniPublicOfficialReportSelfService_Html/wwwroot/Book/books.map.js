@@ -202,7 +202,7 @@ M.sidecar=opt=>{   // a book whose .md sidecar says what is where in the .pdf, h
         ,empty:()=>{S.ensure();                                   // a level with nothing in it: say why, and read the copy if it was never read
             return '<h2>'+String(P().chapters.length?'nothing here to pick':'reading '+url().split('/').pop()+' \u2026').replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</h2>';}
         ,get lang(){return opt.lg();}
-        ,onShow:()=>{S.sync();S.mode=opt.toc()?1:3;
+        ,onShow:()=>{S.sync();S.mode=opt.toc()?1:2;                   // over the text the map opens on the main chapter: its sub chapters are the areas, one pick in from the reading
             if(!S.raw[url()])S.load(url()).then(()=>S.redraw());}
     };
     const out={host,warm:S.warm,sync:S.sync,load:S.load,q:S.q,redraw:S.redraw,files,file:()=>url(),model:()=>P(),parse:S.parse,at:S.at,frac:S.frac,reload:S.reload};
@@ -322,12 +322,24 @@ M.Z={
                 qf.innerHTML='<input id="nvQ" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search" placeholder="filter the text to map">';
                 n.qEl=qf.querySelector('#nvQ');
                 const mic=n.micEl=z.el.mic;   // beside the hands: it travels with them into the zoom head
-                n.el.onclick=ev=>{const s=ev.target.closest('[data-sp]');
+                n.act=el=>{                    // what a tap on an area does – the one path, whether a mouse or a thumb made it
+                    const s=el&&el.closest?el.closest('[data-sp]'):null;
                     if(s&&!s.disabled){z.sp=s.dataset.sp;n.redraw();return;}
-                    const x=ev.target.closest('[data-k]'),k=x?x.dataset.k:'';
-                    if(ev.detail>1){z.nav.pair();return;}
+                    const x=el&&el.closest?el.closest('[data-k]'):null,k=x?x.dataset.k:'';
                     if(!k)return;n.tk=k;z.nav.pickK(k);if(z.pin)z.hide();};
+                n.el.onclick=ev=>{if(Date.now()-n.tap<700)return;   // the thumb has already acted: iOS sends its click after the touch
+                    if(ev.detail>1){z.nav.pair();return;}n.act(ev.target);};
                 n.el.ondblclick=()=>z.nav.pair();
+                n.tap=0;n.tx=0;n.ty=0;n.td=0;n.tm=0;             // a thumb is not a mouse: iOS does not always send a click for a tap
+                n.el.addEventListener('touchstart',ev=>{
+                    if(ev.touches.length===1){const t=ev.touches[0];n.tx=t.clientX;n.ty=t.clientY;n.td=1;n.tm=0;}
+                    else{n.td=0;n.tm=1;}                        // more than one finger: the map is being zoomed, not picked
+                },{passive:true});
+                n.el.addEventListener('touchend',ev=>{
+                    if(ev.touches.length||!n.td||n.tm)return;n.td=0;
+                    const t=ev.changedTouches&&ev.changedTouches[0];if(!t)return;
+                    if(Math.hypot(t.clientX-n.tx,t.clientY-n.ty)>36)return;   // a finger that travelled read the text – it did not pick
+                    n.tap=Date.now();n.act(ev.target);},{passive:true});
                 n.qEl.oninput=()=>{z.q=n.qEl.value;n.redraw();};
                 if(n.mk()){
                     mic.onclick=e=>{if(!e.ctrlKey&&!e.metaKey&&!e.altKey)n.mic(!z.rec);};
