@@ -342,10 +342,16 @@ M.Z={
         if(i>=0&&(t[0]||[])[i])return z.nav.go(k,i);
         M.host.go(M.host.ix(k),0,wide&&d<0);}
     ,zoom:d=>{const o=M.Z.inv?-d:d;M.Z.drill(o>0?1:-1,null,o>0?0:1);}
-    ,stage:()=>{   // what we are standing on – the one control between coarser and finer: its name, the level in the tooltip
+    ,stage:()=>{   // what we are standing on: the level bar, then the name of the node itself
         const e=M.Z.el.stage;if(!e)return;
         const pl=M.host.id(M.host.mode()),L=M.host.L(pl)||{},n=(M.host.name&&M.host.name(pl))||L.t||pl;
-        e.textContent=(M.ic[pl]||'')+' '+n;e.title=(L.t||pl)+(n===(L.t||pl)?'':' – '+n);}
+        e.textContent=n;e.title=(L.t||pl)+(n===(L.t||pl)?'':' – '+n);
+        M.Z.bar();}
+    ,bar:()=>{     // the levels this page may stand on – one button each, the one we are on marked, all of them clickable
+        const e=M.Z.el.levels;if(!M.Z.built||!e)return;
+        const cur=M.host.id(M.host.mode()),c=M.chain()||[cur];
+        e.innerHTML=c.map(pl=>'<button type="button" data-lv="'+pl+'"'+(pl===cur?' class="on"':'')+' title="'+((M.host.L(pl)||{}).t||pl)+'">'+(M.ic[pl]||'')+'</button>').join('');
+        e.onclick=ev=>{const b=ev.target.closest('button[data-lv]');if(b&&b.dataset.lv!==cur)M.host.go(M.host.ix(b.dataset.lv));};}
     ,build:()=>{   // no host band → the map brings its own: overlay band, head strip, filter foot (books.map.css)
         const z=M.Z,e=z.el
             ,mk=(t,tip,fn)=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.title=tip;b.onclick=fn;return b;}
@@ -354,6 +360,7 @@ M.Z={
         e.band=document.createElement('div');e.band.id='semBody';
         head.className='semHead';
         e.coarser=mk('\u{1F52D}','Coarser – the whole',()=>z.drill(-1));
+        e.levels=document.createElement('span');e.levels.className='semLevels';
         e.stage=document.createElement('span');e.stage.className='semStage';
         e.finer=mk('\u{1F52C}','Finer – into the detail',()=>z.drill(1));
         e.handPrev=mk('\u{1FAF2}','Previous in this level',()=>z.walk(-1));
@@ -362,8 +369,8 @@ M.Z={
         e.inv=mk('\u21C4','Zoom: down means into the detail; click to turn it round',()=>{});
         e.zoom=mk('\u25CE','Leave the map (Esc)',()=>{});
         e.bandCollapse=mk('\u2912','Collapse the map',()=>{});
-        head.append(e.coarser,e.stage,e.finer,e.handPrev,e.handNext,e.mic,e.inv,e.zoom,e.bandCollapse);
-        e.levels=document.createElement('span');
+        head.append(e.coarser,e.levels,e.stage,e.finer,e.handPrev,e.handNext,e.mic,e.inv,e.zoom,e.bandCollapse);
+        z.built=1;   // a head the map made itself: the level bar and the node's name are ours to fill
         e.query=document.createElement('div');e.query.className='semFoot';
         band.append(head,e.band,e.query);document.body.appendChild(band);
         z.head.ids=[];   // the built head is already home – nothing to lend in
