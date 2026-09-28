@@ -1,5 +1,5 @@
 import * as _cBookJLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs';
-import {music} from './music.js?v=4';
+import {music} from './music.js?v=5';
 _cBookJLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
 
 // lazy-load 3rd-party scripts (qr-code-styling, html2pdf, db.js) – never block the book on slow CDNs
@@ -120,7 +120,7 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
             }
         }
     }
-    ,_src:null, _pageNo:0, _tierCache:null
+    ,_src:null, _pageNo:0
     ,DoShow:async (src, pageNo, render=true)=>{
         if(cBook._src==src && cBook._pageNo==pageNo)
             return;
@@ -129,7 +129,6 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         }
         cBook._src=src;
         cBook._pageNo=pageNo;
-        cBook._tierCache=null;
         await cBook.Source(src, render, pageNo)
     }
     ,QrUrlScrollY:0
@@ -172,99 +171,8 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
         return pages.filter(p => !p.includes('<b>Template</b>')).join('\0').replace(/\0(?=[a-z])/g, ' ').replace(/\0/g, '<br/><br/>');
     }
     ,data:{
-        type:{CHAPTER:'chapter',SUB:'subchapter',P:'paragraph',LINK:'link',PAGE:'pagebreak'}
-        ,_:null
-        ,_title:null
-        ,style:null
-        ,Style:async function(){ // Last four slides template; n-3 cover, n-2 chapter, n-1 subchapter, n text
-            if(cBook.data.style)return cBook.data.style;
-            await cBook.Source(book.src,false);
-            const pdf=cBook.pdf,n=pdf.numPages,H=i=>i.height||Math.hypot(i.transform[0],i.transform[1]),s={};
-            for(let p=n-3;p<=n;p++){
-                const page=await pdf.getPage(p),{items}=await page.getTextContent();
-                for(const i of items){
-                    const t=i.str.trim(); if(!t)continue;
-                    const h=H(i),y=i.transform[5];
-                    if(/^(Underkapitteltittel(?:en)?|The Sub Chapter Title)$/.test(t)){s.subH=h;s.subY=y;}
-                    else if(/^(Kapitteltittelen|The Chapter Title)$/.test(t)){s.chapH=h;s.chapY=y;}
-                    else if(/^(Navnet På Boken|The Name of the Book)$/.test(t)){s.coverH=h;}
-                }
-            }
-            const hist={};
-            const np=await pdf.getPage(n),{items:ni}=await np.getTextContent();
-            ni.forEach(i=>{if(i.str.trim()){const h=H(i).toFixed(1);hist[h]=(hist[h]||0)+1;}});
-            s.body=+Object.entries(hist).sort((a,b)=>b[1]-a[1])[0][0]||10;
-            return cBook.data.style=s;
-        }
-        ,get:async function(force=false){
-            if(cBook.data._&&!force)return cBook.data._;
-            await cBook.Source(book.src,false);
-            const T=cBook.data.type,pdf=cBook.pdf,st=await cBook.data.Style();
-            const H=i=>i.height||Math.hypot(i.transform[0],i.transform[1]);
-            const ov=(a,b)=>a[0]<b[2]&&b[0]<a[2]&&a[1]<b[3]&&b[1]<a[3];
-            const near=(v,t,tol)=>Math.abs(v-t)<tol;
-            const title=st.chapH||16,tolH=title*.15,tolY=10;
-            const out=[];
-            for(let p=1;p<=pdf.numPages;p++){
-                const page=await pdf.getPage(p),{items}=await page.getTextContent();
-                const mid=page.getViewport({scale:1}).width/2;
-                const ann=(await page.getAnnotations()).filter(a=>a.subtype==='Link'&&a.url);
-                out.push({type:T.PAGE,page:p});
-                for(const lang of ['no','en']){
-                    let cur=null;
-                    const flush=()=>{if(cur)out.push(cur);cur=null;};
-                    const side=lang==='no'?(i)=>i.transform[4]<mid:(i)=>i.transform[4]>mid;
-                    for(const i of items.filter(side).sort((a,b)=>a.transform[5]-b.transform[5]||a.transform[4]-b.transform[4])){
-                        const text=i.str.trim();
-                        if(!text)continue;
-                        const bx=[i.transform[4],i.transform[5],i.transform[4]+i.width,i.transform[5]+H(i)];
-                        const lk=ann.find(a=>ov(bx,a.rect)), m=text.match(music.Re);
-                        if(lk){flush();out.push({type:T.LINK,page:p,lang,text,url:lk.url,spotify:music.Re.test(lk.url)});}
-                        else if(m){flush();out.push({type:T.LINK,page:p,lang,text,url:m[0],spotify:true});}
-                        else if(st.coverH&&H(i)>=st.coverH*.85){flush();out.push({type:T.P,page:p,lang,text});}
-                        else if(near(H(i),title,tolH)){
-                            const y=i.transform[5];
-                            flush();
-                            out.push(near(y,st.chapY||-1,tolY)?{type:T.CHAPTER,page:p,lang,text}
-                                :near(y,st.subY||-1,tolY)?{type:T.SUB,page:p,lang,text}
-                                :{type:T.P,page:p,lang,text});
-                        }
-                        else if(cur)cur.text+=' '+text;
-                        else cur={type:T.P,page:p,lang,text};
-                    }
-                    flush();
-                }
-            }
-            return cBook.data._=out;
-        }
-        ,title:async function(lang=true){ // cover title, language-aware (no=left / en=right half)
-            const want=lang?'no':'en';
-            if(cBook.data._title&&cBook.data._title[want]!==undefined)return cBook.data._title[want];
-            await cBook.data.get(); // ensure data/style is loaded (st.coverH)
-            const st=cBook.data.style, pdf=cBook.pdf;
-            let t='';
-            if(st?.coverH){
-                const page=await pdf.getPage(1),{items}=await page.getTextContent();
-                const mid=page.getViewport({scale:1}).width/2;
-                const H=i=>i.height||Math.hypot(i.transform[0],i.transform[1]);
-                const side=want==='no'?i=>i.transform[4]<mid:i=>i.transform[4]>mid;
-                t=items.filter(i=>side(i)&&i.str.trim()&&H(i)>=st.coverH*.85)
-                    .sort((a,b)=>a.transform[5]-b.transform[5]||a.transform[4]-b.transform[4])
-                    .map(i=>i.str.trim()).join(' ');
-            }
-            return (cBook.data._title=cBook.data._title||{})[want]=t;
-        }
-        ,txt:async function(lang=true){
-            const T=cBook.data.type,want=lang?'no':'en';
-            return (await cBook.data.get()).filter(b=>!b.lang||b.lang===want).map(b=>
-                b.type===T.PAGE?''
-                :b.type===T.LINK?(b.spotify?`▶ ${b.text} (${b.url})`:`${b.text} (${b.url})`)
-                :b.type===T.CHAPTER?`# ${b.text}`
-                :b.type===T.SUB?`## ${b.text}`
-                :b.text).filter(Boolean).join('\n\n');
-        }
-        ,_mdFile:()=>book.srcBase()+'_'+(book.hAlign._?'NO':'EN')+'_'+(book.prem._?'PREM':'FREE')+'.md' // current lang+mode sidecar
-        ,mdRaw:async function(force=false){ // cached raw text of the current-mode .md – fetched once, shared by TOC (fromMd) + search
+        _mdFile:()=>book.srcBase()+'_'+(book.hAlign._?'NO':'EN')+'_'+(book.prem._?'PREM':'FREE')+'.md' // current lang+mode sidecar
+        ,mdRaw:async function(force=false){ // cached raw text of the current-mode .md – fetched once, shared by TOC + search + music deep links
             const md=cBook.data.md;
             if(md&&md.file===cBook.data._mdFile()&&!force)return md;
             try{
@@ -273,21 +181,6 @@ let cBook={ctx:null,pdf:null,page:null,pn:0,viewport:null,scale:null,view:null,p
                 if(!r.ok)return null;
                 return cBook.data.md={file,text:await r.text()};
             }catch(e){ return null; }
-        }
-        ,fromMd:async function(){ // try the generated tiered .md TOC first (fast, no PDF parsing); null → fall back to PDF
-            const md=await cBook.data.mdRaw();
-            if(!md)return null;
-            const want=book.hAlign._?'no':'en', T=cBook.data.type, blocks=[];
-            let title='';
-            for(const raw of md.text.split(/\r?\n/)){
-                const s=raw.trim(); if(!s)continue; let m;
-                if(!title&&(m=/^#\s+(.+)$/.exec(s))) title=m[1].trim();
-                else if(m=/^##\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.CHAPTER,page:+m[2],lang:want,text:m[1].trim()});
-                else if(m=/^###\s+(.+?)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.SUB,page:+m[2],lang:want,text:m[1].trim()});
-                else if(m=/^🎵\s+(.+?)\s+\((\S+?)\)\s+—\s+p\.\s*(\d+)$/.exec(s)) blocks.push({type:T.LINK,page:+m[3],lang:want,text:m[1].trim(),url:m[2],spotify:true});
-                // '#### p. N' and body lines: ignored for the TOC
-            }
-            return blocks.length?{title,blocks}:null;
         }
     }
     ,PageNo:async function(){ // page number in top margin, centered per half; landscape also in bottom

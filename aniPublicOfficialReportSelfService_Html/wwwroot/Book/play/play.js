@@ -699,7 +699,7 @@ const books={
             books.play.render.el.page.addEventListener('input',ev=>{if(ev.target.closest&&ev.target.closest('#page .se')){books.play.seSet(books.play.seRead(),false);}});
             books.play.render.el.page.addEventListener('change',ev=>{if(ev.target.closest&&ev.target.closest('#page .se')){books.play.seSet(books.play.seRead(),true);}});
             const dbjs=document.createElement('script');dbjs.src='https://aigap.no/db.js?v=9';dbjs.onerror=()=>console.warn('[db.js] could not load in the background');document.head.appendChild(dbjs);
-            const musicjs=document.createElement('script');musicjs.type='module';musicjs.src=books.play.root+'music.js?v=8';musicjs.onerror=()=>console.warn('[music.js] could not load in the background');document.head.appendChild(musicjs);
+            const musicjs=document.createElement('script');musicjs.type='module';musicjs.src=books.play.root+'music.js?v=9';musicjs.onerror=()=>console.warn('[music.js] could not load in the background');document.head.appendChild(musicjs);
             setTimeout(()=>books.play.render.blink(document.getElementById('hiId'),3),400);
         }
     }

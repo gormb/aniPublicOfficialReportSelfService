@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Life demanded Death</title>
         <link rel="icon" href="aigap.webp">
-        <script type="module" src="LdD.js?v=63"></script>
+        <script type="module" src="LdD.js?v=64"></script>
         <link rel="stylesheet" href="LdD.css?v=25">
         <link rel="stylesheet" href="books.map.css?v=7">
         <script src="books.map.js?v=84"></script>
@@ -699,7 +699,8 @@
                     await book.hAlign.Load();
                     // Note: book.prem.Load() deliberately removed from load sequence – never runs before first view (mode already set above)
                     const commands=sp.get('c')?.split(',') || [];
-                    const musicCommand=commands.find(c=>c.startsWith('m')&&c!=='menu');
+                    // a music deep-link key is m + lowercase (never a UI button id) – music.Page is a cheap .md lookup
+                    const musicCommand=commands.find(c=>c!=='menu'&&/^m[a-z]/.test(c)&&!document.getElementById(c));
                     if(musicCommand) {
                     scY=0; // music nav always scrolls to top
                         await window.music.Page(musicCommand);

@@ -133,9 +133,20 @@ const music={
         music.Btn();
     }
     ,Page:async key=>{
-        const T=window.cBook.data.type,k=key.replace(/qr$/i,''),data=await window.cBook.data.get();
-        const l=data.find(b=>b.type===T.LINK&&b.spotify&&music.Key(b.url).replace(/qr$/i,'')===k);
-        if(l&&book.pn()!==l.page)await nav.Page(l.page,0);
+        // resolve a song key → page from the .md sidecar (never the pdf): one cheap string pass
+        const md=await window.cBook?.data?.mdRaw?.();
+        if(!md)return;
+        const want=key.replace(/qr$/i,''), alt=want.replace(/^m/,'');
+        let cur=1,page=0;
+        for(const raw of md.text.split(/\r?\n/)){
+            const l=raw.trim(); if(!l)continue; let m;
+            if(m=/^####\s*p\.\s*(\d+)/.exec(l)) cur=+m[1];
+            else if(m=/^🎵\s+(.+?)\s+\((\S+?)\)/.exec(l)){
+                const kk=music.Key(m[2]).replace(/qr$/i,'');
+                if(kk===want||kk.replace(/^m/,'')===alt){page=cur;break;}
+            }
+        }
+        if(page&&book.pn()!==page)await nav.Page(page,0);
     }
     ,Playing:()=>{const c=document.getElementById('_spCollapse');return !!(c&&c.style.display!='none');}
     ,Link:()=>[...document.querySelectorAll('a.play[id^="m"], a.toc-play[id^="m"]')].find(a=>a.offsetParent!==null&&a.style.visibility!='hidden')||null

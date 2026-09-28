@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LdD regression tests</title>
+<style>
+  body{font:14px/1.4 system-ui,sans-serif;margin:1.5rem;max-width:1100px}
+  h1{font-size:1.2rem}
+  .warn{background:#fff3cd;border:1px solid #e0c060;padding:.5rem .75rem;border-radius:.4rem;margin:.5rem 0}
+  table{border-collapse:collapse;width:100%;margin:1rem 0}
+  th,td{border:1px solid #ccc;padding:.4rem .6rem;text-align:left;vertical-align:top}
+  th{background:#f4f4f4}
+  .PASS{color:#0a7d2c;font-weight:600}
+  .FAIL{color:#c00;font-weight:600}
+  .RUN{color:#a60}
+  .PEND{color:#888}
+  code{background:#f4f4f4;padding:.05rem .25rem;border-radius:.2rem}
+  #frameHost iframe{max-width:100%}
+  details{margin:.75rem 0}
+  pre{background:#111;color:#ddd;padding:.6rem;border-radius:.4rem;overflow:auto;max-height:220px}
+</style>
+</head>
+<body>
+<h1>LdD — regression tests</h1>
+<div class="warn">
+  Serve over <b>http, same origin as LdD.html</b> (e.g. <code>http://localhost:8777/Book/LdD_test.html</code>).
+  Opening this from <code>file://</code> blocks iframe access.
+</div>
+<p><button id="runAll">▶ Run all</button> <span id="summary"></span></p>
+<div id="frameHost"></div>
+<table id="tbl">
+  <thead><tr><th style="width:26%">Test</th><th style="width:10%">Result</th><th>Detail</th></tr></thead>
+  <tbody></tbody>
+</table>
+<details><summary>Captured iframe console (last load)</summary><pre id="log"></pre></details>
+
+<script>
+/* ------------------------------------------------------------------
+   Tiny iframe test harness for LdD.html
+   - each test = {id, name, run()} → {ok, detail} (or throws)
+   - openBook(params) loads LdD.html in a fresh same-origin iframe and
+     resolves once the first view is ready; returns ms + handles
+   - loadBook(params) = openBook + close, returns just the ms (timed)
+   ------------------------------------------------------------------ */
+const frameHost=document.getElementById('frameHost');
+const tbody=document.querySelector('#tbl tbody');
+const summary=document.getElementById('summary');
+let LOG=[];
+
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+function waitFor(fn,{timeout=45000,interval=50}={}){
+  const t0=performance.now();
+  return new Promise((res,rej)=>{
+    const id=setInterval(()=>{
+      let ok=false; try{ ok=fn(); }catch(e){}
+      if(ok){ clearInterval(id); res(performance.now()-t0); }
+      else if(performance.now()-t0>timeout){ clearInterval(id); rej(new Error('timeout after '+timeout+'ms')); }
+    },interval);
+  });
+}
+
+function hookWindow(w){
+  if(!w||w.__hooked)return; w.__hooked=1;
+  const orig={};
+  for(const m of ['log','info','warn','error']){
+    orig[m]=w.console[m].bind(w.console);
+    w.console[m]=(...a)=>{ try{LOG.push([m,a.map(String).join(' ')]);}catch(e){} orig[m](...a); };
+  }
+  w.addEventListener('error',e=>LOG.push(['error','onerror: '+(e.message||e.error)]));
+  w.addEventListener('unhandledrejection',e=>LOG.push(['error','unhandledrejection: '+((e.reason&&e.reason.message)||e.reason)]));
+}
+
+// first view ready = spinner hidden AND a page is rendered on the canvas
+const ready=(w,d)=>{
+  const s=d.getElementById('iLoading');
+  return !!(s && s.style.display==='none' && w.cBook && w.cBook.view);
+};
+
+async function openBook(params={}){
+  LOG=[];
+  const u=new URL('LdD.html',location.href);
+  for(const[k,v] of Object.entries(params)) if(v!=null) u.searchParams.set(k,v);
+  const f=document.createElement('iframe');
+  f.width=1000; f.height=700; f.style.border='1px solid #ccc';
+  frameHost.appendChild(f);
+  const loaded=new Promise(r=>{ f.onload=r; });
+  const t0=performance.now();
+  f.src=u.href;
+  await loaded;                                            // DOM up …
+  hookWindow(f.contentWindow);                            // … hook console before async work logs
+  await waitFor(()=>ready(f.contentWindow,f.contentDocument));
+  const ms=performance.now()-t0;
+  return {ms, win:f.contentWindow, doc:f.contentDocument, frame:f, close(){ f.remove(); }};
+}
+async function loadBook(params={}){
+  const h=await openBook(params);
+  const ms=h.ms; h.close(); await sleep(120);
+  return ms;
+}
+
+/* ---------------- the tests ---------------- */
+const BOOK='b/LifeDemandedDeath/b.pdf';   // pin the book so a stored 'book' key can't change what we test
+
+const TESTS=[
+{
+  id:'music-deeplink-perf',
+  name:'?c=w,1000,med — music deep link must not re-parse the whole PDF',
+  note:'Times the reader until first view, plain vs. with the command. "med" only resolves a '+
+       'song→page from the .md sidecar, so the load must stay near a plain load. A whole-PDF '+
+       'scan (cBook.data.get) blows the budget.',
+  budget:base=>Math.max(base*2, base+1500),
+  async run(){
+    await loadBook({book:BOOK});                       // warm-up (fills HTTP cache), discarded
+    const base=await loadBook({book:BOOK});            // baseline: plain viewer
+    const got =await loadBook({book:BOOK,c:'w,1000,med'}); // the suspect
+    const limit=this.budget(base);
+    const errors=LOG.filter(([m])=>m==='error');
+    const ok=got<=limit && errors.length===0;
+    return {ok, detail:
+      `baseline ${base|0} ms · with c= ${got|0} ms · budget ${limit|0} ms`+
+      (errors.length?` · ${errors.length} console error(s)`:'')};
+  }
+},
+{
+  id:'music-jump',
+  name:'?c=mhnin — music deep link still jumps to the song\'s page (from the .md, not the pdf)',
+  note:'Guards the fix: the deep link must resolve a real key to its page. "Hurt" sits well past '+
+       'page 1 in every edition, so landing on page 1 means the lookup broke.',
+  async run(){
+    const h=await openBook({book:BOOK,c:'mhnin'});
+    try{
+      const pn=h.win.cBook&&h.win.cBook.pn;
+      const ok=!!pn&&pn>1;
+      return {ok, detail:`landed on page ${pn} (expected > 1)`};
+    } finally { h.close(); await sleep(120); }
+  }
+}
+/* Add more the same way, e.g.:
+
+,{
+  id:'toc-chapters',
+  name:'TOC lists chapters from the .md sidecar',
+  async run(){
+    const h=await openBook({book:BOOK});
+    try{
+      h.win.nav.ShowToc(true);
+      await sleep(300);
+      const rows=h.doc.querySelectorAll('#_dTocList li.chap').length;
+      return {ok:rows>0, detail:rows+' chapter row(s)'};
+    } finally { h.close(); }
+  }
+}
+*/
+];
+
+/* ---------------- runner ---------------- */
+function row(test){
+  let tr=tbody.querySelector(`tr[data-id="${test.id}"]`);
+  if(!tr){
+    tr=document.createElement('tr'); tr.dataset.id=test.id;
+    tr.innerHTML=`<td>${test.id}<br><small>${test.name||''}</small></td><td class="PEND">—</td><td></td>`;
+    tbody.appendChild(tr);
+  }
+  return tr;
+}
+async function runOne(test){
+  const tr=row(test);
+  tr.cells[1].textContent='RUN'; tr.cells[1].className='RUN'; tr.cells[2].textContent='…';
+  try{
+    const {ok,detail}=await test.run();
+    tr.cells[1].textContent=ok?'PASS':'FAIL'; tr.cells[1].className=ok?'PASS':'FAIL';
+    tr.cells[2].textContent=detail||'';
+    return ok;
+  }catch(e){
+    tr.cells[1].textContent='FAIL'; tr.cells[1].className='FAIL';
+    tr.cells[2].textContent=(e&&e.message)||String(e);
+    return false;
+  }finally{
+    document.getElementById('log').textContent=
+      LOG.map(([m,s])=>m.toUpperCase()+': '+s).join('\n')||'(none)';
+  }
+}
+async function runAll(){
+  summary.textContent='running…';
+  let pass=0;
+  for(const t of TESTS) if(await runOne(t)) pass++;
+  summary.textContent=`${pass}/${TESTS.length} passed`;
+}
+document.getElementById('runAll').onclick=runAll;
+window.TESTS=TESTS;   // append more tests from the console if you like
+</script>
+</body>
+</html>
