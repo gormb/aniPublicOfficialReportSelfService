@@ -125,15 +125,25 @@ const TESTS=[
 },
 {
   id:'music-jump',
-  name:'?c=mhnin — music deep link still jumps to the song\'s page (from the .md, not the pdf)',
-  note:'Guards the fix: the deep link must resolve a real key to its page. "Hurt" sits well past '+
-       'page 1 in every edition, so landing on page 1 means the lookup broke.',
+  name:'?c=mhnin — music deep link must jump to the song\'s page (resolved from the .md)',
+  note:'page=1 pins the start so a stored page in localStorage cannot mask a broken jump. '+
+       'The expected page is derived from the sidecar itself and must match the reader.',
   async run(){
-    const h=await openBook({book:BOOK,c:'mhnin'});
+    const h=await openBook({book:BOOK,page:1,c:'mhnin'});
     try{
-      const pn=h.win.cBook&&h.win.cBook.pn;
-      const ok=!!pn&&pn>1;
-      return {ok, detail:`landed on page ${pn} (expected > 1)`};
+      const md=await h.win.cBook.data.mdRaw();
+      const Key=h.win.music.Key;
+      let cur=1,exp=0;
+      for(const raw of (md&&md.text||'').split(/\r?\n/)){
+        const l=raw.trim(); let m;
+        if(m=/^####\s*p\.\s*(\d+)/.exec(l)) cur=+m[1];
+        else if(m=/^🎵\s*(?:\[[^\]]*\]\((\S+?)\)|.+?\s+\((\S+?)\))/.exec(l)){
+          if(Key(m[1]||m[2]).replace(/qr$/i,'')==='mhnin'){exp=cur;break;}
+        }
+      }
+      const pn=h.win.cBook.pn;
+      const ok=exp>1 && pn===exp;
+      return {ok, detail:`expected page ${exp||'(key not found)'}, reader on ${pn}`};
     } finally { h.close(); await sleep(120); }
   }
 }

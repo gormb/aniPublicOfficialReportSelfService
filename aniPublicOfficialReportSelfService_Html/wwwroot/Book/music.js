@@ -141,8 +141,8 @@ const music={
         for(const raw of md.text.split(/\r?\n/)){
             const l=raw.trim(); if(!l)continue; let m;
             if(m=/^####\s*p\.\s*(\d+)/.exec(l)) cur=+m[1];
-            else if(m=/^🎵\s+(.+?)\s+\((\S+?)\)/.exec(l)){
-                const kk=music.Key(m[2]).replace(/qr$/i,'');
+            else if(m=/^🎵\s*(?:\[[^\]]*\]\((\S+?)\)|.+?\s+\((\S+?)\))/.exec(l)){ // 🎵 [name](url) – or 🎵 name (url)
+                const kk=music.Key(m[1]||m[2]).replace(/qr$/i,'');
                 if(kk===want||kk.replace(/^m/,'')===alt){page=cur;break;}
             }
         }
