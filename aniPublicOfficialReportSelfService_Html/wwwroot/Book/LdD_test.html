@@ -13,6 +13,7 @@
   th{background:#f4f4f4}
   .PASS{color:#0a7d2c;font-weight:600}
   .FAIL{color:#c00;font-weight:600}
+  .SKIP{color:#a60;font-weight:600}
   .RUN{color:#a60}
   .PEND{color:#888}
   code{background:#f4f4f4;padding:.05rem .25rem;border-radius:.2rem}
@@ -27,6 +28,7 @@
   Serve over <b>http, same origin as LdD.html</b> (e.g. <code>http://localhost:8777/Book/LdD_test.html</code>).
   Opening this from <code>file://</code> blocks iframe access.
 </div>
+<div id="vis" class="warn" style="display:none"></div>
 <p><button id="runAll">▶ Run all</button> <span id="summary"></span></p>
 <div id="frameHost"></div>
 <table id="tbl">
@@ -102,48 +104,55 @@ async function loadBook(params={}){
 
 /* ---------------- the tests ---------------- */
 const BOOK='b/LifeDemandedDeath/b.pdf';   // pin the book so a stored 'book' key can't change what we test
+const KEY='mltf';                          // the real deep-link key (Learning to Fly)
+const CMD='w,1500,'+KEY;                   // wait 1500 ms for wiring, then click the 🎵 for this key
+
+// the page the .md sidecar gives for a song key (same line format the reader parses)
+function mdPage(md,Key,k){
+  let cur=1;
+  for(const raw of ((md&&md.text)||'').split(/\r?\n/)){
+    const l=raw.trim(); let m;
+    if(m=/^####\s*p\.\s*(\d+)/.exec(l)) cur=+m[1];
+    else if(m=/^🎵\s*(?:\[[^\]]*\]\((\S+?)\)|.+?\s+\((\S+?)\))/.exec(l))
+      if(Key(m[1]||m[2]).replace(/qr$/i,'')===k) return cur;
+  }
+  return 0;
+}
 
 const TESTS=[
 {
   id:'music-deeplink-perf',
-  name:'?c=w,1000,med — music deep link must not re-parse the whole PDF',
-  note:'Times the reader until first view, plain vs. with the command. "med" only resolves a '+
-       'song→page from the .md sidecar, so the load must stay near a plain load. A whole-PDF '+
-       'scan (cBook.data.get) blows the budget.',
+  name:'?c='+CMD+' — deep link must not re-parse the whole PDF',
+  note:'Times first view: plain vs. the real deep-link URL. A whole-PDF scan (the old '+
+       'cBook.data.get) blows the budget. SKIPPED when the tab is hidden (background '+
+       'throttling makes timings meaningless – focus this tab and re-run).',
   budget:base=>Math.max(base*2, base+1500),
   async run(){
-    await loadBook({book:BOOK});                       // warm-up (fills HTTP cache), discarded
-    const base=await loadBook({book:BOOK});            // baseline: plain viewer
-    const got =await loadBook({book:BOOK,c:'w,1000,med'}); // the suspect
-    const limit=this.budget(base);
-    const errors=LOG.filter(([m])=>m==='error');
+    if(document.hidden) return {skip:true, detail:'tab hidden → timings unreliable (focus this tab, re-run)'};
+    await loadBook({book:BOOK});                          // warm-up (fills HTTP cache), discarded
+    const base=await loadBook({book:BOOK});               // baseline: plain viewer
+    const got =await loadBook({book:BOOK,c:CMD});         // the real deep link
+    const limit=this.budget(base), errors=LOG.filter(([m])=>m==='error');
     const ok=got<=limit && errors.length===0;
-    return {ok, detail:
-      `baseline ${base|0} ms · with c= ${got|0} ms · budget ${limit|0} ms`+
+    return {ok, detail:`baseline ${base|0} ms · deep link ${got|0} ms · budget ${limit|0} ms`+
       (errors.length?` · ${errors.length} console error(s)`:'')};
   }
 },
 {
-  id:'music-jump',
-  name:'?c=mhnin — music deep link must jump to the song\'s page (resolved from the .md)',
-  note:'page=1 pins the start so a stored page in localStorage cannot mask a broken jump. '+
-       'The expected page is derived from the sidecar itself and must match the reader.',
+  id:'music-deeplink',
+  name:'?c='+CMD+' — jumps to the song page, then the 🎵 is clicked (w,1500 = wait for wiring)',
+  note:'page=1 pins the start. Asserts (1) the reader lands on the page the .md gives for "'+KEY+'", and '+
+       '(2) after the 1500 ms wait the anchor exists and its click started playback.',
   async run(){
-    const h=await openBook({book:BOOK,page:1,c:'mhnin'});
+    const h=await openBook({book:BOOK,page:1,c:CMD});
     try{
-      const md=await h.win.cBook.data.mdRaw();
-      const Key=h.win.music.Key;
-      let cur=1,exp=0;
-      for(const raw of (md&&md.text||'').split(/\r?\n/)){
-        const l=raw.trim(); let m;
-        if(m=/^####\s*p\.\s*(\d+)/.exec(l)) cur=+m[1];
-        else if(m=/^🎵\s*(?:\[[^\]]*\]\((\S+?)\)|.+?\s+\((\S+?)\))/.exec(l)){
-          if(Key(m[1]||m[2]).replace(/qr$/i,'')==='mhnin'){exp=cur;break;}
-        }
-      }
-      const pn=h.win.cBook.pn;
-      const ok=exp>1 && pn===exp;
-      return {ok, detail:`expected page ${exp||'(key not found)'}, reader on ${pn}`};
+      const md=await h.win.cBook.data.mdRaw(), Key=h.win.music.Key;
+      const exp=mdPage(md,Key,KEY), pn=h.win.cBook.pn;
+      const jumped=exp>1 && pn===exp;                     // the reader must jump …
+      let played=false;                                   // … and the w,1500 click must fire
+      for(let i=0;i<60&&!played;i++){ played=!!h.win.music.Playing(); if(!played) await sleep(150); }
+      const ok=jumped&&played;
+      return {ok, detail:`landed ${pn} (md says ${exp||'?'}) · jump ${jumped?'ok':'FAIL'} · autoplay ${played?'started':'NOT started'}`};
     } finally { h.close(); await sleep(120); }
   }
 }
@@ -178,28 +187,38 @@ function row(test){
 async function runOne(test){
   const tr=row(test);
   tr.cells[1].textContent='RUN'; tr.cells[1].className='RUN'; tr.cells[2].textContent='…';
+  let state='FAIL';
   try{
-    const {ok,detail}=await test.run();
-    tr.cells[1].textContent=ok?'PASS':'FAIL'; tr.cells[1].className=ok?'PASS':'FAIL';
-    tr.cells[2].textContent=detail||'';
-    return ok;
+    const r=await test.run();
+    state=(r&&r.skip)?'SKIP':(r&&r.ok)?'PASS':'FAIL';
+    tr.cells[1].textContent=state; tr.cells[1].className=state;
+    tr.cells[2].textContent=(r&&r.detail)||'';
   }catch(e){
     tr.cells[1].textContent='FAIL'; tr.cells[1].className='FAIL';
     tr.cells[2].textContent=(e&&e.message)||String(e);
-    return false;
   }finally{
     document.getElementById('log').textContent=
       LOG.map(([m,s])=>m.toUpperCase()+': '+s).join('\n')||'(none)';
   }
+  return state;
 }
 async function runAll(){
+  summary.className='';
   summary.textContent='running…';
-  let pass=0;
-  for(const t of TESTS) if(await runOne(t)) pass++;
-  summary.textContent=`${pass}/${TESTS.length} passed`;
+  const n={PASS:0,FAIL:0,SKIP:0};
+  for(const t of TESTS) n[await runOne(t)]++;
+  summary.textContent=`${n.PASS} passed · ${n.FAIL} failed · ${n.SKIP} skipped`;
+  summary.className=n.FAIL?'FAIL':'PASS';   // red summary when anything failed
 }
 document.getElementById('runAll').onclick=runAll;
 window.TESTS=TESTS;   // append more tests from the console if you like
+// up-front warning when the tab is hidden (the timing test will skip)
+function visNote(){
+  const b=document.getElementById('vis'); if(!b)return;
+  b.style.display=document.hidden?'block':'none';
+  b.textContent='⚠ This tab is hidden — the timing test will be SKIPPED (background throttling). Focus this tab to time it.';
+}
+document.addEventListener('visibilitychange',visNote); visNote();
 </script>
 </body>
 </html>
