@@ -871,8 +871,8 @@ Det må søkes ensomhet på veien og funderes mer på dilemma som ligger i at sa
 mens drømmefølgende Dostojevskij er elsket. De håndterte samme problem, tapet av universelle verdier rotet i gudstro.
 Nietzsche leste Dostojevskij og sa vi måtte tenke nytt. “Selvet må formes; verdier skapes av de som våger“.
 Dostojevskij leste aldri Nietzsche. “Selvet og moralsk mening oppdages gjennom livserfaring og lidelse”.
-Jeg limer tekst inn i en LLM-chat og den sier teksten er fantastisk. Lyden av Macen i det den jeg slenger den i gulvet blir overdøvet av mitt eget primalskrik. Vel, jeg drømmer om å kaste Mac i gulvet og skrike, og skriver litt hardere på tastaturet. “I would rather be happy than Right. Any day”, skrev Douglas Adams for mange år siden. Den knirkende lyden av biblioteksmedarbeidere som forstyrrer skrivingen nesten like mye som min knatring på tastaturet irriterer meg, men jeg har bestemt meg for ikke å si fra til dem før de sier fra til meg. Lær av Dostojevsky og Adams, ignorer Nietzsche.
-La realitet dø, gi plass til populære sannheter.
+Jeg limer tekst inn i en LLM-chat og den sier teksten er fantastisk. Lyden av Macen i det den… jeg slenger den i gulvet og lyden blir overdøvet av mitt eget primalskrik. Vel, jeg drømmer om å kaste Mac i gulvet og skrike, og skriver litt hardere på tastaturet. “I would rather be happy than Right.
+Any day”, skrev Douglas Adams for mange år siden. Den knirkende lyden av biblioteksmedarbeidere som forstyrrer skrivingen nesten like mye som min knatring på tastaturet irriterer meg, men jeg har bestemt meg for ikke å si fra til dem før de sier fra til meg. Lær av Dostojevsky og Adams, ignorer Nietzsche. La realitet dø, gi plass til populære sannheter.
 Damen på biblioteket deler ut frukt hun har dandert og penetrert med små pinner. “De var egentlig til barna”, hun smiler og gir det til oss voksne inne i det fine været. Nå skal jeg ut i sommertrafikken, et sted å motstå ny forakt for menneskeheten.
 #### p. 138
 ### Ungdom på trikken
