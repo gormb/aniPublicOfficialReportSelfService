@@ -526,6 +526,21 @@ def publish_md_to_aigap():
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
+def sync_music():
+    """Speil kapittel/underkapittel/side for hver sang inn i public.music fra sidecarene
+    (music.py). PREM er mesteren og skriver over; FREE er reserve og fyller bare tomme felt
+    (en annen versjon kan senere få annet sidetall). Feiler musikken, er boksynken likevel
+    vellykket – derfor bare en annotation."""
+    try:
+        import music
+        for call in (['--lg', 'NO', '--ed', 'PREM', '--overwrite'],
+                     ['--lg', 'EN', '--ed', 'PREM', '--overwrite'],
+                     ['--lg', 'NO', '--ed', 'FREE'],
+                     ['--lg', 'EN', '--ed', 'FREE']):
+            music.main(call)
+    except Exception as e:
+        gh('warning', f'[music] kunne ikke oppdatere public.music: {e}')
+
 def main():
     marker = os.path.join(REPO, '.sync-books-errors')
     if os.path.exists(marker):
@@ -588,6 +603,7 @@ def main():
             log_error(url, key, book, 'download', str(e))
             errors += 1
     print(f'ferdig: {n} bok(er) synkronisert')
+    sync_music()  # sidecarene er ferske nå – bind sangene til kapittel/underkapittel/side
     if not publish_md_to_aigap():
         errors += 1
     if errors:

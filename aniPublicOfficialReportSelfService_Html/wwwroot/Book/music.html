@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>music — sangene i boken</title>
+<link rel="icon" href="aigap.webp">
+
+<script src="https://aigap.no/db.js?v=8"></script>
+<link rel="stylesheet" href="adm/adm.css">
+</head>
+<body>
+<h3>music; <span id="mCount">…</span> · <a href="adm/adm.html">adm ↗</a></h3>
+<form id="f" onsubmit="save(event)">
+  <table>
+    <tr>
+      <td>id <input id="m_id" readonly style="width:7em"></td>
+      <td>song (title; artist) <input id="m_song" style="width:24em"></td>
+      <td>spotify url <input id="m_url" style="width:24em"></td>
+    </tr>
+    <tr>
+      <td>ch <input id="m_ch" style="width:9em"></td>
+      <td>su <input id="m_su" style="width:16em"></td>
+      <td>page <input id="m_page" type="number" style="width:5em">
+          · book <input id="m_book" style="width:9em">
+          · lg <input id="m_lg" style="width:3em">
+          · ed <input id="m_ed" style="width:3em"></td>
+    </tr>
+    <tr>
+      <td>txt_id <input id="m_txtid" style="width:7em" title="redir-raden teksten ligger på (tom = sangens egen rad)"></td>
+      <td>replaced_by <input id="m_rep" style="width:12em" title="f.eks. 'en: mhtyt'"></td>
+      <td>comments <input id="m_comments" style="width:10em"></td>
+    </tr>
+    <tr><td colspan="3">contents <textarea id="m_contents" rows="2" style="width:100%"></textarea></td></tr>
+    <tr><td colspan="3">relevance <textarea id="m_relevance" rows="2" style="width:100%"></textarea></td></tr>
+    <tr><td colspan="3">txt (lyrics — redir) <textarea id="m_txt" rows="8" style="width:100%"></textarea></td></tr>
+    <tr>
+      <td><button>Save</button> <button type="button" onclick="resetF()">Clear</button></td>
+      <td colspan="2"><span id="mMsg"></span></td>
+    </tr>
+  </table>
+</form>
+<p>filter <input id="mQ" oninput="draw()" placeholder="id / tittel / ch / su" style="width:20em"></p>
+<div id="grid"></div>
+<script type="module" src="musicadm.js?v=1"></script>
+</body>
+</html>
