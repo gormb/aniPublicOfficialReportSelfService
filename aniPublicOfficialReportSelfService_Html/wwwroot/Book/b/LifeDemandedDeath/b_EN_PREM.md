@@ -1034,3 +1034,7 @@ Two extremes for the role of music in storytelling are background music and asso
 ## Unplaced & undecided
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix and more
+#### p. 172
+### …
+🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
+…
