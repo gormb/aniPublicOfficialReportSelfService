@@ -153,6 +153,45 @@ const TESTS=[
       return {ok, detail:`landed ${pn} (md says ${exp||'?'}) · 🎵 anchors on page: ${anchors}`};
     } finally { h.close(); await sleep(120); }
   }
+},
+{
+  id:'both-page-and-music',
+  name:'both ?page=<derived> and c=w,1000,med → both are applied (ends on the song page)',
+  note:'The page number is derived from the .md at run time — never hardcoded — so it survives book/pdf '+
+       'changes. When both are asked for, both happen: open at page=, then jump via the .md (also warms '+
+       'the page cache). Timing is the sum by design — reported, not judged.',
+  async run(){
+    const h=await openBook({book:BOOK,page:1,c:'w,1000,med'});
+    let exp=0,pn=0,ms=0;
+    try{
+      const md=await h.win.cBook.data.mdRaw(), Key=h.win.music.Key;
+      exp=mdPage(md,Key,'med'); pn=h.win.cBook.pn; ms=h.ms;
+    } finally { h.close(); await sleep(120); }
+    const direct=await loadBook({book:BOOK,page:exp});   // same page opened directly (derived, not hardcoded)
+    const ok=exp>1 && pn===exp;
+    return {ok, detail:`landed ${pn} (md says ${exp||'?'}) · both-case ${ms|0} ms vs direct ${direct|0} ms`};
+  }
+},
+{
+  id:'music-on-warm-page',
+  name:'music lookup on a cache-warm page: ≤ 20% extra vs opening ?page=<derived>',
+  note:'Runs AFTER the page= test. Opens at the song page (derived from the .md), then runs the music '+
+       'lookup on that same warm page — so it isolates the lookup overhead. PASS if the warm music case '+
+       'is within 20% of the plain page= open. SKIPPED when the tab is hidden.',
+  async run(){
+    if(document.hidden) return {skip:true, detail:'tab hidden → timings unreliable (focus this tab, re-run)'};
+    const h0=await openBook({book:BOOK});                       // derive the song page from the .md
+    let exp=0;
+    try{ const md=await h0.win.cBook.data.mdRaw(); exp=mdPage(md,h0.win.music.Key,'med'); }
+    finally{ h0.close(); await sleep(120); }
+    if(!(exp>1)) return {ok:false, detail:'could not derive the page for "med" from the .md'};
+    await loadBook({book:BOOK,page:exp});                                          // warm-up
+    const plain=await loadBook({book:BOOK,page:exp});                              // cache-warm page= open
+    const music=await loadBook({book:BOOK,page:exp,c:'w,1000,med'});               // + music lookup, same warm page
+    const limit=Math.ceil(plain*1.2);
+    const ok=music<=limit;
+    return {ok, detail:`page=${exp} · plain ${plain|0} ms · +music ${music|0} ms · limit ${limit|0} ms (+20%)`};
+  }
 }
 /* Add more the same way, e.g.:
 
