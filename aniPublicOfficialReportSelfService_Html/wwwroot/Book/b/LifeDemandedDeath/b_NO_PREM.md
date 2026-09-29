@@ -1080,3 +1080,13 @@ Filmskapere har både før og etter hatt samme innstilling. I denne boka er musi
 ## Uplassert og ubestemt
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix og mer
+#### p. 172
+### Metamannen
+🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
+Rekkefølge er viktig, for vi blir formet av det første vi lærer om noen. “Drep ham ikke vent til jeg kommer” sto det på veggen til min forfatterfarfar.
+Det kan bety: “Drep ham, ikke vent til jeg kommer”
+eller motsatt:: “Drep ham ikke, vent til jeg kommer”
+Leseren bestemmer. Derfor er din forutinntatthet gaven som former hva denne boka egentlig handler om for deg.
+I tillegg har vi etter farfars tid lært at dulting (priming/nudging) virker og former oss. Manipulerende krefter som reklamefolk, de du elsker og alle som kommuniserer med intensjon bruker det.
+Uttalelse: “Menn blir fengslet for sånt. Deilig å være kvinne.”
+Rettelse: “Menn blir fengslet for sånt. Deilig å være i kvinne.”
