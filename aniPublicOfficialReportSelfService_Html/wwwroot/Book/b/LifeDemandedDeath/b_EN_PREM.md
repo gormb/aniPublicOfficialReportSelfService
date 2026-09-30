@@ -1037,4 +1037,5 @@ Appendix and more
 #### p. 172
 ### …
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
-…
+han var i egnetanker, jeg skal ikke smalltaklke med deg.
+Jeg har gjort dette 1000 ganger og hver gang blir jeg nervøs.

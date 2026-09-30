@@ -761,5 +761,5 @@ Filmskapere har både før og etter hatt samme innstilling. I denne boka er musi
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix og mer
 #### p. 172
-### Metamannen
+### Enkel mann
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)

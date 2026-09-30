@@ -1081,12 +1081,13 @@ Filmskapere har både før og etter hatt samme innstilling. I denne boka er musi
 🎵 [Yesterday; Beatles](https://aigap.no/myb)
 Appendix og mer
 #### p. 172
-### Metamannen
+### Enkel mann
 🎵 [Meta for bok, musikk og mer](https://aigap.no/mx)
+Jeg er feilkobla. Jo mer ting koster desto mer verdsetter jeg det.
+Gratis kan aldri være verdifult fordi akkurat jeg ikke måtte kjempe for det.
+Ikke alle andre jeg har møtt har det slik, men det er en mental modell jeg er vant til å måtte forholde meg til. Mediastjernen som også var et intellektuelt forbilde ville ikke snakke med meg, han var i panikkangst, før han skulle foran kamera for 3000ende gang. “Uten panikkangsten ville jeg aldri latt meg filme” det.
+ikke etterpå være glad for å ha kommet levende fra det, han likte rusen som lå i at adrenalin gradvis ga plass til endorfiner.
+Gjenkjennbart.
 Rekkefølge er viktig, for vi blir formet av det første vi lærer om noen. “Drep ham ikke vent til jeg kommer” sto det på veggen til min forfatterfarfar.
 Det kan bety: “Drep ham, ikke vent til jeg kommer”
-eller motsatt:: “Drep ham ikke, vent til jeg kommer”
-Leseren bestemmer. Derfor er din forutinntatthet gaven som former hva denne boka egentlig handler om for deg.
-I tillegg har vi etter farfars tid lært at dulting (priming/nudging) virker og former oss. Manipulerende krefter som reklamefolk, de du elsker og alle som kommuniserer med intensjon bruker det.
-Uttalelse: “Menn blir fengslet for sånt. Deilig å være kvinne.”
-Rettelse: “Menn blir fengslet for sånt. Deilig å være i kvinne.”
+ll “D h ikk il j k ”
