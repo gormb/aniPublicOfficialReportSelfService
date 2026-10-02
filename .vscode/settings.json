@@ -2,6 +2,9 @@
     "git.autofetch": true,
     "git.autofetchPeriod": 1800,
     "git.confirmSync": false,
+    // Allow the "git: pull on workspace open" task (runOn: folderOpen) in
+    // tasks.json to execute automatically without a prompt each time.
+    "task.allowAutomaticTasks": "on",
     // SQL in this workspace is Supabase/PostgreSQL. Stop the MSSQL (SQL Server)
     // extension from validating those files as T-SQL: it auto-disables its
     // language service when it detects a non-MSSQL dialect (plpgsql, pg_*, $$…).
